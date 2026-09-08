@@ -187,6 +187,7 @@ function mdInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
 
 /* ══════════════ theme.md parser ══════════════ */
 function parseTheme(md){
+  md = md.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
   const out = {meta:{}, sections:{}};
   const fm = md.match(/^---\n([\s\S]*?)\n---/);
   if(fm) fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
