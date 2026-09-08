@@ -78,14 +78,24 @@ tickers: ZEB.TO → ZEB.TO.csv | BANK.TO → BANK.TO.csv | HFIN.TO → HFIN.TO.c
 
 ### Step 5 — 校验 + 发布
 
-校验清单（全部通过才算完成）：
-- [ ] JSON 代码块可被 `json.loads` 解析
-- [ ] 每个事件都有 MOVES 行和 SRC 行
-- [ ] 事件日期必须是 ZEB 交易日（在 chartdata.dates 里存在），否则图上挂不上标记
-- [ ] 事件编号连续（#01…#NN），ret 带正负号与 %
-- [ ] PROXIES 表的 ret3m 与 chartdata 末端值一致（允许 ±0.05pp 取整误差）
+先跑自动校验（一条命令覆盖下面大部分清单）：
+```
+node scripts/validate-theme.mjs app/theme.md
+```
+必须 PASS（warning 可以留，error 必须清零），再人工过一遍清单：
+- [ ] JSON 代码块可被解析（校验器已查）
+- [ ] 每个事件都有 MOVES 行和 SRC 行（校验器已查）
+- [ ] 事件日期必须是 ZEB 交易日（在 chartdata.dates 里存在），否则图上挂不上标记（校验器已查）
+- [ ] 事件编号连续（#01…#NN），ret 带正负号与 %（编号校验器已查，正负号人工看一眼）
+- [ ] PROXIES 表的 ret3m 与 chartdata 末端值一致（允许 ±0.06pp 取整误差，校验器已查）
 
-发布：重新保存网站版本（website_version_manager，type=html，project_dir=/mnt/agents/output/app）。不需要改 index.html。
+发布（git + GitHub Pages）：
+1. `git add app/theme.md tracker_data/` 后提交，一天一个 commit：`git commit -m "data: update theme.md <updated>"`（提交粒度细，坏了用 `git revert` 一条命令回滚）
+2. 推到 dev/功能分支 → GitHub Action 自动跑校验 → 绿了再合 main（合 main 即自动上线，约 1 分钟）
+3. 上线后打开 https://podor.org/thematic-tracker/ 确认数字与事件已更新
+4. 紧急回滚：`git revert <出问题的commit>`，重新走第 2 步
+
+不需要改 index.html。
 
 ### Step 6 — 每周五盘后加做
 

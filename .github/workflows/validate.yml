@@ -1,0 +1,19 @@
+name: validate theme
+on:
+  push:
+    paths:
+      - 'app/theme.md'
+      - 'scripts/validate-theme.mjs'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    paths:
+      - 'app/theme.md'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/validate-theme.mjs app/theme.md
