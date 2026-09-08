@@ -6,20 +6,30 @@
 <title>THEME TRACKER // Home</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0b100c;--panel:#101711;--line:#1e2b20;--txt:#c9d6cc;--mut:#5f7063;--acc:#00f48e;--amber:#ffb454;}
+  :root{--bg:#0b100c;--panel:#101711;--line:#1e2b20;--txt:#c9d6cc;--mut:#5f7063;--acc:#00f48e;--amber:#ffb454;--loss:#ff5f5f;}
   *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:'JetBrains Mono','PingFang SC',monospace;}
   .wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
   .kicker{color:var(--acc);font-size:12px;letter-spacing:3px}
   h1{font-size:34px;margin:12px 0 8px} h1 em{color:var(--mut);font-style:normal;font-size:16px}
   .sub{color:var(--mut);font-size:13px;line-height:1.8;max-width:640px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  .legend{display:flex;gap:16px;margin-top:14px;font-size:11.5px;color:var(--mut)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
   @media(max-width:700px){.grid{grid-template-columns:1fr}}
-  .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;text-decoration:none;color:var(--txt);transition:border-color .2s,transform .2s}
-  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .card{display:block;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--mut);border-radius:12px;padding:22px;text-decoration:none;color:var(--txt);transition:border-color .2s,transform .2s}
+  .card:hover{transform:translateY(-2px)}
+  .card.green{border-left-color:var(--acc)} .card.green:hover{border-color:var(--acc)}
+  .card.yellow{border-left-color:var(--amber)} .card.yellow:hover{border-color:var(--amber)}
+  .card.red{border-left-color:var(--loss)} .card.red:hover{border-color:var(--loss)}
   .card .tk{color:var(--acc);font-size:12px;letter-spacing:2px}
   .card h2{font-size:20px;margin:10px 0 8px}
   .card p{font-size:12.5px;line-height:1.8;color:var(--mut);margin:0 0 14px}
+  .call{display:inline-block;font-size:11.5px;font-weight:800;padding:3px 12px;border-radius:12px;margin-bottom:12px}
+  .call.green{background:rgba(0,244,142,.12);color:var(--acc)}
+  .call.yellow{background:rgba(255,180,84,.12);color:var(--amber)}
+  .call.red{background:rgba(255,95,95,.12);color:var(--loss)}
   .card .go{color:var(--amber);font-size:13px}
+  .card .upd{display:block;margin-top:10px;font-size:10.5px;color:var(--mut)}
   footer{margin-top:48px;color:var(--mut);font-size:11.5px;line-height:2}
   footer a{color:var(--txt)}
 </style>
@@ -29,7 +39,8 @@
   <div class="kicker">THEMATIC TRACKER</div>
   <h1>One theme at a time <em>// tracked daily</em></h1>
   <p class="sub">Each theme has a main proxy, supportive proxies and a benchmark. Every trading day the agent updates prices, attributes what moved and why, and rolls the catalyst calendar. Pick a theme:</p>
-  <div class="grid">
+  <div class="legend"><span><i style="background:var(--acc)"></i>working 成立</span><span><i style="background:var(--amber)"></i>mixed 一般</span><span><i style="background:var(--loss)"></i>broken 不成立</span></div>
+  <div class="grid" id="cards">
     <a class="card" href="../canadian-banks/">
       <div class="tk">ZEB.TO · CANADIAN BANKS</div>
       <h2>Big-Six Banks</h2>
@@ -48,5 +59,37 @@
     Research tracker only. Not investment advice.
   </footer>
 </div>
+<script>
+(function(){
+  var THEMES = [
+    {dir:"../canadian-banks/", tk:"ZEB.TO · CANADIAN BANKS", title:"Big-Six Banks", link:"../canadian-banks/", desc:"Equal-weight Canadian banks vs TSX and S&P 500. Rate holds, Q3 earnings sweep, buybacks and the tariff overhang."},
+    {dir:"../ai-software/", tk:"IGV · AI-BEATEN SOFTWARE", title:"Mispriced SaaS Rebound", link:"../ai-software/", desc:"Software crushed on AI extinction fears, now re-rating on AI revenue proof. CRM / NOW / WDAY recovery vs QQQ."}
+  ];
+  function parse(md){
+    md = md.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
+    var meta = {}, m = md.match(/^---\n([\s\S]*?)\n---/);
+    if(m) m[1].split("\n").forEach(function(l){ var kv=l.match(/^([\w_]+):\s*(.*)$/); if(kv) meta[kv[1]]=kv[2].trim(); });
+    var call = "yellow", reason = "";
+    var cm = md.match(/^CALL:\s*(green|yellow|red)\s*\|\s*(.*)$/mi);
+    if(cm){ call = cm[1].toLowerCase(); reason = cm[2].trim(); }
+    var verdict = "", vm = md.match(/^## VERDICT\n+([\s\S]*?)(?=\n## |$)/m);
+    if(vm) verdict = vm[1].replace(/\*\*/g,"").trim().slice(0,160) + "…";
+    return {meta:meta, call:call, reason:reason, verdict:verdict};
+  }
+  var label = {green:"● WORKING 成立", yellow:"● MIXED 一般", red:"● BROKEN 不成立"};
+  Promise.all(THEMES.map(function(t){
+    return fetch(t.dir+"theme.md", {cache:"no-store"}).then(function(r){ if(!r.ok) throw 0; return r.text(); })
+      .then(function(md){ t.live = parse(md); return t; }).catch(function(){ t.live = null; return t; });
+  })).then(function(ts){
+    if(!ts.some(function(t){ return t.live; })) return; // keep static fallback (file://)
+    document.getElementById("cards").innerHTML = ts.map(function(t){
+      var body = t.live
+        ? '<div class="call '+t.live.call+'">'+(label[t.live.call]||t.live.call)+'</div><p>'+t.live.verdict+'</p><span class="upd">UPDATED '+t.live.meta.updated+' · '+t.live.reason+'</span>'
+        : '<p>'+t.desc+'</p>';
+      return '<a class="card '+(t.live?t.live.call:"")+'" href="'+t.link+'"><div class="tk">'+t.tk+'</div><h2>'+t.title+'</h2>'+body+'<span class="go">Open tracker →</span></a>';
+    }).join("");
+  });
+})();
+</script>
 </body>
 </html>

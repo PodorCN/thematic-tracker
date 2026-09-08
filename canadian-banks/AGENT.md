@@ -26,6 +26,16 @@ params: period=3mo, interval=1d（全量重拉，幂等）
 - MOVES 行标签：`ZEB=` / `TSX=` / `VOL=x.x`
 - Tag 集合：Earnings / Monetary Policy / Geopolitics / Macro Data / Valuation & Sentiment / Trade War（驱动颜色，新增 tag 先在 index.html 的 TAGCLS 里加映射）
 
+## 灯规则（## VALIDITY，决定绿/黄/红）
+
+1M 超额 = 近 21 个交易日 ZEB（zeb 槽）相对 TSX（tsx 槽）的归一化点差。
+
+- green（成立）: 超额 > +1pp，且无 thesis-break
+- yellow（一般）: 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 超额 < -1pp，或 thesis-break
+- thesis-break 定义：单季 PCL 大幅超预期、削减股息/回购、BoC 意外转向（降息重启或鹰派加息）、CET1 跌破监管舒适区
+- CALL 行必须写清超额数字（如 `CALL: red | 1M excess -1.17pp vs TSX — …`），校验器会用 chartdata 复算（允差 ±0.3pp）
+
 ## 三因子归因框架
 
 银行股只看三件事：**NIM（净息差，利率路径）/ PCL（信贷拨备，信用质量）/ 非息收入（资本市场+财富管理）**。新闻先归到某一因子再写传导链。

@@ -100,6 +100,13 @@ SNOW closes at 356.47, an all-time high, on its Project SnowWork AI platform mom
 MOVES: IGV=+3.41% | QQQ=+1.19%
 SRC: Marketbeat / Yahoo Finance, Sep 2026
 
+## VALIDITY
+
+CALL: green | 1M excess +2.47pp vs QQQ — AI revenue thesis intact
+- green（成立）: 1M 超额 > +1pp，且 AI ARR 证据链完好（无龙头下调指引、无 NRR 崩塌）
+- yellow（一般）: 1M 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 1M 超额 < -1pp，或 thesis-break（AI 指引下调、hyperscaler 砍 capex、per-seat 加速侵蚀）
+
 ## CATALYSTS
 
 ### Nov–Dec 2026 (est.) | hot | Q3 earnings: CRM / NOW / WDAY must repeat the trick

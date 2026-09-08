@@ -100,6 +100,13 @@ Earnings season done + BoC behind us + index at all-time highs (Sep 1 close 36,9
 MOVES: ZEB=+1.59% | TSX=+1.50%
 SRC: Sartorial Wealth, Aug 31, 2026
 
+## VALIDITY
+
+CALL: red | 1M excess -1.17pp vs TSX — post-earnings digestion, month invalid
+- green（成立）: 1M 超额 > +1pp，且无 thesis-break（PCL 恶化、股息/回购削减、BoC 意外转向）
+- yellow（一般）: 1M 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 1M 超额 < -1pp，或出现 thesis-break；当前 3M 逻辑未破，但本月跑输，不成立
+
 ## CATALYSTS
 
 ### 2026-12-02 ~ 12-04 (est.) | hot | Big Six Q4 / FY2026 earnings

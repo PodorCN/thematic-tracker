@@ -93,6 +93,25 @@ blocks.forEach((b, i) => {
 });
 if (blocks.length > 15) warn(`event count ${blocks.length} > 15, consider merging old ones`);
 
+// ---------- VALIDITY (theme call lamp) ----------
+const vsec = (get('VALIDITY') || '').split('\n').map(l => l.trim()).filter(Boolean);
+const callM = (vsec.find(l => l.startsWith('CALL:')) || '').match(/^CALL:\s*(green|yellow|red)\s*\|\s*(.+)$/i);
+if (!callM) err('VALIDITY needs a line like: CALL: green|yellow|red | reason with 1M excess');
+else {
+  const [, color, reason] = callM;
+  if (!reason.trim()) err('VALIDITY CALL needs a reason');
+  if (!vsec.some(l => l.startsWith('-'))) warn('VALIDITY has no rules list');
+  if (cd && normLen && normLen >= 21) {
+    const ex = (cd.zeb_norm[normLen - 1] - cd.zeb_norm[normLen - 21]) - (cd.tsx_norm[normLen - 1] - cd.tsx_norm[normLen - 21]);
+    const mv = parseFloat((reason.match(/([+-]?\d+(?:\.\d+)?)\s*pp/) || [])[1]);
+    if (Number.isFinite(mv) && Math.abs(mv - ex) > 0.3) err(`VALIDITY states ${mv}pp but 1M excess recomputes ${ex.toFixed(2)}pp`);
+    const lc = color.toLowerCase();
+    if (lc === 'green' && ex <= 1) err(`CALL green needs 1M excess > +1pp (got ${ex.toFixed(2)}pp)`);
+    else if (lc === 'yellow' && Math.abs(ex) > 1) err(`CALL yellow needs 1M excess within ±1pp (got ${ex.toFixed(2)}pp)`);
+    else if (lc === 'red' && ex >= -1 && !/thesis/i.test(reason)) err(`CALL red needs 1M excess < -1pp or a stated thesis break (got ${ex.toFixed(2)}pp)`);
+  }
+}
+
 // ---------- PROXIES cross-check vs CHARTDATA ----------
 if (cd && normLen) {
   const end = k => cd[k][cd[k].length - 1] - 100;

@@ -35,6 +35,16 @@ params: period=14mo, interval=1d（全量重拉，幂等；窗口必须覆盖 20
 - Tag 集合：AI Disruption / AI Monetization / Earnings / Valuation & Sentiment / Macro Data（已在 index.html TAGCLS 配色）
 - 分化规则：IGV 跌而 QQQ 平/涨 → 软件特有（财报/估值/监管）；同向大跌 → 宏观；SNOW/DDOG 新高而 IGV 滞涨 → 反弹扩散未完成
 
+## 灯规则（## VALIDITY，决定绿/黄/红）
+
+1M 超额 = 近 21 个交易日 IGV（zeb 槽）相对 QQQ（tsx 槽）的归一化点差。
+
+- green（成立）: 超额 > +1pp，且 AI ARR 证据链完好
+- yellow（一般）: 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 超额 < -1pp，或 thesis-break
+- thesis-break 定义：龙头下调 AI 指引、NRR 崩塌、hyperscaler 砍 capex、per-seat 加速侵蚀且无用户扩张对冲
+- CALL 行必须写清超额数字（如 `CALL: green | 1M excess +2.47pp vs QQQ — …`），校验器会用 chartdata 复算（允差 ±0.3pp）
+
 ## 两因子归因框架
 
 软件股只看两件事：**AI 增量收入（AI ARR、Agentforce 付费单、cRPO）/ per-seat 侵蚀（NRR、指引、定价权）**。每季度盯 NRR 和 AI-SKU attach——这两个数就是本 theme。
