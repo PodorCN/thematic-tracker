@@ -23,7 +23,7 @@ scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
 2. **拉行情**：按 AGENT.md 的参数全量重拉（不要增量追加，保证幂等），覆盖 `tracker_data/*.csv`；算窗口收益、归一化序列（base=100）、日收益、放量倍数。
 3. **异动筛查**：按 AGENT.md 的阈值决定是否需要新事件；同时检查催化剂日历是否命中当天。
 4. **新闻归因**：web search，事件四要素——标题（一句话）、正文（传导链 2–4 句）、MOVES（当日 %）、SRC（来源名 + 日期，禁止编造；搜不到原因就写 `归因不明（unexplained）`）。
-5. **重写 theme.md**：整个重写（不要局部 patch），格式严格遵守根 agent.md 旧版 §2 schema（frontmatter / PROXIES / STATS / VERDICT / EVENTS 升序编号 / CATALYSTS / CHARTDATA）；事件超 ~15 条时合并最老最不重要的。**同步更新 `## VALIDITY` 灯**：用 chartdata 重算近 21 个交易日主 proxy vs 基准（tsx 槽）的超额，按该 theme AGENT.md 的灯规则定 green/yellow/red 并写清理由数字。
+5. **重写 theme.md**：整个重写（不要局部 patch），格式严格遵守根 agent.md 旧版 §2 schema（frontmatter / PROXIES / STATS / VERDICT / EVENTS 升序编号 / CATALYSTS / CHARTDATA）；事件超 ~15 条时合并最老最不重要的。**同步更新 `## VALIDITY` 灯**：用 chartdata 重算近 42 个交易日（约两个月）主 proxy vs 基准（tsx 槽）的超额，按该 theme AGENT.md 的灯规则定 green/yellow/red 并写清理由数字。
 6. **校验**：`node scripts/validate-theme.mjs <theme>/theme.md` 必须 PASS（error 清零；warning 修不了就留着，但要在汇报里说明）。
 7. **发布**：`git add <theme>/` → 一天一个 commit（`data(<theme>): update theme.md <updated>`）→ 推 dev/功能分支 → Action 绿 → 合 main（自动上线约 1 分钟）→ 打开线上页确认。回滚用 `git revert`。
 

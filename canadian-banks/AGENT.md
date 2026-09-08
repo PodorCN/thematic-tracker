@@ -28,7 +28,7 @@ params: period=3mo, interval=1d（全量重拉，幂等）
 
 ## 灯规则（## VALIDITY，决定绿/黄/红）
 
-1M 超额 = 近 21 个交易日 ZEB（zeb 槽）相对 TSX（tsx 槽）的归一化点差。
+2M 超额 = 近 42 个交易日（约两个月）ZEB（zeb 槽）相对 TSX（tsx 槽）的归一化点差。
 
 - green（成立）: 超额 > +1pp，且无 thesis-break
 - yellow（一般）: 超额在 ±1pp 内，thesis 完好
