@@ -3,11 +3,13 @@ on:
   push:
     paths:
       - 'app/theme.md'
+      - 'ai-software/theme.md'
       - 'scripts/validate-theme.mjs'
       - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'app/theme.md'
+      - 'ai-software/theme.md'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -17,3 +19,4 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/validate-theme.mjs app/theme.md
+      - run: node scripts/validate-theme.mjs ai-software/theme.md
