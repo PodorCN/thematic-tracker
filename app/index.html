@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +61,7 @@ section{margin-top:56px}
 .hero .sub{color:var(--dim);max-width:860px;margin-top:14px;font-size:14px}
 
 /* ── proxy chips ─────────────────────── */
-.chips{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-top:28px}
 .chip{
   border:1px solid var(--line); background:var(--panel); padding:14px 16px; position:relative;
   clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
@@ -165,384 +165,385 @@ footer b{color:var(--dim)}
 .rv{opacity:0;transform:translateY(16px)}
 .rv.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease}
 </style>
+<style>
+#loading{padding:120px 28px;color:var(--acc);font-size:14px;letter-spacing:.08em}
+.tone-warn{color:var(--amber)} .tone-up{color:var(--acc)} .tone-dn{color:var(--loss)} .tone-flat{color:var(--txt)}
+.stat .v.up{color:var(--acc)} .stat .v.dn{color:var(--loss)} .stat .v.warn{color:var(--amber)} .stat .v.flat{color:var(--txt)}
+</style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="cmd">> THEME_TRACKER <span style="color:var(--mut)">--load</span> CANADIAN_BANKS.SYS <span class="cursor"></span></div>
-  <div class="meta">LAST UPDATE <b>2026-09-08</b> · WINDOW <b>3M</b> · CCY <b>CAD</b></div>
+  <div class="cmd">> THEME_TRACKER <span style="color:var(--mut)">--source</span> theme.md <span class="cursor"></span></div>
+  <div class="meta" id="metaBar">LOADING…</div>
 </header>
 
-<div class="wrap">
-
-  <section class="hero">
-    <div class="kicker rv">THEMATIC TRACKER · 主题追踪</div>
-    <h1 class="rv">加拿大银行业 <em>// CANADIAN BIG-SIX BANKS</em></h1>
-    <p class="sub rv">等权六大行敞口（ZEB.TO）为主代理，BANK.TO（1.25x 杠杆放大器）与 HFIN.TO（泛金融结构判别器）为辅助代理，基准 S&amp;P/TSX Composite。追踪每一天这个 theme 为什么赚钱、为什么亏钱。</p>
-
-    <div class="chips rv">
-      <div class="chip main">
-        <div class="role">MAIN PROXY</div>
-        <div class="tk">ZEB.TO</div>
-        <div class="nm">BMO Equal Weight Banks Index ETF</div>
-        <div class="ret up glow mono-num">+7.84%</div>
-        <div class="nm">3M RETURN</div>
-      </div>
-      <div class="chip">
-        <div class="role">SUPPORTIVE · 杠杆放大器</div>
-        <div class="tk">BANK.TO</div>
-        <div class="nm">Evolve Cdn Banks &amp; Lifecos Enh Yield (1.25x)</div>
-        <div class="ret up mono-num">+8.98%</div>
-        <div class="nm">3M RETURN</div>
-      </div>
-      <div class="chip">
-        <div class="role">SUPPORTIVE · 结构判别器</div>
-        <div class="tk">HFIN.TO</div>
-        <div class="nm">Hamilton Enhanced Canadian Financials</div>
-        <div class="ret up mono-num">+7.15%</div>
-        <div class="nm">3M RETURN</div>
-      </div>
-      <div class="chip">
-        <div class="role">BENCHMARK</div>
-        <div class="tk">^GSPTSE</div>
-        <div class="nm">S&amp;P/TSX Composite Index</div>
-        <div class="ret up mono-num">+5.29%</div>
-        <div class="nm">3M RETURN</div>
-      </div>
-      <div class="chip">
-        <div class="role">EXCESS RETURN</div>
-        <div class="tk">α vs TSX</div>
-        <div class="nm">ZEB.TO 3M 超额收益</div>
-        <div class="ret up glow mono-num">+2.55pp</div>
-        <div class="nm">OUTPERFORM</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head"><h2>ZEB.TO 走势 + 事件标注</h2><span>数字标记 = 下方时间线事件编号 · 点击时间线卡片可在图上定位</span></div>
-    <div class="panel">
-      <div class="panel-head">
-        <div class="t">ZEB.TO vs S&amp;P 500 vs SUPPORTIVE PROXIES — BASE=100 (2026-06-08)</div>
-      </div>
-      <div id="chart"></div>
-    </div>
-
-    <div class="stats" style="margin-top:16px">
-      <div class="stat"><div class="k">3M RETURN</div><div class="v up mono-num">+7.84%</div><div class="s">69.70 → 75.17</div></div>
-      <div class="stat"><div class="k">YTD 2026</div><div class="v up mono-num">+32.8%</div><div class="s">年内涨幅</div></div>
-      <div class="stat"><div class="k">VS 52WK HIGH</div><div class="v dn mono-num">-4.6%</div><div class="s">高点 78.82</div></div>
-      <div class="stat"><div class="k">DIV YIELD</div><div class="v mono-num" style="color:var(--txt)">2.29%</div><div class="s">月度分红</div></div>
-      <div class="stat"><div class="k">BETA (3Y)</div><div class="v mono-num" style="color:var(--txt)">1.07</div><div class="s">对 TSX</div></div>
-      <div class="stat"><div class="k">估值分位</div><div class="v" style="color:var(--amber)">极高</div><div class="s">fwd P/E ≈15.3x，2010年来最贵</div></div>
-    </div>
-
-    <div class="verdict rv">
-      <p><b>结论：</b>这个 theme 近 3 个月<b>有优势</b>（超额 +2.55pp），钱主要赚在 <b>Q3 财报全线超预期</b>（资本市场/财富管理爆发 + PCL 低于预期）与<b>利率环境稳定</b>上；两次明显亏钱（7/29、8/19–20）都不是银行业基本面恶化，而是<b>高估值下对利率与地缘扰动极度敏感</b>的去风险抛售。当前板块交易在 2010 年以来最贵的前瞻估值，"利好出尽"迹象已出现（8/26–27 全线 beat 但股价下跌）——<b>估值是这个 theme 最大的空方 driver。</b></p>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head"><h2>重大 DRIVER 时间线</h2><span>近 3 个月 · 含 main proxy 当日 movement 与归因</span></div>
-    <div class="tl">
-      <div class="ev  rv" data-ev="1">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">JUN 10<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-0.31%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#01</span><span class="tag t-mon">货币政策</span></div>
-          <h3>BoC 第 5 次按兵不动，政策利率维持 2.25%</h3>
-          <p class="why">观察期起点。央行进入“漫长按兵不动”阶段：核心通胀已回落至 2% 附近，但中东冲突推高汽油价格令 headline 通胀反弹至 3.2%，BoC 既不敢降息也不敢加息。<b>对银行 = NIM 企稳、信贷成本可控的中性偏暖环境</b>，为主题 3 个月超额收益奠定基调。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn mono-num">-0.31%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl dn mono-num">-0.76%</span></span></div>
-          <div class="src">SOURCE: Bank of Canada / myperch.io 利率日程</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="2">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">JUL 08<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-2.10%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#02</span><span class="tag t-val">估值与情绪</span></div>
-          <h3>Jefferies 估值警告：板块 15.3x 前瞻 P/E，超历史均值 50%</h3>
-          <p class="why">Jefferies 分析师 John Aiken 指出六大行估值已超越 2006 年 2 月 13.5x 的前高。叠加当日大盘回落，<b>高位获利了结启动</b>：ZEB 当日 -2.10%（TSX 仅 -0.95%），银行特有抛压。这是“估值即风险”主题的第一次预演。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn glow-r mono-num">-2.10%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl dn mono-num">-0.95%</span></span><span class="mv"><span class="lb">VOL</span><span class="vl  mono-num">1.5×</span></span></div>
-          <div class="src">SOURCE: Financial Post, Jul 20, 2026</div>
-        </div>
-      </div>
-      <div class="ev  rv" data-ev="3">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">JUL 15<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret up mono-num">+1.56%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#03</span><span class="tag t-mon">货币政策</span></div>
-          <h3>BoC 第 6 次 hold + 夏季 MPR：经济反弹的缓解性反弹</h3>
-          <p class="why">利率如期维持 2.25%，MPR 确认核心通胀近 2%、预计 2027–28 年增长 1.8%。<b>“不加息也不衰退”对银行是甜点区</b>：NIM 不再被降息压缩，PCL 也不会因衰退跳升。ZEB +1.56%，明显跑赢 TSX（+0.27%），当周收于区间高点 78.44（历史高位区）。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl up mono-num">+1.56%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl up mono-num">+0.27%</span></span></div>
-          <div class="src">SOURCE: Bank of Canada / Insight CPA MPR 解读</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="4">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">JUL 20<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-2.27%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#04</span><span class="tag t-mac">宏观数据</span></div>
-          <h3>6 月核心通胀跌破 2%（近 6 年首次）→ 加息预期降温</h3>
-          <p class="why">反常逻辑：<b>对高估值银行股，“通胀回落”反而是利空</b>——加息想象空间收窄 = NIM 扩张预期消失（Veritas 分析师 Shalabh Garg）。加拿大金融股终结了 4 个月 +26% 的狂奔，当日回吐高达 2%。利率敏感的双向性在这个 theme 上体现得淋漓尽致。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn glow-r mono-num">-2.27%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl dn mono-num">-0.86%</span></span><span class="mv"><span class="lb">VOL</span><span class="vl  mono-num">1.4×</span></span></div>
-          <div class="src">SOURCE: Financial Post, Jul 20, 2026</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="5">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">JUL 29<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-3.21%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#05</span><span class="tag t-geo">地缘政治</span></div>
-          <h3>中东冲突骤然升级：伊朗导弹袭击美军，油价飙升</h3>
-          <p class="why">伊朗向美军基地发射导弹（全数被拦截）、伊拉克民兵连续袭击沙特油设施，油价急涨，TSX 盘中重挫 300 点。同日 BoC 公布 7 月会议纪要（理事会对复苏可持续性存分歧）。<b>油价→通胀→央行转鹰的传导链直接打在利率敏感、且处于历史估值高位的银行股上</b>，ZEB 单日 -3.21%，为 3 个月第二大跌幅。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn glow-r mono-num">-3.21%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl dn mono-num">-1.16%</span></span></div>
-          <div class="src">SOURCE: BNN Bloomberg, Jul 29, 2026</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="6">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">AUG 19<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-3.30%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#06</span><span class="tag t-val">估值与情绪</span></div>
-          <h3>鹰派 FOMC 纪要引爆财报前去风险：BMO 盘中 -4.4%</h3>
-          <p class="why">美联储 7 月会议纪要显示 3 位地方联储主席异议支持加息 → 美债收益率上行 → <b>利率敏感金融股遭集中抛售</b>。注意当日 <b>TSX 收平（+0.09%）而 ZEB -3.30%</b>——纯粹的银行股独有下跌。背景：板块年内已涨 19–34%，Morningstar 估算高于公允价值约 22%，财报周前没人愿意满仓硬扛。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn glow-r mono-num">-3.30%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl up mono-num">+0.09%</span></span><span class="mv"><span class="lb">VOL</span><span class="vl  mono-num">1.8×</span></span></div>
-          <div class="src">SOURCE: Yahoo Finance Canada, Aug 26, 2026</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="7">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">AUG 20<span class="yr">2026 · 周二</span></div>
-          <div><span class="ev-ret dn mono-num">-1.75%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#07</span><span class="tag t-val">估值与情绪</span></div>
-          <h3>抛售延续：2 日累计 -5%，六大行 4 个交易日一度跌超 6%</h3>
-          <p class="why">财报前最后的杠杆出清，量能放大至 20 日均量 2 倍。这轮回调把 ZEB 从 78 上方打到 73——<b>事后看是 Q3 财报行情前的黄金坑</b>：基本面并未恶化，跌的只是估值溢价。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl dn glow-r mono-num">-1.75%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl dn mono-num">-0.10%</span></span><span class="mv"><span class="lb">VOL</span><span class="vl  mono-num">2.0×</span></span></div>
-          <div class="src">SOURCE: Yahoo Finance Canada, Aug 26, 2026</div>
-        </div>
-      </div>
-      <div class="ev  rv" data-ev="8">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">AUG 25<span class="yr">2026 · 周一</span></div>
-          <div><span class="ev-ret up mono-num">+2.69%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#08</span><span class="tag t-earn">财报</span></div>
-          <h3>Q3 财报季开局：Scotiabank 史上最强季度，单日 +7%</h3>
-          <p class="why">BNS 调整后 EPS C$2.28（预期 2.10，+21% YoY），ROE 14.2% 首次达标，<b>股价单日 +7%</b>；BMO 同日调整后 EPS +22%（资本市场 +45%）。财富管理与资本市场取代 NII 成为盈利引擎。ZEB +2.69%，一举收复财报前大部分失地。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl up glow mono-num">+2.69%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl up mono-num">+0.66%</span></span></div>
-          <div class="src">SOURCE: The Dividend Guy / nai500, Aug 2026</div>
-        </div>
-      </div>
-      <div class="ev neg rv" data-ev="9">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">AUG 26–27<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret dn mono-num">-1.07%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#09</span><span class="tag t-earn">财报 × 贸易战</span></div>
-          <h3>六大行全部 beat，但“利好出尽”：RBC 创纪录 C$60 亿净利，股价却跌</h3>
-          <p class="why">RBC 净利 +11% 至 C$60 亿创纪录、TD beat（2.77 vs 2.47）、CIBC beat、National beat（+20%）——但 ZEB 两日 -0.27% / -0.80%。原因有二：<b>① 估值太贵</b>，forward P/E 已是 2010 年以来最高，beat 已被定价；<b>② 贸易战同期升级</b>——8/22 美国 50% 关税生效、加拿大宣布 C$276 亿反制、华盛顿预告 2027 年 50% 汽车关税。关键警示：Q3 财报期止于 7/31，<b>关税冲击完全没有进入这份成绩单</b>。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB 8/26</span><span class="vl dn mono-num">-0.27%</span></span><span class="mv"><span class="lb">ZEB 8/27</span><span class="vl dn mono-num">-0.80%</span></span><span class="mv"><span class="lb">BIG6</span><span class="vl up mono-num">6/6 BEAT</span></span></div>
-          <div class="src">SOURCE: RBC Q3 新闻稿 / Sartorial Wealth, Aug 31, 2026</div>
-        </div>
-      </div>
-      <div class="ev  rv" data-ev="10">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">SEP 02<span class="yr">2026 · 周</span></div>
-          <div><span class="ev-ret up mono-num">+1.98%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#10</span><span class="tag t-mon">货币政策</span></div>
-          <h3>BoC 第 7 次 hold 2.25%：不确定性出清，财报后动能重启</h3>
-          <p class="why">年内第 7 次按兵不动符合一致预期。利率路径的不确定性消除后，<b>资金重新回到“盈利动量 + 股息”逻辑</b>，ZEB +1.98% 领涨 TSX（+0.74%）。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl up mono-num">+1.98%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl up mono-num">+0.74%</span></span></div>
-          <div class="src">SOURCE: Bank of Canada, Sep 2, 2026</div>
-        </div>
-      </div>
-      <div class="ev  rv" data-ev="11">
-        <div class="node"></div>
-        <div class="ev-left">
-          <div class="ev-date">SEP 03<span class="yr">2026 · 周二</span></div>
-          <div><span class="ev-ret up mono-num">+1.59%</span></div>
-          <div class="ev-ret-lb">ZEB DAILY</div>
-        </div>
-        <div class="card">
-          <div class="row1"><span class="num">#11</span><span class="tag t-earn">财报后动能</span></div>
-          <h3>全线走高：TSX 当周创纪录收盘（~36,958）</h3>
-          <p class="why">财报季收官 + BoC 落地 + 大盘创纪录（9/1 TSX 收于历史高位 36,957.63）。ZEB +1.59% 至 75.86，距 52 周高点 78.82 不足 4%。此后数日高位震荡，9/8 小幅回调至 75.17——<b>市场进入“等下一个催化剂”模式</b>。</p>
-          <div class="moves"><span class="mv"><span class="lb">ZEB</span><span class="vl up mono-num">+1.59%</span></span><span class="mv"><span class="lb">TSX</span><span class="vl up mono-num">+1.50%</span></span></div>
-          <div class="src">SOURCE: Sartorial Wealth, Aug 31, 2026</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head"><h2>下一个转折点 // NEXT CATALYSTS</h2><span>按重要性与时间排序</span></div>
-    <div class="cats">
-      <div class="cat hot rv">
-        <div class="d">2026-12-02 ~ 12-04（预估）· 最大转折点</div>
-        <h3>六大行 Q4 / FY2026 财报</h3>
-        <p>首个覆盖 <b>8/22 美国 50% 关税生效后</b>的完整季度。盯三个数：<b>PCL</b>（尤其商业/企业贷款，Q3 多数行 PCL 低于预期是股价支撑，若反转将直接击穿 thesis）、贷款增速、管理层 2027 指引。若 PCL 跳升 + 指引转谨慎，15.3x 估值的板块回撤 10%+ 情景成立；反之"关税免疫"叙事将推新高。</p>
-      </div>
-      <div class="cat rv">
-        <div class="d">2026-10-28 · 货币政策</div>
-        <h3>BoC 利率决议</h3>
-        <p>中东油价若把能源通胀扩散进核心通胀，BoC 存在转鹰尾部风险（C.D. Howe MPC 已有成员预期 2027 年 7 月加息至 2.5%）。<b>加息预期升温对银行股是双刃剑</b>：利好 NIM，利空估值与信贷。12/9 为年内最后一次会议。</p>
-      </div>
-      <div class="cat rv">
-        <div class="d">持续发酵 · 贸易战</div>
-        <h3>美加关税路径与 CUSMA 审查</h3>
-        <p>50% 关税已生效、2027 汽车关税已预告、CUSMA 审查进行中。贸易不确定性 → 企业推迟投资 → <b>贷款需求与 PCL 预期</b>。这是 Q4 财报前所有消息的底层变量，任何谈判突破/破裂都会先打在银行板块上。</p>
-      </div>
-      <div class="cat rv">
-        <div class="d">结构性事件</div>
-        <h3>M&amp;A 与一次性项目</h3>
-        <p>National Bank 收购 Laurentian 中小企业组合预计 <b>2026 年底</b>交割（整合费用 vs 协同）；RBC/BMO 向 Francisco Partners 出售 Moneris 预计 <b>2027 Q1</b> 交割，RBC 预计税后收益约 C$4.75 亿——一次性资本补充，利好 CET1 与回购空间。</p>
-      </div>
-      <div class="cat rv">
-        <div class="d">常驻风险 · 估值</div>
-        <h3>估值重置风险（空方 thesis）</h3>
-        <p>板块 forward P/E ≈15.3x（历史均值 ~10x），Morningstar 估算高于公允价值约 <b>22%</b>。若按历史估值区间回归，单体大行理论回撤空间 21–33%。<b>不需要基本面恶化，只需要"不再变好"。</b>这是持有该 theme 必须每天复核的核心风险。</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <b>DATA</b> 行情: Yahoo Finance (ZEB.TO / BANK.TO / HFIN.TO / ^GSPTSE, 日线, 2026-06-08 → 2026-09-08) · 新闻归因: BNN Bloomberg, Financial Post, Yahoo Finance Canada, Bank of Canada, RBC/BNS 财报新闻稿等<br>
-    <b>PROTOCOL</b> 每日更新 SOP 见《加拿大银行业主题追踪-操作手册.md》：|ZEB 日收益| &gt; 1.5% 必须归因 · ZEB 与 TSX 背离 &gt; 1pp 判定为银行特有事件 · BANK.TO 杠杆放大确认趋势 · HFIN.TO 背离判别银行 vs 泛金融驱动<br>
-    <b>DISCLAIMER</b> 本页面为研究追踪工具，不构成投资建议。
-  </footer>
-</div>
-
+<div class="wrap" id="app"><div id="loading">> parsing theme.md <span class="cursor"></span></div></div>
 
 <script>
-const D = {"dates": ["2026-06-08", "2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-19", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-29", "2026-06-30", "2026-07-02", "2026-07-03", "2026-07-06", "2026-07-07", "2026-07-08", "2026-07-09", "2026-07-10", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24", "2026-07-27", "2026-07-28", "2026-07-29", "2026-07-30", "2026-07-31", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-10", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-17", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-21", "2026-08-24", "2026-08-25", "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-08"], "zeb": [69.7, 70.28, 70.06, 71.0, 71.79, 72.0, 72.68, 73.42, 73.8, 74.22, 74.57, 74.86, 74.51, 74.98, 74.59, 75.09, 75.64, 74.58, 74.97, 75.89, 76.32, 74.71, 75.63, 76.78, 76.68, 77.23, 78.44, 78.05, 77.8, 76.04, 76.35, 76.41, 75.5, 75.99, 76.34, 77.19, 74.71, 76.01, 76.13, 76.04, 76.52, 76.53, 76.4, 76.3, 76.14, 77.36, 77.76, 78.13, 78.01, 76.85, 74.31, 73.01, 73.34, 73.08, 75.05, 74.85, 74.25, 74.37, 73.72, 73.22, 74.67, 75.86, 75.47, 75.17], "zeb_norm": [100.0, 100.83, 100.51, 101.85, 102.99, 103.29, 104.26, 105.33, 105.88, 106.47, 106.97, 107.4, 106.89, 107.57, 107.0, 107.73, 108.51, 107.0, 107.56, 108.87, 109.49, 107.19, 108.5, 110.16, 110.0, 110.8, 112.53, 111.97, 111.61, 109.09, 109.53, 109.61, 108.31, 109.01, 109.51, 110.74, 107.19, 109.04, 109.22, 109.09, 109.77, 109.79, 109.6, 109.46, 109.23, 110.98, 111.55, 112.09, 111.92, 110.25, 106.61, 104.75, 105.22, 104.85, 107.67, 107.38, 106.52, 106.69, 105.76, 105.04, 107.12, 108.83, 108.27, 107.84], "tsx_norm": [100.0, 99.81, 99.05, 100.56, 101.33, 102.31, 102.64, 101.87, 101.42, 101.42, 101.52, 101.3, 100.75, 101.08, 101.45, 101.0, 101.1, 101.42, 102.23, 102.13, 102.3, 101.33, 102.09, 102.4, 102.24, 102.44, 102.72, 102.5, 102.28, 101.4, 102.58, 102.92, 102.07, 102.58, 103.16, 103.69, 102.48, 102.98, 102.17, 103.84, 104.84, 104.81, 105.52, 105.74, 105.79, 106.33, 106.61, 106.53, 106.35, 105.48, 105.58, 105.47, 106.21, 106.48, 107.19, 106.77, 106.83, 106.02, 105.2, 103.91, 104.68, 106.25, 105.9, 105.29], "bank_norm": [100.0, 100.92, 101.01, 102.3, 103.35, 103.95, 105.05, 105.88, 106.61, 106.98, 106.7, 106.61, 106.06, 106.47, 106.24, 107.07, 108.2, 107.65, 108.2, 109.32, 109.97, 107.74, 109.27, 110.25, 109.5, 110.34, 112.29, 112.2, 112.2, 109.88, 110.48, 110.62, 109.41, 110.71, 111.27, 112.57, 108.81, 110.76, 111.48, 111.53, 111.48, 111.44, 110.92, 111.39, 110.35, 111.62, 112.33, 113.08, 112.66, 111.48, 107.67, 105.09, 105.84, 105.84, 108.1, 108.1, 107.15, 107.67, 106.69, 105.59, 107.93, 109.84, 110.03, 108.98], "hfin_norm": [100.0, 101.06, 101.32, 101.62, 103.47, 103.8, 105.02, 106.31, 106.78, 106.64, 106.91, 107.24, 107.6, 108.13, 107.4, 108.26, 108.78, 109.08, 109.71, 110.5, 111.33, 109.08, 110.04, 110.7, 110.7, 111.1, 112.66, 112.49, 112.29, 109.97, 110.04, 110.07, 108.94, 110.0, 111.36, 113.15, 108.91, 110.3, 110.82, 111.45, 111.58, 110.85, 110.45, 110.3, 109.79, 110.59, 111.25, 111.08, 110.82, 109.19, 106.13, 103.57, 104.5, 104.57, 106.93, 106.9, 106.03, 106.37, 105.12, 104.35, 106.12, 108.21, 107.95, 107.15], "volume": [747500, 2143400, 1706000, 3533500, 1584100, 5826600, 7808300, 1954300, 1789000, 656300, 3156800, 932800, 2715800, 4270800, 2684200, 2589900, 1259200, 1492900, 139100, 1361000, 4826300, 4171800, 1496000, 2318400, 1975300, 881200, 2375900, 1451200, 1560700, 3163000, 1285700, 1386400, 1194000, 1153300, 1836200, 1929100, 1860900, 828600, 1132400, 1018500, 897300, 1100400, 744400, 849100, 1190400, 2091600, 1591700, 499600, 761300, 1703800, 2350600, 2760500, 1510200, 1886900, 1665400, 1934400, 2237600, 1654100, 1305200, 2256300, 1226200, 1145700, 581100, 229326], "zeb_ret": [null, 0.83, -0.31, 1.33, 1.12, 0.29, 0.94, 1.03, 0.51, 0.57, 0.47, 0.4, -0.48, 0.64, -0.53, 0.68, 0.73, -1.4, 0.52, 1.22, 0.56, -2.1, 1.23, 1.53, -0.14, 0.73, 1.56, -0.5, -0.32, -2.27, 0.41, 0.08, -1.19, 0.65, 0.46, 1.12, -3.21, 1.73, 0.16, -0.12, 0.63, 0.01, -0.17, -0.13, -0.21, 1.6, 0.52, 0.49, -0.15, -1.5, -3.3, -1.75, 0.45, -0.35, 2.69, -0.27, -0.8, 0.16, -0.87, -0.68, 1.98, 1.59, -0.51, -0.4], "tsx_ret": [null, -0.19, -0.76, 1.52, 0.77, 0.97, 0.32, -0.75, -0.44, -0.0, 0.1, -0.21, -0.55, 0.33, 0.37, -0.45, 0.1, 0.31, 0.8, -0.1, 0.17, -0.95, 0.76, 0.3, -0.15, 0.19, 0.27, -0.21, -0.22, -0.86, 1.17, 0.33, -0.82, 0.5, 0.56, 0.51, -1.16, 0.49, -0.79, 1.63, 0.96, -0.03, 0.68, 0.21, 0.05, 0.51, 0.27, -0.08, -0.17, -0.82, 0.09, -0.1, 0.7, 0.26, 0.66, -0.39, 0.06, -0.76, -0.78, -1.23, 0.74, 1.5, -0.33, -0.58]};
-const SPX = {dates: ["2026-06-08", "2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-29", "2026-06-30", "2026-07-02", "2026-07-06", "2026-07-07", "2026-07-08", "2026-07-09", "2026-07-10", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24", "2026-07-27", "2026-07-28", "2026-07-29", "2026-07-30", "2026-07-31", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-10", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-17", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-21", "2026-08-24", "2026-08-25", "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-08"], norm: [100.0, 99.74, 98.13, 99.85, 100.35, 102.01, 101.43, 100.19, 101.28, 100.91, 99.46, 99.36, 99.35, 99.3, 100.47, 101.26, 101.05, 101.78, 101.32, 101.04, 101.86, 102.29, 101.48, 101.86, 102.25, 101.73, 100.7, 100.51, 101.4, 101.26, 100.03, 100.08, 100.1, 100.31, 98.79, 100.43, 101.13, 104.47, 104.29, 104.11, 104.75, 104.69, 104.35, 104.63, 105.31, 105.13, 104.58, 103.86, 104.08, 103.18, 103.63, 103.34, 103.67, 103.65, 104.39, 104.13, 103.79, 103.05, 103.52, 104.62, 104.22, 103.86]};
+/* ══════════════ mini-markdown → html ══════════════ */
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function mdInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
 
-const EV = [
-  {n:1,  date:"2026-06-10", title:"BoC 第5次按兵不动 2.25%",               up:false},
-  {n:2,  date:"2026-07-08", title:"Jefferies 估值警告 15.3x fwd P/E",      up:false},
-  {n:3,  date:"2026-07-15", title:"BoC 第6次 hold + 夏季MPR",              up:true },
-  {n:4,  date:"2026-07-20", title:"核心通胀跌破2% → 加息预期降温",          up:false},
-  {n:5,  date:"2026-07-29", title:"中东冲突升级 · 油价飙升",                up:false},
-  {n:6,  date:"2026-08-19", title:"鹰派FOMC纪要 → 财报前去风险",            up:false},
-  {n:7,  date:"2026-08-20", title:"抛售延续 · 2日累计-5%",                 up:false},
-  {n:8,  date:"2026-08-25", title:"Q3财报开局：BNS史上最强 +7%",            up:true },
-  {n:9,  date:"2026-08-26", title:"六大行6/6 beat 但利好出尽",              up:false},
-  {n:10, date:"2026-09-02", title:"BoC 第7次 hold",                        up:true },
-  {n:11, date:"2026-09-03", title:"财报后动能 · TSX当周创纪录",             up:true }
-];
+/* ══════════════ theme.md parser ══════════════ */
+function parseTheme(md){
+  const out = {meta:{}, sections:{}};
+  const fm = md.match(/^---\n([\s\S]*?)\n---/);
+  if(fm) fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
+  const body = md.slice(fm? fm[0].length : 0);
+  const parts = body.split(/^## /m).filter(s=>s.trim());
+  parts.forEach(p=>{
+    const nl = p.indexOf("\n");
+    out.sections[p.slice(0,nl).trim()] = p.slice(nl+1);
+  });
+  return out;
+}
+function parseTable(sec){
+  return sec.split("\n").filter(l=>/^\|/.test(l) && !/^\|[\s\-\|]+\|$/.test(l))
+    .slice(1).map(l=> l.split("|").slice(1,-1).map(c=>c.trim()));
+}
+function parseEvents(sec){
+  return sec.split(/^### /m).filter(s=>s.trim()).map(b=>{
+    const lines = b.split("\n").map(l=>l.trim()).filter(Boolean);
+    const head = lines[0].split("|").map(s=>s.trim());
+    const retM = head[2] ? head[2].match(/([+\-]?[\d.]+%)/) : null;
+    const ev = {num:head[0].replace("#",""), date:head[1], ret: retM? retM[1] : "—",
+                retNeg: retM ? retM[1].startsWith("-") : false, tag: head[3]||"", paras:[], moves:[], src:""};
+    let i=1;
+    if(lines[i] && /^\*\*.*\*\*$/.test(lines[i])){ ev.title = lines[i].replace(/\*\*/g,""); i++; }
+    for(; i<lines.length; i++){
+      const l = lines[i];
+      if(l.startsWith("MOVES:")) ev.moves = l.slice(6).split("|").map(s=>s.trim()).map(p=>{
+        const kv=p.split("="); return {lb:kv[0].trim(), vl:(kv[1]||"").trim()};});
+      else if(l.startsWith("SRC:")) ev.src = l.slice(4).trim();
+      else ev.paras.push(l);
+    }
+    return ev;
+  });
+}
+function parseCats(sec){
+  return sec.split(/^### /m).filter(s=>s.trim()).map(b=>{
+    const lines = b.split("\n").map(l=>l.trim()).filter(Boolean);
+    const head = lines[0].split("|").map(s=>s.trim());
+    return {date:head[0], flag:head[1]||"", title:head[2]||"", para:lines.slice(1).join(" ")};
+  });
+}
+function parseChart(sec){
+  const m = sec.match(/```json\n([\s\S]*?)\n```/);
+  return m ? JSON.parse(m[1]) : null;
+}
 
+/* ══════════════ tag → class ══════════════ */
+const TAGCLS = {"Earnings":"t-earn","Monetary Policy":"t-mon","Geopolitics":"t-geo","Macro Data":"t-mac","Valuation & Sentiment":"t-val","Trade War":"t-geo","Momentum":"t-earn","Valuation":"t-val"};
+function tagCls(t){ for(const k in TAGCLS) if(t.includes(k)) return TAGCLS[k]; return "t-mac"; }
+
+/* ══════════════ render ══════════════ */
+const WK=["SUN","MON","TUE","WED","THU","FRI","SAT"];
+const MON=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+function render(md){
+  const T = parseTheme(md);
+  const meta = T.meta;
+  document.getElementById("metaBar").innerHTML =
+    `LAST UPDATE <b>${meta.updated||"—"}</b> · WINDOW <b>${meta.window||"3M"}</b> · CCY <b>${meta.currency||"CAD"}</b> · SRC <b>theme.md</b>`;
+
+  const proxies = parseTable(T.sections["PROXIES"]||"");
+  const stats   = parseTable(T.sections["STATS"]||"");
+  const events  = parseEvents(T.sections["EVENTS"]||"");
+  const cats    = parseCats(T.sections["CATALYSTS"]||"");
+  const CD      = parseChart(T.sections["CHARTDATA"]||"");
+
+  let chips = proxies.map(p=>{
+    const [role,tk,nm,ret,extra]=p;
+    const cls = ret.includes("-")?"dn":"up";
+    const main = role.includes("MAIN")?" main":"";
+    const badge = main?'<div class="role"></div>':"";
+    return `<div class="chip${main}">
+      <div class="role">${esc(role)}</div>
+      <div class="tk">${esc(tk)}</div><div class="nm">${esc(nm)}</div>
+      <div class="ret ${cls} mono-num">${esc(ret)}</div><div class="nm">${esc(extra||"")}</div></div>`;
+  }).join("");
+
+  let statsHtml = stats.map(s=>{
+    const [k,v,sub,tone]=s;
+    return `<div class="stat"><div class="k">${esc(k)}</div><div class="v ${tone||"flat"} mono-num">${esc(v)}</div><div class="s">${esc(sub||"")}</div></div>`;
+  }).join("");
+
+  let evHtml = [...events].reverse().map(e=>{
+    const d = new Date(e.date+"T00:00:00");
+    const mon = isNaN(d)? e.date : MON[d.getMonth()];
+    const day = isNaN(d)? "" : String(d.getDate()).padStart(2,"0");
+    const yr  = isNaN(d)? "" : `${d.getFullYear()} · ${WK[d.getDay()]}`;
+    const rc  = e.retNeg ? "dn" : "up";
+    const neg = e.retNeg ? " neg" : "";
+    const mv = e.moves.map(mv2=>{
+      const c = mv2.vl.startsWith("-")?"dn":(mv2.vl.startsWith("+")||/BEAT/i.test(mv2.vl)?"up":"");
+      return `<span class="mv"><span class="lb">${esc(mv2.lb)}</span><span class="vl ${c} mono-num">${esc(mv2.vl)}</span></span>`;
+    }).join("");
+    return `<div class="ev${neg} rv" data-ev="${parseInt(e.num)}">
+      <div class="node"></div>
+      <div class="ev-left">
+        <div class="ev-date">${mon} ${day}<span class="yr">${yr}</span></div>
+        <div><span class="ev-ret ${rc} mono-num">${esc(e.ret)}</span></div>
+        <div class="ev-ret-lb">ZEB DAILY</div>
+      </div>
+      <div class="card">
+        <div class="row1"><span class="num">#${e.num}</span><span class="tag ${tagCls(e.tag)}">${esc(e.tag)}</span></div>
+        <h3>${mdInline(e.title)}</h3>
+        ${e.paras.map(p=>`<p class="why">${mdInline(p)}</p>`).join("")}
+        <div class="moves">${mv}</div>
+        <div class="src">SOURCE: ${esc(e.src)}</div>
+      </div></div>`;
+  }).join("");
+
+  let catHtml = cats.map(c=>{
+    const hot = c.flag.toLowerCase().includes("hot")?" hot":"";
+    return `<div class="cat${hot} rv"><div class="d">${esc(c.date)} · ${esc(c.flag)}</div>
+      <h3>${mdInline(c.title)}</h3><p>${mdInline(c.para)}</p></div>`;
+  }).join("");
+
+  document.getElementById("app").innerHTML = `
+  <section class="hero">
+    <div class="kicker rv">THEMATIC TRACKER</div>
+    <h1 class="rv">${esc(meta.theme_cn||"")} <em>// ${esc(meta.theme_en||"")}</em></h1>
+    <div class="chips rv">${chips}</div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>ZEB.TO + EVENT MARKERS</h2><span>numbered markers = timeline events · click a card to locate on chart</span></div>
+    <div class="panel">
+      <div class="panel-head"><div class="t">ZEB.TO vs S&amp;P 500 vs SUPPORTIVE PROXIES — BASE=100</div></div>
+      <div id="chart"></div>
+    </div>
+    <div class="stats" style="margin-top:16px">${statsHtml}</div>
+    <div class="verdict rv"><p><b>VERDICT:</b> ${mdInline((T.sections["VERDICT"]||"").trim())}</p></div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>DRIVER TIMELINE</h2><span>newest first · ZEB daily move on the left of each card</span></div>
+    <div class="tl">${evHtml}</div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>NEXT CATALYSTS</h2><span>ordered by significance</span></div>
+    <div class="cats">${catHtml}</div>
+  </section>
+  <footer>
+    <b>DATA</b> Prices: Yahoo Finance · All content & attribution rendered from <b>theme.md</b> (updated daily by the agent per agent.md)<br>
+    <b>PROTOCOL</b> |ZEB daily move| &gt; 1.5% requires attribution · ZEB/TSX divergence &gt; 1pp = bank-specific event · BANK.TO leverage confirms trend · HFIN.TO divergence splits bank-specific vs broad-financial drivers<br>
+    <b>DISCLAIMER</b> Research tracker only. Not investment advice.
+  </footer>`;
+
+  if(CD) drawChart(CD, events);
+  bindCards();
+  observeReveal();
+}
+
+/* ══════════════ chart ══════════════ */
 const ACC="#00f48e", LOSS="#ff5f5f", MUT="#5f7063", GRID="#16211a", TXT="#c9d6cc";
 const FONT={family:"'JetBrains Mono','PingFang SC',monospace", color:TXT, size:11};
+let EVH=[], EVT=[], EVTRACE=6;
 
-const idx = Object.fromEntries(D.dates.map((d,i)=>[d,i]));
-const evX=[], evY=[], evT=[], evC=[], evH=[];
-EV.forEach(e=>{ const i=idx[e.date]; if(i==null) return;
-  evX.push(e.date); evY.push(D.zeb_norm[i]); evT.push(String(e.n));
-  evC.push(e.up?ACC:LOSS); evH.push(e.title); });
+function drawChart(D, events){
+  const idx = Object.fromEntries(D.dates.map((d,i)=>[d,i]));
+  const evX=[], evY=[], evT=[], evC=[]; EVH=[];
+  events.forEach(e=>{ const i=idx[e.date]; if(i==null) return;
+    evX.push(e.date); evY.push(D.zeb_norm[i]); evT.push(String(parseInt(e.num)));
+    evC.push(e.retNeg?LOSS:ACC); EVH.push(e.title); });
 
-const vlines = EV.map(e=>({type:"line", x0:e.date, x1:e.date, y0:0, y1:1, yref:"paper",
-  line:{color:"rgba(0,244,142,.10)", width:1, dash:"dot"}}));
+  const vlines = evX.map(x=>({type:"line", x0:x, x1:x, y0:0, y1:1, yref:"paper",
+    line:{color:"rgba(0,244,142,.10)", width:1, dash:"dot"}}));
+  const volColors = D.zeb_ret.map(r=> r==null? MUT : (r>=0? "rgba(0,244,142,.22)":"rgba(255,95,95,.22)"));
 
-const volColors = D.zeb_ret.map(r=> r==null? MUT : (r>=0? "rgba(0,244,142,.22)":"rgba(255,95,95,.22)"));
+  const traces = [
+    {x:D.dates, y:D.volume, type:"bar", yaxis:"y2", marker:{color:volColors}, hoverinfo:"skip", showlegend:false},
+    {x:D.dates, y:D.tsx_norm, name:"S&P/TSX", type:"scatter", mode:"lines",
+     line:{color:"rgba(95,112,99,.65)", width:1.2, dash:"dot"},
+     hovertemplate:"%{x}<br>S&P/TSX <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.bank_norm, name:"BANK.TO (1.25x)", type:"scatter", mode:"lines",
+     line:{color:"rgba(255,180,84,.4)", width:1.2},
+     hovertemplate:"%{x}<br>BANK.TO <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.hfin_norm, name:"HFIN.TO", type:"scatter", mode:"lines",
+     line:{color:"rgba(78,201,176,.4)", width:1.2},
+     hovertemplate:"%{x}<br>HFIN.TO <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.spx_dates, y:D.spx_norm, name:"S&P 500", type:"scatter", mode:"lines",
+     line:{color:"#e8ecdf", width:2.2},
+     hovertemplate:"%{x}<br>S&P 500 <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.zeb_norm, name:"ZEB.TO (MAIN)", type:"scatter", mode:"lines",
+     line:{color:ACC, width:3.2},
+     hovertemplate:"%{x}<br>ZEB.TO <b>%{y:.1f}</b><extra></extra>"},
+    {x:evX, y:evY, type:"scatter", mode:"markers+text", name:"EVENT",
+     marker:{size:18, color:evC, line:{color:"#060807",width:1.5}, symbol:"diamond"},
+     text:evT, textfont:{size:9.5, color:"#060807", family:"JetBrains Mono"},
+     hovertemplate:"<b>#%{text}</b> %{customdata}<br>%{x} · ZEB %{y:.1f}<extra></extra>",
+     customdata:EVH, showlegend:false}
+  ];
+  EVT = evT;
 
-const traces = [
-  {x:D.dates, y:D.volume, type:"bar", yaxis:"y2", marker:{color:volColors},
-   hoverinfo:"skip", showlegend:false},
-  {x:D.dates, y:D.tsx_norm, name:"S&P/TSX", type:"scatter", mode:"lines",
-   line:{color:"rgba(95,112,99,.65)", width:1.2, dash:"dot"},
-   hovertemplate:"%{x}<br>S&P/TSX <b>%{y:.1f}</b><extra></extra>"},
-  {x:D.dates, y:D.bank_norm, name:"BANK.TO (1.25x)", type:"scatter", mode:"lines",
-   line:{color:"rgba(255,180,84,.4)", width:1.2},
-   hovertemplate:"%{x}<br>BANK.TO <b>%{y:.1f}</b><extra></extra>"},
-  {x:D.dates, y:D.hfin_norm, name:"HFIN.TO", type:"scatter", mode:"lines",
-   line:{color:"rgba(78,201,176,.4)", width:1.2},
-   hovertemplate:"%{x}<br>HFIN.TO <b>%{y:.1f}</b><extra></extra>"},
-  {x:SPX.dates, y:SPX.norm, name:"S&P 500", type:"scatter", mode:"lines",
-   line:{color:"#e8ecdf", width:2.2},
-   hovertemplate:"%{x}<br>S&P 500 <b>%{y:.1f}</b><extra></extra>"},
-  {x:D.dates, y:D.zeb_norm, name:"ZEB.TO (MAIN)", type:"scatter", mode:"lines",
-   line:{color:ACC, width:3.2},
-   hovertemplate:"%{x}<br>ZEB.TO <b>%{y:.1f}</b><extra></extra>"},
-  {x:evX, y:evY, type:"scatter", mode:"markers+text", name:"EVENT",
-   marker:{size:18, color:evC, line:{color:"#060807",width:1.5}, symbol:"diamond"},
-   text:evT, textfont:{size:9.5, color:"#060807", family:"JetBrains Mono"},
-   hovertemplate:"<b>#%{text}</b> %{customdata}<br>%{x} · ZEB %{y:.1f}<extra></extra>",
-   customdata:evH, showlegend:false}
-];
+  const layout = {
+    paper_bgcolor:"#0b100c", plot_bgcolor:"#0b100c", font:FONT,
+    margin:{l:44,r:16,t:34,b:36}, hovermode:"x unified",
+    xaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT}},
+    yaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT},
+           range:[Math.min(...D.zeb_norm,...D.spx_norm)-1.5, Math.max(...D.zeb_norm,...D.bank_norm)+2],
+           title:{text:"BASE = 100", font:{size:10,color:MUT}}},
+    yaxis2:{overlaying:"y", side:"right", showgrid:false, zeroline:false,
+            range:[0, Math.max(...D.volume)*6], showticklabels:false},
+    shapes:vlines, showlegend:true,
+    legend:{orientation:"h", y:1.1, x:0, font:{size:10.5,color:TXT}, bgcolor:"rgba(0,0,0,0)"}
+  };
+  Plotly.newPlot("chart", traces, layout, {responsive:true, displaylogo:false});
+}
 
-const layout = {
-  paper_bgcolor:"#0b100c", plot_bgcolor:"#0b100c", font:FONT,
-  margin:{l:44,r:16,t:34,b:36}, hovermode:"x unified",
-  xaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT}},
-  yaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT},
-         range:[95,117], title:{text:"BASE = 100", font:{size:10,color:MUT}}},
-  yaxis2:{overlaying:"y", side:"right", showgrid:false, zeroline:false,
-          range:[0, Math.max(...D.volume)*6], showticklabels:false},
-  shapes:vlines, showlegend:true,
-  legend:{orientation:"h", y:1.1, x:0, font:{size:10.5,color:TXT}, bgcolor:"rgba(0,0,0,0)"}
-};
-
-Plotly.newPlot("chart", traces, layout, {responsive:true, displaylogo:false});
-
-// timeline card -> chart flash
-document.querySelectorAll(".ev").forEach(el=>{
-  el.addEventListener("click", ()=>{
-    const n = el.dataset.ev;
-    document.getElementById("chart").scrollIntoView({behavior:"smooth", block:"center"});
-    const i = EV.findIndex(e=>String(e.n)===n);
-    if(i<0) return;
-    let on=true, cnt=0;
-    const t = setInterval(()=>{
-      const s = evT.map((_,k)=> (k===i && on)?32:18);
-      Plotly.restyle("chart", {"marker.size":[s]}, [6]);
-      on=!on; if(++cnt>7) clearInterval(t);
-    }, 260);
+function bindCards(){
+  document.querySelectorAll(".ev").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const n = parseInt(el.dataset.ev);
+      document.getElementById("chart").scrollIntoView({behavior:"smooth", block:"center"});
+      const i = EVT.findIndex(t=>parseInt(t)===n);
+      if(i<0) return;
+      let on=true, cnt=0;
+      const t = setInterval(()=>{
+        const s = EVT.map((_,k)=> (k===i && on)?32:18);
+        Plotly.restyle("chart", {"marker.size":[s]}, [EVTRACE]);
+        on=!on; if(++cnt>7) clearInterval(t);
+      }, 260);
+    });
   });
-});
+}
 
-// reveal on scroll
-const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("in"); io.unobserve(e.target);} }), {threshold:.12});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+function observeReveal(){
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("in"); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+}
+
+/* ══════════════ boot: fetch theme.md, fallback embedded ══════════════ */
+const EMBEDDED = `---
+theme_cn: Canadian Banks
+theme_en: BIG-SIX BANKS · CA
+updated: 2026-09-08
+window: 3M
+currency: CAD
+---
+
+## PROXIES
+
+| role | ticker | name | ret3m | extra |
+|---|---|---|---|---|
+| MAIN PROXY | ZEB.TO | BMO Equal Weight Banks Index ETF | +7.84% | 3M RETURN |
+| SUPPORTIVE · LEVERAGED | BANK.TO | Evolve Cdn Banks & Lifecos Enh Yield (1.25x) | +8.98% | 3M RETURN |
+| SUPPORTIVE · BROAD FINS | HFIN.TO | Hamilton Enhanced Canadian Financials | +7.15% | 3M RETURN |
+| BENCHMARK | ^GSPTSE | S&P/TSX Composite Index | +5.29% | 3M RETURN |
+| BENCHMARK | ^GSPC | S&P 500 Index | +3.86% | 3M RETURN |
+| EXCESS RETURN | α vs TSX | ZEB.TO 3M excess return | +2.55pp | OUTPERFORM |
+
+## STATS
+
+| label | value | sub | tone |
+|---|---|---|---|
+| 3M RETURN | +7.84% | 69.70 → 75.17 | up |
+| YTD 2026 | +32.8% | calendar year | up |
+| VS 52WK HIGH | -4.6% | high 78.82 | dn |
+| DIV YIELD | 2.29% | monthly distributions | flat |
+| BETA (3Y) | 1.07 | vs TSX | flat |
+| VALUATION | EXTREME | fwd P/E ≈15.3x, richest since 2010 | warn |
+
+## VERDICT
+
+The theme has an **edge** over the last 3 months (+2.55pp vs TSX, ~+4pp vs S&P 500). The money was made on a **clean Q3 earnings sweep** (capital markets / wealth management boom + lower-than-feared PCLs) and a **stable rate environment**. The two selloffs (Jul 29, Aug 19–20) were not fundamentals deteriorating — they were **valuation-driven de-risking by a crowded, rate-sensitive sector**. With the group trading at its richest forward multiple since 2010, "beat-and-fade" has already appeared (Aug 26–27: all six beat, stocks fell) — **valuation is the biggest bear driver of this theme.**
+
+## EVENTS
+
+### #01 | 2026-06-10 | ZEB -0.31% | Monetary Policy
+**BoC holds for the 5th straight meeting at 2.25%**
+Window opens. The Bank of Canada settles into a long hold: core inflation is back near 2%, but Middle-East-driven gasoline prices have pushed headline CPI back to 3.2%, so the BoC can neither cut nor hike. **A neutral-to-warm backdrop for banks — stable NIM, contained credit costs** — setting up the theme's 3-month outperformance.
+MOVES: ZEB=-0.31% | TSX=-0.76%
+SRC: Bank of Canada / myperch.io rate schedule
+
+### #02 | 2026-07-08 | ZEB -2.10% | Valuation & Sentiment
+**Jefferies valuation warning: 15.3x forward P/E, 50% above historical average**
+Jefferies analyst John Aiken flags that Big-Six valuations have surpassed the 13.5x peak of Feb 2006. With the broader market soft that day, **profit-taking kicks in at the highs**: ZEB -2.10% vs TSX only -0.95% — bank-specific pressure. First rehearsal of the "valuation is the risk" theme.
+MOVES: ZEB=-2.10% | TSX=-0.95% | VOL=1.5x
+SRC: Financial Post, Jul 20, 2026
+
+### #03 | 2026-07-15 | ZEB +1.56% | Monetary Policy
+**BoC holds a 6th time + summer MPR: relief rally**
+Rates stay at 2.25% as expected; the MPR confirms core inflation near 2% and 1.8% growth for 2027–28. **"No hike, no recession" is the sweet spot for banks**: NIM no longer compressed by cuts, PCLs not spiking either. ZEB +1.56%, well ahead of TSX (+0.27%), closing the week at a range high of 78.44.
+MOVES: ZEB=+1.56% | TSX=+0.27%
+SRC: Bank of Canada / Insight CPA MPR note
+
+### #04 | 2026-07-20 | ZEB -2.27% | Macro Data
+**June core inflation breaks below 2% (first in ~6 years) → rate-hike hopes fade**
+Counterintuitive logic: **for richly-valued bank stocks, cooler inflation is a negative** — it kills the rate-hike scenario and with it any NIM-expansion dream (Veritas analyst Shalabh Garg). Canadian financials snap a 4-month, +26% run, giving back up to 2% on the day. Rate sensitivity cuts both ways in this theme.
+MOVES: ZEB=-2.27% | TSX=-0.86% | VOL=1.4x
+SRC: Financial Post, Jul 20, 2026
+
+### #05 | 2026-07-29 | ZEB -3.21% | Geopolitics
+**Middle East escalation: Iranian missiles at US forces, oil spikes**
+Iran fires missiles at a US base (all intercepted); Iraqi militias hit Saudi oil facilities repeatedly; oil surges and the TSX drops 300 points intraday. Same day, the BoC's July minutes show a divided council. **The oil → inflation → hawkish-central-bank transmission chain hits rate-sensitive banks sitting at record valuations**, ZEB -3.21% — the second-worst day of the window.
+MOVES: ZEB=-3.21% | TSX=-1.16%
+SRC: BNN Bloomberg, Jul 29, 2026
+
+### #06 | 2026-08-19 | ZEB -3.30% | Valuation & Sentiment
+**Hawkish FOMC minutes trigger pre-earnings de-risking: BMO -4.4% intraday**
+July Fed minutes show three regional Fed presidents dissenting in favor of a hike → Treasury yields jump → **rate-sensitive financials get sold in size**. Note the tape: **TSX closes flat (+0.09%) while ZEB drops -3.30%** — a purely bank-specific rout. Backdrop: the group was up 19–34% YTD and Morningstar estimated it ~22% above fair value; nobody wanted full exposure into earnings week.
+MOVES: ZEB=-3.30% | TSX=+0.09% | VOL=1.8x
+SRC: Yahoo Finance Canada, Aug 26, 2026
+
+### #07 | 2026-08-20 | ZEB -1.75% | Valuation & Sentiment
+**Selloff extends: -5% over 2 days; Big Six down 6%+ over 4 sessions**
+Final leverage flush before earnings, volume at 2x the 20-day average. The pullback drags ZEB from 78+ to 73 — **in hindsight, the golden entry before the Q3 earnings rally**: fundamentals never deteriorated; what deflated was the valuation premium.
+MOVES: ZEB=-1.75% | TSX=-0.10% | VOL=2.0x
+SRC: Yahoo Finance Canada, Aug 26, 2026
+
+### #08 | 2026-08-25 | ZEB +2.69% | Earnings
+**Q3 season opens: Scotiabank's strongest quarter ever, +7% on the day**
+BNS adjusted EPS C$2.28 (vs 2.10 expected, +21% YoY), ROE hits 14.2% for the first time — **shares +7% in a day**; BMO the same day posts adjusted EPS +22% (capital markets +45%). Wealth and capital markets take over from NII as the profit engine. ZEB +2.69%, recouping most of the pre-earnings losses in one session.
+MOVES: ZEB=+2.69% | TSX=+0.66%
+SRC: The Dividend Guy / nai500, Aug 2026
+
+### #09 | 2026-08-26 | ZEB -1.07% | Earnings × Trade War
+**All six beat — but "sell the news": RBC posts record C$6.0B profit, stock falls anyway**
+RBC net income +11% to a record C$6.0B; TD beats (2.77 vs 2.47); CIBC beats; National beats (+20%) — yet ZEB falls -0.27% / -0.80% over two days. Two reasons: **(1) valuation is stretched** — richest forward P/E since 2010, so beats were already priced; **(2) the trade war escalated simultaneously** — 50% US tariffs effective Aug 22, Canada unveils C$27.6B countermeasures, Washington previews 50% auto tariffs for 2027. Key caveat: Q3 ended Jul 31, so **none of the tariff shock is in these numbers**.
+MOVES: ZEB 8/26=-0.27% | ZEB 8/27=-0.80% | BIG6=6/6 BEAT
+SRC: RBC Q3 release / Sartorial Wealth, Aug 31, 2026
+
+### #10 | 2026-09-02 | ZEB +1.98% | Monetary Policy
+**BoC holds a 7th time at 2.25%: uncertainty clears, post-earnings momentum restarts**
+The seventh consecutive hold, in line with consensus. With the rate path settled, **money rotates back into the "earnings momentum + dividend" trade**; ZEB +1.98% leads the TSX (+0.74%).
+MOVES: ZEB=+1.98% | TSX=+0.74%
+SRC: Bank of Canada, Sep 2, 2026
+
+### #11 | 2026-09-03 | ZEB +1.59% | Post-Earnings Momentum
+**Broad rally: TSX closes the week at a record (~36,958)**
+Earnings season done + BoC behind us + index at all-time highs (Sep 1 close 36,957.63). ZEB +1.59% to 75.86, within 4% of its 52-week high of 78.82. The tape then chops sideways, easing to 75.17 by Sep 8 — **the market shifts into "waiting for the next catalyst" mode**.
+MOVES: ZEB=+1.59% | TSX=+1.50%
+SRC: Sartorial Wealth, Aug 31, 2026
+
+## CATALYSTS
+
+### 2026-12-02 ~ 12-04 (est.) | hot | Big Six Q4 / FY2026 earnings
+The first full quarter covering the **50% US tariffs that took effect Aug 22**. Watch three numbers: **PCLs** (especially commercial/corporate books — below-expectation PCLs propped up Q3; a reversal breaks the thesis), loan growth, and 2027 guidance. If PCLs jump and guidance turns cautious, a 10%+ drawdown at 15.3x forward is on the table; if not, the "tariff-immune" narrative pushes new highs.
+
+### 2026-10-28 | Monetary Policy | BoC rate decision
+If Middle-East oil prices leak energy inflation into core, there is a hawkish tail risk (a C.D. Howe MPC member already pencils a hike to 2.5% by Jul 2027). **Higher-for-longer cuts both ways for banks**: good for NIM, bad for valuation and credit. Dec 9 is the final meeting of the year.
+
+### Ongoing | Trade War | US-Canada tariff path & CUSMA review
+50% tariffs are live, 2027 auto tariffs are telegraphed, and the CUSMA review is underway. Trade uncertainty → corporates defer investment → **loan demand and PCL expectations**. This is the underlying variable for everything before Q4 earnings; any breakthrough or breakdown hits the bank complex first.
+
+### Structural | M&A | Moneris sale & Laurentian acquisition
+National Bank's acquisition of Laurentian's SME portfolio is expected to close **end-2026** (integration costs vs synergies); the RBC/BMO sale of Moneris to Francisco Partners is expected to close **Q1 2027**, with RBC guiding to ~C$475M after-tax gain — one-off capital that supports CET1 and buyback capacity.
+
+### Standing Risk | Valuation | Valuation-reset risk (the bear thesis)
+The group trades at ~15.3x forward (historical average ~10x); Morningstar estimates it ~**22%** above fair value. A reversion to the historical range implies 21–33% downside on individual banks. **Nothing needs to get worse — it only needs to stop getting better.** Re-check this risk daily while holding the theme.
+
+## CHARTDATA
+
+\`\`\`json
+{"dates":["2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-19","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-02","2026-07-03","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08"],"zeb_norm":[100.0,100.83,100.51,101.85,102.99,103.29,104.26,105.33,105.88,106.47,106.97,107.4,106.89,107.57,107.0,107.73,108.51,107.0,107.56,108.87,109.49,107.19,108.5,110.16,110.0,110.8,112.53,111.97,111.61,109.09,109.53,109.61,108.31,109.01,109.51,110.74,107.19,109.04,109.22,109.09,109.77,109.79,109.6,109.46,109.23,110.98,111.55,112.09,111.92,110.25,106.61,104.75,105.22,104.85,107.67,107.38,106.52,106.69,105.76,105.04,107.12,108.83,108.27,107.84],"tsx_norm":[100.0,99.81,99.05,100.56,101.33,102.31,102.64,101.87,101.42,101.42,101.52,101.3,100.75,101.08,101.45,101.0,101.1,101.42,102.23,102.13,102.3,101.33,102.09,102.4,102.24,102.44,102.72,102.5,102.28,101.4,102.58,102.92,102.07,102.58,103.16,103.69,102.48,102.98,102.17,103.84,104.84,104.81,105.52,105.74,105.79,106.33,106.61,106.53,106.35,105.48,105.58,105.47,106.21,106.48,107.19,106.77,106.83,106.02,105.2,103.91,104.68,106.25,105.9,105.29],"bank_norm":[100.0,100.92,101.01,102.3,103.35,103.95,105.05,105.88,106.61,106.98,106.7,106.61,106.06,106.47,106.24,107.07,108.2,107.65,108.2,109.32,109.97,107.74,109.27,110.25,109.5,110.34,112.29,112.2,112.2,109.88,110.48,110.62,109.41,110.71,111.27,112.57,108.81,110.76,111.48,111.53,111.48,111.44,110.92,111.39,110.35,111.62,112.33,113.08,112.66,111.48,107.67,105.09,105.84,105.84,108.1,108.1,107.15,107.67,106.69,105.59,107.93,109.84,110.03,108.98],"hfin_norm":[100.0,101.06,101.32,101.62,103.47,103.8,105.02,106.31,106.78,106.64,106.91,107.24,107.6,108.13,107.4,108.26,108.78,109.08,109.71,110.5,111.33,109.08,110.04,110.7,110.7,111.1,112.66,112.49,112.29,109.97,110.04,110.07,108.94,110.0,111.36,113.15,108.91,110.3,110.82,111.45,111.58,110.85,110.45,110.3,109.79,110.59,111.25,111.08,110.82,109.19,106.13,103.57,104.5,104.57,106.93,106.9,106.03,106.37,105.12,104.35,106.12,108.21,107.95,107.15],"spx_dates":["2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08"],"spx_norm":[100.0,99.74,98.13,99.85,100.35,102.01,101.43,100.19,101.28,100.91,99.46,99.36,99.35,99.3,100.47,101.26,101.05,101.78,101.32,101.04,101.86,102.29,101.48,101.86,102.25,101.73,100.7,100.51,101.4,101.26,100.03,100.08,100.1,100.31,98.79,100.43,101.13,104.47,104.29,104.11,104.75,104.69,104.35,104.63,105.31,105.13,104.58,103.86,104.08,103.18,103.63,103.34,103.67,103.65,104.39,104.13,103.79,103.05,103.52,104.62,104.22,103.86],"volume":[747500,2143400,1706000,3533500,1584100,5826600,7808300,1954300,1789000,656300,3156800,932800,2715800,4270800,2684200,2589900,1259200,1492900,139100,1361000,4826300,4171800,1496000,2318400,1975300,881200,2375900,1451200,1560700,3163000,1285700,1386400,1194000,1153300,1836200,1929100,1860900,828600,1132400,1018500,897300,1100400,744400,849100,1190400,2091600,1591700,499600,761300,1703800,2350600,2760500,1510200,1886900,1665400,1934400,2237600,1654100,1305200,2256300,1226200,1145700,581100,229326],"zeb_ret":[null,0.83,-0.31,1.33,1.12,0.29,0.94,1.03,0.51,0.57,0.47,0.4,-0.48,0.64,-0.53,0.68,0.73,-1.4,0.52,1.22,0.56,-2.1,1.23,1.53,-0.14,0.73,1.56,-0.5,-0.32,-2.27,0.41,0.08,-1.19,0.65,0.46,1.12,-3.21,1.73,0.16,-0.12,0.63,0.01,-0.17,-0.13,-0.21,1.6,0.52,0.49,-0.15,-1.5,-3.3,-1.75,0.45,-0.35,2.69,-0.27,-0.8,0.16,-0.87,-0.68,1.98,1.59,-0.51,-0.4]}
+\`\`\`
+`;
+fetch("theme.md", {cache:"no-store"})
+  .then(r=>{ if(!r.ok) throw new Error("http "+r.status); return r.text(); })
+  .then(render)
+  .catch(()=>render(EMBEDDED));
 </script>
-
 </body>
 </html>
