@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME TRACKER // Home</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b100c;--panel:#101711;--line:#1e2b20;--txt:#c9d6cc;--mut:#5f7063;--acc:#00f48e;--amber:#ffb454;}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:'JetBrains Mono','PingFang SC',monospace;}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+  .kicker{color:var(--acc);font-size:12px;letter-spacing:3px}
+  h1{font-size:34px;margin:12px 0 8px} h1 em{color:var(--mut);font-style:normal;font-size:16px}
+  .sub{color:var(--mut);font-size:13px;line-height:1.8;max-width:640px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}}
+  .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;text-decoration:none;color:var(--txt);transition:border-color .2s,transform .2s}
+  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .card .tk{color:var(--acc);font-size:12px;letter-spacing:2px}
+  .card h2{font-size:20px;margin:10px 0 8px}
+  .card p{font-size:12.5px;line-height:1.8;color:var(--mut);margin:0 0 14px}
+  .card .go{color:var(--amber);font-size:13px}
+  footer{margin-top:48px;color:var(--mut);font-size:11.5px;line-height:2}
+  footer a{color:var(--txt)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">THEMATIC TRACKER</div>
+  <h1>One theme at a time <em>// tracked daily</em></h1>
+  <p class="sub">Each theme has a main proxy, supportive proxies and a benchmark. Every trading day the agent updates prices, attributes what moved and why, and rolls the catalyst calendar. Pick a theme:</p>
+  <div class="grid">
+    <a class="card" href="../canadian-banks/">
+      <div class="tk">ZEB.TO · CANADIAN BANKS</div>
+      <h2>Big-Six Banks</h2>
+      <p>Equal-weight Canadian banks vs TSX and S&amp;P 500. Rate holds, Q3 earnings sweep, buybacks and the tariff overhang.</p>
+      <span class="go">Open tracker →</span>
+    </a>
+    <a class="card" href="../ai-software/">
+      <div class="tk">IGV · AI-BEATEN SOFTWARE</div>
+      <h2>Mispriced SaaS Rebound</h2>
+      <p>Software crushed on AI extinction fears, now re-rating on AI revenue proof. CRM / NOW / WDAY recovery vs QQQ.</p>
+      <span class="go">Open tracker →</span>
+    </a>
+  </div>
+  <footer>
+    DATA Yahoo Finance · Content rendered from each theme's <b>theme.md</b>, updated daily per <b>agent.md</b><br>
+    Research tracker only. Not investment advice.
+  </footer>
+</div>
+</body>
+</html>
