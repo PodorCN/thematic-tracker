@@ -1,7 +1,7 @@
 ---
 theme_cn: Canadian Banks
 theme_en: BIG-SIX BANKS · CA
-updated: 2026-09-08
+updated: 2026-09-09
 window: 3M
 currency: CAD
 ---
@@ -10,115 +10,134 @@ currency: CAD
 
 | role | ticker | name | ret3m | extra |
 |---|---|---|---|---|
-| MAIN PROXY | ZEB.TO | BMO Equal Weight Banks Index ETF | +7.09% | 3M RETURN |
-| SUPPORTIVE · LEVERAGED | BANK.TO | Evolve Cdn Banks & Lifecos Enh Yield (1.25x) | +8.41% | 3M RETURN |
-| SUPPORTIVE · BROAD FINS | HFIN.TO | Hamilton Enhanced Canadian Financials | +5.68% | 3M RETURN |
-| BENCHMARK | ^GSPTSE | S&P/TSX Composite Index | +4.77% | 3M RETURN |
-| BENCHMARK | ^GSPC | S&P 500 Index | +3.88% | 3M RETURN |
-| EXCESS RETURN | α vs TSX | ZEB.TO 3M excess return | +2.33pp | OUTPERFORM |
+| MAIN PROXY | ZEB.TO | BMO Equal Weight Banks Index ETF | +5.09% | 3M RETURN |
+| SUPPORTIVE · LEVERAGED | BANK.TO | Evolve Cdn Banks & Lifecos Enh Yield (1.25x) | +6.19% | 3M RETURN |
+| SUPPORTIVE · BROAD FINS | HFIN.TO | Hamilton Enhanced Canadian Financials | +3.29% | 3M RETURN |
+| BENCHMARK | ^GSPTSE | S&P/TSX Composite Index | +4.34% | 3M RETURN |
+| BENCHMARK | ^GSPC | S&P 500 Index | +5.08% | 3M RETURN |
+| EXCESS RETURN | α vs TSX | ZEB.TO 3M excess return | +0.75pp | OUTPERFORM |
 
 ## STATS
 
 | label | value | sub | tone |
 |---|---|---|---|
-| 3M RETURN | +7.09% | 69.70 → 74.65 | up |
-| YTD 2026 | +30.3% | adjusted close vs Dec 31, 2025 | up |
-| VS 52WK HIGH | -5.0% | high 78.60 | dn |
-| DIV YIELD | 2.29% | monthly distributions | flat |
-| BETA (3Y) | 1.07 | vs TSX | flat |
-| VALUATION | EXTREME | fwd P/E ≈15.3x, richest since 2010 | warn |
+| 3M RETURN | +5.09% | 70.28 → 73.86; adjusted close | up |
+| LATEST CLOSE | C$73.86 | 2026-09-09; daily -1.06% | dn |
+| YTD 2026 | +28.94% | adjusted close vs Dec 31, 2025 (57.2821) | up |
+| VS 52WK HIGH | -6.03% | adjusted intraday high 78.60; trailing 52 weeks | dn |
+| VOLUME / 20D | 0.84x | 1,309,667 shares; mean includes current session | flat |
 
 ## VERDICT
 
-The theme has an **edge** over the last 3 months (+2.33pp vs TSX, ~+3.21pp vs S&P 500). The money was made on a **clean Q3 earnings sweep** (capital markets / wealth management boom + lower-than-feared PCLs) and a **stable rate environment**. The two selloffs (Jul 29, Aug 19–20) were not fundamentals deteriorating — they were **valuation-driven de-risking by a crowded, rate-sensitive sector**. With the group trading at its richest forward multiple since 2010, "beat-and-fade" has already appeared (Aug 26–27: all six beat, stocks fell) — **valuation is the biggest bear driver of this theme.**
+Canadian banks retain a **positive relative trend**, with ZEB ahead of the TSX by +0.75pp over the refreshed three-month window. The S&P 500 comparison is +0.01pp, but its independently requested Yahoo window begins 2026-06-10, versus 2026-06-09 for Canada, and returns are in local currencies rather than currency-hedged. On 2026-09-09, ZEB returned -1.06% versus TSX -0.60%; neither the absolute-move nor opposite-direction divergence threshold was met. The Bank of Canada held its policy rate at 2.25% on September 2 while warning that energy inflation and new tariffs create competing inflation and growth risks. Stable policy may support margin planning, but higher bond yields can pressure valuations and weaker growth can raise credit losses; these are transmission hypotheses, not proof of the cause of any particular daily move. Historical move attribution without a verified primary release is explicitly unexplained below; earlier earnings, valuation-multiple and tariff-rate assertions are not retained as established facts. Source: Bank of Canada, September 2, 2026, https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02/
 
 ## EVENTS
 
-### #01 | 2026-06-10 | ZEB -0.31% | Monetary Policy
-**BoC holds for the 5th straight meeting at 2.25%**
-Window opens. The Bank of Canada settles into a long hold: core inflation is back near 2%, but Middle-East-driven gasoline prices have pushed headline CPI back to 3.2%, so the BoC can neither cut nor hike. **A neutral-to-warm backdrop for banks — stable NIM, contained credit costs** — setting up the theme's 3-month outperformance.
-MOVES: ZEB=-0.31% | TSX=-0.76%
-SRC: Bank of Canada / myperch.io rate schedule, Jun 10, 2026
+Earlier window moves are consolidated here for readability; their causal attribution remains unexplained. The timeline retains the most recent material observations and policy checkpoints.
+
+### #01 | 2026-07-06 | ZEB +1.22% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=+1.22% | TSX=-0.10%
+SRC: Yahoo Finance, daily price history for 2026-07-06, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
 ### #02 | 2026-07-08 | ZEB -2.10% | Valuation & Sentiment
-**Jefferies valuation warning: 15.3x forward P/E, 50% above historical average**
-Jefferies analyst John Aiken flags that Big-Six valuations have surpassed the 13.5x peak of Feb 2006. With the broader market soft that day, **profit-taking kicks in at the highs**: ZEB -2.10% vs TSX only -0.95% — bank-specific pressure. First rehearsal of the "valuation is the risk" theme.
-MOVES: ZEB=-2.10% | TSX=-0.95% | VOL=1.5x
-SRC: Financial Post, Jul 20, 2026
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-2.10% | TSX=-0.95% | VOL=1.53x
+SRC: Yahoo Finance, daily price history for 2026-07-08, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #03 | 2026-07-15 | ZEB +1.56% | Monetary Policy
-**BoC holds a 6th time + summer MPR: relief rally**
-Rates stay at 2.25% as expected; the MPR confirms core inflation near 2% and 1.8% growth for 2027–28. **"No hike, no recession" is the sweet spot for banks**: NIM no longer compressed by cuts, PCLs not spiking either. ZEB +1.56%, well ahead of TSX (+0.27%), closing the week at a range high of 78.44.
+### #03 | 2026-07-10 | ZEB +1.53% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=+1.53% | TSX=+0.30%
+SRC: Yahoo Finance, daily price history for 2026-07-10, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
+
+### #04 | 2026-07-15 | ZEB +1.56% | Monetary Policy
+**Policy hold: stable rates, two-sided bank transmission**
+The official policy-rate table records an unchanged 2.25% target on this date. Stable rates can reduce near-term margin uncertainty, but credit demand and funding costs still matter. The coincidence of the decision and the price move does not establish causation.
 MOVES: ZEB=+1.56% | TSX=+0.27%
-SRC: Bank of Canada / Insight CPA MPR note, Jul 15, 2026
+SRC: Bank of Canada, policy-rate history, accessed 2026-09-09, https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/; Yahoo Finance, daily price history for 2026-07-15, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #04 | 2026-07-20 | ZEB -2.27% | Macro Data
-**June core inflation breaks below 2% (first in ~6 years) → rate-hike hopes fade**
-Counterintuitive logic: **for richly-valued bank stocks, cooler inflation is a negative** — it kills the rate-hike scenario and with it any NIM-expansion dream (Veritas analyst Shalabh Garg). Canadian financials snap a 4-month, +26% run, giving back up to 2% on the day. Rate sensitivity cuts both ways in this theme.
-MOVES: ZEB=-2.27% | TSX=-0.86% | VOL=1.4x
-SRC: Financial Post, Jul 20, 2026
+### #05 | 2026-07-20 | ZEB -2.27% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-2.27% | TSX=-0.86%
+SRC: Yahoo Finance, daily price history for 2026-07-20, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #05 | 2026-07-29 | ZEB -3.21% | Geopolitics
-**Middle East escalation: Iranian missiles at US forces, oil spikes**
-Iran fires missiles at a US base (all intercepted); Iraqi militias hit Saudi oil facilities repeatedly; oil surges and the TSX drops 300 points intraday. Same day, the BoC's July minutes show a divided council. **The oil → inflation → hawkish-central-bank transmission chain hits rate-sensitive banks sitting at record valuations**, ZEB -3.21% — the second-worst day of the window.
+### #06 | 2026-07-29 | ZEB -3.21% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
 MOVES: ZEB=-3.21% | TSX=-1.16%
-SRC: BNN Bloomberg, Jul 29, 2026
+SRC: Yahoo Finance, daily price history for 2026-07-29, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #06 | 2026-08-19 | ZEB -3.30% | Valuation & Sentiment
-**Hawkish FOMC minutes trigger pre-earnings de-risking: BMO -4.4% intraday**
-July Fed minutes show three regional Fed presidents dissenting in favor of a hike → Treasury yields jump → **rate-sensitive financials get sold in size**. Note the tape: **TSX closes flat (+0.09%) while ZEB drops -3.30%** — a purely bank-specific rout. Backdrop: the group was up 19–34% YTD and Morningstar estimated it ~22% above fair value; nobody wanted full exposure into earnings week.
-MOVES: ZEB=-3.30% | TSX=+0.09% | VOL=1.8x
-SRC: Yahoo Finance Canada, Aug 26, 2026
+### #07 | 2026-07-30 | ZEB +1.73% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=+1.73% | TSX=+0.49%
+SRC: Yahoo Finance, daily price history for 2026-07-30, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #07 | 2026-08-20 | ZEB -1.75% | Valuation & Sentiment
-**Selloff extends: -5% over 2 days; Big Six down 6%+ over 4 sessions**
-Final leverage flush before earnings, volume at 2x the 20-day average. The pullback drags ZEB from 78+ to 73 — **in hindsight, the golden entry before the Q3 earnings rally**: fundamentals never deteriorated; what deflated was the valuation premium.
-MOVES: ZEB=-1.75% | TSX=-0.10% | VOL=2.0x
-SRC: Yahoo Finance Canada, Aug 26, 2026
+### #08 | 2026-08-04 | ZEB -0.12% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-0.12% | TSX=+1.63%
+SRC: Yahoo Finance, daily price history for 2026-08-04, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #08 | 2026-08-25 | ZEB +2.69% | Earnings
-**Q3 season opens: Scotiabank's strongest quarter ever, +7% on the day**
-BNS adjusted EPS C$2.28 (vs 2.10 expected, +21% YoY), ROE hits 14.2% for the first time — **shares +7% in a day**; BMO the same day posts adjusted EPS +22% (capital markets +45%). Wealth and capital markets take over from NII as the profit engine. ZEB +2.69%, recouping most of the pre-earnings losses in one session.
+### #09 | 2026-08-12 | ZEB +1.60% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=+1.60% | TSX=+0.51%
+SRC: Yahoo Finance, daily price history for 2026-08-12, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
+
+### #10 | 2026-08-19 | ZEB -3.30% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-3.30% | TSX=+0.09% | VOL=1.80x
+SRC: Yahoo Finance, daily price history for 2026-08-19, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
+
+### #11 | 2026-08-20 | ZEB -1.75% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-1.75% | TSX=-0.10% | VOL=2.01x
+SRC: Yahoo Finance, daily price history for 2026-08-20, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
+
+### #12 | 2026-08-25 | ZEB +2.69% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
 MOVES: ZEB=+2.69% | TSX=+0.66%
-SRC: The Dividend Guy / nai500, Aug 2026
+SRC: Yahoo Finance, daily price history for 2026-08-25, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #09 | 2026-08-26 | ZEB -0.27% | Earnings
-**All six beat — but "sell the news": RBC posts record C$6.0B profit, stock falls anyway**
-RBC net income +11% to a record C$6.0B; TD beats (2.77 vs 2.47); CIBC beats; National beats (+20%) — yet ZEB falls -0.27% / -0.80% over two days. Two reasons: **(1) valuation is stretched** — richest forward P/E since 2010, so beats were already priced; **(2) the trade war escalated simultaneously** — 50% US tariffs effective Aug 22, Canada unveils C$27.6B countermeasures, Washington previews 50% auto tariffs for 2027. Key caveat: Q3 ended Jul 31, so **none of the tariff shock is in these numbers**.
-MOVES: ZEB 8/26=-0.27% | ZEB 8/27=-0.80% | BIG6=6/6 BEAT
-SRC: RBC Q3 release / Sartorial Wealth, Aug 31, 2026
+### #13 | 2026-08-26 | ZEB -0.27% | Valuation & Sentiment
+**Bank-basket drawdown; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
+MOVES: ZEB=-0.27% | TSX=-0.39%
+SRC: Yahoo Finance, daily price history for 2026-08-26, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #10 | 2026-09-02 | ZEB +1.98% | Monetary Policy
-**BoC holds a 7th time at 2.25%: uncertainty clears, post-earnings momentum restarts**
-The seventh consecutive hold, in line with consensus. With the rate path settled, **money rotates back into the "earnings momentum + dividend" trade**; ZEB +1.98% leads the TSX (+0.74%).
+### #14 | 2026-09-02 | ZEB +1.98% | Monetary Policy
+**Policy hold: stable rates, two-sided bank transmission**
+The official policy-rate table records an unchanged 2.25% target on this date. Stable rates can reduce near-term margin uncertainty, but credit demand and funding costs still matter. The coincidence of the decision and the price move does not establish causation.
 MOVES: ZEB=+1.98% | TSX=+0.74%
-SRC: Bank of Canada, Sep 2, 2026
+SRC: Bank of Canada, policy-rate history, accessed 2026-09-09, https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/; Yahoo Finance, daily price history for 2026-09-02, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
-### #11 | 2026-09-03 | ZEB +1.59% | Valuation & Sentiment
-**Broad rally: TSX closes the week at a record (~36,958)**
-Earnings season done + BoC behind us + index at all-time highs (Sep 1 close 36,957.63). ZEB +1.59% to 75.86, within 4% of its adjusted 52-week high of 78.60. The tape then chops sideways, easing to 74.65 by Sep 8 — **the market shifts into "waiting for the next catalyst" mode**.
+### #15 | 2026-09-03 | ZEB +1.59% | Valuation & Sentiment
+**Bank-basket advance; causal attribution unverified**
+The bank basket moved as recorded below. Relative price action identifies exposure to investigate, not a verified earnings, valuation, regulatory or macroeconomic cause. Attribution is unexplained; prior narrative claims without a verified contemporaneous source have been removed.
 MOVES: ZEB=+1.59% | TSX=+1.50%
-SRC: Sartorial Wealth, Aug 31, 2026
+SRC: Yahoo Finance, daily price history for 2026-09-03, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
 ## CATALYSTS
 
-### 2026-12-02 ~ 12-04 (est.) | hot | Big Six Q4 / FY2026 earnings
-The first full quarter covering the **50% US tariffs that took effect Aug 22**. Watch three numbers: **PCLs** (especially commercial/corporate books — below-expectation PCLs propped up Q3; a reversal breaks the thesis), loan growth, and 2027 guidance. If PCLs jump and guidance turns cautious, a 10%+ drawdown at 15.3x forward is on the table; if not, the "tariff-immune" narrative pushes new highs.
+### 2026-10-28 | hot | Bank of Canada decision and Monetary Policy Report
+The next scheduled decision is the clearest verified policy checkpoint. Watch whether persistent energy inflation or tariff-related growth risks dominate the rate outlook: the transmission is through funding costs, margins, discount rates and credit quality. The final scheduled decision of the year is December 9. Source: Bank of Canada, September 2, 2026, https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02/ ; official schedule accessed 2026-09-09, https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/
 
-### 2026-10-28 | Monetary Policy | BoC rate decision
-If Middle-East oil prices leak energy inflation into core, there is a hawkish tail risk (a C.D. Howe MPC member already pencils a hike to 2.5% by Jul 2027). **Higher-for-longer cuts both ways for banks**: good for NIM, bad for valuation and credit. Dec 9 is the final meeting of the year.
+### Ongoing | Macro Risk | Energy inflation and Canada-US trade uncertainty
+The Bank of Canada reports higher long-term yields, continuing energy-price pressure and newly announced tariffs and countermeasures. These can weigh on valuation, borrowing demand and loan quality; the direction and magnitude of bank earnings effects are not yet established. No unverified tariff percentage or implementation date is assumed. Source: Bank of Canada, September 2, 2026, https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02/
 
-### Ongoing | Trade War | US-Canada tariff path & CUSMA review
-50% tariffs are live, 2027 auto tariffs are telegraphed, and the CUSMA review is underway. Trade uncertainty → corporates defer investment → **loan demand and PCL expectations**. This is the underlying variable for everything before Q4 earnings; any breakthrough or breakdown hits the bank complex first.
-
-### Structural | M&A | Moneris sale & Laurentian acquisition
-National Bank's acquisition of Laurentian's SME portfolio is expected to close **end-2026** (integration costs vs synergies); the RBC/BMO sale of Moneris to Francisco Partners is expected to close **Q1 2027**, with RBC guiding to ~C$475M after-tax gain — one-off capital that supports CET1 and buyback capacity.
-
-### Standing Risk | Valuation | Valuation-reset risk (the bear thesis)
-The group trades at ~15.3x forward (historical average ~10x); Morningstar estimates it ~**22%** above fair value. A reversion to the historical range implies 21–33% downside on individual banks. **Nothing needs to get worse — it only needs to stop getting better.** Re-check this risk daily while holding the theme.
+### Late 2026 (dates unconfirmed) | Earnings | Next bank earnings and credit-quality checkpoint
+Watch provisions for credit losses, loan growth, net interest margins and capital returns across the bank basket. This is a monitoring window, not a confirmed release calendar or a forecast of an earnings beat. A synchronized deterioration in credit quality would weaken the relative-strength thesis.
 
 ## CHARTDATA
 
 ```json
-{"dates":["2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-19","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-02","2026-07-03","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08"],"zeb_norm":[100.0,100.83,100.51,101.85,102.99,103.29,104.26,105.33,105.88,106.47,106.97,107.4,106.89,107.57,107.0,107.73,108.51,107.0,107.56,108.87,109.49,107.19,108.5,110.16,110.0,110.8,112.53,111.97,111.61,109.09,109.53,109.61,108.31,109.01,109.51,110.74,107.19,109.04,109.22,109.09,109.77,109.79,109.6,109.46,109.23,110.98,111.55,112.09,111.92,110.25,106.61,104.75,105.22,104.85,107.67,107.38,106.52,106.69,105.76,105.04,107.12,108.83,108.27,107.09],"tsx_norm":[100.0,99.81,99.05,100.56,101.33,102.31,102.64,101.87,101.42,101.42,101.52,101.3,100.75,101.08,101.45,101.0,101.1,101.42,102.23,102.13,102.3,101.33,102.09,102.4,102.24,102.44,102.72,102.5,102.28,101.4,102.58,102.92,102.07,102.58,103.16,103.69,102.48,102.98,102.17,103.84,104.84,104.81,105.52,105.74,105.79,106.33,106.61,106.53,106.35,105.48,105.58,105.47,106.21,106.48,107.19,106.77,106.83,106.02,105.2,103.91,104.68,106.25,105.9,104.77],"bank_norm":[100.0,100.92,101.01,102.3,103.35,103.95,105.05,105.88,106.61,106.98,106.7,106.61,106.06,106.47,106.24,107.07,108.2,107.65,108.2,109.32,109.97,107.74,109.27,110.25,109.5,110.34,112.29,112.2,112.2,109.88,110.48,110.62,109.41,110.71,111.27,112.57,108.81,110.76,111.48,111.53,111.48,111.44,110.92,111.39,110.35,111.62,112.33,113.08,112.66,111.48,107.67,105.09,105.84,105.84,108.1,108.1,107.15,107.67,106.69,105.59,107.93,109.84,110.03,108.41],"hfin_norm":[100.0,101.06,101.32,101.62,103.47,103.8,105.02,106.31,106.78,106.64,106.91,107.24,107.6,108.13,107.4,108.26,108.78,109.08,109.71,110.5,111.33,109.08,110.04,110.7,110.7,111.1,112.66,112.49,112.29,109.97,110.04,110.07,108.94,110.0,111.36,113.15,108.91,110.3,110.82,111.45,111.58,110.85,110.45,110.3,109.79,110.59,111.25,111.08,110.82,109.19,106.13,103.57,104.5,104.57,106.93,106.9,106.03,106.37,105.12,104.35,106.12,108.21,107.95,105.68],"spx_dates":["2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08"],"spx_norm":[100.0,98.38,100.1,100.61,102.27,101.69,100.45,101.54,101.17,99.71,99.62,99.61,99.56,100.73,101.53,101.31,101.31,102.04,101.59,101.3,102.13,102.56,101.74,102.12,102.51,101.99,100.96,100.77,101.66,101.52,100.29,100.34,100.36,100.57,99.05,100.69,101.4,102.9,104.74,104.56,104.38,105.02,104.96,104.62,104.9,105.58,105.4,104.85,104.13,104.35,103.45,103.9,103.6,103.93,103.91,104.66,104.4,104.05,103.31,103.79,104.89,104.49,103.88],"volume":[747500,2143400,1706000,3533500,1584100,5826600,7808300,1954300,1789000,656300,3156800,932800,2715800,4270800,2684200,2589900,1259200,1492900,139100,1361000,4826300,4171800,1496000,2318400,1975300,881200,2375900,1451200,1560700,3163000,1285700,1386400,1194000,1153300,1836200,1929100,1860900,828600,1132400,1018500,897300,1100400,744400,849100,1190400,2091600,1591700,499600,761300,1703800,2350600,2760500,1510200,1886900,1665400,1934400,2237600,1654100,1305200,2256300,1226200,1145700,581100,732500],"zeb_ret":[null,0.83,-0.31,1.33,1.12,0.29,0.94,1.03,0.51,0.57,0.47,0.4,-0.48,0.64,-0.53,0.68,0.73,-1.4,0.52,1.22,0.56,-2.1,1.23,1.53,-0.14,0.73,1.56,-0.5,-0.32,-2.27,0.41,0.08,-1.19,0.65,0.46,1.12,-3.21,1.73,0.16,-0.12,0.63,0.01,-0.17,-0.13,-0.21,1.6,0.52,0.49,-0.15,-1.5,-3.3,-1.75,0.45,-0.35,2.69,-0.27,-0.8,0.16,-0.87,-0.68,1.98,1.59,-0.51,-1.09]}
+{"dates":["2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-19","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-02","2026-07-03","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09"],"zeb_norm":[100.0,99.6888,101.0184,102.1499,102.447,103.4088,104.4696,105.0071,105.6011,106.0962,106.5205,106.0113,106.6903,106.1245,106.8444,107.6239,106.1216,106.6744,107.9782,108.5876,106.3059,107.6097,109.2537,109.0978,109.8915,111.6063,111.0536,110.6993,108.1908,108.6301,108.7152,107.4255,108.1199,108.616,109.8348,106.3059,108.1491,108.3195,108.1917,108.8733,108.8875,108.7029,108.5609,108.3337,110.0661,110.6341,111.1737,111.0033,109.3419,105.735,103.889,104.3576,103.9884,106.7859,106.5019,105.6498,105.8177,104.8929,104.1814,106.2446,107.9378,107.3829,106.2161,105.0921],"tsx_norm":[100.0,99.2433,100.755,101.5291,102.5105,102.8418,102.0731,101.6204,101.6192,101.716,101.4986,100.9427,101.2743,101.6515,101.1976,101.294,101.6128,102.4282,102.3265,102.5018,101.523,102.2922,102.5968,102.4439,102.641,102.9191,102.6982,102.4765,101.5942,102.7822,103.1193,102.2696,102.7822,103.3605,103.8882,102.6796,103.1794,102.3666,104.039,105.041,105.0117,105.7233,105.9474,105.9985,106.5396,106.8221,106.7378,106.5565,105.6847,105.7832,105.6774,106.4179,106.6908,107.3984,106.9802,107.0401,106.2252,105.4017,104.1091,104.8818,106.4554,106.1087,104.9733,104.344],"bank_norm":[100.0,100.091,101.3649,102.4113,103.0027,104.0946,104.9136,105.6415,106.0055,105.7325,105.6415,105.0955,105.505,105.2775,106.0965,107.2193,106.6671,107.2193,108.3237,108.9679,106.7591,108.2777,109.244,108.5077,109.336,111.2688,111.1767,111.1767,108.8759,109.4741,109.6121,108.4157,109.7042,110.2564,111.5449,107.8175,109.7502,110.468,110.5146,110.468,110.4214,109.9087,110.3748,109.3493,110.6078,111.307,112.0528,111.6333,110.468,106.6925,104.1289,104.8747,104.8747,107.112,107.112,106.1798,106.6925,105.7194,104.6329,106.9476,108.8371,109.0261,107.42,106.1918],"hfin_norm":[100.0,100.2617,100.5561,102.388,102.7151,103.9254,105.2012,105.6591,105.5283,105.79,106.1171,106.4769,107.0003,106.2807,107.1312,107.6395,107.9347,108.5578,109.345,110.1649,107.9347,108.8858,109.5418,109.5418,109.9353,111.4768,111.3128,111.116,108.8202,108.8858,108.9186,107.8035,108.853,110.1977,111.9687,107.7707,109.1482,109.6578,110.2826,110.4141,109.6907,109.2961,109.1482,108.6385,109.4277,110.0853,109.9209,109.6578,108.0467,105.0216,102.4898,103.4105,103.4762,105.8108,105.7779,104.923,105.2518,104.0155,103.2572,105.0045,107.0815,106.8178,104.5759,103.2902],"spx_dates":["2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09"],"spx_norm":[100.0,101.7519,102.2632,103.9535,103.3626,102.1069,103.2144,102.832,101.355,101.2554,101.2454,101.1976,102.3867,103.1976,102.9756,102.9758,103.7215,103.2594,102.9685,103.8069,104.2438,103.4175,103.8062,104.2027,103.6711,102.6242,102.4259,103.333,103.1921,101.9445,101.9952,102.0117,102.2264,100.6765,102.3481,103.065,104.5894,106.4611,106.2827,106.0956,106.7518,106.6894,106.3466,106.626,107.3208,107.1387,106.5786,105.8452,106.0684,105.1489,105.6059,105.3099,105.6459,105.6242,106.385,106.1204,105.7679,105.0156,105.499,106.6151,106.2145,105.5942,105.0828],"volume":[2143400,1706000,3533500,1584100,5826600,7808300,1954300,1789000,656300,3156800,932800,2715800,4270800,2684200,2589900,1259200,1492900,139100,1361000,4826300,4171800,1496000,2318400,1975300,881200,2375900,1451200,1560700,3163000,1285700,1386400,1194000,1153300,1836200,1929100,1860900,828600,1132400,1018500,897300,1100400,744400,849100,1190400,2091600,1591700,499600,761300,1703800,2350600,2760500,1510200,1886900,1665400,1934400,2237600,1654100,1305200,2256300,1226200,1145700,581100,732500,1309667],"zeb_ret":[null,-0.3112,1.3337,1.1201,0.2908,0.9388,1.0259,0.5145,0.5658,0.4688,0.3999,-0.478,0.6404,-0.5303,0.6784,0.7295,-1.3959,0.5208,1.2223,0.5644,-2.1013,1.2265,1.5277,-0.1427,0.7275,1.5605,-0.4952,-0.319,-2.266,0.4061,0.0783,-1.1863,0.6464,0.4588,1.1221,-3.2129,1.7339,0.1576,-0.118,0.63,0.0131,-0.1695,-0.1306,-0.2093,1.5992,0.5161,0.4877,-0.1533,-1.4967,-3.2987,-1.7459,0.4511,-0.3538,2.6902,-0.266,-0.8,0.1589,-0.874,-0.6782,1.9803,1.5937,-0.5141,-1.0865,-1.0583]}
 ```
