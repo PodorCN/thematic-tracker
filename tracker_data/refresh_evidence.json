@@ -1,0 +1,20 @@
+{
+  "updated": "2026-09-09",
+  "previous_updated": "2026-09-08",
+  "provider": "Yahoo Finance via yfinance; auto_adjust=True",
+  "retrieved_local": "2026-09-09T16:05:08.761227",
+  "returns_3m": {
+    "ZEB.TO": 5.0920760003825505,
+    "BANK.TO": 6.191788089160433,
+    "HFIN.TO": 3.2901738294263794,
+    "^GSPTSE": 4.3440440575090555,
+    "^GSPC": 5.082841960610085
+  },
+  "ytd_baseline": 57.28207778930664,
+  "ytd": 28.940854558421194,
+  "high_52wk": 78.60332613149758,
+  "distance_high": -6.034509930547705,
+  "volume_ratio_20d": 0.8394126373401517,
+  "new_material_events": [],
+  "historical_attribution": "Unverified narratives replaced with explicitly unexplained price records; BoC holds checked against official history."
+}

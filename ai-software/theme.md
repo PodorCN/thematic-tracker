@@ -103,9 +103,9 @@ SRC: Marketbeat / Yahoo Finance, Sep 2026
 ## VALIDITY
 
 CALL: green | 2M excess +10.72pp vs QQQ — AI revenue thesis intact
-- green（成立）: 1M 超额 > +1pp，且 AI ARR 证据链完好（无龙头下调指引、无 NRR 崩塌）
-- yellow（一般）: 1M 超额在 ±1pp 内，thesis 完好
-- red（不成立）: 1M 超额 < -1pp，或 thesis-break（AI 指引下调、hyperscaler 砍 capex、per-seat 加速侵蚀）
+- green（成立）: 2M 超额 > +1pp，且 AI ARR 证据链完好（无龙头下调指引、无 NRR 崩塌）
+- yellow（一般）: 2M 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 2M 超额 < -1pp，或 thesis-break（AI 指引下调、hyperscaler 砍 capex、per-seat 加速侵蚀）
 
 ## CATALYSTS
 
