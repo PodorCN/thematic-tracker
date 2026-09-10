@@ -1,6 +1,7 @@
 // Validator for app/theme.md — implements the Step 5 checklist in agent.md.
 // Usage: node scripts/validate-theme.mjs [path/to/theme.md]
-// Exit 0 = PASS (warnings allowed), 1 = FAIL.
+// Chart-key mapping follows slot order: MAIN→zeb_norm, BENCHMARK rows→tsx_norm,spx_norm…,
+// SUPPORTIVE rows→bank_norm,hfin_norm,spx_norm… (document the slot mapping in the theme folder).
 import { readFile } from 'node:fs/promises';
 
 const file = process.argv[2] || 'app/theme.md';
@@ -72,7 +73,7 @@ const blocks = get('EVENTS').split(/^### /m).slice(1);
 if (!blocks.length) err('EVENTS has no event blocks');
 blocks.forEach((b, i) => {
   const lines = b.trim().split('\n');
-  const h = lines.shift().match(/^#(\d+)\s*\|\s*(\d{4}-\d{2}-\d{2})\s*\|\s*ZEB\s*([+-]?\d+(?:\.\d+)?%)\s*\|\s*(.+)$/);
+  const h = lines.shift().match(/^#(\d+)\s*\|\s*(\d{4}-\d{2}-\d{2})\s*\|\s*[A-Za-z.^]+\s*([+-]?\d+(?:\.\d+)?%)\s*\|\s*(.+)$/);
   if (!h) { err(`event #${i + 1} heading malformed: ${lines[0] || ''}`.slice(0, 120)); return; }
   const [, num, date, move, tag] = h;
   if (Number(num) !== i + 1) err(`event numbering broken: expected #${String(i + 1).padStart(2, '0')}, got #${num}`);
@@ -92,22 +93,47 @@ blocks.forEach((b, i) => {
 });
 if (blocks.length > 15) warn(`event count ${blocks.length} > 15, consider merging old ones`);
 
+// ---------- VALIDITY (theme call lamp) ----------
+const vsec = (get('VALIDITY') || '').split('\n').map(l => l.trim()).filter(Boolean);
+const callM = (vsec.find(l => l.startsWith('CALL:')) || '').match(/^CALL:\s*(green|yellow|red)\s*\|\s*(.+)$/i);
+if (!callM) err('VALIDITY needs a line like: CALL: green|yellow|red | reason with 2M excess');
+else {
+  const [, color, reason] = callM;
+  if (!reason.trim()) err('VALIDITY CALL needs a reason');
+  if (!vsec.some(l => l.startsWith('-'))) warn('VALIDITY has no rules list');
+  if (cd && normLen && normLen >= 42) {
+    const ex = (cd.zeb_norm[normLen - 1] - cd.zeb_norm[normLen - 42]) - (cd.tsx_norm[normLen - 1] - cd.tsx_norm[normLen - 42]);
+    const mv = parseFloat((reason.match(/([+-]?\d+(?:\.\d+)?)\s*pp/) || [])[1]);
+    if (Number.isFinite(mv) && Math.abs(mv - ex) > 0.3) err(`VALIDITY states ${mv}pp but 2M excess recomputes ${ex.toFixed(2)}pp`);
+    const lc = color.toLowerCase();
+    if (lc === 'green' && ex <= 1) err(`CALL green needs 2M excess > +1pp (got ${ex.toFixed(2)}pp)`);
+    else if (lc === 'yellow' && Math.abs(ex) > 1) err(`CALL yellow needs 2M excess within ±1pp (got ${ex.toFixed(2)}pp)`);
+    else if (lc === 'red' && ex >= -1 && !/thesis/i.test(reason)) err(`CALL red needs 2M excess < -1pp or a stated thesis break (got ${ex.toFixed(2)}pp)`);
+  }
+}
+
 // ---------- PROXIES cross-check vs CHARTDATA ----------
 if (cd && normLen) {
   const end = k => cd[k][cd[k].length - 1] - 100;
-  const expect = { 'ZEB.TO': end('zeb_norm'), 'BANK.TO': end('bank_norm'), 'HFIN.TO': end('hfin_norm'), '^GSPTSE': end('tsx_norm'), '^GSPC': cd.spx_norm[cd.spx_norm.length - 1] - 100 };
+  const benchKeys = ['tsx_norm', 'spx_norm'];
+  const supKeys = ['bank_norm', 'hfin_norm', 'spx_norm'];
+  let bi = 0, si = 0;
+  const benchEnds = [];
   for (const row of tableRows(get('PROXIES'))) {
     const [role, ticker, , ret] = row;
+    const v = parseFloat(ret);
     if (/EXCESS/.test(role)) {
-      const v = parseFloat(ret);
-      const calc = expect['ZEB.TO'] - expect['^GSPTSE'];
-      if (Number.isFinite(v) && Math.abs(v - calc) > 0.06) err(`EXCESS row ${ret} != ZEB-TSX ${calc.toFixed(2)}pp`);
+      const calc = end('zeb_norm') - benchEnds[0];
+      if (Number.isFinite(v) && Number.isFinite(calc) && Math.abs(v - calc) > 0.06) err(`EXCESS row ${ret} != MAIN-firstBench ${calc.toFixed(2)}pp`);
       continue;
     }
-    if (!(ticker in expect)) continue;
-    const v = parseFloat(ret);
+    let key = null;
+    if (/MAIN/.test(role)) key = 'zeb_norm';
+    else if (/BENCH/.test(role)) { key = benchKeys[bi++]; benchEnds.push(end(key)); }
+    else if (/SUPPORT/.test(role)) key = supKeys[si++];
+    if (!key || !cd[key]) continue;
     if (!Number.isFinite(v)) { err(`PROXIES ${ticker} ret3m not a number: ${ret}`); continue; }
-    if (Math.abs(v - expect[ticker]) > 0.06) err(`PROXIES ${ticker} ret3m ${ret} != chartdata ${expect[ticker].toFixed(2)}%`);
+    if (Math.abs(v - end(key)) > 0.06) err(`PROXIES ${ticker} ret3m ${ret} != chartdata ${end(key).toFixed(2)}%`);
   }
 }
 

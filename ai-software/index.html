@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME TRACKER // AI-Beaten Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{
+  --bg:#060807; --panel:#0b100c; --panel2:#0e1510; --line:#1a2b1f; --line2:#24402d;
+  --txt:#c9d6cc; --mut:#5f7063; --dim:#8fa596;
+  --acc:#00f48e; --acc-dim:rgba(0,244,142,.12);
+  --loss:#ff5f5f; --loss-dim:rgba(255,95,95,.10);
+  --amber:#ffb454; --teal:#4ec9b0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:'JetBrains Mono','PingFang SC','Microsoft YaHei',monospace;
+  font-size:14px; line-height:1.65; overflow-x:hidden;
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  background:repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 1px, transparent 1px 3px);
+  opacity:.5;
+}
+::selection{background:var(--acc);color:#000}
+a{color:var(--acc);text-decoration:none}
+.glow{text-shadow:0 0 6px rgba(0,244,142,.55),0 0 18px rgba(0,244,142,.18)}
+.glow-r{text-shadow:0 0 6px rgba(255,95,95,.5)}
+.mono-num{font-variant-numeric:tabular-nums}
+
+/* ── top bar ─────────────────────────── */
+.topbar{
+  position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center;
+  padding:14px 28px; background:rgba(6,8,7,.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .cmd{color:var(--acc); font-weight:600; letter-spacing:.04em}
+.cursor{display:inline-block;width:9px;height:16px;background:var(--acc);vertical-align:-2px;animation:blink 1.05s steps(1) infinite;margin-left:6px}
+@keyframes blink{50%{opacity:0}}
+.topbar .meta{color:var(--mut); font-size:12px}
+.topbar .meta b{color:var(--dim);font-weight:600}
+
+/* ── layout ──────────────────────────── */
+.wrap{width:100%; padding:0 28px 80px}
+section{margin-top:56px}
+.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:24px}
+.sec-head h2{font-size:20px;font-weight:800;letter-spacing:.06em;color:var(--txt)}
+.sec-head h2::before{content:"> ";color:var(--acc)}
+.sec-head span{color:var(--mut);font-size:12px}
+
+/* ── hero title ──────────────────────── */
+.hero{padding-top:48px}
+.hero .kicker{color:var(--acc);font-size:12px;letter-spacing:.3em;margin-bottom:10px}
+.hero h1{font-size:clamp(30px,4.6vw,58px);font-weight:800;line-height:1.12;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero .sub{color:var(--dim);max-width:860px;margin-top:14px;font-size:14px}
+
+/* ── theme call ──────────────────────── */
+.callbar{display:flex;align-items:center;gap:12px;margin-top:22px;padding:14px 18px;border:1px solid;border-radius:10px;font-size:14px}
+.callbar .cdot{width:14px;height:14px;border-radius:50%;flex:none}
+.callbar.green{border-color:rgba(0,244,142,.5);background:rgba(0,244,142,.07)}
+.callbar.green .cdot{background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.callbar.yellow{border-color:rgba(255,180,84,.5);background:rgba(255,180,84,.07)}
+.callbar.yellow .cdot{background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.callbar.red{border-color:rgba(255,95,95,.55);background:rgba(255,95,95,.08)}
+.callbar.red .cdot{background:var(--loss);box-shadow:0 0 12px var(--loss)}
+.callrules{margin-top:10px;font-size:12px;color:var(--dim)}
+.callrules ul{margin:6px 0 0;padding-left:20px;line-height:1.9}
+
+/* ── proxy chips ─────────────────────── */
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-top:28px}
+.chip{
+  border:1px solid var(--line); background:var(--panel); padding:14px 16px; position:relative;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+}
+.chip .role{font-size:10px;letter-spacing:.22em;color:var(--mut)}
+.chip .tk{font-size:17px;font-weight:800;margin:2px 0 1px}
+.chip .nm{font-size:10.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip .ret{font-size:20px;font-weight:800;margin-top:8px}
+.chip.main{border-color:var(--line2)}
+.chip.main::before{content:"MAIN PROXY";position:absolute;top:6px;right:14px;font-size:9px;letter-spacing:.2em;color:var(--acc)}
+.up{color:var(--acc)} .dn{color:var(--loss)}
+@media(max-width:900px){.chips{grid-template-columns:repeat(2,1fr)}}
+
+/* ── chart panel ─────────────────────── */
+.panel{
+  border:1px solid var(--line); background:var(--panel); position:relative;
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+  padding:18px 18px 8px;
+}
+.panel-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.panel-head .t{font-weight:600}
+.panel-head .t::before{content:"> ";color:var(--acc)}
+.modebtn{
+  font-family:inherit;font-size:11px;letter-spacing:.14em;cursor:pointer;
+  background:transparent;color:var(--mut);border:1px solid var(--line);padding:6px 14px;margin-left:8px;
+}
+.modebtn.on{color:#000;background:var(--acc);border-color:var(--acc)}
+#chart{width:100%;height:560px}
+
+/* ── stats strip ─────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:var(--panel)}
+.stat{padding:16px 18px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .k{font-size:10px;letter-spacing:.18em;color:var(--mut)}
+.stat .v{font-size:22px;font-weight:800;margin-top:4px}
+.stat .s{font-size:11px;color:var(--mut);margin-top:2px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--line)}}
+
+/* ── verdict ─────────────────────────── */
+.verdict{border-left:2px solid var(--acc);background:var(--panel2);padding:20px 24px;margin-top:20px}
+.verdict p{color:var(--dim);max-width:1000px}
+.verdict b{color:var(--txt)}
+
+/* ── timeline ────────────────────────── */
+.tl{position:relative;margin-left:8px;padding-left:44px}
+.tl::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:1px;background:var(--line2)}
+.ev{position:relative;margin-bottom:30px;cursor:pointer;display:flex;gap:26px;align-items:flex-start}
+.ev .node{
+  position:absolute;left:-37px;top:14px;width:13px;height:13px;border:1px solid var(--acc);
+  background:var(--bg);transform:rotate(45deg);flex:none;
+}
+.ev.neg .node{border-color:var(--loss)}
+.ev-left{flex:0 0 148px;padding-top:4px;text-align:left}
+.ev-date{font-size:26px;font-weight:800;letter-spacing:.02em;line-height:1.15;color:var(--txt)}
+.ev-date .yr{display:block;font-size:12px;font-weight:600;color:var(--mut);letter-spacing:.24em;margin-top:3px}
+.ev-ret{display:inline-block;margin-top:12px;font-size:17px;font-weight:800;padding:3px 10px;border:1px solid}
+.ev-ret.up{color:var(--acc);border-color:rgba(0,244,142,.35);background:var(--acc-dim)}
+.ev-ret.dn{color:var(--loss);border-color:rgba(255,95,95,.35);background:var(--loss-dim)}
+.ev-ret-lb{display:block;font-size:9px;letter-spacing:.2em;color:var(--mut);margin-top:6px}
+.ev .card{flex:1}
+@media(max-width:760px){.ev{flex-direction:column;gap:10px}.ev-left{padding-top:0}}
+.ev .card{
+  border:1px solid var(--line);background:var(--panel);padding:18px 22px;transition:border-color .25s,background .25s;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+}
+.ev:hover .card{border-color:var(--acc);background:var(--panel2)}
+.ev .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:11px}
+.ev .num{color:var(--mut);letter-spacing:.1em}
+.tag{padding:2px 10px;border:1px solid;font-size:10px;letter-spacing:.18em}
+.t-earn{color:var(--acc);border-color:rgba(0,244,142,.4);background:var(--acc-dim)}
+.t-mon{color:var(--amber);border-color:rgba(255,180,84,.4);background:rgba(255,180,84,.08)}
+.t-geo{color:var(--loss);border-color:rgba(255,95,95,.4);background:var(--loss-dim)}
+.t-mac{color:var(--teal);border-color:rgba(78,201,176,.4);background:rgba(78,201,176,.08)}
+.t-val{color:#e08fff;border-color:rgba(224,143,255,.35);background:rgba(224,143,255,.07)}
+.ev h3{font-size:16px;font-weight:800;margin:10px 0 8px;line-height:1.5}
+.ev .why{color:var(--dim);font-size:13px;max-width:980px}
+.ev .why b{color:var(--txt)}
+.moves{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.mv{border:1px solid var(--line);padding:6px 12px;font-size:12px;background:rgba(0,0,0,.25)}
+.mv .lb{color:var(--mut);margin-right:8px;font-size:10px;letter-spacing:.14em}
+.mv .vl{font-weight:800}
+.src{font-size:10.5px;color:var(--mut);margin-top:10px}
+
+/* ── catalysts ───────────────────────── */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.cat{
+  border:1px solid rgba(255,180,84,.35);background:rgba(255,180,84,.05);padding:20px 22px;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+}
+.cat.hot{border-color:var(--amber);background:rgba(255,180,84,.1)}
+.cat .d{color:var(--amber);font-size:11px;letter-spacing:.16em;font-weight:600}
+.cat h3{font-size:15px;font-weight:800;margin:8px 0 8px}
+.cat p{color:var(--dim);font-size:12.5px}
+.cat p b{color:var(--txt)}
+
+/* ── footer ──────────────────────────── */
+footer{margin-top:70px;border-top:1px solid var(--line);padding:22px 0 10px;color:var(--mut);font-size:11px;line-height:1.9}
+footer b{color:var(--dim)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px)}
+.rv.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease}
+</style>
+<style>
+#loading{padding:120px 28px;color:var(--acc);font-size:14px;letter-spacing:.08em}
+.tone-warn{color:var(--amber)} .tone-up{color:var(--acc)} .tone-dn{color:var(--loss)} .tone-flat{color:var(--txt)}
+.stat .v.up{color:var(--acc)} .stat .v.dn{color:var(--loss)} .stat .v.warn{color:var(--amber)} .stat .v.flat{color:var(--txt)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="cmd">> THEME_TRACKER <span style="color:var(--mut)">--source</span> theme.md <span class="cursor"></span></div>
+  <div class="meta" id="metaBar">LOADING…</div>
+</header>
+
+<div class="wrap" id="app"><div id="loading">> parsing theme.md <span class="cursor"></span></div></div>
+
+<script>
+/* ══════════════ mini-markdown → html ══════════════ */
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function mdInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
+
+/* ══════════════ theme.md parser ══════════════ */
+function parseTheme(md){
+  md = md.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
+  const out = {meta:{}, sections:{}};
+  const fm = md.match(/^---\n([\s\S]*?)\n---/);
+  if(fm) fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
+  const body = md.slice(fm? fm[0].length : 0);
+  const parts = body.split(/^## /m).filter(s=>s.trim());
+  parts.forEach(p=>{
+    const nl = p.indexOf("\n");
+    out.sections[p.slice(0,nl).trim()] = p.slice(nl+1);
+  });
+  return out;
+}
+function parseTable(sec){
+  return sec.split("\n").filter(l=>/^\|/.test(l) && !/^\|[\s\-\|]+\|$/.test(l))
+    .slice(1).map(l=> l.split("|").slice(1,-1).map(c=>c.trim()));
+}
+function parseEvents(sec){
+  return sec.split(/^### /m).filter(s=>s.trim()).map(b=>{
+    const lines = b.split("\n").map(l=>l.trim()).filter(Boolean);
+    const head = lines[0].split("|").map(s=>s.trim());
+    const retM = head[2] ? head[2].match(/([+\-]?[\d.]+%)/) : null;
+    const ev = {num:head[0].replace("#",""), date:head[1], ret: retM? retM[1] : "—",
+                retNeg: retM ? retM[1].startsWith("-") : false, tag: head[3]||"", paras:[], moves:[], src:""};
+    let i=1;
+    if(lines[i] && /^\*\*.*\*\*$/.test(lines[i])){ ev.title = lines[i].replace(/\*\*/g,""); i++; }
+    for(; i<lines.length; i++){
+      const l = lines[i];
+      if(l.startsWith("MOVES:")) ev.moves = l.slice(6).split("|").map(s=>s.trim()).map(p=>{
+        const kv=p.split("="); return {lb:kv[0].trim(), vl:(kv[1]||"").trim()};});
+      else if(l.startsWith("SRC:")) ev.src = l.slice(4).trim();
+      else ev.paras.push(l);
+    }
+    return ev;
+  });
+}
+function parseCats(sec){
+  return sec.split(/^### /m).filter(s=>s.trim()).map(b=>{
+    const lines = b.split("\n").map(l=>l.trim()).filter(Boolean);
+    const head = lines[0].split("|").map(s=>s.trim());
+    return {date:head[0], flag:head[1]||"", title:head[2]||"", para:lines.slice(1).join(" ")};
+  });
+}
+function parseChart(sec){
+  const m = sec.match(/```json\n([\s\S]*?)\n```/);
+  return m ? JSON.parse(m[1]) : null;
+}
+
+/* ══════════════ tag → class ══════════════ */
+const TAGCLS = {"Earnings":"t-earn","Monetary Policy":"t-mon","Geopolitics":"t-geo","Macro Data":"t-mac","Valuation & Sentiment":"t-val","Trade War":"t-geo","Momentum":"t-earn","Valuation":"t-val","AI Disruption":"t-geo","AI Monetization":"t-earn"};
+function tagCls(t){ for(const k in TAGCLS) if(t.includes(k)) return TAGCLS[k]; return "t-mac"; }
+
+/* ══════════════ render ══════════════ */
+const WK=["SUN","MON","TUE","WED","THU","FRI","SAT"];
+const MON=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+function render(md){
+  const T = parseTheme(md);
+  const meta = T.meta;
+  document.getElementById("metaBar").innerHTML =
+    `LAST UPDATE <b>${meta.updated||"—"}</b> · WINDOW <b>${meta.window||"3M"}</b> · CCY <b>${meta.currency||"CAD"}</b> · SRC <b>theme.md</b>`;
+
+  const proxies = parseTable(T.sections["PROXIES"]||"");
+  const stats   = parseTable(T.sections["STATS"]||"");
+  const events  = parseEvents(T.sections["EVENTS"]||"");
+  const cats    = parseCats(T.sections["CATALYSTS"]||"");
+  const CD      = parseChart(T.sections["CHARTDATA"]||"");
+
+  let chips = proxies.map(p=>{
+    const [role,tk,nm,ret,extra]=p;
+    const cls = ret.includes("-")?"dn":"up";
+    const main = role.includes("MAIN")?" main":"";
+    const badge = main?'<div class="role"></div>':"";
+    return `<div class="chip${main}">
+      <div class="role">${esc(role)}</div>
+      <div class="tk">${esc(tk)}</div><div class="nm">${esc(nm)}</div>
+      <div class="ret ${cls} mono-num">${esc(ret)}</div><div class="nm">${esc(extra||"")}</div></div>`;
+  }).join("");
+
+  let statsHtml = stats.map(s=>{
+    const [k,v,sub,tone]=s;
+    return `<div class="stat"><div class="k">${esc(k)}</div><div class="v ${tone||"flat"} mono-num">${esc(v)}</div><div class="s">${esc(sub||"")}</div></div>`;
+  }).join("");
+
+  let evHtml = [...events].reverse().map(e=>{
+    const d = new Date(e.date+"T00:00:00");
+    const mon = isNaN(d)? e.date : MON[d.getMonth()];
+    const day = isNaN(d)? "" : String(d.getDate()).padStart(2,"0");
+    const yr  = isNaN(d)? "" : `${d.getFullYear()} · ${WK[d.getDay()]}`;
+    const rc  = e.retNeg ? "dn" : "up";
+    const neg = e.retNeg ? " neg" : "";
+    const mv = e.moves.map(mv2=>{
+      const c = mv2.vl.startsWith("-")?"dn":(mv2.vl.startsWith("+")||/BEAT/i.test(mv2.vl)?"up":"");
+      return `<span class="mv"><span class="lb">${esc(mv2.lb)}</span><span class="vl ${c} mono-num">${esc(mv2.vl)}</span></span>`;
+    }).join("");
+    return `<div class="ev${neg} rv" data-ev="${parseInt(e.num)}">
+      <div class="node"></div>
+      <div class="ev-left">
+        <div class="ev-date">${mon} ${day}<span class="yr">${yr}</span></div>
+        <div><span class="ev-ret ${rc} mono-num">${esc(e.ret)}</span></div>
+        <div class="ev-ret-lb">IGV DAILY</div>
+      </div>
+      <div class="card">
+        <div class="row1"><span class="num">#${e.num}</span><span class="tag ${tagCls(e.tag)}">${esc(e.tag)}</span></div>
+        <h3>${mdInline(e.title)}</h3>
+        ${e.paras.map(p=>`<p class="why">${mdInline(p)}</p>`).join("")}
+        <div class="moves">${mv}</div>
+        <div class="src">SOURCE: ${esc(e.src)}</div>
+      </div></div>`;
+  }).join("");
+
+  let catHtml = cats.map(c=>{
+    const hot = c.flag.toLowerCase().includes("hot")?" hot":"";
+    return `<div class="cat${hot} rv"><div class="d">${esc(c.date)} · ${esc(c.flag)}</div>
+      <h3>${mdInline(c.title)}</h3><p>${mdInline(c.para)}</p></div>`;
+  }).join("");
+
+  const valSec = (T.sections["VALIDITY"]||"").split("\n").map(l=>l.trim()).filter(Boolean);
+  const callM = (valSec.find(l=>l.startsWith("CALL:"))||"").match(/^CALL:\s*(green|yellow|red)\s*\|\s*(.*)$/i);
+  const callCls = callM? callM[1].toLowerCase() : "yellow";
+  const callTxt = {green:"WORKING · \u6210\u7acb", yellow:"MIXED · \u4e00\u822c", red:"BROKEN · \u4e0d\u6210\u7acb"}[callCls];
+  const callReason = callM? callM[2] : "no call stated";
+  const callRules = valSec.filter(l=>l.startsWith("-")).map(l=>"<li>"+mdInline(l.replace(/^-\s*/,""))+"</li>").join("");
+  const callbar = '<div class="callbar '+callCls+' rv"><span class="cdot"></span><span><b>THEME CALL: '+callTxt+'</b> — '+esc(callReason)+'</span></div>'
+    + '<div class="callrules rv"><b>判定标准 VALIDITY</b><ul>'+callRules+'</ul></div>';
+  document.getElementById("app").innerHTML = `
+  <section class="hero">
+    <div class="kicker rv">THEMATIC TRACKER</div>
+    <h1 class="rv">${esc(meta.theme_cn||"")} <em>// ${esc(meta.theme_en||"")}</em></h1>
+    ${callbar}
+    <div class="chips rv">${chips}</div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>IGV + EVENT MARKERS</h2><span>numbered markers = timeline events · click a card to locate on chart</span></div>
+    <div class="panel">
+      <div class="panel-head"><div class="t">IGV vs QQQ vs RECOVERY NAMES — BASE=100</div></div>
+      <div id="chart"></div>
+    </div>
+    <div class="stats" style="margin-top:16px">${statsHtml}</div>
+    <div class="verdict rv"><p><b>VERDICT:</b> ${mdInline((T.sections["VERDICT"]||"").trim())}</p></div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>DRIVER TIMELINE</h2><span>newest first · IGV daily move on the left of each card</span></div>
+    <div class="tl">${evHtml}</div>
+  </section>
+  <section>
+    <div class="sec-head"><h2>NEXT CATALYSTS</h2><span>ordered by significance</span></div>
+    <div class="cats">${catHtml}</div>
+  </section>
+  <footer>
+    <b>DATA</b> Prices: Yahoo Finance · All content & attribution rendered from <b>theme.md</b> (updated daily by the agent per agent.md)<br>
+    <b>PROTOCOL</b> |IGV daily move| &gt; 1.5% requires attribution · IGV/QQQ divergence &gt; 1pp = software-specific event · CRM/NOW/WDAY diffusion confirms breadth · SNOW/DDOG at highs = re-rating template<br>
+    <b>DISCLAIMER</b> Research tracker only. Not investment advice.
+  </footer>`;
+
+  if(CD) drawChart(CD, events);
+  bindCards();
+  observeReveal();
+}
+
+/* ══════════════ chart ══════════════ */
+const ACC="#00f48e", LOSS="#ff5f5f", MUT="#5f7063", GRID="#16211a", TXT="#c9d6cc";
+const FONT={family:"'JetBrains Mono','PingFang SC',monospace", color:TXT, size:11};
+let EVH=[], EVT=[], EVTRACE=6;
+
+function drawChart(D, events){
+  const idx = Object.fromEntries(D.dates.map((d,i)=>[d,i]));
+  const evX=[], evY=[], evT=[], evC=[]; EVH=[];
+  events.forEach(e=>{ const i=idx[e.date]; if(i==null) return;
+    evX.push(e.date); evY.push(D.zeb_norm[i]); evT.push(String(parseInt(e.num)));
+    evC.push(e.retNeg?LOSS:ACC); EVH.push(e.title); });
+
+  const vlines = evX.map(x=>({type:"line", x0:x, x1:x, y0:0, y1:1, yref:"paper",
+    line:{color:"rgba(0,244,142,.10)", width:1, dash:"dot"}}));
+  const volColors = D.zeb_ret.map(r=> r==null? MUT : (r>=0? "rgba(0,244,142,.22)":"rgba(255,95,95,.22)"));
+
+  const traces = [
+    {x:D.dates, y:D.volume, type:"bar", yaxis:"y2", marker:{color:volColors}, hoverinfo:"skip", showlegend:false},
+    {x:D.dates, y:D.tsx_norm, name:"QQQ (BENCH)", type:"scatter", mode:"lines",
+     line:{color:"rgba(95,112,99,.65)", width:1.2, dash:"dot"},
+     hovertemplate:"%{x}<br>QQQ <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.bank_norm, name:"CRM", type:"scatter", mode:"lines",
+     line:{color:"rgba(255,180,84,.4)", width:1.2},
+     hovertemplate:"%{x}<br>CRM <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.hfin_norm, name:"NOW", type:"scatter", mode:"lines",
+     line:{color:"rgba(78,201,176,.4)", width:1.2},
+     hovertemplate:"%{x}<br>NOW <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.spx_dates, y:D.spx_norm, name:"WDAY", type:"scatter", mode:"lines",
+     line:{color:"#e8ecdf", width:2.2},
+     hovertemplate:"%{x}<br>WDAY <b>%{y:.1f}</b><extra></extra>"},
+    {x:D.dates, y:D.zeb_norm, name:"IGV (MAIN)", type:"scatter", mode:"lines",
+     line:{color:ACC, width:3.2},
+     hovertemplate:"%{x}<br>IGV <b>%{y:.1f}</b><extra></extra>"},
+    {x:evX, y:evY, type:"scatter", mode:"markers+text", name:"EVENT",
+     marker:{size:18, color:evC, line:{color:"#060807",width:1.5}, symbol:"diamond"},
+     text:evT, textfont:{size:9.5, color:"#060807", family:"JetBrains Mono"},
+     hovertemplate:"<b>#%{text}</b> %{customdata}<br>%{x} · IGV %{y:.1f}<extra></extra>",
+     customdata:EVH, showlegend:false}
+  ];
+  EVT = evT;
+
+  const layout = {
+    paper_bgcolor:"#0b100c", plot_bgcolor:"#0b100c", font:FONT,
+    margin:{l:44,r:16,t:34,b:36}, hovermode:"x unified",
+    xaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT}},
+    yaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT},
+           range:[Math.min(...D.zeb_norm,...D.spx_norm)-1.5, Math.max(...D.zeb_norm,...D.bank_norm)+2],
+           title:{text:"BASE = 100", font:{size:10,color:MUT}}},
+    yaxis2:{overlaying:"y", side:"right", showgrid:false, zeroline:false,
+            range:[0, Math.max(...D.volume)*6], showticklabels:false},
+    shapes:vlines, showlegend:true,
+    legend:{orientation:"h", y:1.1, x:0, font:{size:10.5,color:TXT}, bgcolor:"rgba(0,0,0,0)"}
+  };
+  Plotly.newPlot("chart", traces, layout, {responsive:true, displaylogo:false});
+}
+
+function bindCards(){
+  document.querySelectorAll(".ev").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const n = parseInt(el.dataset.ev);
+      document.getElementById("chart").scrollIntoView({behavior:"smooth", block:"center"});
+      const i = EVT.findIndex(t=>parseInt(t)===n);
+      if(i<0) return;
+      let on=true, cnt=0;
+      const t = setInterval(()=>{
+        const s = EVT.map((_,k)=> (k===i && on)?32:18);
+        Plotly.restyle("chart", {"marker.size":[s]}, [EVTRACE]);
+        on=!on; if(++cnt>7) clearInterval(t);
+      }, 260);
+    });
+  });
+}
+
+function observeReveal(){
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("in"); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+}
+
+/* ══════════════ boot: fetch theme.md, fallback embedded ══════════════ */
+const EMBEDDED = `---
+theme_cn: AI-Beaten Software
+theme_en: MISPRICED SAAS · AI REBOUND
+updated: 2026-09-08
+window: 7M
+currency: USD
+---
+
+## PROXIES
+
+| role | ticker | name | ret3m | extra |
+|---|---|---|---|---|
+| MAIN PROXY | IGV | iShares Expanded Tech-Software Sector ETF | +16.81% | WINDOW RETURN |
+| SUPPORTIVE · RECOVERY | CRM | Salesforce (Agentforce AI CRM) | +22.97% | WINDOW RETURN |
+| SUPPORTIVE · RECOVERY | NOW | ServiceNow (AI workflow platform) | +19.71% | WINDOW RETURN |
+| SUPPORTIVE · RECOVERY | WDAY | Workday (HCM / Finance cloud) | +12.93% | WINDOW RETURN |
+| BENCHMARK | QQQ | Nasdaq-100 Index | +14.82% | WINDOW RETURN |
+| EXCESS RETURN | α vs QQQ | IGV window excess return | +1.99pp | OUTPERFORM |
+
+## STATS
+
+| label | value | sub | tone |
+|---|---|---|---|
+| WINDOW RETURN | +16.81% | 89.52 → 104.57 | up |
+| VS QQQ | +1.99pp | QQQ +14.82% | up |
+| FROM TROUGH | +40.0% | Apr 10 low 74.67 | up |
+| OFF HIGH | -11.2% | 52wk high 117.79 | dn |
+| YTD 2026 | -1.1% | calendar year | flat |
+| LAGGARD WATCH | ADBE -55% | off-high, ~9x fwd P/E | warn |
+
+## VERDICT
+
+Software was **mispriced on AI extinction fears, then re-rated on AI revenue proof**. The three recovery names were all cut in half or worse (CRM -59%, NOW -65%, WDAY -60%) and have bounced **70%+ off the April bottom**, yet still sit **30–40% below prior highs** — the rebound is real but incomplete. What changed: Q2 earnings showed AI as **incremental revenue** (CRM Data Cloud + AI ARR +120% to $1.2B, 12,500 Agentforce deals), not just a seat-count killer. The already-recovered cohort (SNOW at new highs, DDOG/MDB close behind) proves the re-rating template. The laggards (ADBE -67% peak-to-trough, still -55% off highs; INTU -68%) are either the next rotation or genuine value traps — **Adobe's AI ARR triples while its multiple compresses to ~9x forward, the widest long/short debate in software.**
+
+## EVENTS
+
+### #01 | 2026-02-05 | IGV -4.97% | AI Disruption
+**SaaSpocalypse opens: software crashes while the market shrugs**
+IGV -4.97% vs QQQ only -1.44% on **3.9x volume** — a software-specific flush, not a market selloff. Forbes (Feb 6) names it: AI slows revenue growth, kills per-seat licenses, forces new pricing models. **The market starts pricing SaaS incumbents as melting ice cubes.**
+MOVES: IGV=-4.97% | QQQ=-1.44% | VOL=3.9x
+SRC: Forbes, Feb 6, 2026
+
+### #02 | 2026-02-23 | IGV -4.75% | AI Disruption
+**February flush continues into Workday earnings week**
+IGV -4.75% vs QQQ -1.22% on 1.9x volume. Workday then reports a Q4 beat overshadowed by a soft 12–13% subscription guide; Wedbush declares the era of "easy growth" over and demands an answer to the **AI cannibalization question**. $285B of SaaS value evaporates in 48 hours across the month.
+MOVES: IGV=-4.75% | QQQ=-1.22% | VOL=1.9x
+SRC: Wedbush / MarketMinute, Feb 25, 2026
+
+### #03 | 2026-04-09 | IGV -3.90% | AI Disruption
+**Agent-crash day: the market is UP, software collapses anyway**
+Cloudflare -12%, Snowflake -9%, ServiceNow -7.86%, Salesforce -3.13% in one session — while **QQQ closes UP +0.68%**. IGV -3.90% on 1.9x volume. The fear: autonomous AI agents do what specialized software does, cheaper. **The cleanest proof this drawdown was about AI disruption, not macro.**
+MOVES: IGV=-3.90% | QQQ=+0.68% | VOL=1.9x
+SRC: tech-insider.org, Apr 12, 2026
+
+### #04 | 2026-04-10 | IGV -2.57% | Valuation & Sentiment
+**Capitulation: IGV bottoms at 74.67 on 2.4x volume**
+One more -2.57% day on the heaviest volume of the window marks the low. IGV is down ~36% from September; CRM/NOW/WDAY are all 60%+ off highs. **In hindsight, the entry for a +40% recovery leg** — nothing about fundamentals changed that week, only positioning and fear.
+MOVES: IGV=-2.57% | QQQ=+0.14% | VOL=2.4x
+SRC: Yahoo Finance price action, Apr 2026
+
+### #05 | 2026-08-19 | IGV +0.83% | Valuation & Sentiment
+**Cramer calls the bottom on sentiment: "the selling goes too far"**
+Jim Cramer publicly defends ServiceNow, Salesforce and peers against extinction fears. IGV +0.83% on a flat tape — small move, big signal: **the debate shifts from "will AI kill SaaS" to "which SaaS gets re-rated first."**
+MOVES: IGV=+0.83% | QQQ=-0.20%
+SRC: 247wallst, Aug 19, 2026
+
+### #06 | 2026-08-27 | IGV +7.74% | Earnings
+**Salesforce proves AI monetization: CRM +22.58% in a day**
+FY27 Q2 (reported Aug 26 AMC): record quarter, cRPO accelerates to +14%, full-year guidance raised. Data Cloud + AI ARR **$1.2B, +120% YoY**; 12,500 Agentforce deals, 6,000+ paid. CRM rips +22.58%, NOW +10.04%; IGV +7.74% vs QQQ +1.37% on 2.2x volume. **The day "AI eats software" became "AI pays software."**
+MOVES: IGV=+7.74% | QQQ=+1.37% | VOL=2.2x
+SRC: Salesforce IR, Aug 26, 2026
+
+### #07 | 2026-09-03 | IGV +3.41% | AI Monetization
+**Snowflake prints a new high: the re-rating template confirmed**
+SNOW closes at 356.47, an all-time high, on its Project SnowWork AI platform momentum (+84% in 6M). IGV +3.41% vs QQQ +1.19%. **Survivors with proven AI revenue now trade above pre-crash levels** — the roadmap the CRM/NOW/WDAY cohort is still walking, 30–40% below highs.
+MOVES: IGV=+3.41% | QQQ=+1.19%
+SRC: Marketbeat / Yahoo Finance, Sep 2026
+
+## CATALYSTS
+
+### Nov–Dec 2026 (est.) | hot | Q3 earnings: CRM / NOW / WDAY must repeat the trick
+The whole rebound thesis rests on one quarter of AI ARR proof. Watch: Agentforce paid-deal conversion, ServiceNow AI ARR, Workday subscription guide direction. A second consecutive AI beat closes the gap to highs; any guide-down re-opens the extinction debate instantly.
+
+### 2026-09-10 | Earnings | Adobe Q3: laggard confirms or breaks
+Next earnings per market data. Adobe's AI-first ARR tripled to $500M+ yet the stock sits 55% off highs at ~9x forward. A guide-up with organic ARR re-acceleration rotates the laggard bid; another "back-half" deferral confirms the value-trap case.
+
+### Late Oct 2026 | AI Capex | Hyperscaler earnings + MSFT Copilot commentary
+AI spend durability is the oxygen for this theme. Any cut to 2027 capex guides, or evidence enterprises are consolidating vendors instead of expanding seats + AI SKUs, hits software multiples first.
+
+### Standing Risk | Repricing | Per-seat erosion without user expansion
+The bear case never died, it just got outvoted: if AI features compress price per user faster than they expand user counts, revenue stalls while multiples stay rich. **Track NRR and AI-SKU attach every quarter — that is the theme in two numbers.**
+
+## CHARTDATA
+
+\`\`\`json
+{"dates":["2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04"],"zeb_norm":[100,95.39,93.66,89,92.11,95.02,95.41,92.97,90.44,92.46,90.44,91.6,91.35,90.24,85.95,87.59,90.32,92.27,91.12,92.46,93.97,95.68,97.88,98.27,97.98,95.68,95.78,94.94,94.05,94.89,95.54,94.21,94.35,92.71,94.33,90.28,89.81,89.09,85.89,86.71,89.42,89.11,89.75,89.88,89.92,89.09,85.61,83.41,87.91,88.78,92.69,94.24,95.04,96.4,96.83,99.13,93.35,95.17,95.43,94.95,94.39,93.73,96.77,98.79,98.6,98.1,101.49,101.82,101.31,99.91,98.97,101.25,102.52,103.74,102.71,104.24,103.31,105.02,105.06,103.94,106.88,113.56,120.31,116.99,111.93,111.77,107.07,106.85,103.83,102.3,101.56,101.32,103.53,102.07,99.6,99.52,97.53,97.54,96.26,94.68,98.53,100.41,101.21,104.27,104.52,105.89,105.15,103.31,104.87,103.23,103.55,104.59,104.94,104.67,103.66,103.87,102.57,99.44,97.3,98.28,101.55,102.52,103.18,104.23,105.65,108.82,113.94,113.17,111.06,114.71,117.3,116.09,115.15,118.72,116.26,113.93,113.9,114.85,113.84,115.47,114.44,113.77,114.38,123.24,122.32,122.86,118.61,115.53,119.47,116.81],"tsx_norm":[100,98.46,96.74,95.35,97.37,98.11,97.66,97.92,95.93,96.13,96.03,96.75,96.38,97.23,96.05,97.08,98.49,97.3,96.99,97.12,96.08,97.54,97.25,95.79,97.06,97.07,97.05,95.39,94.82,95.89,96.35,95.01,94.71,92.96,93.91,93.27,93.88,91.64,89.85,89.16,92.18,93.32,93.43,93.99,94,96.8,97.45,97.59,98.6,100.39,101.8,102.29,103.63,103.3,102.91,104.63,104.04,106.03,106.08,105.02,105.66,106.64,107.67,107.46,108.86,111.12,110.99,113.59,113.92,112.95,114.15,114.96,113.22,112.74,112.04,113.9,114.11,114.6,116.63,116.5,117.48,117.91,118.62,119.17,118.86,118.28,112.6,114.36,113.05,110.79,114.53,115.2,118.82,116.56,115.39,118.28,117.86,113.98,113.49,114.41,112.84,115.64,117.61,115.82,113.81,115.44,113.3,113.62,115.51,115.87,113.67,114.94,114.63,112.74,111.05,111.17,113.23,112.65,110.51,109.28,108.94,107.88,105.68,109.17,109.88,111.81,115.61,114.56,114.14,115.47,115.13,114.74,115.58,116.92,116.76,116.57,114.59,114.36,113.54,113.94,112.81,113.51,113.61,115.17,114.42,114.47,113.02,113.27,114.62,114.82],"bank_norm":[100,93.15,94.61,90.11,90.77,92.04,91.77,87.76,87.96,90,87.42,89.08,87.89,87.83,84.51,87.96,90.96,94.62,92.4,91.53,93,91.59,95.53,95.87,94.3,92.46,92.09,94.53,91.47,94.08,92.65,92.19,92.5,92.68,92.59,86.82,86.31,88.06,85.06,87.77,88.55,88.34,88.79,87.77,86.79,83.66,81.04,78.25,81.98,81.26,84.25,85.96,86.4,88.36,88.76,90.03,82.21,84.51,85.47,86.01,85.96,83.74,87.2,87.98,88.7,85.95,88.39,86.25,84.19,81.26,78.67,79.49,82.31,85.14,85.11,85.43,83.63,85.42,84.95,84.2,83.57,90.65,99.43,95.27,90.42,89.54,88.07,86.59,83.18,81.08,78.96,78.69,78.06,76.71,73.54,72,71.21,72.78,72.46,71.24,75.12,74.92,74.31,77.43,78.8,78.58,80.41,79.02,77.08,77.47,81.22,79.48,79.22,81.91,81.01,82.44,80.67,77.32,74.44,77.63,82.35,86.1,89.36,85.72,87.29,88.21,90.6,91.54,88.6,91.43,93.69,93.67,91.7,95.52,93.07,90.59,93.04,97.76,97.45,99.22,99.17,97.57,97.54,119.56,121.44,122.17,122.44,121.88,125.44,122.97],"hfin_norm":[100,93.03,94.13,86.97,85.37,88.03,90.24,85.24,87.53,90.75,89.75,91.36,90.99,88.36,85.42,86.86,88.33,92.63,91.53,92.73,95.92,96.49,102.02,105.37,103.33,98.82,97.99,95.74,96.29,97.36,98.92,96.36,95.99,93.54,94.03,88.69,87.34,87.83,84.25,88.96,88.6,88.17,86.44,86.8,85.21,82.6,76.11,70.34,75.47,74.4,79.82,81.73,81.92,84.51,84.86,87.35,71.85,76.42,76.65,76.69,75.33,74.84,77.25,77.94,77.97,75.47,79.31,77.27,77.53,75.42,73.77,76.69,80.57,87.64,86.3,87.54,84.48,86.55,84.68,86.54,92.14,105.4,115.14,108.18,99.92,101.15,95.3,96.77,90.65,89.88,87.36,86.57,88.26,85.87,80.92,80.54,78.82,81.31,79.49,75.86,83.34,84.72,84.14,89.66,90.1,91.47,93.84,91.34,92.24,91.28,94.29,88.86,88.75,88.14,87.49,88.73,86.49,80.9,77.92,83.71,89.46,93.75,98.1,93.28,94.26,96.77,100.12,99.34,99.45,105.83,108,108.08,105.88,107.84,105.08,99.75,101.26,107.8,109.96,108.88,108.52,107.63,106.61,117.31,122.64,125.42,121.1,115.86,123.38,119.71],"spx_dates":["2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04"],"spx_norm":[100,92.96,98.14,91.57,93.97,89.15,88.38,83.37,83.08,83.3,82.55,82.26,80.76,79.48,74.52,75.11,76.8,80.23,77.15,77.29,82.83,82.5,84.89,87.12,85.44,82.18,79.5,77.37,76.76,77.07,77.96,76.3,76.93,78.42,79.05,74.57,73.29,73.81,71.62,74.27,74.93,74.43,76.28,74.82,73.54,68.73,65.21,64.89,69.17,67.98,71.59,72.02,71.42,73.79,74.5,73.02,66.14,69.07,67.96,69.89,70.61,70.6,73.23,73.76,74.33,70.73,75.49,73.73,70.03,68.42,67.19,68.49,72.1,74.33,74.6,73.02,70.28,73.91,71.53,71.81,74.99,84.32,90.69,85.87,84.73,85.31,83.22,82.92,80.88,79.29,75.29,75.44,74.75,73.12,70.27,67.44,65.2,66.4,68.11,65.62,71.64,71.28,70.61,75.14,78.09,79.59,82.85,79.52,79.79,80.14,83.56,80.64,81.8,83.88,83.5,84.91,81.42,76.38,73.75,78.06,85.1,92.1,96.9,91.19,92.48,95.2,98.79,98.42,98.19,103.61,106.23,104.55,101.1,119.07,114.59,110.27,109.96,114.44,113.81,115.36,114.86,112.14,110.02,111.64,118.08,113.88,114.42,115.86,119.34,112.93],"volume":[9660700,26636300,45280300,44959000,38552200,29011400,26404800,34726300,30633500,27101100,21446600,19962600,12386300,21967400,44121400,50584600,36737000,44117900,25153400,33334800,44914800,32063200,42023300,29347000,31948900,35674100,26081700,32457600,19114100,13689700,13394400,11633700,20521900,18578300,18036600,26148100,28215700,20723300,17244300,23523200,25627900,19061900,19202000,6841100,10652600,27044100,38649200,49422500,37739600,28354200,29219500,34648100,28710000,15906400,29962800,23478300,49153500,21746900,17131500,18507400,11182900,26292700,23314400,18374400,18348900,23584700,29902800,17106600,13442600,25300700,17058900,17069900,28612300,31004700,26334000,18689500,12795500,11681300,18696000,13180000,17442600,37721000,40104400,24586000,24946400,17144700,19514000,12374800,25503700,12974500,20571500,14992900,13410300,11964900,19569600,24331300,23332400,15950800,19229300,14970300,19832900,18377100,17842500,26990000,24892500,18295400,10710800,11698500,13605500,10399400,6795400,17202800,9173300,8071900,10121100,11822000,9746600,15887200,13723600,14461400,26170300,24515300,13726400,18432600,11006000,13356900,12306800,9771500,16800700,8175300,9120500,8259500,16041000,25265200,9198200,13169700,8370500,7195600,6636300,9539500,6221600,8493200,7225500,24499300,15558000,8787400,12775900,12271000,9971600,12209900],"zeb_ret":[null,-4.61,-1.82,-4.97,3.5,3.15,0.41,-2.55,-2.73,2.24,-2.19,1.28,-0.27,-1.22,-4.75,1.91,3.11,2.16,-1.25,1.47,1.63,1.82,2.3,0.4,-0.3,-2.35,0.11,-0.87,-0.94,0.9,0.68,-1.39,0.14,-1.74,1.75,-4.29,-0.52,-0.81,-3.59,0.95,3.13,-0.35,0.71,0.15,0.05,-0.93,-3.9,-2.57,5.4,0.99,4.4,1.66,0.85,1.43,0.44,2.38,-5.83,1.95,0.27,-0.5,-0.59,-0.7,3.24,2.09,-0.19,-0.51,3.45,0.33,-0.5,-1.38,-0.94,2.3,1.26,1.19,-0.99,1.49,-0.9,1.65,0.04,-1.06,2.83,6.25,5.94,-2.76,-4.33,-0.14,-4.21,-0.21,-2.82,-1.47,-0.72,-0.24,2.18,-1.41,-2.42,-0.08,-2,0.01,-1.32,-1.64,4.06,1.92,0.79,3.02,0.25,1.3,-0.7,-1.75,1.51,-1.57,0.31,1,0.33,-0.26,-0.96,0.19,-1.25,-3.05,-2.16,1.01,3.33,0.96,0.64,1.02,1.36,3,4.7,-0.68,-1.87,3.29,2.26,-1.04,-0.81,3.1,-2.07,-2.01,-0.03,0.83,-0.88,1.43,-0.89,-0.59,0.53,7.74,-0.74,0.44,-3.46,-2.6,3.41,-2.23]}
+\`\`\`
+`;
+fetch("theme.md", {cache:"no-store"})
+  .then(r=>{ if(!r.ok) throw new Error("http "+r.status); return r.text(); })
+  .then(render)
+  .catch(()=>render(EMBEDDED));
+</script>
+</body>
+</html>

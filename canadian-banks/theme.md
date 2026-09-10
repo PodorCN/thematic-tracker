@@ -125,6 +125,13 @@ The bank basket moved as recorded below. Relative price action identifies exposu
 MOVES: ZEB=+1.59% | TSX=+1.50%
 SRC: Yahoo Finance, daily price history for 2026-09-03, retrieved 2026-09-09, https://finance.yahoo.com/quote/ZEB.TO/history/ ; https://finance.yahoo.com/quote/%5EGSPTSE/history/
 
+## VALIDITY
+
+CALL: red | 2M excess -5.91pp vs TSX — September slide deepened, theme invalid
+- green（成立）: 2M 超额 > +1pp，且无 thesis-break（PCL 恶化、股息/回购削减、BoC 意外转向）
+- yellow（一般）: 2M 超额在 ±1pp 内，thesis 完好
+- red（不成立）: 2M 超额 < -1pp，或出现 thesis-break；当前 3M 逻辑未破，但持续跑输，不成立
+
 ## CATALYSTS
 
 ### 2026-10-28 | hot | Bank of Canada decision and Monetary Policy Report

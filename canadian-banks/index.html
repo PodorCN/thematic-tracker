@@ -60,6 +60,18 @@ section{margin-top:56px}
 .hero h1 em{font-style:normal;color:var(--acc)}
 .hero .sub{color:var(--dim);max-width:860px;margin-top:14px;font-size:14px}
 
+/* ── theme call ──────────────────────── */
+.callbar{display:flex;align-items:center;gap:12px;margin-top:22px;padding:14px 18px;border:1px solid;border-radius:10px;font-size:14px}
+.callbar .cdot{width:14px;height:14px;border-radius:50%;flex:none}
+.callbar.green{border-color:rgba(0,244,142,.5);background:rgba(0,244,142,.07)}
+.callbar.green .cdot{background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.callbar.yellow{border-color:rgba(255,180,84,.5);background:rgba(255,180,84,.07)}
+.callbar.yellow .cdot{background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.callbar.red{border-color:rgba(255,95,95,.55);background:rgba(255,95,95,.08)}
+.callbar.red .cdot{background:var(--loss);box-shadow:0 0 12px var(--loss)}
+.callrules{margin-top:10px;font-size:12px;color:var(--dim)}
+.callrules ul{margin:6px 0 0;padding-left:20px;line-height:1.9}
+
 /* ── proxy chips ─────────────────────── */
 .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-top:28px}
 .chip{
@@ -187,6 +199,7 @@ function mdInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
 
 /* ══════════════ theme.md parser ══════════════ */
 function parseTheme(md){
+  md = md.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
   const out = {meta:{}, sections:{}};
   const fm = md.match(/^---\n([\s\S]*?)\n---/);
   if(fm) fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
@@ -302,10 +315,19 @@ function render(md){
       <h3>${mdInline(c.title)}</h3><p>${mdInline(c.para)}</p></div>`;
   }).join("");
 
+  const valSec = (T.sections["VALIDITY"]||"").split("\n").map(l=>l.trim()).filter(Boolean);
+  const callM = (valSec.find(l=>l.startsWith("CALL:"))||"").match(/^CALL:\s*(green|yellow|red)\s*\|\s*(.*)$/i);
+  const callCls = callM? callM[1].toLowerCase() : "yellow";
+  const callTxt = {green:"WORKING · \u6210\u7acb", yellow:"MIXED · \u4e00\u822c", red:"BROKEN · \u4e0d\u6210\u7acb"}[callCls];
+  const callReason = callM? callM[2] : "no call stated";
+  const callRules = valSec.filter(l=>l.startsWith("-")).map(l=>"<li>"+mdInline(l.replace(/^-\s*/,""))+"</li>").join("");
+  const callbar = '<div class="callbar '+callCls+' rv"><span class="cdot"></span><span><b>THEME CALL: '+callTxt+'</b> — '+esc(callReason)+'</span></div>'
+    + '<div class="callrules rv"><b>判定标准 VALIDITY</b><ul>'+callRules+'</ul></div>';
   document.getElementById("app").innerHTML = `
   <section class="hero">
     <div class="kicker rv">THEMATIC TRACKER</div>
     <h1 class="rv">${esc(meta.theme_cn||"")} <em>// ${esc(meta.theme_en||"")}</em></h1>
+    ${callbar}
     <div class="chips rv">${chips}</div>
   </section>
   <section>
