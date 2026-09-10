@@ -24,8 +24,9 @@ scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
 3. **异动筛查**：按 AGENT.md 的阈值决定是否需要新事件；同时检查催化剂日历是否命中当天。
 4. **新闻归因**：web search，事件四要素——标题（一句话）、正文（传导链 2–4 句）、MOVES（当日 %）、SRC（来源名 + 日期，禁止编造；搜不到原因就写 `归因不明（unexplained）`）。
 5. **重写 theme.md**：整个重写（不要局部 patch），格式严格遵守根 agent.md 旧版 §2 schema（frontmatter / PROXIES / STATS / VERDICT / EVENTS 升序编号 / CATALYSTS / CHARTDATA）；事件超 ~15 条时合并最老最不重要的。**同步更新 `## VALIDITY` 灯**：用 chartdata 重算近 42 个交易日（约两个月）主 proxy vs 基准（tsx 槽）的超额，按该 theme AGENT.md 的灯规则定 green/yellow/red 并写清理由数字。
-6. **校验**：`node scripts/validate-theme.mjs <theme>/theme.md` 必须 PASS（error 清零；warning 修不了就留着，但要在汇报里说明）。
-7. **发布**：`git add <theme>/` → 一天一个 commit（`data(<theme>): update theme.md <updated>`）→ 推 dev/功能分支 → Action 绿 → 合 main（自动上线约 1 分钟）→ 打开线上页确认。回滚用 `git revert`。
+6. **同步发布副本**：将 `<theme>/theme.md` 逐字节复制为 `<theme>/theme.txt`。`theme.md` 是唯一编辑源；`theme.txt` 是 GitHub Pages 可稳定 fetch 的发布资产，两者必须字节一致。
+7. **校验**：`node scripts/validate-theme.mjs <theme>/theme.md` 必须 PASS（error 清零；warning 修不了就留着，但要在汇报里说明），并检查 `theme.md` 与 `theme.txt` 字节一致。
+8. **发布**：`git add <theme>/` → 一天一个 commit（`data(<theme>): update theme.md <updated>`）→ 推 dev/功能分支 → Action 绿 → 合 main（自动上线约 1 分钟）→ 直接请求线上 `<theme>/theme.txt`，确认 HTTP 200 和 `updated` 日期，再打开线上页确认。回滚用 `git revert`。
 
 ## 2. 新增一个 theme（5 步）
 
