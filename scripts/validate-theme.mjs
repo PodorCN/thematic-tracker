@@ -1,10 +1,11 @@
-// Validator for app/theme.md — implements the Step 5 checklist in agent.md.
+// Validator for <theme>/theme.md — implements the publishing checklist in agent.md.
 // Usage: node scripts/validate-theme.mjs [path/to/theme.md]
 // Chart-key mapping follows slot order: MAIN→zeb_norm, BENCHMARK rows→tsx_norm,spx_norm…,
 // SUPPORTIVE rows→bank_norm,hfin_norm,spx_norm… (document the slot mapping in the theme folder).
 import { readFile } from 'node:fs/promises';
 
-const file = process.argv[2] || 'app/theme.md';
+const file = process.argv[2];
+if (!file) { console.error('Usage: node scripts/validate-theme.mjs <theme>/theme.md'); process.exit(2); }
 const errors = [];
 const warnings = [];
 const err = m => errors.push(m);
@@ -12,6 +13,10 @@ const warn = m => warnings.push(m);
 
 const raw = await readFile(file, 'utf8').catch(() => null);
 if (!raw) { console.error(`FAIL: cannot read ${file}`); process.exit(1); }
+const publishedFile = file.replace(/theme\.md$/, 'theme.txt');
+const publishedRaw = await readFile(publishedFile, 'utf8').catch(() => null);
+if (publishedRaw === null) err(`missing publishing mirror ${publishedFile}`);
+else if (publishedRaw !== raw) err(`${publishedFile} is not identical to ${file}`);
 // Normalize: theme.md is often edited on Windows (CRLF) — the renderer tolerates it, so must we.
 const md = raw.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n');
 

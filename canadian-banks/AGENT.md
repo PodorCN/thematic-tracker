@@ -14,9 +14,11 @@
 ## 拉行情
 
 ```
-tickers: ZEB.TO, BANK.TO, HFIN.TO, ^GSPTSE, ^GSPC → tracker_data/<name>.csv
+tickers: ZEB.TO, BANK.TO, HFIN.TO, ^GSPTSE, ^GSPC → canadian-banks/tracker_data/<name>.csv
 params: period=3mo, interval=1d（全量重拉，幂等）
 ```
+所有 Canadian Banks 行情、派生 JSON 和 refresh evidence 都只能写入 `canadian-banks/tracker_data/`；根目录不再保存该 theme 的数据。
+
 注意：TSX 和美股节假日不同，归一化日期对齐用 inner join；S&P 500 单独保留 spx_dates/spx_norm。
 
 ## 异动阈值与解读

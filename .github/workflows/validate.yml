@@ -3,13 +3,17 @@ on:
   push:
     paths:
       - 'canadian-banks/theme.md'
+      - 'canadian-banks/theme.txt'
       - 'ai-software/theme.md'
+      - 'ai-software/theme.txt'
       - 'scripts/validate-theme.mjs'
       - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'canadian-banks/theme.md'
+      - 'canadian-banks/theme.txt'
       - 'ai-software/theme.md'
+      - 'ai-software/theme.txt'
 jobs:
   validate:
     runs-on: ubuntu-latest
