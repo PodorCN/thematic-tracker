@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent_portfolio_manager",
+  "reviewed_at": "2026-09-12T11:12:37-04:00",
+  "candidate_sha256": "4df81aba0c058bc8874d62809e835738cc1b4cba0895d937821046ca87903824",
+  "verdict": "revise",
+  "executive_summary": "Revise unconditionally. The exact candidate bytes now match both candidate.sha256 and pm-handoff.json, all 50 handoff evidence hashes match persisted files, the official policy records and market arithmetic are internally coherent, and the four new BLS files are genuine HTTP-200 release pages. The candidate nevertheless makes an exact July JOLTS claim that is not present in the persisted BLS release page, and it assigns the explicitly disallowed current 2.5 weight to the Warsh speech. These unresolved source-audit and policy-weight issues can materially distort the Fed hike/hold risk and prevent approval on the final allowed iteration.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "fail",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "fail"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "drivers.fed.dovish[id=fed_dove_jolts_20260901].data.actual, data.previous, delta_label, reason; evidence/bls-jolts.html",
+      "issue": "The newly recollected official JOLTS HTML release supports only the rounded statement that July job openings were 7.3 million; it does not contain the candidate's exact 7.271M actual or 7.182M revised June previous. The page is an authentic 200-status July 2026 release, but the claimed exact table values are absent from the persisted artifact.",
+      "evidence": "Full parsed text of evidence/bls-jolts.html has title 'Job Openings and Labor Turnover Summary - 2026 M07 Results' and the release text 'The number of job openings was little changed at 7.3 million in July'; searches found no 7.271, 7,271, 7.182, or 7,182 values. evidence/bls-retrieval-metadata.json records status 200 and the matching persisted SHA-256, but metadata does not provide the missing exact table response.",
+      "pnl_impact": "This driver is used as labour-demand evidence on the dovish side. A rounded 7.3M release cannot validate the precise 29k consensus miss, 89k month-over-month increase, or the revised base used to size and directionally justify the driver; false precision can change the Fed rope balance and event hedge sizing around the September decision.",
+      "instruction": "Persist the official JOLTS Table 1 or another complete authoritative response containing the exact July openings and revised June values, with retrieval URL, status, timestamp, and hash bound in a replacement handoff. Recompute the actual, previous, miss and month-over-month arithmetic, reason, side, weight, and any Fed pricing narrative from those exact values; if the exact values cannot be audited, remove the exact claim and rebuild the candidate rather than retaining it."
+    },
+    {
+      "severity": "major",
+      "field": "drivers.fed.hawkish[id=fed_hawk_warsh_20260828].weight",
+      "issue": "The candidate assigns weight 2.5 to a single communication driver even though the governing dashboard specification says 2.5 is approximately an almost-certain-hike signal and that 2.5+ should not appear in the current snapshot. The candidate provides no exceptional, mechanically calibrated justification for overriding that explicit guard.",
+      "evidence": "candidate.json sets fed_hawk_warsh_20260828.weight to 2.5 and the governing BACKEND_DATA_SPEC states that most weights should be 1.0–2.0, 2.5 is approximately必加息, 3 is a single-event decider, and '当前不应出现 2.5+'. The same candidate has a 0.86 hike desk interpolation, so this is not an immaterial display-only value.",
+      "pnl_impact": "A 2.5 hawkish weight materially pushes the rope toward a hike and can cause a PM to under-hedge a hold or mis-size front-end rate and equity exposure. It also makes the displayed rope look like an independent confirmation of the proxy pricing when the communication is part of the same narrative cluster.",
+      "instruction": "Rebuild the Fed driver weighting with no 2.5+ value in this current snapshot unless the operator documents exceptional evidence that satisfies the specification's override standard and recalibrates the whole driver set. Recompute side totals, rope direction, any alignment/divergence statement, and decision-usefulness narrative after the weight change, then submit a fresh review package."
+    }
+  ],
+  "pnl_risks": [
+    "The exact JOLTS miss and revised-base arithmetic is not auditable from the persisted official release artifact, so a labour-side signal may be mis-sized or misdirected.",
+    "The 2.5 Warsh weight can overstate hike conviction and distort front-end rates, equity-duration, and event-hedge decisions.",
+    "Fed 0/14/86 is a desk-implied ZQU26/EFFR interpolation rather than CME FedWatch single-meeting probabilities; it is labelled, but it is not a direct tradable distribution.",
+    "BoC single-meeting probabilities are correctly unavailable because CRAU26 spans multiple decisions; allocating its quarterly observable to October would create false precision.",
+    "Yahoo Finance rows and derived returns recompute internally but remain revisable vendor data, not certified settlement or causal event attribution."
+  ],
+  "operator_instructions": [
+    "Keep publication fail-closed; do not archive, publish, or reinterpret this revise verdict as approval.",
+    "Recollect and persist the exact authoritative JOLTS table values used by the candidate, bind the complete response and metadata hash in a new handoff, and re-audit every affected field.",
+    "Remove or exceptionally justify the 2.5 current Warsh weight under the governing specification, then rebuild all driver totals and decision-usefulness text rather than patching one number.",
+    "This is the final allowed iteration for the run; if remediation cannot be completed and freshly reviewed, leave the prior public snapshot untouched and carry the open feedback forward."
+  ]
+}

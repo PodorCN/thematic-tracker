@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent_portfolio_manager",
+  "reviewed_at": "2026-09-10T13:47:35-04:00",
+  "candidate_sha256": "054e710a5e52d53602eff1fce7df3db2fe214ee4ed23c1e32322d23c6e6b25f6",
+  "verdict": "revise",
+  "executive_summary": "Revise. The exact candidate bytes, candidate.sha256, and handoff all bind correctly to 054e710a5e52d53602eff1fce7df3db2fe214ee4ed23c1e32322d23c6e6b25f6. Official Fed and BoC policy facts pass independent checks. The Sep 10 PPI Actual/Previous figures match the BLS release and the stated consensus figures match the freshly captured TradingEconomics calendar. ZQU26/EFFR arithmetic is correct and explicitly labelled as a sensitive desk proxy; live NY Fed EFFR is 3.63% effective Sep 9. CRAU26 and CORRA observations support the unavailable/null BoC representation and do not identify an October meeting distribution. Publication is nevertheless blocked because the 13:41 Toronto candidate labels still-open Sep 10 Yahoo daily bars as 16:00 closes, sets market.as_of_close 2 hours 19 minutes after as_of, and future-dates the oil driver's observation to 16:00. Those provisional bars continued changing during this review, so the market and oil claims are not frozen closing observations and violate the payload's timestamp chronology.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "fail",
+    "market_validation": "fail",
+    "freshness": "fail",
+    "decision_usefulness": "fail"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "market.as_of_close and market.tickers[*]",
+      "issue": "The market strip presents provisional intraday Sep 10 Yahoo daily bars as completed 16:00 Toronto closes even though the candidate was frozen at 13:41.",
+      "evidence": "candidate.as_of is 2026-09-10T13:41:00-04:00, while market.as_of_close is 2026-09-10T16:00:00-04:00 and every one-day label says 2026-09-10 close. At 13:47 Toronto the cash session was still open. Independent Yahoo chart retrieval during review showed the same Sep 10 bars continuing to move: SPY was 758.34 versus candidate 758.09, QQQ 710.17 versus 709.78, GLD 399.61 versus 399.30, and ZEB.TO 73.85 versus 73.77. A 16:00 close could not exist at the 13:41 freeze time.",
+      "pnl_impact": "A PM could treat mutable intraday risk moves as settled closing confirmation, misread cross-asset breadth and duration transmission, and size or hedge positions against prices that were neither final nor timestamp-valid.",
+      "instruction": "Recollect the complete market strip after each relevant exchange has closed and stamp the actual observation time, or retain intraday observations with an as-of timestamp no later than candidate.as_of and remove every close label. Recompute all prices, one-day and one-week returns, labels, and direction fields from the same frozen observations before submitting a new iteration."
+    },
+    {
+      "severity": "major",
+      "field": "drivers.boc.hawkish[id=boc_hawk_oil_20260821]",
+      "issue": "The WTI driver is future-dated and calls a still-open Sep 10 futures daily bar a close, so its refreshed data and chronology are not valid at candidate.as_of.",
+      "evidence": "The candidate was frozen at 2026-09-10T13:41:00-04:00, but this driver sets observed_at_toronto to 2026-09-10T16:00:00-04:00 and states WTI 101.93 Sep 10 close. Independent Yahoo retrieval during review showed CL=F at 102.01 after the freeze versus candidate 101.93, confirming the bar was provisional. The backend contract requires observed_at_toronto not to exceed as_of.",
+      "pnl_impact": "The rope receives a 2.0 hawkish energy weight from a falsely finalized and future-timestamped price, which can overstate the persistence of Canada's inflation impulse and distort the PM's BoC risk balance.",
+      "instruction": "Recollect WTI at a real, source-identifiable observation time, set observed_at_toronto no later than the new candidate.as_of, and describe it as intraday unless an actual settlement or completed close is used. Then recompute the change, summary, reason, and weight from that same observation and rebuild the full candidate."
+    }
+  ],
+  "pnl_risks": [
+    "The Fed hold/hike weights are a desk interpolation, not a direct probability distribution, and a one-basis-point ZQU26 move changes the inferred hike weight by about 8.6 percentage points.",
+    "CRAU26 is a quarterly-average contract spanning the October 28 and December 9 BoC decisions, so it cannot identify a clean October outcome distribution.",
+    "Sep 10 PPI is mixed between hot headline and softer ex-food-and-energy monthly inflation; CPI and the FOMC can rapidly invalidate the current rate view.",
+    "Intraday market and energy prices can reverse before settlement, making false close labels directly hazardous for confirmation-based positioning."
+  ],
+  "operator_instructions": [
+    "Do not publish iteration 06 or edit its frozen artifacts; create a new immutable iteration after correcting the market and oil observation chronology.",
+    "Recollect all Sep 10 market rows and WTI from one coherent observation regime, using completed closes or accurately timestamped intraday values, and rebuild every dependent return, label, direction, summary, reason, and weight.",
+    "Set candidate.as_of at or after every nested observation timestamp, regenerate the exact-byte SHA-256 and handoff, and submit the new package to a fresh independent PM review."
+  ]
+}

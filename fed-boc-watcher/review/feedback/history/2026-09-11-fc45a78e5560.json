@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "status": "open",
+  "reviewed_at": "2026-09-11T09:42:31-04:00",
+  "candidate_sha256": "398d10d20e61fd73902728a5e54c093dcad042c17201d495c44449d4de8fc89f",
+  "review_sha256": "fc45a78e55605beeb3d22441bad38161b8cdd85b35e80d9b92b47cfbff9f0efd",
+  "source_review": "review/fed-boc/2026-09-11/iteration-05/pm-review.json",
+  "executive_summary": "Revise. I independently read the complete runbook, backend contracts, review schema, controlling feedback, and every iteration-01 through iteration-05 candidate/checksum/handoff/review artifact, then rehashed the exact 34,457-byte iteration-05 candidate. Its SHA-256 matches candidate.sha256 and pm-handoff.json. Fresh official retrieval and preserved evidence support the Fed and BoC policy records, CPI actuals and consensus, communications, EFFR, the sensitive non-direct Fed interpolation, and the null BoC single-meeting distribution. Iteration-05 also correctly restores Waller to speech-only September 3 evidence while keeping September 11 CPI in a separate driver. Publication remains blocked because the market evidence was collected at 09:30:58, before the 09:30 one-minute bars had finalized, but all ten records are stamped 09:30:00. Fresh Yahoo retrieval after bar finalization produces different 09:30 closes for SPY, QQQ, IWM and XLU, changing prices and several returns/labels. The supplied facts.json preserves only rounded transient prices, so the claimed exact timestamp and unrounded arithmetic cannot be independently reproduced. The iteration-04 date defect is fixed, but its executable finalized-bar and unrounded-evidence contract is not fully satisfied.",
+  "failed_checks": [
+    "decision_usefulness",
+    "freshness",
+    "market_validation"
+  ],
+  "findings": [
+    {
+      "severity": "major",
+      "field": "market.as_of_close; market.tickers[*].price, chg_1d, chg_1w, label_1d, label_1w, observed_at_toronto; post-cpi/facts.json; pm-handoff.json remediation mapping",
+      "issue": "The replacement strip timestamps in-progress 09:30 minute values as finalized 09:30 bars, and its evidence does not preserve the unrounded observations required to reproduce the returns.",
+      "evidence": "post-cpi/facts.json says collected_at_toronto=2026-09-11T09:30:58-04:00, while every market observation and market.as_of_close is 2026-09-11T09:30:00-04:00. An independently repeated Yahoo chart query after the minute finalized returned SPY 764.5700073242188, QQQ 714.6599731445312, IWM 291.1000061035156 and XLU 42.880001068115234 for the 09:30 bar, versus candidate prices 764.54, 714.65, 291.06 and 42.89. Using independently retrieved Sep 10 bases, finalized 1d returns are 0.0088938021, 0.0084239522, 0.0118178441 and 0.0084666182, versus candidate 0.008854, 0.008410, 0.011679 and 0.008702. IWM should display approximately +1.18% 1d and -1.66% from Sep 4, not +1.17% and -1.67%; XLU should display approximately +0.85% and -0.46%, not +0.87% and -0.44%. XLI, XLF, XLE, TLT, GLD and ZEB.TO reproduce within six-decimal return tolerance from the finalized bars. The evidence file stores only two-decimal market prices, so it cannot establish which unrounded transient values generated the candidate returns. The handoff's claim that exact source timestamps and unrounded arithmetic were preserved therefore does not pass independent reproduction.",
+      "pnl_impact": "The observed numerical differences are currently small, but the method can freeze an arbitrary within-minute state during a volatile post-CPI opening bar and label it as a stable timestamp. That makes event-window attribution non-reproducible, can change displayed return rounding and cross-asset ranking, and weakens confidence in a trading-facing strip precisely where the prior critical defect required exact timestamp discipline.",
+      "instruction": "Recollect the complete ten-instrument strip only after the selected one-minute bar has closed, or label and timestamp a true point-in-time quote at its actual sub-minute collection time rather than the bar start. Persist full-precision raw observation prices and full-precision Sep 10/Sep 4 bases in durable evidence, recompute every 1d/1w return from those unrounded values, regenerate prices, labels and directions together, and assert the frozen values against a second retrieval of the finalized bar before creating a new immutable candidate."
+    }
+  ],
+  "required_recollection": [
+    "Recollect the complete ten-instrument strip only after the selected one-minute bar has closed, or label and timestamp a true point-in-time quote at its actual sub-minute collection time rather than the bar start. Persist full-precision raw observation prices and full-precision Sep 10/Sep 4 bases in durable evidence, recompute every 1d/1w return from those unrounded values, regenerate prices, labels and directions together, and assert the frozen values against a second retrieval of the finalized bar before creating a new immutable candidate."
+  ],
+  "operator_instructions": [
+    "Do not publish or edit this frozen candidate. Create a new immutable iteration after recollecting and recomputing the entire market strip under one reproducible finalized-bar or true point-in-time quote convention.",
+    "Preserve the verified official policy facts, CPI card, speech-only Waller card, revised labour and GDP evidence, Fed proxy caveats and arithmetic, and null BoC distribution; do not alter them merely to repair the market evidence.",
+    "Include full-precision raw prices, full-precision return bases, source epochs converted to Toronto time, collection time after bar close, and executable per-symbol arithmetic in the next evidence package and handoff.",
+    "Rehash the persisted replacement bytes and obtain a fresh independent unconditional PM review. This verdict is revise and grants no contingent publication authority."
+  ],
+  "next_run_contract": [
+    "Read this feedback before collecting or editing the next candidate.",
+    "Re-trigger collection for every affected source and claim.",
+    "Rebuild the whole internally consistent candidate; do not patch prose only.",
+    "Submit the rebuilt candidate to a fresh independent PM review.",
+    "Do not publish until an exact-byte-bound approved review passes the gate."
+  ]
+}

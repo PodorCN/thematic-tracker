@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "status": "open",
+  "reviewed_at": "2026-09-11T02:50:03-04:00",
+  "candidate_sha256": "f74254157fd88dbafcb49f6ba3872794e7330348f56ea935c9629b64e0499de3",
+  "review_sha256": "87d9a22c0739c4753e1ef21d7fa302412cdd4f18ea03c2a65ef22a2c471fe5d6",
+  "source_review": "review/fed-boc/2026-09-11/iteration-02/pm-review.json",
+  "executive_summary": "Revise. Independently hashed the immutable candidate and reconciled candidate.sha256 and handoff; independently hashed the prior review and reconciled controlling feedback. Substantial remediation is real: revised JOLTS, payrolls and ADP are correct; current Yahoo long-end levels and all ten cash closes and twenty returns independently reproduce; Waller's two-sided reaction function is now useful; Fed interpolation is numerically correct and BoC probabilities appropriately remain null. Nevertheless, the exact candidate does not complete every prior finding: GDP still advertises the superseded negative annualized prior in its delta label, the FOMC calendar still calls the Yahoo input a settlement, and the disputed futures 16:00 timestamps and oil publication chronology remain unchanged without a separate collection-time record. The new Waller driver also uses 09:00 despite the official feed's 12:30 GMT publication. These are bounded but actual whole-candidate remediation failures, not grounds to recycle approval from different bytes. Correct the remaining dependent fields and obtain a new exact-byte review.",
+  "failed_checks": [
+    "decision_usefulness",
+    "drivers",
+    "freshness",
+    "pricing"
+  ],
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[id=boc_hawk_gdp_20260828].data.delta_label",
+      "issue": "GDP remediation is internally incomplete: the delta label still describes a rebound from the superseded -0.1 annualized prior while the previous field correctly uses revised positive Q1 growth.",
+      "evidence": "Candidate delta_label reads 'MoM beat +0.1; ann. -0.1 vs fcst but rebound from -0.1'. Candidate previous now states Q1 +0.1% q/q revised from 0.0%, about +0.4% annualized. Re-read iteration-02 StatCan dq260828a evidence confirms the positive revised quarter; dq260828b separately confirms June industry GDP +0.3%. The residual negative prior is precisely the mixed-vintage defect in iteration-01 finding five.",
+      "pnl_impact": "The highlighted comparison still exaggerates the rebound from contraction despite a corrected underlying field, degrading the BoC growth-versus-labour assessment.",
+      "instruction": "Rebuild the GDP delta label from the same revised vintage as previous, or explicitly label any historical unrevised comparison. Preserve the distinction between expenditure quarterly GDP and monthly industry GDP. Do not infer exact published annualized growth from rounded quarterly figures."
+    },
+    {
+      "severity": "minor",
+      "field": "calendar[id=fomc_20260916].logic; meetings.fed.pricing.as_of_pricing; drivers.boc.hawkish[id=boc_hawk_oil_20260821] chronology",
+      "issue": "The prior Yahoo provenance and timestamp finding remains only partly remediated, despite the handoff's claim that labels and collection/session semantics were consistently rebuilt.",
+      "evidence": "FOMC calendar logic still says 'Sep 10 ZQU26 settlement/EFFR desk model'. Fed as_of_pricing remains September 10 16:00; oil observed_at remains September 10 16:00 and published_at remains September 9 16:00. Neither candidate nor detailed handoff supplies the promised separate actual collection timestamp or evidence for a 16:00 futures observation convention. Independent Yahoo retrieval reproduces ZQU26 96.2874984741211 and CL=F 102.4800033569336 as daily close fields, not certified CME settlements. The candidate itself disclaims certified settlement evidence, making the calendar inconsistent. All these timestamps precede the freeze; this is not a recurrence of future-close fabrication.",
+      "pnl_impact": "A proxy with 8.57 percentage points of hike-weight sensitivity per contract basis point must not acquire unsupported exchange-finality or precise observation authority in another panel. Ambiguous oil publication/update dates weaken auditability of the current energy signal.",
+      "instruction": "Remove the remaining settlement claim unless supported by official exchange evidence. Record the completed Yahoo session date and actual collection timestamp separately in contract-supported fields or explicit source notes; label any conventional display timestamp as such. Clarify that the old oil timestamp is driver inception, not publication of September 10 data, or replace it with a supported update chronology. Audit the entire new candidate rather than only the edited source and summary fields."
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[id=fed_hawk_waller_20260903].published_at_toronto and observed_at_toronto",
+      "issue": "The newly added Waller driver has an unsupported publication time inconsistent with the official speeches feed.",
+      "evidence": "Independent retrieval of https://www.federalreserve.gov/feeds/speeches.xml gives Waller's September 3 speech pubDate 'Thu, 3 Sep 2026 12:30:00 GMT', corresponding to 08:30 Toronto. Candidate assigns 09:00 Toronto to both published_at and observed_at. The complete official speech supports the substantive conditional hold/hike interpretation, including policy only slightly restricting demand and 4.76% to 3.05% three-month core disinflation.",
+      "pnl_impact": "The half-hour mismatch can contaminate future event-window attribution and is unnecessary false precision in a newly recollected policy driver.",
+      "instruction": "Use the supported 08:30 Toronto publication timestamp, distinguish any separate collection time, and retain the two-sided conditional language and modest weight without implying a commitment to hike."
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[id=fed_hawk_ppi_20260910].source and reason; calendar[id=ca_cpi_20260914] core measure keys",
+      "issue": "Residual source-status and measure labels contradict the stated complete refresh, although the underlying PPI and calendar numbers reconcile.",
+      "evidence": "PPI source and reason still claim the BLS static page was inaccessible this run. Iteration-02/bls-ppi.html is a substantive official release and independently parsed successfully, confirming headline +0.4% m/m and +5.4% y/y. The Canada CPI event now correctly names legacy core, median and trim, but its monthly legacy core field is still boc_core_MoM rather than an explicitly legacy-core label, while the annual field was renamed legacy_core_YoY.",
+      "pnl_impact": "Stale source-access claims obscure what was actually verified; inconsistent core-measure naming can cause a reader to confuse legacy exclusion-based core with preferred BoC breadth measures.",
+      "instruction": "Update PPI provenance to distinguish the successful official actuals recollection from secondary consensus evidence. Explicitly identify the monthly Canadian core series as legacy core as well as the annual series, using compatible keys or a precise measure note."
+    }
+  ],
+  "required_recollection": [],
+  "operator_instructions": [
+    "Do not publish or edit these frozen candidate bytes. Build a new immutable iteration correcting every residual finding, including nested calendar and delta labels, then compute its digest from persisted bytes.",
+    "Use an exhaustive field-level remediation check, not only a prose handoff claim: search the new complete artifact for obsolete GDP priors, settlement claims, inaccurate access-status notes, ambiguous core names and unsupported precise timestamps.",
+    "Preserve the independently verified cash-strip arithmetic, current Yahoo long-end series, corrected revisions, conditional Waller treatment, desk-proxy caveats and null BoC distribution. Record source session dates, actual collection times and publication conventions distinctly.",
+    "Obtain a fresh independent unconditional review bound to the new exact candidate digest before publication. This review unconditionally requests revision; it does not authorize publication contingent on later edits."
+  ],
+  "next_run_contract": [
+    "Read this feedback before collecting or editing the next candidate.",
+    "Re-trigger collection for every affected source and claim.",
+    "Rebuild the whole internally consistent candidate; do not patch prose only.",
+    "Submit the rebuilt candidate to a fresh independent PM review.",
+    "Do not publish until an exact-byte-bound approved review passes the gate."
+  ]
+}

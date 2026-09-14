@@ -12,10 +12,25 @@ home/                    ← 落地页（新增 theme 时加一张卡片）
   theme.md                 唯一内容源（你每天改的就是它）
   tracker_data/            原始行情 CSV 缓存
   AGENT.md                 本 theme 的专属指令（proxy/阈值/日历/ quirks）
-scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
+scripts/validate-theme.mjs ← 校验脚本，theme 通用
+scripts/econ/              ← 宏观页的 Python 流水线（抓取/渲染/归档），与 theme SOP 无关
+tests/                     ← scripts/econ/ 的单元测试（pytest，无网络）
+docs/                      ← 宏观页的发布契约与运维手册
 ```
 
 现有 theme：`canadian-banks/`（加拿大六大行），`ai-software/`（AI 错杀软件反弹）。
+
+### 宏观页（不走下面的 theme SOP）
+
+`economic-calendar/` 和 `fed-boc-watcher/` 是两个**宏观数据页**，2026-09 从 `thematic-market-watcher`
+仓库迁入。它们没有 `theme.md`、没有 proxy、没有 VALIDITY 灯，内容由 Python 渲染而不是手写：
+
+| 页面 | 更新方式 | 专属指令 |
+|---|---|---|
+| `economic-calendar/` | GitHub Actions 每日自动发布 | `economic-calendar/AGENT.md` |
+| `fed-boc-watcher/` | **必须过独立 PM 审阅闸门**，不自动发布 | `fed-boc-watcher/AGENT.md` |
+
+改动这两个文件夹之前先读它们自己的 `AGENT.md`；下面第 1 节的每日 SOP 只适用于 theme 文件夹。
 
 ## 1. 每日 SOP（每个交易日盘后，对每个 theme 跑一遍，全程约 10–15 分钟/theme）
 

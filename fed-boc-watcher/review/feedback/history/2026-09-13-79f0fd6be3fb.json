@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "status": "open",
+  "reviewed_at": "2026-09-13T18:35:58-04:00",
+  "candidate_sha256": "54b8b71e1afac0595a62fb03ad21d27a9a4b8a3b19f59d4e9d2d5db7398587e0",
+  "review_sha256": "79f0fd6be3fb2b3d04a98e43636d75d0391db6e68224391cb6c201a57053afcc",
+  "source_review": "review/fed-boc/2026-09-13/iteration-03/pm-review.json",
+  "executive_summary": "Revise. The exact candidate SHA-256 matches candidate.sha256, every handoff evidence digest matches, official Fed and BoC policy facts are supported by the persisted pages, the market return arithmetic reproduces, and the controlling open-feedback chronology defect is remediated: top-level as_of 2026-09-13T18:33:59-04:00 is later than the nested recollection timestamps. However, the BoC pricing proxy is materially misidentified: the persisted TMX page places the 97.600/97.605 quote and volume 33,077 in the September 2026 row, while the candidate labels it CRAU26 with a December 16 expiry and uses it as an October/December proxy. The Fed proxy also cites a finalized 96.26999664 close that is not present in the hash-bound ZQU26 evidence, whose Sep 11 close is 96.26750183105469. These unresolved pricing identity and exact-value defects make the snapshot unsafe for event-risk decisions.",
+  "failed_checks": [
+    "decision_usefulness",
+    "market_validation",
+    "pricing"
+  ],
+  "findings": [
+    {
+      "severity": "major",
+      "field": "meetings.boc.pricing.observable_proxy and meetings.boc.pricing.proxy_check",
+      "issue": "The quoted TMX instrument is misidentified. The persisted cra.html table shows bid 97.600, ask 97.605, and volume 33,077 on the September 2026 row, not on a December 2026 contract. The candidate labels this quote CRAU26, assigns expiry_date 2026-12-16, and says the contract spans the Oct 28 and Dec 9 decisions; those claims cannot all describe the same instrument.",
+      "evidence": "Hash-bound evidence/cra.html lists the 97.6000/97.6050/33,077 quote under September 2026 and lists December 2026 separately at 97.1800/97.1850 with volume 73,789. The candidate lines 47-68 instead assign the former quote to CRAU26 with expiry 2026-12-16 and a multi-decision limitation.",
+      "pnl_impact": "A wrong contract month changes the reference period and invalidates the claimed BoC October policy signal. A PM could size CAD, front-end rates, or Canada duration risk against a September-expiry quote that does not span the October and December decisions, producing materially wrong event odds and hedge ratios.",
+      "instruction": "Recollect and identify the exact TMX contract from the exchange row and contract code, including its real expiry and reference period. Use the December-row quote if the intended proxy must span the October and December decisions, or state that no usable October proxy exists. Recompute every related rate, label, limitation, handoff mapping, and candidate digest in a new immutable iteration; do not patch this frozen candidate or publish it."
+    },
+    {
+      "severity": "major",
+      "field": "meetings.fed.pricing.proxy_check and meetings.fed.pricing.observable price inputs",
+      "issue": "The candidate's stated finalized ZQU26 price is not supported by the hash-bound market evidence. It states Yahoo row 96.26999664, but evidence/market/ZQU26.CBT.1d.json has the Sep 11 close 96.26750183105469; its later 96.27249908447266 observation is a Sunday indication and is correctly not a completed-session close.",
+      "evidence": "The persisted ZQU26 evidence timestamps the Sep 11 row at 2026-09-11T04:00:00Z with close 96.26750183105469 and separately contains a 2026-09-13T22:11:40Z row at 96.27249908447266. Candidate meetings.fed.pricing.proxy_check instead records finalized row 96.26999664 and derives implied_rate_after 3.844293 from it.",
+      "pnl_impact": "The Fed cut/hold/hike interpolation is sensitive to the futures price at the stated precision. Using a value absent from the frozen evidence breaks reproducibility and can shift event probabilities and FOMC hedge sizing, especially when the candidate presents an 86% hike weight.",
+      "instruction": "Reconcile the candidate to the exact completed-session quote contained in the hash-bound evidence, or recollect and hash the source that actually produced 96.26999664. Recompute implied_rate_after and all probabilities from the verified value, preserve the Sunday-indication exclusion, update the handoff mapping, and submit a fresh exact-byte PM review."
+    }
+  ],
+  "required_recollection": [
+    "Recollect and identify the exact TMX contract from the exchange row and contract code, including its real expiry and reference period. Use the December-row quote if the intended proxy must span the October and December decisions, or state that no usable October proxy exists. Recompute every related rate, label, limitation, handoff mapping, and candidate digest in a new immutable iteration; do not patch this frozen candidate or publish it.",
+    "Reconcile the candidate to the exact completed-session quote contained in the hash-bound evidence, or recollect and hash the source that actually produced 96.26999664. Recompute implied_rate_after and all probabilities from the verified value, preserve the Sunday-indication exclusion, update the handoff mapping, and submit a fresh exact-byte PM review."
+  ],
+  "operator_instructions": [
+    "Keep publication fail-closed; do not archive, commit, sync, or publish iteration-03.",
+    "Read and preserve the open feedback chronology requirement, but rebuild a new candidate after correcting both pricing identities and exact values.",
+    "Recollect the exact TMX contract row and the completed-session ZQU26 quote, update all derived math and remediation/evidence mappings, recompute the candidate SHA-256, and submit a fresh independent review."
+  ],
+  "next_run_contract": [
+    "Read this feedback before collecting or editing the next candidate.",
+    "Re-trigger collection for every affected source and claim.",
+    "Rebuild the whole internally consistent candidate; do not patch prose only.",
+    "Submit the rebuilt candidate to a fresh independent PM review.",
+    "Do not publish until an exact-byte-bound approved review passes the gate."
+  ]
+}

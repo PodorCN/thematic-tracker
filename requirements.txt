@@ -1,0 +1,12 @@
+# Runtime dependencies for the macro pages (economic-calendar + fed-boc-watcher).
+# Used by scripts/econ/ locally and by .github/workflows/macro-pages-daily.yml.
+requests>=2.31
+pandas>=2.0
+jinja2>=3.1
+
+# ForexFactory fallback scraper (econ/core.py)
+beautifulsoup4>=4.12
+cloudscraper>=1.2
+
+# tests
+pytest>=8.0
