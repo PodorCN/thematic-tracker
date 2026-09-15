@@ -24,11 +24,11 @@ The detailed schemas are
 - There is currently no Fed/BOC collector. An operator or web-enabled LLM
   must research and update `fed-boc-watcher/data/dashboard.json` before it is
   archived.
-- `.github/workflows/public-pages-daily.yml` runs daily at `13:10 UTC` and
+- `.github/workflows/macro-pages-daily.yml` runs daily at `13:10 UTC` and
   publishes only the deterministic economic calendar. It deliberately cannot
   publish Fed/BOC because that output requires the independent PM review gate.
-- The public-site repository syncs these artifacts approximately 30 minutes
-  later through its `sync-macro-pages.yml` workflow.
+- What that workflow commits to `main` is what goes live: GitHub Pages serves
+  this repository directly, with no sync step and no mirrored copy.
 
 ## Independent PM Review Gate
 
@@ -99,46 +99,34 @@ fed-boc-watcher/data/
 fed-boc-watcher/review/<date>/iteration-<NN>/
 ```
 
-## Publish to PodorCN.github.io
+## Publishing
 
-> **MIGRATION TODO (2026-09-14).** These pages moved here from
-> `thematic-market-watcher`, where the source layout was `docs/`. The website
-> repository `PodorCN.github.io` still syncs from the old repository: both
-> `sync_macro_pages.py` and `.github/workflows/sync-macro-pages.yml` there
-> point at `thematic-market-watcher/docs`. **Until that sync is repointed at
-> this repository, the public `macro/` pages will keep being served from the
-> old, now-frozen source.** Repointing means mapping:
->
-> | old source path | new source path |
-> |---|---|
-> | `docs/economic_calendar.html` | `economic-calendar/index.html` |
-> | `docs/economic-calendar/archive/` | `economic-calendar/archive/` |
-> | `docs/data/economic-calendar/` | `economic-calendar/data/` |
-> | `docs/feds-boc-watcher.html` | `fed-boc-watcher/index.html` |
-> | `docs/data/fed-boc/` | `fed-boc-watcher/data/` |
->
-> Note the in-page fetch URLs changed too (`data/fed-boc/latest.json` →
-> `data/latest.json`, `../../data/economic-calendar/dates.json` →
-> `../data/dates.json`), so the sync must copy the pages from here rather than
-> rewriting the old ones.
+This repository publishes itself. GitHub Pages serves it from `main` at the
+root, and because `PodorCN.github.io` carries the `podor.org` custom domain,
+this project site is served under that same domain:
 
-`thematic-tracker` (this repository) is the source-data repository. The public
-website is served from the sibling `PodorCN.github.io` repository, where the
-final files live under `macro/`. For an immediate end-to-end publication, first
-commit and push only the intended source snapshots to a branch of this
-repository and merge to `main`, then run the website repository's sync script
-and review its diff:
+| Page | Public URL |
+|---|---|
+| Global Economic Calendar | `https://podor.org/thematic-tracker/economic-calendar/` |
+| dated calendar snapshot | `https://podor.org/thematic-tracker/economic-calendar/archive/<date>.html` |
+| Fed/BOC Watcher | `https://podor.org/thematic-tracker/fed-boc-watcher/` |
 
-```powershell
-python ..\PodorCN.github.io\sync_macro_pages.py --source .
-git -C ..\PodorCN.github.io status --short
-git -C ..\PodorCN.github.io diff -- macro
-```
+There is **no sync step and no second copy**. Nothing is mirrored into
+`PodorCN.github.io`; that site only links here. This matters when you change a
+page: what you merge to `main` is what goes live, about a minute later.
 
-After reviewing the public diff, commit only `macro/` in the website repository
-and push `PodorCN.github.io/main`. The website workflow
-`.github/workflows/sync-macro-pages.yml` also performs this sync daily, but an
-LLM assigned an immediate publication should not wait for the schedule.
+To publish: commit the intended snapshots to a branch, merge to `main`, then
+confirm the live page directly — request `<page>/data/latest.json`, check
+HTTP 200 and its `snapshot_date`, then open the page itself. Roll back with
+`git revert`.
+
+> **Never publish these.** They live inside the page folders but must stay off
+> the public site's radar as data, not as pages: `fed-boc-watcher/review/`
+> (the PM review evidence chain), `fed-boc-watcher/data/dashboard.json` (the
+> staging payload, by definition not yet PM-approved), and
+> `economic-calendar/raw/` (fetch-stage intermediates). They are committed here
+> for provenance and are reachable by URL like any other file in a Pages repo —
+> so never link to them, and never treat `dashboard.json` as published data.
 
 ## Fed/BOC Collection Rules
 
@@ -207,9 +195,9 @@ Tasks:
 5. Inspect the diff. Do not modify unrelated existing changes, old archive
    dates, or frontend design.
 6. This assignment includes publication: commit and push only the intended
-   source snapshot files to a thematic-tracker branch and merge to main. Run
-   the documented sync_macro_pages.py command, review the website diff, then
-   commit macro/ only and push PodorCN.github.io/main.
+   source snapshot files to a thematic-tracker branch, merge to main, then
+   confirm the live page (request its data/latest.json, check HTTP 200 and
+   snapshot_date, then open the page).
 
 Report the changed files, exact source URLs and observation times, validation
 results, and any values that could not be independently verified. If a
