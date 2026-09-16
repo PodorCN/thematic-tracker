@@ -1,6 +1,9 @@
 # agent.md — Thematic Tracker 总协议（分发器）
 
-> 你是 thematic tracker 的维护 agent。本文件只讲**所有 theme 通用的流程**，每个 theme 自己的 proxy、阈值、日历去读该文件夹下的 `AGENT.md`。
+> 你是 thematic tracker 的维护 agent。本仓库现在要维护**四样东西**：两个 theme + 两个宏观页，
+> 它们的更新方式**不一样**，先看 §0.1 的清单确认你要动的是哪一类，再往下读。
+>
+> 本文件只讲通用流程；每样东西自己的 proxy、阈值、日历、闸门，去读它文件夹下的 `AGENT.md`。
 
 ## 0. 仓库结构
 
@@ -12,12 +15,44 @@ home/                    ← 落地页（新增 theme 时加一张卡片）
   theme.md                 唯一内容源（你每天改的就是它）
   tracker_data/            原始行情 CSV 缓存
   AGENT.md                 本 theme 的专属指令（proxy/阈值/日历/ quirks）
-scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
+economic-calendar/       ← 宏观页 1：全球经济日历（自动发布，无 theme.md）
+fed-boc-watcher/         ← 宏观页 2：Fed×BOC 拔河看板（过 PM 闸门才发，无 theme.md）
+scripts/validate-theme.mjs ← 校验脚本，theme 通用
+scripts/econ/              ← 宏观页的 Python 流水线（抓取/渲染/归档），与 theme SOP 无关
+tests/                     ← scripts/econ/ 的单元测试（pytest，无网络）
+docs/                      ← 宏观页的发布契约与运维手册
 ```
 
-现有 theme：`canadian-banks/`（加拿大六大行），`ai-software/`（AI 错杀软件反弹）。
+## 0.1 要维护的四样东西
 
-## 1. 每日 SOP（每个交易日盘后，对每个 theme 跑一遍，全程约 10–15 分钟/theme）
+本仓库现在有 **4 个要更新的对象**，分成两类。**动手之前先确认你在哪一类**：
+
+| # | 对象 | 类型 | 内容源 | 更新方式 | 专属指令 |
+|---|---|---|---|---|---|
+| 1 | `canadian-banks/` | theme | `theme.md`（手写） | 人/agent 每交易日盘后跑 §1 SOP | `canadian-banks/AGENT.md` |
+| 2 | `ai-software/` | theme | `theme.md`（手写） | 人/agent 每交易日盘后跑 §1 SOP | `ai-software/AGENT.md` |
+| 3 | `economic-calendar/` | 宏观页 | FxStreet API（Python 渲染） | **GitHub Actions 全自动**，每天 13:10 UTC | `economic-calendar/AGENT.md` |
+| 4 | `fed-boc-watcher/` | 宏观页 | 研究 + 官方源（Python 渲染） | **半自动：必须过独立 PM 审阅闸门**，永不自动发布 | `fed-boc-watcher/AGENT.md` |
+
+两类的区别，别搞混：
+
+|  | theme（1–2） | 宏观页（3–4） |
+|---|---|---|
+| 内容源 | `theme.md`，你每天手写重写 | JSON 数据，Python 渲染 |
+| 有 VALIDITY 灯吗 | 有（green/yellow/red） | 没有 |
+| 有 proxy / 基准吗 | 有 | 没有 |
+| 校验 | `node scripts/validate-theme.mjs` | `pytest tests/` |
+| 适用 SOP | 下面的 §1 | 各自 `AGENT.md`，**§1 不适用** |
+
+`economic-calendar/` 和 `fed-boc-watcher/` 是 2026-09 从 `thematic-market-watcher` 仓库迁入的，
+它们没有 `theme.md`、没有 proxy、没有 VALIDITY 灯，**不要**试着用 §1 的流程去更新它们。
+
+日常节奏：第 3 项自己会跑，你不用管（除非 Action 红了）；第 4 项只在你被明确指派时动，且必须走闸门；
+第 1、2 项才是每个交易日的例行工作。
+
+## 1. 每日 SOP —— **只适用于 theme（第 1、2 项）**
+
+（每个交易日盘后，对每个 theme 跑一遍，全程约 10–15 分钟/theme。宏观页不走这一节。）
 
 1. **读专属指令**：先读 `<theme>/AGENT.md`（拿 ticker 清单、拉取窗口、异动阈值、MOVES 标签写法）。
 2. **拉行情**：按 AGENT.md 的参数全量重拉（不要增量追加，保证幂等），覆盖 `tracker_data/*.csv`；算窗口收益、归一化序列（base=100）、日收益、放量倍数。
@@ -29,6 +64,8 @@ scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
 8. **发布**：`git add <theme>/` → 一天一个 commit（`data(<theme>): update theme.md <updated>`）→ 推 dev/功能分支 → Action 绿 → 合 main（自动上线约 1 分钟）→ 直接请求线上 `<theme>/theme.txt`，确认 HTTP 200 和 `updated` 日期，再打开线上页确认。回滚用 `git revert`。
 
 ## 2. 新增一个 theme（5 步）
+
+> 这一节只讲新增 **theme**。宏观页不是这样加的——它自带 Python 流水线和 workflow，加之前先读 `docs/PUBLIC_PAGES_BACKEND_SPEC.md`。
 
 1. 复制 `canadian-banks/` 文件夹为 `<new-theme>/`（渲染器、分叉即用）。
 2. 在新文件夹里：按显示需求替换 `index.html` 的标签文字（图表 key 名 `zeb_norm/tsx_norm/bank_norm/hfin_norm/spx_norm` **不许改**，只换 label——槽位映射写进该 theme 的 AGENT.md）。
@@ -43,3 +80,6 @@ scripts/validate-theme.mjs ← 校验脚本，两个 theme 通用
 - **非交易日**：只维护 CATALYSTS，不改价格。
 - **不要改 index.html**：内容问题一律在 theme.md 里解决；只有用户明确要求改版式才动渲染器。
 - **CRLF 注意**：theme.md 经常是 CRLF（Windows 编辑），解析/校验必须先归一化换行（校验脚本已处理；自己写脚本别忘）。
+- **宏观页的 HTML 不要手改**：`economic-calendar/index.html`、`economic-calendar/archive/*.html` 由
+  `scripts/econ/template_calendar.html.j2` 渲染，手改会被下次流水线覆盖；要改版式就改模板。
+- **Fed/BOC 永不自动发布**：没有 `approved` 的 PM 审阅（且 sha256 对上 candidate 字节），不许 archive/commit/push。

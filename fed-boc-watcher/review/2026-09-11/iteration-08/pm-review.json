@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent_portfolio_manager",
+  "reviewed_at": "2026-09-11T16:19:57-04:00",
+  "candidate_sha256": "ae62f55feb94e418633a63bae4f132ace08e0784b2dfeca700c8e4efa68869ae",
+  "verdict": "revise",
+  "executive_summary": "Revise. I independently reviewed the operator and PM contracts, schema, controlling feedback, prior iteration-07 review, iteration-08 handoff, exact frozen candidate and close evidence, current canonical calendar, and earlier September 11 review chain. Exact-byte remediation passes: the persisted 35,976-byte candidate hashes to ae62f55feb94e418633a63bae4f132ace08e0784b2dfeca700c8e4efa68869ae, matching candidate.sha256, pm-handoff.json and the proposed dashboard bytes. The Fed 0/14/86 proxy arithmetic and cross-field narrative are now canonical; Michigan actuals, sentiment consensus and mixed 1.0 weighting independently verify; official policy facts verify; and the BoC single-meeting distribution correctly remains unavailable/null. Publication is nevertheless forbidden. The candidate says its calendar was fully refreshed after Michigan, but it omits consensus values already present in the canonical 16:03 ET calendar before the 16:05 candidate freeze, including Canada headline/core monthly CPI, US headline/ex-autos retail sales, and the Fed decision forecast/previous. Its prose explicitly and falsely calls some of those forecasts unavailable. In addition, fresh independent Yahoo retrieval during review no longer reproduces five of the ten claimed finalized 15:59 bars, including a one-cent rounded-price change in XLF. These unresolved calendar and market-validation defects prevent unconditional approval.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "fail",
+    "freshness": "fail",
+    "decision_usefulness": "fail"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "calendar[id=ca_cpi_20260914], calendar[id=us_retail_sales_20260916], calendar[id=fomc_20260916], and verification_note",
+      "issue": "The claimed fully refreshed watcher calendar omits material consensus and prior values that were already present in the canonical calendar before the candidate freeze, and its logic incorrectly labels available forecasts as unavailable.",
+      "evidence": "archive/2026-09-11/economic_calendar.json was fetched at 2026-09-11T20:03:30.407388+00:00 (16:03:30 Toronto), before candidate as_of 16:05:17. Its September 14 rows give Canada headline CPI MoM forecast 0.0% and legacy-core MoM forecast 0.2%; the candidate sets every Canada CPI forecast to null and says empty consensus fields remain null. Its September 16 rows give US retail-sales headline forecast 0.9% and ex-autos forecast 0.5%; the candidate sets all three retail forecasts to null and says forecasts are unavailable. The same archive gives the Fed rate-decision forecast 4.0% and previous 3.75%, while the candidate FOMC forecast and previous objects are empty. Control-group retail, Canada headline/core yearly, median and trim forecasts may remain null where the source is genuinely null. The archive also classifies BoC deliberations MEDIUM while the candidate labels it HIGH without explaining a desk override.",
+      "pnl_impact": "Suppressing known consensus removes the surprise thresholds for the final Canada inflation and US demand catalysts before the meetings, while hiding the explicit 4.0% Fed consensus makes the 86% hike proxy harder to cross-check. A PM can mis-size event hedges or mistake a populated consensus for genuine source unavailability.",
+      "instruction": "Create a new immutable candidate from the canonical post-Michigan calendar. Populate Canada headline MoM 0.0% and legacy-core MoM 0.2%; populate US retail headline 0.9% and ex-autos 0.5% while retaining null control-group consensus; populate the Fed decision forecast 4.0% and previous 3.75%; preserve every genuinely null field. Regenerate each affected logic sentence from those same rows, reconcile or explicitly label any desk impact override, and execute an assertion comparing every watcher forecast/previous value to its mapped canonical event before freezing."
+    },
+    {
+      "severity": "major",
+      "field": "market.tickers[SPY,IWM,XLI,XLF,XLE].raw_price, price, returns and finalized-bar evidence",
+      "issue": "The supposedly finalized close strip is no longer independently reproducible from Yahoo at the exact claimed epochs during this review, so the prior finalized-bar remediation does not provide a stable review-time source binding.",
+      "evidence": "The candidate and close/facts.json record the 15:59 Toronto bars as SPY 764.1950073242188, IWM 288.8900146484375, XLI 172.3800048828125, XLF 57.220001220703125 and XLE 65.125. Fresh Yahoo interval=1m retrieval at the exact epoch 1789156740 instead returned 764.1799926757812, 288.885009765625, 172.3699951171875, 57.22999954223633 and 65.12000274658203 respectively. QQQ, XLU, TLT and GLD still matched at 15:59, and ZEB.TO matched at its stated 15:58 epoch. Internal arithmetic from the frozen raw values remains correct for all twenty returns, but XLF now rounds to 57.23 rather than the candidate's 57.22 and five source observations cannot be reproduced. The facts file preserves asserted values but not a hashed raw Yahoo response proving the earlier vendor representation.",
+      "pnl_impact": "The numerical changes are small, but the control is the issue: a strip described as finalized can mutate between freeze and PM review, defeating exact independent reproduction and potentially changing rounded prices, return rankings or event-window evidence during a more volatile close.",
+      "instruction": "Recollect all ten instruments under one stable completed-session convention after Yahoo's post-close corrections have settled, recompute every price, 1d/1w return, label and direction from the refreshed full-precision values, and verify the exact epochs twice with a meaningful delay. Persist and hash the raw provider responses or equivalent immutable source rows so a reviewer can reproduce the selected fields even if Yahoo later revises minute history; bind that evidence hash in the handoff before freezing the replacement candidate."
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.boc.pricing.proxy_check and observable_proxy.implied_quarterly_average_rate terminology",
+      "issue": "The BoC distribution correctly fails closed, but the observable is described as a quarterly-average CORRA rate rather than the contract's compounded daily CORRA rate over the reference quarter.",
+      "evidence": "The official Montréal Exchange CRA specification defines the underlying as compounded daily CORRA during the reference quarter. The candidate repeatedly calls 100 minus the CRAU26 midpoint a quarterly-average rate. Its core conclusion remains correct: the September-reference contract runs to December 16 and spans both the October 28 and December 9 decisions, so it cannot identify an October cut/hold/hike distribution. Fresh retrieval also showed later CRAU26 bid/ask 97.600/97.605 and September 10 CORRA 2.3000%, confirming that the candidate's 02:34 observable is a dated snapshot rather than current closing data.",
+      "pnl_impact": "The unavailable/null distribution prevents false meeting probabilities, but imprecise contract terminology can cause a rates user to treat a compounded reference-quarter fixing as a simple arithmetic average and derive an invalid forward-rate decomposition.",
+      "instruction": "In the replacement candidate, describe 100 minus CRA price as the annualized rate implied by compounded daily CORRA over the official reference quarter. Preserve all three null outcome probabilities and null meeting-specific implied rate, retain the dated 02:34 observation only if explicitly presented as historical, and do not allocate the contract across October and December without additional identified instruments and assumptions."
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[id=fed_hawk_uom_inflation_20260911] consensus provenance",
+      "issue": "Michigan values and mixed weighting verify, but the exact FXStreet endpoint supporting consensus and previous values is still not traceable from the candidate itself.",
+      "evidence": "Fresh official University of Michigan retrieval confirms preliminary September sentiment 47.8, one-year inflation 4.6% versus 4.0%, and long-run inflation 3.4% versus 3.3%. Fresh FXStreet structured API retrieval confirms sentiment consensus 51.0 and previous 51.7 and null consensus for both inflation-expectation rows. The candidate now correctly links the official Michigan homepage and names FXStreet for consensus/previous, but it does not cite the exact structured endpoint requested by the iteration-07 instruction.",
+      "pnl_impact": "The hawkish-side placement with neutral delta and 1.0 weight is defensible because the inflation rise is offset by a 3.2-point sentiment miss; the remaining weakness is audit speed and reproducibility of the consensus provenance during a live catalyst.",
+      "instruction": "Retain the official Michigan URL for actuals and the mixed 1.0 treatment, keep inflation consensus explicitly unavailable, and add the exact dated FXStreet eventDates endpoint in a supported provenance field or collection note for sentiment consensus and previous values."
+    }
+  ],
+  "pnl_risks": [
+    "Exact-byte binding is repaired: independent binary SHA-256 of the 35,976-byte candidate is ae62f55feb94e418633a63bae4f132ace08e0784b2dfeca700c8e4efa68869ae, matching candidate.sha256, pm-handoff.json and docs/data/fed-boc-dashboard.json. This review is bound only to those exact bytes.",
+    "Fed pricing arithmetic passes. ZQU26 96.2699966430664 implies a 3.7300033569% September monthly rate; with EFFR 3.63% and a 16-pre/14-post split, the post-decision rate is 3.8442929077%. Adjacent hold/25bp-hike interpolation gives 14.2828369% hold and 85.7171631% hike, matching rounded 0/14/86 in both meetings.fed.pricing and FOMC calendar logic. This is a highly sensitive desk model, not CME FedWatch, and zero cut is a model restriction rather than an observed probability.",
+    "Official policy facts pass fresh retrieval: the Federal Reserve July 29 statement supports the 3.50-3.75% hold and Hammack, Kashkari and Logan preference for a 25bp hike; the Bank of Canada September 2 statement supports the 2.25% overnight target, 2.50% Bank Rate, 2.20% deposit rate and October 28 MPR decision.",
+    "Michigan is genuinely mixed and should not be read as a clean inflation-consensus beat: sentiment was 47.8 versus 51.0 consensus and 51.7 previous, while one-year expectations rose to 4.6% from 4.0% and long-run expectations rose to 3.4% from 3.3%; inflation consensus was null.",
+    "BoC single-meeting pricing remains unavailable by construction. CRAU26 spans October 28 and December 9, so cut/hold/hike and implied_rate_after must remain null. The retained 02:34 bid/ask and September 9 CORRA were historically dated; later exchange quotes and the September 10 CORRA fixing changed and must not be presented as if they were the frozen observation.",
+    "The frozen market arithmetic itself is internally consistent: all ten displayed prices round from raw_price, all twenty 1d/1w returns reproduce to six decimals from the stated full-precision bases, and labels/directions follow those frozen calculations. The failed check is independent source reproducibility after post-close revisions, not an arithmetic error in the candidate.",
+    "The dominant decision risk is the stale calendar mapping. Canada CPI and US retail sales are the last major macro catalysts before the meetings; omitting available consensus values removes the baseline needed to classify their surprises and undermines the page's stated event-driven purpose."
+  ],
+  "operator_instructions": [
+    "Do not publish, archive, edit or reinterpret this frozen iteration-08 candidate. This is an unconditional revise verdict and grants no contingent publication authority.",
+    "Create a new immutable iteration that rebuilds the complete watcher calendar from the 16:03 ET canonical archive, refreshes the ten-symbol strip under reproducible post-close evidence, preserves the verified Fed arithmetic, policy facts, Michigan mixed weighting and BoC null distribution, and corrects the remaining provenance and compounded-CORRA terminology.",
+    "Run executable calendar cross-field assertions, full-precision market arithmetic and exact-epoch source checks; persist hashes for raw market evidence; then write the replacement candidate once and compute candidate.sha256 and handoff digest from a binary read of the final persisted bytes.",
+    "Request a fresh independent PM review of the replacement bytes. Do not carry forward this review or any earlier approval to a changed candidate."
+  ]
+}
