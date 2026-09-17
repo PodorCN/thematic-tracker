@@ -2,165 +2,181 @@
   "provider": "Yahoo Finance / yfinance; auto_adjust=True",
   "yfinance_version": "1.7.0",
   "pandas_version": "3.0.5",
-  "retrieved_utc": "2026-09-16T20:36:26.066500+00:00",
-  "asof_exclusive": "2026-09-17",
-  "prior_updated": "2026-09-15",
+  "retrieved_utc": "2026-09-15T13:49:00.297282+00:00",
+  "asof_exclusive": "2026-09-15",
+  "prior_updated": "2026-09-09",
   "metrics": {
     "IGV": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 104.95999908447266,
-      "daily_return": -0.5589805307687601,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 106.63999938964844,
+      "daily_return": 5.043344085779888,
       "window_start": "2025-09-02",
-      "window_return": -2.1350945622668482,
+      "window_return": -0.5686590398249147,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 105.6701889038086,
-      "ytd": -0.6720815271584524,
+      "ytd": 0.9177711291144419,
       "high_52wk": 117.96787973846575,
-      "distance_high": -11.0266291831569,
+      "distance_high": -9.602512458417644,
       "trough": 73.91613910901502,
       "trough_date": "2026-04-10",
-      "from_trough": 41.99875744277266,
-      "volume": 7592784,
-      "volume_ratio": 0.7314779091047959
+      "from_trough": 44.27160384063178,
+      "volume": 13170900,
+      "volume_ratio": 1.253166598398968
     },
     "QQQ": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 704.719970703125,
-      "daily_return": 0.025547546114457198,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 709.1799926757812,
+      "daily_return": -0.7973383180531979,
       "window_start": "2025-09-02",
-      "window_return": 25.192549382778285,
+      "window_return": 25.98485259197416,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 612.8628540039062,
-      "ytd": 14.98820104679297,
+      "ytd": 15.715936778126395,
       "high_52wk": 747.828194840854,
-      "distance_high": -5.764455584200457,
+      "distance_high": -5.168058978211909,
       "trough": 554.990063621082,
       "trough_date": "2026-03-30",
-      "from_trough": 26.978844649058576,
-      "volume": 34733705,
-      "volume_ratio": 1.138521440807613
+      "from_trough": 27.782466599252853,
+      "volume": 35101000,
+      "volume_ratio": 1.1248139383228573
     },
     "CRM": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 250.5399932861328,
-      "daily_return": -1.9988268070996518,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 259.42999267578125,
+      "daily_return": 4.727107781920781,
       "window_start": "2025-09-02",
-      "window_return": -0.07889922527228865,
+      "window_return": 3.4666366121372416,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 263.56884765625,
-      "ytd": -4.943245184692535,
+      "ytd": -1.5703126592057304,
       "high_52wk": 268.2699890136719,
-      "distance_high": -6.609011985546953,
+      "distance_high": -3.2951864539123354,
       "trough": 146.32000732421875,
       "trough_date": "2026-06-22",
-      "from_trough": 71.22743353270984,
-      "volume": 9301395,
-      "volume_ratio": 0.5701144926207985
+      "from_trough": 77.30315725103209,
+      "volume": 12963700,
+      "volume_ratio": 0.7762074109644529
     },
     "NOW": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 139.82000732421875,
-      "daily_return": -1.4658116009384492,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 142.35000610351562,
+      "daily_return": 7.409648694385096,
       "window_start": "2025-09-02",
-      "window_return": -23.29551142944296,
+      "window_return": -21.90756798584047,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 153.19000244140625,
-      "ytd": -8.727720415241457,
+      "ytd": -7.076177403963957,
       "high_52wk": 194.7259979248047,
-      "distance_high": -28.196538308042673,
+      "distance_high": -26.89727739462635,
       "trough": 81.23999786376953,
       "trough_date": "2026-04-10",
-      "from_trough": 72.10734982869079,
-      "volume": 9803578,
-      "volume_ratio": 0.6059472824557626
+      "from_trough": 75.22157785161541,
+      "volume": 17424100,
+      "volume_ratio": 1.0354892530869424
     },
     "WDAY": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 187.75999450683594,
-      "daily_return": -1.52619902976604,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 194.2100067138672,
+      "daily_return": 4.582665538759745,
       "window_start": "2025-09-02",
-      "window_return": -17.969332427143435,
+      "window_return": -15.151379600794234,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 214.77999877929688,
-      "ytd": -12.580316801391778,
+      "ytd": -9.57723818900239,
       "high_52wk": 249.85000610351562,
-      "distance_high": -24.850914580708515,
+      "distance_high": -22.269360828671015,
       "trough": 110.36000061035156,
       "trough_date": "2026-04-09",
-      "from_trough": 70.13410064191719,
-      "volume": 1926150,
-      "volume_ratio": 0.5415618456373716
+      "from_trough": 75.97862055072393,
+      "volume": 2886600,
+      "volume_ratio": 0.763720498299448
     },
     "ADBE": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 250.5,
-      "daily_return": -2.8165772387370502,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 265.6000061035156,
+      "daily_return": 5.30072180250083,
       "window_start": "2025-09-02",
-      "window_return": -27.523653484617682,
+      "window_return": -23.15481805650277,
       "ytd_baseline_date": "2025-12-31",
       "ytd_baseline": 349.989990234375,
-      "ytd": -28.42652447510008,
+      "ytd": -24.112113627691645,
       "high_52wk": 370.8599853515625,
-      "distance_high": -32.454292753494386,
+      "distance_high": -28.382673624997324,
       "trough": 190.1199951171875,
       "trough_date": "2026-06-18",
-      "from_trough": 31.75889250659567,
-      "volume": 4398316,
-      "volume_ratio": 0.8576221729359972
+      "from_trough": 39.70124811953799,
+      "volume": 5718700,
+      "volume_ratio": 1.122105800172671
     },
     "INTU": {
-      "first": "2025-07-17",
-      "latest": "2026-09-16",
-      "latest_close": 318.1300048828125,
-      "daily_return": -3.383237009916751,
+      "first": "2025-07-15",
+      "latest": "2026-09-14",
+      "latest_close": 339.1499938964844,
+      "daily_return": 5.466923584866801,
       "window_start": "2025-09-02",
-      "window_return": -51.40350818307533,
+      "window_return": -48.19256871883436,
       "ytd_baseline_date": "2025-12-31",
-      "ytd_baseline": 656.2581176757812,
-      "ytd": -51.52364651739334,
-      "high_52wk": 697.2471179705489,
-      "distance_high": -54.37342131886014,
+      "ytd_baseline": 656.2581787109375,
+      "ytd": -48.32064499940197,
+      "high_52wk": 697.2470566754622,
+      "distance_high": -51.358705547846604,
       "trough": 251.72492815683486,
       "trough_date": "2026-06-22",
-      "from_trough": 26.38001615978398,
-      "volume": 2395824,
-      "volume_ratio": 0.611401661654557
+      "from_trough": 34.730396540298194,
+      "volume": 3631900,
+      "volume_ratio": 0.9023925739394669
     }
   },
   "validity": {
-    "first": "2026-07-20",
-    "last": "2026-09-16",
-    "normalized_point_excess": 9.631800000000013
+    "first": "2026-07-16",
+    "last": "2026-09-14",
+    "normalized_point_excess": 11.489599999999996
   },
   "since_prior_inclusive": [
     {
-      "date": "2026-09-15",
-      "main": -1.022127104397219,
-      "benchmark": -0.6542788426574742,
-      "volume_ratio": 1.0890450040767083,
+      "date": "2026-09-09",
+      "main": -0.8084958128255271,
+      "benchmark": -0.2853705432890319,
+      "volume_ratio": 0.7032099969646225,
       "absolute_trigger": false,
       "divergence_trigger": false
     },
     {
-      "date": "2026-09-16",
-      "main": -0.5589805307687601,
-      "benchmark": 0.025547546114457198,
-      "volume_ratio": 0.7314779091047959,
+      "date": "2026-09-10",
+      "main": -0.6186829730767673,
+      "benchmark": -1.0637845546144553,
+      "volume_ratio": 0.6664198281242881,
       "absolute_trigger": false,
       "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-11",
+      "main": 0.3162052415751404,
+      "benchmark": 0.8734428904149771,
+      "volume_ratio": 0.5271513442325335,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-14",
+      "main": 5.043344085779888,
+      "benchmark": -0.7973383180531979,
+      "volume_ratio": 1.253166598398968,
+      "absolute_trigger": true,
+      "divergence_trigger": true
     }
   ],
   "all_threshold_events": [
     {
       "date": "2025-08-01",
       "main": -2.7135968097875773,
-      "benchmark": -1.9698778454303678,
+      "benchmark": -1.9698886999479193,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -168,7 +184,7 @@
     {
       "date": "2025-08-04",
       "main": 2.1633104757467825,
-      "benchmark": 1.8451438855692004,
+      "benchmark": 1.8451662351475884,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -176,7 +192,7 @@
     {
       "date": "2025-08-07",
       "main": -1.976568637534304,
-      "benchmark": 0.3384387236945674,
+      "benchmark": 0.33842791337344025,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -184,7 +200,7 @@
     {
       "date": "2025-08-15",
       "main": 0.7107288952461044,
-      "benchmark": -0.4397285397021111,
+      "benchmark": -0.4397496451755467,
       "volume_ratio": 1.0391966791122655,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -208,7 +224,7 @@
     {
       "date": "2025-09-04",
       "main": -0.4472621962015144,
-      "benchmark": 0.9051387481361362,
+      "benchmark": 0.9051496036850626,
       "volume_ratio": 1.8484451653159004,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -216,7 +232,7 @@
     {
       "date": "2025-09-08",
       "main": 1.7384859678273301,
-      "benchmark": 0.48778181970714485,
+      "benchmark": 0.48780316425294235,
       "volume_ratio": 1.0067689226532637,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -224,7 +240,7 @@
     {
       "date": "2025-09-10",
       "main": 1.5562824126250874,
-      "benchmark": 0.032729423699073834,
+      "benchmark": 0.03271885900453242,
       "volume_ratio": 2.899301635527627,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -232,7 +248,7 @@
     {
       "date": "2025-09-12",
       "main": -0.6494687513302178,
-      "benchmark": 0.44170862602861405,
+      "benchmark": 0.4417086724085584,
       "volume_ratio": 0.8147175454777574,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -240,7 +256,7 @@
     {
       "date": "2025-09-18",
       "main": 1.8989579563246206,
-      "benchmark": 0.9017042945036469,
+      "benchmark": 0.901673016481519,
       "volume_ratio": 1.4543312188769821,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -248,7 +264,7 @@
     {
       "date": "2025-09-19",
       "main": 1.5775376345778636,
-      "benchmark": 0.676925752240165,
+      "benchmark": 0.6769464954618609,
       "volume_ratio": 0.7911271805095174,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -256,7 +272,7 @@
     {
       "date": "2025-09-30",
       "main": -0.8363510445275502,
-      "benchmark": 0.273923660495079,
+      "benchmark": 0.2739134291552814,
       "volume_ratio": 0.6381908635340258,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -264,7 +280,7 @@
     {
       "date": "2025-10-10",
       "main": -3.0950130410780763,
-      "benchmark": -3.4714193402261007,
+      "benchmark": -3.4714293710266797,
       "volume_ratio": 1.24823331463825,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -272,7 +288,7 @@
     {
       "date": "2025-10-13",
       "main": 2.274958053948284,
-      "benchmark": 2.122127961769138,
+      "benchmark": 2.1221385738261933,
       "volume_ratio": 0.94194422506873,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -288,7 +304,7 @@
     {
       "date": "2025-10-28",
       "main": -0.3074815781208273,
-      "benchmark": 0.7690008216966859,
+      "benchmark": 0.7689812405443863,
       "volume_ratio": 0.6551342749850271,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -296,7 +312,7 @@
     {
       "date": "2025-10-29",
       "main": -1.2851258536952792,
-      "benchmark": 0.4502990798896933,
+      "benchmark": 0.45030880212109103,
       "volume_ratio": 1.6247059553559844,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -304,7 +320,7 @@
     {
       "date": "2025-11-04",
       "main": -3.1979225688220314,
-      "benchmark": -2.029799650310915,
+      "benchmark": -2.029790155517741,
       "volume_ratio": 1.085916552391406,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -320,7 +336,7 @@
     {
       "date": "2025-11-10",
       "main": 2.1008396625569636,
-      "benchmark": 2.2124205427511257,
+      "benchmark": 2.212420765024037,
       "volume_ratio": 1.7365275555091937,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -336,7 +352,7 @@
     {
       "date": "2025-11-17",
       "main": -1.8149701102350257,
-      "benchmark": -0.8540477422004478,
+      "benchmark": -0.8540578033146784,
       "volume_ratio": 0.9242882719728827,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -344,7 +360,7 @@
     {
       "date": "2025-11-19",
       "main": -0.4980463232924781,
-      "benchmark": 0.5970176239158853,
+      "benchmark": 0.5969970168640204,
       "volume_ratio": 0.9407514199857567,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -352,7 +368,7 @@
     {
       "date": "2025-11-20",
       "main": -2.97429574622442,
-      "benchmark": -2.3671886919195972,
+      "benchmark": -2.3671787217586227,
       "volume_ratio": 1.9739174189284587,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -376,7 +392,7 @@
     {
       "date": "2025-12-12",
       "main": -1.648753088596877,
-      "benchmark": -1.9118209678794962,
+      "benchmark": -1.9118307600878626,
       "volume_ratio": 1.083528625067111,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -384,7 +400,7 @@
     {
       "date": "2025-12-15",
       "main": -2.3895500456527885,
-      "benchmark": -0.501948594793511,
+      "benchmark": -0.5019386618356658,
       "volume_ratio": 1.0437684281149031,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -392,7 +408,7 @@
     {
       "date": "2025-12-17",
       "main": -1.5144435132316003,
-      "benchmark": -1.853694722260213,
+      "benchmark": -1.8537145638057972,
       "volume_ratio": 0.6543821750847103,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -408,7 +424,7 @@
     {
       "date": "2026-01-02",
       "main": -2.9047169241212645,
-      "benchmark": -0.19370300896959236,
+      "benchmark": -0.19371296799318705,
       "volume_ratio": 1.4528402522523391,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -480,7 +496,7 @@
     {
       "date": "2026-01-28",
       "main": -0.7160455030080337,
-      "benchmark": 0.3311530790538031,
+      "benchmark": 0.33114338544455446,
       "volume_ratio": 1.4235320972459835,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -488,7 +504,7 @@
     {
       "date": "2026-01-29",
       "main": -4.935090420090848,
-      "benchmark": -0.5985273573928751,
+      "benchmark": -0.5985274152202957,
       "volume_ratio": 3.1257224455498025,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -496,7 +512,7 @@
     {
       "date": "2026-01-30",
       "main": -2.124201087254063,
-      "benchmark": -1.2010841842685638,
+      "benchmark": -1.2010843010114347,
       "volume_ratio": 1.8298973522758388,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -504,7 +520,7 @@
     {
       "date": "2026-02-02",
       "main": -0.8747692099962401,
-      "benchmark": 0.6866398739876489,
+      "benchmark": 0.68664977949211,
       "volume_ratio": 1.1654302460315211,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -520,7 +536,7 @@
     {
       "date": "2026-02-04",
       "main": -1.8152051716957995,
-      "benchmark": -1.7469018639871603,
+      "benchmark": -1.7469117873106343,
       "volume_ratio": 3.9555510129917324,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -528,7 +544,7 @@
     {
       "date": "2026-02-05",
       "main": -4.973761756604345,
-      "benchmark": -1.4395283656200686,
+      "benchmark": -1.4395285110089362,
       "volume_ratio": 3.32182809526677,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -536,7 +552,7 @@
     {
       "date": "2026-02-06",
       "main": 3.5019521963789657,
-      "benchmark": 2.1137860808890796,
+      "benchmark": 2.1137965447641127,
       "volume_ratio": 2.518085254039402,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -568,7 +584,7 @@
     {
       "date": "2026-02-13",
       "main": 2.2356639270094902,
-      "benchmark": 0.2131048155454618,
+      "benchmark": 0.21309462986458527,
       "volume_ratio": 1.280654723510307,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -576,7 +592,7 @@
     {
       "date": "2026-02-17",
       "main": -2.186774987450213,
-      "benchmark": -0.10301235152144761,
+      "benchmark": -0.10300219796973709,
       "volume_ratio": 0.9818516354083903,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -584,7 +600,7 @@
     {
       "date": "2026-02-20",
       "main": -1.2227981575915536,
-      "benchmark": 0.8848879268683163,
+      "benchmark": 0.8848880165775119,
       "volume_ratio": 0.9471360510487852,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -592,7 +608,7 @@
     {
       "date": "2026-02-23",
       "main": -4.753641385787333,
-      "benchmark": -1.2154960293414563,
+      "benchmark": -1.2154861024927022,
       "volume_ratio": 1.7710706870408262,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -624,7 +640,7 @@
     {
       "date": "2026-03-03",
       "main": 1.6310347895392097,
-      "benchmark": -1.0705593463318008,
+      "benchmark": -1.070569407223343,
       "volume_ratio": 1.3651257226665523,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -632,7 +648,7 @@
     {
       "date": "2026-03-04",
       "main": 1.8188341311591083,
-      "benchmark": 1.5243155519400808,
+      "benchmark": 1.5243157069594115,
       "volume_ratio": 0.9665471214029029,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -640,7 +656,7 @@
     {
       "date": "2026-03-05",
       "main": 2.30005435570404,
-      "benchmark": -0.3012835076103726,
+      "benchmark": -0.30126350364195753,
       "volume_ratio": 1.2730444761115394,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -648,7 +664,7 @@
     {
       "date": "2026-03-06",
       "main": 0.3994556527324944,
-      "benchmark": -1.5043184992000858,
+      "benchmark": -1.5043283953991238,
       "volume_ratio": 0.9105638688554702,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1304,9 +1320,25 @@
   ],
   "all_daily_checks": [
     {
+      "date": "2025-07-16",
+      "main": 0.7523633748677261,
+      "benchmark": 0.10237308816081203,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-17",
+      "main": 1.3659948306910197,
+      "benchmark": 0.8092772057805675,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
       "date": "2025-07-18",
       "main": -0.22459895321065293,
-      "benchmark": -0.09612012034828643,
+      "benchmark": -0.09610921430170949,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1322,7 +1354,7 @@
     {
       "date": "2025-07-22",
       "main": -0.27875394072301996,
-      "benchmark": -0.5175856612259278,
+      "benchmark": -0.5175747905464712,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1330,7 +1362,7 @@
     {
       "date": "2025-07-23",
       "main": 0.8205579516086026,
-      "benchmark": 0.4561356655845783,
+      "benchmark": 0.4561137612693944,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1338,7 +1370,7 @@
     {
       "date": "2025-07-24",
       "main": 0.2504229166895522,
-      "benchmark": 0.21284240166115076,
+      "benchmark": 0.21285330243507872,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1346,7 +1378,7 @@
     {
       "date": "2025-07-25",
       "main": 0.5352878520993753,
-      "benchmark": 0.2406989267270232,
+      "benchmark": 0.24070978124457465,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1354,7 +1386,7 @@
     {
       "date": "2025-07-28",
       "main": 0.16860405471794682,
-      "benchmark": 0.31250917034661985,
+      "benchmark": 0.3124983080543098,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1362,7 +1394,7 @@
     {
       "date": "2025-07-29",
       "main": 0.11516542625200632,
-      "benchmark": -0.15489342427812414,
+      "benchmark": -0.15488262955902776,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1370,7 +1402,7 @@
     {
       "date": "2025-07-30",
       "main": -0.2566161163618075,
-      "benchmark": 0.13399730145824407,
+      "benchmark": 0.1339864755069975,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1386,7 +1418,7 @@
     {
       "date": "2025-08-01",
       "main": -2.7135968097875773,
-      "benchmark": -1.9698778454303678,
+      "benchmark": -1.9698886999479193,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1394,7 +1426,7 @@
     {
       "date": "2025-08-04",
       "main": 2.1633104757467825,
-      "benchmark": 1.8451438855692004,
+      "benchmark": 1.8451662351475884,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1402,7 +1434,7 @@
     {
       "date": "2025-08-05",
       "main": -0.3874544783961986,
-      "benchmark": -0.6789365501786548,
+      "benchmark": -0.6789582204227762,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1410,7 +1442,7 @@
     {
       "date": "2025-08-06",
       "main": 1.1397504599547803,
-      "benchmark": 1.258315667750276,
+      "benchmark": 1.2583267518402108,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1418,7 +1450,7 @@
     {
       "date": "2025-08-07",
       "main": -1.976568637534304,
-      "benchmark": 0.3384387236945674,
+      "benchmark": 0.33842791337344025,
       "volume_ratio": null,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -1426,7 +1458,7 @@
     {
       "date": "2025-08-08",
       "main": 0.02736931898645878,
-      "benchmark": 0.9328114189106618,
+      "benchmark": 0.9328222932698305,
       "volume_ratio": null,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1435,7 +1467,7 @@
       "date": "2025-08-11",
       "main": -1.149315199026868,
       "benchmark": -0.2958912426759719,
-      "volume_ratio": null,
+      "volume_ratio": 1.3344962264192135,
       "absolute_trigger": false,
       "divergence_trigger": false
     },
@@ -1443,7 +1475,7 @@
       "date": "2025-08-12",
       "main": 1.0980867662187643,
       "benchmark": 1.2568803224037195,
-      "volume_ratio": null,
+      "volume_ratio": 1.2477815228619056,
       "absolute_trigger": false,
       "divergence_trigger": false
     },
@@ -1458,7 +1490,7 @@
     {
       "date": "2025-08-14",
       "main": -1.0954977437726,
-      "benchmark": -0.07753587870543699,
+      "benchmark": -0.07752531091496095,
       "volume_ratio": 2.385170770707351,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1466,7 +1498,7 @@
     {
       "date": "2025-08-15",
       "main": 0.7107288952461044,
-      "benchmark": -0.4397285397021111,
+      "benchmark": -0.4397496451755467,
       "volume_ratio": 1.0391966791122655,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1474,7 +1506,7 @@
     {
       "date": "2025-08-18",
       "main": 0.27495727724107244,
-      "benchmark": -0.03985637682377696,
+      "benchmark": -0.03984575835475068,
       "volume_ratio": 0.6979809123285035,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1490,7 +1522,7 @@
     {
       "date": "2025-08-20",
       "main": -0.23456660629832538,
-      "benchmark": -0.5937379408595511,
+      "benchmark": -0.5937271677580847,
       "volume_ratio": 1.272475050403007,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1498,7 +1530,7 @@
     {
       "date": "2025-08-21",
       "main": -0.34796935584655575,
-      "benchmark": -0.46296491972431797,
+      "benchmark": -0.46298654444338894,
       "volume_ratio": 0.37111009149550617,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1506,7 +1538,7 @@
     {
       "date": "2025-08-22",
       "main": 1.4156274625001464,
-      "benchmark": 1.5427327600079588,
+      "benchmark": 1.5427438158341023,
       "volume_ratio": 0.8537991544180992,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1546,7 +1578,7 @@
     {
       "date": "2025-08-29",
       "main": -0.9075078812453619,
-      "benchmark": -1.157535527697362,
+      "benchmark": -1.1575461551868504,
       "volume_ratio": 1.0680405611618815,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1554,7 +1586,7 @@
     {
       "date": "2025-09-02",
       "main": -0.7678120645673636,
-      "benchmark": -0.8380282606327838,
+      "benchmark": -0.8380068468406443,
       "volume_ratio": 0.8134720630300871,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1562,7 +1594,7 @@
     {
       "date": "2025-09-03",
       "main": 0.04661582816862797,
-      "benchmark": 0.7867653492757309,
+      "benchmark": 0.7867435783447396,
       "volume_ratio": 0.6060229538091593,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1570,7 +1602,7 @@
     {
       "date": "2025-09-04",
       "main": -0.4472621962015144,
-      "benchmark": 0.9051387481361362,
+      "benchmark": 0.9051496036850626,
       "volume_ratio": 1.8484451653159004,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1578,7 +1610,7 @@
     {
       "date": "2025-09-05",
       "main": 1.21677521641681,
-      "benchmark": 0.14429502116075632,
+      "benchmark": 0.14428435949227492,
       "volume_ratio": 0.9791562278151553,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1586,7 +1618,7 @@
     {
       "date": "2025-09-08",
       "main": 1.7384859678273301,
-      "benchmark": 0.48778181970714485,
+      "benchmark": 0.48780316425294235,
       "volume_ratio": 1.0067689226532637,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1594,7 +1626,7 @@
     {
       "date": "2025-09-09",
       "main": 0.45445787364235546,
-      "benchmark": 0.2833321290773183,
+      "benchmark": 0.28332150443273196,
       "volume_ratio": 0.8539157133169135,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1602,7 +1634,7 @@
     {
       "date": "2025-09-10",
       "main": 1.5562824126250874,
-      "benchmark": 0.032729423699073834,
+      "benchmark": 0.03271885900453242,
       "volume_ratio": 2.899301635527627,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1610,7 +1642,7 @@
     {
       "date": "2025-09-11",
       "main": 0.1425544758590469,
-      "benchmark": 0.5820509438208665,
+      "benchmark": 0.5820510052926497,
       "volume_ratio": 1.042167940667571,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1618,7 +1650,7 @@
     {
       "date": "2025-09-12",
       "main": -0.6494687513302178,
-      "benchmark": 0.44170862602861405,
+      "benchmark": 0.4417086724085584,
       "volume_ratio": 0.8147175454777574,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1626,7 +1658,7 @@
     {
       "date": "2025-09-15",
       "main": 1.0208646045466896,
-      "benchmark": 0.8557077394533819,
+      "benchmark": 0.8556973749616503,
       "volume_ratio": 0.8625603925922497,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1634,7 +1666,7 @@
     {
       "date": "2025-09-16",
       "main": -0.07977834688226437,
-      "benchmark": -0.08451824548248998,
+      "benchmark": -0.08449753249998304,
       "volume_ratio": 0.5618334603350739,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1642,7 +1674,7 @@
     {
       "date": "2025-09-17",
       "main": 0.4435789436343818,
-      "benchmark": -0.1995960980000211,
+      "benchmark": -0.1995857239824539,
       "volume_ratio": 0.8494467138222318,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1650,7 +1682,7 @@
     {
       "date": "2025-09-18",
       "main": 1.8989579563246206,
-      "benchmark": 0.9017042945036469,
+      "benchmark": 0.901673016481519,
       "volume_ratio": 1.4543312188769821,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1658,7 +1690,7 @@
     {
       "date": "2025-09-19",
       "main": 1.5775376345778636,
-      "benchmark": 0.676925752240165,
+      "benchmark": 0.6769464954618609,
       "volume_ratio": 0.7911271805095174,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1714,7 +1746,7 @@
     {
       "date": "2025-09-30",
       "main": -0.8363510445275502,
-      "benchmark": 0.273923660495079,
+      "benchmark": 0.2739134291552814,
       "volume_ratio": 0.6381908635340258,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1722,7 +1754,7 @@
     {
       "date": "2025-10-01",
       "main": 0.05217039941904922,
-      "benchmark": 0.4796919882163131,
+      "benchmark": 0.4797022405524931,
       "volume_ratio": 0.630338829557229,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1730,7 +1762,7 @@
     {
       "date": "2025-10-02",
       "main": 0.5648746772798363,
-      "benchmark": 0.41110202944307783,
+      "benchmark": 0.41111218412219763,
       "volume_ratio": 0.6555350132716095,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1738,7 +1770,7 @@
     {
       "date": "2025-10-03",
       "main": -0.7690963994337108,
-      "benchmark": -0.42096806473923554,
+      "benchmark": -0.42097813526922323,
       "volume_ratio": 0.7000127728716089,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1754,7 +1786,7 @@
     {
       "date": "2025-10-07",
       "main": -1.081125924846471,
-      "benchmark": -0.5265670505592235,
+      "benchmark": -0.5265569704058781,
       "volume_ratio": 1.1720543830402919,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1762,7 +1794,7 @@
     {
       "date": "2025-10-08",
       "main": 1.1541447281289363,
-      "benchmark": 1.1463942021712858,
+      "benchmark": 1.1463738189771755,
       "volume_ratio": 0.9615338613423793,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1770,7 +1802,7 @@
     {
       "date": "2025-10-09",
       "main": -0.017287918106589917,
-      "benchmark": -0.12103542848554971,
+      "benchmark": -0.12102542195092658,
       "volume_ratio": 0.6475839861493605,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1778,7 +1810,7 @@
     {
       "date": "2025-10-10",
       "main": -3.0950130410780763,
-      "benchmark": -3.4714193402261007,
+      "benchmark": -3.4714293710266797,
       "volume_ratio": 1.24823331463825,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1786,7 +1818,7 @@
     {
       "date": "2025-10-13",
       "main": 2.274958053948284,
-      "benchmark": 2.122127961769138,
+      "benchmark": 2.1221385738261933,
       "volume_ratio": 0.94194422506873,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1794,7 +1826,7 @@
     {
       "date": "2025-10-14",
       "main": -0.915912021059051,
-      "benchmark": -0.6661046346274513,
+      "benchmark": -0.6660944590322959,
       "volume_ratio": 0.7812628701376992,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1802,7 +1834,7 @@
     {
       "date": "2025-10-15",
       "main": -0.26410622775168147,
-      "benchmark": 0.7056769460766832,
+      "benchmark": 0.7056768737883523,
       "volume_ratio": 0.5519248844774048,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1810,7 +1842,7 @@
     {
       "date": "2025-10-16",
       "main": -0.4325167045962752,
-      "benchmark": -0.3702930628056822,
+      "benchmark": -0.37029302513930107,
       "volume_ratio": 0.9609568951937835,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1818,7 +1850,7 @@
     {
       "date": "2025-10-17",
       "main": -0.10638506577189677,
-      "benchmark": 0.6566876230734042,
+      "benchmark": 0.6566773461732511,
       "volume_ratio": 0.7779587657653465,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1850,7 +1882,7 @@
     {
       "date": "2025-10-23",
       "main": 1.1276558813283266,
-      "benchmark": 0.8406409230690803,
+      "benchmark": 0.8406510401807177,
       "volume_ratio": 0.5193446026842153,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1858,7 +1890,7 @@
     {
       "date": "2025-10-24",
       "main": 1.054096158761575,
-      "benchmark": 1.067828060359166,
+      "benchmark": 1.067827953226419,
       "volume_ratio": 0.5824429796268845,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1866,7 +1898,7 @@
     {
       "date": "2025-10-27",
       "main": 0.9310329992391564,
-      "benchmark": 1.780922314180522,
+      "benchmark": 1.7809221373924489,
       "volume_ratio": 0.7024642622594293,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1874,7 +1906,7 @@
     {
       "date": "2025-10-28",
       "main": -0.3074815781208273,
-      "benchmark": 0.7690008216966859,
+      "benchmark": 0.7689812405443863,
       "volume_ratio": 0.6551342749850271,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1882,7 +1914,7 @@
     {
       "date": "2025-10-29",
       "main": -1.2851258536952792,
-      "benchmark": 0.4502990798896933,
+      "benchmark": 0.45030880212109103,
       "volume_ratio": 1.6247059553559844,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -1890,7 +1922,7 @@
     {
       "date": "2025-10-30",
       "main": -1.0848791846766237,
-      "benchmark": -1.5288652640875422,
+      "benchmark": -1.5288556288274302,
       "volume_ratio": 1.1402119726865234,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1898,7 +1930,7 @@
     {
       "date": "2025-10-31",
       "main": 1.3512324615566396,
-      "benchmark": 0.4823934700558308,
+      "benchmark": 0.4823836379978852,
       "volume_ratio": 0.9110141867537023,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1906,7 +1938,7 @@
     {
       "date": "2025-11-03",
       "main": 0.1644812357087133,
-      "benchmark": 0.47848059429906886,
+      "benchmark": 0.4784708564165685,
       "volume_ratio": 0.9330655183376203,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1914,7 +1946,7 @@
     {
       "date": "2025-11-04",
       "main": -3.1979225688220314,
-      "benchmark": -2.029799650310915,
+      "benchmark": -2.029790155517741,
       "volume_ratio": 1.085916552391406,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1938,7 +1970,7 @@
     {
       "date": "2025-11-07",
       "main": 0.155527541966749,
-      "benchmark": -0.31552922350828183,
+      "benchmark": -0.31553923840142994,
       "volume_ratio": 1.9908564123964017,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1946,7 +1978,7 @@
     {
       "date": "2025-11-10",
       "main": 2.1008396625569636,
-      "benchmark": 2.2124205427511257,
+      "benchmark": 2.212420765024037,
       "volume_ratio": 1.7365275555091937,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1954,7 +1986,7 @@
     {
       "date": "2025-11-11",
       "main": -0.6709637217016784,
-      "benchmark": -0.2663596308138949,
+      "benchmark": -0.266349827862411,
       "volume_ratio": 1.6214825024700243,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -1986,7 +2018,7 @@
     {
       "date": "2025-11-17",
       "main": -1.8149701102350257,
-      "benchmark": -0.8540477422004478,
+      "benchmark": -0.8540578033146784,
       "volume_ratio": 0.9242882719728827,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -1994,7 +2026,7 @@
     {
       "date": "2025-11-18",
       "main": -1.023784896521629,
-      "benchmark": -1.2175815178868343,
+      "benchmark": -1.2175613458800472,
       "volume_ratio": 1.626163182737694,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2002,7 +2034,7 @@
     {
       "date": "2025-11-19",
       "main": -0.4980463232924781,
-      "benchmark": 0.5970176239158853,
+      "benchmark": 0.5969970168640204,
       "volume_ratio": 0.9407514199857567,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -2010,7 +2042,7 @@
     {
       "date": "2025-11-20",
       "main": -2.97429574622442,
-      "benchmark": -2.3671886919195972,
+      "benchmark": -2.3671787217586227,
       "volume_ratio": 1.9739174189284587,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2130,7 +2162,7 @@
     {
       "date": "2025-12-12",
       "main": -1.648753088596877,
-      "benchmark": -1.9118209678794962,
+      "benchmark": -1.9118307600878626,
       "volume_ratio": 1.083528625067111,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2138,7 +2170,7 @@
     {
       "date": "2025-12-15",
       "main": -2.3895500456527885,
-      "benchmark": -0.501948594793511,
+      "benchmark": -0.5019386618356658,
       "volume_ratio": 1.0437684281149031,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2146,7 +2178,7 @@
     {
       "date": "2025-12-16",
       "main": 0.8729434731757912,
-      "benchmark": 0.1981802971139146,
+      "benchmark": 0.19819033054331303,
       "volume_ratio": 1.0306833436136034,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2154,7 +2186,7 @@
     {
       "date": "2025-12-17",
       "main": -1.5144435132316003,
-      "benchmark": -1.853694722260213,
+      "benchmark": -1.8537145638057972,
       "volume_ratio": 0.6543821750847103,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2162,7 +2194,7 @@
     {
       "date": "2025-12-18",
       "main": 1.4135685114387675,
-      "benchmark": 1.4490197030684548,
+      "benchmark": 1.4490198509077512,
       "volume_ratio": 0.6696344004546315,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2170,7 +2202,7 @@
     {
       "date": "2025-12-19",
       "main": 1.4880396268211804,
-      "benchmark": 1.303525908148151,
+      "benchmark": 1.3035360962284415,
       "volume_ratio": 0.6906007240310033,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2194,7 +2226,7 @@
     {
       "date": "2025-12-24",
       "main": 0.14805508937252299,
-      "benchmark": 0.2925661929782386,
+      "benchmark": 0.2925563588204838,
       "volume_ratio": 0.17085693656432038,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2202,7 +2234,7 @@
     {
       "date": "2025-12-26",
       "main": -0.12012044618220363,
-      "benchmark": -0.00642258301777332,
+      "benchmark": -0.006402972705099597,
       "volume_ratio": 0.2799488106791355,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2210,7 +2242,7 @@
     {
       "date": "2025-12-29",
       "main": -0.6568015605001976,
-      "benchmark": -0.4840585173137457,
+      "benchmark": -0.48406827594559276,
       "volume_ratio": 0.38918908812145914,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2234,7 +2266,7 @@
     {
       "date": "2026-01-02",
       "main": -2.9047169241212645,
-      "benchmark": -0.19370300896959236,
+      "benchmark": -0.19371296799318705,
       "volume_ratio": 1.4528402522523391,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2242,7 +2274,7 @@
     {
       "date": "2026-01-05",
       "main": 0.9842068255353498,
-      "benchmark": 0.7942867947986931,
+      "benchmark": 0.7942968524083938,
       "volume_ratio": 1.1699638888118056,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2370,7 +2402,7 @@
     {
       "date": "2026-01-28",
       "main": -0.7160455030080337,
-      "benchmark": 0.3311530790538031,
+      "benchmark": 0.33114338544455446,
       "volume_ratio": 1.4235320972459835,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -2378,7 +2410,7 @@
     {
       "date": "2026-01-29",
       "main": -4.935090420090848,
-      "benchmark": -0.5985273573928751,
+      "benchmark": -0.5985274152202957,
       "volume_ratio": 3.1257224455498025,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2386,7 +2418,7 @@
     {
       "date": "2026-01-30",
       "main": -2.124201087254063,
-      "benchmark": -1.2010841842685638,
+      "benchmark": -1.2010843010114347,
       "volume_ratio": 1.8298973522758388,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2394,7 +2426,7 @@
     {
       "date": "2026-02-02",
       "main": -0.8747692099962401,
-      "benchmark": 0.6866398739876489,
+      "benchmark": 0.68664977949211,
       "volume_ratio": 1.1654302460315211,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -2410,7 +2442,7 @@
     {
       "date": "2026-02-04",
       "main": -1.8152051716957995,
-      "benchmark": -1.7469018639871603,
+      "benchmark": -1.7469117873106343,
       "volume_ratio": 3.9555510129917324,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2418,7 +2450,7 @@
     {
       "date": "2026-02-05",
       "main": -4.973761756604345,
-      "benchmark": -1.4395283656200686,
+      "benchmark": -1.4395285110089362,
       "volume_ratio": 3.32182809526677,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2426,7 +2458,7 @@
     {
       "date": "2026-02-06",
       "main": 3.5019521963789657,
-      "benchmark": 2.1137860808890796,
+      "benchmark": 2.1137965447641127,
       "volume_ratio": 2.518085254039402,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2466,7 +2498,7 @@
     {
       "date": "2026-02-13",
       "main": 2.2356639270094902,
-      "benchmark": 0.2131048155454618,
+      "benchmark": 0.21309462986458527,
       "volume_ratio": 1.280654723510307,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2474,7 +2506,7 @@
     {
       "date": "2026-02-17",
       "main": -2.186774987450213,
-      "benchmark": -0.10301235152144761,
+      "benchmark": -0.10300219796973709,
       "volume_ratio": 0.9818516354083903,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2482,7 +2514,7 @@
     {
       "date": "2026-02-18",
       "main": 1.2845818881013438,
-      "benchmark": 0.746716866302255,
+      "benchmark": 0.7467270408041182,
       "volume_ratio": 0.8946923775056304,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2490,7 +2522,7 @@
     {
       "date": "2026-02-19",
       "main": -0.2682886450809274,
-      "benchmark": -0.3829676015125183,
+      "benchmark": -0.3829877610147525,
       "volume_ratio": 0.5515841852451464,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2498,7 +2530,7 @@
     {
       "date": "2026-02-20",
       "main": -1.2227981575915536,
-      "benchmark": 0.8848879268683163,
+      "benchmark": 0.8848880165775119,
       "volume_ratio": 0.9471360510487852,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -2506,7 +2538,7 @@
     {
       "date": "2026-02-23",
       "main": -4.753641385787333,
-      "benchmark": -1.2154960293414563,
+      "benchmark": -1.2154861024927022,
       "volume_ratio": 1.7710706870408262,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2538,7 +2570,7 @@
     {
       "date": "2026-02-27",
       "main": -1.2469655689949066,
-      "benchmark": -0.32007554722836007,
+      "benchmark": -0.320065505327527,
       "volume_ratio": 0.8325103131271944,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2546,7 +2578,7 @@
     {
       "date": "2026-03-02",
       "main": 1.4711205038870245,
-      "benchmark": 0.13173960348162872,
+      "benchmark": 0.13172951606528205,
       "volume_ratio": 1.0705201985427863,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2554,7 +2586,7 @@
     {
       "date": "2026-03-03",
       "main": 1.6310347895392097,
-      "benchmark": -1.0705593463318008,
+      "benchmark": -1.070569407223343,
       "volume_ratio": 1.3651257226665523,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -2562,7 +2594,7 @@
     {
       "date": "2026-03-04",
       "main": 1.8188341311591083,
-      "benchmark": 1.5243155519400808,
+      "benchmark": 1.5243157069594115,
       "volume_ratio": 0.9665471214029029,
       "absolute_trigger": true,
       "divergence_trigger": false
@@ -2570,7 +2602,7 @@
     {
       "date": "2026-03-05",
       "main": 2.30005435570404,
-      "benchmark": -0.3012835076103726,
+      "benchmark": -0.30126350364195753,
       "volume_ratio": 1.2730444761115394,
       "absolute_trigger": true,
       "divergence_trigger": true
@@ -2578,7 +2610,7 @@
     {
       "date": "2026-03-06",
       "main": 0.3994556527324944,
-      "benchmark": -1.5043184992000858,
+      "benchmark": -1.5043283953991238,
       "volume_ratio": 0.9105638688554702,
       "absolute_trigger": false,
       "divergence_trigger": true
@@ -2602,7 +2634,7 @@
     {
       "date": "2026-03-11",
       "main": 0.10506750005545573,
-      "benchmark": -0.013166574175171863,
+      "benchmark": -0.013176640363377068,
       "volume_ratio": 0.8095809899927972,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2610,7 +2642,7 @@
     {
       "date": "2026-03-12",
       "main": -0.8747325339626855,
-      "benchmark": -1.716329879806977,
+      "benchmark": -1.7163300525987357,
       "volume_ratio": 1.0110501058161174,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -2618,7 +2650,7 @@
     {
       "date": "2026-03-13",
       "main": -0.941287719453554,
-      "benchmark": -0.5927196401479651,
+      "benchmark": -0.5927094575381431,
       "volume_ratio": 0.6062792746128781,
       "absolute_trigger": false,
       "divergence_trigger": false
@@ -3630,22 +3662,6 @@
       "volume_ratio": 1.253166598398968,
       "absolute_trigger": true,
       "divergence_trigger": true
-    },
-    {
-      "date": "2026-09-15",
-      "main": -1.022127104397219,
-      "benchmark": -0.6542788426574742,
-      "volume_ratio": 1.0890450040767083,
-      "absolute_trigger": false,
-      "divergence_trigger": false
-    },
-    {
-      "date": "2026-09-16",
-      "main": -0.5589805307687601,
-      "benchmark": 0.025547546114457198,
-      "volume_ratio": 0.7314779091047959,
-      "absolute_trigger": false,
-      "divergence_trigger": false
     }
   ],
   "months": [
@@ -3653,7 +3669,7 @@
       "month": "2025-09",
       "date": "2025-09-30",
       "main": 6.392231325955744,
-      "benchmark": 5.37622084327305,
+      "benchmark": 5.376221421321548,
       "min_date": "2025-09-23",
       "min": -1.1800666710848895,
       "min_volume_ratio": 0.7823189937348604,
@@ -3665,7 +3681,7 @@
       "month": "2025-10",
       "date": "2025-10-31",
       "main": 0.4347466935690658,
-      "benchmark": 4.780380186485322,
+      "benchmark": 4.780390877637575,
       "min_date": "2025-10-10",
       "min": -3.0950130410780763,
       "min_volume_ratio": 1.24823331463825,
@@ -3701,7 +3717,7 @@
       "month": "2026-01",
       "date": "2026-01-30",
       "main": -14.551995346272594,
-      "benchmark": 1.230656463978952,
+      "benchmark": 1.2306465049553683,
       "min_date": "2026-01-29",
       "min": -4.935090420090848,
       "min_volume_ratio": 3.1257224455498025,
@@ -3713,7 +3729,7 @@
       "month": "2026-02",
       "date": "2026-02-27",
       "main": -9.677772329669565,
-      "benchmark": -2.3445512550915093,
+      "benchmark": -2.3445318098410217,
       "min_date": "2026-02-05",
       "min": -4.973761756604345,
       "min_volume_ratio": 3.32182809526677,
