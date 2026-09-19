@@ -1,0 +1,3733 @@
+{
+  "provider": "Yahoo Finance / yfinance; auto_adjust=True",
+  "yfinance_version": "1.7.0",
+  "pandas_version": "3.0.6",
+  "retrieved_utc": "2026-09-18T20:33:00.690144+00:00",
+  "asof_exclusive": "2026-09-19",
+  "prior_updated": "2026-09-17",
+  "metrics": {
+    "IGV": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 104.3499984741211,
+      "daily_return": -1.3518626599338335,
+      "window_start": "2025-09-02",
+      "window_return": -2.7038603070242417,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 105.6701889038086,
+      "ytd": -1.249349928662724,
+      "high_52wk": 117.96787973846575,
+      "distance_high": -11.543719607858883,
+      "trough": 73.91613910901502,
+      "trough_date": "2026-04-10",
+      "from_trough": 41.17349706296318,
+      "volume": 6962838,
+      "volume_ratio": 0.6731166788147251
+    },
+    "QQQ": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 721.4500122070312,
+      "daily_return": 0.6318737662307061,
+      "window_start": "2025-09-02",
+      "window_return": 28.164618621945703,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 612.8628540039062,
+      "ytd": 17.718019209960612,
+      "high_52wk": 747.828194840854,
+      "distance_high": -3.527305177285589,
+      "trough": 554.990063621082,
+      "trough_date": "2026-03-30",
+      "from_trough": 29.99332051097754,
+      "volume": 47179947,
+      "volume_ratio": 1.5064776849062262
+    },
+    "CRM": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 237.9199981689453,
+      "daily_return": -2.0300629238892753,
+      "window_start": "2025-09-02",
+      "window_return": -4.945110481326664,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 263.10595703125,
+      "ytd": -9.572553638271774,
+      "high_52wk": 267.7988593124239,
+      "distance_high": -11.157202543802025,
+      "trough": 146.06303952110352,
+      "trough_date": "2026-06-22",
+      "from_trough": 62.888571228568814,
+      "volume": 20800640,
+      "volume_ratio": 1.2436570955449628
+    },
+    "NOW": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 135.47000122070312,
+      "daily_return": -2.1665342482509176,
+      "window_start": "2025-09-02",
+      "window_return": -25.681900901410692,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 153.19000244140625,
+      "ytd": -11.567335294926217,
+      "high_52wk": 194.7259979248047,
+      "distance_high": -30.43044962439162,
+      "trough": 81.23999786376953,
+      "trough_date": "2026-04-10",
+      "from_trough": 66.75283700508128,
+      "volume": 18621497,
+      "volume_ratio": 1.1911899445730847
+    },
+    "WDAY": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 193.8699951171875,
+      "daily_return": -2.7147750377602975,
+      "window_start": "2025-09-02",
+      "window_return": -15.299927635914322,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 214.77999877929688,
+      "ytd": -9.735545107063725,
+      "high_52wk": 249.85000610351562,
+      "distance_high": -22.405447115792743,
+      "trough": 110.36000061035156,
+      "trough_date": "2026-04-09",
+      "from_trough": 75.67052740574456,
+      "volume": 7723133,
+      "volume_ratio": 2.0554013883208184
+    },
+    "ADBE": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 248.9199981689453,
+      "daily_return": -1.4841492963848402,
+      "window_start": "2025-09-02",
+      "window_return": -27.980790251892973,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 349.989990234375,
+      "ytd": -28.877966480626192,
+      "high_52wk": 368.7300109863281,
+      "distance_high": -32.49261227663543,
+      "trough": 190.1199951171875,
+      "trough_date": "2026-06-18",
+      "from_trough": 30.927837451034158,
+      "volume": 10078680,
+      "volume_ratio": 1.8382077753240813
+    },
+    "INTU": {
+      "first": "2025-07-21",
+      "latest": "2026-09-18",
+      "latest_close": 303.19000244140625,
+      "daily_return": -3.174401138953853,
+      "window_start": "2025-09-02",
+      "window_return": -53.685693752638564,
+      "ytd_baseline_date": "2025-12-31",
+      "ytd_baseline": 656.2581176757812,
+      "ytd": -53.80019015761803,
+      "high_52wk": 697.2470566754622,
+      "distance_high": -56.51613018102307,
+      "trough": 251.72492815683486,
+      "trough_date": "2026-06-22",
+      "from_trough": 20.44496532838678,
+      "volume": 7552718,
+      "volume_ratio": 1.8234709439348302
+    }
+  },
+  "validity": {
+    "first": "2026-07-22",
+    "last": "2026-09-18",
+    "normalized_point_excess": 11.433599999999998
+  },
+  "since_prior_inclusive": [
+    {
+      "date": "2026-09-17",
+      "main": 0.781249716060195,
+      "benchmark": 1.73118582049816,
+      "volume_ratio": 0.5944606089360321,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-18",
+      "main": -1.3518626599338335,
+      "benchmark": 0.6318737662307061,
+      "volume_ratio": 0.6731166788147251,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    }
+  ],
+  "all_threshold_events": [
+    {
+      "date": "2025-08-01",
+      "main": -2.7135968097875773,
+      "benchmark": -1.9698886999479193,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-04",
+      "main": 2.1633104757467825,
+      "benchmark": 1.8451551625114249,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-07",
+      "main": -1.976568637534304,
+      "benchmark": 0.3384170664683328,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-08-15",
+      "main": 0.7107288952461044,
+      "benchmark": -0.43973911569277213,
+      "volume_ratio": 1.0391966791122655,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-08-19",
+      "main": -2.5866061278150942,
+      "benchmark": -1.3567517023556408,
+      "volume_ratio": 1.3125596907040775,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-28",
+      "main": 1.5262928620501715,
+      "benchmark": 0.6259849188709143,
+      "volume_ratio": 0.7083762316337677,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-04",
+      "main": -0.4472621962015144,
+      "benchmark": 0.905138845512532,
+      "volume_ratio": 1.8484451653159004,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-09-08",
+      "main": 1.7384859678273301,
+      "benchmark": 0.4878138105604446,
+      "volume_ratio": 1.0067689226532637,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-10",
+      "main": 1.5562824126250874,
+      "benchmark": 0.03272942715684124,
+      "volume_ratio": 2.899301635527627,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-12",
+      "main": -0.6494687513302178,
+      "benchmark": 0.4417191725315073,
+      "volume_ratio": 0.8147175454777574,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-09-18",
+      "main": 1.8989579563246206,
+      "benchmark": 0.9016834112455463,
+      "volume_ratio": 1.4543312188769821,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-19",
+      "main": 1.5775376345778636,
+      "benchmark": 0.6769361238499583,
+      "volume_ratio": 0.7911271805095174,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-30",
+      "main": -0.8363510445275502,
+      "benchmark": 0.2739134291552814,
+      "volume_ratio": 0.6381908635340258,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-10",
+      "main": -3.0950130410780763,
+      "benchmark": -3.4714193402261007,
+      "volume_ratio": 1.24823331463825,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-13",
+      "main": 2.274958053948284,
+      "benchmark": 2.122127961769138,
+      "volume_ratio": 0.94194422506873,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-21",
+      "main": 0.9834042122099707,
+      "benchmark": -0.026154446867010517,
+      "volume_ratio": 0.9758473649231583,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-28",
+      "main": -0.3074815781208273,
+      "benchmark": 0.7689812405443863,
+      "volume_ratio": 0.6551342749850271,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-29",
+      "main": -1.2851258536952792,
+      "benchmark": 0.45029912347254175,
+      "volume_ratio": 1.6247059553559844,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-11-04",
+      "main": -3.1979225688220314,
+      "benchmark": -2.029799650310915,
+      "volume_ratio": 1.085916552391406,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-06",
+      "main": -2.1834470844102394,
+      "benchmark": -1.8627265494505663,
+      "volume_ratio": 1.9975746225489328,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-10",
+      "main": 2.1008396625569636,
+      "benchmark": 2.212410496158035,
+      "volume_ratio": 1.7365275555091937,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-13",
+      "main": -2.7401018091689378,
+      "benchmark": -2.0416043726134814,
+      "volume_ratio": 1.4678053526759387,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-17",
+      "main": -1.8149701102350257,
+      "benchmark": -0.8540478281271802,
+      "volume_ratio": 0.9242882719728827,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-19",
+      "main": -0.4980463232924781,
+      "benchmark": 0.5969970781927181,
+      "volume_ratio": 0.9407514199857567,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-11-20",
+      "main": -2.97429574622442,
+      "benchmark": -2.3671687515956052,
+      "volume_ratio": 1.9739174189284587,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-26",
+      "main": -0.21320312346901904,
+      "benchmark": 0.8835737972002766,
+      "volume_ratio": 0.7328139466150857,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-12-04",
+      "main": 1.1904744873799444,
+      "benchmark": -0.09301893300760478,
+      "volume_ratio": 0.8278181128657659,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-12-12",
+      "main": -1.648753088596877,
+      "benchmark": -1.9118307600878626,
+      "volume_ratio": 1.083528625067111,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-15",
+      "main": -2.3895500456527885,
+      "benchmark": -0.5019386618356658,
+      "volume_ratio": 1.0437684281149031,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-17",
+      "main": -1.5144435132316003,
+      "benchmark": -1.8537047358446523,
+      "volume_ratio": 0.6543821750847103,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-23",
+      "main": -0.807704815166288,
+      "benchmark": 0.4683320360612031,
+      "volume_ratio": 0.5201925877696486,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-02",
+      "main": -2.9047169241212645,
+      "benchmark": -0.19371296799318705,
+      "volume_ratio": 1.4528402522523391,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-08",
+      "main": -1.6942744176521973,
+      "benchmark": -0.5688999652936455,
+      "volume_ratio": 0.779856196365634,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-13",
+      "main": -1.8984347718760008,
+      "benchmark": -0.14828295247444334,
+      "volume_ratio": 2.119243996539521,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-14",
+      "main": -2.2060947365249994,
+      "benchmark": -1.0682829260153182,
+      "volume_ratio": 2.1508369412578494,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-15",
+      "main": -1.2763492599904391,
+      "benchmark": 0.35994606388298767,
+      "volume_ratio": 2.403412215743013,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-20",
+      "main": -2.420906738598705,
+      "benchmark": -2.1247109479646253,
+      "volume_ratio": 2.454328933767528,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-21",
+      "main": -0.5524850891469368,
+      "benchmark": 1.351837969000269,
+      "volume_ratio": 2.0646522165606203,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-22",
+      "main": 1.614255404667686,
+      "benchmark": 0.726938199084981,
+      "volume_ratio": 1.4941334959725059,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-27",
+      "main": -1.0626393372789256,
+      "benchmark": 0.9065284269015539,
+      "volume_ratio": 1.6130679087864763,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-28",
+      "main": -0.7160455030080337,
+      "benchmark": 0.33114338544455446,
+      "volume_ratio": 1.4235320972459835,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-29",
+      "main": -4.935090420090848,
+      "benchmark": -0.5985274152202957,
+      "volume_ratio": 3.1257224455498025,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-30",
+      "main": -2.124201087254063,
+      "benchmark": -1.2010843010114347,
+      "volume_ratio": 1.8298973522758388,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-02",
+      "main": -0.8747692099962401,
+      "benchmark": 0.68664977949211,
+      "volume_ratio": 1.1654302460315211,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-03",
+      "main": -4.613487006840211,
+      "benchmark": -1.5363995860281365,
+      "volume_ratio": 2.840061735141316,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-04",
+      "main": -1.8152051716957995,
+      "benchmark": -1.7469117873106343,
+      "volume_ratio": 3.9555510129917324,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-05",
+      "main": -4.973761756604345,
+      "benchmark": -1.4395285110089362,
+      "volume_ratio": 3.32182809526677,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-06",
+      "main": 3.5019521963789657,
+      "benchmark": 2.1137965447641127,
+      "volume_ratio": 2.518085254039402,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-09",
+      "main": 3.153040980010413,
+      "benchmark": 0.7660128835232483,
+      "volume_ratio": 1.7486938923740192,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-11",
+      "main": -2.5523907818633895,
+      "benchmark": 0.2682115083918246,
+      "volume_ratio": 1.816845780811583,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-12",
+      "main": -2.72738491463983,
+      "benchmark": -2.033890829654672,
+      "volume_ratio": 1.5121631804419622,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-13",
+      "main": 2.2356639270094902,
+      "benchmark": 0.21309462986458527,
+      "volume_ratio": 1.280654723510307,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-17",
+      "main": -2.186774987450213,
+      "benchmark": -0.10300219796973709,
+      "volume_ratio": 0.9818516354083903,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-20",
+      "main": -1.2227981575915536,
+      "benchmark": 0.8848880165775119,
+      "volume_ratio": 0.9471360510487852,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-23",
+      "main": -4.753641385787333,
+      "benchmark": -1.2154861024927022,
+      "volume_ratio": 1.7710706870408262,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-24",
+      "main": 1.9105723713376932,
+      "benchmark": 1.0741494985549327,
+      "volume_ratio": 1.8722856778543884,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-25",
+      "main": 3.1118408778845197,
+      "benchmark": 1.4493229135896346,
+      "volume_ratio": 1.2949153151749573,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-26",
+      "main": 2.1645022870768527,
+      "benchmark": -1.2064622965899163,
+      "volume_ratio": 1.4646210129338963,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-03",
+      "main": 1.6310347895392097,
+      "benchmark": -1.070569407223343,
+      "volume_ratio": 1.3651257226665523,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-04",
+      "main": 1.8188341311591083,
+      "benchmark": 1.5243157069594115,
+      "volume_ratio": 0.9665471214029029,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-05",
+      "main": 2.30005435570404,
+      "benchmark": -0.30126350364195753,
+      "volume_ratio": 1.2730444761115394,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-06",
+      "main": 0.3994556527324944,
+      "benchmark": -1.5043283953991238,
+      "volume_ratio": 0.9105638688554702,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-09",
+      "main": -0.29556108419991345,
+      "benchmark": 1.335559691185173,
+      "volume_ratio": 1.0015544220933899,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-10",
+      "main": -2.3486428337148313,
+      "benchmark": 0.0016508821196747903,
+      "volume_ratio": 1.1067759354315294,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-20",
+      "main": -1.740471362000151,
+      "benchmark": -1.8481707498242073,
+      "volume_ratio": 0.6136598381679157,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-23",
+      "main": 1.7472005749370245,
+      "benchmark": 1.1478971108489944,
+      "volume_ratio": 0.622588266969505,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-24",
+      "main": -4.287070478042631,
+      "benchmark": -0.6836798962342794,
+      "volume_ratio": 0.9423239613637121,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-25",
+      "main": -0.5196646704596741,
+      "benchmark": 0.6575620525403059,
+      "volume_ratio": 1.0326925174380346,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-27",
+      "main": -3.5862100904283767,
+      "benchmark": -1.9536656388718376,
+      "volume_ratio": 0.6694924055436765,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-30",
+      "main": 0.9494119679797075,
+      "benchmark": -0.7643371872404492,
+      "volume_ratio": 0.9309963174843405,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-31",
+      "main": 3.130633779208658,
+      "benchmark": 3.385390473424077,
+      "volume_ratio": 1.0545441078743414,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-01",
+      "main": -0.3497882386540696,
+      "benchmark": 1.2353199234057088,
+      "volume_ratio": 0.8059221339502716,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-08",
+      "main": -0.9316716018988092,
+      "benchmark": 2.973204359696213,
+      "volume_ratio": 1.359709918897354,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-09",
+      "main": -3.899691064031663,
+      "benchmark": 0.6764706060259584,
+      "volume_ratio": 1.8836742496887486,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-10",
+      "main": -2.570464903830594,
+      "benchmark": 0.14421643720912147,
+      "volume_ratio": 2.313112795284896,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-13",
+      "main": 5.397079357007661,
+      "benchmark": 1.0342492251355084,
+      "volume_ratio": 1.6925481124457646,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-15",
+      "main": 4.403623393643219,
+      "benchmark": 1.3999468879074328,
+      "volume_ratio": 1.2265770463712407,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-16",
+      "main": 1.6630471286653847,
+      "benchmark": 0.48163779281187313,
+      "volume_ratio": 1.3874388056880502,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-20",
+      "main": 1.433945652887525,
+      "benchmark": -0.3174848913578998,
+      "volume_ratio": 0.6299934867456561,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-22",
+      "main": 2.3765600912952323,
+      "benchmark": 1.6730592006876321,
+      "volume_ratio": 0.9131497839377068,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-23",
+      "main": -5.826006700920249,
+      "benchmark": -0.5632679633709281,
+      "volume_ratio": 1.836949199732045,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-24",
+      "main": 1.9504578038309184,
+      "benchmark": 1.9127488040923124,
+      "volume_ratio": 0.8111668274622282,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-29",
+      "main": -0.5882378289244539,
+      "benchmark": 0.6113568281962856,
+      "volume_ratio": 0.43293016359393705,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-30",
+      "main": -0.6982249888653147,
+      "benchmark": 0.9326271161393951,
+      "volume_ratio": 1.0038345290107595,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-01",
+      "main": 3.2415591218412976,
+      "benchmark": 0.9599622702352262,
+      "volume_ratio": 0.883191967841363,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-04",
+      "main": 2.0893557955428577,
+      "benchmark": -0.18838683316975136,
+      "volume_ratio": 0.6811754042236108,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-05",
+      "main": -0.19222879359369616,
+      "benchmark": 1.2974053527471385,
+      "volume_ratio": 0.6706624952735563,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-06",
+      "main": -0.5097965378339175,
+      "benchmark": 2.077436440402569,
+      "volume_ratio": 0.8675184775326041,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-07",
+      "main": 3.4502417108619454,
+      "benchmark": -0.1192941202506459,
+      "volume_ratio": 1.1179003386098398,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-13",
+      "main": -0.9391784679685378,
+      "benchmark": 1.0562260792936318,
+      "volume_ratio": 0.7366397174161106,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-14",
+      "main": 2.302485220228534,
+      "benchmark": 0.710766178035227,
+      "volume_ratio": 0.7661942522526445,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-15",
+      "main": 1.257722274507822,
+      "benchmark": -1.5087656778261405,
+      "volume_ratio": 1.2845645110674229,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-18",
+      "main": 1.1876250931924348,
+      "benchmark": -0.4302314727548051,
+      "volume_ratio": 1.346341946372039,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-21",
+      "main": -0.9001217235983017,
+      "benchmark": 0.1906965251198045,
+      "volume_ratio": 0.6154622412195441,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-22",
+      "main": 1.6544069868251965,
+      "benchmark": 0.4240666390677106,
+      "volume_ratio": 0.5758083402569703,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-28",
+      "main": 2.826431175292954,
+      "benchmark": 0.8430926296197239,
+      "volume_ratio": 0.8545424482372178,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-29",
+      "main": 6.250002990760217,
+      "benchmark": 0.36840758744198787,
+      "volume_ratio": 1.7976899438784848,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-01",
+      "main": 5.941369504113481,
+      "benchmark": 0.600023569930852,
+      "volume_ratio": 1.8377512425226394,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-02",
+      "main": -2.757654064728665,
+      "benchmark": 0.4604508800567064,
+      "volume_ratio": 1.1108239597490097,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-03",
+      "main": -4.325416307275443,
+      "benchmark": -0.2613320951729392,
+      "volume_ratio": 1.1105553823076575,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-05",
+      "main": -4.207470597947549,
+      "benchmark": -4.800098739080161,
+      "volume_ratio": 0.9025252809060218,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-08",
+      "main": -0.2086554971874599,
+      "benchmark": 1.5615708159669062,
+      "volume_ratio": 0.5786682372405099,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-09",
+      "main": -2.822798846113983,
+      "benchmark": -1.150725833784727,
+      "volume_ratio": 1.1598907041197888,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-11",
+      "main": -0.7206871508510182,
+      "benchmark": 3.3775829540557023,
+      "volume_ratio": 0.954711811295501,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-15",
+      "main": 2.2021872621414085,
+      "benchmark": 3.1413766899911932,
+      "volume_ratio": 0.6483608344666905,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-17",
+      "main": -2.418735928685667,
+      "benchmark": -1.0070407460121666,
+      "volume_ratio": 1.009097012454894,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-18",
+      "main": -0.07851875431057476,
+      "benchmark": 2.506543768170255,
+      "volume_ratio": 1.2366437665150212,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-22",
+      "main": -1.9979782831575088,
+      "benchmark": -0.2510106841037363,
+      "volume_ratio": 1.154948380404725,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-23",
+      "main": 0.011455888798717062,
+      "benchmark": -3.2929043147913672,
+      "volume_ratio": 0.781304875342814,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-25",
+      "main": -1.636295767292928,
+      "benchmark": 0.8105611726665796,
+      "volume_ratio": 0.7291285651456255,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-26",
+      "main": 4.058511945861909,
+      "benchmark": -1.3763624451209266,
+      "volume_ratio": 0.9603712311364644,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-29",
+      "main": 1.91610260757491,
+      "benchmark": 2.4854210883145544,
+      "volume_ratio": 0.9336017057430646,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-01",
+      "main": 3.024280253770839,
+      "benchmark": -1.5249920059198452,
+      "volume_ratio": 1.4439954213735398,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-02",
+      "main": 0.24641457677048173,
+      "benchmark": -1.7333877050142776,
+      "volume_ratio": 1.3319688578537603,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-08",
+      "main": -1.7528884995526406,
+      "benchmark": 0.28332742996159954,
+      "volume_ratio": 0.6402397978115221,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-09",
+      "main": 1.5138341756768758,
+      "benchmark": 1.664234062582648,
+      "volume_ratio": 0.769665924654144,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-10",
+      "main": -1.56582193685042,
+      "benchmark": 0.30831495111482976,
+      "volume_ratio": 0.5926126007535162,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-13",
+      "main": 0.3138115730339619,
+      "benchmark": -1.897977883957569,
+      "volume_ratio": 0.4030584373641352,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-21",
+      "main": -1.2475840183144848,
+      "benchmark": 1.8547213156642428,
+      "volume_ratio": 0.659159545542003,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-22",
+      "main": -3.0494478992202034,
+      "benchmark": -0.5105992167196205,
+      "volume_ratio": 1.0746775483698583,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-23",
+      "main": -2.1568167168593777,
+      "benchmark": -1.898341826999872,
+      "volume_ratio": 0.9459371902558186,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-24",
+      "main": 1.0103385743157833,
+      "benchmark": -1.1171225588826994,
+      "volume_ratio": 0.9985434139628565,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-27",
+      "main": 3.3303025612408943,
+      "benchmark": -0.3083737064717651,
+      "volume_ratio": 1.7683393848317142,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-28",
+      "main": 0.9569850205056296,
+      "benchmark": -0.9719704641810822,
+      "volume_ratio": 1.6228554028044637,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-29",
+      "main": 0.6428459088389626,
+      "benchmark": -2.03704125369063,
+      "volume_ratio": 0.9212058411580306,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-03",
+      "main": 3.002745065456458,
+      "benchmark": 1.7558419833591632,
+      "volume_ratio": 0.9871077165249587,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-04",
+      "main": 4.7012953368281485,
+      "benchmark": 3.396798607700635,
+      "volume_ratio": 0.9041704778802673,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-06",
+      "main": -1.8655605914464024,
+      "benchmark": -0.36943586003114204,
+      "volume_ratio": 1.2286099150539396,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-07",
+      "main": 3.289081002500316,
+      "benchmark": 1.1726026161803071,
+      "volume_ratio": 0.6027490985821723,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-10",
+      "main": 2.2592264482104607,
+      "benchmark": -0.29874750593527066,
+      "volume_ratio": 0.666722223806088,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-12",
+      "main": -0.8083105780323674,
+      "benchmark": 0.7307397746256994,
+      "volume_ratio": 1.181585214311022,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-13",
+      "main": 3.104381928016342,
+      "benchmark": 1.1565558900105577,
+      "volume_ratio": 1.7502136227403355,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-14",
+      "main": -2.0700009159867805,
+      "benchmark": -0.13659895774928987,
+      "volume_ratio": 0.639236657666955,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-17",
+      "main": -2.0080744912723048,
+      "benchmark": -0.16414463662972612,
+      "volume_ratio": 0.9109733283483442,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-19",
+      "main": 0.8336587698641207,
+      "benchmark": -0.19929933468779693,
+      "volume_ratio": 0.5156897805903242,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-25",
+      "main": -0.5856500653916186,
+      "benchmark": 0.6229419148941817,
+      "volume_ratio": 0.7350651486236786,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-27",
+      "main": 7.744897306814025,
+      "benchmark": 1.369187666225713,
+      "volume_ratio": 2.124344469262892,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-01",
+      "main": -3.4551763373066313,
+      "benchmark": -1.272391734043543,
+      "volume_ratio": 1.1056388368200691,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-02",
+      "main": -2.599361582499382,
+      "benchmark": 0.22610021378346445,
+      "volume_ratio": 1.05058177538988,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-03",
+      "main": 3.4132651728830288,
+      "benchmark": 1.1885952275470846,
+      "volume_ratio": 0.87942752016538,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-04",
+      "main": -2.2253364388310826,
+      "benchmark": 0.1797537995484877,
+      "volume_ratio": 1.05800716955202,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-08",
+      "main": -1.8265238962311914,
+      "benchmark": -0.08345896889334625,
+      "volume_ratio": 1.0990147464054785,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-14",
+      "main": 5.043344085779888,
+      "benchmark": -0.7973383180531979,
+      "volume_ratio": 1.253166598398968,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-18",
+      "main": -1.3518626599338335,
+      "benchmark": 0.6318737662307061,
+      "volume_ratio": 0.6731166788147251,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    }
+  ],
+  "all_daily_checks": [
+    {
+      "date": "2025-07-22",
+      "main": -0.27875394072301996,
+      "benchmark": -0.5175639761297202,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-23",
+      "main": 0.8205579516086026,
+      "benchmark": 0.45612468850546595,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-24",
+      "main": 0.2504229166895522,
+      "benchmark": 0.21284240166115076,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-25",
+      "main": 0.5352878520993753,
+      "benchmark": 0.24070978124457465,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-28",
+      "main": 0.16860405471794682,
+      "benchmark": 0.3124983080543098,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-29",
+      "main": 0.11516542625200632,
+      "benchmark": -0.15488262955902776,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-30",
+      "main": -0.2566161163618075,
+      "benchmark": 0.1339864755069975,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-07-31",
+      "main": -0.9403814031538449,
+      "benchmark": -0.529916645018691,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-01",
+      "main": -2.7135968097875773,
+      "benchmark": -1.9698886999479193,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-04",
+      "main": 2.1633104757467825,
+      "benchmark": 1.8451551625114249,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-05",
+      "main": -0.3874544783961986,
+      "benchmark": -0.6789474222089975,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-06",
+      "main": 1.1397504599547803,
+      "benchmark": 1.2583376981905037,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-07",
+      "main": -1.976568637534304,
+      "benchmark": 0.3384170664683328,
+      "volume_ratio": null,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-08-08",
+      "main": 0.02736931898645878,
+      "benchmark": 0.9328330671292351,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-11",
+      "main": -1.149315199026868,
+      "benchmark": -0.2959018853778028,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-12",
+      "main": 1.0980867662187643,
+      "benchmark": 1.2568910283689894,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-13",
+      "main": -0.018248231105633117,
+      "benchmark": 0.04998949036518763,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-14",
+      "main": -1.0954977437726,
+      "benchmark": -0.07753587870543699,
+      "volume_ratio": null,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-15",
+      "main": 0.7107288952461044,
+      "benchmark": -0.43973911569277213,
+      "volume_ratio": 1.0391966791122655,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-08-18",
+      "main": 0.27495727724107244,
+      "benchmark": -0.03984575835475068,
+      "volume_ratio": 0.6979809123285035,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-19",
+      "main": -2.5866061278150942,
+      "benchmark": -1.3567517023556408,
+      "volume_ratio": 1.3125596907040775,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-20",
+      "main": -0.23456660629832538,
+      "benchmark": -0.5937271677580847,
+      "volume_ratio": 1.272475050403007,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-21",
+      "main": -0.34796935584655575,
+      "benchmark": -0.46298654444338894,
+      "volume_ratio": 0.37111009149550617,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-22",
+      "main": 1.4156274625001464,
+      "benchmark": 1.5427438158341023,
+      "volume_ratio": 0.8537991544180992,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-25",
+      "main": -0.7165419822832253,
+      "benchmark": -0.2884656934054597,
+      "volume_ratio": 0.4752760184868196,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-26",
+      "main": -0.11247759620943709,
+      "benchmark": 0.40151253809950216,
+      "volume_ratio": 0.7093455688745999,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-27",
+      "main": 0.8257430244401842,
+      "benchmark": 0.15369498817243699,
+      "volume_ratio": 0.6933350390857167,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-28",
+      "main": 1.5262928620501715,
+      "benchmark": 0.6259849188709143,
+      "volume_ratio": 0.7083762316337677,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-08-29",
+      "main": -0.9075078812453619,
+      "benchmark": -1.1575461551868504,
+      "volume_ratio": 1.0680405611618815,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-02",
+      "main": -0.7678120645673636,
+      "benchmark": -0.8380175987888983,
+      "volume_ratio": 0.8134720630300871,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-03",
+      "main": 0.04661582816862797,
+      "benchmark": 0.7867545064627945,
+      "volume_ratio": 0.6060229538091593,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-04",
+      "main": -0.4472621962015144,
+      "benchmark": 0.905138845512532,
+      "volume_ratio": 1.8484451653159004,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-09-05",
+      "main": 1.21677521641681,
+      "benchmark": 0.14429503654500575,
+      "volume_ratio": 0.9791562278151553,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-08",
+      "main": 1.7384859678273301,
+      "benchmark": 0.4878138105604446,
+      "volume_ratio": 1.0067689226532637,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-09",
+      "main": 0.45445787364235546,
+      "benchmark": 0.28330028516494465,
+      "volume_ratio": 0.8539157133169135,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-10",
+      "main": 1.5562824126250874,
+      "benchmark": 0.03272942715684124,
+      "volume_ratio": 2.899301635527627,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-11",
+      "main": 0.1425544758590469,
+      "benchmark": 0.5820510052926497,
+      "volume_ratio": 1.042167940667571,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-12",
+      "main": -0.6494687513302178,
+      "benchmark": 0.4417191725315073,
+      "volume_ratio": 0.8147175454777574,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-09-15",
+      "main": 1.0208646045466896,
+      "benchmark": 0.8556868315616306,
+      "volume_ratio": 0.8625603925922497,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-16",
+      "main": -0.07977834688226437,
+      "benchmark": -0.08449753249998304,
+      "volume_ratio": 0.5618334603350739,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-17",
+      "main": 0.4435789436343818,
+      "benchmark": -0.1995857239824539,
+      "volume_ratio": 0.8494467138222318,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-18",
+      "main": 1.8989579563246206,
+      "benchmark": 0.9016834112455463,
+      "volume_ratio": 1.4543312188769821,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-19",
+      "main": 1.5775376345778636,
+      "benchmark": 0.6769361238499583,
+      "volume_ratio": 0.7911271805095174,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-22",
+      "main": 0.511986072686943,
+      "benchmark": 0.5920073936714676,
+      "volume_ratio": 0.8456240425018028,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-23",
+      "main": -1.1800666710848895,
+      "benchmark": -0.6642261760471446,
+      "volume_ratio": 0.7823189937348604,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-24",
+      "main": -1.0137459083471079,
+      "benchmark": -0.35106152024937387,
+      "volume_ratio": 0.4303002280565135,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-25",
+      "main": -1.1456370285083062,
+      "benchmark": -0.43112918584172766,
+      "volume_ratio": 0.6147766481837215,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-26",
+      "main": 0.9394222359965676,
+      "benchmark": 0.4110948441042206,
+      "volume_ratio": 0.6099807389248818,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-29",
+      "main": 0.8784906776434065,
+      "benchmark": 0.46310781680356516,
+      "volume_ratio": 0.501944436194503,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-09-30",
+      "main": -0.8363510445275502,
+      "benchmark": 0.2739134291552814,
+      "volume_ratio": 0.6381908635340258,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-01",
+      "main": 0.05217039941904922,
+      "benchmark": 0.4797022405524931,
+      "volume_ratio": 0.630338829557229,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-02",
+      "main": 0.5648746772798363,
+      "benchmark": 0.41111218412219763,
+      "volume_ratio": 0.6555350132716095,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-03",
+      "main": -0.7690963994337108,
+      "benchmark": -0.42097813526922323,
+      "volume_ratio": 0.7000127728716089,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-06",
+      "main": 0.6879703767439738,
+      "benchmark": 0.7510154587375251,
+      "volume_ratio": 1.0643540981390305,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-07",
+      "main": -1.081125924846471,
+      "benchmark": -0.5265569704058781,
+      "volume_ratio": 1.1720543830402919,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-08",
+      "main": 1.1541447281289363,
+      "benchmark": 1.1463738189771755,
+      "volume_ratio": 0.9615338613423793,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-09",
+      "main": -0.017287918106589917,
+      "benchmark": -0.12102542195092658,
+      "volume_ratio": 0.6475839861493605,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-10",
+      "main": -3.0950130410780763,
+      "benchmark": -3.4714193402261007,
+      "volume_ratio": 1.24823331463825,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-13",
+      "main": 2.274958053948284,
+      "benchmark": 2.122127961769138,
+      "volume_ratio": 0.94194422506873,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-14",
+      "main": -0.915912021059051,
+      "benchmark": -0.6660944590322959,
+      "volume_ratio": 0.7812628701376992,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-15",
+      "main": -0.26410622775168147,
+      "benchmark": 0.7056768737883523,
+      "volume_ratio": 0.5519248844774048,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-16",
+      "main": -0.4325167045962752,
+      "benchmark": -0.37029302513930107,
+      "volume_ratio": 0.9609568951937835,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-17",
+      "main": -0.10638506577189677,
+      "benchmark": 0.6566773461732511,
+      "volume_ratio": 0.7779587657653465,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-20",
+      "main": 1.0738415746425867,
+      "benchmark": 1.2600750316114295,
+      "volume_ratio": 0.9049050407452893,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-21",
+      "main": 0.9834042122099707,
+      "benchmark": -0.026154446867010517,
+      "volume_ratio": 0.9758473649231583,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-22",
+      "main": -1.3042334457842197,
+      "benchmark": -0.9633987432361102,
+      "volume_ratio": 0.8531291721955004,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-23",
+      "main": 1.1276558813283266,
+      "benchmark": 0.8406510401807177,
+      "volume_ratio": 0.5193446026842153,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-24",
+      "main": 1.054096158761575,
+      "benchmark": 1.067827953226419,
+      "volume_ratio": 0.5824429796268845,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-27",
+      "main": 0.9310329992391564,
+      "benchmark": 1.7809221373924489,
+      "volume_ratio": 0.7024642622594293,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-28",
+      "main": -0.3074815781208273,
+      "benchmark": 0.7689812405443863,
+      "volume_ratio": 0.6551342749850271,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-29",
+      "main": -1.2851258536952792,
+      "benchmark": 0.45029912347254175,
+      "volume_ratio": 1.6247059553559844,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-10-30",
+      "main": -1.0848791846766237,
+      "benchmark": -1.5288557761366617,
+      "volume_ratio": 1.1402119726865234,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-10-31",
+      "main": 1.3512324615566396,
+      "benchmark": 0.48238368519843977,
+      "volume_ratio": 0.9110141867537023,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-03",
+      "main": 0.1644812357087133,
+      "benchmark": 0.4784903787764083,
+      "volume_ratio": 0.9330655183376203,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-04",
+      "main": -3.1979225688220314,
+      "benchmark": -2.029799650310915,
+      "volume_ratio": 1.085916552391406,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-05",
+      "main": -0.22321525903380435,
+      "benchmark": 0.6507850334973142,
+      "volume_ratio": 1.8030227556250062,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-06",
+      "main": -2.1834470844102394,
+      "benchmark": -1.8627265494505663,
+      "volume_ratio": 1.9975746225489328,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-07",
+      "main": 0.155527541966749,
+      "benchmark": -0.31552922350828183,
+      "volume_ratio": 1.9908564123964017,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-10",
+      "main": 2.1008396625569636,
+      "benchmark": 2.212410496158035,
+      "volume_ratio": 1.7365275555091937,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-11",
+      "main": -0.6709637217016784,
+      "benchmark": -0.266349827862411,
+      "volume_ratio": 1.6214825024700243,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-12",
+      "main": -1.062776061573334,
+      "benchmark": -0.07882334621760467,
+      "volume_ratio": 1.2211230837526243,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-13",
+      "main": -2.7401018091689378,
+      "benchmark": -2.0416043726134814,
+      "volume_ratio": 1.4678053526759387,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-14",
+      "main": 0.5615913084586754,
+      "benchmark": 0.07558588119775944,
+      "volume_ratio": 1.4121159146268571,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-17",
+      "main": -1.8149701102350257,
+      "benchmark": -0.8540478281271802,
+      "volume_ratio": 0.9242882719728827,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-18",
+      "main": -1.023784896521629,
+      "benchmark": -1.2175714936622062,
+      "volume_ratio": 1.626163182737694,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-19",
+      "main": -0.4980463232924781,
+      "benchmark": 0.5969970781927181,
+      "volume_ratio": 0.9407514199857567,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-11-20",
+      "main": -2.97429574622442,
+      "benchmark": -2.3671687515956052,
+      "volume_ratio": 1.9739174189284587,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-21",
+      "main": 0.11904238294917491,
+      "benchmark": 0.751273835218047,
+      "volume_ratio": 1.5734460910321475,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-24",
+      "main": 1.2980644833473054,
+      "benchmark": 2.5573261083649657,
+      "volume_ratio": 0.9886217591719931,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-25",
+      "main": 0.9390624557969351,
+      "benchmark": 0.6163668529668875,
+      "volume_ratio": 0.7403126209344977,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-11-26",
+      "main": -0.21320312346901904,
+      "benchmark": 0.8835737972002766,
+      "volume_ratio": 0.7328139466150857,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-11-28",
+      "main": 1.087687122692138,
+      "benchmark": 0.8107246699400328,
+      "volume_ratio": 0.4740166149620809,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-01",
+      "main": -0.01920718882557626,
+      "benchmark": -0.33590309023721066,
+      "volume_ratio": 0.6688546049075266,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-02",
+      "main": 1.1050288067859348,
+      "benchmark": 0.7826073319548543,
+      "volume_ratio": 0.7442242376740194,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-03",
+      "main": 1.3875670643393345,
+      "benchmark": 0.24438240064590389,
+      "volume_ratio": 0.6645981705062457,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-04",
+      "main": 1.1904744873799444,
+      "benchmark": -0.09301893300760478,
+      "volume_ratio": 0.8278181128657659,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-12-05",
+      "main": 1.3987984366528483,
+      "benchmark": 0.40773499732769114,
+      "volume_ratio": 0.7294913082242479,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-08",
+      "main": -0.05481561791276235,
+      "benchmark": -0.1918502477041395,
+      "volume_ratio": 1.3534936821668977,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-09",
+      "main": 0.5027346462955773,
+      "benchmark": 0.12333456873967474,
+      "volume_ratio": 0.5970769299147097,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-10",
+      "main": 0.11824135811620007,
+      "benchmark": 0.4095732190410706,
+      "volume_ratio": 1.3576139277520356,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-11",
+      "main": -0.2725274841063219,
+      "benchmark": -0.32344464150966257,
+      "volume_ratio": 1.4223924062395352,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-12",
+      "main": -1.648753088596877,
+      "benchmark": -1.9118307600878626,
+      "volume_ratio": 1.083528625067111,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-15",
+      "main": -2.3895500456527885,
+      "benchmark": -0.5019386618356658,
+      "volume_ratio": 1.0437684281149031,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-16",
+      "main": 0.8729434731757912,
+      "benchmark": 0.1981802971139146,
+      "volume_ratio": 1.0306833436136034,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-17",
+      "main": -1.5144435132316003,
+      "benchmark": -1.8537047358446523,
+      "volume_ratio": 0.6543821750847103,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-18",
+      "main": 1.4135685114387675,
+      "benchmark": 1.4490198509077512,
+      "volume_ratio": 0.6696344004546315,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-19",
+      "main": 1.4880396268211804,
+      "benchmark": 1.3035461532133308,
+      "volume_ratio": 0.6906007240310033,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-22",
+      "main": 1.1043027415098328,
+      "benchmark": 0.4793430010699984,
+      "volume_ratio": 0.5793553229743603,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-23",
+      "main": -0.807704815166288,
+      "benchmark": 0.4683320360612031,
+      "volume_ratio": 0.5201925877696486,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2025-12-24",
+      "main": 0.14805508937252299,
+      "benchmark": 0.2925563588204838,
+      "volume_ratio": 0.17085693656432038,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-26",
+      "main": -0.12012044618220363,
+      "benchmark": -0.006402972705099597,
+      "volume_ratio": 0.2799488106791355,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-29",
+      "main": -0.6568015605001976,
+      "benchmark": -0.48406827594559276,
+      "volume_ratio": 0.38918908812145914,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-30",
+      "main": -0.3724743720024071,
+      "benchmark": -0.2319387022803987,
+      "volume_ratio": 0.37798136041575064,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2025-12-31",
+      "main": -1.2150621749285606,
+      "benchmark": -0.8265617813153048,
+      "volume_ratio": 0.4757548259465268,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-02",
+      "main": -2.9047169241212645,
+      "benchmark": -0.19371296799318705,
+      "volume_ratio": 1.4528402522523391,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-05",
+      "main": 0.9842068255353498,
+      "benchmark": 0.7942968524083938,
+      "volume_ratio": 1.1699638888118056,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-06",
+      "main": 1.2448119336295749,
+      "benchmark": 0.8786595304206557,
+      "volume_ratio": 0.9462194899145663,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-07",
+      "main": 1.258104297059326,
+      "benchmark": 0.09625073552126384,
+      "volume_ratio": 0.8229503960207305,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-08",
+      "main": -1.6942744176521973,
+      "benchmark": -0.5688999652936455,
+      "volume_ratio": 0.779856196365634,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-09",
+      "main": 0.5361889159567479,
+      "benchmark": 0.996023105487942,
+      "volume_ratio": 0.9237325583601944,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-12",
+      "main": 0.3333362403143081,
+      "benchmark": 0.08297496946161331,
+      "volume_ratio": 0.938449368236942,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-13",
+      "main": -1.8984347718760008,
+      "benchmark": -0.14828295247444334,
+      "volume_ratio": 2.119243996539521,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-14",
+      "main": -2.2060947365249994,
+      "benchmark": -1.0682829260153182,
+      "volume_ratio": 2.1508369412578494,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-15",
+      "main": -1.2763492599904391,
+      "benchmark": 0.35994606388298767,
+      "volume_ratio": 2.403412215743013,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-16",
+      "main": -1.4732433194717176,
+      "benchmark": -0.08363469702494797,
+      "volume_ratio": 1.973481772186379,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-20",
+      "main": -2.420906738598705,
+      "benchmark": -2.1247109479646253,
+      "volume_ratio": 2.454328933767528,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-21",
+      "main": -0.5524850891469368,
+      "benchmark": 1.351837969000269,
+      "volume_ratio": 2.0646522165606203,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-22",
+      "main": 1.614255404667686,
+      "benchmark": 0.726938199084981,
+      "volume_ratio": 1.4941334959725059,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-23",
+      "main": 0.7943016457045982,
+      "benchmark": 0.3157420737031069,
+      "volume_ratio": 1.876181529067059,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-26",
+      "main": 1.1257790532872347,
+      "benchmark": 0.4400109641689687,
+      "volume_ratio": 1.5194587237428419,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-27",
+      "main": -1.0626393372789256,
+      "benchmark": 0.9065284269015539,
+      "volume_ratio": 1.6130679087864763,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-28",
+      "main": -0.7160455030080337,
+      "benchmark": 0.33114338544455446,
+      "volume_ratio": 1.4235320972459835,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-01-29",
+      "main": -4.935090420090848,
+      "benchmark": -0.5985274152202957,
+      "volume_ratio": 3.1257224455498025,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-01-30",
+      "main": -2.124201087254063,
+      "benchmark": -1.2010843010114347,
+      "volume_ratio": 1.8298973522758388,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-02",
+      "main": -0.8747692099962401,
+      "benchmark": 0.68664977949211,
+      "volume_ratio": 1.1654302460315211,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-03",
+      "main": -4.613487006840211,
+      "benchmark": -1.5363995860281365,
+      "volume_ratio": 2.840061735141316,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-04",
+      "main": -1.8152051716957995,
+      "benchmark": -1.7469117873106343,
+      "volume_ratio": 3.9555510129917324,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-05",
+      "main": -4.973761756604345,
+      "benchmark": -1.4395285110089362,
+      "volume_ratio": 3.32182809526677,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-06",
+      "main": 3.5019521963789657,
+      "benchmark": 2.1137965447641127,
+      "volume_ratio": 2.518085254039402,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-09",
+      "main": 3.153040980010413,
+      "benchmark": 0.7660128835232483,
+      "volume_ratio": 1.7486938923740192,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-10",
+      "main": 0.4114778520366347,
+      "benchmark": -0.4639335369521991,
+      "volume_ratio": 1.48768404630589,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-11",
+      "main": -2.5523907818633895,
+      "benchmark": 0.2682115083918246,
+      "volume_ratio": 1.816845780811583,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-12",
+      "main": -2.72738491463983,
+      "benchmark": -2.033890829654672,
+      "volume_ratio": 1.5121631804419622,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-13",
+      "main": 2.2356639270094902,
+      "benchmark": 0.21309462986458527,
+      "volume_ratio": 1.280654723510307,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-17",
+      "main": -2.186774987450213,
+      "benchmark": -0.10300219796973709,
+      "volume_ratio": 0.9818516354083903,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-18",
+      "main": 1.2845818881013438,
+      "benchmark": 0.7467270408041182,
+      "volume_ratio": 0.8946923775056304,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-19",
+      "main": -0.2682886450809274,
+      "benchmark": -0.3829877610147525,
+      "volume_ratio": 0.5515841852451464,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-20",
+      "main": -1.2227981575915536,
+      "benchmark": 0.8848880165775119,
+      "volume_ratio": 0.9471360510487852,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-23",
+      "main": -4.753641385787333,
+      "benchmark": -1.2154861024927022,
+      "volume_ratio": 1.7710706870408262,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-24",
+      "main": 1.9105723713376932,
+      "benchmark": 1.0741494985549327,
+      "volume_ratio": 1.8722856778543884,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-25",
+      "main": 3.1118408778845197,
+      "benchmark": 1.4493229135896346,
+      "volume_ratio": 1.2949153151749573,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-02-26",
+      "main": 2.1645022870768527,
+      "benchmark": -1.2064622965899163,
+      "volume_ratio": 1.4646210129338963,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-02-27",
+      "main": -1.2469655689949066,
+      "benchmark": -0.320065505327527,
+      "volume_ratio": 0.8325103131271944,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-02",
+      "main": 1.4711205038870245,
+      "benchmark": 0.13172951606528205,
+      "volume_ratio": 1.0705201985427863,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-03",
+      "main": 1.6310347895392097,
+      "benchmark": -1.070569407223343,
+      "volume_ratio": 1.3651257226665523,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-04",
+      "main": 1.8188341311591083,
+      "benchmark": 1.5243157069594115,
+      "volume_ratio": 0.9665471214029029,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-05",
+      "main": 2.30005435570404,
+      "benchmark": -0.30126350364195753,
+      "volume_ratio": 1.2730444761115394,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-06",
+      "main": 0.3994556527324944,
+      "benchmark": -1.5043283953991238,
+      "volume_ratio": 0.9105638688554702,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-09",
+      "main": -0.29556108419991345,
+      "benchmark": 1.335559691185173,
+      "volume_ratio": 1.0015544220933899,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-10",
+      "main": -2.3486428337148313,
+      "benchmark": 0.0016508821196747903,
+      "volume_ratio": 1.1067759354315294,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-11",
+      "main": 0.10506750005545573,
+      "benchmark": -0.013176640363377068,
+      "volume_ratio": 0.8095809899927972,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-12",
+      "main": -0.8747325339626855,
+      "benchmark": -1.7163300525987357,
+      "volume_ratio": 1.0110501058161174,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-13",
+      "main": -0.941287719453554,
+      "benchmark": -0.5927094575381431,
+      "volume_ratio": 0.6062792746128781,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-16",
+      "main": 0.9027196245985802,
+      "benchmark": 1.1217471974352744,
+      "volume_ratio": 0.44365951610561466,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-17",
+      "main": 0.6827589793791722,
+      "benchmark": 0.48802389046711525,
+      "volume_ratio": 0.43982818513737737,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-18",
+      "main": -1.3913296237038963,
+      "benchmark": -1.3939679228373136,
+      "volume_ratio": 0.3873088977974526,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-19",
+      "main": 0.1422840360677302,
+      "benchmark": -0.3160260480330801,
+      "volume_ratio": 0.6740858516008632,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-20",
+      "main": -1.740471362000151,
+      "benchmark": -1.8481707498242073,
+      "volume_ratio": 0.6136598381679157,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-23",
+      "main": 1.7472005749370245,
+      "benchmark": 1.1478971108489944,
+      "volume_ratio": 0.622588266969505,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-24",
+      "main": -4.287070478042631,
+      "benchmark": -0.6836798962342794,
+      "volume_ratio": 0.9423239613637121,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-25",
+      "main": -0.5196646704596741,
+      "benchmark": 0.6575620525403059,
+      "volume_ratio": 1.0326925174380346,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-26",
+      "main": -0.808459281483842,
+      "benchmark": -2.3867934697473725,
+      "volume_ratio": 0.7923952872224047,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-27",
+      "main": -3.5862100904283767,
+      "benchmark": -1.9536656388718376,
+      "volume_ratio": 0.6694924055436765,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-03-30",
+      "main": 0.9494119679797075,
+      "benchmark": -0.7643371872404492,
+      "volume_ratio": 0.9309963174843405,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-03-31",
+      "main": 3.130633779208658,
+      "benchmark": 3.385390473424077,
+      "volume_ratio": 1.0545441078743414,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-01",
+      "main": -0.3497882386540696,
+      "benchmark": 1.2353199234057088,
+      "volume_ratio": 0.8059221339502716,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-02",
+      "main": 0.7145540415393503,
+      "benchmark": 0.11466275764089318,
+      "volume_ratio": 0.85299686112081,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-06",
+      "main": 0.1493681346079967,
+      "benchmark": 0.6017365534718655,
+      "volume_ratio": 0.3198879636957485,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-07",
+      "main": 0.04971511965581321,
+      "benchmark": 0.015293726768694782,
+      "volume_ratio": 0.5242134903063859,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-08",
+      "main": -0.9316716018988092,
+      "benchmark": 2.973204359696213,
+      "volume_ratio": 1.359709918897354,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-09",
+      "main": -3.899691064031663,
+      "benchmark": 0.6764706060259584,
+      "volume_ratio": 1.8836742496887486,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-10",
+      "main": -2.570464903830594,
+      "benchmark": 0.14421643720912147,
+      "volume_ratio": 2.313112795284896,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-13",
+      "main": 5.397079357007661,
+      "benchmark": 1.0342492251355084,
+      "volume_ratio": 1.6925481124457646,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-14",
+      "main": 0.9911152756909569,
+      "benchmark": 1.815697886050316,
+      "volume_ratio": 1.2311463857202962,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-15",
+      "main": 4.403623393643219,
+      "benchmark": 1.3999468879074328,
+      "volume_ratio": 1.2265770463712407,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-16",
+      "main": 1.6630471286653847,
+      "benchmark": 0.48163779281187313,
+      "volume_ratio": 1.3874388056880502,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-17",
+      "main": 0.8534927713852447,
+      "benchmark": 1.3084122492198702,
+      "volume_ratio": 1.1311116372909895,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-20",
+      "main": 1.433945652887525,
+      "benchmark": -0.3174848913578998,
+      "volume_ratio": 0.6299934867456561,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-21",
+      "main": 0.44031536968294205,
+      "benchmark": -0.380336112828894,
+      "volume_ratio": 1.1593346056705742,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-22",
+      "main": 2.3765600912952323,
+      "benchmark": 1.6730592006876321,
+      "volume_ratio": 0.9131497839377068,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-23",
+      "main": -5.826006700920249,
+      "benchmark": -0.5632679633709281,
+      "volume_ratio": 1.836949199732045,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-24",
+      "main": 1.9504578038309184,
+      "benchmark": 1.9127488040923124,
+      "volume_ratio": 0.8111668274622282,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-27",
+      "main": 0.269953868438666,
+      "benchmark": 0.05271940263615882,
+      "volume_ratio": 0.6391452842539098,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-28",
+      "main": -0.503332534789791,
+      "benchmark": -1.0056759402575555,
+      "volume_ratio": 0.6969991121522164,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-04-29",
+      "main": -0.5882378289244539,
+      "benchmark": 0.6113568281962856,
+      "volume_ratio": 0.43293016359393705,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-04-30",
+      "main": -0.6982249888653147,
+      "benchmark": 0.9326271161393951,
+      "volume_ratio": 1.0038345290107595,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-01",
+      "main": 3.2415591218412976,
+      "benchmark": 0.9599622702352262,
+      "volume_ratio": 0.883191967841363,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-04",
+      "main": 2.0893557955428577,
+      "benchmark": -0.18838683316975136,
+      "volume_ratio": 0.6811754042236108,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-05",
+      "main": -0.19222879359369616,
+      "benchmark": 1.2974053527471385,
+      "volume_ratio": 0.6706624952735563,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-06",
+      "main": -0.5097965378339175,
+      "benchmark": 2.077436440402569,
+      "volume_ratio": 0.8675184775326041,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-07",
+      "main": 3.4502417108619454,
+      "benchmark": -0.1192941202506459,
+      "volume_ratio": 1.1179003386098398,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-08",
+      "main": 0.33021271649054107,
+      "benchmark": 2.3440839756069476,
+      "volume_ratio": 0.6806353965737858,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-11",
+      "main": -0.5046558079285779,
+      "benchmark": 0.28963917525772764,
+      "volume_ratio": 0.562018493688758,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-12",
+      "main": -1.378327684049363,
+      "benchmark": -0.8481790799397704,
+      "volume_ratio": 1.0645864185673883,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-13",
+      "main": -0.9391784679685378,
+      "benchmark": 1.0562260792936318,
+      "volume_ratio": 0.7366397174161106,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-14",
+      "main": 2.302485220228534,
+      "benchmark": 0.710766178035227,
+      "volume_ratio": 0.7661942522526445,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-15",
+      "main": 1.257722274507822,
+      "benchmark": -1.5087656778261405,
+      "volume_ratio": 1.2845645110674229,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-18",
+      "main": 1.1876250931924348,
+      "benchmark": -0.4302314727548051,
+      "volume_ratio": 1.346341946372039,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-19",
+      "main": -0.9906350461674318,
+      "benchmark": -0.6162420032059024,
+      "volume_ratio": 1.1526035451290857,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-20",
+      "main": 1.4899403816375223,
+      "benchmark": 1.6563787343382597,
+      "volume_ratio": 0.8266776775353288,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-21",
+      "main": -0.9001217235983017,
+      "benchmark": 0.1906965251198045,
+      "volume_ratio": 0.6154622412195441,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-05-22",
+      "main": 1.6544069868251965,
+      "benchmark": 0.4240666390677106,
+      "volume_ratio": 0.5758083402569703,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-26",
+      "main": 0.042549499101807164,
+      "benchmark": 1.775519084548005,
+      "volume_ratio": 0.9180452157892385,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-27",
+      "main": -1.0632607143312045,
+      "benchmark": -0.11365676760621835,
+      "volume_ratio": 0.6557657632556233,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-28",
+      "main": 2.826431175292954,
+      "benchmark": 0.8430926296197239,
+      "volume_ratio": 0.8545424482372178,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-05-29",
+      "main": 6.250002990760217,
+      "benchmark": 0.36840758744198787,
+      "volume_ratio": 1.7976899438784848,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-01",
+      "main": 5.941369504113481,
+      "benchmark": 0.600023569930852,
+      "volume_ratio": 1.8377512425226394,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-02",
+      "main": -2.757654064728665,
+      "benchmark": 0.4604508800567064,
+      "volume_ratio": 1.1108239597490097,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-03",
+      "main": -4.325416307275443,
+      "benchmark": -0.2613320951729392,
+      "volume_ratio": 1.1105553823076575,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-04",
+      "main": -0.13972330414427914,
+      "benchmark": -0.4837372714978083,
+      "volume_ratio": 0.774341893848944,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-05",
+      "main": -4.207470597947549,
+      "benchmark": -4.800098739080161,
+      "volume_ratio": 0.9025252809060218,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-08",
+      "main": -0.2086554971874599,
+      "benchmark": 1.5615708159669062,
+      "volume_ratio": 0.5786682372405099,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-09",
+      "main": -2.822798846113983,
+      "benchmark": -1.150725833784727,
+      "volume_ratio": 1.1598907041197888,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-10",
+      "main": -1.4739027414981787,
+      "benchmark": -1.9976509699805467,
+      "volume_ratio": 0.607087593833156,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-11",
+      "main": -0.7206871508510182,
+      "benchmark": 3.3775829540557023,
+      "volume_ratio": 0.954711811295501,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-12",
+      "main": -0.24197571564584797,
+      "benchmark": 0.5884685554236491,
+      "volume_ratio": 0.699181896230511,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-15",
+      "main": 2.2021872621414085,
+      "benchmark": 3.1413766899911932,
+      "volume_ratio": 0.6483608344666905,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-16",
+      "main": -1.4134630495038825,
+      "benchmark": -1.9005421591015037,
+      "volume_ratio": 0.6063888016055627,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-17",
+      "main": -2.418735928685667,
+      "benchmark": -1.0070407460121666,
+      "volume_ratio": 1.009097012454894,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-18",
+      "main": -0.07851875431057476,
+      "benchmark": 2.506543768170255,
+      "volume_ratio": 1.2366437665150212,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-22",
+      "main": -1.9979782831575088,
+      "benchmark": -0.2510106841037363,
+      "volume_ratio": 1.154948380404725,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-23",
+      "main": 0.011455888798717062,
+      "benchmark": -3.2929043147913672,
+      "volume_ratio": 0.781304875342814,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-24",
+      "main": -1.3169967131219207,
+      "benchmark": -0.42458196499927103,
+      "volume_ratio": 0.9406643249484952,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-25",
+      "main": -1.636295767292928,
+      "benchmark": 0.8105611726665796,
+      "volume_ratio": 0.7291285651456255,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-26",
+      "main": 4.058511945861909,
+      "benchmark": -1.3763624451209266,
+      "volume_ratio": 0.9603712311364644,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-06-29",
+      "main": 1.91610260757491,
+      "benchmark": 2.4854210883145544,
+      "volume_ratio": 0.9336017057430646,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-06-30",
+      "main": 0.789853253191164,
+      "benchmark": 1.7014704222517052,
+      "volume_ratio": 0.9607724303409699,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-01",
+      "main": 3.024280253770839,
+      "benchmark": -1.5249920059198452,
+      "volume_ratio": 1.4439954213735398,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-02",
+      "main": 0.24641457677048173,
+      "benchmark": -1.7333877050142776,
+      "volume_ratio": 1.3319688578537603,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-06",
+      "main": 1.3038380086375145,
+      "benchmark": 1.4341891788415717,
+      "volume_ratio": 0.9759610498966849,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-07",
+      "main": -0.696279835145841,
+      "benchmark": -1.85246873533641,
+      "volume_ratio": 0.5851017774348399,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-08",
+      "main": -1.7528884995526406,
+      "benchmark": 0.28332742996159954,
+      "volume_ratio": 0.6402397978115221,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-09",
+      "main": 1.5138341756768758,
+      "benchmark": 1.664234062582648,
+      "volume_ratio": 0.769665924654144,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-10",
+      "main": -1.56582193685042,
+      "benchmark": 0.30831495111482976,
+      "volume_ratio": 0.5926126007535162,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-13",
+      "main": 0.3138115730339619,
+      "benchmark": -1.897977883957569,
+      "volume_ratio": 0.4030584373641352,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-14",
+      "main": 1.0032366081899946,
+      "benchmark": 1.1169826504217273,
+      "volume_ratio": 1.0137132489318703,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-15",
+      "main": 0.3310960131176932,
+      "benchmark": -0.2709516875899598,
+      "volume_ratio": 0.5473905814066935,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-16",
+      "main": -0.25548806357947873,
+      "benchmark": -1.6440476988213382,
+      "volume_ratio": 0.4873280754136257,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-17",
+      "main": -0.960505790604782,
+      "benchmark": -1.5029585113280453,
+      "volume_ratio": 0.6289851073508684,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-20",
+      "main": 0.19396583971595938,
+      "benchmark": 0.1049833101992581,
+      "volume_ratio": 0.7644014704803114,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-21",
+      "main": -1.2475840183144848,
+      "benchmark": 1.8547213156642428,
+      "volume_ratio": 0.659159545542003,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-22",
+      "main": -3.0494478992202034,
+      "benchmark": -0.5105992167196205,
+      "volume_ratio": 1.0746775483698583,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-23",
+      "main": -2.1568167168593777,
+      "benchmark": -1.898341826999872,
+      "volume_ratio": 0.9459371902558186,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-24",
+      "main": 1.0103385743157833,
+      "benchmark": -1.1171225588826994,
+      "volume_ratio": 0.9985434139628565,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-27",
+      "main": 3.3303025612408943,
+      "benchmark": -0.3083737064717651,
+      "volume_ratio": 1.7683393848317142,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-28",
+      "main": 0.9569850205056296,
+      "benchmark": -0.9719704641810822,
+      "volume_ratio": 1.6228554028044637,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-29",
+      "main": 0.6428459088389626,
+      "benchmark": -2.03704125369063,
+      "volume_ratio": 0.9212058411580306,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-07-30",
+      "main": 1.0176407752098937,
+      "benchmark": 3.2974185798204436,
+      "volume_ratio": 1.2736204966626592,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-07-31",
+      "main": 1.361059163744427,
+      "benchmark": 0.649550511403274,
+      "volume_ratio": 0.7987937532093096,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-03",
+      "main": 3.002745065456458,
+      "benchmark": 1.7558419833591632,
+      "volume_ratio": 0.9871077165249587,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-04",
+      "main": 4.7012953368281485,
+      "benchmark": 3.396798607700635,
+      "volume_ratio": 0.9041704778802673,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-05",
+      "main": -0.676472981770837,
+      "benchmark": -0.9048819525989127,
+      "volume_ratio": 0.7230221682895789,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-06",
+      "main": -1.8655605914464024,
+      "benchmark": -0.36943586003114204,
+      "volume_ratio": 1.2286099150539396,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-07",
+      "main": 3.289081002500316,
+      "benchmark": 1.1726026161803071,
+      "volume_ratio": 0.6027490985821723,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-10",
+      "main": 2.2592264482104607,
+      "benchmark": -0.29874750593527066,
+      "volume_ratio": 0.666722223806088,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-11",
+      "main": -1.0380001381878667,
+      "benchmark": -0.33570309855425196,
+      "volume_ratio": 0.624185477438221,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-12",
+      "main": -0.8083105780323674,
+      "benchmark": 0.7307397746256994,
+      "volume_ratio": 1.181585214311022,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-13",
+      "main": 3.104381928016342,
+      "benchmark": 1.1565558900105577,
+      "volume_ratio": 1.7502136227403355,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-14",
+      "main": -2.0700009159867805,
+      "benchmark": -0.13659895774928987,
+      "volume_ratio": 0.639236657666955,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-17",
+      "main": -2.0080744912723048,
+      "benchmark": -0.16414463662972612,
+      "volume_ratio": 0.9109733283483442,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-18",
+      "main": -0.02941345222592373,
+      "benchmark": -1.6934502629578518,
+      "volume_ratio": 0.581772360582794,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-19",
+      "main": 0.8336587698641207,
+      "benchmark": -0.19929933468779693,
+      "volume_ratio": 0.5156897805903242,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-20",
+      "main": -0.8753953096550249,
+      "benchmark": -0.7191967784539344,
+      "volume_ratio": 0.4879996558566687,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-21",
+      "main": 1.4326356903228143,
+      "benchmark": 0.35306004690811577,
+      "volume_ratio": 0.7144146323380182,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-24",
+      "main": -0.8900123574488994,
+      "benchmark": -0.9979809224073155,
+      "volume_ratio": 0.5035508607331741,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-25",
+      "main": -0.5856500653916186,
+      "benchmark": 0.6229419148941817,
+      "volume_ratio": 0.7350651486236786,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-08-26",
+      "main": 0.530192364867399,
+      "benchmark": 0.09145998999007254,
+      "volume_ratio": 0.6434503292946446,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-27",
+      "main": 7.744897306814025,
+      "benchmark": 1.369187666225713,
+      "volume_ratio": 2.124344469262892,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-28",
+      "main": -0.7432919661825244,
+      "benchmark": -0.6489984566639517,
+      "volume_ratio": 1.3229321850574478,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-08-31",
+      "main": 0.43835923007633504,
+      "benchmark": 0.04606410859646637,
+      "volume_ratio": 0.7620169158840819,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-01",
+      "main": -3.4551763373066313,
+      "benchmark": -1.272391734043543,
+      "volume_ratio": 1.1056388368200691,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-02",
+      "main": -2.599361582499382,
+      "benchmark": 0.22610021378346445,
+      "volume_ratio": 1.05058177538988,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-03",
+      "main": 3.4132651728830288,
+      "benchmark": 1.1885952275470846,
+      "volume_ratio": 0.87942752016538,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-04",
+      "main": -2.2253364388310826,
+      "benchmark": 0.1797537995484877,
+      "volume_ratio": 1.05800716955202,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-08",
+      "main": -1.8265238962311914,
+      "benchmark": -0.08345896889334625,
+      "volume_ratio": 1.0990147464054785,
+      "absolute_trigger": true,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-09",
+      "main": -0.8084958128255271,
+      "benchmark": -0.2853705432890319,
+      "volume_ratio": 0.7032099969646225,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-10",
+      "main": -0.6186829730767673,
+      "benchmark": -1.0637845546144553,
+      "volume_ratio": 0.6664198281242881,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-11",
+      "main": 0.3162052415751404,
+      "benchmark": 0.8734428904149771,
+      "volume_ratio": 0.5271513442325335,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-14",
+      "main": 5.043344085779888,
+      "benchmark": -0.7973383180531979,
+      "volume_ratio": 1.253166598398968,
+      "absolute_trigger": true,
+      "divergence_trigger": true
+    },
+    {
+      "date": "2026-09-15",
+      "main": -1.022127104397219,
+      "benchmark": -0.6542788426574742,
+      "volume_ratio": 1.0890450040767083,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-16",
+      "main": -0.5589805307687601,
+      "benchmark": 0.025547546114457198,
+      "volume_ratio": 0.7325838302110994,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-17",
+      "main": 0.781249716060195,
+      "benchmark": 1.73118582049816,
+      "volume_ratio": 0.5944606089360321,
+      "absolute_trigger": false,
+      "divergence_trigger": false
+    },
+    {
+      "date": "2026-09-18",
+      "main": -1.3518626599338335,
+      "benchmark": 0.6318737662307061,
+      "volume_ratio": 0.6731166788147251,
+      "absolute_trigger": false,
+      "divergence_trigger": true
+    }
+  ],
+  "months": [
+    {
+      "month": "2025-09",
+      "date": "2025-09-30",
+      "main": 6.392231325955744,
+      "benchmark": 5.376221421321548,
+      "min_date": "2025-09-23",
+      "min": -1.1800666710848895,
+      "min_volume_ratio": 0.7823189937348604,
+      "max_date": "2025-09-18",
+      "max": 1.8989579563246206,
+      "max_volume_ratio": 1.4543312188769821
+    },
+    {
+      "month": "2025-10",
+      "date": "2025-10-31",
+      "main": 0.4347466935690658,
+      "benchmark": 4.780380674246221,
+      "min_date": "2025-10-10",
+      "min": -3.0950130410780763,
+      "min_volume_ratio": 1.24823331463825,
+      "max_date": "2025-10-13",
+      "max": 2.274958053948284,
+      "max_volume_ratio": 0.94194422506873
+    },
+    {
+      "month": "2025-11",
+      "date": "2025-11-28",
+      "main": -9.886598584462513,
+      "benchmark": -1.5610216675696953,
+      "min_date": "2025-11-04",
+      "min": -3.1979225688220314,
+      "min_volume_ratio": 1.085916552391406,
+      "max_date": "2025-11-10",
+      "max": 2.1008396625569636,
+      "max_volume_ratio": 1.7365275555091937
+    },
+    {
+      "month": "2025-12",
+      "date": "2025-12-31",
+      "main": 1.537139592130221,
+      "benchmark": -0.6699365349315034,
+      "min_date": "2025-12-15",
+      "min": -2.3895500456527885,
+      "min_volume_ratio": 1.0437684281149031,
+      "max_date": "2025-12-19",
+      "max": 1.4880396268211804,
+      "max_volume_ratio": 0.6906007240310033
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-30",
+      "main": -14.551995346272594,
+      "benchmark": 1.2306465049553683,
+      "min_date": "2026-01-29",
+      "min": -4.935090420090848,
+      "min_volume_ratio": 3.1257224455498025,
+      "max_date": "2026-01-22",
+      "max": 1.614255404667686,
+      "max_volume_ratio": 1.4941334959725059
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-27",
+      "main": -9.677772329669565,
+      "benchmark": -2.3445318098410217,
+      "min_date": "2026-02-05",
+      "min": -4.973761756604345,
+      "min_volume_ratio": 3.32182809526677,
+      "max_date": "2026-02-06",
+      "max": 3.5019521963789657,
+      "max_volume_ratio": 2.518085254039402
+    }
+  ]
+}
