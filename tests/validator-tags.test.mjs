@@ -23,7 +23,8 @@ test('AI theme-specific event tags are accepted by the publishing validator', ()
 
 test('publishing validator rejects event prose before first event header', () => {
   const original = readFileSync(new URL('ai-software/theme.md', root), 'utf8');
-  const mutated = original.replace('## EVENTS\n\n', '## EVENTS\n\nA prose introduction that the browser will misparse.\n\n');
+  const mutated = original.replace(/(^## EVENTS)(\r?\n)(\r?\n)/m,
+    (_match, heading, eol1, eol2) => `${heading}${eol1}${eol2}A prose introduction that the browser will misparse.${eol1}${eol2}`);
   assert.notEqual(original, mutated);
   const dir = mkdtempSync(join(tmpdir(), 'theme-events-'));
   try {
