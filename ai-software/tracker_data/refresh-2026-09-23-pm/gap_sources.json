@@ -1,0 +1,52 @@
+{
+  "retrieved_utc": "2026-09-24T17:37:17.828493+00:00",
+  "missing_date": "2026-09-22",
+  "reason": "Yahoo Finance 1d quote returns null for some equities; Nasdaq daily source backfills full OHLCV, adjacent closes cross-checked",
+  "symbols": {
+    "CRM": {
+      "date": "2026-09-22",
+      "open": 241.5,
+      "high": 242.44,
+      "low": 229.81,
+      "close": 233.28,
+      "volume": 13644150,
+      "provider": "Nasdaq historical daily stock OHLCV",
+      "source_url": "https://api.nasdaq.com/api/quote/CRM/historical?assetclass=stocks&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http_status": 200,
+      "adjacent_days": {
+        "09/23/2026": "$237.58",
+        "09/21/2026": "$236.42"
+      }
+    },
+    "WDAY": {
+      "date": "2026-09-22",
+      "open": 196.29,
+      "high": 197.0,
+      "low": 187.72,
+      "close": 188.23,
+      "volume": 1977635,
+      "provider": "Nasdaq historical daily stock OHLCV",
+      "source_url": "https://api.nasdaq.com/api/quote/WDAY/historical?assetclass=stocks&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http_status": 200,
+      "adjacent_days": {
+        "09/23/2026": "$192.38",
+        "09/21/2026": "$191.92"
+      }
+    },
+    "INTU": {
+      "date": "2026-09-22",
+      "open": 310.74,
+      "high": 310.74,
+      "low": 288.25,
+      "close": 292.35,
+      "volume": 4821781,
+      "provider": "Nasdaq historical daily stock OHLCV",
+      "source_url": "https://api.nasdaq.com/api/quote/INTU/historical?assetclass=stocks&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http_status": 200,
+      "adjacent_days": {
+        "09/23/2026": "$286.80",
+        "09/21/2026": "$304.12"
+      }
+    }
+  }
+}

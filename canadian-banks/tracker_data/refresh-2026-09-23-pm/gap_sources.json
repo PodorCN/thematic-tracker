@@ -1,0 +1,112 @@
+{
+  "retrieved_utc": "2026-09-24T17:37:17.828493+00:00",
+  "missing_date": "2026-09-22",
+  "reason": "Yahoo Finance 1d quote returns null for this trading day; verified with other daily sources or full-session 1m index bars",
+  "symbols": {
+    "ZEB.TO": {
+      "date": "2026-09-22",
+      "open": 76.62,
+      "high": 76.64,
+      "low": 75.36,
+      "close": 75.75,
+      "volume": 952281,
+      "provider": "StockAnalysis TSX historical prices",
+      "source_url": "https://stockanalysis.com/quote/tsx/ZEB/history/",
+      "http_status": 200,
+      "adj_close": 75.75,
+      "adj_close_matches_raw": true,
+      "adjacent_days": {
+        "Sep 23, 2026": {
+          "close": "74.13",
+          "adj_close": "74.13",
+          "volume": "1,402,791"
+        },
+        "Sep 21, 2026": {
+          "close": "76.46",
+          "adj_close": "76.46",
+          "volume": "656,813"
+        }
+      }
+    },
+    "BANK.TO": {
+      "date": "2026-09-22",
+      "open": 11.76,
+      "high": 11.77,
+      "low": 11.54,
+      "close": 11.58,
+      "volume": 563907,
+      "provider": "StockAnalysis TSX historical prices",
+      "source_url": "https://stockanalysis.com/quote/tsx/BANK/history/",
+      "http_status": 200,
+      "adj_close": 11.58,
+      "adj_close_matches_raw": true,
+      "adjacent_days": {
+        "Sep 23, 2026": {
+          "close": "11.39",
+          "adj_close": "11.39",
+          "volume": "508,589"
+        },
+        "Sep 21, 2026": {
+          "close": "11.72",
+          "adj_close": "11.72",
+          "volume": "406,516"
+        }
+      }
+    },
+    "HFIN.TO": {
+      "date": "2026-09-22",
+      "open": 32.47,
+      "high": 32.47,
+      "low": 32.32,
+      "close": 32.32,
+      "volume": 490,
+      "provider": "StockAnalysis TSX historical prices",
+      "source_url": "https://stockanalysis.com/quote/tsx/HFIN/history/",
+      "http_status": 200,
+      "adj_close": 32.32,
+      "adj_close_matches_raw": true,
+      "adjacent_days": {
+        "Sep 23, 2026": {
+          "close": "31.71",
+          "adj_close": "31.71",
+          "volume": "3,765"
+        },
+        "Sep 21, 2026": {
+          "close": "32.56",
+          "adj_close": "32.56",
+          "volume": "1,805"
+        }
+      }
+    },
+    "^GSPTSE": {
+      "date": "2026-09-22",
+      "open": 36141.4609375,
+      "high": 36410.62109375,
+      "low": 36141.4609375,
+      "close": 36325.4296875,
+      "volume": 143522791,
+      "provider": "Yahoo Finance minute chart",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPTSE?period1=1790035200&period2=1790121600&interval=1m&includePrePost=false",
+      "http_status": 200,
+      "bar_count": 390,
+      "first": "2026-09-22 09:30",
+      "last": "2026-09-22 15:59",
+      "volume_method": "sum of 390 one-minute bar volumes; lower bound, not official index daily volume; not used for theme volume ratio"
+    },
+    "^GSPC": {
+      "date": "2026-09-22",
+      "open": 7770.81005859375,
+      "high": 7782.18994140625,
+      "low": 7756.259765625,
+      "close": 7764.27001953125,
+      "volume": 2371281649,
+      "provider": "Yahoo Finance minute chart",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1790035200&period2=1790121600&interval=1m&includePrePost=false",
+      "http_status": 200,
+      "bar_count": 390,
+      "first": "2026-09-22 09:30",
+      "last": "2026-09-22 15:59",
+      "volume_method": "sum of 390 one-minute bar volumes; lower bound, not official index daily volume; not used for theme volume ratio"
+    }
+  }
+}

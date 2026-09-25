@@ -73,8 +73,10 @@ if (cd) {
 const dateSet = new Set(cd?.dates || []);
 
 // ---------- EVENTS ----------
-const KNOWN_TAGS = new Set(['Earnings', 'Monetary Policy', 'Geopolitics', 'Macro Data', 'Valuation & Sentiment']);
-const blocks = get('EVENTS').split(/^### /m).slice(1);
+const KNOWN_TAGS = new Set(['Earnings', 'Monetary Policy', 'Geopolitics', 'Macro Data', 'Valuation & Sentiment', 'AI Disruption', 'AI Monetization']);
+const eventSection = get('EVENTS').trim();
+if (eventSection && !/^### #01\s*\|/.test(eventSection)) err('EVENTS must start with ### #01; prose before the first event breaks the browser renderer');
+const blocks = eventSection.split(/^### /m).slice(1);
 if (!blocks.length) err('EVENTS has no event blocks');
 blocks.forEach((b, i) => {
   const lines = b.trim().split('\n');

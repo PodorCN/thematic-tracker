@@ -1,0 +1,85 @@
+{
+  "retrieved_utc": "2026-09-24T17:32:51.270678+00:00",
+  "responses": [
+    {
+      "symbol": "ZEB",
+      "assetclass": "etf",
+      "url": "https://api.nasdaq.com/api/quote/ZEB/historical?assetclass=etf&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http": 200,
+      "data": {
+        "data": null,
+        "message": null,
+        "status": {
+          "rCode": 400,
+          "bCodeMessage": [
+            {
+              "code": 1001,
+              "errorMessage": "Symbol not exists."
+            }
+          ],
+          "developerMessage": null
+        }
+      }
+    },
+    {
+      "symbol": "BANK",
+      "assetclass": "etf",
+      "url": "https://api.nasdaq.com/api/quote/BANK/historical?assetclass=etf&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http": 200,
+      "data": {
+        "data": null,
+        "message": null,
+        "status": {
+          "rCode": 400,
+          "bCodeMessage": [
+            {
+              "code": 1001,
+              "errorMessage": "Symbol not exists."
+            }
+          ],
+          "developerMessage": null
+        }
+      }
+    },
+    {
+      "symbol": "HFIN",
+      "assetclass": "etf",
+      "url": "https://api.nasdaq.com/api/quote/HFIN/historical?assetclass=etf&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http": 200,
+      "data": {
+        "data": null,
+        "message": null,
+        "status": {
+          "rCode": 400,
+          "bCodeMessage": [
+            {
+              "code": 1001,
+              "errorMessage": "Symbol not exists."
+            }
+          ],
+          "developerMessage": null
+        }
+      }
+    },
+    {
+      "symbol": "SPX",
+      "assetclass": "index",
+      "url": "https://api.nasdaq.com/api/quote/SPX/historical?assetclass=index&limit=10&fromdate=2026-09-21&todate=2026-09-23",
+      "http": 200,
+      "data": {
+        "data": null,
+        "message": null,
+        "status": {
+          "rCode": 400,
+          "bCodeMessage": [
+            {
+              "code": 1001,
+              "errorMessage": "Symbol not exists."
+            }
+          ],
+          "developerMessage": null
+        }
+      }
+    }
+  ]
+}
