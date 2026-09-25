@@ -4,16 +4,24 @@ on:
     paths:
       - 'canadian-banks/theme.md'
       - 'canadian-banks/theme.txt'
+      - 'canadian-banks/index.html'
       - 'ai-software/theme.md'
       - 'ai-software/theme.txt'
+      - 'ai-software/index.html'
       - 'scripts/validate-theme.mjs'
+      - 'tests/*.test.mjs'
       - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'canadian-banks/theme.md'
       - 'canadian-banks/theme.txt'
+      - 'canadian-banks/index.html'
       - 'ai-software/theme.md'
       - 'ai-software/theme.txt'
+      - 'ai-software/index.html'
+      - 'scripts/validate-theme.mjs'
+      - 'tests/*.test.mjs'
+      - '.github/workflows/validate.yml'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -24,3 +32,4 @@ jobs:
           node-version: 20
       - run: node scripts/validate-theme.mjs canadian-banks/theme.md
       - run: node scripts/validate-theme.mjs ai-software/theme.md
+      - run: node --test tests/*.test.mjs

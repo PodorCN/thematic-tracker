@@ -179,6 +179,8 @@ footer b{color:var(--dim)}
 </style>
 <style>
 #loading{padding:120px 28px;color:var(--acc);font-size:14px;letter-spacing:.08em}
+.theme-error{margin:32px 0;padding:24px;border:1px solid var(--loss);background:rgba(255,95,95,.08);color:var(--txt)}
+.theme-error h1{color:var(--loss);font-size:18px}
 .tone-warn{color:var(--amber)} .tone-up{color:var(--acc)} .tone-dn{color:var(--loss)} .tone-flat{color:var(--txt)}
 .stat .v.up{color:var(--acc)} .stat .v.dn{color:var(--loss)} .stat .v.warn{color:var(--amber)} .stat .v.flat{color:var(--txt)}
 </style>
@@ -199,16 +201,22 @@ function mdInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
 
 /* ══════════════ theme.md parser ══════════════ */
 function parseTheme(md){
-  md = md.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
+  if(typeof md !== "string" || !md.trim()) throw new Error("theme.txt is empty");
+  md = md.replace(String.fromCharCode(0xfeff), "").split(String.fromCharCode(13)).join("");
   const out = {meta:{}, sections:{}};
   const fm = md.match(/^---\n([\s\S]*?)\n---/);
-  if(fm) fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
-  const body = md.slice(fm? fm[0].length : 0);
+  if(!fm) throw new Error("Invalid theme.txt: missing frontmatter");
+  fm[1].split("\n").forEach(l=>{ const m=l.match(/^([\w_]+):\s*(.*)$/); if(m) out.meta[m[1]]=m[2].trim(); });
+  const body = md.slice(fm[0].length);
   const parts = body.split(/^## /m).filter(s=>s.trim());
   parts.forEach(p=>{
     const nl = p.indexOf("\n");
     out.sections[p.slice(0,nl).trim()] = p.slice(nl+1);
   });
+  for(const name of ["PROXIES","STATS","VERDICT","EVENTS","CATALYSTS","CHARTDATA"])
+    if(!out.sections[name] || !out.sections[name].trim()) throw new Error(`Invalid theme.txt: missing ## ${name}`);
+  if(!/^### #01\s*\|/.test(out.sections.EVENTS.trim()))
+    throw new Error("Invalid theme.txt: EVENTS must start with ### #01");
   return out;
 }
 function parseTable(sec){
@@ -265,6 +273,7 @@ function render(md){
   const events  = parseEvents(T.sections["EVENTS"]||"");
   const cats    = parseCats(T.sections["CATALYSTS"]||"");
   const CD      = parseChart(T.sections["CHARTDATA"]||"");
+  if(!CD) throw new Error("Invalid theme.txt: CHARTDATA JSON block missing");
 
   let chips = proxies.map(p=>{
     const [role,tk,nm,ret,extra]=p;
@@ -278,7 +287,7 @@ function render(md){
   }).join("");
 
   let statsHtml = stats.map(s=>{
-    const [k,v,sub,tone]=s;
+    const [k,tone,v,sub]=s;
     return `<div class="stat"><div class="k">${esc(k)}</div><div class="v ${tone||"flat"} mono-num">${esc(v)}</div><div class="s">${esc(sub||"")}</div></div>`;
   }).join("");
 
@@ -436,7 +445,7 @@ function observeReveal(){
   document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 }
 
-/* ══════════════ boot: fetch theme.md, fallback embedded ══════════════ */
+/* ══════════════ boot: fetch published theme; fail visibly on fetch/parse errors ══════════════ */
 const EMBEDDED = `---
 theme_cn: AI-Beaten Software
 theme_en: MISPRICED SAAS · AI REBOUND
@@ -538,7 +547,12 @@ The bear case never died, it just got outvoted: if AI features compress price pe
 fetch("theme.txt", {cache:"no-store"})
   .then(r=>{ if(!r.ok) throw new Error("http "+r.status); return r.text(); })
   .then(render)
-  .catch(()=>render(EMBEDDED));
+  .catch(err=>{
+    const message = err && err.message ? err.message : String(err || "unknown error");
+    document.body.dataset.themeError = message;
+    document.getElementById("metaBar").textContent = "THEME DATA ERROR";
+    document.getElementById("app").innerHTML = `<section class="theme-error" role="alert"><h1>Theme data unavailable</h1><p>${esc(message)}</p><p>theme.txt could not be loaded or parsed; stale embedded data was not used.</p></section>`;
+  });
 </script>
 </body>
 </html>
