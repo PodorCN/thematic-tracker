@@ -10,7 +10,7 @@
 
 ```
 fed-boc-watcher/
-  index.html                 前端页面。字段读不到/渲染空白是数据缺陷，不是"前端小事"
+  index.html                 固定前端渲染器；日常只读取 data/latest.json，不参与数据提交
   data/
     dashboard.json           暂存输入：operator 研究后写这里，尚未发布
     dashboard.example.json   精简示例，看字段结构用
@@ -49,12 +49,29 @@ uv run --isolated --python 3.11 --with-requirements requirements.txt \
   --review   fed-boc-watcher/review/<date>/iteration-NN/pm-review.json \
   --require-approved
 
+# 1.5) 钉选渲染验收：必须钉住本轮冻结 candidate 跑渲染真值测试。
+#      未钉选时这些测试按设计 skip —— 不跑等于没验收；candidate 缺 tenor key 时必须 fail 而非 skip。
+FED_BOC_RENDER_CANDIDATE="$PWD/fed-boc-watcher/review/<date>/iteration-NN/candidate.json" \
+uv run --isolated --python 3.11 --with-requirements requirements.txt \
+  python -m pytest tests/test_render_truthfulness.py -q
+
 # 2) 发布
 uv run --isolated --python 3.11 --with-requirements requirements.txt \
   python scripts/econ/archive_fed_boc.py \
   --input      fed-boc-watcher/data/dashboard.json \
   --candidate  fed-boc-watcher/review/<date>/iteration-NN/candidate.json \
   --pm-review  fed-boc-watcher/review/<date>/iteration-NN/pm-review.json
+
+# 3) 只 stage 这一轮明确批准的 data JSON 与审阅证据，禁止 git add fed-boc-watcher/ 或 git add .
+#    若 index.html、脚本、AGENT.md 或另一产品混入 staged diff，立即中止。
+git add fed-boc-watcher/data/latest.json fed-boc-watcher/data/dates.json \
+  fed-boc-watcher/data/archive/<date>.json \
+  fed-boc-watcher/review/<date>/iteration-NN/candidate.json \
+  fed-boc-watcher/review/<date>/iteration-NN/candidate.sha256 \
+  fed-boc-watcher/review/<date>/iteration-NN/pm-review.json
+python scripts/econ/verify_data_only_changes.py --product fed-boc-watcher --staged
+# 检查结果、代码 diff、独立 PM 审阅均通过后才提交；推送前重新核对 exact range。
+python scripts/econ/verify_data_only_changes.py --product fed-boc-watcher --range origin/main..HEAD
 ```
 
 `archive_fed_boc.py` 内部会**再跑一遍**结构闸门和 `driver_quality.check_payload`；
@@ -81,6 +98,12 @@ PM 判 `revise` 时用 `scripts/econ/record_pm_feedback.py` 记录反馈，重�
 文案日期回溯，结果两轮独立 PM 评审用同义词和日期格式就绕过了（`retrieved`→`downloaded`、
 `Sep 27`→`27 September`），而且它把 `returned HTTP 403` 里的 `return` 当成行情词，
 对**正确**的候选报事实错误的结论。**不要重新实现这一层。**
+
+## 日常数据 / 网页代码分离（必须执行）
+
+- 日常只更新 `data/*.json`、明确批准的候选/审阅证据；`index.html` 是独立前端版本。即便发现字段没显示，也只能先停数据发布、开单独的前端 PR 解决，不得把 JS/CSS 改动偷偷夹在数据提交里。前端 PR 更新 `scripts/econ/frontend_contract.json` 的 SHA-256，并做桌面及手机真实浏览器验收；只有独立代码审阅通过才合并。哈希本身不是审阅证明。
+- 数据发布必须运行 `verify_data_only_changes.py --product fed-boc-watcher --staged` 和推送前 `--range origin/main..HEAD`；它比“我检查过 diff”更可靠：不允许把 HTML、Python、文档或别的页面的数据混进来；`latest` 必须等于归档 JSON，且除归档三个字段外与获批候选相同。审阅者身份仍须人工核实，机器不能凭文件名证明是谁写的。
+- 新候选已被 PM 判 `revise` 就不能用旧快照冒充当日更新。跨日发布先重查当日已公布的数据、日历状态和可交易结论；过期内容必须重收集/重审，不能只改 `snapshot_date`。浏览器验收包括首屏两张核心卡片是否无需读完长篇报告即可看到、移动端布局，以及未来事件是否已经发生。
 
 ## 红线
 

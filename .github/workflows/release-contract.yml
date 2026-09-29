@@ -1,0 +1,42 @@
+name: release-contract
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Enforce data/front-end release boundary and frozen template
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: python scripts/econ/verify_data_only_changes.py --auto --event "$EVENT" --range "$BASE..$HEAD"
+      - name: Require real Chrome for browser-level acceptance
+        run: command -v google-chrome || command -v chromium || command -v chrome
+      - name: Validate theme content and renderer tests
+        run: |
+          node scripts/validate-theme.mjs canadian-banks/theme.md
+          node scripts/validate-theme.mjs ai-software/theme.md
+          node --test tests/*.test.mjs
+      - name: Validate macro data and browser renderer tests
+        run: python -m pytest tests/ -q -rs

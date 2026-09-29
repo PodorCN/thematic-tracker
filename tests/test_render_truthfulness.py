@@ -223,15 +223,16 @@ def test_candidate_payload_uses_tenor_specific_average_rate_keys():
     candidate = json.loads(CANDIDATE.read_text(encoding="utf-8"))
     fed = candidate["meetings"]["fed"]["pricing"].get("observable_proxy") or {}
     boc = candidate["meetings"]["boc"]["pricing"].get("observable_proxy") or {}
-    if "implied_monthly_average_rate" not in fed and "implied_quarterly_average_rate" not in fed:
-        pytest.skip("published payload predates the tenor-key contract; pin FED_BOC_RENDER_CANDIDATE")
-    assert "implied_monthly_average_rate" in fed, (
-        "the Fed October 30-day futures average is monthly tenor; it must not be stored "
-        "under a quarterly-named key")
+    if not fed and not boc:
+        pytest.skip("pinned candidate has no observable_proxy; tenor-key convention is unexercised")
+    assert isinstance(fed.get("implied_monthly_average_rate"), (int, float)), (
+        "pinned candidate's Fed proxy lacks a finite implied_monthly_average_rate: "
+        "a candidate without the tenor key must fail acceptance, not skip")
     assert "implied_quarterly_average_rate" not in fed, (
         "a quarterly-named key on the Fed card re-creates the round-2 defect")
-    assert "implied_quarterly_average_rate" in boc, (
-        "the BoC CORRA contract is genuinely quarterly; its key must say so")
+    assert isinstance(boc.get("implied_quarterly_average_rate"), (int, float)), (
+        "pinned candidate's BoC proxy lacks a finite implied_quarterly_average_rate: "
+        "the CORRA contract is genuinely quarterly and its key must say so")
 
 
 def test_odds_cards_render_the_payloads_tenor_level_and_label():
@@ -246,8 +247,16 @@ def test_odds_cards_render_the_payloads_tenor_level_and_label():
     boc = candidate["meetings"]["boc"]["pricing"].get("observable_proxy") or {}
     fed_level = fed.get("implied_monthly_average_rate")
     boc_level = boc.get("implied_quarterly_average_rate")
+    pinned = bool(os.environ.get("FED_BOC_RENDER_CANDIDATE"))
     if fed_level is None or boc_level is None:
-        pytest.skip("published payload predates the tenor-key contract; pin FED_BOC_RENDER_CANDIDATE")
+        if not pinned:
+            pytest.skip("published payload predates the tenor-key contract; pin FED_BOC_RENDER_CANDIDATE")
+        if not fed and not boc:
+            pytest.skip("pinned candidate has no observable_proxy; card-level tenor check is unexercised")
+        pytest.fail(
+            "pinned candidate is missing a tenor level (fed implied_monthly_average_rate="
+            f"{fed_level!r}, boc implied_quarterly_average_rate={boc_level!r}): "
+            "a card that cannot show its level must fail acceptance, not skip")
     fed_region = _card_region(dom, "fed")
     boc_region = _card_region(dom, "boc")
     assert f"{fed_level:.3f}%" in fed_region, (

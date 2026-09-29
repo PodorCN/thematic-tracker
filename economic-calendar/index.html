@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Economic Calendar — 2026-09-29 to 2026-10-05 | PodorM</title>
+<title>Global Economic Calendar | PodorM</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
 <style>
   /* Nocturne theme */
   :root {
@@ -53,6 +53,7 @@
   /* sections — PodorM */
   .section { padding:120px 56px; display:flex; flex-direction:column; gap:44px; border-top:1px solid var(--color-neutral-800); }
   .section.tinted { background: linear-gradient(180deg, #12131f, #0f101c); }
+  [hidden] { display:none !important; }
   .section-head { display:flex; flex-direction:column; gap:14px; }
   .section-head h2 { margin:0; font-family:var(--font-heading); font-weight:500; font-size:44px; letter-spacing:-.01em; }
   .rule-fade { width:520px; max-width:100%; height:1px; background: linear-gradient(to right, var(--color-neutral-600), transparent); }
@@ -71,6 +72,7 @@
   .chart-card .sub strong { color:var(--color-neutral-300); font-weight:500; }
   .chart-card canvas { width:100% !important; height:200px !important; }
   .chart-group { display:flex; flex-direction:column; gap:16px; }
+  #trendsContent { display:flex; flex-direction:column; gap:44px; }
   .chart-group-title { margin:0; font-family:var(--font-mono); font-size:13px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--color-accent-300); }
   .trend-key { display:flex; align-items:center; gap:18px; color:var(--color-neutral-500); font-family:var(--font-mono); font-size:11px; }
   .trend-key span { display:inline-flex; align-items:center; gap:7px; }
@@ -117,1914 +119,378 @@
   @media (max-width:900px){ .charts-grid{grid-template-columns:1fr;} .site-header{padding:16px 24px;} .site-header nav{gap:18px;} .section{padding:72px 24px;} }
   @media (max-width:640px){ .site-header nav a:first-child{display:none;} .section-head h2{font-size:34px;} table{min-width:760px;} }
 </style>
-</head>
 <body>
 <header class="site-header">
   <a href="https://podor.org" class="brand">PodorM</a>
-  <nav>
-    <a href="#calendar">Calendar</a>
-    <a href="#trends">Trends</a>
-    <a href="#timeline">Timeline</a>
-  </nav>
+  <nav><a href="#calendar">Calendar</a><a href="#trends">Trends</a><a href="#timeline">Timeline</a></nav>
 </header>
-
 <div style="height:68px"></div>
-
 <section id="calendar" class="section">
   <div class="section-head">
-    <h2>Global Economic Calendar</h2>
-    <div class="rule-fade"></div>
-    <span class="caption">2026-09-29 to 2026-10-05</span>
+    <h2>Global Economic Calendar</h2><div class="rule-fade"></div>
+    <span id="windowCaption" class="caption">Loading calendar data…</span>
     <div class="snapshot-control">
       <label for="snapshotDate">View snapshot</label>
-      <select id="snapshotDate" aria-label="View calendar snapshot by date"><option value="2026-09-29">2026-09-29</option></select>
+      <select id="snapshotDate" aria-label="View calendar snapshot by date" disabled></select>
     </div>
+    <div id="status" role="status" aria-live="polite">Loading calendar data…</div>
   </div>
 </section>
-
-
-<section id="trends" class="section tinted">
-  <div class="section-head">
-    <h2>Economic trends</h2>
-    <div class="rule-fade"></div>
-    <span class="caption">Recent releases, grouped by theme</span>
-  </div>
+<section id="trends" class="section tinted" hidden>
+  <div class="section-head"><h2>Economic trends</h2><div class="rule-fade"></div><span class="caption">Recent releases, grouped by theme</span></div>
   <div class="trend-key"><span><i class="trend-line"></i>Released data</span><span><i class="trend-line forecast"></i>Next forecast</span></div>
-
-  <div class="chart-group">
-    <h3 class="chart-group-title">Labor market</h3>
-    <div class="charts-grid">
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> ADP Employment Change</h3>
-        <div class="sub">Latest <strong>38.0</strong> · Next forecast <span class="forecast-pill">70.0</span> · Sep 30 at 8:15 AM</div>
-        <canvas id="chart-1" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> Nonfarm Payrolls</h3>
-        <div class="sub">Latest <strong>162.0</strong> · Next forecast <span class="forecast-pill">90.0</span> · Oct 02 at 8:30 AM</div>
-        <canvas id="chart-2" width="420" height="200"></canvas>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="chart-group">
-    <h3 class="chart-group-title">Inflation</h3>
-    <div class="charts-grid">
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="24" height="18" alt="EUR" class="flag-img"> Consumer Price Index</h3>
-        <div class="sub">Monthly change · Latest <strong>0.2%</strong> · Next forecast <span class="forecast-pill">0.5%</span> · Sep 30 at 8:00 AM</div>
-        <canvas id="chart-3" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/ch.png" srcset="https://flagcdn.com/w40/ch.png 2x" width="24" height="18" alt="CHF" class="flag-img"> Consumer Price Index</h3>
-        <div class="sub">Annual change · Latest <strong>0.8%</strong> · Next forecast <span class="forecast-pill">1.0%</span> · Oct 01 at 2:30 AM</div>
-        <canvas id="chart-4" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="24" height="18" alt="EUR" class="flag-img"> Consumer Price Index</h3>
-        <div class="sub">Annual change · Latest <strong>2.9%</strong> · Sep 30 at 8:00 AM</div>
-        <canvas id="chart-5" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> Core PCE Price Index</h3>
-        <div class="sub">Monthly change · Latest <strong>0.2%</strong> · Next forecast <span class="forecast-pill">0.3%</span> · Sep 30 at 8:30 AM</div>
-        <canvas id="chart-6" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> Core PCE Price Index</h3>
-        <div class="sub">Annual change · Latest <strong>3.3%</strong> · Next forecast <span class="forecast-pill">3.3%</span> · Sep 30 at 8:30 AM</div>
-        <canvas id="chart-7" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="24" height="18" alt="EUR" class="flag-img"> Harmonized Index of Consumer Prices</h3>
-        <div class="sub">Annual change · Latest <strong>2.9%</strong> · Next forecast <span class="forecast-pill">3.1%</span> · Sep 30 at 8:00 AM</div>
-        <canvas id="chart-8" width="420" height="200"></canvas>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="chart-group">
-    <h3 class="chart-group-title">Growth &amp; demand</h3>
-    <div class="charts-grid">
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="24" height="18" alt="GBP" class="flag-img"> Gross Domestic Product</h3>
-        <div class="sub">Annual change · Latest <strong>1.2%</strong> · Next forecast <span class="forecast-pill">1.2%</span> · Sep 30 at 2:00 AM</div>
-        <canvas id="chart-9" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="24" height="18" alt="GBP" class="flag-img"> Gross Domestic Product</h3>
-        <div class="sub">Quarterly change · Latest <strong>0.4%</strong> · Next forecast <span class="forecast-pill">0.4%</span> · Sep 30 at 2:00 AM</div>
-        <canvas id="chart-10" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="24" height="18" alt="EUR" class="flag-img"> Retail Sales</h3>
-        <div class="sub">Annual change · Latest <strong>-2.5%</strong> · Sep 30 at 2:00 AM</div>
-        <canvas id="chart-11" width="420" height="200"></canvas>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="chart-group">
-    <h3 class="chart-group-title">Business &amp; confidence</h3>
-    <div class="charts-grid">
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> ISM Manufacturing PMI</h3>
-        <div class="sub">Latest <strong>54.6</strong> · Next forecast <span class="forecast-pill">55.0</span> · Oct 01 at 10:00 AM</div>
-        <canvas id="chart-12" width="420" height="200"></canvas>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="chart-group">
-    <h3 class="chart-group-title">Other</h3>
-    <div class="charts-grid">
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> Average Hourly Earnings</h3>
-        <div class="sub">Monthly change · Latest <strong>0.3%</strong> · Next forecast <span class="forecast-pill">0.3%</span> · Oct 02 at 8:30 AM</div>
-        <canvas id="chart-13" width="420" height="200"></canvas>
-      </div>
-
-      <div class="card elev-sm chart-card">
-        <h3><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="24" height="18" alt="USD" class="flag-img"> Average Hourly Earnings</h3>
-        <div class="sub">Annual change · Latest <strong>3.1%</strong> · Oct 02 at 8:30 AM</div>
-        <canvas id="chart-14" width="420" height="200"></canvas>
-      </div>
-
-    </div>
-  </div>
-
+  <div id="trendsContent"></div>
 </section>
-
-
 <section id="timeline" class="section">
-  <div class="section-head">
-    <h2>Timeline</h2>
-    <div class="rule-fade"></div>
-    <span class="caption">All times shown in Toronto</span>
-  </div>
-
+  <div class="section-head"><h2>Timeline</h2><div class="rule-fade"></div><span class="caption">All times shown in Toronto</span></div>
   <div class="controls">
-    <input id="search" type="search" placeholder="Search events">
+    <input id="search" type="search" placeholder="Search events" disabled>
     <div style="display:flex; gap:8px;">
       <button class="btn active" data-impact="ALL">All</button>
       <button class="btn high" data-impact="HIGH">High</button>
       <button class="btn medium" data-impact="MEDIUM">Medium</button>
       <button class="btn" data-impact="LOW">Low</button>
     </div>
-    <select id="currencyFilter"><option value="ALL">All currencies</option><option value="CAD">CAD</option><option value="CHF">CHF</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="USD">USD</option></select>
-    <select id="dateFilter"><option value="ALL">All dates</option><option value="2026-09-28">2026-09-28</option><option value="2026-09-29">2026-09-29</option><option value="2026-09-30">2026-09-30</option><option value="2026-10-01">2026-10-01</option><option value="2026-10-02">2026-10-02</option><option value="2026-10-05">2026-10-05</option></select>
+    <select id="currencyFilter" disabled><option value="ALL">All currencies</option></select>
+    <select id="dateFilter" disabled><option value="ALL">All dates</option></select>
   </div>
-
-
-  <div class="day-group" data-date="2026-09-28" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-09-28 <span class="muted">Mon</span><span class="previous-day-pill">Previous day</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">2 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s bowman speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:15 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Bowman speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s cook speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">1:15 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Cook speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">3 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s elderson speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Elderson speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="GBP" data-search="boe&#39;s ramsden speech gbp uk" style="border-left:4px solid #e8a54a;">
-            <td class="time">6:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">BoE&#39;s Ramsden speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="ecb&#39;s president lagarde speech eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">9:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ECB&#39;s President Lagarde speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="day-group" data-date="2026-09-29" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-09-29 <span class="muted">Tue</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">11 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s musalem speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">7:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Musalem speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="housing price index (mom) usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Housing Price Index (MoM)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">0.3%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.1%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.0%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="consumer confidence usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Consumer Confidence</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="jolts job openings usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">JOLTS Job Openings</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">7.079</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">7.23</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">7.271</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s bowman speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">11:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Bowman speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s barr speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">12:40 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Barr speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s goolsbee speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">1:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Goolsbee speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s musalem speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">1:30 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Musalem speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s goolsbee speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">2:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Goolsbee speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s williams speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">2:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Williams speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s waller speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Waller speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">14 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="harmonized index of consumer prices (yoy) eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Harmonized Index of Consumer Prices (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">5.0%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">4.6%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s cipollone speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Cipollone speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="business climate eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Business Climate</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">-0.06</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">-0.23</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="consumer confidence eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Consumer Confidence</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">-16.5</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">-16.5</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">-16.5</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="economic sentiment indicator eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Economic Sentiment Indicator</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">97.9</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">99.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">98.4</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="ecb&#39;s president lagarde speech eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">7:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ECB&#39;s President Lagarde speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s vujčić speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">7:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Vujčić speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s escrivá speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">7:40 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Escrivá speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="CAD" data-search="gross domestic product (mom) cad ca" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/ca.png" srcset="https://flagcdn.com/w40/ca.png 2x" width="20" height="15" alt="CAD" class="flag-img" style="margin-right:6px;"><span class="cur">CAD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Gross Domestic Product (MoM)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">0.0%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.0%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.3%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s cipollone speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:15 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Cipollone speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="GBP" data-search="boe&#39;s taylor speech gbp uk" style="border-left:4px solid #e8a54a;">
-            <td class="time">11:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">BoE&#39;s Taylor speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="GBP" data-search="boe&#39;s mann speech gbp uk" style="border-left:4px solid #e8a54a;">
-            <td class="time">12:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">BoE&#39;s Mann speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s lane speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">2:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Lane speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s elderson speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:20 PM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Elderson speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="day-group" data-date="2026-09-30" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-09-30 <span class="muted">Wed</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">13 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="adp employment change usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:15 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ADP Employment Change</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">70.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">38.0</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="core pce price index mom yoy usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Core PCE Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.3%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.3%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.2%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.3%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="core personal consumption expenditures (qoq) usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Core Personal Consumption Expenditures (QoQ)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.6%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.6%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="gross domestic product annualized usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Gross Domestic Product Annualized</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">1.5%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">1.5%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="gross domestic product price index usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Gross Domestic Product Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">6.4%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="pce price index mom yoy usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">PCE Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.4%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.7%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.2%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.7%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="pce prices (qoq) usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">PCE Prices (QoQ)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">5.3%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">5.3%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="personal income (mom) usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Personal Income (MoM)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.4%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.4%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="personal spending usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Personal Spending</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.8%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.2%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="chicago pmi usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Chicago PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">51.2</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">47.1</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s cook speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:25 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Cook speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s goolsbee speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">4:05 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Goolsbee speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s kashkari speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">6:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Kashkari speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">14 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="retail sales mom yoy eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">2:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Retail Sales</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>2.0%</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>-3.4%</span></div><div class="period-value"><span class="period-label">YoY</span><span>-2.5%</span></div></td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="GBP" data-search="gross domestic product (qoq) gbp uk" style="border-left:4px solid #e85d5d;">
-            <td class="time">2:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Gross Domestic Product (QoQ)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.4%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.4%</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="GBP" data-search="gross domestic product (yoy) gbp uk" style="border-left:4px solid #e85d5d;">
-            <td class="time">2:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Gross Domestic Product (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">1.2%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">1.2%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="consumer price index (eu norm) (yoy) eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">2:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Consumer Price Index (EU norm) (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.0%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">2.6%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="non-monetary policy ecb meeting eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Non-Monetary Policy ECB Meeting</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="unemployment change eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:55 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Unemployment Change</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">5.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">4.0</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="unemployment rate s.a. eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:55 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Unemployment Rate s.a.</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">6.4%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">6.4%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="CHF" data-search="zew survey – expectations chf ch" style="border-left:4px solid #e8a54a;">
-            <td class="time">4:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/ch.png" srcset="https://flagcdn.com/w40/ch.png 2x" width="20" height="15" alt="CHF" class="flag-img" style="margin-right:6px;"><span class="cur">CHF</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ZEW Survey – Expectations</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">12.1</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="consumer price index (eu norm) (yoy) eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Consumer Price Index (EU Norm) (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.8%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.2%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="consumer price index (yoy) eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Consumer Price Index (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.8%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">3.3%</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="consumer price index mom yoy eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Consumer Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.5%</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.2%</span></div><div class="period-value"><span class="period-label">YoY</span><span>2.9%</span></div></td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="harmonized index of consumer prices mom yoy eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Harmonized Index of Consumer Prices</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.5%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.1%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.2%</span></div><div class="period-value"><span class="period-label">YoY</span><span>2.9%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="CHF" data-search="snb quarterly bulletin chf ch" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/ch.png" srcset="https://flagcdn.com/w40/ch.png 2x" width="20" height="15" alt="CHF" class="flag-img" style="margin-right:6px;"><span class="cur">CHF</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">SNB Quarterly Bulletin</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s schnabel speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">11:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Schnabel speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="day-group" data-date="2026-10-01" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-10-01 <span class="muted">Thu</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">11 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="challenger job cuts usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Challenger Job Cuts</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">52.881</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="initial jobless claims usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Initial Jobless Claims</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">200.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">197.0</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s waller speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Waller speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism manufacturing employment index usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Manufacturing Employment Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">51.2</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism manufacturing new orders index usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Manufacturing New Orders Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.7</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="ism manufacturing pmi usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ISM Manufacturing PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">55.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">54.6</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism manufacturing prices paid usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Manufacturing Prices Paid</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">72.3</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">71.1</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s jefferson speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">1:30 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Jefferson speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s bowman speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:00 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Bowman speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s cook speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:30 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Cook speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="fed&#39;s williams speech usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:30 PM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Fed&#39;s Williams speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">13 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="CHF" data-search="consumer price index mom yoy chf ch" style="border-left:4px solid #e85d5d;">
-            <td class="time">2:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/ch.png" srcset="https://flagcdn.com/w40/ch.png 2x" width="20" height="15" alt="CHF" class="flag-img" style="margin-right:6px;"><span class="cur">CHF</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Consumer Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.0%</span></div><div class="period-value"><span class="period-label">YoY</span><span>1.0%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.4%</span></div><div class="period-value"><span class="period-label">YoY</span><span>0.8%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="CHF" data-search="real retail sales (yoy) chf ch" style="border-left:4px solid #e8a54a;">
-            <td class="time">2:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/ch.png" srcset="https://flagcdn.com/w40/ch.png 2x" width="20" height="15" alt="CHF" class="flag-img" style="margin-right:6px;"><span class="cur">CHF</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Real Retail Sales (YoY)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">2.2%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">2.3%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob manufacturing pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:15 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Manufacturing PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">50.2</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">49.5</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob manufacturing pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Manufacturing PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">49.9</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">49.6</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob manufacturing pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:55 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Manufacturing PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.8</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.8</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s cipollone speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">4:20 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Cipollone speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s nagel speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">6:35 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Nagel speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s villeroy speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">6:35 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Villeroy speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="GBP" data-search="boe&#39;s mann speech gbp uk" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="20" height="15" alt="GBP" class="flag-img" style="margin-right:6px;"><span class="cur">GBP</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">BoE&#39;s Mann speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="CAD" data-search="s&amp;p global manufacturing pmi cad ca" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/ca.png" srcset="https://flagcdn.com/w40/ca.png 2x" width="20" height="15" alt="CAD" class="flag-img" style="margin-right:6px;"><span class="cur">CAD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">S&amp;P Global Manufacturing PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.0</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="ecb&#39;s president lagarde speech eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">9:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ECB&#39;s President Lagarde speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s sleijpen speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Sleijpen speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s schnabel speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">11:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Schnabel speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="day-group" data-date="2026-10-02" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-10-02 <span class="muted">Fri</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">6 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="average hourly earnings mom yoy usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Average Hourly Earnings</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.3%</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.3%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.1%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="labor force participation rate usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Labor Force Participation Rate</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">61.6%</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="nonfarm payrolls usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Nonfarm Payrolls</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">90.0</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">162.0</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="u6 underemployment rate usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">U6 Underemployment Rate</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">7.7%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="unemployment rate usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">8:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Unemployment Rate</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">4.1%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">4.1%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="factory orders (mom) usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Factory Orders (MoM)</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.1%</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">0.9%</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">6 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s cipollone speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Cipollone speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="core harmonized index of consumer prices mom yoy eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Core Harmonized Index of Consumer Prices</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>2.5%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.2%</span></div><div class="period-value"><span class="period-label">YoY</span><span>2.4%</span></div></td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="EUR" data-search="harmonized index of consumer prices mom yoy eur emu" style="border-left:4px solid #e85d5d;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">Harmonized Index of Consumer Prices</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.6%</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>0.4%</span></div><div class="period-value"><span class="period-label">YoY</span><span>3.2%</span></div></td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="unemployment rate eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Unemployment Rate</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">6.4%</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s vujčić speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">7:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Vujčić speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="ecb&#39;s nagel speech eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:35 PM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ECB&#39;s Nagel speech</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div class="day-group" data-date="2026-10-05" style="margin-bottom:28px">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; border-bottom:1px solid var(--color-neutral-800); padding-bottom:8px;">
-      <span style="font-family:var(--font-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--color-neutral-300);">2026-10-05 <span class="muted">Mon</span></span>
-    </div>
-    <div class="timeline-grid">
-
-
-      <div class="timeline-region" data-region="us">
-        <div class="timeline-region-head"><span>United States</span><span class="timeline-region-count">5 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="s&amp;p global composite pmi usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">9:45 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">S&amp;P Global Composite PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism services employment index usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Services Employment Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism services new orders index usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Services New Orders Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="high" data-impact="HIGH" data-currency="USD" data-search="ism services pmi usd us" style="border-left:4px solid #e85d5d;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-high" aria-label="High importance">★★★</span></td>
-            <td class="event-name">ISM Services PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="USD" data-search="ism services prices paid usd us" style="border-left:4px solid #e8a54a;">
-            <td class="time">10:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USD" class="flag-img" style="margin-right:6px;"><span class="cur">USD</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">ISM Services Prices Paid</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-
-      <div class="timeline-region" data-region="other">
-        <div class="timeline-region-head"><span>Other regions</span><span class="timeline-region-count">6 events</span></div>
-
-        <div class="timeline-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:110px">Time (Toronto)</th>
-              <th style="width:90px">Currency</th>
-              <th style="width:95px">Importance</th>
-              <th>Event</th>
-              <th style="width:90px">Actual</th>
-              <th style="width:90px">Forecast</th>
-              <th style="width:90px">Previous</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob services pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:15 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Services PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">57.8</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob composite pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:55 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Composite PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.8</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.8</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob services pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">3:55 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Services PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">52.9</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">52.9</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="hcob composite pmi eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">4:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">HCOB Composite PMI</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.1</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">53.1</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="sentix investor confidence eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">4:30 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Sentix Investor Confidence</td>
-            <td style="font-family:var(--font-mono); font-weight:700;">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)">—</td>
-          </tr>
-
-
-
-          <tr class="medium" data-impact="MEDIUM" data-currency="EUR" data-search="producer price index mom yoy eur emu" style="border-left:4px solid #e8a54a;">
-            <td class="time">5:00 AM</td>
-            <td><img src="https://flagcdn.com/w20/eu.png" srcset="https://flagcdn.com/w40/eu.png 2x" width="20" height="15" alt="EUR" class="flag-img" style="margin-right:6px;"><span class="cur">EUR</span></td>
-            <td><span class="importance importance-medium" aria-label="Medium importance">★★</span></td>
-            <td class="event-name">Producer Price Index</td>
-            <td style="font-family:var(--font-mono); font-weight:700;"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-            <td style="font-family:var(--font-mono); color:var(--color-neutral-400)"><div class="period-value"><span class="period-label">MoM</span><span>—</span></div><div class="period-value"><span class="period-label">YoY</span><span>—</span></div></td>
-          </tr>
-
-          </tbody>
-        </table>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
+  <div id="timelineContent"></div>
 </section>
-
-<footer class="site-footer">
-  <div class="mark-col">
-    <span>Economic Calendar</span>
-  </div>
-  <nav>
-    <a href="https://podor.org">PodorM</a>
-  </nav>
-</footer>
-
+<footer class="site-footer"><div class="mark-col"><span>Economic Calendar</span></div><nav><a href="https://podor.org">PodorM</a></nav></footer>
 <script>
-const snapshotSelect = document.getElementById('snapshotDate');
-const currentSnapshot = "2026-09-29";
-const isArchivedSnapshot = /\/economic-calendar\/archive\/[^/]+\.html$/.test(window.location.pathname);
-const snapshotManifestURL = isArchivedSnapshot ? '../data/dates.json' : 'data/dates.json';
+'use strict';
+// The shell has no snapshot values: each view is built exclusively from the selected JSON.
+const $ = id => document.getElementById(id);
+const flagCodes = {USD:'us', EUR:'eu', GBP:'gb', JPY:'jp', CNY:'cn', AUD:'au', CAD:'ca', CHF:'ch', NZD:'nz', HKD:'hk', SGD:'sg', UAH:'ua', SEK:'se', NOK:'no', MXN:'mx', ZAR:'za', BRL:'br', INR:'in', KRW:'kr', TRY:'tr'};
+const categories = [
+  ['Labor market', ['jobless','nonfarm','payroll','employment','unemployment','jolts','adp']],
+  ['Inflation', ['inflation','consumer price','price index','pce price','personal consumption expenditures','producer price','hicp']],
+  ['Growth & demand', ['gross domestic product','gdp','durable goods','personal income','personal spending','retail sales','industrial production','trade balance']],
+  ['Housing', ['housing','home sales','house price','mortgage','building permit','construction']],
+  ['Business & confidence', ['pmi','ifo','zew','confidence','sentiment','business climate']],
+  ['Other', []]
+];
+const periodLabels = {MoM:'Monthly change', YoY:'Annual change', QoQ:'Quarterly change'};
+const allowedCurrencies = new Set(['USD','CAD','EUR','GBP','CHF','EMU','DE','FR','IT','ES','UK']);
+const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+const localParts = new Intl.DateTimeFormat('en-US', {timeZone:'America/Toronto', year:'numeric', month:'2-digit', day:'2-digit', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:true});
+let manifest, generation = 0, currentDate = null, activeImpact = 'ALL', charts = [];
 
-async function initSnapshotHistory(){
-  if(!snapshotSelect) return;
-  try{
-    const response = await fetch(snapshotManifestURL, { cache:'no-store' });
-    if(!response.ok) throw new Error(`HTTP ${response.status}`);
-    const manifest = await response.json();
-    const dates = Array.isArray(manifest.dates) ? manifest.dates : [];
-    snapshotSelect.textContent = '';
-    dates.forEach(date=>{
-      const option = document.createElement('option');
-      option.value = date;
-      option.textContent = date === manifest.latest ? `${date} · Latest` : date;
-      snapshotSelect.appendChild(option);
-    });
-    snapshotSelect.value = dates.includes(currentSnapshot) ? currentSnapshot : manifest.latest;
-    snapshotSelect.addEventListener('change',()=>{
-      const date = snapshotSelect.value;
-      if(!date || date === currentSnapshot) return;
-      window.location.href = isArchivedSnapshot ? `${date}.html` : `archive/${date}.html`;
-    });
-  }catch(error){
-    snapshotSelect.title = 'Snapshot history is temporarily unavailable';
+function element(tag, className='', text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = String(text);
+  return node;
+}
+function setStatus(message, error=false) {
+  $('status').textContent = message;
+  $('status').setAttribute('role', error ? 'alert' : 'status');
+  $('status').style.color = error ? 'var(--high)' : 'var(--color-neutral-500)';
+}
+function clearView() {
+  charts.forEach(chart => chart.destroy());
+  charts = [];
+  $('trendsContent').replaceChildren();
+  $('timelineContent').replaceChildren();
+  $('trends').hidden = true;
+  $('windowCaption').textContent = 'Loading calendar data…';
+  $('search').disabled = $('currencyFilter').disabled = $('dateFilter').disabled = true;
+  $('currencyFilter').replaceChildren(new Option('All currencies', 'ALL'));
+  $('dateFilter').replaceChildren(new Option('All dates', 'ALL'));
+}
+async function getJSON(url) {
+  const response = await fetch(url, {cache:'no-store'});
+  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+  try { return await response.json(); }
+  catch (error) { throw new Error(`${url}: invalid JSON (${error.message})`); }
+}
+function validateManifest(data) {
+  if (!data || !Array.isArray(data.dates) || !datePattern.test(data.latest) ||
+      !data.dates.includes(data.latest) || data.dates.some(d => typeof d !== 'string' || !datePattern.test(d))) {
+    throw new Error('data/dates.json: invalid snapshot manifest');
   }
+  return data;
 }
-
-const searchEl = document.getElementById('search');
-const impactBtns = document.querySelectorAll('.btn');
-const curSel = document.getElementById('currencyFilter');
-const dateSel = document.getElementById('dateFilter');
-let activeImpact='ALL';
-impactBtns.forEach(b=>{
-  if(!b.dataset.impact) return;
-  b.addEventListener('click',()=>{
-    impactBtns.forEach(x=>{ if(x.dataset.impact) x.classList.remove('active'); });
-    b.classList.add('active');
-    activeImpact=b.dataset.impact;
-    applyFilters();
-  });
-});
-if(searchEl) searchEl.addEventListener('input', applyFilters);
-if(curSel) curSel.addEventListener('change', applyFilters);
-if(dateSel) dateSel.addEventListener('change', applyFilters);
-function applyFilters(){
-  const q = (searchEl?.value || '').trim().toLowerCase();
-  const cur = curSel?.value || 'ALL';
-  const d = dateSel?.value || 'ALL';
-  document.querySelectorAll('#timeline tbody tr').forEach(tr=>{
-    const impOk = activeImpact==='ALL' || tr.dataset.impact===activeImpact;
-    const curOk = cur==='ALL' || tr.dataset.currency===cur;
-    const dateOk = d==='ALL' || tr.closest('.day-group').dataset.date===d;
-    const searchOk = !q || tr.dataset.search.includes(q);
-    tr.style.display = (impOk && curOk && dateOk && searchOk) ? '' : 'none';
-  });
-  document.querySelectorAll('.day-group').forEach(g=>{
-    const vis = Array.from(g.querySelectorAll('tbody tr')).some(tr=>tr.style.display!=='none');
-    g.style.display = vis ? '' : 'none';
-  });
+function validateSnapshot(data) {
+  if (!data || !Array.isArray(data.events) || data.count !== data.events.length ||
+      !data.history || typeof data.history !== 'object' || Array.isArray(data.history) ||
+      !data.history_meta || typeof data.history_meta !== 'object' || Array.isArray(data.history_meta)) {
+    throw new Error('Snapshot has an invalid events/history schema or count');
+  }
+  return data;
 }
-const chartData = [{"actuals": [-32.0, 42.0, -32.0, 41.0, 22.0, 63.0, 62.0, 109.0, 122.0, 98.0, 44.0, 38.0], "forecast": 70.0, "id": "chart-1", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 38.0, "unit": ""}, {"actuals": [119.0, -173.0, 64.0, 50.0, 130.0, -92.0, 178.0, 115.0, 172.0, 57.0, -23.0, 162.0], "forecast": 90.0, "id": "chart-2", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 162.0, "unit": ""}, {"actuals": [1.1, 1.1, 0.6, 0.6, -0.2, -0.2, -0.3, -0.3, 0.8, 0.8, 0.2, 0.2], "forecast": 0.5, "id": "chart-3", "labels": ["Mar 01", "Mar 01", "Apr 01", "Apr 01", "May 01", "May 01", "Jun 01", "Jun 01", "Jul 01", "Jul 01", "Aug 01", "Aug 01"], "latest_actual": 0.2, "unit": "%"}, {"actuals": [0.2, 0.1, 0.0, 0.1, 0.1, 0.1, 0.3, 0.6, 0.6, 0.5, 0.4, 0.8], "forecast": 1.0, "id": "chart-4", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 0.8, "unit": "%"}, {"actuals": [2.7, 2.7, 2.9, 2.9, 2.6, 2.6, 2.3, 2.3, 2.8, 2.8, 2.9, 2.9], "forecast": null, "id": "chart-5", "labels": ["Mar 01", "Mar 01", "Apr 01", "Apr 01", "May 01", "May 01", "Jun 01", "Jun 01", "Jul 01", "Jul 01", "Aug 01", "Aug 01"], "latest_actual": 2.9, "unit": "%"}, {"actuals": [0.2, 0.2, 0.2, 0.2, 0.4, 0.4, 0.4, 0.3, 0.2, 0.3, 0.1, 0.2], "forecast": 0.3, "id": "chart-6", "labels": ["Aug \u002725", "Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726"], "latest_actual": 0.2, "unit": "%"}, {"actuals": [2.9, 2.8, 2.7, 2.8, 3.0, 3.1, 3.0, 3.2, 3.3, 3.4, 3.3, 3.3], "forecast": 3.3, "id": "chart-7", "labels": ["Aug \u002725", "Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726"], "latest_actual": 3.3, "unit": "%"}, {"actuals": [2.8, 2.8, 2.9, 2.9, 2.7, 2.7, 2.4, 2.4, 2.8, 2.8, 2.9, 2.9], "forecast": 3.1, "id": "chart-8", "labels": ["Mar 01", "Mar 01", "Apr 01", "Apr 01", "May 01", "May 01", "Jun 01", "Jun 01", "Jul 01", "Jul 01", "Aug 01", "Aug 01"], "latest_actual": 2.9, "unit": "%"}, {"actuals": [1.5, 1.3, 1.3, 1.2, 1.4, 1.3, 1.3, 1.0, 1.0, 1.1, 0.9, 1.2], "forecast": 1.2, "id": "chart-9", "labels": ["Oct \u002724", "Jan \u002725", "Jan \u002725", "Apr \u002725", "Apr \u002725", "Jul \u002725", "Jul \u002725", "Oct \u002725", "Oct \u002725", "Jan \u002726", "Jan \u002725", "Apr \u002726"], "latest_actual": 1.2, "unit": "%"}, {"actuals": [0.1, 0.7, 0.7, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.6, 0.6, 0.4], "forecast": 0.4, "id": "chart-10", "labels": ["Oct \u002724", "Jan \u002725", "Jan \u002725", "Apr \u002725", "Apr \u002725", "Jul \u002725", "Jul \u002725", "Oct \u002725", "Oct \u002725", "Jan \u002726", "Jan \u002725", "Apr \u002726"], "latest_actual": 0.4, "unit": "%"}, {"actuals": [1.8, 0.2, 0.9, 1.1, 1.5, 1.2, 0.7, -2.0, -0.3, 1.8, -0.2, -2.5], "forecast": null, "id": "chart-11", "labels": ["Aug \u002725", "Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726"], "latest_actual": -2.5, "unit": "%"}, {"actuals": [49.1, 48.7, 48.2, 47.9, 52.6, 52.4, 52.7, 52.7, 54.0, 53.3, 55.6, 54.6], "forecast": 55.0, "id": "chart-12", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 54.6, "unit": ""}, {"actuals": [0.2, 0.4, 0.1, 0.3, 0.4, 0.4, 0.2, 0.2, 0.3, 0.3, 0.1, 0.3], "forecast": 0.3, "id": "chart-13", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 0.3, "unit": "%"}, {"actuals": [3.8, 3.7, 3.5, 3.8, 3.7, 3.8, 3.5, 3.6, 3.4, 3.5, 3.2, 3.1], "forecast": null, "id": "chart-14", "labels": ["Sep \u002725", "Oct \u002725", "Nov \u002725", "Dec \u002725", "Jan \u002726", "Feb \u002726", "Mar \u002726", "Apr \u002726", "May \u002726", "Jun \u002726", "Jul \u002726", "Aug \u002726"], "latest_actual": 3.1, "unit": "%"}];
-chartData.forEach(ch=>{
-  const canvas = document.getElementById(ch.id);
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
+function utcDate(value) {
+  if (typeof value !== 'string' || !value) throw new Error('Event has no UTC timestamp');
+  // Historical FxStreet snapshots carry a timezone-less datetime_utc; interpret it as UTC.
+  const timestamp = new Date(/[zZ]$|[+-]\d\d:\d\d$/.test(value) ? value : `${value}Z`);
+  if (Number.isNaN(timestamp.getTime())) throw new Error(`Invalid event timestamp: ${value}`);
+  return timestamp;
+}
+function toronto(value) {
+  const parts = Object.fromEntries(localParts.formatToParts(utcDate(value)).map(p => [p.type, p.value]));
+  return {
+    date: `${parts.year}-${parts.month}-${parts.day}`,
+    weekday: parts.weekday,
+    time: `${Number(parts.hour)}:${parts.minute} ${parts.dayPeriod}`
+  };
+}
+function splitPeriod(name) {
+  const match = /\s*\((MoM|YoY|QoQ)\)\s*$/i.exec(name);
+  return match ? [name.slice(0, match.index).trim(), {mom:'MoM',yoy:'YoY',qoq:'QoQ'}[match[1].toLowerCase()]] : [name, null];
+}
+function displayName(name) {
+  return name.replace('Core Personal Consumption Expenditures - Price Index','Core PCE Price Index')
+    .replace('Personal Consumption Expenditures - Price Index','PCE Price Index')
+    .replace('Personal Consumption Expenditures Prices','PCE Prices');
+}
+function numeric(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+function valueText(value, unit='') {
+  const number = numeric(value);
+  return number === null ? '—' : `${number}${unit || ''}`;
+}
+function category(name) {
+  const lower = name.toLowerCase();
+  // Housing Price Index must stay under Housing rather than Inflation.
+  if (lower.includes('housing') || lower.includes('house price')) return 'Housing';
+  return categories.find(([, keys]) => keys.some(key => lower.includes(key)))?.[0] || 'Other';
+}
+function decorateEvents(data) {
+  const events = data.events.map(raw => {
+    if (typeof raw.event !== 'string') throw new Error('Event has no name');
+    const local = toronto(raw.datetime_utc || (raw.date && raw.time && `${raw.date}T${raw.time}`));
+    const impact = String(raw.impact || 'NONE').toUpperCase();
+    return {...raw, ...local, impact: ['HIGH','MEDIUM','LOW','NONE'].includes(impact) ? impact : 'NONE',
+      actual:numeric(raw.actual), forecast:numeric(raw.forecast), previous:numeric(raw.previous)};
+  }).sort((a,b) => utcDate(a.datetime_utc).getTime()-utcDate(b.datetime_utc).getTime() || String(a.currency || '').localeCompare(String(b.currency || '')));
+  const pairs = new Map();
+  for (const e of events) {
+    const [base, period] = splitPeriod(e.event);
+    if (period !== 'MoM' && period !== 'YoY') continue;
+    const key = JSON.stringify([e.date,e.time,e.country,e.currency,base.toLowerCase()]);
+    if (!pairs.has(key)) pairs.set(key, {});
+    pairs.get(key)[period] = e;
+  }
+  const seen = new Set(), merged = [];
+  for (const e of events) {
+    const [base, period] = splitPeriod(e.event);
+    const key = JSON.stringify([e.date,e.time,e.country,e.currency,base.toLowerCase()]);
+    const pair = pairs.get(key);
+    if (pair?.MoM && pair?.YoY) {
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const rows = [pair.MoM,pair.YoY].map((p,i) => ({period:i ? 'YoY' : 'MoM', actual:p.actual, forecast:p.forecast, previous:p.previous, unit:p.unit || ''}));
+      const impact = ['HIGH','MEDIUM','LOW','NONE'].find(level => rows.some((_,i) => [pair.MoM,pair.YoY][i].impact === level)) || 'NONE';
+      merged.push({...pair.MoM, event:displayName(base), impact, periodRows:rows, searchText:`${base} MoM YoY ${e.currency || ''} ${e.country || ''}`.toLowerCase()});
+    } else {
+      const name = displayName(e.event);
+      merged.push({...e, event:name, periodRows:[], searchText:`${name} ${e.currency || ''} ${e.country || ''}`.toLowerCase()});
+    }
+  }
+  return {events, merged};
+}
+function flag(currency, width=20) {
+  const code = flagCodes[currency];
+  if (!code) return element('span','', '🏳️');
+  const img = element('img', 'flag-img');
+  img.src = `https://flagcdn.com/w${width}/${code}.png`;
+  img.srcset = `https://flagcdn.com/w${width*2}/${code}.png 2x`;
+  img.width = width; img.height = width === 20 ? 15 : 18;
+  img.alt = currency; return img;
+}
+function fillOptions(select, values, label) {
+  select.replaceChildren(new Option(label,'ALL'));
+  values.forEach(value => select.add(new Option(value,value)));
+  select.disabled = false;
+}
+function renderTimeline(merged, snapshotDate) {
+  const byDate = new Map();
+  merged.forEach(e => { if (!byDate.has(e.date)) byDate.set(e.date, []); byDate.get(e.date).push(e); });
+  const dates = [...byDate.keys()].sort();
+  fillOptions($('currencyFilter'), [...new Set(merged.map(e => e.currency).filter(Boolean))].sort(), 'All currencies');
+  fillOptions($('dateFilter'), dates, 'All dates');
+  $('search').disabled = false;
+  const previousDay = new Date(`${snapshotDate}T12:00:00Z`);
+  previousDay.setUTCDate(previousDay.getUTCDate()-1);
+  const previous = previousDay.toISOString().slice(0,10);
+  for (const day of dates) {
+    const group = element('div','day-group'); group.dataset.date = day; group.style.marginBottom = '28px';
+    const heading = element('div'); heading.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;border-bottom:1px solid var(--color-neutral-800);padding-bottom:8px';
+    const title = element('span','', day+' '); title.style.cssText = 'font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-neutral-300)';
+    title.append(element('span','muted',byDate.get(day)[0].weekday));
+    if (day === previous) title.append(element('span','previous-day-pill','Previous day'));
+    heading.append(title); group.append(heading);
+    const grid = element('div','timeline-grid');
+    for (const region of ['us','other']) {
+      const items = byDate.get(day).filter(e => (e.country === 'US') === (region === 'us'));
+      const regionEl = element('div','timeline-region'); regionEl.dataset.region = region;
+      const regionHead = element('div','timeline-region-head');
+      regionHead.append(element('span','',region === 'us' ? 'United States' : 'Other regions'), element('span','timeline-region-count',`${items.length} events`));
+      regionEl.append(regionHead);
+      if (items.length) {
+        const wrap = element('div','timeline-wrap'), table = element('table'), thead = element('thead'), tr = element('tr');
+        ['Time (Toronto)','Currency','Importance','Event','Actual','Forecast','Previous'].forEach(label => tr.append(element('th','',label)));
+        thead.append(tr); table.append(thead);
+        const tbody = element('tbody'); items.forEach(e => tbody.append(renderRow(e)));
+        table.append(tbody); wrap.append(table); regionEl.append(wrap);
+      } else regionEl.append(element('div','timeline-empty','No scheduled events'));
+      grid.append(regionEl);
+    }
+    group.append(grid); $('timelineContent').append(group);
+  }
+  if (!dates.length) $('timelineContent').append(element('div','timeline-empty','No scheduled events'));
+  applyFilters();
+  return dates;
+}
+function renderRow(e) {
+  const tr = element('tr',e.impact.toLowerCase());
+  tr.dataset.impact = e.impact; tr.dataset.currency = e.currency || ''; tr.dataset.search = e.searchText;
+  tr.style.borderLeft = `4px solid ${{HIGH:'#e85d5d', MEDIUM:'#e8a54a'}[e.impact] || '#75798c'}`;
+  tr.append(element('td','time',e.time));
+  const cur = element('td'); cur.append(flag(e.currency)); cur.append(element('span','cur',e.currency || '')); tr.append(cur);
+  const imp = element('td'), badge = element('span',`importance importance-${e.impact.toLowerCase()}`,e.impact === 'HIGH' ? '★★★' : e.impact === 'MEDIUM' ? '★★' : '★');
+  badge.setAttribute('aria-label',`${e.impact[0]}${e.impact.slice(1).toLowerCase()} importance`); imp.append(badge); tr.append(imp);
+  tr.append(element('td','event-name',e.event));
+  for (const field of ['actual','forecast','previous']) {
+    const cell = element('td'); cell.style.fontFamily = 'var(--font-mono)';
+    cell.style[field === 'actual' ? 'fontWeight' : 'color'] = field === 'actual' ? '700' : 'var(--color-neutral-400)';
+    if (e.periodRows.length) e.periodRows.forEach(row => {
+      const div = element('div','period-value');
+      div.append(element('span','period-label',row.period), element('span','',valueText(row[field],row.unit)));
+      cell.append(div);
+    });
+    else cell.textContent = valueText(e[field],e.unit);
+    tr.append(cell);
+  }
+  return tr;
+}
+function historyLabels(series) {
+  const values = series.map(p => new Date(`${String(p.periodDateUtc || p.dateUtc || p.date || '').slice(0,10)}T00:00:00Z`));
+  const gaps = values.slice(1).map((v,i) => (v-values[i])/86400000).filter(Number.isFinite).sort((a,b)=>a-b);
+  const frequent = gaps.length && gaps[Math.floor(gaps.length/2)] <= 14;
+  return values.map((v,i) => Number.isNaN(v.getTime()) ? String(series[i].date || '') :
+    v.toLocaleDateString('en-US', {timeZone:'UTC', month:'short', ...(frequent ? {day:'2-digit'} : {year:'2-digit'})}).replace(/ (\d\d)$/, frequent ? ' $1' : " '$1"));
+}
+function renderTrends(data, events) {
+  const all = [];
+  for (const [id, series] of Object.entries(data.history)) {
+    if (!Array.isArray(series) || !series.some(p => numeric(p.actual) !== null)) continue;
+    const meta = data.history_meta[id] || {}, currency = meta.currency || '';
+    if (!allowedCurrencies.has(currency)) continue;
+    const [name,period] = splitPeriod(meta.event || 'Unknown');
+    const upcoming = events.find(e => e.eventId === id);
+    const actuals = series.map(p => numeric(p.actual));
+    const latest = [...actuals].reverse().find(n => n !== null);
+    const label = upcoming ? new Date(`${upcoming.date}T12:00:00Z`).toLocaleDateString('en-US',{timeZone:'UTC', month:'short',day:'2-digit'})+` at ${upcoming.time}` : null;
+    all.push({event:displayName(name), currency, unit:meta.unit || '', period, category:category(meta.event || ''),
+      labels:historyLabels(series), actuals, latest, forecast:upcoming ? upcoming.forecast : null, upcomingLabel:label});
+  }
+  all.sort((a,b) => categories.findIndex(c => c[0] === a.category)-categories.findIndex(c => c[0] === b.category) ||
+    a.event.toLowerCase().localeCompare(b.event.toLowerCase()) || ['MoM','YoY','QoQ',null].indexOf(a.period)-['MoM','YoY','QoQ',null].indexOf(b.period));
+  $('trends').hidden = !all.length;
+  for (const [name] of categories) {
+    const groupCharts = all.filter(ch => ch.category === name);
+    if (!groupCharts.length) continue;
+    const group = element('div','chart-group'), title = element('h3','chart-group-title',name), grid = element('div','charts-grid');
+    group.append(title);
+    for (const ch of groupCharts) {
+      const card = element('div','card elev-sm chart-card'), h3 = element('h3');
+      h3.append(flag(ch.currency,24), document.createTextNode(' '+ch.event)); card.append(h3);
+      const sub = element('div','sub');
+      if (periodLabels[ch.period]) sub.append(document.createTextNode(periodLabels[ch.period]+' · '));
+      sub.append(document.createTextNode('Latest '), element('strong','',valueText(ch.latest,ch.unit)));
+      if (ch.forecast !== null) sub.append(document.createTextNode(' · Next forecast '), element('span','forecast-pill',valueText(ch.forecast,ch.unit)));
+      if (ch.upcomingLabel) sub.append(document.createTextNode(' · '+ch.upcomingLabel));
+      card.append(sub);
+      const canvas = element('canvas'); canvas.width = 420; canvas.height = 200; card.append(canvas); grid.append(card);
+      if (typeof Chart !== 'undefined') charts.push(drawChart(canvas,ch));
+    }
+    group.append(grid); $('trendsContent').append(group);
+  }
+  if (all.length && typeof Chart === 'undefined') $('trendsContent').prepend(element('div','timeline-empty','Charts unavailable: Chart.js could not load.'));
+}
+function drawChart(canvas, ch) {
   const labels = [...ch.labels];
-  let forecastDataset = null;
-  if(ch.forecast !== null && ch.forecast !== undefined){
-    const forecastData = Array(labels.length-1).fill(null).concat([ch.latest_actual, ch.forecast]);
-    forecastDataset = {
-      label: 'Forecast',
-      data: forecastData,
-      borderColor: '#e9e9ed',
-      backgroundColor: '#e9e9ed',
-      borderDash: [5,5],
-      pointRadius: 4,
-      pointStyle: 'star',
-      tension: 0.25,
-    };
+  const datasets = [{label:'Actual',data:ch.actuals,borderColor:'#b5abfc',backgroundColor:'transparent',fill:false,tension:0.3,pointRadius:2,borderWidth:1.8}];
+  if (ch.forecast !== null) {
+    datasets.push({label:'Forecast', data:Array(Math.max(0,labels.length-1)).fill(null).concat([ch.latest,ch.forecast]),
+      borderColor:'#e9e9ed',backgroundColor:'#e9e9ed',borderDash:[5,5],pointRadius:4,pointStyle:'star',tension:0.25});
     labels.push('Forecast');
   }
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Actual',
-          data: ch.actuals,
-          borderColor: '#b5abfc',
-          backgroundColor: 'transparent',
-          fill: false,
-          tension: 0.3,
-          pointRadius: 2,
-          borderWidth: 1.8,
-        },
-        ...(forecastDataset ? [forecastDataset] : [])
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { intersect:false, mode:'index' },
-      plugins: {
-        legend: { display:false },
-        tooltip: { backgroundColor:'#1a1c2b', titleColor:'#e9e9ed', bodyColor:'#e9e9ed', borderColor:'#3f424d', borderWidth:1, callbacks:{ label: ctx=> ctx.dataset.label+': '+ctx.parsed.y+(ch.unit || '') }}
-      },
-      scales: {
-        x: { ticks:{ font:{size:10, family:'JetBrains Mono'}, color:'#9397ab', maxRotation:0, autoSkip:true, maxTicksLimit:8 }, grid:{ color:'#232532' }},
-        y: { ticks:{ font:{size:10, family:'JetBrains Mono'}, color:'#9397ab' }, grid:{ color:'#232532' } }
-      }
-    }
+  return new Chart(canvas.getContext('2d'), {type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,
+    interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false},tooltip:{backgroundColor:'#1a1c2b',titleColor:'#e9e9ed',bodyColor:'#e9e9ed',borderColor:'#3f424d',borderWidth:1,callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.parsed.y+ch.unit}}},
+    scales:{x:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab',maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'#232532'}},y:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab'},grid:{color:'#232532'}}}}});
+}
+function applyFilters() {
+  const q = $('search').value.trim().toLowerCase(), cur = $('currencyFilter').value, day = $('dateFilter').value;
+  document.querySelectorAll('#timeline tbody tr').forEach(tr => {
+    tr.style.display = (activeImpact === 'ALL' || tr.dataset.impact === activeImpact) &&
+      (cur === 'ALL' || tr.dataset.currency === cur) &&
+      (day === 'ALL' || tr.closest('.day-group').dataset.date === day) &&
+      (!q || tr.dataset.search.includes(q)) ? '' : 'none';
   });
+  document.querySelectorAll('.day-group').forEach(group => {
+    group.style.display = [...group.querySelectorAll('tbody tr')].some(tr => tr.style.display !== 'none') ? '' : 'none';
+  });
+}
+async function selectSnapshot(date) {
+  const request = ++generation;
+  clearView(); setStatus(`Loading snapshot ${date}…`);
+  try {
+    if (!manifest.dates.includes(date)) throw new Error(`Snapshot ${date} is not listed in data/dates.json`);
+    const data = validateSnapshot(await getJSON(date === manifest.latest ? 'data/latest.json' : `data/archive/${date}.json`));
+    if (request !== generation) return;
+    const {events,merged} = decorateEvents(data);
+    renderTrends(data,events);
+    const dates = renderTimeline(merged,date);
+    $('windowCaption').textContent = `${date} to ${dates.at(-1) || data.end || date}`;
+    document.title = `Global Economic Calendar — ${date} to ${dates.at(-1) || data.end || date} | PodorM`;
+    currentDate = date; setStatus('');
+  } catch(error) {
+    if (request !== generation) return;
+    clearView(); currentDate = null;
+    setStatus(`Calendar data unavailable: ${error.message}`,true);
+    console.error('Calendar data unavailable',error);
+  }
+}
+async function initialize() {
+  const requested = new URLSearchParams(window.location.search).get('date');
+  try {
+    manifest = validateManifest(await getJSON('data/dates.json'));
+    $('snapshotDate').replaceChildren();
+    manifest.dates.forEach(date => $('snapshotDate').add(new Option(date === manifest.latest ? `${date} · Latest` : date,date)));
+    $('snapshotDate').disabled = false;
+    const selected = requested || manifest.latest;
+    if (manifest.dates.includes(selected)) $('snapshotDate').value = selected;
+    await selectSnapshot(selected);
+  } catch(error) {
+    clearView(); setStatus(`Calendar data unavailable: ${error.message}`,true);
+    console.error('Calendar manifest unavailable',error);
+  }
+}
+$('snapshotDate').addEventListener('change', () => {
+  const date = $('snapshotDate').value;
+  const url = new URL(window.location.href);
+  if (date === manifest.latest) url.searchParams.delete('date'); else url.searchParams.set('date',date);
+  history.pushState(null,'',url);
+  selectSnapshot(date);
 });
-initSnapshotHistory();
+window.addEventListener('popstate', () => {
+  const date = new URLSearchParams(location.search).get('date') || manifest.latest;
+  if (manifest.dates.includes(date)) $('snapshotDate').value = date;
+  selectSnapshot(date);
+});
+$('search').addEventListener('input',applyFilters);
+$('currencyFilter').addEventListener('change',applyFilters);
+$('dateFilter').addEventListener('change',applyFilters);
+document.querySelectorAll('[data-impact]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-impact]').forEach(other => other.classList.remove('active'));
+  button.classList.add('active'); activeImpact = button.dataset.impact; applyFilters();
+}));
+initialize();
 </script>
 </body>
 </html>

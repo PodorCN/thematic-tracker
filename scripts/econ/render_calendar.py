@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
-"""Render economic_calendar.json -> HTML (pure code, no LLM).
+"""Publish a fetched economic-calendar JSON snapshot; never regenerate HTML.
 
-Usage:
-    python scripts/econ/render_calendar.py --date 2026-08-24
-    python scripts/econ/render_calendar.py --input economic-calendar/raw/2026-08-24/economic_calendar.json --output economic-calendar/index.html
-
-Also supports --watch to auto-regenerate on file change.
+Usage: python scripts/econ/render_calendar.py --date 2026-08-24
 """
 from __future__ import annotations
 
@@ -20,13 +16,9 @@ from pathlib import Path
 from statistics import median
 from zoneinfo import ZoneInfo
 
-from jinja2 import Environment, FileSystemLoader
-
 SCRIPTS_ROOT = Path(__file__).resolve().parent.parent  # <repo>/scripts
 REPO_ROOT = SCRIPTS_ROOT.parent
 sys.path.insert(0, str(SCRIPTS_ROOT))
-
-STAGE_DIR = Path(__file__).resolve().parent
 
 # Currency -> flag emoji (fallback) + image code for reliable rendering
 FLAG = {
@@ -61,11 +53,11 @@ CATEGORY_ORDER = ["Labor market", "Inflation", "Growth & demand", "Housing", "Bu
 
 
 def load_calendar(path: Path) -> dict:
-    # Be tolerant of NaN literal (old files) -> replace with null before json load
-    text = path.read_text(encoding="utf-8")
-    # fix invalid JSON NaN (pandas wrote NaN without quotes)
-    text = text.replace(": NaN", ": null").replace(": nan", ": null")
-    return json.loads(text)
+    # Publication must remain strict JSON; do not copy NaN/Infinity into Pages assets.
+    def reject_constant(value: str) -> None:
+        raise ValueError(f"non-finite JSON number: {value}")
+
+    return json.loads(path.read_text(encoding="utf-8"), parse_constant=reject_constant)
 
 
 def _atomic_copy(source: Path, destination: Path) -> None:
@@ -82,23 +74,18 @@ def _atomic_json(destination: Path, payload: dict) -> None:
     temporary.replace(destination)
 
 
-def publish_calendar_snapshot(archive_date: str, data_path: Path, html_path: Path) -> tuple[Path, Path]:
+def publish_calendar_snapshot(archive_date: str, data_path: Path) -> Path:
     data_root = REPO_ROOT / "economic-calendar" / "data"
     data_archive = data_root / "archive"
-    html_archive = REPO_ROOT / "economic-calendar" / "archive"
 
     _atomic_copy(data_path, data_archive / f"{archive_date}.json")
-    _atomic_copy(html_path, html_archive / f"{archive_date}.html")
 
     dates = sorted(path.stem for path in data_archive.glob("*.json"))
     latest_date = dates[-1]
-    _atomic_json(data_root / "dates.json", {"latest": latest_date, "dates": list(reversed(dates))})
-
     latest_data = data_root / "latest.json"
-    latest_html = REPO_ROOT / "economic-calendar" / "index.html"
     _atomic_copy(data_archive / f"{latest_date}.json", latest_data)
-    _atomic_copy(html_archive / f"{latest_date}.html", latest_html)
-    return latest_data, latest_html
+    _atomic_json(data_root / "dates.json", {"latest": latest_date, "dates": list(reversed(dates))})
+    return latest_data
 
 
 def _toronto_datetime(value: str | None, fallback_date: str = "", fallback_time: str = "") -> datetime | None:
@@ -391,46 +378,28 @@ def build_context(data: dict, snapshot_date: str | None = None) -> dict:
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Render economic calendar HTML")
-    p.add_argument("--date", default=date.today().isoformat(), help="archive date YYYY-MM-DD")
-    p.add_argument("--input", default=None, help="input json path (overrides --date)")
-    p.add_argument("--output", default=None, help="output html path (default economic-calendar/raw/<date>/economic_calendar.html)")
-    p.add_argument("--docs", action="store_true", help="also copy to economic-calendar/index.html for GitHub Pages")
+    p = argparse.ArgumentParser(description="Publish economic calendar JSON snapshots (HTML is static)")
+    p.add_argument("--date", default=date.today().isoformat(), help="snapshot date YYYY-MM-DD")
+    p.add_argument("--input", default=None, help="input JSON path (overrides --date lookup)")
     args = p.parse_args()
+    try:
+        if date.fromisoformat(args.date).isoformat() != args.date:
+            raise ValueError(args.date)
+    except ValueError:
+        p.error("--date must be YYYY-MM-DD")
 
-    if args.input:
-        in_path = Path(args.input)
-        out_date = args.date
-    else:
-        in_path = REPO_ROOT / "economic-calendar" / "raw" / args.date / "economic_calendar.json"
-        out_date = args.date
-
+    in_path = Path(args.input) if args.input else REPO_ROOT / "economic-calendar" / "raw" / args.date / "economic_calendar.json"
     if not in_path.exists():
         print(f"not found: {in_path}", file=sys.stderr)
-        print(f"hint: python scripts/econ/fetch_calendar.py --date {out_date} --days 7", file=sys.stderr)
+        print(f"hint: python scripts/econ/fetch_calendar.py --date {args.date} --days 7", file=sys.stderr)
         sys.exit(1)
 
     data = load_calendar(in_path)
-    ctx = build_context(data, out_date)
-    ctx["archive_date"] = out_date
-
-    env = Environment(loader=FileSystemLoader(str(STAGE_DIR)), autoescape=True)
-    tmpl = env.get_template("template_calendar.html.j2")
-    html = tmpl.render(**ctx)
-    html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
-
-    if args.output:
-        out_path = Path(args.output)
-    else:
-        out_path = REPO_ROOT / "economic-calendar" / "raw" / out_date / "economic_calendar.html"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(html, encoding="utf-8")
-    print(f"wrote {out_path} ({ctx['count']} events)")
-
-    latest_data, latest_html = publish_calendar_snapshot(out_date, in_path, out_path)
-    print(f"published calendar snapshot {out_date}")
+    if not isinstance(data, dict) or not isinstance(data.get("events"), list) or data.get("count") != len(data["events"]):
+        p.error("input count must equal the events array length")
+    latest_data = publish_calendar_snapshot(args.date, in_path)
+    print(f"published calendar JSON snapshot {args.date} ({data['count']} events)")
     print(f"latest data: {latest_data}")
-    print(f"latest page: {latest_html}")
 
 if __name__ == "__main__":
     main()
