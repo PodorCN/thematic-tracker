@@ -1,0 +1,41 @@
+{
+  "target_toronto_date": "2026-09-29",
+  "iteration": "iteration-03",
+  "as_of_toronto": "2026-09-29T01:35:00-04:00",
+  "phase": "iteration-03 ROUND-3 REVIEW COMPLETE - independent PM (opencode-go/deepseek-v4.1-flash; user-authorized switch; attempt 1 on openai-codex/gpt-6-luna was rate-limited HTTP 429 at 14:37 and remains in pm-review-run.log as NOT a review) verdict APPROVED, reviewed_at 2026-09-29T16:31:31-04:00, candidate_sha256 c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b; pm-review.json sha256 795dbb244b8da4b833a9ff193d067b127879ebff2d26326e509add9f7b2c989f; validate_pm_review --require-approved PASS; candidate bytes unchanged through review (re-verified post-review). One minor non-blocking finding (Oct 2 NFP 'six business days' count stale; fix in next natural rebuild); operator_instructions empty. Frozen-candidate history: structural gate PASS 13/13, brief regenerated True (002->003); render verification PASS (Chrome dump + pytest render 6/6; full suite 83 passed, 1 skipped).",
+  "status": "review APPROVED and validation PASS - NOTHING PUBLISHED; no archive/commit/push performed (review-only dispatch). Live data/latest.json remains the last PM-approved snapshot (2026-09-28; git-clean post-review). Round 3 of at most 3 for 2026-09-29 resolved APPROVED; publication stays gated on the operator lanes in next_actions (frontend lane first, then data lane per standing contract).",
+  "candidate_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+  "candidate_bytes": 123381,
+  "baseline": "fed-boc-watcher/review/2026-09-29/iteration-02/candidate.json",
+  "baseline_sha256": "b732a4b7c39234b7ac9262fef29a45361c3dd190898fcb38cc44f1f8c21b70d6",
+  "round1_verdict": "revise (2026-09-29T02:23:55-04:00; history 2026-09-29-6a72fa3ea873)",
+  "round2_verdict": "revise (2026-09-29T08:28:47-04:00; history 2026-09-29-7247100c4059); its single major finding (Fed proxy key tenor + overbroad 'everywhere/throughout' notes) is corrected in iteration-03; no refetch required (stated by the review itself).",
+  "next_actions": [
+    "DISPATCH ROUND-3 NOW (no need to wait for 17:14; that deadline belonged to the rate-limited openai-codex provider): cd /d/git/thematic-tracker-macro-automation && uv run --isolated --python 3.11 python fed-boc-watcher/review/2026-09-29/iteration-03/run_independent_pm.py (background, persist_on_release). Runner is retry-safe (refuses only if pm-review.json exists; appends to pm-review-run.log). Provider/model is now opencode-go/deepseek-v4.1-flash per explicit user authorization 2026-09-29; do not switch further without a new user instruction.",
+    "AFTER VERDICT: if pm-review.json exists: verify its candidate_sha256 == c9323bbbee...; run validate_pm_review.py --candidate fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json --review fed-boc-watcher/review/2026-09-29/iteration-03/pm-review.json (add --require-approved only if verdict is approved).",
+    "If approved: (1) FRONTEND LANE FIRST - freeze the working-tree frontend change (fed-boc-watcher/index.html + scripts/econ/frontend_contract.json digest a128633d9180db1b5442924ae2494ff41b5b488055550e3667938c73795ec32f; tests/test_render_truthfulness.py may ride it) as its own reviewed change; independent code review via hermes CLI (same pinned provider - schedule AFTER the PM review to avoid competing for the same rate limit; precedent format: review-artifacts/code-2026-09-28*/); merge via branch/pull request (gh authed as PodorCN). (2) THEN DATA LANE: re-run structural gate to confirm bytes unchanged since review; archive_fed_boc.py --input fed-boc-watcher/data/dashboard.json --candidate fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json --pm-review fed-boc-watcher/review/2026-09-29/iteration-03/pm-review.json; pytest tests/; stage ONLY allowlisted paths (fed-boc data JSONs + iteration-03/{candidate.json,candidate.sha256,pm-review.json} + review/feedback/latest.json + history additions; structural-gate/pm-handoff/operator-checkpoint also allowed); python scripts/econ/verify_data_only_changes.py --product fed-boc-watcher --staged, then --range origin/main..HEAD before push; commit + merge to main per repo rules; live acceptance: cache-busted latest.json (HTTP200, snapshot_date 2026-09-29, equals approved candidate modulo snapshot_date/archived_at/stale) + real page brief render (decision-frame populated; Fed card '3.895% October monthly (30-day) average EFFR'; BoC '2.375% quarterly average CORRA').",
+    "If revise: validate + record_pm_feedback; NO round 4 for 2026-09-29 -> keep materials, BLOCKED, live output untouched; feedback stays open for the next run.",
+    "Do NOT stage the uncommitted data/frontend separation project files (root docs/scripts/tests/workflows, economic-calendar, etc.) or any non-fed-boc path; do not stash/reset/clean other dirty files."
+  ],
+  "frontend_lane_state": "index.html + scripts/econ/frontend_contract.json edited in the working tree (uncommitted; verify_template_binding == [] PASS). Independent code review NOT yet dispatched (rate limit). Publish order: frontend lane must land before/with the data publish - old renderer + renamed payload would show fallback text for the Fed level. Hazard: the separation project's working-tree copy of frontend_contract.json pins the OLD fed digest (1ba2023...); the frontend lane updates it to a128633d...; the separation project landing must not revert the fed-boc digest.",
+  "changed_files_this_tick": [
+    "fed-boc-watcher/index.html - renderer reads implied_monthly_average_rate (fallback implied_quarterly_average_rate). SEPARATE FRONTEND CHANGE per the data/frontend separation contract; must NOT go into the data commit.",
+    "scripts/econ/frontend_contract.json - fed-boc-watcher digest updated to a128633d9180db1b5442924ae2494ff41b5b488055550e3667938c73795ec32f.",
+    "fed-boc-watcher/data/dashboard.json - staging; byte-identical to the frozen candidate.",
+    "fed-boc-watcher/review/2026-09-29/iteration-03/* - candidate.json, candidate.sha256, structural-gate.json, pm-handoff.json, pm-review-prompt.txt, run_independent_pm.py, diff_iter02_vs_iter03.txt, pm-review-run.log, operator-checkpoint.json.",
+    "fed-boc-watcher/review/feedback/latest.json + history/2026-09-29-7247100c4059.json (round-2 record)."
+  ],
+  "notes": [
+    "Render-verification details in iteration-03/pm-handoff.json (render_verification). Grep caveats: 'observable proxy level available' exists only as <script> source text; 'second-lowest' only inside the Michigan correction note (quoted removal) - same class as the round-2-accepted page.",
+    "git: main == origin/main (0/0); no commits this tick. Worktree D:/git/thematic-tracker-fedboc-snapshot-fix (branch fix/fed-boc-snapshot-20260929, clean, at b448054) available for isolated publish commits; that checkout predates the separation project (frontend_contract.json absent there - copy it in if committing the frontend lane from the worktree).",
+    "TMX: Montreal rate derivatives close 1:30pm 2026-09-29, closed 2026-09-30.",
+    "Provider rate limit affects all hermes CLI dispatches until ~17:14; sequence round-3 PM review before the frontend code review."
+  ],
+  "provider_model_change": {
+    "at": "2026-09-29T16:20-04:00",
+    "authorized_by": "user (explicit chat instruction)",
+    "from": "openai-codex/gpt-6-luna (rate-limited HTTP 429 at 14:37)",
+    "to": "opencode-go/deepseek-v4.1-flash",
+    "scope": "round-3 independent PM dispatch artifacts only; frozen candidate bytes unchanged"
+  }
+}

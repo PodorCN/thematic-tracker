@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "status": "open",
+  "reviewed_at": "2026-09-29T02:23:55-04:00",
+  "candidate_sha256": "9967593a923c1992fc07314e662b1ef3be9a202125b9e03ba7cf3419d6c62b00",
+  "review_sha256": "6a72fa3ea873d1cfd39fe052379314a65a0ca290ac957643bd83661b26906da7",
+  "source_review": "fed-boc-watcher/review/2026-09-29/iteration-01/pm-review.json",
+  "executive_summary": "Round 1: REVISE. sha256sum independently confirms candidate digest 9967593a923c1992fc07314e662b1ef3be9a202125b9e03ba7cf3419d6c62b00. All 84 payload SHA references and all 38 evidence-manifest entries match disk. I independently recomputed the six Monday Sep 28 ticker returns on the two-decimal display basis; no Sep 29 session price is claimed. Official policy dates/rates, null single-meeting probabilities, recorded refresh failures, Michigan date correction, and the BoC +0.6% prior check out. The 13/13 structural gate passed with brief regenerated=True; pytest passed 64 tests. A temporary headless-Chrome render showed both bank panels, no fabricated odds, neutral/no-edge verdicts, and each requested brief section once. The 79-word attention block is concise and names dated catalysts, but publication is blocked by a false Fed contract-tenor label, incorrect midpoint assertions/arithmetic, and an unsupported Michigan historical-rank claim. One stale Sep 25 sentence also remains in pricing provenance.",
+  "failed_checks": [
+    "decision_usefulness",
+    "drivers",
+    "freshness",
+    "pricing"
+  ],
+  "findings": [
+    {
+      "severity": "major",
+      "field": "meetings.fed.pricing.observable_proxy.implied_quarterly_average_rate; verification_note.known_limitations[2]; decision_brief.summary; decision_brief.what_is_priced.unavailable; decision_brief.changes_since_previous[1]; fed-boc-watcher/index.html Fed pricing-card label",
+      "issue": "ZQV26 is the October 30-Day Federal Funds futures contract, whose settlement is based on the average daily EFFR during its delivery month; it is not a quarterly-average contract. The payload calls its rate quarterly in several places, and the rendered Fed card displays '3.895% quarterly-average rate'. This conflicts with the candidate's own contract_horizon_caveat, which correctly calls it an October 30-day average. Neither contract-level average is a single-meeting probability.",
+      "evidence": "Headless Chrome --headless=new --dump-dom against the candidate rendered Fed card text '3.895% quarterly-average rate'. yahoo_ZQV26_CBT_daily.json has the Sep 28 close 96.105. CME's 30-Day Fed Funds rule language defines contract grade as 100 minus the arithmetic average of daily EFFR during the contract delivery month: https://www.cmegroup.com/tools-information/lookups/advisories/ser/SER-7594.pdf. Candidate meetings.fed.pricing.observable_proxy.contract_horizon_caveat itself says October 30-day average. By contrast, CRAU26 is the three-month CORRA contract and is appropriately described as quarterly.",
+      "pnl_impact": "Misstating the tenor can make a PM attribute a monthly average-rate exposure to a quarter or to the Oct 28 meeting, distorting hedge horizon and the interpretation of policy risk.",
+      "instruction": "Change the Fed-specific field description and renderer label to 'October monthly (30-day) average EFFR'; keep the separate CORRA proxy labeled quarterly. Correct every statement that calls both proxies quarterly, and do not convert either proxy into meeting odds."
+    },
+    {
+      "severity": "major",
+      "field": "decision_brief.headline; decision_brief.summary; decision_brief.what_is_priced.fed; decision_brief.attention_budget; decision_brief.banks.fed.rationale; decision_brief.trade_status_rationale",
+      "issue": "The brief repeatedly says every priced contract is at its range midpoint and says 3.895% is within one basis point of the Fed midpoint. Neither statement is correct: the Fed range midpoint is 3.875%, so 3.895% is 2 bp above it; CRAU26's 2.375% quarterly-average rate is 12.5 bp above the BoC's 2.25% target, and the BoC target is not a target range. The headline and abstention rationale therefore contradict the quoted proxy values.",
+      "evidence": "Independent arithmetic command output: FED_MIDPOINT_DIFF_BP 2.0000000000000018; CORRA_ABOVE_TARGET_BP 12.5. Candidate values: ZQV26 close 96.105 -> 3.895%; CRAU26 bid/ask 97.62/97.625 -> approximately 2.375%. The raw Yahoo daily capture and TMX/MX CRAU26 row were inspected; the rendered card also shows these values. The candidate itself states these values in decision_brief.what_is_priced.fed and .boc.",
+      "pnl_impact": "This overstates the evidence for a neutral policy path and hides a measurable cross-quarter CORRA premium. A decision maker could dismiss priced rate drift or mis-size a position based on the false midpoint premise.",
+      "instruction": "Replace the blanket midpoint claim with the exact distinctions: ZQV26's October monthly average is 2 bp above the Fed target-range midpoint; CRAU26 implies roughly 2.375% average CORRA, 12.5 bp above the 2.25% policy target, across two decisions. Keep the no-trade rationale grounded in the unavailable single-meeting distributions and non-executable quote-side observation; correct all listed copies."
+    },
+    {
+      "severity": "major",
+      "field": "drivers.fed.dovish[0].reason",
+      "issue": "The reason calls 48.1 the 'second-lowest final reading on record', but that historical-rank claim is not present in either bound Michigan source. The official September capture reports 48.1, August 51.7, and that sentiment was at its lowest reading in four months; it does not establish a second-lowest all-time rank.",
+      "evidence": "Bound actual capture: evidence/recollection/umich-final-sep2026.html (official University of Michigan release); bound consensus capture: fed-boc-watcher/review/2026-09-28/iteration-03/evidence/recollection/umich-consensus-news.html. Independent text check returned MICHIGAN_BOUND_CAPTURE_HAS_RECORD_RANK False; repository-wide capture search found no matching historical-rank statement. The 48.1 / 51.7 actuals and 47.6 Reuters consensus are evidenced, and published_at / published_date_toronto are 2026-09-25.",
+      "pnl_impact": "The superlative amplifies the soft-consumer signal and could bias the Fed narrative or later weighting. Its current base weight is zero, limiting immediate score impact, but the displayed claim remains unsupported.",
+      "instruction": "Remove 'second-lowest final reading on record' or bind a verifiable historical University of Michigan series that proves the rank; keep the evidenced values and the source's narrower 'lowest in four months' wording."
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.source",
+      "issue": "This provenance sentence still says the ZQV26 proxy is at its Sep 25 daily close, while the same payload and bound raw capture use the Sep 28 close of 96.105.",
+      "evidence": "Candidate meetings.fed.pricing.source says 'Sep 25 daily close'; meetings.fed.pricing.price_session_date and observable_proxy.session_date both say 2026-09-28. Independent inspection of yahoo_ZQV26_CBT_daily.json shows its latest completed bar dated 2026-09-28 at 96.105.",
+      "pnl_impact": "It misstates the age of the quote in provenance and could confuse a reader auditing the displayed market snapshot, although the rendered card's as-of and session date are current.",
+      "instruction": "Change the stale date in meetings.fed.pricing.source to Sep 28 and ensure it agrees with the bound close and session fields."
+    }
+  ],
+  "required_recollection": [
+    "Change the Fed-specific field description and renderer label to 'October monthly (30-day) average EFFR'; keep the separate CORRA proxy labeled quarterly. Correct every statement that calls both proxies quarterly, and do not convert either proxy into meeting odds.",
+    "Replace the blanket midpoint claim with the exact distinctions: ZQV26's October monthly average is 2 bp above the Fed target-range midpoint; CRAU26 implies roughly 2.375% average CORRA, 12.5 bp above the 2.25% policy target, across two decisions. Keep the no-trade rationale grounded in the unavailable single-meeting distributions and non-executable quote-side observation; correct all listed copies.",
+    "Remove 'second-lowest final reading on record' or bind a verifiable historical University of Michigan series that proves the rank; keep the evidenced values and the source's narrower 'lowest in four months' wording."
+  ],
+  "operator_instructions": [
+    "Correct the Fed monthly-versus-quarterly contract label in the payload and renderer, while retaining the CORRA quarterly description and null meeting probabilities.",
+    "Replace all false midpoint language and correct the Fed difference to 2 bp and the CORRA premium to 12.5 bp; preserve the disclosed quote-side and cross-meeting limitations.",
+    "Remove or source the Michigan 'second-lowest on record' rank claim, and update the stale Sep 25 sentence in meetings.fed.pricing.source.",
+    "Freeze the corrected revision under a new digest, rerun the structural gate, static tests, and isolated headless render, then submit that new SHA for review; do not stage it over data/latest.json or publish without approval."
+  ],
+  "next_run_contract": [
+    "Read this feedback before collecting or editing the next candidate.",
+    "Re-trigger collection for every affected source and claim.",
+    "Rebuild the whole internally consistent candidate; do not patch prose only.",
+    "Submit the rebuilt candidate to a fresh independent PM review.",
+    "Do not publish until an exact-byte-bound approved review passes the gate."
+  ]
+}

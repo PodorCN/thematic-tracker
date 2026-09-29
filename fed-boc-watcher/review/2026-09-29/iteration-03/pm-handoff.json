@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "target_toronto_date": "2026-09-29",
+  "iteration": "iteration-03",
+  "candidate": "fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json",
+  "candidate_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+  "baseline": "fed-boc-watcher/review/2026-09-29/iteration-02/candidate.json",
+  "baseline_sha256": "b732a4b7c39234b7ac9262fef29a45361c3dd190898fcb38cc44f1f8c21b70d6",
+  "structural_gate_out": "fed-boc-watcher/review/2026-09-29/iteration-03/structural-gate.json",
+  "evidence_dir": "fed-boc-watcher/review/2026-09-29/iteration-01/evidence/recollection/",
+  "diff_summary_path": "fed-boc-watcher/review/2026-09-29/iteration-03/diff_iter02_vs_iter03.txt",
+  "diff_changed_leaf_count": 42,
+  "this_round_changes": [
+    "Round-2 finding (Fed proxy key, major): meetings.fed.pricing.observable_proxy value 3.895 moved from implied_quarterly_average_rate to implied_monthly_average_rate. No numeric value changed. BoC observable_proxy and the BoC prior-observation snapshot keep implied_quarterly_average_rate (accurate for three-month CORRA).",
+    "Renderer consumption: index.html now reads implied_monthly_average_rate with fallback to implied_quarterly_average_rate (existing variable names preserved). Per the repository's data/frontend separation contract this is the SEPARATE frontend change (index.html + scripts/econ/frontend_contract.json digest updated in the working tree; verify_template_binding passes); it is not part of this frozen data candidate and must land before/with the data publish.",
+    "Metadata (round-2 instruction): verification_note.pm_round1_findings_and_fixes[0] no longer says 'everywhere'; decision_brief.changes_since_previous[0] no longer says 'throughout the payload'; both state exact locations. New verification_note.pm_round2_findings_and_fixes records this fix.",
+    "decision_brief re-authored in full (all narrative fields); headline changed by construction; no market value changed relative to iteration-02."
+  ],
+  "open_feedback_context": "Round-2 (iteration-02) verdict: revise at 2026-09-29T08:28:47-04:00; recorded to review/feedback/latest.json and history 2026-09-29-7247100c4059.json. Single major finding: the Fed value under implied_quarterly_average_rate contradicted its October monthly (30-day) tenor and the 'everywhere/throughout the payload' metadata claims; instruction: rename the key, update index.html consumption, correct the overbroad notes, freeze a new SHA for round 3; explicitly: no market-data refetch required. This rebuild implements exactly that instruction set. This is round 3 of at most 3 for 2026-09-29.",
+  "recollection_scope": "No source value re-fetched (round-2 review states none is required; finding is description/schema-level). Evidence references and sha256 values unchanged from iteration-02; structural gate re-verified all bindings against disk (PASS 13/13).",
+  "render_verification": {
+    "local_chrome_dump": "PASS (candidate staged over data/latest.json, restored byte-for-byte; git status clean). Fed card: '3.895% October monthly (30-day) average EFFR' rendered from the renamed key. BoC card: '2.375% quarterly average CORRA'. 'NO TRADE / NO EDGE' present. Fabricated defaults absent. Grep caveat: 'observable proxy level available' exists once as renderer source text inside <script> (not rendered output); 'second-lowest' exists once inside the brief's Michigan correction item quoting the removed claim (not claim-bearing) - both the same class as the round-2-accepted page.",
+    "pytest_render": "6 passed (FED_BOC_RENDER_CANDIDATE pinned to the iteration-03 candidate). Full suite: 83 passed, 1 skipped."
+  },
+  "warnings": [],
+  "structural_gate_result": {
+    "result": "PASS",
+    "checks_passed": 13,
+    "checks_total": 13,
+    "failed_checks": [],
+    "brief_regenerated_vs_iter02": true
+  }
+}

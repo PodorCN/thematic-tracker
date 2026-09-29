@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent_portfolio_manager",
+  "reviewed_at": "2026-09-29T16:31:31-04:00",
+  "candidate_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+  "verdict": "approved",
+  "executive_summary": "Round 3 - APPROVED. Independent sha256sum re-confirms candidate SHA-256 c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b. The round-2 finding is resolved in the frozen payload: meetings.fed.pricing.observable_proxy now carries implied_monthly_average_rate = 3.895 with no quarterly-named rate key, the BoC proxy keeps implied_quarterly_average_rate = 2.375, and the BoC prior-observation snapshot is unchanged; the former 'everywhere / throughout the payload' overclaims survive only inside the note that records their removal, and the brief's Michigan correction quotes the deleted 'second-lowest' phrase as a removal note, not a claim. Traceability: all 97 sha256 bindings in the payload match bytes on disk (plus every bytes claim and the evidence manifest), and the iteration-02 vs -03 diff shows no numeric value changed: the only numeric leaf change is the 3.895 value moving to the renamed key among 42 changed leaves, all prose/metadata. Recompute: 100 - 96.105 = 3.895, which is 2 bp above the 3.875% range midpoint; 100 - 97.625 = 2.375, 12.5 bp above the 2.25% BoC target. Live official checks today confirm the Fed at 3.75-4.00% after the Sep 16 FOMC (12-0 vote), next FOMC Oct 27-28; BoC hold at 2.25% (Sep 2) with next decisions Oct 28 (with MPR) and Dec 9. Render: the shipped suite passes 6/6 with FED_BOC_RENDER_CANDIDATE pinned to this candidate, and my own headless-Chrome dump renders '3.895% October monthly (30-day) average EFFR' from the renamed key, '2.375% quarterly average CORRA', the NO TRADE / NO EDGE neutral branch, both bank panels and all brief sections, with no fabricated odds; the staged data/latest.json was restored byte-for-byte (sha 82cae1b11014...) and git status is clean. The structural gate passes 13/13 with brief regenerated True (2026-09-29-002 -> 2026-09-29-003); the full suite is 83 passed, 1 skipped. The prepared renderer change is the separate frontend lane (its frozen digest matches the working-tree index.html bytes). Priced vs unavailable is stated exactly for both contracts (monthly vs quarterly), falsifiers are dated, and the abstention is reasoned, not evasive. One minor, non-blocking count nit ('six business days') is recorded below; no critical or major finding remains, so this candidate is approved for publication.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "decision_brief.banks.fed.next_catalysts[2]; decision_brief.largest_pnl_risks[1]",
+      "issue": "The prose count 'six business days before the FOMC' is stale: Oct 2 to the Oct 27-28 FOMC is sixteen to seventeen business days (16 from Oct 2 to the Oct 27 meeting start, 17 to the Oct 28 decision, excluding the Oct 12 holiday). The count was exact for the September cycle (Sep 4 -> Sep 15 = 6 business days excluding Labor Day) and was carried forward without recount. The two endpoint dates in the same sentences are correct, and no rate, price, level or position size derives from the count.",
+      "evidence": "Python enumeration of business days between 2026-10-02 and 2026-10-27/28 = 16/17 (excluding Oct 12); the same enumeration for Sep 4 -> Sep 15 = 6, matching the stale text's origin. Prior record: review-artifacts/candidate-2026-09-28-iter04-r2/pm-review.json logged it as minor, 'None blocking; Recount in the next natural rebuild'.",
+      "pnl_impact": "None blocking: all dates, rates and prices surrounding this sentence are correct; a reader could be mildly misled about how close the NFP sits to the FOMC, not about any market level or position size.",
+      "instruction": "In the next natural rebuild, change the count to 'sixteen business days' (or drop it); do not rebuild solely for this."
+    }
+  ],
+  "pnl_risks": [
+    "FedWatch returned HTTP 403 again, so no single-meeting distribution exists anywhere in this snapshot; ZQV26 is an October monthly-average EFFR proxy, not Oct 28 odds - re-price the Monday Sep 28 marks by hand before sizing.",
+    "CRAU26's quote side (97.62/97.625) shows zero volume and no verified executable last print; its roughly 2.375% quarterly CORRA average spans the Oct 28 and Dec 9 decisions and cannot be decomposed into either.",
+    "Data-wall risk with no bound consensus: JOLTS Sep 29, GDP/PCE Sep 30 and payrolls Oct 2 can each reprice front-end rates; FXStreet refreshes returned HTTP 401, leaving current consensus unavailable and the pre-committed thresholds as the only falsifiers.",
+    "Frame expiry: both decisions land within five weeks; an upward retail revision removes the BoC dovish lean with no new data arriving, and by mid-October the missing pricing becomes a view on the data itself."
+  ],
+  "operator_instructions": []
+}
