@@ -98,6 +98,18 @@ blocks.forEach((b, i) => {
   if (!src || src.replace(/^SRC:\s*/, '').trim() === '') err(`event ${date} missing SRC line`);
   else if (!/https?:\/\//.test(src) && !/\d{4}/.test(src)) warn(`event ${date} SRC has no URL or date: ${src.slice(0, 80)}`);
 });
+if (meta.theme_en?.includes('MISPRICED SAAS')) {
+  const verdictLines = get('VERDICT').split('\n').map(l => l.trim()).filter(Boolean);
+  if (verdictLines.length !== 3 ||
+      ['MARKET:', 'THEME:', 'WATCH:'].some((label, i) => !verdictLines[i]?.startsWith(label)) ||
+      verdictLines.some(line => line.length >= 210))
+    err('AI VERDICT needs exactly three concise MARKET/THEME/WATCH lines');
+  blocks.forEach((block, index) => {
+    const drivers = block.split('\n').map(l => l.trim()).filter(l => l.startsWith('DRIVER:'));
+    if (drivers.length !== 1 || !/^DRIVER: (MARKET|THEME|UNVERIFIED)$/.test(drivers[0]))
+      err(`event #${index + 1} missing DRIVER: MARKET|THEME|UNVERIFIED`);
+  });
+}
 if (blocks.length > 15) warn(`event count ${blocks.length} > 15, consider merging old ones`);
 
 // ---------- VALIDITY (theme call lamp) ----------
@@ -110,12 +122,15 @@ else {
   if (!vsec.some(l => l.startsWith('-'))) warn('VALIDITY has no rules list');
   if (cd && normLen && normLen >= 42) {
     const ex = (cd.zeb_norm[normLen - 1] - cd.zeb_norm[normLen - 42]) - (cd.tsx_norm[normLen - 1] - cd.tsx_norm[normLen - 42]);
-    const mv = parseFloat((reason.match(/([+-]?\d+(?:\.\d+)?)\s*pp/) || [])[1]);
-    if (Number.isFinite(mv) && Math.abs(mv - ex) > 0.3) err(`VALIDITY states ${mv}pp but 2M excess recomputes ${ex.toFixed(2)}pp`);
+    const isAi = meta.theme_en?.includes('MISPRICED SAAS');
+    const unit = isAi ? 'normalized points' : 'pp';
+    const mv = parseFloat((reason.match(isAi ? /([+-]?\d+(?:\.\d+)?)\s*normalized points/ : /([+-]?\d+(?:\.\d+)?)\s*pp/) || [])[1]);
+    if (isAi && !Number.isFinite(mv)) err('AI VALIDITY must state the normalized-point spread');
+    if (Number.isFinite(mv) && Math.abs(mv - ex) > 0.3) err(`VALIDITY states ${mv} ${unit} but 2M normalized spread recomputes ${ex.toFixed(2)} ${unit}`);
     const lc = color.toLowerCase();
-    if (lc === 'green' && ex <= 1) err(`CALL green needs 2M excess > +1pp (got ${ex.toFixed(2)}pp)`);
-    else if (lc === 'yellow' && Math.abs(ex) > 1) err(`CALL yellow needs 2M excess within ±1pp (got ${ex.toFixed(2)}pp)`);
-    else if (lc === 'red' && ex >= -1 && !/thesis/i.test(reason)) err(`CALL red needs 2M excess < -1pp or a stated thesis break (got ${ex.toFixed(2)}pp)`);
+    if (lc === 'green' && ex <= 1) err(`CALL green needs 2M normalized spread > +1 ${unit} (got ${ex.toFixed(2)} ${unit})`);
+    else if (lc === 'yellow' && Math.abs(ex) > 1) err(`CALL yellow needs 2M normalized spread within ±1 ${unit} (got ${ex.toFixed(2)} ${unit})`);
+    else if (lc === 'red' && ex >= -1 && !/thesis/i.test(reason)) err(`CALL red needs 2M normalized spread < -1 ${unit} or a stated thesis break (got ${ex.toFixed(2)} ${unit})`);
   }
 }
 

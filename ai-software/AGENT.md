@@ -37,13 +37,13 @@ params: period=14mo, interval=1d（全量重拉，幂等；窗口必须覆盖 20
 
 ## 灯规则（## VALIDITY，决定绿/黄/红）
 
-2M 超额 = 近 42 个交易日（约两个月）IGV（zeb 槽）相对 QQQ（tsx 槽）的归一化点差。
+2M 相对信号 = 截至最新收盘的 42 个交易观测值，IGV 与 QQQ 均按窗口首日 100 归一化；比较从第 -42 个观测值到最新观测值各自的标准化点数变化，差值单位为 normalized points（不是这两个月各自百分比收益之差）。
 
-- green（成立）: 超额 > +1pp，且 AI ARR 证据链完好
-- yellow（一般）: 超额在 ±1pp 内，thesis 完好
-- red（不成立）: 超额 < -1pp，或 thesis-break
+- green（成立）: 标准化点差 > +1 point，且 AI ARR 证据链完好
+- yellow（一般）: 标准化点差在 ±1 point 内，thesis 完好
+- red（不成立）: 标准化点差 < -1 point，或 thesis-break
 - thesis-break 定义：龙头下调 AI 指引、NRR 崩塌、hyperscaler 砍 capex、per-seat 加速侵蚀且无用户扩张对冲
-- CALL 行必须写清超额数字（如 `CALL: green | 1M excess +2.47pp vs QQQ — …`），校验器会用 chartdata 复算（允差 ±0.3pp）
+- CALL 行必须写清标准化点差（如 `CALL: green | 42-session normalized-point spread +2.47 normalized points vs QQQ — …`），校验器会用 chartdata 复算（允差 ±0.3 point）。
 
 ## 两因子归因框架
 
@@ -55,7 +55,8 @@ params: period=14mo, interval=1d（全量重拉，幂等；窗口必须覆盖 20
 |---|---|
 | 2026-09-10 | Adobe Q3（laggard 验证或证伪） |
 | 2026-10 下旬 | hyperscaler 财报 + MSFT Copilot 评论（AI capex 耐久度） |
-| 2026-11 ~ 12（预估） | CRM / NOW / WDAY Q3 财报（hot：AI ARR 能否连 beat 第二季） |
+| 2026-10 下旬（估计；以 IR 正式公告为准） | NOW Q3 日历年财报：cRPO/AI workflow 指引（2025 Q3 于 10/29 发布，2026 Q2 于 7/22 发布） |
+| 2026-11 下旬 ~ 12 上旬（估计；以 IR 公告为准） | WDAY FY27 Q3 / CRM FY27 Q3 财报：AI ARR 与续费/席位指标；不得将 NOW 并入此窗口 |
 | 持续 | per-seat 定价战、AI agent 新品（通用 AI 替代专业软件的 headline 风险） |
 
 ## 图表槽位映射（渲染器 key 名不许改）

@@ -7,7 +7,7 @@ import { test } from 'node:test';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const themes = [
-  { dir: 'ai-software', stat: 'WINDOW RETURN', value: '+0.79%', tone: 'up' },
+  { dir: 'ai-software', stat: 'WINDOW RETURN', value: '-9.08%', tone: 'dn' },
   { dir: 'canadian-banks', stat: '3M RETURN', value: '-0.50%', tone: 'dn' },
 ];
 
@@ -107,6 +107,27 @@ for (const theme of themes) {
   });
 }
 
+test('AI page separates concise drivers and labels actual staged events and monthly returns', async () => {
+  const markdown = stagedTheme('ai-software');
+  const { app, metaBar } = await renderPage('ai-software', successfulResponse(markdown));
+  assert.match(app.innerHTML, /class="driver-line market"[^>]*>.*Market-driven/s);
+  assert.match(app.innerHTML, /class="driver-line theme"[^>]*>.*Theme-driven/s);
+  for (const [kind, count] of [['market', 2], ['theme', 3], ['unverified', 10]]) {
+    assert.equal((app.innerHTML.match(new RegExp(`class="driver-type ${kind}"`, 'g')) || []).length, count);
+  }
+  assert.equal((app.innerHTML.match(/IGV MONTHLY/g) || []).length, 3);
+  assert.equal((app.innerHTML.match(/IGV DAILY/g) || []).length, 12);
+  assert.match(metaBar.innerHTML, /2026-09-28/);
+  assert.doesNotMatch(app.innerHTML, /<div class="verdict rv"><p>/);
+});
+
+test('AI page escapes untrusted frontmatter metadata', async () => {
+  const markdown = stagedTheme('ai-software').replace('updated: 2026-09-28', 'updated: <img src=x>');
+  const { metaBar } = await renderPage('ai-software', successfulResponse(markdown));
+  assert.match(metaBar.innerHTML, /&lt;img src=x&gt;/);
+  assert.doesNotMatch(metaBar.innerHTML, /<img/);
+});
+
 test('missing theme.txt shows a visible error instead of stale embedded data', async () => {
   const { app } = await renderPage('ai-software', Promise.resolve({ ok: false, status: 404 }));
 
@@ -132,7 +153,7 @@ test('AI Sep 21 QQQ return and IGV volume match recomputation from adjusted mark
   const qqqReturn = ((qqqSep21.close / qqqSep18.close) - 1) * 100;
   const recentVolumes = igvRows.filter(row => row.date <= '2026-09-21').slice(-20).map(row => row.volume);
   const igvVolumeRatio = igvSep21.volume / (recentVolumes.reduce((sum, volume) => sum + volume, 0) / recentVolumes.length);
-  const event = stagedTheme('ai-software').match(/^### #13 \| 2026-09-21[\s\S]*?(?=^### |\Z)/m)?.[0];
+  const event = stagedTheme('ai-software').match(/^### #\d+ \| 2026-09-21[\s\S]*?(?=^### |\Z)/m)?.[0];
 
   assert.ok(qqqSep18 && qqqSep21 && igvSep21 && event, 'expected Sep 21 adjusted observations and event');
   assert.equal(qqqReturn.toFixed(2), '2.88');

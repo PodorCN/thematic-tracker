@@ -10,7 +10,7 @@
 <style>
 :root{
   --bg:#060807; --panel:#0b100c; --panel2:#0e1510; --line:#1a2b1f; --line2:#24402d;
-  --txt:#c9d6cc; --mut:#5f7063; --dim:#8fa596;
+  --txt:#d9e7dc; --mut:#92a898; --dim:#b0c4b5;
   --acc:#00f48e; --acc-dim:rgba(0,244,142,.12);
   --loss:#ff5f5f; --loss-dim:rgba(255,95,95,.10);
   --amber:#ffb454; --teal:#4ec9b0;
@@ -20,7 +20,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--txt);
   font-family:'JetBrains Mono','PingFang SC','Microsoft YaHei',monospace;
-  font-size:14px; line-height:1.65; overflow-x:hidden;
+  font-size:16px; line-height:1.65; overflow-x:hidden;
 }
 body::after{
   content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
@@ -35,7 +35,7 @@ a{color:var(--acc);text-decoration:none}
 
 /* ── top bar ─────────────────────────── */
 .topbar{
-  position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center;
+  position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
   padding:14px 28px; background:rgba(6,8,7,.92); backdrop-filter:blur(6px);
   border-bottom:1px solid var(--line);
 }
@@ -78,9 +78,9 @@ section{margin-top:56px}
   border:1px solid var(--line); background:var(--panel); padding:14px 16px; position:relative;
   clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
 }
-.chip .role{font-size:10px;letter-spacing:.22em;color:var(--mut)}
+.chip .role{font-size:12px;letter-spacing:.12em;color:var(--dim)}
 .chip .tk{font-size:17px;font-weight:800;margin:2px 0 1px}
-.chip .nm{font-size:10.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip .nm{font-size:13px;color:var(--dim);overflow-wrap:anywhere}
 .chip .ret{font-size:20px;font-weight:800;margin-top:8px}
 .chip.main{border-color:var(--line2)}
 .chip.main::before{content:"MAIN PROXY";position:absolute;top:6px;right:14px;font-size:9px;letter-spacing:.2em;color:var(--acc)}
@@ -104,18 +104,23 @@ section{margin-top:56px}
 #chart{width:100%;height:560px}
 
 /* ── stats strip ─────────────────────── */
-.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:var(--panel)}
-.stat{padding:16px 18px;border-right:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;border:1px solid var(--line);background:var(--panel)}
+.stat{padding:19px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat:last-child{border-right:none}
-.stat .k{font-size:10px;letter-spacing:.18em;color:var(--mut)}
-.stat .v{font-size:22px;font-weight:800;margin-top:4px}
-.stat .s{font-size:11px;color:var(--mut);margin-top:2px}
-@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--line)}}
+.stat .k{font-size:13px;letter-spacing:.08em;color:var(--dim)}
+.stat .v{font-size:clamp(23px,2.2vw,28px);font-weight:800;margin-top:4px}
+.stat .s{font-size:14px;color:var(--dim);margin-top:4px;overflow-wrap:anywhere}
 
-/* ── verdict ─────────────────────────── */
-.verdict{border-left:2px solid var(--acc);background:var(--panel2);padding:20px 24px;margin-top:20px}
-.verdict p{color:var(--dim);max-width:1000px}
-.verdict b{color:var(--txt)}
+/* ── verdict: short takeaway, not a research transcript ── */
+.verdict{border-left:3px solid var(--acc);background:var(--panel2);padding:20px 24px;margin-top:20px;max-width:1050px}
+.verdict .driver-line{display:flex;align-items:baseline;gap:16px;padding:7px 0;color:var(--txt);font-size:16px}
+.verdict .driver-line + .driver-line{border-top:1px solid var(--line)}
+.verdict .driver-line b{flex:0 0 154px;letter-spacing:.03em;color:var(--dim)}
+.verdict .driver-line.market b{color:var(--teal)}
+.verdict .driver-line.theme b{color:var(--acc)}
+.verdict .driver-line.watch b{color:var(--amber)}
+.verdict .driver-line span{flex:1}
+@media(max-width:760px){.verdict .driver-line{display:block}.verdict .driver-line b{display:block;margin-bottom:3px}}
 
 /* ── timeline ────────────────────────── */
 .tl{position:relative;margin-left:8px;padding-left:44px}
@@ -133,32 +138,50 @@ section{margin-top:56px}
 .ev-ret.up{color:var(--acc);border-color:rgba(0,244,142,.35);background:var(--acc-dim)}
 .ev-ret.dn{color:var(--loss);border-color:rgba(255,95,95,.35);background:var(--loss-dim)}
 .ev-ret-lb{display:block;font-size:9px;letter-spacing:.2em;color:var(--mut);margin-top:6px}
-.ev .card{flex:1}
-@media(max-width:760px){.ev{flex-direction:column;gap:10px}.ev-left{padding-top:0}}
+.ev .card{flex:1;min-width:0;overflow-wrap:anywhere}
+@media(max-width:760px){
+  .wrap{padding:0 14px 60px}
+  .topbar{padding:12px 14px}
+  .topbar .cmd,.topbar .meta{overflow-wrap:anywhere}
+  .chips,.stats{grid-template-columns:minmax(0,1fr)}
+  .sec-head{flex-wrap:wrap}
+  .tl{margin-left:0;padding-left:20px}
+  .tl::before{left:4px}
+  .ev .node{left:-22px}
+  .ev{flex-direction:column;gap:10px}
+  .ev-left{flex:0 0 auto;padding-top:0}
+  .ev .card{width:100%;padding:16px}
+  .panel{padding:10px}
+  #chart{min-width:0}
+}
 .ev .card{
   border:1px solid var(--line);background:var(--panel);padding:18px 22px;transition:border-color .25s,background .25s;
   clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
 }
 .ev:hover .card{border-color:var(--acc);background:var(--panel2)}
-.ev .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:11px}
-.ev .num{color:var(--mut);letter-spacing:.1em}
-.tag{padding:2px 10px;border:1px solid;font-size:10px;letter-spacing:.18em}
+.ev .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+.ev .num{color:var(--dim);letter-spacing:.1em}
+.tag{padding:3px 10px;border:1px solid;font-size:12px;letter-spacing:.08em}
+.driver-type{padding:3px 10px;border:1px solid;font-size:12px;font-weight:800;letter-spacing:.06em}
+.driver-type.market{color:var(--teal);border-color:var(--teal);background:rgba(78,201,176,.10)}
+.driver-type.theme{color:var(--acc);border-color:var(--acc);background:var(--acc-dim)}
+.driver-type.unverified{color:var(--amber);border-color:var(--amber);background:rgba(255,180,84,.10)}
 .t-earn{color:var(--acc);border-color:rgba(0,244,142,.4);background:var(--acc-dim)}
 .t-mon{color:var(--amber);border-color:rgba(255,180,84,.4);background:rgba(255,180,84,.08)}
 .t-geo{color:var(--loss);border-color:rgba(255,95,95,.4);background:var(--loss-dim)}
 .t-mac{color:var(--teal);border-color:rgba(78,201,176,.4);background:rgba(78,201,176,.08)}
 .t-val{color:#e08fff;border-color:rgba(224,143,255,.35);background:rgba(224,143,255,.07)}
 .ev h3{font-size:16px;font-weight:800;margin:10px 0 8px;line-height:1.5}
-.ev .why{color:var(--dim);font-size:13px;max-width:980px}
+.ev .why{color:var(--dim);font-size:15px;max-width:980px}
 .ev .why b{color:var(--txt)}
 .moves{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.mv{border:1px solid var(--line);padding:6px 12px;font-size:12px;background:rgba(0,0,0,.25)}
-.mv .lb{color:var(--mut);margin-right:8px;font-size:10px;letter-spacing:.14em}
+.mv{border:1px solid var(--line);padding:7px 12px;font-size:14px;background:rgba(0,0,0,.25)}
+.mv .lb{color:var(--dim);margin-right:8px;font-size:12px;letter-spacing:.08em}
 .mv .vl{font-weight:800}
-.src{font-size:10.5px;color:var(--mut);margin-top:10px}
+.src{font-size:13px;color:var(--dim);margin-top:10px;overflow-wrap:anywhere}
 
 /* ── catalysts ───────────────────────── */
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
 .cat{
   border:1px solid rgba(255,180,84,.35);background:rgba(255,180,84,.05);padding:20px 22px;
   clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
@@ -166,7 +189,7 @@ section{margin-top:56px}
 .cat.hot{border-color:var(--amber);background:rgba(255,180,84,.1)}
 .cat .d{color:var(--amber);font-size:11px;letter-spacing:.16em;font-weight:600}
 .cat h3{font-size:15px;font-weight:800;margin:8px 0 8px}
-.cat p{color:var(--dim);font-size:12.5px}
+.cat p{color:var(--dim);font-size:14px;overflow-wrap:anywhere}
 .cat p b{color:var(--txt)}
 
 /* ── footer ──────────────────────────── */
@@ -229,7 +252,7 @@ function parseEvents(sec){
     const head = lines[0].split("|").map(s=>s.trim());
     const retM = head[2] ? head[2].match(/([+\-]?[\d.]+%)/) : null;
     const ev = {num:head[0].replace("#",""), date:head[1], ret: retM? retM[1] : "—",
-                retNeg: retM ? retM[1].startsWith("-") : false, tag: head[3]||"", paras:[], moves:[], src:""};
+                retNeg: retM ? retM[1].startsWith("-") : false, tag: head[3]||"", driver:"UNVERIFIED", period:"DAILY", paras:[], moves:[], src:""};
     let i=1;
     if(lines[i] && /^\*\*.*\*\*$/.test(lines[i])){ ev.title = lines[i].replace(/\*\*/g,""); i++; }
     for(; i<lines.length; i++){
@@ -237,6 +260,8 @@ function parseEvents(sec){
       if(l.startsWith("MOVES:")) ev.moves = l.slice(6).split("|").map(s=>s.trim()).map(p=>{
         const kv=p.split("="); return {lb:kv[0].trim(), vl:(kv[1]||"").trim()};});
       else if(l.startsWith("SRC:")) ev.src = l.slice(4).trim();
+      else if(l.startsWith("DRIVER:")) ev.driver = /^(MARKET|THEME|UNVERIFIED)$/.test(l.slice(7).trim()) ? l.slice(7).trim() : "UNVERIFIED";
+      else if(l.startsWith("PERIOD:")) ev.period = l.slice(7).trim() === "MONTH" ? "MONTHLY" : "DAILY";
       else ev.paras.push(l);
     }
     return ev;
@@ -266,7 +291,7 @@ function render(md){
   const T = parseTheme(md);
   const meta = T.meta;
   document.getElementById("metaBar").innerHTML =
-    `LAST UPDATE <b>${meta.updated||"—"}</b> · WINDOW <b>${meta.window||"3M"}</b> · CCY <b>${meta.currency||"CAD"}</b> · SRC <b>theme.md</b>`;
+    `LAST UPDATE <b>${esc(meta.updated||"—")}</b> · WINDOW <b>${esc(meta.window||"3M")}</b> · CCY <b>${esc(meta.currency||"CAD")}</b> · SRC <b>theme.md</b>`;
 
   const proxies = parseTable(T.sections["PROXIES"]||"");
   const stats   = parseTable(T.sections["STATS"]||"");
@@ -307,10 +332,10 @@ function render(md){
       <div class="ev-left">
         <div class="ev-date">${mon} ${day}<span class="yr">${yr}</span></div>
         <div><span class="ev-ret ${rc} mono-num">${esc(e.ret)}</span></div>
-        <div class="ev-ret-lb">IGV DAILY</div>
+        <div class="ev-ret-lb">IGV ${e.period}</div>
       </div>
       <div class="card">
-        <div class="row1"><span class="num">#${e.num}</span><span class="tag ${tagCls(e.tag)}">${esc(e.tag)}</span></div>
+        <div class="row1"><span class="num">#${e.num}</span><span class="driver-type ${e.driver.toLowerCase()}">${{MARKET:"MARKET DRIVEN",THEME:"THEME DRIVEN",UNVERIFIED:"DRIVER UNVERIFIED"}[e.driver]}</span><span class="tag ${tagCls(e.tag)}">${esc(e.tag)}</span></div>
         <h3>${mdInline(e.title)}</h3>
         ${e.paras.map(p=>`<p class="why">${mdInline(p)}</p>`).join("")}
         <div class="moves">${mv}</div>
@@ -332,6 +357,11 @@ function render(md){
   const callRules = valSec.filter(l=>l.startsWith("-")).map(l=>"<li>"+mdInline(l.replace(/^-\s*/,""))+"</li>").join("");
   const callbar = '<div class="callbar '+callCls+' rv"><span class="cdot"></span><span><b>THEME CALL: '+callTxt+'</b> — '+esc(callReason)+'</span></div>'
     + '<div class="callrules rv"><b>判定标准 VALIDITY</b><ul>'+callRules+'</ul></div>';
+  const verdictLabels = {MARKET:"Market-driven · 大盘",THEME:"Theme-driven · 软件",WATCH:"What changes the call · 观察"};
+  const verdictHtml = (T.sections["VERDICT"]||"").split("\n").map(l=>l.trim()).filter(Boolean).map(line=>{
+    const m = line.match(/^(MARKET|THEME|WATCH):\s*(.+)$/);
+    return m ? `<div class="driver-line ${m[1].toLowerCase()}"><b>${verdictLabels[m[1]]}</b><span>${mdInline(m[2])}</span></div>` : "";
+  }).join("");
   document.getElementById("app").innerHTML = `
   <section class="hero">
     <div class="kicker rv">THEMATIC TRACKER</div>
@@ -346,10 +376,10 @@ function render(md){
       <div id="chart"></div>
     </div>
     <div class="stats" style="margin-top:16px">${statsHtml}</div>
-    <div class="verdict rv"><p><b>VERDICT:</b> ${mdInline((T.sections["VERDICT"]||"").trim())}</p></div>
+    <div class="verdict rv">${verdictHtml}</div>
   </section>
   <section>
-    <div class="sec-head"><h2>DRIVER TIMELINE</h2><span>newest first · IGV daily move on the left of each card</span></div>
+    <div class="sec-head"><h2>DRIVER TIMELINE</h2><span>newest first · left = IGV daily or monthly move (labeled per card)</span></div>
     <div class="tl">${evHtml}</div>
   </section>
   <section>
