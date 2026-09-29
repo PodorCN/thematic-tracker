@@ -1,77 +1,61 @@
 {
   "schema_version": "1.0",
   "status": "open",
-  "reviewed_at": "2026-09-15T17:04:22-04:00",
-  "candidate_sha256": "12d33a00f7f02136253f0aa99879b3f411a86c7300adadf14283a5f707e0d4ab",
-  "review_sha256": "c9e212088601897bf27e1926722ad620b687d9e470b2ae9ff37e1f33a9dec959",
-  "source_review": "review/fed-boc/2026-09-15/iteration-03/pm-review.json",
-  "executive_summary": "Revise. Candidate and evidence-manifest integrity, CRAU26 path/row, Fed proxy arithmetic, official policy facts, Ivey/Empire/ADP/ISM chains, session cutoffs, and forward-calendar fields pass. However, the frozen evidence does not reproduce several nonzero driver forecast/previous fields, and the displayed CL=F weekly return is numerically inconsistent with its displayed bases; the candidate is not safe for P&L use or publication until rebuilt.",
+  "reviewed_at": "2026-09-29T02:23:55-04:00",
+  "candidate_sha256": "9967593a923c1992fc07314e662b1ef3be9a202125b9e03ba7cf3419d6c62b00",
+  "review_sha256": "6a72fa3ea873d1cfd39fe052379314a65a0ca290ac957643bd83661b26906da7",
+  "source_review": "fed-boc-watcher/review/2026-09-29/iteration-01/pm-review.json",
+  "executive_summary": "Round 1: REVISE. sha256sum independently confirms candidate digest 9967593a923c1992fc07314e662b1ef3be9a202125b9e03ba7cf3419d6c62b00. All 84 payload SHA references and all 38 evidence-manifest entries match disk. I independently recomputed the six Monday Sep 28 ticker returns on the two-decimal display basis; no Sep 29 session price is claimed. Official policy dates/rates, null single-meeting probabilities, recorded refresh failures, Michigan date correction, and the BoC +0.6% prior check out. The 13/13 structural gate passed with brief regenerated=True; pytest passed 64 tests. A temporary headless-Chrome render showed both bank panels, no fabricated odds, neutral/no-edge verdicts, and each requested brief section once. The 79-word attention block is concise and names dated catalysts, but publication is blocked by a false Fed contract-tenor label, incorrect midpoint assertions/arithmetic, and an unsupported Michigan historical-rank claim. One stale Sep 25 sentence also remains in pricing provenance.",
   "failed_checks": [
     "decision_usefulness",
     "drivers",
+    "freshness",
     "pricing"
   ],
   "findings": [
     {
+      "severity": "major",
+      "field": "meetings.fed.pricing.observable_proxy.implied_quarterly_average_rate; verification_note.known_limitations[2]; decision_brief.summary; decision_brief.what_is_priced.unavailable; decision_brief.changes_since_previous[1]; fed-boc-watcher/index.html Fed pricing-card label",
+      "issue": "ZQV26 is the October 30-Day Federal Funds futures contract, whose settlement is based on the average daily EFFR during its delivery month; it is not a quarterly-average contract. The payload calls its rate quarterly in several places, and the rendered Fed card displays '3.895% quarterly-average rate'. This conflicts with the candidate's own contract_horizon_caveat, which correctly calls it an October 30-day average. Neither contract-level average is a single-meeting probability.",
+      "evidence": "Headless Chrome --headless=new --dump-dom against the candidate rendered Fed card text '3.895% quarterly-average rate'. yahoo_ZQV26_CBT_daily.json has the Sep 28 close 96.105. CME's 30-Day Fed Funds rule language defines contract grade as 100 minus the arithmetic average of daily EFFR during the contract delivery month: https://www.cmegroup.com/tools-information/lookups/advisories/ser/SER-7594.pdf. Candidate meetings.fed.pricing.observable_proxy.contract_horizon_caveat itself says October 30-day average. By contrast, CRAU26 is the three-month CORRA contract and is appropriately described as quarterly.",
+      "pnl_impact": "Misstating the tenor can make a PM attribute a monthly average-rate exposure to a quarter or to the Oct 28 meeting, distorting hedge horizon and the interpretation of policy risk.",
+      "instruction": "Change the Fed-specific field description and renderer label to 'October monthly (30-day) average EFFR'; keep the separate CORRA proxy labeled quarterly. Correct every statement that calls both proxies quarterly, and do not convert either proxy into meeting odds."
+    },
+    {
+      "severity": "major",
+      "field": "decision_brief.headline; decision_brief.summary; decision_brief.what_is_priced.fed; decision_brief.attention_budget; decision_brief.banks.fed.rationale; decision_brief.trade_status_rationale",
+      "issue": "The brief repeatedly says every priced contract is at its range midpoint and says 3.895% is within one basis point of the Fed midpoint. Neither statement is correct: the Fed range midpoint is 3.875%, so 3.895% is 2 bp above it; CRAU26's 2.375% quarterly-average rate is 12.5 bp above the BoC's 2.25% target, and the BoC target is not a target range. The headline and abstention rationale therefore contradict the quoted proxy values.",
+      "evidence": "Independent arithmetic command output: FED_MIDPOINT_DIFF_BP 2.0000000000000018; CORRA_ABOVE_TARGET_BP 12.5. Candidate values: ZQV26 close 96.105 -> 3.895%; CRAU26 bid/ask 97.62/97.625 -> approximately 2.375%. The raw Yahoo daily capture and TMX/MX CRAU26 row were inspected; the rendered card also shows these values. The candidate itself states these values in decision_brief.what_is_priced.fed and .boc.",
+      "pnl_impact": "This overstates the evidence for a neutral policy path and hides a measurable cross-quarter CORRA premium. A decision maker could dismiss priced rate drift or mis-size a position based on the false midpoint premise.",
+      "instruction": "Replace the blanket midpoint claim with the exact distinctions: ZQV26's October monthly average is 2 bp above the Fed target-range midpoint; CRAU26 implies roughly 2.375% average CORRA, 12.5 bp above the 2.25% policy target, across two decisions. Keep the no-trade rationale grounded in the unavailable single-meeting distributions and non-executable quote-side observation; correct all listed copies."
+    },
+    {
+      "severity": "major",
+      "field": "drivers.fed.dovish[0].reason",
+      "issue": "The reason calls 48.1 the 'second-lowest final reading on record', but that historical-rank claim is not present in either bound Michigan source. The official September capture reports 48.1, August 51.7, and that sentiment was at its lowest reading in four months; it does not establish a second-lowest all-time rank.",
+      "evidence": "Bound actual capture: evidence/recollection/umich-final-sep2026.html (official University of Michigan release); bound consensus capture: fed-boc-watcher/review/2026-09-28/iteration-03/evidence/recollection/umich-consensus-news.html. Independent text check returned MICHIGAN_BOUND_CAPTURE_HAS_RECORD_RANK False; repository-wide capture search found no matching historical-rank statement. The 48.1 / 51.7 actuals and 47.6 Reuters consensus are evidenced, and published_at / published_date_toronto are 2026-09-25.",
+      "pnl_impact": "The superlative amplifies the soft-consumer signal and could bias the Fed narrative or later weighting. Its current base weight is zero, limiting immediate score impact, but the displayed claim remains unsupported.",
+      "instruction": "Remove 'second-lowest final reading on record' or bind a verifiable historical University of Michigan series that proves the rank; keep the evidenced values and the source's narrower 'lowest in four months' wording."
+    },
+    {
       "severity": "minor",
-      "field": "market.context[CL=F].chg_1w",
-      "issue": "The displayed CL=F weekly return does not reproduce from the displayed bases: 105.84 / 93.03 - 1 = 0.1376975169, which rounds to 0.137698, not the candidate value 0.137697.",
-      "evidence": "candidate.json records CL=F price 105.84, weekly_base_close 93.03 and chg_1w 0.137697. Frozen evidence/market/CL%3DF.1m.json has the 2026-09-15 14:30 ET bar 105.83999633789062 and evidence/market/CL%3DF.1d.json has the 2026-09-08 close 93.02999877929688; recomputation from the displayed values gives 0.137698 (13.7698%).",
-      "pnl_impact": "The direct economic difference is only 0.0001 percentage point, but a visible return that fails its stated displayed-base calculation breaks reconciliation and can create threshold or downstream signal mismatches.",
-      "instruction": "Recompute the CL=F 1-week normalized return and any rendered percentage with one documented rounding rule, then update the candidate consistently, rerun all market assertions, rebuild the whole candidate and handoff, and recompute candidate.sha256 before resubmission."
-    },
-    {
-      "severity": "major",
-      "field": "drivers.fed.hawkish.fed_hawk_uom_inflation_20260911.data.forecast",
-      "issue": "The 51.0 Michigan sentiment consensus is named as an FXStreet value but is not present in any frozen iteration-03 evidence or field-level provenance, so the actual-versus-consensus miss and the retained 1.0 hawkish weight are not independently reproducible.",
-      "evidence": "evidence/michigan.html reproduces the official preliminary September actual 47.8, August sentiment 51.7 and inflation-expectation fields, but not a 51.0 consensus. evidence/economic-calendar.json is the FXStreet window for 2026-09-14 through 2026-09-21 and its current rows contain only the Sep-15 ADP average and Empire State release; it has no Sep-11 Michigan row. The candidate has no source_provenance or frozen evidence path for the claimed 51.0 value.",
-      "pnl_impact": "The unsupported forecast determines the displayed -3.2 sentiment surprise and supports a nonzero Fed hawkish contribution; an erroneous or unavailable consensus can change the sign, weight, and Fed net signal around the FOMC.",
-      "instruction": "Recollect and freeze the exact Sep-11 Michigan consensus record, including provider URL, response path, hash/bytes, event timestamp, unit, actual 47.8, forecast 51.0 and previous 51.7, and add explicit field-level provenance. If the record cannot be recovered, null the unsupported forecast and re-evaluate the card side/weight before rebuilding the entire candidate, hash, and handoff."
-    },
-    {
-      "severity": "major",
-      "field": "drivers.boc.dovish.boc_dove_labour_20260904.data.actual_forecast_previous",
-      "issue": "The BoC labour card's -41.7k actual, +15.0k forecast and +75.1k previous are not reproduced by the frozen evidence chain; the only cited source is the official StatCan release, which displays employment down 42,000 and does not provide those forecast/previous values.",
-      "evidence": "evidence/statcan-lfs.html is live at HTTP 200 and states employment fell by 42,000 in August, unemployment was 6.4%, wages grew 2.0% after 2.8% in July; it contains neither the exact -41.7k figure nor +15.0k/+75.1k forecast/previous records. evidence/economic-calendar.json starts on 2026-09-14 and has no Sep-4 labour row, and the candidate provides no secondary source URL, evidence path, or source_provenance for the missing fields.",
-      "pnl_impact": "The unsupported -56.7k surprise drives a high 2.0 dovish weight and materially affects the BoC net hawkish balance; both signal direction and magnitude are unreliable until the A/F/P chain and actual precision are reconciled.",
-      "instruction": "Freeze the exact Sep-4 labour consensus/previous record and a precise StatCan series artifact, explicitly label each provider and URL, and reconcile the unrounded actual against the official -42k headline. If unavailable, remove or null unsupported A/F/P fields, neutralize/reweight the driver, rebuild all dependent balance text, then rebuild the whole candidate, hash, and handoff."
-    },
-    {
-      "severity": "major",
-      "field": "drivers.boc.dovish.boc_dove_asking_rents_20260909.data.previous",
-      "issue": "The candidate uses a Q1 previous asking-rent value of C$2,150 and -0.9% YoY without freezing the prior-release evidence needed to reproduce it.",
-      "evidence": "evidence/statcan-rents.html supports only the Q2 2026 value of C$2,130 and -3.6% YoY and contains a link to the previous release; it does not contain C$2,150 or -0.9%. The linked Q1 page is not in the iteration-03 manifest, and the candidate has no secondary source URL or field-level provenance for the previous tuple.",
-      "pnl_impact": "The unsupported comparison is used in the card's dovish interpretation and 1.0 weight; an incorrect prior can distort the housing-pressure signal in the BoC rope even though the current Q2 observation is valid.",
-      "instruction": "Recollect the linked Q1 release or another explicitly identified provider into the current evidence manifest and map the C$2,150/-0.9% fields to it. If the prior cannot be verified, remove the comparison and re-evaluate the card's side/weight, then rebuild and rehash the full candidate and handoff."
-    },
-    {
-      "severity": "major",
-      "field": "drivers.boc.hawkish.boc_hawk_gdp_20260828.data.forecast",
-      "issue": "The +0.2% MoM / +3.4% annualized forecast used for the GDP surprise is not present in the frozen evidence, and the candidate names only the Q2 expenditure URL even though its reason also relies on the separate June industry release.",
-      "evidence": "evidence/statcan-gdp.html supports Q2 real GDP +0.8% and the Q1 revision to +0.1%; evidence/statcan-gdp-industry.html supports June industry GDP +0.3%. Neither frozen page contains the claimed +0.2% MoM / +3.4% annualized forecast, and candidate.json has only https://www150.statcan.gc.ca/n1/daily-quotidien/260828/dq260828a-eng.htm as source_url with no secondary source URL or forecast provenance.",
-      "pnl_impact": "The unsupported forecast is the basis for the June beat and a 2.0 hawkish weight; it can materially overstate the growth impulse and the BoC hawkish balance.",
-      "instruction": "Freeze the exact forecast provider record and map it separately from both official actual-release URLs, or null the forecast and remove the beat claim. Re-evaluate the GDP side/weight and all derived balance text, then perform a whole-candidate rebuild, hash refresh, and handoff reassertion."
-    },
-    {
-      "severity": "major",
-      "field": "drivers.boc.hawkish.boc_hawk_hold_20260902.data.forecast",
-      "issue": "The official evidence proves the Sep-2 hold at 2.25% but does not prove the candidate's forecast string 'Hold 2.25%' or its statement that the decision matched consensus.",
-      "evidence": "evidence/boc-last-statement.html and evidence/boc-rate.html reproduce the actual Sep-2 policy target and rates. The frozen evidence/economic-calendar.json covers Sep-14 through Sep-21 and contains no Sep-2 consensus row, while the candidate's hold card has no secondary source URL, source_provenance, or frozen consensus path.",
-      "pnl_impact": "The unsupported no-surprise comparison is attached to a 2.0 hawkish hold weight; without a verified consensus, the card's surprise interpretation and contribution to the BoC balance are not auditable.",
-      "instruction": "Freeze the Sep-2 consensus record with provider URL, event timestamp, unit and evidence hash, or relabel the forecast as an explicit desk assumption and remove the matched-consensus A/F/P claim. Re-evaluate the hold card's side/weight and rebuild the complete candidate, handoff, and digest hash."
+      "field": "meetings.fed.pricing.source",
+      "issue": "This provenance sentence still says the ZQV26 proxy is at its Sep 25 daily close, while the same payload and bound raw capture use the Sep 28 close of 96.105.",
+      "evidence": "Candidate meetings.fed.pricing.source says 'Sep 25 daily close'; meetings.fed.pricing.price_session_date and observable_proxy.session_date both say 2026-09-28. Independent inspection of yahoo_ZQV26_CBT_daily.json shows its latest completed bar dated 2026-09-28 at 96.105.",
+      "pnl_impact": "It misstates the age of the quote in provenance and could confuse a reader auditing the displayed market snapshot, although the rendered card's as-of and session date are current.",
+      "instruction": "Change the stale date in meetings.fed.pricing.source to Sep 28 and ensure it agrees with the bound close and session fields."
     }
   ],
   "required_recollection": [
-    "Recollect and freeze the exact Sep-11 Michigan consensus record, including provider URL, response path, hash/bytes, event timestamp, unit, actual 47.8, forecast 51.0 and previous 51.7, and add explicit field-level provenance. If the record cannot be recovered, null the unsupported forecast and re-evaluate the card side/weight before rebuilding the entire candidate, hash, and handoff.",
-    "Freeze the exact Sep-4 labour consensus/previous record and a precise StatCan series artifact, explicitly label each provider and URL, and reconcile the unrounded actual against the official -42k headline. If unavailable, remove or null unsupported A/F/P fields, neutralize/reweight the driver, rebuild all dependent balance text, then rebuild the whole candidate, hash, and handoff.",
-    "Recollect the linked Q1 release or another explicitly identified provider into the current evidence manifest and map the C$2,150/-0.9% fields to it. If the prior cannot be verified, remove the comparison and re-evaluate the card's side/weight, then rebuild and rehash the full candidate and handoff.",
-    "Freeze the exact forecast provider record and map it separately from both official actual-release URLs, or null the forecast and remove the beat claim. Re-evaluate the GDP side/weight and all derived balance text, then perform a whole-candidate rebuild, hash refresh, and handoff reassertion.",
-    "Freeze the Sep-2 consensus record with provider URL, event timestamp, unit and evidence hash, or relabel the forecast as an explicit desk assumption and remove the matched-consensus A/F/P claim. Re-evaluate the hold card's side/weight and rebuild the complete candidate, handoff, and digest hash."
+    "Change the Fed-specific field description and renderer label to 'October monthly (30-day) average EFFR'; keep the separate CORRA proxy labeled quarterly. Correct every statement that calls both proxies quarterly, and do not convert either proxy into meeting odds.",
+    "Replace the blanket midpoint claim with the exact distinctions: ZQV26's October monthly average is 2 bp above the Fed target-range midpoint; CRAU26 implies roughly 2.375% average CORRA, 12.5 bp above the 2.25% policy target, across two decisions. Keep the no-trade rationale grounded in the unavailable single-meeting distributions and non-executable quote-side observation; correct all listed copies.",
+    "Remove 'second-lowest final reading on record' or bind a verifiable historical University of Michigan series that proves the rank; keep the evidenced values and the source's narrower 'lowest in four months' wording."
   ],
   "operator_instructions": [
-    "Do not publish this candidate. Recollect the missing Michigan and BoC forecast/previous evidence into iteration-03 or a new immutable iteration, with exact provider URLs, event/source timestamps, hashes, byte counts, and field-level mappings.",
-    "Resolve the CL=F displayed-base arithmetic and re-evaluate every affected driver side, weight, delta, balance, and decision-usefulness statement; rebuild the entire candidate rather than patching prose.",
-    "Recompute candidate.sha256 and the evidence-manifest checks, update the PM handoff with each affected field-to-evidence mapping and deterministic reassertion, then submit a fresh independent PM review."
+    "Correct the Fed monthly-versus-quarterly contract label in the payload and renderer, while retaining the CORRA quarterly description and null meeting probabilities.",
+    "Replace all false midpoint language and correct the Fed difference to 2 bp and the CORRA premium to 12.5 bp; preserve the disclosed quote-side and cross-meeting limitations.",
+    "Remove or source the Michigan 'second-lowest on record' rank claim, and update the stale Sep 25 sentence in meetings.fed.pricing.source.",
+    "Freeze the corrected revision under a new digest, rerun the structural gate, static tests, and isolated headless render, then submit that new SHA for review; do not stage it over data/latest.json or publish without approval."
   ],
   "next_run_contract": [
     "Read this feedback before collecting or editing the next candidate.",

@@ -1,0 +1,5 @@
+# Keep byte-bound watcher payloads stable across Windows/Linux checkouts.
+*.json text eol=lf
+*.sha256 text eol=lf
+# Raw provider responses are evidence bytes; never normalize their source hashes.
+review/**/evidence/** -text !eol

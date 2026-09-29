@@ -270,15 +270,19 @@ Polymarket 取数优先级：`pricing.polymarket` 快照（如有）> 最新视�
 
 | 字段 | 必填 | 说明 |
 |---|---|---|
-| `datetime_toronto` | **是** | 前端表格 `时间 多伦多` 列直接展示，**必须 -04:00** |
-| `datetime_utc` | 是 | 供倒计时计算（前端 `new Date(datetime_utc)`） |
+| `datetime_toronto` | timed release: **required**; date-only release: `null` | Only print a clock time supplied by the official source; never invent one |
+| `datetime_utc` | timed release: **required**; date-only release: `null` | Countdown input; date-only rows have no countdown |
+| `event_date_toronto` | date-only release: **required** | ISO `YYYY-MM-DD`; visible/filterable date without implying a clock time |
+| `date_only` / `time_status` | date-only release: **required** | `true` plus the source's date-only status; retain official source URL, observation time, evidence path, bytes, and SHA-256 |
 | `currency` | 是 | `USD`/`CAD` 供筛选 |
 | `impact` | 是 | `HIGH`/`MEDIUM`/`LOW` 决定行背景色 |
-| `forecast` / `previous` | 是 | 字符串展示 + `*_raw` 数值可选 |
+| `forecast` / `previous` | 是 | 字符串展示 + `*_raw` 数值可选；无可信来源时保持 `null` |
 | `logic` | 是 | “驱动逻辑” 灰底说明 |
 | `hawk_if` / `dove_if` | 否 | 表格最后一列徽标 |
 
-前端筛选：USD / CAD / HIGH，搜索 `event`，日期下拉 `datetime_toronto` 的 `YYYY-MM-DD`。
+**Date-only contract:** an official event that provides a date but no release time belongs in the visible `calendar` and decision frame with both datetime fields and `release_time_toronto` set to `null`, `event_date_toronto` set to the verified date, and `date_only: true`. The page shows the date, source and “time not published”; it never creates a countdown or substitutes midnight as an event time. Midnight may be used only as an internal stable sort key and is not displayed.
+
+前端筛选：USD / CAD / HIGH，搜索 `event`，日期下拉优先用 `event_date_toronto`，再用 timed row 的 `datetime_toronto` 日期。
 
 ---
 
