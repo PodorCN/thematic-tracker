@@ -102,3 +102,93 @@ Approval must not be conditional. “Approved if fixed” is `revise`.
 
 A failed or missing reviewer, malformed artifact, digest mismatch, or stale
 approval always blocks publication.
+
+
+---
+
+# Reviewer Playbook (learned 2026-09-28, four rounds)
+
+Everything above is the mandate. This section is what a reviewer actually needs to
+avoid wasting a round. Each item below is a real cost the reviewer or the operator
+paid in this project.
+
+## Your first obligation: the artifact must exist on disk
+
+- **Write `pm-review.json` yourself, as your first-class deliverable, before you
+  return your final message.** Do not rely on the operator transcribing your
+  verdict — a review whose file was never written is not a review.
+- Verify the file you just wrote parses and that its `candidate_sha256` equals
+  `candidate.sha256` byte-for-byte. If you run low on tool budget, drop
+  lower-value checks and **keep the write**.
+- Never report "approved" in prose while leaving the artifact unwritten. The
+  operator is not allowed to transcribe it (see operator AGENT.md §9).
+
+## Use the exact schema — no invented field names
+
+The validator (`scripts/econ/validate_pm_review.py`) enforces a fixed shape. Before
+writing, read `fed-boc-watcher/review/pm-review.schema.json`. The rules that bite:
+
+- Top-level keys are exactly: `schema_version`, `reviewer_role`, `reviewed_at`,
+  `candidate_sha256`, `verdict`, `executive_summary`, `checks`, `findings`,
+  `pnl_risks`, `operator_instructions`.
+- `checks` has exactly six keys, spelled exactly:
+  `official_policy`, `pricing`, `drivers`, `market_validation`, `freshness`,
+  `decision_usefulness`. **Do not rename or substitute these** — a faithful but
+  differently-named file wastes the whole round and costs the operator a manual
+  rewrite.
+- Each finding has exactly six keys: `severity`, `field`, `issue`, `evidence`,
+  `pnl_impact`, `instruction`.
+- `approved` may **not** carry `operator_instructions` (it must be empty). Put
+  anything you need the operator to know in `executive_summary`.
+- `revise` findings must be executable: name the field, the evidence, why it
+  moves P&L, and the concrete change.
+
+## Distinguish your verdict from the machine's
+
+The operator may have run the structural gate, but its output is not your verdict.
+You are the independent check; do not rubber-stamp it. Conversely, **if the
+structural gate itself is wrong, say so explicitly** — during this round the
+operator's own `evidence_contains_claim` check produced a false positive that led
+to a self-contradictory page. A reviewer who spots a broken check is doing the
+job correctly; a reviewer who trusts a machine's false positive is not.
+
+## A review that only says "revise" without a location is wasted
+
+Every finding must carry a concrete, greppable location: a JSON path
+(`drivers.fed.dovish[0].actual`), an evidence filename, a live URL, or an exact
+quoted string. Round 2's blocking finding named the field, quoted the offending
+`grep` output, and even supplied a fallback instruction — that is the standard.
+
+## Fresh review each round; carry forward nothing but open items
+
+- Review the frozen bytes of the candidate you were given. Never review a
+  description of it, and never assume a prior approval carries forward.
+- Read `fed-boc-watcher/review/feedback/latest.json` and confirm every open
+  operator instruction is actually resolved in the new candidate. Say so
+  explicitly in `executive_summary` (e.g. "the previously flagged X is now bound
+  to Y"). A reviewer that doesn't check the feedback is why the same defect
+  survives three rounds.
+
+## Severity discipline
+
+- `critical`/`major` = a number that is wrong, a conclusion that is wrong, an
+  unsupported claim presented as fact, or a self-contradictory page. Block.
+- `minor` = wording, naming, counting nits, unsourced-but-true superlatives,
+  tests that should be pinned to a specific candidate. **Do not block on these**;
+  say "next natural rebuild" and move on. Over-strict reviewers burn operator
+  budget and get their real findings ignored.
+- "Approved if fixed" is `revise` — but a *fixable minor* is not. Distinguish
+  "this is wrong" from "this could be tidier."
+
+## Scope discipline
+
+State exactly what you approved. An approval binds one candidate's SHA-256; it
+never covers a newer candidate that a scheduled run produced afterward. If a newer
+candidate exists, say in `executive_summary` that it is not covered.
+
+## Decide with real capital in mind
+
+The question is never "is the writing clear" — it is "would I size a position off
+this page, and what would cost me money." Check the actual sources (official
+statements, exchange data), verify the displayed numbers against the bound
+evidence, and only then judge the narrative.
