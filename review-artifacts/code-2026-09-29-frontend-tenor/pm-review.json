@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "reviewer_role": "independent_code_reviewer",
+  "reviewed_at": "2026-09-29T16:49:00-04:00",
+  "subject_manifest_sha256": "febdd7609a98e757ffbfa660b1ce916ba94e49fa1e5ac5f2ad65f22c4d58126b",
+  "verdict": "revise",
+  "executive_summary": "REVISE - one major issue blocks approval; two minor items. The renderer change itself is correct and every executed check passes: all three subject digests verify (index.html 8b1242a0558d541c1c801a663e1124a328cbc9cfea0daaedda8192837ef106ca, tests/test_render_truthfulness.py 9b4b1489007089c4ab21ca956c192f8302d70bbdfd7ad0e12741525444d524d5, scripts/econ/frontend_contract.json 83c45f41390ffd87c335eba280f47107d1326aa91aa5b5b987d06e7cc3ec611c; byte sizes match; bytes unchanged throughout the review), the pinned render gate against the approved candidate c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b passes 6/6 (exit 0), the full suite is 83 passed + 1 designed label-skip (exit 0), the CRLF-normalized digest of fed-boc-watcher/index.html equals the contract's fed-boc-watcher entry a128633d9180db1b5442924ae2494ff41b5b488055550e3667938c73795ec32f (all four contract entries match current files), verify_template_binding is fail-closed (7-case proof: wrong, malformed, and corrupt contract all produce the violation; CRLF/LF variants are tolerated), and the patch is byte-identical to the HEAD->worktree diff (SHA 9bae4461...), with index.html hunks confined to the renderOdds observable-proxy lines - nothing unrelated. Headless-Chrome DOM probes confirm the rendered behavior end-to-end: the Fed card renders '3.895% October monthly (30-day) average EFFR' from implied_monthly_average_rate; the BoC card renders '2.375% quarterly average CORRA'; a quarterly-only payload still renders via the fallback (3.890%/2.378% with the generic 'contract-average rate' label); monthly wins when both keys exist; a non-finite monthly value falls through to quarterly; with neither key the card shows 'observable proxy level available' and nothing is fabricated; the label always comes from the payload. THE BLOCKER: the review brief states the change includes 'a new test [that] asserts the payload uses tenor-specific keys', but no test in tests/ references either key, and - demonstrated empirically against a scratch clone using the real frozen test file (byte-identical copy) - the pinned suite passes identically with the pre-change renderer restored (6/6 in both runs) while the Fed card observably loses its level ('observable proxy level available'). The gate shipping with this change cannot fail when the change's behavior reverts: nothing asserts the Fed card mirrors the monthly-key value, because the label assertion matches page-wide text and brief prose supplies the same label string. Fix: add render-level assertions that fail against the old logic, add (or remove the claim of) the key-level test, close the missing-pin skip hole, re-freeze, re-review. Minors: a mistyped FED_BOC_RENDER_CANDIDATE silently produces a green partially-skipped run; the freeze manifest's created_at is forward-dated. All probes ran scratch-only; the repo was left as found (data/latest.json 82cae1b1101430e2da1182b3ea5daf1663f013f5995ab5bf09a554b8d27c6024 untouched). Independent review executed under the pinned provider opencode-go / deepseek-v4.1-flash.",
+  "checks": {
+    "runtime_pinning_confirmed": "pass",
+    "manifest_digest_verification": "pass",
+    "render_gate_pinned_candidate": "pass",
+    "full_test_suite": "pass",
+    "contract_binding_crlf_normalized": "pass",
+    "template_binding_fail_closed": "pass",
+    "renderer_monthly_preference_and_fallback": "pass",
+    "renderer_no_fabrication": "pass",
+    "label_from_payload": "pass",
+    "candidate_pinning_no_auto_select": "pass",
+    "headless_render_fail_closed": "pass",
+    "patch_scope_minimal": "pass",
+    "described_tenor_key_test_present": "fail"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "tests/test_render_truthfulness.py (render gate pinned via FED_BOC_RENDER_CANDIDATE)",
+      "issue": "The brief under review says the change includes 'a new test [that] asserts the payload uses tenor-specific keys'. No such test exists anywhere: not one test in tests/ references implied_monthly_average_rate or implied_quarterly_average_rate. Worse, the pinned render gate is empirically insensitive to the behavior this change introduces: with the pre-change renderer restored in place (the exact lines this patch removes) and the approved candidate pinned, the real frozen test file still reports 6 passed - identical to the control run against the new renderer - while the Fed card observably degrades to 'observable proxy level available' with no '3.895%' and no label. Any future reversion or regression of the monthly-key consumption ships green through the gate that exists to catch it. The insensitivity is masked because test_proxy_labels asserts the label only as a page-wide substring, and the same fed rate_label text also occurs in rendered brief prose; nothing asserts the Fed card mirrors the payload's monthly-key value.",
+      "evidence": "Scratch clone (never touching repo files) with the frozen test file copied byte-identical (sha256 9b4b1489007089c4ab21ca956c192f8302d70bbdfd7ad0e12741525444d524d5). Scenario X - pre-change renderer, i.e. reverse-applied frontend-tenor.patch lines ('const level=Number.isFinite(proxy.implied_quarterly_average_rate) ...'), FED_BOC_RENDER_CANDIDATE pinned to fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json: '6 passed in 1.93s', exit 0. Scenario Y - frozen renderer, same pin: '6 passed in 1.63s', exit 0. Headless Chrome DOM probe of the same pre-change variant + candidate: fed card contains 'observable proxy level available', '3.895%' absent from the card, label not in the card; fed label present elsewhere on the page (page-wide True / card-only False) - explaining the pass. grep 'implied_monthly_average_rate' and 'implied_quarterly_average_rate' over tests/ and scripts/: zero hits. Repo digests verified unchanged after every run."
+    },
+    {
+      "severity": "minor",
+      "field": "tests/test_render_truthfulness.py (_headless_dump; FED_BOC_RENDER_CANDIDATE handling)",
+      "issue": "Residual fail-open left in the fail-closed rework: when FED_BOC_RENDER_CANDIDATE names a missing or unreadable file, _headless_dump returns None and the render tests skip ('headless render produced no DOM') instead of failing, so a mistyped pin yields a green, partially-skipped run with no page ever rendered.",
+      "evidence": "Code: 'if CANDIDATE is None or not CANDIDATE.exists(): return None' followed by five 'if text is None: pytest.skip(...)' sites. Scratch clone of the frozen test file (sha256 9b4b1489...d524d5), FED_BOC_RENDER_CANDIDATE='D:/nope/candidate.json': '2 passed, 4 skipped in 0.43s', exit 0 (skips at lines 135/155/167/181; the two non-render tests still pass). Suggested fix: when the env var is set, assert the path exists/readable (error, not skip)."
+    },
+    {
+      "severity": "minor",
+      "field": "review-artifacts/code-2026-09-29-frontend-tenor/freeze-manifest.json (created_at)",
+      "issue": "The manifest's created_at (2026-09-29T16:45:00-04:00) is forward-dated: the file's mtime is 16:38, and the review process launch is logged at 16:39:25-0400, both before 16:45. Digests and scope are unaffected; only the artifact's temporal record is inaccurate.",
+      "evidence": "ls -la: freeze-manifest.json mtime 'Sep 29 16:38'; pm-review-run.log contains '=== attempt start 2026-09-29T16:39:25-0400 ==='; manifest content created_at '2026-09-29T16:45:00-04:00'; observed locally at 16:39:38-16:48:48."
+    }
+  ],
+  "operator_instructions": [
+    "Do not merge or publish the frontend lane under this review. Add render-level assertions to tests/test_render_truthfulness.py that fail against the pre-change renderer: with FED_BOC_RENDER_CANDIDATE pinned to the candidate, require the formatted level from implied_monthly_average_rate ('3.895%') plus its rate_label inside the Fed card region, and '2.375%' plus 'quarterly average CORRA' inside the BoC card region; page-wide substring checks are insufficient because the same label text also appears in rendered brief prose.",
+    "Add the test the brief already promises (payload-level key convention: fed carries implied_monthly_average_rate and no quarterly-named rate key; BoC carries implied_quarterly_average_rate), or amend the brief so the claim is removed. Keep as fixture/evidence the proof that the new assertion fails against the old quarterly-only reading.",
+    "Make a bad pin fail closed: when FED_BOC_RENDER_CANDIDATE is set but the file is missing/unreadable, raise instead of skipping (current behavior: '2 passed, 4 skipped', exit 0).",
+    "Re-freeze with new digests, re-run the pinned gate and the full suite, and demonstrate the new assertion red on the pre-change renderer / green on the frozen one; then request a fresh independent review. Nothing merges or publishes until that passes.",
+    "Housekeeping (non-blocking): correct the manifest created_at discrepancy; consider a tenor note in fed-boc-watcher/BACKEND_DATA_SPEC.md (line ~125 still names implied_quarterly_average_rate as the observable_proxy key, which would re-suggest the round-2 defect to future payload authors)."
+  ]
+}

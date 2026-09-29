@@ -27,24 +27,12 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PAGE_ROOT = REPO_ROOT / "fed-boc-watcher"
 def _newest_frozen_candidate() -> Path | None:
-    """The newest frozen candidate (by date, then iteration number).
-
-    Pinning a fixed path made this file silently test a historical build; the
-    render assertions must exercise the candidate currently under review.
-    """
-    import re as _re
-    out = []
-    for sidecar in PAGE_ROOT.glob("review/*/iteration-*/candidate.sha256"):
-        m = _re.match(r"(\d{4}-\d{2}-\d{2})$", sidecar.parent.parent.name)
-        n = _re.match(r"iteration-(\d+)$", sidecar.parent.name)
-        candidate = sidecar.with_name("candidate.json")
-        if m and n and candidate.exists():
-            out.append(((m.group(1), int(n.group(1))), candidate))
-    out.sort(key=lambda item: item[0])
-    return out[-1][1] if out else None
+    """Only a caller-pinned candidate may replace published data in a render test."""
+    raw = os.environ.get("FED_BOC_RENDER_CANDIDATE")
+    return Path(raw).resolve() if raw else None
 
 
-CANDIDATE = _newest_frozen_candidate()
+CANDIDATE = _newest_frozen_candidate() or PAGE_ROOT / "data" / "latest.json"
 
 CHROME_CANDIDATES = [
     shutil.which("chrome"), shutil.which("google-chrome"), shutil.which("chromium"),
@@ -76,6 +64,10 @@ def _headless_dump() -> str | None:
     styles, so the CSS-specific assertions are guarded separately.
     """
     if CANDIDATE is None or not CANDIDATE.exists():
+        if os.environ.get("FED_BOC_RENDER_CANDIDATE"):
+            raise AssertionError(
+                "FED_BOC_RENDER_CANDIDATE is set but the file is missing or unreadable: "
+                f"{os.environ['FED_BOC_RENDER_CANDIDATE']!r} - a mistyped pin must fail, not skip")
         return None
     port = _free_port()
     server = subprocess.Popen(
@@ -93,9 +85,9 @@ def _headless_dump() -> str | None:
         latest = PAGE_ROOT / "data" / "latest.json"
         backup = None
         try:
-            if latest.exists():
+            if CANDIDATE != latest:
                 backup = latest.read_bytes()
-            shutil.copyfile(CANDIDATE, latest)
+                shutil.copyfile(CANDIDATE, latest)
             result = subprocess.run(
                 [_chrome(), "--headless=new", "--disable-gpu", "--no-sandbox",
                  "--virtual-time-budget=8000", "--run-all-compositor-stages-before-draw",
@@ -109,10 +101,11 @@ def _headless_dump() -> str | None:
                 server.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 server.kill()
-    except (OSError, subprocess.TimeoutExpired):
-        return None
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise AssertionError(f"headless render failed: {exc}") from exc
     dom = result.stdout or ""
-    return dom if "decision frame" in dom.lower() or "fed" in dom.lower() else dom or None
+    assert result.returncode == 0 and dom, "headless render did not produce a page"
+    return dom
 
 
 def _dump_text() -> str | None:
@@ -124,6 +117,15 @@ def _dump_text() -> str | None:
 
 
 pytestmark = pytest.mark.skipif(_chrome() is None, reason="no chrome available to render the page")
+
+
+def test_candidate_selection_requires_explicit_path(monkeypatch, tmp_path):
+    monkeypatch.delenv("FED_BOC_RENDER_CANDIDATE", raising=False)
+    assert _newest_frozen_candidate() is None
+    candidate = tmp_path / "candidate.json"
+    candidate.write_text('{"as_of":"2026-09-29T09:00:00-04:00"}', encoding="utf-8")
+    monkeypatch.setenv("FED_BOC_RENDER_CANDIDATE", str(candidate))
+    assert _newest_frozen_candidate() == candidate
 
 
 def test_no_static_default_odds_reach_the_page():
@@ -189,7 +191,85 @@ def test_proxy_labels_from_the_candidate_render_to_the_page():
         label = proxy.get("rate_label")
         if label:
             labels.append((bank, label))
-    assert labels, "no observable_proxy rate_label in the frozen candidate: the label contract is unexercised"
+    if not labels:
+        pytest.skip("published payload has no rate_label; pin FED_BOC_RENDER_CANDIDATE to exercise that field")
     for bank, label in labels:
         assert label in text, (
             f"the {bank} proxy label {label!r} does not reach the rendered page")
+
+
+def _card_region(dom: str, bank: str) -> str:
+    """The text of exactly one odds card, so a label found in brief prose cannot
+    satisfy a card assertion (2026-09-29 code-review round-1 finding)."""
+    start = dom.find(f"odds-card {bank}")
+    assert start != -1, f"no odds-card {bank} in the rendered DOM"
+    end_marker = "odds-card boc" if bank == "fed" else "formula-fold"
+    end = dom.find(end_marker, start + 1)
+    assert end != -1, f"no end marker {end_marker!r} after odds-card {bank}"
+    import re
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", dom[start:end]))
+
+
+def test_candidate_payload_uses_tenor_specific_average_rate_keys():
+    """Round-2 PM finding: the Fed monthly-average value must not sit under a
+    quarterly-named key; the BoC quarterly CORRA value keeps its quarterly key.
+
+    Enforced only on pinned candidates: the published payload may legitimately
+    predate this contract, and an unpinned run must stay a regression check
+    against what is live, not a blocker for data already approved under the old
+    schema. Pinning a candidate is what asks "may THIS ship?"."""
+    if not os.environ.get("FED_BOC_RENDER_CANDIDATE"):
+        pytest.skip("tenor-key convention is a candidate-acceptance gate; pin FED_BOC_RENDER_CANDIDATE")
+    candidate = json.loads(CANDIDATE.read_text(encoding="utf-8"))
+    fed = candidate["meetings"]["fed"]["pricing"].get("observable_proxy") or {}
+    boc = candidate["meetings"]["boc"]["pricing"].get("observable_proxy") or {}
+    if "implied_monthly_average_rate" not in fed and "implied_quarterly_average_rate" not in fed:
+        pytest.skip("published payload predates the tenor-key contract; pin FED_BOC_RENDER_CANDIDATE")
+    assert "implied_monthly_average_rate" in fed, (
+        "the Fed October 30-day futures average is monthly tenor; it must not be stored "
+        "under a quarterly-named key")
+    assert "implied_quarterly_average_rate" not in fed, (
+        "a quarterly-named key on the Fed card re-creates the round-2 defect")
+    assert "implied_quarterly_average_rate" in boc, (
+        "the BoC CORRA contract is genuinely quarterly; its key must say so")
+
+
+def test_odds_cards_render_the_payloads_tenor_level_and_label():
+    """The card itself must show the payload's value and label. Page-wide
+    substring checks pass while the card degrades to 'observable proxy level
+    available', because the same label text also appears in brief prose."""
+    dom = _headless_dump()
+    if dom is None:
+        pytest.skip("headless render produced no DOM")
+    candidate = json.loads(CANDIDATE.read_text(encoding="utf-8"))
+    fed = candidate["meetings"]["fed"]["pricing"].get("observable_proxy") or {}
+    boc = candidate["meetings"]["boc"]["pricing"].get("observable_proxy") or {}
+    fed_level = fed.get("implied_monthly_average_rate")
+    boc_level = boc.get("implied_quarterly_average_rate")
+    if fed_level is None or boc_level is None:
+        pytest.skip("published payload predates the tenor-key contract; pin FED_BOC_RENDER_CANDIDATE")
+    fed_region = _card_region(dom, "fed")
+    boc_region = _card_region(dom, "boc")
+    assert f"{fed_level:.3f}%" in fed_region, (
+        f"the Fed card does not show the payload's monthly-average level {fed_level:.3f}%")
+    assert fed.get("rate_label") and fed["rate_label"] in fed_region, (
+        f"the Fed card does not show the payload's rate_label {fed.get('rate_label')!r}")
+    assert f"{boc_level:.3f}%" in boc_region, (
+        f"the BoC card does not show the payload's quarterly-average level {boc_level:.3f}%")
+    assert boc.get("rate_label") and boc["rate_label"] in boc_region, (
+        f"the BoC card does not show the payload's rate_label {boc.get('rate_label')!r}")
+
+
+def test_missing_pinned_candidate_fails_closed(monkeypatch, tmp_path):
+    """A mistyped FED_BOC_RENDER_CANDIDATE must error, not skip 4 tests green."""
+    import sys
+    self_module = sys.modules[__name__]
+    missing = tmp_path / "nope.json"
+    monkeypatch.setenv("FED_BOC_RENDER_CANDIDATE", str(missing))
+    monkeypatch.setattr(self_module, "CANDIDATE", missing)
+    _headless_dump.cache_clear()
+    try:
+        with pytest.raises(AssertionError, match="FED_BOC_RENDER_CANDIDATE"):
+            _headless_dump()
+    finally:
+        _headless_dump.cache_clear()

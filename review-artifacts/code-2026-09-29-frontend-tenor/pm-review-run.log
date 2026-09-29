@@ -1,0 +1,50 @@
+
+=== attempt start 2026-09-29T16:39:25-0400 ===
+Review complete and written. Final state verified: the review file parses with the exact required schema, the manifest digest matches, all frozen subject digests are unchanged, and the repo differs from its pre-review state only by the one intended artifact.
+
+Deliverable:
+  D:\git\thematic-tracker-macro-automation\review-artifacts\code-2026-09-29-frontend-tenor\pm-review.json
+
+Verdict: revise — 1 major, 2 minor findings.
+
+Passed checks (all executed, not just read):
+- All three subject digests verify against the manifest; approved candidate c9323bbb… re-confirmed; bytes unchanged through the whole review.
+- Pinned render gate against the approved candidate: 6 passed, exit 0. Full suite: 83 passed + 1 designed skip (published payload has no rate_label), exit 0.
+- Contract binding: CRLF-normalized sha256 of index.html = a128633d… matches the contract entry; all four entries match current files; verify_template_binding proven fail-closed on 7 cases (wrong/malformed/corrupt contract → violation; CRLF/LF tolerated); lane separation unit-proven.
+- Renderer behavior, verified down to the DOM with headless Chrome probes on six payload shapes: monthly-key preference works, quarterly-only fallback still renders (3.890%/2.378%), both-keys → monthly wins, non-finite monthly falls through, neither-key → honest fallback text with nothing fabricated, label always from payload.
+- Patch is byte-identical to the HEAD→worktree diff; index.html hunks confined to the proxy-level lines.
+
+The blocker (major): the brief promises "a new test asserts the payload uses tenor-specific keys" — no test in tests/ references either implied_* key. Worse, I ran the real frozen test file against the pre-change renderer (reverse-applied patch, scratch clone, same pinned candidate): 6 passed — identical to the control — while the Fed card observably drops to "observable proxy level available". The gate cannot fail when the change's behavior reverts; the label assertion is satisfied by brief prose text page-wide.
+
+Minors: a mistyped FED_BOC_RENDER_CANDIDATE yields a green "2 passed, 4 skipped" run instead of failing; freeze-manifest created_at (16:45) is forward-dated vs its 16:38 mtime and 16:39:25 launch.
+
+Operator instructions in the file cover: add card-level assertions that fail against the old renderer, add/drop the promised key test, fail closed on a bad pin, re-freeze and re-review before merging or publishing. Scratch work stayed in the Hermes scratch dir; no repo file was modified.
+
+=== attempt end rc=0 2026-09-29T16:50:17-0400 ===
+
+=== r2 attempt start 2026-09-29T16:57:55-0400 ===
+Review complete and written. Verdict: **approved** — all three round-1 findings verified remediated by my own executions; two new non-blocking minors recorded about gate activation (not the shipped rendering).
+
+Deliverable: D:\git\thematic-tracker-macro-automation\review-artifacts\code-2026-09-29-frontend-tenor\pm-review-r2.json (sha256 834434d30b36abe957501704d57e5154034439539283f9278df7b62605bfa99a)
+
+What I proved, per item:
+
+Pinning: launched as provider=opencode-go, model=deepseek-v4.1-flash (per run_review_r2.py:34 and the run log) — matches my runtime; I am not the author.
+
+Freeze integrity: all four digests + byte sizes verified before and after every run and never changed; patch d8668559… is byte-identical to the HEAD→worktree diff; contract binding re-verified (LF-normalized index.html a128633d… = contract entry). Manifest befe53f5…
+
+Round-1 MAJOR — remediated:
+- Key-convention test RED on iteration-02: "1 failed", exit 1, exact expected message; GREEN on iteration-03 ("1 passed"); full pinned file 9/9, exit 0.
+- Card-region test is genuinely region-scoped: scratch clone with the renderer hunk reverse-applied byte-exactly (diff = only the 6→3-line block at index.html:1029-1033) → card test FAILS ("does not show the payload's monthly-average level 3.895%"), control passes, and on the reversed renderer the full file is 1 failed/8 passed — only the new test catches the reversion. Repo untouched, scratch restored.
+
+Round-1 minors — remediated: bad pin now yields "6 failed, 3 passed" exit 1 (no skip-green), and the fails-closed test exercises the raise; manifest created_at 16:56:41 == its mtime and predates the 16:57:55 launch — not forward-dated.
+
+New attacks: DOM markers unique (no earlier script/comment occurrences; formula-fold's earlier hits are CSS, unreachable); in-card label/level come only from the proxy line's <b> (all duplicates are brief prose outside the card region); sys.modules[__name__] probe confirms the monkeypatch hits the executing module. Full suite 84 passed/3 skipped; node 19/19.
+
+Fitness: with this frontend + iteration-03 published, readers see "3.895% October monthly (30-day) average EFFR" and "2.375% quarterly average CORRA" — no mis-tenored number, no level-less card.
+
+New findings (both minor, non-blocking): (1) even when pinned, candidates whose observable_proxy has no finite tenor key skip both new tests — 7/2, 6/3, 8/1 skip-green runs (exit 0) with the Fed card rendered level-less, nothing else catches it; (2) no standing doc or CI forces the pinned run (ops test command omits this file; CI runs unpinned; the linked docs/fed-boc-pm-review.md doesn't exist) — enforcement rests on the per-iteration prompt. Concrete follow-ups listed in operator_instructions.
+
+No reviewed file was modified; the only repo write is the review file itself.
+
+=== r2 attempt end rc=0 2026-09-29T17:14:28-0400 ===

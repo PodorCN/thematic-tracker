@@ -1026,8 +1026,11 @@ async function renderOdds(bank,meeting,opts={}){
     const proxy=pricing.observable_proxy||{};
     const proxyURL=safeURL(proxy.source_url||pricing.source_url);
     const avgLabel=proxy.rate_label||'contract-average rate';
-    const level=Number.isFinite(proxy.implied_quarterly_average_rate)
-      ? `${proxy.implied_quarterly_average_rate.toFixed(3)}% ${avgLabel}`
+    const proxyLevel=Number.isFinite(proxy.implied_monthly_average_rate)
+      ? proxy.implied_monthly_average_rate
+      : proxy.implied_quarterly_average_rate;
+    const level=Number.isFinite(proxyLevel)
+      ? `${proxyLevel.toFixed(3)}% ${avgLabel}`
       : 'observable proxy level available';
     const note=[proxy.note,pricing.note].filter(Boolean).map(escapeHTML).join('<br><br>');
     briefState[bank]={...briefState[bank],meeting,mi:null,source:pricing.source,
