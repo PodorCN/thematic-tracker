@@ -17,14 +17,17 @@ from zoneinfo import ZoneInfo
 
 try:  # imported as econ.archive_fed_boc
     from econ.driver_quality import check_payload
+    from econ.structural_gate import run_all as run_structural_checks
     from econ.validate_pm_review import validate_review
 except ModuleNotFoundError:  # run directly: python scripts/econ/archive_fed_boc.py
     from driver_quality import check_payload
+    from structural_gate import run_all as run_structural_checks
     from validate_pm_review import validate_review
 
 SCRIPTS_ROOT = Path(__file__).resolve().parent.parent  # <repo>/scripts
 REPO_ROOT = SCRIPTS_ROOT.parent
 TORONTO = ZoneInfo("America/Toronto")
+
 
 
 def _validate_finite(value: object, path: str = "root") -> None:
@@ -82,6 +85,26 @@ def _snapshot_date(payload: dict) -> str:
     return parsed.astimezone(TORONTO).date().isoformat()
 
 
+def _structural_publication_checks(payload: dict) -> list[str]:
+    """Re-run the structural gate at publication time.
+
+    Deliberately structural only.  A previous version of this gate parsed English
+    prose (weekday/date pairing, verb and object stem matching, negation guards).
+    Two independent PM reviews evaded it with synonym edits -- "downloaded" for
+    "retrieved", "27 September" for "Sep 27" -- and it produced factually wrong
+    messages on correct candidates by reading "returned HTTP 403" as a market
+    claim.  Whether the data is accurate and whether the conclusion means
+    anything is the independent PM's judgment, not this gate's.
+
+    Nothing here is skipped for being absent: ``required_containment`` is what
+    makes a stripped payload fail rather than pass unnoticed.
+    """
+    problems: list[str] = []
+    for name, items in run_structural_checks(payload).items():
+        problems.extend(f"{name}: {item}" for item in items)
+    return problems
+
+
 def archive_dashboard(
     input_path: Path,
     docs_root: Path,
@@ -98,6 +121,11 @@ def archive_dashboard(
     if not payload.get("meetings") or not payload.get("drivers"):
         raise ValueError("dashboard payload is missing meetings or drivers")
     _validate_pricing(payload)
+    structural = _structural_publication_checks(payload)
+    if structural:
+        raise ValueError(
+            "structural gate failed; refusing to archive:\n  " + "\n  ".join(structural)
+        )
     problems = check_payload(payload)
     if problems:
         # Refuse rather than publish: latest.json keeps the last coherent snapshot

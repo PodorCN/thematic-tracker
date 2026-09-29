@@ -296,6 +296,19 @@ footer.site-footer{padding:56px;display:flex;justify-content:space-between;align
 .brief-line .t-hawk{color:#fca5a5}
 .brief-line .t-dove{color:var(--color-accent-300)}
 .brief-line .t-hold{color:var(--color-text)}
+.decision-frame{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(30,32,48,.96));border:1px solid rgba(245,158,11,.35);border-radius:var(--radius-lg);padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.decision-frame[hidden]{display:none}
+.decision-frame h2{margin:0;font-family:var(--font-heading);font-size:19px;color:var(--color-text)}
+.decision-frame h3{margin:0 0 6px;font-size:14px;color:var(--color-text)}
+.decision-frame p{margin:0;font-size:13px;line-height:1.6;color:var(--color-neutral-300)}
+.decision-frame ul{margin:6px 0 0;padding-left:19px;font-size:12px;line-height:1.6;color:var(--color-neutral-300)}
+.decision-state{font-family:var(--font-mono);font-size:13px;font-weight:800;letter-spacing:.05em;color:#fbbf24}
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.decision-panel{background:rgba(15,16,28,.68);border:1px solid var(--color-neutral-800);border-radius:9px;padding:13px}
+.decision-alert{border:1px solid rgba(248,113,113,.45);background:rgba(248,113,113,.09);border-radius:9px;padding:12px 14px;font-size:13px;line-height:1.55;color:var(--color-neutral-200)}
+.decision-sources{display:flex;gap:7px;flex-wrap:wrap;align-items:center;font-size:10px;color:var(--color-neutral-500)}
+.decision-sources a{color:var(--color-accent-300)}
+@media(max-width:900px){.decision-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.brief-line{font-size:21px}}
 .brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.brief-grid{grid-template-columns:1fr}}
@@ -325,6 +338,10 @@ footer.site-footer{padding:56px;display:flex;justify-content:space-between;align
 .brow.agree{color:#6ee7b7}
 .brow.caveat{color:#fcd34d}
 .brow[hidden]{display:none}
+/* [hidden] must win over .bbar/.bbar-legend{display:flex}. Without this the
+   `hidden` attribute is ignored and the static default odds (Cut 0/Hold 38/
+   Hike 62) render on a snapshot whose pricing is honestly null. */
+.bbar[hidden],.bbar-legend[hidden]{display:none}
 .brief-line .countdown{font-size:.82em;letter-spacing:-.01em;color:inherit}
 .bcard-head .countdown{font-size:11px;color:var(--color-accent-300)}
 .brow .countdown{font-size:11px}
@@ -360,13 +377,15 @@ body:not(.detail-open) .detail-only{display:none!important}
     <span>The 30-Second Read</span>
     <span class="brief-meta">
       <span class="badge">As of <b id="as-of" style="color:var(--color-text)">2026-09-09 12:40 Toronto</b></span>
-      <span class="badge" id="data-status">Static fallback</span>
+      <span class="badge" id="data-status">Static archive fallback · 2026-09-09 · NOT CURRENT</span>
       <label class="badge snapshot-badge" for="dashboard-snapshot-date">View date <select id="dashboard-snapshot-date" aria-label="View Fed and BOC snapshot by date"><option>2026-09-09</option></select></label>
       <a class="badge" href="../economic-calendar/" target="_blank">→ Full Calendar</a>
     </span>
   </div>
 
-  <p class="brief-line" id="brief-line">Futures price the <b>Fed</b> to <b class="t-hawk">HIKE 25bp</b> at <b>62%</b> on Sep 16, and the data flow leans the same way. Read the two cards below and you are current.</p>
+  <p class="brief-line" id="brief-line">Static archive fallback only — the embedded Sep 9 snapshot is not current and is not a trading signal. Wait for the JSON-backed decision frame.</p>
+
+  <div class="decision-frame" id="decision-frame" aria-live="polite" hidden></div>
 
   <div class="brief-grid">
     <div class="bcard fed" id="brief-fed">
@@ -376,12 +395,12 @@ body:not(.detail-open) .detail-only{display:none!important}
       </div>
       <div class="verdict-row">
         <span class="verdict-word hike">HIKE 25bp</span>
-        <span class="verdict-pct">62%</span>
-        <span class="verdict-src">Fed funds futures<br>3.63% → 3.79%</span>
+        <span class="verdict-pct">—</span>
+        <span class="verdict-src">Fed funds futures<br>not available</span>
       </div>
       <div>
-        <div class="bbar"><i style="width:0%;background:var(--color-accent)"></i><i style="width:38%;background:#3f424d"></i><i style="width:62%;background:#f87171"></i></div>
-        <div class="bbar-legend"><span>Cut <b>0%</b></span><span>Hold <b>38%</b></span><span>Hike <b>62%</b></span></div>
+        <div class="bbar" hidden><i style="width:0%"></i></div>
+        <div class="bbar-legend" hidden><span>No distribution</span></div>
       </div>
       <div class="brow caveat" data-role="caveat" hidden></div>
       <div class="bsep"></div>
@@ -404,12 +423,12 @@ body:not(.detail-open) .detail-only{display:none!important}
       </div>
       <div class="verdict-row">
         <span class="verdict-word hike">HIKE 25bp</span>
-        <span class="verdict-pct">60%</span>
-        <span class="verdict-src">CORRA futures · low confidence<br>2.25% → 2.40%</span>
+        <span class="verdict-pct">—</span>
+        <span class="verdict-src">CORRA futures · low confidence<br>not available</span>
       </div>
       <div>
-        <div class="bbar"><i style="width:0%;background:var(--color-accent)"></i><i style="width:40%;background:#3f424d"></i><i style="width:60%;background:#f87171"></i></div>
-        <div class="bbar-legend"><span>Cut <b>0%</b></span><span>Hold <b>40%</b></span><span>Hike <b>60%</b></span></div>
+        <div class="bbar" hidden><i style="width:0%"></i></div>
+        <div class="bbar-legend" hidden><span>No distribution</span></div>
       </div>
       <div class="brow caveat" data-role="caveat"><span class="rk">Confidence</span><span>Limited confidence — the quarterly futures contract spans two decisions, so this is a scenario estimate, not a single-meeting probability.</span></div>
       <div class="bsep"></div>
@@ -1006,8 +1025,9 @@ async function renderOdds(bank,meeting,opts={}){
     const flag=bank==='fed'?'🇺🇸':'🇨🇦';
     const proxy=pricing.observable_proxy||{};
     const proxyURL=safeURL(proxy.source_url||pricing.source_url);
+    const avgLabel=proxy.rate_label||'contract-average rate';
     const level=Number.isFinite(proxy.implied_quarterly_average_rate)
-      ? `${proxy.implied_quarterly_average_rate.toFixed(3)}% quarterly-average rate`
+      ? `${proxy.implied_quarterly_average_rate.toFixed(3)}% ${avgLabel}`
       : 'observable proxy level available';
     const note=[proxy.note,pricing.note].filter(Boolean).map(escapeHTML).join('<br><br>');
     briefState[bank]={...briefState[bank],meeting,mi:null,source:pricing.source,
@@ -1133,7 +1153,12 @@ function effectiveWeight(driver,asOf){
 function renderDriver(driver,direction,asOf){
   const effW=effectiveWeight(driver,asOf);
   const data=driver.data||{};
-  const deltaType=['beat','miss','neutral'].includes(data.delta_type)?data.delta_type:'neutral';
+  // 'contraction' is a real state for a negative print that beat consensus (e.g. Canada July
+  // retail -0.7% vs -0.8%): growth-negative, but not a "miss". Flattening it to 'neutral'
+  // would hide the sign that the side assignment depends on.
+  const DELTA_BADGES={beat:'beat',miss:'miss',contraction:'miss',neutral:'neutral'};
+  const rawDelta=data.delta_type;
+  const deltaType=Object.prototype.hasOwnProperty.call(DELTA_BADGES,rawDelta)?DELTA_BADGES[rawDelta]:'neutral';
   const sourceURL=safeURL(driver.source_url);
   const source=sourceURL
     ? `<a class="badge" href="${sourceURL}" target="_blank" rel="noopener">${escapeHTML(driver.source||'Source')} ↗</a>`
@@ -1268,7 +1293,9 @@ function renderDrivers(bank,bankDrivers,asOf,pricing){
   if(summary){
     const mean=[...dovish,...hawkish].reduce((sum,item)=>sum+eff(item),0)/(dovish.length+hawkish.length||1);
     const bankName=bank==='fed'?'Fed':'BOC';
-    summary.innerHTML=`<b style="color:var(--color-text)">${bankName} Summary · Rope ${share}% ${direction} · Net ${signed(net)}</b> — Dovish ${dovish.length} / Weight ${doveTotal.toFixed(1)} vs Hawkish ${hawkish.length} / Weight ${hawkTotal.toFixed(1)} · Mean ${mean.toFixed(1)} · Sorted by effective weight · Scale ±3 (net = 3×diff/total)${ropeMarketCheck(net,direction,pricing)}.`;
+    const noEdge=activeDecisionBrief?.trade_status==='NO TRADE / NO EDGE';
+    const postureNote=noEdge?' · Context only under the explicit no-edge posture; normalized rope is not a position signal':'';
+    summary.innerHTML=`<b style="color:var(--color-text)">${bankName} Summary · Rope ${share}% ${direction} · Net ${signed(net)}</b> — Dovish ${dovish.length} / Weight ${doveTotal.toFixed(1)} vs Hawkish ${hawkish.length} / Weight ${hawkTotal.toFixed(1)} · Mean ${mean.toFixed(1)} · Sorted by effective weight · Scale ±3 (net = 3×diff/total)${ropeMarketCheck(net,direction,pricing)}${postureNote}.`;
   }
 }
 
@@ -1292,11 +1319,30 @@ function renderDataPair(label,values){
   return `<span class="exp">${escapeHTML(label)} ${content}</span>`;
 }
 
+function calendarEventDate(item){
+  return String(item.event_date_toronto||item.date_toronto||item.datetime_toronto||'').slice(0,10);
+}
+
+function isDateOnlyEvent(item){
+  return item?.date_only===true||item?.time_status==='date-only'||item?.time_status==='official-date-only';
+}
+
+function calendarOrderValue(item){
+  const timestamp=item.datetime_utc||item.datetime_toronto;
+  if(timestamp){
+    const parsed=new Date(timestamp).getTime();
+    if(Number.isFinite(parsed)) return parsed;
+  }
+  const date=calendarEventDate(item);
+  /* Date-only rows use midnight UTC for sort order only; no time is displayed or counted down. */
+  return /^\d{4}-\d{2}-\d{2}$/.test(date)?Date.parse(`${date}T00:00:00Z`):Number.MAX_SAFE_INTEGER;
+}
+
 function renderCalendar(calendar){
   briefState.calendar=Array.isArray(calendar)?calendar:[];
   const body=document.querySelector('#cal tbody');
   if(!body||!Array.isArray(calendar)) return;
-  const rows=[...calendar].sort((a,b)=>new Date(a.datetime_utc)-new Date(b.datetime_utc));
+  const rows=[...calendar].sort((a,b)=>calendarOrderValue(a)-calendarOrderValue(b));
   body.innerHTML=rows.map(item=>{
     const impact=(item.impact||'MEDIUM').toUpperCase();
     const country=item.currency==='CAD'?'🇨🇦':'🇺🇸';
@@ -1304,17 +1350,24 @@ function renderCalendar(calendar){
     const previous=renderDataPair('Prior',item.previous);
     const bias=`<span class="bias-cell">${[item.hawk_if?`<span class="badge hawk">${escapeHTML(item.hawk_if)}</span>`:'',item.dove_if?`<span class="badge dove">${escapeHTML(item.dove_if)}</span>`:''].join('')}</span>`;
     const logicClass=item.hawk_if&&!item.dove_if?'hawk':item.dove_if&&!item.hawk_if?'dove':'';
-    const date=(item.datetime_toronto||'').slice(0,10);
-    return `<tr class="${impact.toLowerCase()}" data-currency="${escapeHTML(item.currency)}" data-impact="${impact}" data-date="${date}" data-search="${escapeHTML(item.event)}">
-      <td>${escapeHTML(formatToronto(item.datetime_toronto,true))} Toronto</td>
-      <td class="countdown" data-dt="${escapeHTML(item.datetime_utc)}">—</td>
+    const date=calendarEventDate(item);
+    const dateOnly=isDateOnlyEvent(item)||(!item.datetime_toronto&&!item.datetime_utc&&Boolean(date));
+    const timeLabel=dateOnly?`${date} · official date only; release time not published`:`${formatToronto(item.datetime_toronto,true)} Toronto`;
+    const countdown=dateOnly?'<td class="countdown" data-date-only="true">No timed countdown</td>':`<td class="countdown" data-dt="${escapeHTML(item.datetime_utc)}">—</td>`;
+    const sourceURL=String(item.source_url||'');
+    const sourceLink=/^https:\/\//i.test(sourceURL)?`<a href="${escapeHTML(sourceURL)}" target="_blank" rel="noopener noreferrer">Official source ↗</a>`:'';
+    const observed=item.observed_at_toronto?` · observed ${escapeHTML(item.observed_at_toronto)}`:'';
+    const sourceMeta=sourceLink?`<div class="decision-sources">${sourceLink}${observed}</div>`:'';
+    return `<tr class="${impact.toLowerCase()}" data-id="${escapeHTML(item.id||'')}" data-currency="${escapeHTML(item.currency)}" data-impact="${impact}" data-date="${escapeHTML(date)}" data-time-status="${dateOnly?'date-only':'timed'}" data-search="${escapeHTML(item.event)}">
+      <td>${escapeHTML(timeLabel)}</td>
+      ${countdown}
       <td>${country} ${escapeHTML(item.currency)}</td>
       <td><span class="imp imp-${impact}">${impact==='MEDIUM'?'MED':impact}</span></td>
-      <td><b>${escapeHTML(item.event)}</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">${forecast}${previous}</div><div class="logic ${logicClass}"><b>Transmission:</b> ${escapeHTML(item.logic||'Analysis pending.')}</div></td>
+      <td><b>${escapeHTML(item.event)}</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">${forecast}${previous}</div><div class="logic ${logicClass}"><b>Transmission:</b> ${escapeHTML(item.logic||'Analysis pending.')}</div>${sourceMeta}</td>
       <td>${bias||'<span class="badge">Monitor</span>'}</td>
     </tr>`;
   }).join('');
-  const dates=[...new Set(rows.map(item=>(item.datetime_toronto||'').slice(0,10)).filter(Boolean))];
+  const dates=[...new Set(rows.map(calendarEventDate).filter(date=>/^\d{4}-\d{2}-\d{2}$/.test(date)))];
   const selected=dateSel.value;
   dateSel.innerHTML='<option value="ALL">All dates</option>'+dates.map(date=>`<option value="${date}">${date}</option>`).join('');
   dateSel.value=dates.includes(selected)?selected:'ALL';
@@ -1329,9 +1382,16 @@ function renderCalendar(calendar){
    renderOdds / renderDrivers / renderCalendar push their results into
    briefState, and paintBrief turns them into one plain-language verdict. */
 const briefState={fed:{},boc:{},calendar:[],asOf:null};
+let activeDecisionBrief=null;
 
 function briefNow(){
   return dashboardReferenceTime&&!Number.isNaN(dashboardReferenceTime.getTime())?dashboardReferenceTime:new Date();
+}
+
+function torontoDateISO(value){
+  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:TORONTO_TZ,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(value);
+  const part=type=>parts.find(item=>item.type===type)?.value||'';
+  return `${part('year')}-${part('month')}-${part('day')}`;
 }
 
 function topProb(prob){
@@ -1376,8 +1436,14 @@ function nextCatalyst(bank){
   const currency=bank==='fed'?'USD':'CAD';
   const now=briefNow();
   const upcoming=(briefState.calendar||[])
-    .filter(item=>new Date(item.datetime_utc||item.datetime_toronto)>now)
-    .sort((a,b)=>new Date(a.datetime_utc||a.datetime_toronto)-new Date(b.datetime_utc||b.datetime_toronto));
+    .filter(item=>{
+      const date=calendarEventDate(item);
+      const dateOnly=isDateOnlyEvent(item)||(!item.datetime_utc&&!item.datetime_toronto&&Boolean(date));
+      if(dateOnly) return /^\d{4}-\d{2}-\d{2}$/.test(date)&&date>=torontoDateISO(now);
+      const stamp=new Date(item.datetime_utc||item.datetime_toronto).getTime();
+      return Number.isFinite(stamp)&&stamp>now.getTime();
+    })
+    .sort((a,b)=>calendarOrderValue(a)-calendarOrderValue(b));
   const notDecision=item=>!/decision|fomc|rate statement/i.test(item.event||'');
   return upcoming.find(item=>item.currency===currency&&item.impact==='HIGH'&&notDecision(item))
     ||upcoming.find(item=>item.currency===currency&&notDecision(item))
@@ -1431,6 +1497,19 @@ function paintBrief(bank){
     if(bar) bar.innerHTML=`<i style="width:${state.mi.cut}%;background:var(--color-accent)"></i><i style="width:${state.mi.hold}%;background:#3f424d"></i><i style="width:${state.mi.hike}%;background:#f87171"></i>`;
     const legend=card.querySelector('.bbar-legend');
     if(legend) legend.innerHTML=`<span>Cut <b>${state.mi.cut}%</b></span><span>Hold <b>${state.mi.hold}%</b></span><span>Hike <b>${state.mi.hike}%</b></span>`;
+    if(bar) bar.hidden=false;
+    if(legend) legend.hidden=false;
+  }else{
+    const word=card.querySelector('.verdict-word');
+    if(word){word.textContent='NEUTRAL / NO EDGE';word.className='verdict-word hold';}
+    const pct=card.querySelector('.verdict-pct');
+    if(pct) pct.textContent='No trade';
+    const src=card.querySelector('.verdict-src');
+    if(src) src.textContent='Direct single-meeting pricing unavailable';
+    const bar=card.querySelector('.bbar');
+    const legend=card.querySelector('.bbar-legend');
+    if(bar) bar.hidden=true;
+    if(legend) legend.hidden=true;
   }
 
   const caveat=card.querySelector('[data-role="caveat"]');
@@ -1449,7 +1528,9 @@ function paintBrief(bank){
 
   if(Number.isFinite(state.net)){
     const label=card.querySelector('[data-role="netlabel"]');
-    if(label) label.textContent=netSentence(state.net);
+    const noEdge=activeDecisionBrief?.trade_status==='NO TRADE / NO EDGE';
+    const mass=((state.doveTotal||0)+(state.hawkTotal||0)).toFixed(2);
+    if(label) label.textContent=noEdge?`Context-only normalized score ${signed(state.net)} from ${mass} effective weight; not a rate call or position signal.`:netSentence(state.net);
     const pin=card.querySelector('.gauge .pin');
     if(pin) pin.style.left=`${Math.min(100,Math.max(0,(state.net+3)/6*100))}%`;
   }
@@ -1461,14 +1542,16 @@ function paintBrief(bank){
       .filter(([driver])=>driver).sort((a,b)=>b[0].eff-a[0].eff);
     const lead=ranked[0]?part(...ranked[0]):'';
     const other=ranked[1]?part(...ranked[1]):'';
-    pull.innerHTML=`<span class="rk">Biggest pull</span><span>${lead}${lead&&other?' · against ':''}${other}</span>`;
+    pull.innerHTML=`<span class="rk">${activeDecisionBrief?.trade_status==='NO TRADE / NO EDGE'?'Context only':'Biggest pull'}</span><span>${lead}${lead&&other?' · against ':''}${other}</span>`;
   }
 
   const next=card.querySelector('[data-role="next"]');
   const catalyst=nextCatalyst(bank);
   if(next&&catalyst){
-    const when=formatToronto(catalyst.datetime_toronto,true);
-    next.innerHTML=`<span class="rk">Next test</span><span><b>${escapeHTML(shortEvent(catalyst.event))}</b> · ${escapeHTML(when)} · in <span class="countdown" data-dt="${escapeHTML(catalyst.datetime_toronto)}">—</span>${catalyst.hawk_if?` · <span class="w">${escapeHTML(catalyst.hawk_if)}</span>`:''}</span>`;
+    const dateOnly=isDateOnlyEvent(catalyst)||(!catalyst.datetime_toronto&&!catalyst.datetime_utc&&Boolean(calendarEventDate(catalyst)));
+    const when=dateOnly?`${calendarEventDate(catalyst)} · time not published`:formatToronto(catalyst.datetime_toronto,true);
+    const countdown=dateOnly?'<span class="w">No timed countdown</span>':`in <span class="countdown" data-dt="${escapeHTML(catalyst.datetime_toronto)}">—</span>`;
+    next.innerHTML=`<span class="rk">Next test</span><span><b>${escapeHTML(shortEvent(catalyst.event))}</b> · ${escapeHTML(when)} · ${countdown}${catalyst.hawk_if?` · <span class="w">${escapeHTML(catalyst.hawk_if)}</span>`:''}</span>`;
   }
 
   updateCountdown();
@@ -1477,7 +1560,11 @@ function paintBrief(bank){
 function paintHeadline(){
   const element=document.getElementById('brief-line');
   const fed=briefState.fed;
-  if(!element||!fed.mi) return;
+  if(!element) return;
+  if(!fed.mi){
+    element.textContent=activeDecisionBrief?.headline||'Neutral — no trade / no edge. Direct single-meeting pricing is unavailable; see the decision frame for catalysts and re-evaluation conditions.';
+    return;
+  }
   const cls=leanClass(fed.mi)==='cut'?'t-dove':leanClass(fed.mi)==='hike'?'t-hawk':'t-hold';
   let text=`Futures price the <b>Fed</b> to <b class="${cls}">${leanWord(fed.mi)}</b> at <b>${topProb(fed.mi)}%</b>`;
   if(fed.meeting?.decision_time_toronto){
@@ -1503,8 +1590,56 @@ function paintHeadline(){
   updateCountdown();
 }
 
+function renderDecisionBrief(payload){
+  const node=document.getElementById('decision-frame');
+  const brief=payload?.decision_brief;
+  if(!node) return;
+  if(!brief){node.hidden=true;node.replaceChildren();return;}
+  const text=value=>escapeHTML(value??'');
+  const list=(items)=>`<ul>${(Array.isArray(items)?items:[]).map(item=>`<li>${text(item)}</li>`).join('')}</ul>`;
+  const safeHttps=value=>{
+    try{const url=new URL(String(value||''));return url.protocol==='https:'?url.href:'';}catch{return '';}
+  };
+  const dateOnly=(Array.isArray(payload.calendar)?payload.calendar:[])
+    .filter(item=>isDateOnlyEvent(item)||(!item.datetime_utc&&!item.datetime_toronto&&Boolean(calendarEventDate(item))));
+  const alerts=dateOnly.map(item=>{
+    const source=safeHttps(item.source_url);
+    const link=source?` <a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Official schedule ↗</a>`:'';
+    const observed=item.observed_at_toronto?` · source observed ${text(item.observed_at_toronto)}`:'';
+    return `<div class="decision-alert" data-id="${text(item.id||'')}"><b>Upcoming date-only catalyst:</b> ${text(calendarEventDate(item))} · ${text(item.event)}. The official schedule provides no release time; there is no timed countdown.${link}${observed}</div>`;
+  }).join('');
+  const usable=value=>String(value??'').trim()!=='';
+  const titleCase=value=>text(String(value??'').charAt(0).toUpperCase()+String(value??'').slice(1).replace(/[_-]+/g,' '));
+  const pricedEntries=(brief.what_is_priced&&typeof brief.what_is_priced==='object'&&!Array.isArray(brief.what_is_priced))
+    ?Object.entries(brief.what_is_priced).filter(([,value])=>usable(value)):[];
+  const priced=pricedEntries.length
+    ?`<div class="decision-panel"><h3>What is already priced</h3><ul>${pricedEntries.map(([key,value])=>`<li data-key="${text(key)}"><b>${titleCase(key)}:</b> ${text(value)}</li>`).join('')}</ul></div>`
+    :'';
+  const falsifierItems=(Array.isArray(brief.falsifiers)?brief.falsifiers:[]).filter(usable);
+  const falsifiers=falsifierItems.length?`<div class="decision-panel"><h3>What would falsify this</h3>${list(falsifierItems)}</div>`:'';
+  const thresholdRows=(Array.isArray(brief.price_thresholds)?brief.price_thresholds:[]).filter(usable);
+  const thresholds=thresholdRows.length?`<div class="decision-panel"><h3>Trigger levels</h3><ul>${thresholdRows.map(t=>`<li><b>${text(t.instrument||'')}</b> (${text(t.basis||'')}): ${text(t.low_price)} = ${text(t.low_implied_rate)}% and ${text(t.high_price)} = ${text(t.high_implied_rate)}%. ${text(t.meaning||'')}</li>`).join('')}</ul></div>`:'';
+  const attention=usable(brief.attention_budget)
+    ?`<div class="decision-panel"><h3>90-second read</h3><p>${text(brief.attention_budget)}</p></div>`
+    :'';
+  const banks=Object.entries(brief.banks||{}).map(([key,bank])=>{
+    const name=bank.display_name||key.toUpperCase();
+    return `<article class="decision-panel" data-bank="${text(key)}"><h3>${text(name)} · ${text(bank.stance)}</h3><p>${text(bank.rationale)}</p><h3 style="margin-top:10px">Next catalysts</h3>${list(bank.next_catalysts)}<h3 style="margin-top:10px">Re-evaluate / falsification conditions</h3>${list(bank.reconsider_if)}</article>`;
+  }).join('');
+  const sources=(Array.isArray(brief.source_references)?brief.source_references:[]).map(source=>{
+    const href=safeHttps(source.url);
+    if(!href) return '';
+    const observed=source.observed_at_toronto?` · ${text(source.observed_at_toronto)}`:'';
+    return `<a href="${escapeHTML(href)}" target="_blank" rel="noopener noreferrer">${text(source.label||'Source')} ↗</a><span>${observed}</span>`;
+  }).join('');
+  const coverage=payload.calendar_coverage?.status||payload.calendar_coverage?.scope||'';
+  node.innerHTML=`<div><h2>Decision frame · ${text(brief.as_of_toronto||payload.as_of)}</h2><div class="decision-state">${text(brief.trade_status)}</div><p>${text(brief.summary)}</p></div>${alerts}<div><h3>What changed since the prior snapshot</h3>${list(brief.changes_since_previous)}</div>${attention}${priced}${thresholds}${falsifiers}<div class="decision-grid">${banks}</div><div class="decision-panel"><h3>Largest P&amp;L risks · no position recommended</h3>${list(brief.largest_pnl_risks)}${coverage?`<p><b>Calendar scope:</b> ${text(coverage)}</p>`:''}</div>${sources?`<div class="decision-sources"><b>Evidence:</b>${sources}</div>`:''}`;
+  node.hidden=false;
+}
+
 function renderDashboard(payload,isHistorical=false){
   if(!payload||!payload.meetings||!payload.drivers) throw new Error('Dashboard JSON is missing required fields');
+  activeDecisionBrief=payload.decision_brief||null;
   dashboardReferenceTime=isHistorical?new Date(payload.archived_at||payload.as_of):null;
   briefState.asOf=payload.as_of||null;
   renderOdds('fed',payload.meetings.fed,{historical:isHistorical});
@@ -1513,6 +1648,7 @@ function renderDashboard(payload,isHistorical=false){
   renderDrivers('boc',payload.drivers.boc,payload.as_of,payload.meetings.boc?.pricing);
   renderMarket(payload.market);
   renderCalendar(payload.calendar);
+  renderDecisionBrief(payload);
   paintBrief('fed');
   paintBrief('boc');
   paintHeadline();
@@ -1538,7 +1674,7 @@ async function loadDashboard(url=DATA_URL,isHistorical=false){
     return true;
   }catch(error){
     if(status){
-      status.textContent='Static fallback · JSON unavailable';
+      status.textContent='Static archive fallback · 2026-09-09 · NOT CURRENT · JSON unavailable';
       status.title=error.message;
     }
     console.warn('Dashboard data load failed; using embedded fallback.',error);
