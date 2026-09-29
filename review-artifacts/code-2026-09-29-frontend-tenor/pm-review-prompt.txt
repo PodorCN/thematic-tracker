@@ -1,0 +1,36 @@
+You are an INDEPENDENT CODE REVIEWER examining a frontend change to the Fed/BOC watcher page at D:\git\thematic-tracker-macro-automation. You are NOT the author. The page renders data that real sizing decisions rely on, so be skeptical and specific.
+
+PINNING: Your process was explicitly started with provider opencode-go, model deepseek-v4.1-flash. If your runtime/model differs or you cannot independently review, do NOT write a review; report the blocker instead.
+
+=== WHAT IS UNDER REVIEW (frozen, do not modify) ===
+Read D:\git\thematic-tracker-macro-automation\review-artifacts\code-2026-09-29-frontend-tenor\freeze-manifest.json first. It lists the exact files and SHA-256 digests of the review subject. Verify the digests before you start; if any differ, say so and stop.
+
+Subject:
+  1. fed-boc-watcher/index.html (MODIFIED) — the page's observable-proxy renderer now reads tenor-specific payload keys: it prefers implied_monthly_average_rate and falls back to implied_quarterly_average_rate, then appends the payload's rate_label. Patch: review-artifacts\code-2026-09-29-frontend-tenor\frontend-tenor.patch
+  2. tests/test_render_truthfulness.py (MODIFIED) — render tests no longer auto-select the newest review iteration; they only render a candidate explicitly pinned via the FED_BOC_RENDER_CANDIDATE environment variable (fallback: published data/latest.json), headless-render failures now fail the test instead of skipping, and a new test asserts the payload uses tenor-specific keys.
+  3. scripts/econ/frontend_contract.json (NEW) — SHA-256 (CRLF-normalized) digests freezing each page's index.html; the fed-boc-watcher entry must match the current file.
+
+=== WHY IT EXISTS ===
+Round-2 PM review of the 2026-09-29 snapshot found that the Fed proxy value (3.895, October 30-day fed funds futures = monthly-average tenor) was stored under the misleading key implied_quarterly_average_rate, and the renderer only read that key. The data candidate (fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json, sha c9323bbbee32, APPROVED by an independent PM at 16:31 today) renames the Fed key to implied_monthly_average_rate; this frontend change makes the renderer consume the new key while keeping backward compatibility with quarterly-key payloads (BoC CORRA stays quarterly). The repo's data/frontend separation contract requires this to land as a separately-reviewed frontend change before/with the data publish.
+
+=== WHAT TO ACTUALLY DO (do not just read and summarize) ===
+1. Verify each digest in the manifest.
+2. Run the real render gate against the APPROVED candidate:
+     cd /d/git/thematic-tracker-macro-automation
+     FED_BOC_RENDER_CANDIDATE='D:/git/thematic-tracker-macro-automation/fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json' uv run --isolated --python 3.11 --with-requirements requirements.txt python -m pytest tests/test_render_truthfulness.py -q
+   It must pass. Then run the full suite: uv run --isolated --python 3.11 --with-requirements requirements.txt python -m pytest tests/ -q
+3. Verify the contract binding: recompute sha256 of fed-boc-watcher/index.html with CRLF normalized to LF and confirm it equals the "fed-boc-watcher" value in scripts/econ/frontend_contract.json. Confirm scripts/econ/verify_data_only_changes.py's verify_template_binding would FAIL if the digest were wrong (read the code; optionally prove it with a temp copy, never editing repo files).
+4. Try to BREAK the renderer logic. Concretely check:
+   - A payload whose observable_proxy has ONLY implied_quarterly_average_rate (today's published BoC-style payload): does the card still render correctly via the fallback? Trace the code path.
+   - A payload with BOTH keys: which wins, and is that the right precedence for the Fed card?
+   - A payload with NEITHER key: what renders? Is anything fabricated?
+   - The label: does rate_label always come from the payload (never hardcoded), and what happens when rate_label is absent?
+   - The new auto-select removal: confirm tests/test_render_truthfulness.py cannot silently render an unpinned newer iteration anymore (read _newest_frozen_candidate and CANDIDATE).
+   - The fail-closed change: confirm a headless Chrome failure now fails the test rather than producing a skip that lets a broken page pass.
+5. Confirm the change is ONLY what it claims: the index.html patch should touch nothing beyond proxy-level rendering (read the full patch; flag any unrelated edit).
+
+=== OUTPUT ===
+Write your review to:
+  D:\git\thematic-tracker-macro-automation\review-artifacts\code-2026-09-29-frontend-tenor\pm-review.json
+Schema: {"schema_version":"1.0","reviewer_role":"independent_code_reviewer","reviewed_at":"<ISO8601>","subject_manifest_sha256":"<sha256 of freeze-manifest.json>","verdict":"approved"|"revise","executive_summary":"...","checks":{...},"findings":[{"severity":"major|minor","field":"...","issue":"...","evidence":"..."}],"operator_instructions":["..."]}
+Rules: verdict=approved only if every check passes and no major finding. Any major finding -> revise, with concrete operator_instructions. Write ONLY that file inside the repo; scratch work goes in $TMPDIR. Do not modify any reviewed file.

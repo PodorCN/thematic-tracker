@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.1",
+  "created_at": "2026-09-29T16:56:41-04:00",
+  "round": 2,
+  "purpose": "Round-2 frozen snapshot of the Fed/BoC frontend tenor-key change after round-1 revise; supersedes the round-1 manifest (whose created_at was forward-dated - corrected here from the real clock).",
+  "repo": "D:\\git\\thematic-tracker-macro-automation",
+  "branch": "main",
+  "head_before_commit": "b44805426e2363970d196fd213fbed18b4264b93",
+  "note": "Working tree is NOT committed. These digests are the review subject; any edit after this manifest invalidates the review. frontend_contract.json is NEW (whole file is the subject). Round-1 verdict: review-artifacts/code-2026-09-29-frontend-tenor/pm-review.json (revise); remediation evidence: r2-evidence.md.",
+  "files": [
+    {
+      "path": "fed-boc-watcher/index.html",
+      "sha256": "8b1242a0558d541c1c801a663e1124a328cbc9cfea0daaedda8192837ef106ca",
+      "bytes": 133111
+    },
+    {
+      "path": "tests/test_render_truthfulness.py",
+      "sha256": "fbcf6afcc18904bbaae39d15fa981328828419536e6270d94d721857e9cb8fd2",
+      "bytes": 12219
+    },
+    {
+      "path": "scripts/econ/frontend_contract.json",
+      "sha256": "83c45f41390ffd87c335eba280f47107d1326aa91aa5b5b987d06e7cc3ec611c",
+      "bytes": 362
+    },
+    {
+      "path": "fed-boc-watcher/BACKEND_DATA_SPEC.md",
+      "sha256": "2d3729f72471acb725ab2ddbcf219b301a3fd004db5288625ff479d2ef81f476",
+      "bytes": 19331
+    }
+  ],
+  "patch_file": "frontend-tenor.patch",
+  "round1_review": "review-artifacts/code-2026-09-29-frontend-tenor/pm-review.json",
+  "related_context": {
+    "approved_data_candidate": "fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json",
+    "approved_data_candidate_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+    "pm_review": "fed-boc-watcher/review/2026-09-29/iteration-03/pm-review.json (verdict approved 16:31)"
+  }
+}

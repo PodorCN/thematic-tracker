@@ -121,10 +121,15 @@ fed-boc-watcher/data/
 When a clean single-meeting distribution is unavailable, set
 `pricing.probability_status` to `"unavailable"`, set `cut_25bp`, `hold`,
 `hike_25bp`, and the meeting-specific `implied_rate_after` to `null`, and include
-an `observable_proxy` object with `instrument`, `observed_price`,
-`implied_quarterly_average_rate`, `source_url`, and a note explaining the
-contract horizon. Never allocate a multi-meeting quarterly contract to one
-meeting merely to satisfy the three-outcome display.
+an `observable_proxy` object with `instrument`, `observed_price`, a
+tenor-specific average-rate key, `source_url`, and a note explaining the
+contract horizon. The key name must state the contract's tenor:
+`implied_monthly_average_rate` for monthly-average contracts (e.g. CME 30-day
+fed funds futures such as ZQ), `implied_quarterly_average_rate` for
+quarterly-average contracts (e.g. three-month CORRA futures such as CRA) —
+never store a monthly-tenor value under the quarterly key. Pair it with a
+`rate_label` that names the tenor for the page. Never allocate a multi-meeting
+quarterly contract to one meeting merely to satisfy the three-outcome display.
 
 ---
 
