@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "status": "open",
+  "status": "closed",
   "reviewed_at": "2026-09-29T08:28:47-04:00",
   "candidate_sha256": "b732a4b7c39234b7ac9262fef29a45361c3dd190898fcb38cc44f1f8c21b70d6",
   "review_sha256": "7247100c405943ff414b98480843ae85a73294292c185c461f53f5d6b2f4c38b",
@@ -33,5 +33,33 @@
     "Rebuild the whole internally consistent candidate; do not patch prose only.",
     "Submit the rebuilt candidate to a fresh independent PM review.",
     "Do not publish until an exact-byte-bound approved review passes the gate."
-  ]
+  ],
+  "closure": {
+    "closed_at_toronto": "2026-09-29T20:48:53-04:00",
+    "basis": "All open findings were fixed by the round-3 approval and the result passed live acceptance. Round-3 independent PM review (approved, reviewed_at 2026-09-29T16:31:31-04:00) explicitly confirms the sole open major finding (Fed proxy key tenor) resolved in the iteration-03 frozen bytes; snapshot 2026-09-29-003 published in c74243d; the deployed artifact was verified equal to that approved candidate modulo snapshot_date/archived_at/stale.",
+    "resolved_findings": [
+      "meetings.fed.pricing.observable_proxy — value now under the tenor-correct key implied_monthly_average_rate (3.895), no quarterly-named rate key for the Fed; renderer change landed separately via PR #5."
+    ],
+    "resolved_by": {
+      "candidate": "fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json",
+      "candidate_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+      "pm_review": "fed-boc-watcher/review/2026-09-29/iteration-03/pm-review.json",
+      "verdict": "approved",
+      "published_version": "2026-09-29-003",
+      "publication_commit": "c74243d7b85d142becfc9488355a4b17e71fe850"
+    },
+    "live_acceptance": {
+      "verified_at_toronto": "2026-09-29T20:48:53-04:00",
+      "url": "https://podor.org/thematic-tracker/fed-boc-watcher/data/latest.json",
+      "http_status": 200,
+      "latest_json_sha256": "360adc6df65e415cf0daadda8004261c4b10df46665765c17996427834eeb857",
+      "matches_origin_main_and_archive": true,
+      "matches_approved_candidate_except": [
+        "snapshot_date",
+        "archived_at",
+        "stale"
+      ],
+      "page_render": "headless-Chrome dump of the live page: decision-frame un-hidden and populated (NO TRADE / NO EDGE brief), both bank panels present, data-status 'Latest · 2026-09-29', no static-fallback text rendered."
+    }
+  }
 }
