@@ -1,0 +1,32 @@
+{
+  "target_toronto_date": "2026-09-30",
+  "iteration": "iteration-01",
+  "as_of_toronto": "2026-09-30T03:20:00-04:00",
+  "phase": "PUBLISH IN PROGRESS (2026-09-30): round-1 independent PM approved at 04:00:40-04:00; archive written (data/archive/2026-09-30.json); staging/commit/push/live-acceptance pending at this checkpoint's first writing.",
+  "status": "APPROVED - PENDING COMMIT/PUSH/LIVE-ACCEPTANCE.",
+  "candidate_sha256": "abc1ac9a6c5bbdefd6da8f1e36766c2ed29d127b2027b98144e82ced233bcc7b",
+  "baseline": "fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json",
+  "baseline_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
+  "round_verdicts": {
+    "round1": "approved (2026-09-30T04:00:40-04:00; all six checks pass; ONE minor finding - the stale 'six business days before the FOMC' prose count. No rebuild; carry the fix into the next natural rebuild.)"
+  },
+  "next_actions": [
+    "MUST apply in the next Fed/BoC rebuild (this nit has now survived two reviews): replace the stale 'six business days before the FOMC' count in brief prose with sixteen (Oct 2 NFP to the Oct 27-28 FOMC = 16/17 business days, excluding Oct 12) or drop the count; do not rebuild solely for it. Same note was logged by the 2026-09-29 round-3 review.",
+    "Next Fed/BoC run must follow the updated AGENT.md publish flow (structural gate -> PM approval -> pinned render acceptance FED_BOC_RENDER_CANDIDATE -> archive -> verify_data_only_changes --staged and --range before push).",
+    "Full-suite sequencing note: tests/test_fed_boc_archive.py::test_archive_dashboard_writes_snapshot_and_sorted_manifest cannot pass between archive and commit (data/latest.json is then uncommitted and not discoverable as approved via review-artifacts); run the full suite on the committed revision (post-commit, pre-push) - it passes there."
+  ],
+  "notes": [
+    "Fresh daily recollection for 2026-09-30: market strip advanced to the Tue 2026-09-29 close; new weight-0.5 dovish card fed_dovish_jolts_openings_20260929 (Aug openings 7.079M vs 7.335M, -256k); Canada July GDP-by-industry 0.0% (falsifier did not trigger); ZQV26 96.110 -> 3.890% (1.5 bp above range midpoint); CRAU26 mid 97.625 -> 2.375% (12.5 bp above target).",
+    "Refresh failures recorded, not substituted: CME FedWatch HTTP 403 (third day); BLS schedule pages HTTP 403 (last-successful Sep 24 captures retained); fxstreet HTTP 401. BLS API reached via the POST call it requires.",
+    "The previous snapshot's '12-0 vote' note was dropped because the fresh FOMC statement capture's text layer contains no voting paragraph; the PM verified the live statement shows the 12-0 release vote, so the payload asserts no count and contradicts nothing.",
+    "No feedback records were created this round (no revise); review/feedback/latest.json remains as closed on 2026-09-29."
+  ],
+  "publication": {
+    "commit": null,
+    "committed_at_toronto": null,
+    "version": "2026-09-30-001",
+    "candidate_sha256": "abc1ac9a6c5bbdefd6da8f1e36766c2ed29d127b2027b98144e82ced233bcc7b",
+    "pm_review": "fed-boc-watcher/review/2026-09-30/iteration-01/pm-review.json",
+    "live_acceptance_at_toronto": null
+  }
+}
