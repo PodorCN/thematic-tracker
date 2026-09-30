@@ -232,8 +232,14 @@ def _browser_dom(tmp_path, *, select_date=None, measure_gap=False):
     try:
         url = f"http://127.0.0.1:{server.server_port}/economic-calendar/"
         command = [str(browser), "--headless=new", "--no-sandbox", "--disable-gpu", "--disable-background-networking",
+                   "--disable-dev-shm-usage",
                    f"--user-data-dir={tmp_path / 'browser-profile'}", "--virtual-time-budget=4000", "--dump-dom", url]
-        result = subprocess.run(command, capture_output=True, text=True, errors="replace", timeout=40)
+        # CI runners cold-start Chrome slowly and give it a tiny /dev/shm; the
+        # 40s ceiling timed out there (release-contract run 36648316412) while
+        # local runs finish in seconds. The timeout is an environment ceiling,
+        # not a correctness budget; keep it generous and overridable.
+        result = subprocess.run(command, capture_output=True, text=True, errors="replace",
+                                timeout=int(os.environ.get("ECON_BROWSER_TIMEOUT", "120")))
         assert result.returncode == 0, result.stderr
         return BeautifulSoup(result.stdout, "html.parser")
     finally:
