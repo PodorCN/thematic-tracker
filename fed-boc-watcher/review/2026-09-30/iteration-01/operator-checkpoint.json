@@ -2,8 +2,8 @@
   "target_toronto_date": "2026-09-30",
   "iteration": "iteration-01",
   "as_of_toronto": "2026-09-30T03:20:00-04:00",
-  "phase": "PUBLISH IN PROGRESS (2026-09-30): round-1 independent PM approved at 04:00:40-04:00; archive written (data/archive/2026-09-30.json); staging/commit/push/live-acceptance pending at this checkpoint's first writing.",
-  "status": "APPROVED - PENDING COMMIT/PUSH/LIVE-ACCEPTANCE.",
+  "phase": "COMPLETE (2026-09-30) - round-1 independent PM approved 04:00:40-04:00; snapshot 2026-09-30-001 published in ac3ecf6; live acceptance PASSED (cache-busted latest.json HTTP 200 first try, sha256 2c2bbad1d98819917130854f7aefae4886b2d510f87370205d854e744f4cc8f1, equals the pushed blob; headless-Chrome render of the live page shows decision-frame populated, both bank panels, the NO TRADE branch, rates 3.890/2.375 and the new JOLTS card).",
+  "status": "PUBLISHED + LIVE-ACCEPTED. 2026-09-30 closed (round 1 of at most 3 used; no feedback records created).",
   "candidate_sha256": "abc1ac9a6c5bbdefd6da8f1e36766c2ed29d127b2027b98144e82ced233bcc7b",
   "baseline": "fed-boc-watcher/review/2026-09-29/iteration-03/candidate.json",
   "baseline_sha256": "c9323bbbee32800edac0d37cfb9d1dc0b97b01daa9fe632e406e7f61506e1d6b",
@@ -22,11 +22,11 @@
     "No feedback records were created this round (no revise); review/feedback/latest.json remains as closed on 2026-09-29."
   ],
   "publication": {
-    "commit": null,
-    "committed_at_toronto": null,
+    "commit": "ac3ecf68e24275b76ddcdab0259955655ba7a1c3",
+    "committed_at_toronto": "2026-09-30T04:08:02-04:00",
     "version": "2026-09-30-001",
     "candidate_sha256": "abc1ac9a6c5bbdefd6da8f1e36766c2ed29d127b2027b98144e82ced233bcc7b",
     "pm_review": "fed-boc-watcher/review/2026-09-30/iteration-01/pm-review.json",
-    "live_acceptance_at_toronto": null
+    "live_acceptance_at_toronto": "2026-09-30T04:13:58-04:00"
   }
 }
