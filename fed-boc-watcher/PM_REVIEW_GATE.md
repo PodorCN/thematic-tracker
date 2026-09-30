@@ -80,6 +80,11 @@ Approval must not be conditional. “Approved if fixed” is `revise`.
 
 1. Operator freezes iteration 01 and launches a separate PM reviewer.
 2. Run `scripts/econ/validate_pm_review.py --candidate ... --review ...`.
+   Then run the pinned render acceptance before any archive:
+   `FED_BOC_RENDER_CANDIDATE=$PWD/fed-boc-watcher/review/YYYY-MM-DD/iteration-NN/candidate.json
+   uv run --isolated --python 3.11 --with-requirements requirements.txt python -m pytest
+   tests/test_render_truthfulness.py -q` — unpinned runs skip the candidate
+   assertions by design, so an unpinned green run is not acceptance.
 3. If verdict is `revise`, publication is forbidden. Immediately run
    `scripts/econ/record_pm_feedback.py --candidate ... --review ...`; this atomically
    updates `fed-boc-watcher/review/feedback/latest.json` and appends an immutable

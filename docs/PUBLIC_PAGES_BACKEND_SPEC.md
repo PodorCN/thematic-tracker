@@ -5,27 +5,25 @@ This document is the canonical backend contract for these public pages:
 | Page | Public HTML | Latest data |
 |---|---|---|
 | Global Economic Calendar | `economic-calendar/index.html` | `economic-calendar/data/latest.json` |
-| Fed/BOC Watcher | `fed-boc-watcher/index.html` | `docs/fed-boc-watcher/data/latest.json` |
+| Fed/BOC Watcher | `fed-boc-watcher/index.html` | `fed-boc-watcher/data/latest.json` |
 
-The frontend is static. The backend publishes JSON once per day, preserves an immutable dated copy, and updates a small date manifest. All public times are rendered in `America/Toronto`; source timestamps must retain an explicit UTC offset.
+The four product frontends (`canadian-banks`, `ai-software`, `economic-calendar`, `fed-boc-watcher`) are separately versioned static pages. Daily jobs publish only the content assets they fetch; changing a frontend requires a separate, reviewed code PR and an updated SHA in `scripts/econ/frontend_contract.json`. The two macro pages publish dated JSON and a date manifest, never regenerated HTML. All public times are rendered in `America/Toronto`; source timestamps retain their offset.
 
 ## 1. Required Publication Layout
 
 ```text
-docs/
-  economic_calendar.html
-  economic-calendar/archive/YYYY-MM-DD.html
-  feds-boc-watcher.html
-  data/
-    economic-calendar/
-      latest.json
-      dates.json
-      archive/YYYY-MM-DD.json
-    fed-boc/
-      latest.json
-      dates.json
-      archive/YYYY-MM-DD.json
+economic-calendar/index.html                 # static renderer
+economic-calendar/raw/YYYY-MM-DD/economic_calendar.json
+economic-calendar/data/{latest,dates}.json
+economic-calendar/data/archive/YYYY-MM-DD.json
+fed-boc-watcher/index.html                   # static renderer
+fed-boc-watcher/data/dashboard.json         # staging; never an approved publication
+fed-boc-watcher/data/{latest,dates}.json
+fed-boc-watcher/data/archive/YYYY-MM-DD.json
+fed-boc-watcher/review/YYYY-MM-DD/iteration-NN/{candidate.json,candidate.sha256,pm-review.json}
 ```
+
+Existing `economic-calendar/archive/*.html` pages are legacy; no daily job writes new ones.
 
 Rules:
 
@@ -56,12 +54,17 @@ or mismatched review fails closed and must not update `latest.json`.
 1. Resolve the publication date in `America/Toronto`.
 2. Write a temporary JSON file and validate its schema and numeric values.
 3. For Fed/BOC, validate the independent PM verdict with
-   `scripts/econ/validate_pm_review.py --require-approved`.
+   `scripts/econ/validate_pm_review.py --require-approved`, then run the pinned
+   render acceptance: `FED_BOC_RENDER_CANDIDATE=$PWD/fed-boc-watcher/review/<date>/iteration-NN/candidate.json
+   uv run --isolated --python 3.11 --with-requirements requirements.txt python -m pytest
+   tests/test_render_truthfulness.py -q`. Unpinned runs skip these assertions by
+   design, so the pin is what makes it an acceptance gate.
 4. Atomically rename it to `archive/YYYY-MM-DD.json`.
 5. Atomically update `latest.json` from the newest archive.
 6. Rebuild `dates.json` from successful archive files.
-7. For Economic Calendar, render and archive `economic-calendar/archive/YYYY-MM-DD.html`.
-8. Commit or upload all new archive files and the approved review evidence together.
+7. Run `python scripts/econ/verify_data_only_changes.py --product <page> --staged`; no HTML, CSS, JS, Python, or other product may be in the data release. Commit the relevant JSON and (for Fed/BOC) the approved review evidence together. CI repeats the contract against the proposed diff. The calendar frontend fetches `data/latest.json` or the selected dated JSON in the browser.
+
+Never represent a passing JSON/path check as independent PM approval or proof of source accuracy. The frontend hash is a code-version binding, not reviewer authentication.
 
 Repository commands:
 
@@ -71,7 +74,7 @@ python scripts/econ/render_calendar.py --date YYYY-MM-DD
 python scripts/econ/archive_fed_boc.py --input fed-boc-watcher/data/dashboard.json --candidate fed-boc-watcher/review/YYYY-MM-DD/iteration-NN/candidate.json --pm-review fed-boc-watcher/review/YYYY-MM-DD/iteration-NN/pm-review.json
 ```
 
-The calendar renderer publishes its JSON, HTML snapshot, `latest` files, and date manifest. `scripts/econ/archive_fed_boc.py` uses `as_of` to determine the Toronto snapshot date.
+`render_calendar.py` publishes only the calendar JSON archive, latest JSON, and date manifest; `index.html` is unchanged. `archive_fed_boc.py` derives the Toronto as-of date and may publish only the frozen PM-approved payload.
 
 ## 3. Economic Calendar Payload
 

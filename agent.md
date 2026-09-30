@@ -15,10 +15,12 @@ home/                    ← 落地页（新增 theme 时加一张卡片）
   theme.md                 唯一内容源（你每天改的就是它）
   tracker_data/            原始行情 CSV 缓存
   AGENT.md                 本 theme 的专属指令（proxy/阈值/日历/ quirks）
-economic-calendar/       ← 宏观页 1：全球经济日历（自动发布，无 theme.md）
-fed-boc-watcher/         ← 宏观页 2：Fed×BOC 拔河看板（过 PM 闸门才发，无 theme.md）
+economic-calendar/       ← 宏观页 1：全球经济日历（固定 index.html；日常只发 JSON）
+fed-boc-watcher/         ← 宏观页 2：Fed×BOC 看板（固定 index.html；过 PM 闸门才发 JSON）
 scripts/validate-theme.mjs ← 校验脚本，theme 通用
-scripts/econ/              ← 宏观页的 Python 流水线（抓取/渲染/归档），与 theme SOP 无关
+scripts/econ/frontend_contract.json ← 四页前端 SHA-256 冻结基线（换版时才改）
+scripts/econ/verify_data_only_changes.py ← 日常发布的路径/前端摘要/PM 闸门
+scripts/econ/              ← 宏观页数据抓取、校验、归档（每日不生成 HTML）
 tests/                     ← scripts/econ/ 的单元测试（pytest，无网络）
 docs/                      ← 宏观页的发布契约与运维手册
 ```
@@ -31,14 +33,14 @@ docs/                      ← 宏观页的发布契约与运维手册
 |---|---|---|---|---|---|
 | 1 | `canadian-banks/` | theme | `theme.md`（手写） | 人/agent 每交易日盘后跑 §1 SOP | `canadian-banks/AGENT.md` |
 | 2 | `ai-software/` | theme | `theme.md`（手写） | 人/agent 每交易日盘后跑 §1 SOP | `ai-software/AGENT.md` |
-| 3 | `economic-calendar/` | 宏观页 | FxStreet API（Python 渲染） | **GitHub Actions 全自动**，每天 13:10 UTC | `economic-calendar/AGENT.md` |
-| 4 | `fed-boc-watcher/` | 宏观页 | 研究 + 官方源（Python 渲染） | **半自动：必须过独立 PM 审阅闸门**，永不自动发布 | `fed-boc-watcher/AGENT.md` |
+| 3 | `economic-calendar/` | 宏观页 | FxStreet/ForexFactory JSON；浏览器读取 | **GitHub Actions 全自动只提交 JSON**，每天 13:10 UTC | `economic-calendar/AGENT.md` |
+| 4 | `fed-boc-watcher/` | 宏观页 | 研究 + 官方源 JSON；浏览器读取 | **只采集/送审；获独立 PM 批准后才可单独发布数据** | `fed-boc-watcher/AGENT.md` |
 
 两类的区别，别搞混：
 
 |  | theme（1–2） | 宏观页（3–4） |
 |---|---|---|
-| 内容源 | `theme.md`，你每天手写重写 | JSON 数据，Python 渲染 |
+| 内容源 | `theme.md` 每日更新，镜像 `theme.txt` | JSON 数据；固定网页只负责浏览器渲染 |
 | 有 VALIDITY 灯吗 | 有（green/yellow/red） | 没有 |
 | 有 proxy / 基准吗 | 有 | 没有 |
 | 校验 | `node scripts/validate-theme.mjs` | `pytest tests/` |
@@ -61,7 +63,7 @@ docs/                      ← 宏观页的发布契约与运维手册
 5. **重写 theme.md**：整个重写（不要局部 patch），格式严格遵守根 agent.md 旧版 §2 schema（frontmatter / PROXIES / STATS / VERDICT / EVENTS 升序编号 / CATALYSTS / CHARTDATA）；事件超 ~15 条时合并最老最不重要的。**同步更新 `## VALIDITY` 灯**：用 chartdata 重算近 42 个交易日（约两个月）主 proxy vs 基准（tsx 槽）的超额，按该 theme AGENT.md 的灯规则定 green/yellow/red 并写清理由数字。
 6. **同步发布副本**：将 `<theme>/theme.md` 逐字节复制为 `<theme>/theme.txt`。`theme.md` 是唯一编辑源；`theme.txt` 是 GitHub Pages 可稳定 fetch 的发布资产，两者必须字节一致。
 7. **校验**：`node scripts/validate-theme.mjs <theme>/theme.md` 必须 PASS（error 清零；warning 修不了就留着，但要在汇报里说明），并检查 `theme.md` 与 `theme.txt` 字节一致。
-8. **发布**：`git add <theme>/` → 一天一个 commit（`data(<theme>): update theme.md <updated>`）→ 推 dev/功能分支 → Action 绿 → 合 main（自动上线约 1 分钟）→ 直接请求线上 `<theme>/theme.txt`，确认 HTTP 200 和 `updated` 日期，再打开线上页确认。回滚用 `git revert`。
+8. **数据发布**：只暂存 `<theme>/theme.md`、`theme.txt` 和本次更新的 `tracker_data/*.csv`，不要 `git add <theme>/`。对每个 theme 分别运行 `python scripts/econ/verify_data_only_changes.py --product <theme> --staged`，再跑 `node scripts/validate-theme.mjs` 和独立投资组合经理的精确 SHA 审阅；一个 theme 一次提交。前端 `index.html`、`AGENT.md`、脚本不许混入数据提交。推送获批的分支、合并后核对线上 `theme.txt` 的 `updated`、正文及实际浏览器呈现；回滚用 `git revert`。
 
 ## 2. 新增一个 theme（5 步）
 
@@ -80,6 +82,8 @@ docs/                      ← 宏观页的发布契约与运维手册
 - **非交易日**：只维护 CATALYSTS，不改价格。
 - **不要改 index.html**：内容问题一律在 theme.md 里解决；只有用户明确要求改版式才动渲染器。
 - **CRLF 注意**：theme.md 经常是 CRLF（Windows 编辑），解析/校验必须先归一化换行（校验脚本已处理；自己写脚本别忘）。
-- **宏观页的 HTML 不要手改**：`economic-calendar/index.html`、`economic-calendar/archive/*.html` 由
-  `scripts/econ/template_calendar.html.j2` 渲染，手改会被下次流水线覆盖；要改版式就改模板。
-- **Fed/BOC 永不自动发布**：没有 `approved` 的 PM 审阅（且 sha256 对上 candidate 字节），不许 archive/commit/push。
+- **四页日常只动数据**：两个 theme 只改 `theme.md`/`theme.txt`/行情 CSV；经济日历只写 raw 和 data JSON；Fed/BoC 仅把获批候选归档成 data JSON。`index.html`、CSS/JS、模板、Python 代码与数据发布隔离。
+- **HTML 是单独的开发变更**：修改某页 `index.html` 时必须走独立 PR，更新 `scripts/econ/frontend_contract.json` 中该页 SHA，跑本地/CI 全量和真实浏览器的桌面、手机渲染测试，取得独立代码审核；不得同 PR 捆绑当日数据。`economic-calendar/archive/*.html` 是历史遗留，永不新建。
+- **每次数据发布前执行机器门禁**：`python scripts/econ/verify_data_only_changes.py --product <四页之一> --staged`，退出非 0 时禁止 commit/push。推送前对即将推送的 commit range 再检查，CI 对 PR/推送重新检查；它只校验文件范围、前端摘要和 Fed/BoC 的候选/审阅对应关系，不能替代独立 PM 判断。未经批准的本地 candidate 不许冒充已发布数据。
+- **防线边界**：本库 Pages 直接从 `main` 提供网页。push 通道接受"同一 range 内含更新后的 `frontend_contract.json` 且摘要绑定 head 字节"的前端改动（合并已审 PR 与直推在 diff 层不可区分，绑定由 CI 复核）；不含 contract 的前端推送、或前端与数据混合的推送一律拒绝。冻结范围严格限定四个产品页的 `index.html`（canadian-banks、ai-software、fed-boc-watcher、economic-calendar）；`home/index.html` 等落地页不在冻结范围内。截至 2026-09-29 远端 `main` 没有分支保护：这些检查是事后检测，不是预发布阻止；是否启用 ruleset/分支保护由仓库所有者决定，启用前不得声称裸推已被阻止。
+- **Fed/BOC 永不自动发布**：没有 `approved` 的独立 PM 审阅（且 sha256 对上 candidate 字节）、归档内容比对和数据-only 门禁，不许 archive/commit/push。

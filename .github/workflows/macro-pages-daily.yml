@@ -18,6 +18,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -36,17 +38,30 @@ jobs:
             echo "date=$(TZ=America/Toronto date +%F)" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Fetch and publish economic calendar
+      # This job is a DATA publisher only. A template change is never part of it.
+      - name: Check frozen frontend before fetching
+        run: python scripts/econ/verify_data_only_changes.py --product economic-calendar --staged
+
+      - name: Fetch and publish economic calendar JSON
         run: |
           python scripts/econ/fetch_calendar.py --date "${{ steps.vars.outputs.date }}" --days 7 --countries US,CA,EMU,DE,FR,IT,ES,UK,CH --impacts HIGH,MEDIUM --with-history --history-events 15 --history-limit 12
           python scripts/econ/render_calendar.py --date "${{ steps.vars.outputs.date }}"
+          git diff --exit-code HEAD -- economic-calendar/index.html economic-calendar/archive/
+          python -m pytest tests/test_econ_render.py tests/test_data_only_release.py -q
 
-      # Fed/BOC is intentionally not archived here. It requires the independent
-      # PM review gate in fed-boc-watcher/PM_REVIEW_GATE.md.
-      - name: Commit calendar snapshots
+      # Fed/BOC requires a separately written independent PM verdict and never runs here.
+      - name: Commit only calendar data
         run: |
           git config user.name "macro-pages-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add "economic-calendar/raw/${{ steps.vars.outputs.date }}/economic_calendar.json" economic-calendar/data/ economic-calendar/archive/ economic-calendar/index.html
-          git commit -m "data(economic-calendar): snapshots ${{ steps.vars.outputs.date }}" || echo "nothing to commit"
-          git push
+          git add "economic-calendar/raw/${{ steps.vars.outputs.date }}/economic_calendar.json" \
+            economic-calendar/data/latest.json economic-calendar/data/dates.json \
+            "economic-calendar/data/archive/${{ steps.vars.outputs.date }}.json"
+          python scripts/econ/verify_data_only_changes.py --product economic-calendar --staged
+          if git diff --cached --quiet; then
+            echo "No new calendar snapshot; skipping commit"
+          else
+            git commit -m "data(economic-calendar): snapshot ${{ steps.vars.outputs.date }}"
+            python scripts/econ/verify_data_only_changes.py --product economic-calendar --range HEAD^..HEAD
+            git push origin HEAD:main
+          fi

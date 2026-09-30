@@ -2,7 +2,7 @@
 
 > 每日归档、`latest/archive/dates` 路径及两个公共页面的统一发布流程，以 `PUBLIC_PAGES_BACKEND_SPEC.md` 为准。
 
-> 面向后端：前端为纯静态 `HTML + Chart.js`（`scripts/econ/template_calendar.html.j2`），所有数据通过 HTTP JSON 拉取，无需重新部署前端。数据每天更新一次即可。
+> 面向当前实现：前端为稳定的 `economic-calendar/index.html`（HTML + Chart.js）；每日发布仅更新 `data/latest.json`、`data/archive/<date>.json`、`data/dates.json`。`scripts/econ/template_calendar.html.j2` 是旧模板，不再由每日流水线调用；下面提到的 `/api/calendar` 属于可选动态服务草案，并非本站实际路由。
 
 ---
 
@@ -17,25 +17,24 @@
 ```
 
 * 前端 **不** 直连 FxStreet / Investing.com，只读取后端发布的快照
-* 后端 **每天 00:10 UTC** 跑一次抓取，写入文件或 DB，前端下次请求即拿到新数据
-* 前后端通过 **CORS** 打通，`Content-Type: application/json; charset=utf-8`
+* 实际调度为 `.github/workflows/macro-pages-daily.yml` 每天 13:10 UTC；非交易日亦按日历更新。
+* 本站从相同域名的 `economic-calendar/data/` 读取静态 JSON，无需额外 CORS 服务。
 
 ### GitHub Pages 生产文件
 
 ```text
+economic-calendar/index.html           # stable frontend
 economic-calendar/data/
 ├── latest.json
 ├── dates.json
 └── archive/
     └── 2026-08-24.json
-
-economic-calendar/archive/
-└── 2026-08-24.html
+# economic-calendar/archive/*.html = legacy historical pages, no new files
 ```
 
 - `latest.json` 与最新日期的 archive 内容一致。
 - `dates.json` 格式为 `{"latest":"2026-08-24","dates":["2026-08-24","2026-08-23"]}`，日期降序。
-- 历史 HTML 是当日数据生成的完整页面，日期选择器直接切换该文件，因此回看不会被最新数据重绘。
+- 历史回看由固定 `index.html?date=YYYY-MM-DD` 从 `data/archive/<date>.json` 重绘；旧的归档 HTML 保留但不再新增。
 - `economic-calendar/raw/YYYY-MM-DD/economic_calendar.json` 是流水线原始归档；`economic-calendar/data/...` 是 GitHub Pages 可公开读取的发布副本。
 
 ---
@@ -45,15 +44,15 @@ economic-calendar/archive/
 ### 2.1 静态生产端点
 
 ```http
-GET /data/economic-calendar/latest.json
-GET /data/economic-calendar/dates.json
-GET /data/economic-calendar/archive/{YYYY-MM-DD}.json
-GET /economic-calendar/archive/{YYYY-MM-DD}.html
+GET /thematic-tracker/economic-calendar/data/latest.json
+GET /thematic-tracker/economic-calendar/data/dates.json
+GET /thematic-tracker/economic-calendar/data/archive/{YYYY-MM-DD}.json
+GET /thematic-tracker/economic-calendar/?date={YYYY-MM-DD}
 ```
 
-### 2.2 `GET /api/calendar`（可选动态服务）
+### 2.2 `GET /api/calendar`（可选动态服务草案）
 
-**首选端点，前端所有渲染都靠它。**
+**草案，未实现，本站没有此路由。** 前端实际渲染只依赖 2.1 的静态 JSON（见文首说明）。
 
 **Query 参数（全部可选，有默认值）：**
 
@@ -160,24 +159,17 @@ GET /api/history?eventId=5d9ff5c8-1e0e-44b8-8d06-4ac39d217bf3&limit=12
 
 ## 4. 后端更新策略（每天一次即可）
 
-**推荐 Cron**
+**生产调度：`.github/workflows/macro-pages-daily.yml` 每天 13:10 UTC，按 `America/Toronto` 决定日期。** 手工补跑用相同的 fetch/render 命令，严禁额外提交 HTML。
 
-```cron
-# 每天 00:10 UTC 拉未来 7 天 + 历史
-10 0 * * *  cd /app && .venv/bin/python scripts/econ/fetch_calendar.py --days 7 --countries US,CA,EMU,DE,FR,IT,ES,UK,CH --impacts HIGH,MEDIUM --with-history --history-events 8 --history-limit 12
-```
-
-* 输出文件 `archive/$(date -u +%F)/economic_calendar.json`（`count: 52` 左右）
-* 随后执行 `python scripts/econ/render_calendar.py --date $(date -u +%F)`，自动发布公开 JSON、历史 HTML、`latest.json` 和 `dates.json`
-* HTML 由同一流水线自动生成并发布，无需人工修改页面
+* `fetch_calendar.py` 写 `economic-calendar/raw/<date>/economic_calendar.json`；`render_calendar.py` 只发布档案 JSON、`latest.json` 和 `dates.json`，不再渲染任何 HTML。
+* 页面代码修改走单独 PR、前端 SHA 基线更新及真实浏览器测试；日常任务对模板变更 fail closed。
 
 ### 保存与保留要求
 
 - 每个 archive 日期对应一次完整抓取视图，历史文件永久保留。
 - 同一日期可因数据修订重跑并原子覆盖，但不得回写其他日期。
-- 发布顺序为日归档 JSON/HTML → `latest.json` → `dates.json`。
-- 如果当天抓取失败，保留上一份 `latest.json`，不要写空数组；健康状态标记 `stale: true`。
-- `dates.json` 中的每个日期必须同时存在公开 JSON 和历史 HTML。
+- 发布顺序为日期归档 JSON → `latest.json` → `dates.json`；`index.html` 永不因数据日更而变。
+- `dates.json` 中每个日期必须存在对应公开 JSON。
 
 **实现最简（文件直出）**
 
@@ -202,11 +194,10 @@ def get_calendar(start: str = None, end: str = None, with_history: bool = True):
 
 ## 5. 前端适配说明（已就绪）
 
-* 当前 `scripts/econ/template_calendar.html.j2` 已改为 **全宽英文**，`main { width:100% }`，`Chart.js 4.4.3 CDN`
-* 国旗用 `https://flagcdn.com/w20/{code}.png`（`FLAG_CODE: USD→us, CAD→ca, EUR→eu`），`Windows` 可靠，`emoji` 仅 fallback
-* Timeline 列：`Time (Toronto) | Currency | Importance(★/★★/★★★) | Event | Actual | Forecast | Previous`
-* Charts 过滤：`USD > CAD > Europe`，`AUD/JPY` 已排除，Job 数据（`Jobless Claims/ADP/Nonfarm`）已加权提升
-* 前端只需把 `fetch('/archive/2026-08-24/economic_calendar.json')` 改为 `fetch('/api/calendar?with_history=true')`，其余渲染逻辑不变
+* 当前生产前端是 `economic-calendar/index.html`，Chart.js 4.4.3 CDN 用于趋势图；`scripts/econ/template_calendar.html.j2` 是不再使用的旧版渲染模板。
+* 国旗用 `https://flagcdn.com/w20/{code}.png`（`USD→us, CAD→ca, EUR→eu`），emoji 仅 fallback。
+* Timeline 列：`Time (Toronto) | Currency | Importance | Event | Actual | Forecast | Previous`。
+* 日期选择器在本页通过 `?date=<YYYY-MM-DD>` 切换所选 JSON，浏览器后退/前进恢复选择；无需重定向到 HTML 快照。
 
 **前端 JS 关键（已实现）**
 
@@ -241,4 +232,4 @@ const { events, history, history_meta } = await res.json();
 
 ## 8. 示例完整 JSON（截断）
 
-见 `archive/2026-08-24/economic_calendar.json`（52 条，8 组历史），或请求线上 `/api/calendar` 获取。
+见 `economic-calendar/raw/2026-09-29/economic_calendar.json` 或 `economic-calendar/data/archive/2026-09-29.json`（实际归档路径），或线上 `data/latest.json`。
