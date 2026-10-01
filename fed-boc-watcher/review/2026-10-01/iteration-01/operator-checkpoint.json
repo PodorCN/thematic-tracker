@@ -1,0 +1,12 @@
+{
+  "target_toronto_date": "2026-10-01",
+  "iteration": "iteration-01",
+  "as_of_toronto": "2026-10-01T05:04:00-04:00",
+  "phase": "PM APPROVED (round 1; sha 102cdfd0...); validate --require-approved PASS; gate rerun 13/13 PASS; pinned render 9/9 PASS; ARCHIVED (archive/2026-10-01.json, latest.json, dates.json written); tests+commit+push+live acceptance pending",
+  "status": "APPROVED - PUBLISHING",
+  "candidate_sha256": "102cdfd0ceaeb4f5e8978dc97464b9f196590998adec72cb7b201b182129465a",
+  "baseline": "fed-boc-watcher/review/2026-09-30/iteration-01/candidate.json",
+  "baseline_sha256": "abc1ac9a6c5bbdefd6da8f1e36766c2ed29d127b2027b98144e82ced233bcc7b",
+  "structural_gate": "fed-boc-watcher/review/2026-10-01/iteration-01/structural-gate.json (PASS 13/13)",
+  "next_step": "full suite on committed tree -> push origin main -> live acceptance (cache-busted latest.json + real page render)"
+}

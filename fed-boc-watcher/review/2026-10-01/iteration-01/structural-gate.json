@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "candidate": "fed-boc-watcher\\review\\2026-10-01\\iteration-01\\candidate.json",
+  "candidate_sha256": "102cdfd0ceaeb4f5e8978dc97464b9f196590998adec72cb7b201b182129465a",
+  "candidate_as_of": "2026-10-01T05:04:00-04:00",
+  "checks": {
+    "required_containment": {
+      "pass": true,
+      "problems": []
+    },
+    "as_of_coherence": {
+      "pass": true,
+      "problems": []
+    },
+    "market_close_semantics": {
+      "pass": true,
+      "problems": []
+    },
+    "provenance_traceability": {
+      "pass": true,
+      "problems": []
+    },
+    "pricing_honesty": {
+      "pass": true,
+      "problems": []
+    },
+    "derived_numbers": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_chronology": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_side_signs": {
+      "pass": true,
+      "problems": []
+    },
+    "calendar_rendered": {
+      "pass": true,
+      "problems": []
+    },
+    "renderer_contract": {
+      "pass": true,
+      "problems": []
+    },
+    "evidence_contains_claim": {
+      "pass": true,
+      "problems": []
+    },
+    "published_path_provenance": {
+      "pass": true,
+      "problems": []
+    },
+    "price_threshold_arithmetic": {
+      "pass": true,
+      "problems": []
+    }
+  },
+  "failed_checks": [],
+  "result": "PASS",
+  "note": "Structural checks only. Judgment (data accuracy, decision usefulness) is the independent PM's job, not this gate's.",
+  "brief_regeneration": {
+    "baseline": "fed-boc-watcher\\review\\2026-09-30\\iteration-01\\candidate.json",
+    "baseline_headline": "The FedWatch dark spot persists — third straight snapshot — and both boards sit just above policy: the October Fed average 1.5 bp above the range midpoint, CORRA futures 12.5 bp above target. What changed is the data: JOLTS showed openings down 256k and Canada's July GDP landed flat, so the cooling is real but gradual, and the next repricing candidates are today's GDP/PCE prints and Friday's payrolls, not either decision.",
+    "candidate_headline": "September 30 answered the frame's open question with firm numbers: GDP was revised up 0.7pp to 2.2% and core PCE still runs at 3.0% y/y, so growth is not cracking even as inflation stays sticky — and both boards still sit just above policy with no verifiable meeting distribution. Friday's September payrolls is now the single scheduled swing factor before the October decisions.",
+    "headline_changed": true,
+    "baseline_version": "2026-09-30-001",
+    "candidate_version": "2026-10-01-001"
+  }
+}
