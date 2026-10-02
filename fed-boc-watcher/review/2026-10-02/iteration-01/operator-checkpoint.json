@@ -1,0 +1,14 @@
+{
+  "target_toronto_date": "2026-10-02",
+  "iteration": "iteration-01",
+  "as_of_toronto": "2026-10-02T06:22:00-04:00",
+  "phase": "PM APPROVED (round 1, reviewed 06:48; sha 243edac7087882c4b45eeda7c09f456fa4c5ce8c3321789cded33b967ec7965a); validate --require-approved PASS; structural gate PASS 13/13 (pre-review 06:21 + postreview 06:49:44; brief regenerated True); pinned render 9/9 PASS; ARCHIVED 06:49:46 (archive/2026-10-02.json, latest.json, dates.json); full suite on committed tree + commit + push + live acceptance pending",
+  "status": "APPROVED - PUBLISHING",
+  "candidate_sha256": "243edac7087882c4b45eeda7c09f456fa4c5ce8c3321789cded33b967ec7965a",
+  "baseline": "fed-boc-watcher/review/2026-10-01/iteration-01/candidate.json",
+  "baseline_sha256": "102cdfd0ceaeb4f5e8978dc97464b9f196590998adec72cb7b201b182129465a",
+  "structural_gate": "fed-boc-watcher/review/2026-10-02/iteration-01/structural-gate.json (PASS 13/13)",
+  "review_note": "pm-review.json approved with 3 minor findings deferred to the next natural rebuild; operator_instructions empty; publication not conditioned on them",
+  "resume_note": "Morning tick ended after archive, pre-commit; this tick re-verified candidate==dashboard bytes, latest==archive bytes, latest==candidate+archiver fields only, validator PASS, pinned render 9/9. A gate re-run inside the archived-but-uncommitted window flags published_path_provenance (its revision-match exemption only scans legacy review-artifacts/); false positive of the dirty window - candidate bytes unchanged since review. Recorded in structural-gate-precommit.json. No gate/check code was modified.",
+  "next_step": "full suite on committed tree -> verify_data_only --range origin/main..HEAD -> push origin main -> live acceptance (cache-busted latest.json + real page render)"
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "target_toronto_date": "2026-10-02",
+  "iteration": "iteration-01",
+  "candidate": "fed-boc-watcher/review/2026-10-02/iteration-01/candidate.json",
+  "candidate_sha256": "243edac7087882c4b45eeda7c09f456fa4c5ce8c3321789cded33b967ec7965a",
+  "baseline": "fed-boc-watcher/review/2026-10-01/iteration-01/candidate.json",
+  "baseline_sha256": "102cdfd0ceaeb4f5e8978dc97464b9f196590998adec72cb7b201b182129465a",
+  "structural_gate_out": "fed-boc-watcher/review/2026-10-02/iteration-01/structural-gate.json",
+  "evidence_dir": "fed-boc-watcher/review/2026-10-02/iteration-01/evidence/recollection/",
+  "evidence_manifest": "fed-boc-watcher/review/2026-10-02/iteration-01/evidence/recollection/retrieval-manifest.json (63 entries)",
+  "diff_summary_path": "fed-boc-watcher/review/2026-10-02/iteration-01/diff_vs_2026-10-01.txt",
+  "diff_changed_leaf_count": 875,
+  "diff_note": "875 changed leaves is expected for a fresh daily run: every evidence path/receipt rebinds to the 2026-10-02 capture directory, the market block re-derives from the Oct 1 close, the calendar advances a day, two new driver cards were added, and the decision_brief is re-authored in full. The substantive changes are listed in this_round_changes; nothing was carried over as fresh prose except structural bindings.",
+  "this_round_changes": [
+    "Market marks advanced to the Thursday 2026-10-01 close for all six tickers (SPY 763.99, TLT 77.71, XLF 53.46, XLE 62.70, GLD 382.76, ZEB.TO 73.10; 1d base Sep 30, 1w base Sep 24, one consistent displayed-2dp rule); ZQV26 closed 96.1150 (3.885%; the Oct 2 Globex session was in progress at capture — last 96.1175 — and is not used); ZQZ26 95.9300.",
+    "NEW driver card (fed_hawk_ism_manufacturing_sep2026_20261001, weight 0.5, hawkish, HIGH): September ISM Manufacturing 54.5 (Aug 54.6; ~54.8 consensus from the ForexFactory feed) with prices-paid 77.9 (+6.8), employment 52.7 (+1.5), new orders 55.3, production 56.7 — bound to the PR Newswire wire copy of the release; ismworld.org's own report page returned HTTP 404 this round and the attempt is recorded on the card.",
+    "NEW driver card (fed_hawk_initial_claims_20261001, weight 0.5, hawkish, MEDIUM): initial claims 197k for the week of Sep 26 (prior 198k; ~201k feed consensus) — bound to the DOL-sourced series mirrored at TradingEconomics; the card discloses that dol.gov returned HTTP 403 for the release and the DOL data page carries a technical-issues notice.",
+    "Fed proxy ticked: ZQV26 96.1150 (from 96.110); FedWatch HTTP 403 again (six probability fields null; a media-reported >70% Oct-28 hike-odds figure is carried as attributed context only, explicitly unverifiable here).",
+    "BoC proxy firmed with a deeper print: CRAU26 last 97.6475 (69 trades; volume 1,070), quote sides 97.645/97.6475; mid-quote 97.64625 implies ~2.354% (from ~2.364%); open interest rose to 244,446; the prior observation is kept as history only.",
+    "Calendar advanced to Oct 2-9: the Oct 1 claims/ISM rows resolved into the new driver cards; us_employment_situation_202609_20261002 carries the pipeline consensus (90k payrolls / +162k prior); new rows us_ism_services_20261005 (prior 55.4) and us_fomc_minutes_20261007; date-only StatCan rows for Oct 6 trade and Oct 9 LFS; Oct 9 Michigan preliminary row from the survey's own next-release line. ISM Services, FOMC Minutes and the pipeline consensus values are quoted from the repo's economic-calendar pipeline artifact at economic-calendar/raw/2026-10-01/economic_calendar.json (sha-bound; labelled pipeline-sourced, not official-capture).",
+    "Refresh failures recorded, not hidden: CME FedWatch HTTP 403; fxstreet HTTP 401 (zero-byte capture); BLS schedule pages HTTP 403; DOL claims pages HTTP 403 / technical-issues notice; ISM report page HTTP 404 (wire copy used instead); FRED timed out (zero-byte); publicnow bot-challenged.",
+    "decision_brief re-authored from scratch (structural gate reports brief regenerated: True vs 2026-10-01-001); the brief centers on the Oct 1 outcomes, the live hike tail (with the unverifiable-odds attribution caveat) and today's payrolls as the adjudicator."
+  ],
+  "open_feedback_context": "No open feedback: the 2026-09-29 feedback closed after 2026-09-29-003 passed the independent PM, archive, push and live acceptance; the 2026-09-30 and 2026-10-01 snapshots were each approved in round 1 and published with no feedback records created. This is REVIEW ROUND 1 of at most 3 for a fresh daily run on 2026-10-02.",
+  "recollection_scope": "Full: every bound source re-fetched 2026-10-02 pre-open (retrieval-manifest.json lists every fetch with HTTP status, bytes and sha256; 63 entries). Market strip + ZQ proxies HTTP 200; Fed statement/FOMC calendar 200; BoC decision/policy calendar 200; TMX CRA quotes 200 (deeper print; OI 244,446); UMich 200; StatCan pages + schedule 200 (LFS table re-downloaded and month-over-month levels recomputed from the bound zip); BLS API POST 200; BEA release pages 200 (direct URLs — the news-list pick failed this round and is recorded); CME FedWatch 403; fxstreet 401; BLS schedule pages 403; DOL claims pages 403 / notice (attempts recorded); ISM report page 404 (wire copy captured); FRED timed out; publicnow bot-challenged.",
+  "render_verification": {
+    "operator_status": "Not yet executed at dispatch time: the pinned render pytest and the full suite will run in the operator's publish chain after your verdict. The structural gate's renderer_contract check passed (every renderer-read brief field is present in the candidate)."
+  },
+  "warnings": [],
+  "structural_gate_result": {
+    "result": "PASS",
+    "checks_passed": 13,
+    "checks_total": 13,
+    "failed_checks": [],
+    "brief_regenerated_vs_baseline": true,
+    "baseline_version": "2026-10-01-001",
+    "candidate_version": "2026-10-02-001",
+    "candidate_as_of": "2026-10-02T06:22:00-04:00"
+  }
+}
