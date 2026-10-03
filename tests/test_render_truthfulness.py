@@ -36,6 +36,7 @@ CANDIDATE = _newest_frozen_candidate() or PAGE_ROOT / "data" / "latest.json"
 
 CHROME_CANDIDATES = [
     shutil.which("chrome"), shutil.which("google-chrome"), shutil.which("chromium"),
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
     r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
 ]
