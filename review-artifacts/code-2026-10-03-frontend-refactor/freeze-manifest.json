@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-03T17:48:51-04:00",
+  "purpose": "Independent review of Phase 1 (frontend corpse purge, Polymarket mounting fix, layout stabilization) and Phase 2 (fetch_fed_boc_market collector and tests).",
+  "repo": "/Users/zixiaomin/git/thematic-tracker",
+  "branch": "main",
+  "head_commit": "59718e7",
+  "base_commit": "23b242d",
+  "files": [
+    {
+      "path": "fed-boc-watcher/index.html",
+      "sha256": "2980b88fe2746808f5997841e227c0f85668cd6ce4b78c1f371537d480177368",
+      "bytes": 116252
+    },
+    {
+      "path": "economic-calendar/index.html",
+      "sha256": "4d8a723f75edc618e82158e8458df5a9fae33fffc851020281e070d5d0f685d2",
+      "bytes": 32633
+    },
+    {
+      "path": "canadian-banks/index.html",
+      "sha256": "a53004d0d26c624fbfec67c1442857c9bb0b77a424c8befa95b594a465a510a4",
+      "bytes": 40739
+    },
+    {
+      "path": "ai-software/index.html",
+      "sha256": "5a30b3c929f843c902b7f913d7529f033d8725211566e9652cea0839759d13ea",
+      "bytes": 44809
+    },
+    {
+      "path": "scripts/econ/frontend_contract.json",
+      "sha256": "26181c97f082287d16b67da99807c997bda05d18d9d1a7a3380f93fa31d9fc08",
+      "bytes": 356
+    },
+    {
+      "path": "scripts/econ/fetch_fed_boc_market.py",
+      "sha256": "b4239fe0985e81b4c476799d74ebcda630f3ed69d553e37e4cdc120c9e53c4fe",
+      "bytes": 10251
+    },
+    {
+      "path": "tests/test_fetch_fed_boc_market.py",
+      "sha256": "68b34214204ea8f3ed08672a83c09b14b26bd2b7559006fd99b0efefafeda7cd",
+      "bytes": 6937
+    },
+    {
+      "path": "docs/MACRO_DATA_OPERATIONS.md",
+      "sha256": "a3daa679212ee71ed791fd8bdc0a33be2b464f07f81679109c1fb53fab1a667f",
+      "bytes": 13934
+    },
+    {
+      "path": "tests/test_render_truthfulness.py",
+      "sha256": "cb962f3427d99fed85bafcd783efe40a80424556c4863b67659372fd96ad310c",
+      "bytes": 12891
+    }
+  ],
+  "patch_file": "frontend-and-collector.patch",
+  "related_context": {
+    "approved_data_candidate": "fed-boc-watcher/review/2026-10-03/iteration-01/candidate.json",
+    "approved_data_candidate_sha256": "f12adbe3624976d416a3c890c4b93d84f770a756efd900137d39bad482df2d57",
+    "pm_review": "fed-boc-watcher/review/2026-10-03/iteration-01/pm-review.json"
+  }
+}
