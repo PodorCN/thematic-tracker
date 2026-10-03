@@ -438,12 +438,18 @@ function drawChart(D, events){
   ];
   EVT = evT;
 
+  const allNorm = [D.zeb_norm, D.spx_norm, D.tsx_norm, D.bank_norm, D.hfin_norm]
+    .filter(Array.isArray).flat().filter(v => typeof v === "number" && !isNaN(v));
+  const yMin = allNorm.length ? Math.min(...allNorm) : 90;
+  const yMax = allNorm.length ? Math.max(...allNorm) : 110;
+  const yPad = Math.max((yMax - yMin) * 0.05, 2);
+
   const layout = {
     paper_bgcolor:"#0b100c", plot_bgcolor:"#0b100c", font:FONT,
     margin:{l:44,r:16,t:34,b:36}, hovermode:"x unified",
     xaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT}},
     yaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT},
-           range:[Math.min(...D.zeb_norm,...D.spx_norm)-1.5, Math.max(...D.zeb_norm,...D.bank_norm)+2],
+           range:[yMin - yPad, yMax + yPad],
            title:{text:"BASE = 100", font:{size:10,color:MUT}}},
     yaxis2:{overlaying:"y", side:"right", showgrid:false, zeroline:false,
             range:[0, Math.max(...D.volume)*6], showticklabels:false},

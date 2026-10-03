@@ -63,9 +63,7 @@
   /* cards — PodorM */
   .card { background:var(--color-card); border-radius:var(--radius-md); padding:14px; }
   .elev-sm { box-shadow: var(--shadow-sm); }
-  /* charts */
-  .charts-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(380px,1fr)); gap:16px; }
-  @media (min-width:1600px){ .charts-grid{ grid-template-columns: repeat(3,1fr);} }
+  .charts-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:16px; }
   .chart-card { display:flex; flex-direction:column; gap:10px; }
   .chart-card h3 { margin:0; font-size:15px; font-weight:500; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .chart-card .sub { font-size:12px; color:var(--color-neutral-500); font-family:var(--font-mono); }
@@ -115,8 +113,8 @@
   .period-label { color:var(--color-neutral-500); font-family:var(--font-mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase; }
   footer.site-footer { padding:72px 56px 56px; display:flex; justify-content:space-between; align-items:flex-end; gap:40px; border-top:1px solid var(--color-neutral-800); font-family:var(--font-mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--color-neutral-500); }
   footer .mark-col { display:flex; flex-direction:column; gap:18px; }
-  @media (max-width:1100px){ .timeline-grid{grid-template-columns:1fr;} }
-  @media (max-width:900px){ .charts-grid{grid-template-columns:1fr;} .site-header{padding:16px 24px;} .site-header nav{gap:18px;} .section{padding:72px 24px;} }
+  @media (max-width:1100px){ .timeline-grid{grid-template-columns:1fr;} .charts-grid{grid-template-columns:repeat(2, minmax(0, 1fr));} }
+  @media (max-width:760px){ .charts-grid{grid-template-columns:1fr;} .site-header{padding:16px 24px;} .site-header nav{gap:18px;} .section{padding:72px 24px;} }
   @media (max-width:640px){ .site-header nav a:first-child{display:none;} .section-head h2{font-size:34px;} table{min-width:760px;} }
 </style>
 <body>
@@ -296,10 +294,12 @@ function flag(currency, width=20) {
   const code = flagCodes[currency];
   if (!code) return element('span','', '🏳️');
   const img = element('img', 'flag-img');
-  img.src = `https://flagcdn.com/w${width}/${code}.png`;
-  img.srcset = `https://flagcdn.com/w${width*2}/${code}.png 2x`;
+  img.src = `https://flagcdn.com/w20/${code}.png`;
+  img.srcset = `https://flagcdn.com/w40/${code}.png 2x`;
   img.width = width; img.height = width === 20 ? 15 : 18;
-  img.alt = currency; return img;
+  img.alt = currency;
+  img.onerror = () => { img.replaceWith(document.createTextNode(currency + ' ')); };
+  return img;
 }
 function fillOptions(select, values, label) {
   select.replaceChildren(new Option(label,'ALL'));
@@ -400,6 +400,7 @@ function renderTrends(data, events) {
       const card = element('div','card elev-sm chart-card'), h3 = element('h3');
       h3.append(flag(ch.currency,24), document.createTextNode(' '+ch.event)); card.append(h3);
       const sub = element('div','sub');
+      if (ch.currency) sub.append(element('strong','',ch.currency), document.createTextNode(' · '));
       if (periodLabels[ch.period]) sub.append(document.createTextNode(periodLabels[ch.period]+' · '));
       sub.append(document.createTextNode('Latest '), element('strong','',valueText(ch.latest,ch.unit)));
       if (ch.forecast !== null) sub.append(document.createTextNode(' · Next forecast '), element('span','forecast-pill',valueText(ch.forecast,ch.unit)));
@@ -421,8 +422,9 @@ function drawChart(canvas, ch) {
     labels.push('Forecast');
   }
   return new Chart(canvas.getContext('2d'), {type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,
+    layout:{padding:{left:8,right:12,top:6,bottom:6}},
     interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false},tooltip:{backgroundColor:'#1a1c2b',titleColor:'#e9e9ed',bodyColor:'#e9e9ed',borderColor:'#3f424d',borderWidth:1,callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.parsed.y+ch.unit}}},
-    scales:{x:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab',maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'#232532'}},y:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab'},grid:{color:'#232532'}}}}});
+    scales:{x:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab',maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:'#232532'}},y:{ticks:{font:{size:10,family:'JetBrains Mono'},color:'#9397ab',padding:6},grid:{color:'#232532'}}}}});
 }
 function applyFilters() {
   const q = $('search').value.trim().toLowerCase(), cur = $('currencyFilter').value, day = $('dateFilter').value;

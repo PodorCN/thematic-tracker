@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -300,12 +300,21 @@ footer.site-footer{padding:56px;display:flex;justify-content:space-between;align
 .decision-frame[hidden]{display:none}
 .decision-frame h2{margin:0;font-family:var(--font-heading);font-size:19px;color:var(--color-text)}
 .decision-frame h3{margin:0 0 6px;font-size:14px;color:var(--color-text)}
-.decision-frame p{margin:0;font-size:13px;line-height:1.6;color:var(--color-neutral-300)}
-.decision-frame ul{margin:6px 0 0;padding-left:19px;font-size:12px;line-height:1.6;color:var(--color-neutral-300)}
+.decision-frame p{margin:0;font-size:13px;line-height:1.6;color:var(--color-neutral-300);max-width:85ch}
+.decision-frame ul{margin:6px 0 0;padding-left:19px;font-size:12px;line-height:1.6;color:var(--color-neutral-300);max-width:85ch}
 .decision-state{font-family:var(--font-mono);font-size:13px;font-weight:800;letter-spacing:.05em;color:#fbbf24}
 .decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .decision-panel{background:rgba(15,16,28,.68);border:1px solid var(--color-neutral-800);border-radius:9px;padding:13px}
-.decision-alert{border:1px solid rgba(248,113,113,.45);background:rgba(248,113,113,.09);border-radius:9px;padding:12px 14px;font-size:13px;line-height:1.55;color:var(--color-neutral-200)}
+.decision-fold{padding:0;overflow:hidden}
+.decision-fold>summary{cursor:pointer;list-style:none;padding:11px 14px;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:space-between;color:var(--color-text);background:var(--color-card-2);user-select:none}
+.decision-fold>summary::-webkit-details-marker{display:none}
+.decision-fold>summary::marker{content:''}
+.decision-fold>summary:hover{color:var(--color-accent-300)}
+.decision-fold>summary::after{content:'\25BC';font-size:9px;color:var(--color-neutral-600);transition:transform .2s}
+.decision-fold[open]>summary::after{transform:rotate(180deg)}
+.decision-fold[open]>summary{border-bottom:1px solid var(--color-neutral-800)}
+.decision-fold-body{padding:12px 14px}
+.decision-alert{border:1px solid rgba(248,113,113,.45);background:rgba(248,113,113,.09);border-radius:9px;padding:12px 14px;font-size:13px;line-height:1.55;color:var(--color-neutral-200);max-width:85ch}
 .decision-sources{display:flex;gap:7px;flex-wrap:wrap;align-items:center;font-size:10px;color:var(--color-neutral-500)}
 .decision-sources a{color:var(--color-accent-300)}
 @media(max-width:900px){.decision-grid{grid-template-columns:1fr}}
@@ -385,18 +394,16 @@ body:not(.detail-open) .detail-only{display:none!important}
 
   <p class="brief-line" id="brief-line">Static archive fallback only — the embedded Sep 9 snapshot is not current and is not a trading signal. Wait for the JSON-backed decision frame.</p>
 
-  <div class="decision-frame" id="decision-frame" aria-live="polite" hidden></div>
-
   <div class="brief-grid">
     <div class="bcard fed" id="brief-fed">
       <div class="bcard-head">
-        <span class="who">🇺🇸 Fed · Sep 15-16 FOMC</span>
-        <span class="when">Decision in <b class="countdown" data-dt="2026-09-16T14:00:00-04:00">—</b> · Wed 14:00 ET</span>
+        <span class="who">🇺🇸 Fed · loading snapshot…</span>
+        <span class="when">Decision in <b class="countdown" data-dt="">—</b></span>
       </div>
       <div class="verdict-row">
-        <span class="verdict-word hike">HIKE 25bp</span>
+        <span class="verdict-word hold">LOADING…</span>
         <span class="verdict-pct">—</span>
-        <span class="verdict-src">Fed funds futures<br>not available</span>
+        <span class="verdict-src">loading snapshot…</span>
       </div>
       <div>
         <div class="bbar" hidden><i style="width:0%"></i></div>
@@ -404,46 +411,48 @@ body:not(.detail-open) .detail-only{display:none!important}
       </div>
       <div class="brow caveat" data-role="caveat" hidden></div>
       <div class="bsep"></div>
-      <div class="brow" data-role="cross"><span class="rk">Second opinion</span><span>Polymarket odds loading…</span></div>
+      <div class="brow" data-role="cross"><span class="rk">Second opinion</span><span>Snapshot loading…</span></div>
       <div class="brow"><span class="rk">Data pull</span>
         <span class="gauge-wrap">
-          <b data-role="netlabel">Hawkish +1.2 — data pulls toward a hike</b>
-          <span class="gauge"><i class="mid"></i><i class="pin" style="left:69.7%"></i></span>
+          <b data-role="netlabel">Snapshot loading…</b>
+          <span class="gauge"><i class="mid"></i><i class="pin" style="left:50%"></i></span>
           <span class="gauge-ends"><span>Cut −3</span><span>Balanced</span><span>Hike +3</span></span>
         </span>
       </div>
-      <div class="brow" data-role="pull"><span class="rk">Biggest pull</span><span><b>ISM Services and Prices Reaccelerate</b> <span class="w">hawkish 2.0</span> · vs <b>ADP Employment Misses</b> <span class="w">dovish 1.0</span></span></div>
-      <div class="brow" data-role="next"><span class="rk">Next test</span><span><b>US PPI</b> · Sep 10 08:30 · in <span class="countdown" data-dt="2026-09-10T08:30:00-04:00">—</span></span></div>
+      <div class="brow" data-role="pull"><span class="rk">Biggest pull</span><span>Snapshot loading…</span></div>
+      <div class="brow" data-role="next"><span class="rk">Next test</span><span>Snapshot loading…</span></div>
     </div>
 
     <div class="bcard boc" id="brief-boc">
       <div class="bcard-head">
-        <span class="who">🇨🇦 BOC · Oct 28 Decision + MPR</span>
-        <span class="when">Decision in <b class="countdown" data-dt="2026-10-28T09:45:00-04:00">—</b> · Wed 09:45 ET</span>
+        <span class="who">🇨🇦 BOC · loading snapshot…</span>
+        <span class="when">Decision in <b class="countdown" data-dt="">—</b></span>
       </div>
       <div class="verdict-row">
-        <span class="verdict-word hike">HIKE 25bp</span>
+        <span class="verdict-word hold">LOADING…</span>
         <span class="verdict-pct">—</span>
-        <span class="verdict-src">CORRA futures · low confidence<br>not available</span>
+        <span class="verdict-src">loading snapshot…</span>
       </div>
       <div>
         <div class="bbar" hidden><i style="width:0%"></i></div>
         <div class="bbar-legend" hidden><span>No distribution</span></div>
       </div>
-      <div class="brow caveat" data-role="caveat"><span class="rk">Confidence</span><span>Limited confidence — the quarterly futures contract spans two decisions, so this is a scenario estimate, not a single-meeting probability.</span></div>
+      <div class="brow caveat" data-role="caveat" hidden></div>
       <div class="bsep"></div>
-      <div class="brow" data-role="cross"><span class="rk">Second opinion</span><span>Polymarket odds loading…</span></div>
+      <div class="brow" data-role="cross"><span class="rk">Second opinion</span><span>Snapshot loading…</span></div>
       <div class="brow"><span class="rk">Data pull</span>
         <span class="gauge-wrap">
-          <b data-role="netlabel">Hawkish +0.7 — data leans mildly hawkish</b>
-          <span class="gauge"><i class="mid"></i><i class="pin" style="left:62.3%"></i></span>
+          <b data-role="netlabel">Snapshot loading…</b>
+          <span class="gauge"><i class="mid"></i><i class="pin" style="left:50%"></i></span>
           <span class="gauge-ends"><span>Cut −3</span><span>Balanced</span><span>Hike +3</span></span>
         </span>
       </div>
-      <div class="brow" data-role="pull"><span class="rk">Biggest pull</span><span><b>BoC Flags Energy/Tariff Inflation</b> <span class="w">hawkish 2.0</span> · vs <b>Canada Employment Contracts</b> <span class="w">dovish 2.0</span></span></div>
-      <div class="brow" data-role="next"><span class="rk">Next test</span><span><b>Canada CPI</b> · Sep 14 08:30 · in <span class="countdown" data-dt="2026-09-14T08:30:00-04:00">—</span></span></div>
+      <div class="brow" data-role="pull"><span class="rk">Biggest pull</span><span>Snapshot loading…</span></div>
+      <div class="brow" data-role="next"><span class="rk">Next test</span><span>Snapshot loading…</span></div>
     </div>
   </div>
+
+  <div class="decision-frame" id="decision-frame" aria-live="polite" hidden></div>
 
   <div class="fold-bar">
     <button class="fold-btn" id="fold-btn" aria-expanded="false" aria-controls="watcher">
@@ -462,54 +471,18 @@ body:not(.detail-open) .detail-only{display:none!important}
 
   <div class="odds-grid">
     <div class="card odds-card fed">
-      <h3>🇺🇸 Fed · Sep 15-16 FOMC <span style="margin-left:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#60a5fa;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.25);padding:3px 7px;border-radius:999px">Futures → HIKE 70%</span></h3>
-      <div class="src-block">
-        <div class="src-head"><span><b>📊 Market-implied</b></span><span class="asof">as of 09-03 02:04</span></div>
-        <div class="src-nums">
-          <div class="src-num cut"><div class="k">Cut 25bp</div><div class="v">0%</div></div>
-          <div class="src-num hold"><div class="k">Hold</div><div class="v">30%</div></div>
-          <div class="src-num hike"><div class="k">Hike 25bp</div><div class="v">70%</div></div>
-        </div>
-        <div class="prob-bar"><i style="width:0%;background:var(--color-accent)"></i><i style="width:30%;background:#3f424d"></i><i style="width:70%;background:#f87171"></i></div>
-        <div class="src-rate">3.62% → 3.79% (+17bp) · <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">CME Fed Funds futures proxy ↗</a></div>
-      </div>
-      <div class="src-block">
-        <div class="src-head"><span><b>🎲 Polymarket</b></span><span class="asof">indicative · Sep 3 <a href="https://polymarket.com/event/fed-decision-in-september-762" target="_blank" rel="noopener">open ↗</a></span></div>
-        <div class="src-nums">
-          <div class="src-num cut"><div class="k">Cut 25bp</div><div class="v">1%</div></div>
-          <div class="src-num hold"><div class="k">Hold</div><div class="v">58%</div></div>
-          <div class="src-num hike"><div class="k">Hike 25bp</div><div class="v">41%</div></div>
-        </div>
-        <div class="prob-bar"><i style="width:1%;background:var(--color-accent)"></i><i style="width:58%;background:#3f424d"></i><i style="width:41%;background:#f87171"></i></div>
-        <div class="src-rate">Pool Vol ~ <b>$84.9M</b> · Liq ~ <b>$4.4M</b> · live odds load automatically.</div>
-      </div>
-      <div class="verdict split"><b>⚖ Split:</b> futures lean <b>HIKE 70%</b> · Polymarket leans <b>HOLD 58%</b>.</div>
-      <div class="last-meeting"><b>2026-07-29:</b> Held at 3.50-3.75%. 9-3 dissent: Hammack, Kashkari, Logan preferred +25bp hike. Warsh's Aug 28 Jackson Hole speech validated the hawks: 'predominant focus right now should be on prices'.</div>
+      <h3>🇺🇸 Fed · loading snapshot… <span style="margin-left:auto">Snapshot loading…</span></h3>
+      <div class="src-block"><div class="src-note">Meeting snapshot loads from the live JSON — if this stays put, the data feed is unreachable.</div></div>
+      <div data-poly-block></div>
+      <div data-verdict-block></div>
+      <div class="last-meeting">Meeting snapshot loading…</div>
     </div>
     <div class="card odds-card boc">
-      <h3>🇨🇦 BOC · Oct 28 Decision + MPR <span style="margin-left:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#fca5a5;background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.25);padding:3px 7px;border-radius:999px">Futures → HIKE 60%</span></h3>
-      <div class="src-block">
-        <div class="src-head"><span><b>📊 Market-implied</b></span><span class="asof">as of 09-03 02:04</span></div>
-        <div class="src-nums">
-          <div class="src-num cut"><div class="k">Cut 25bp</div><div class="v">0%</div></div>
-          <div class="src-num hold"><div class="k">Hold</div><div class="v">40%</div></div>
-          <div class="src-num hike"><div class="k">Hike 25bp</div><div class="v">60%</div></div>
-        </div>
-        <div class="prob-bar"><i style="width:0%;background:var(--color-accent)"></i><i style="width:40%;background:#3f424d"></i><i style="width:60%;background:#f87171"></i></div>
-        <div class="src-rate">2.25% → 2.40% (+15bp) · <a href="https://www.m-x.ca/en/trading/data/quotes?symbol=CRA%2A" target="_blank" rel="noopener">CORRA futures (limited confidence) ↗</a></div>
-      </div>
-      <div class="src-block">
-        <div class="src-head"><span><b>🎲 Polymarket</b></span><span class="asof">indicative · Sep 3 <a href="https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314" target="_blank" rel="noopener">open ↗</a></span></div>
-        <div class="src-nums">
-          <div class="src-num cut"><div class="k">Cut 25bp</div><div class="v">5%</div></div>
-          <div class="src-num hold"><div class="k">Hold</div><div class="v">89%</div></div>
-          <div class="src-num hike"><div class="k">Hike 25bp</div><div class="v">5%</div></div>
-        </div>
-        <div class="prob-bar"><i style="width:5%;background:var(--color-accent)"></i><i style="width:89%;background:#3f424d"></i><i style="width:5%;background:#f87171"></i></div>
-        <div class="src-rate">Pool Vol ~ <b>$48k</b> · Liq ~ <b>$9k</b> · live odds load automatically.</div>
-      </div>
-      <div class="verdict split"><b>⚖ Split:</b> futures lean <b>HIKE 60%</b> · Polymarket leans <b>HOLD 89%</b>.</div>
-      <div class="last-meeting"><b>2026-09-02:</b> Held at 2.25%. Overnight held at 2.25% (Bank Rate 2.50%, deposit 2.20%); statement cited high energy prices, tariffs, tightened financial conditions, CPI near 3%.</div>
+      <h3>🇨🇦 BOC · loading snapshot… <span style="margin-left:auto">Snapshot loading…</span></h3>
+      <div class="src-block"><div class="src-note">Meeting snapshot loads from the live JSON — if this stays put, the data feed is unreachable.</div></div>
+      <div data-poly-block></div>
+      <div data-verdict-block></div>
+      <div class="last-meeting">Meeting snapshot loading…</div>
     </div>
   </div>
 
@@ -579,11 +552,11 @@ body:not(.detail-open) .detail-only{display:none!important}
     </div>
   </div>
   <div class="summary-row" style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:14px 56px 0">
-    <div data-summary="fed" style="flex:1.4;min-width:320px;background:var(--color-card);border:1px solid var(--color-neutral-800);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;color:var(--color-neutral-300)"><b style="color:var(--color-text)">Fed Summary · Rope 56% Hawkish · Net +1.5</b> — Left 4 Weight 6.0 (2.0+1.5+1.5+1.0) vs Right 5 Weight 7.5 (2.0+2.0+1.5+1.5+1.0) · Mean 1.5 normal · No 2.5+ decisive · Net +1.5 hawk<br><b>Trigger left:</b> Aug 26 Core PCE MoM ≤0.2% and Aug 27 Claims >240k → rope <50% dovish.<br><b>Trigger right:</b> Core PCE ≥0.3% or Jackson Hole reaffirms 2% → rope >62%, Sep cut odds <50%.</div>
-    <div style="flex:1;display:flex;gap:10px;flex-wrap:wrap">
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">30Y UST</div><b style="font-family:var(--font-mono);font-size:18px">5.27%</b><div style="font-size:11px;color:var(--color-neutral-500)">Forecast 4.80% · +47bp</div></div>
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Services PMI</div><b style="font-family:var(--font-mono);font-size:18px;color:var(--color-accent-300)">56.8</b><div style="font-size:11px;color:var(--color-neutral-500)">Forecast 54.0 · beat +2.8</div></div>
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Mfg PMI</div><b style="font-family:var(--font-mono);font-size:18px;color:#fca5a5">48.7</b><div style="font-size:11px;color:var(--color-neutral-500)">Forecast 49.5 · miss -0.8</div></div>
+    <div data-summary="fed" style="flex:1.4;min-width:320px;background:var(--color-card);border:1px solid var(--color-neutral-800);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;color:var(--color-neutral-300)">Fed summary loads from the live snapshot — if this stays put, the data feed is unreachable.</div>
+    <div data-summary-cards="fed" style="flex:1;display:flex;gap:10px;flex-wrap:wrap">
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 1</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 2</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 3</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
     </div>
   </div>
 </div>
@@ -628,35 +601,27 @@ body:not(.detail-open) .detail-only{display:none!important}
     </div>
   </div>
   <div class="summary-row" style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:14px 56px 0">
-    <div data-summary="boc" style="flex:1.4;min-width:320px;background:var(--color-card);border:1px solid var(--color-neutral-800);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;color:var(--color-neutral-300)"><b style="color:var(--color-text)">BOC Summary · Rope 50% Balanced · Net 0.0</b> — Left 4 Weight 5.5 (2.0+1.5+1.0+1.0) vs Right 4 Weight 5.5 (1.5+1.5+1.5+1.0) · Mean 1.4 normal · No 2.5+ · Balanced<br><b>Key variable:</b> Aug 28 GDP and Sep 4 jobs, any miss flips dovish; if both beat, BOC follows Fed on hold to Oct.</div>
-    <div style="flex:1;display:flex;gap:10px;flex-wrap:wrap">
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Retail Jun Actual/Forecast</div><b style="font-family:var(--font-mono);font-size:18px">+0.6% / +0.2%</b><div style="font-size:11px;color:var(--color-neutral-500)">beat +0.4 · Hawk</div></div>
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">WTI</div><b style="font-family:var(--font-mono);font-size:18px">87.1</b><div style="font-size:11px;color:var(--color-neutral-500)">Forecast 82 · beat</div></div>
-      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Unemployment</div><b style="font-family:var(--font-mono);font-size:18px">6.9%</b><div style="font-size:11px;color:var(--color-neutral-500)">Prior 6.8% · easing</div></div>
+    <div data-summary="boc" style="flex:1.4;min-width:320px;background:var(--color-card);border:1px solid var(--color-neutral-800);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;color:var(--color-neutral-300)">BOC summary loads from the live snapshot — if this stays put, the data feed is unreachable.</div>
+    <div data-summary-cards="boc" style="flex:1;display:flex;gap:10px;flex-wrap:wrap">
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 1</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 2</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
+      <div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Key Driver 3</div><b style="font-family:var(--font-mono);font-size:18px">Loading…</b><div style="font-size:11px;color:var(--color-neutral-500)">Live snapshot loading…</div></div>
     </div>
   </div>
 </div>
 
 <section class="section tinted detail-only" style="padding-top:32px">
   <div id="market-strip" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:var(--color-card);border:1px solid var(--color-neutral-800);border-radius:10px;padding:12px 14px">
-    <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500);font-weight:700">Post-Meeting Market Check · Since 7/30 → 8/21 16:00 Toronto</span>
-    <span class="et"><b>SPY</b> 765.72 <span class="chg up">+0.41% Fri</span> <span class="chg down">-1.43% w</span></span>
-    <span class="et"><b>QQQ</b> 713.44 <span class="chg up">+0.35% Fri</span> <span class="chg down">-2.05% w</span></span>
-    <span class="et"><b>XLU</b> 42.77 <span class="chg down">-2.29% Fri</span></span>
-    <span class="et"><b>XLF</b> 57.48 <span class="chg up">+0.93% Fri</span></span>
-    <span class="et"><b>XLE</b> 63.64 <span class="chg up">+2.8% w</span></span>
-    <span class="et"><b>TLT</b> 82.05 <span class="chg down">-0.35% Fri</span></span>
-    <span class="et"><b>GLD</b> 423.36 <span class="chg up">+1.95% Fri · +5.5% w</span></span>
-    <span class="et"><b>ZEB.TO</b> 73.49 <span class="chg up">+0.45% Fri</span></span>
+    <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500);font-weight:700">Market Check · loading snapshot…</span>
   </div>
 </section>
 
 <section class="section detail-only" id="history">
   <div class="section-head">
-    <span class="kicker">04 / History Mirror</span>
+    <span class="kicker">04 / History Mirror · Archived Baseline</span>
     <h2>Same tug, what did they do?</h2>
     <div class="rule-fade"></div>
-    <p style="margin:0;color:var(--color-neutral-400);max-width:900px;font-size:14px">Backtest with <b style="color:var(--color-text)">same mix (services strong vs mfg weak + tariffs/oil + long-end surge)</b>. Each row compares then vs now, hawk vs dove, and lesson for today.</p>
+    <p style="margin:0;color:var(--color-neutral-400);max-width:900px;font-size:14px"><b>Archived Policy Analog Benchmark (August 2026 Reference):</b> Backtest with <b style="color:var(--color-text)">same mix (services strong vs mfg weak + tariffs/oil + long-end surge)</b>. Historical analogues indexed to August 2026 conditions for structural pattern recognition.</p>
   </div>
   <div class="history-grid">
     <details class="analog fed">
@@ -738,12 +703,12 @@ body:not(.detail-open) .detail-only{display:none!important}
   <div class="card" style="padding:0;overflow:hidden">
     <div style="padding:14px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--color-neutral-800)">
       <input id="search" type="search" placeholder="Search CPI / GDP / PCE / Retail" style="flex:1;min-width:180px;padding:8px 10px;border-radius:8px;border:1px solid var(--color-neutral-800);background:#0f101c;color:var(--color-text);font-size:13px">
-      <button class="badge" data-filter="ALL" style="cursor:pointer" id="btn-all">All 15</button>
+      <button class="badge" data-filter="ALL" style="cursor:pointer" id="btn-all">All</button>
       <button class="badge" data-filter="USD" style="cursor:pointer">🇺🇸 USD</button>
       <button class="badge" data-filter="CAD" style="cursor:pointer">🇨🇦 CAD</button>
       <button class="badge" data-filter="HIGH" style="cursor:pointer">🔴 HIGH</button>
       <select id="dateSel" style="padding:6px 10px;border-radius:999px;border:1px solid var(--color-neutral-800);background:#0f101c;color:var(--color-text);font-family:var(--font-mono);font-size:12px">
-        <option value="ALL">All dates</option><option value="2026-08-26">2026-08-26</option><option value="2026-08-27">2026-08-27</option><option value="2026-08-28">2026-08-28</option><option value="2026-09-01">2026-09-01</option><option value="2026-09-04">2026-09-04</option><option value="2026-09-11">2026-09-11</option><option value="2026-09-17">2026-09-17</option>
+        <option value="ALL">All dates</option>
       </select>
       <span class="caption" style="margin-left:auto">Forecast = consensus · Toronto time</span>
     </div>
@@ -753,107 +718,7 @@ body:not(.detail-open) .detail-only{display:none!important}
         <tr><th style="width:130px">Time (Toronto)</th><th style="width:90px">Countdown</th><th style="width:90px">Country</th><th style="width:70px">Impact</th><th>Event · Forecast / Prior · Transmission</th><th style="width:110px">Bias</th></tr>
       </thead>
       <tbody>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-08-26" data-search="core pce">
-          <td>08-26 08:30 Toronto<div style="font-family:var(--font-mono);font-size:10px;color:var(--color-neutral-500)">Wed 08:30 EDT</div></td><td class="countdown" data-dt="2026-08-26T12:30:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>Core PCE (MoM / YoY) — Fed's preferred inflation</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">MoM <b>Forecast 0.20%</b> <span style="color:var(--color-neutral-500)">Prior 0.26%</span></span><span class="exp">YoY <b>Forecast 2.80%</b> <span style="color:var(--color-neutral-500)">Prior 2.81%</span></span></div>
-            <div class="logic hawk"><b>Transmission:</b> >0.30% MoM → hawkish +5%; ≤0.20% → dovish reversal</div>
-          </td><td><span class="badge hawk">High→Hawk</span><br><span class="badge dove">Low→Dove</span></td>
-        </tr>
-        <tr class="medium" data-currency="USD" data-impact="MEDIUM" data-date="2026-08-26" data-search="gdp">
-          <td>08-26 08:30 Toronto</td><td class="countdown" data-dt="2026-08-26T12:30:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-MEDIUM">MED</span></td>
-          <td><b>GDP Annualized Q2 Second Revision</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Forecast <b>3.0%</b> <span style="color:var(--color-neutral-500)">Initial 2.8%</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> If revised to 3.0%+ resilient hawk; if <2.5% dovish cross-check with mfg.</div>
-          </td><td><span class="badge dove">Weak→Dove</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-08-27" data-search="jackson hole">
-          <td>08-26 20:00 Toronto<div style="font-family:var(--font-mono);font-size:10px;color:var(--color-neutral-500)">Wed evening EDT (08-27 00:00 UTC)</div></td><td class="countdown" data-dt="2026-08-27T00:00:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>Jackson Hole Symposium (8/27–29)</b>
-            <div class="logic hawk"><b>Transmission:</b> Reaffirm 2% + neutral rate up → hawkish +1.5, rope right 3–4 pts.</div>
-          </td><td><span class="badge hawk">Hawkish→Hawk</span></td>
-        </tr>
-        <tr class="medium" data-currency="USD" data-impact="MEDIUM" data-date="2026-08-27" data-search="initial jobless">
-          <td>08-27 08:30 Toronto</td><td class="countdown" data-dt="2026-08-27T12:30:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-MEDIUM">MED</span></td>
-          <td><b>Initial Jobless Claims</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Forecast <b>230k</b> <span style="color:var(--color-neutral-500)">Prior 228k</span></span><span class="exp">Continuing <b>1.87M</b> <span style="color:var(--color-neutral-500)">Prior 1.86M</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> >240k + continuing up → confirms -23k payrolls, dovish +1.2, rope left.</div>
-          </td><td><span class="badge dove">High→Dove</span></td>
-        </tr>
-        <tr class="medium" data-currency="CAD" data-impact="MEDIUM" data-date="2026-08-27" data-search="current account">
-          <td>08-27 08:30 Toronto</td><td class="countdown" data-dt="2026-08-27T12:30:00Z">—</td><td>🇨🇦 CAD</td><td><span class="imp imp-MEDIUM">MED</span></td>
-          <td><b>CAD Current Account</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Forecast <b>-4.5B CAD</b> <span style="color:var(--color-neutral-500)">Prior -2.1B</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> Wider deficit → external demand weakening, dovish.</div>
-          </td><td><span class="badge dove">Worse→Dove</span></td>
-        </tr>
-        <tr class="high" data-currency="CAD" data-impact="HIGH" data-date="2026-08-28" data-search="gdp cad">
-          <td>08-28 08:30 Toronto</td><td class="countdown" data-dt="2026-08-28T12:30:00Z">—</td><td>🇨🇦 CAD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>CAD GDP (MoM / QoQ / Annualized) — BOC Decider</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">MoM Jun <b>+0.10%</b> <span style="color:var(--color-neutral-500)">Prior +0.10%</span></span><span class="exp">Annualized Q2 <b>1.20%</b> <span style="color:var(--color-neutral-500)">Prior 1.10%</span></span></div>
-            <div class="logic" style="border-left-color:#d97706"><b>Transmission:</b> MoM≥0.20% → hawkish confirmed; ≤0.0% → dovish flips.</div>
-          </td><td><span class="badge dove">Weak→Dove</span> <span class="badge hawk">Strong→Hawk</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-08-28" data-search="warsh">
-          <td>08-28 10:00 Toronto</td><td class="countdown" data-dt="2026-08-28T14:00:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>Fed Chair Warsh Debut Speech</b>
-            <div class="logic hawk"><b>Transmission:</b> If 'inflation risk remains' → hawkish +1.5; if 'dual mandate balance' → dovish +3.</div>
-          </td><td><span class="badge hawk">Hawk→Hawk</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-08-28" data-search="nfp benchmark">
-          <td>08-28 10:00 Toronto</td><td class="countdown" data-dt="2026-08-28T14:00:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>NFP Annual Benchmark Revision</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Forecast <b>-620k</b> <span style="color:var(--color-neutral-500)">Last year -306k</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> How much were jobs overcounted past year? Revision >700k → labor already weak, dovish rope jumps 5 pts left.</div>
-          </td><td><span class="badge dove">Large down→Dove</span></td>
-        </tr>
-        <tr class="medium" data-currency="USD" data-impact="MEDIUM" data-date="2026-08-28" data-search="michigan consumer sentiment inflation expectations">
-          <td>08-28 10:00 Toronto</td><td class="countdown" data-dt="2026-08-28T14:00:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-MEDIUM">MED</span></td>
-          <td><b>University of Michigan Sentiment · Final</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">1Y inflation <b>Forecast 4.4%</b> <span style="color:var(--color-neutral-500)">Prior 4.5%</span></span><span class="exp">5Y inflation <b>Forecast 3.0%</b> <span style="color:var(--color-neutral-500)">Prior 3.1%</span></span></div>
-            <div class="logic hawk"><b>Transmission:</b> Expectations rising again would raise the hurdle for a September cut.</div>
-          </td><td><span class="badge hawk">High→Hawk</span></td>
-        </tr>
-        <tr class="medium" data-currency="CAD" data-impact="MEDIUM" data-date="2026-09-01" data-search="cad manufacturing pmi">
-          <td>09-01 09:30 Toronto</td><td class="countdown" data-dt="2026-09-01T13:30:00Z">—</td><td>🇨🇦 CAD</td><td><span class="imp imp-MEDIUM">MED</span></td>
-          <td><b>Canada Manufacturing PMI</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Forecast <b>48.5</b> <span style="color:var(--color-neutral-500)">Prior 49.0</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> A deeper sub-50 reading would confirm export-order weakness and pull BOC dovish.</div>
-          </td><td><span class="badge dove">Low→Dove</span></td>
-        </tr>
-        <tr class="high" data-currency="CAD" data-impact="HIGH" data-date="2026-09-04" data-search="cad labour force employment unemployment wages">
-          <td>09-04 08:30 Toronto</td><td class="countdown" data-dt="2026-09-04T12:30:00Z">—</td><td>🇨🇦 CAD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>Canada Labour Force Survey</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">Employment <b>Forecast +10k</b> <span style="color:var(--color-neutral-500)">Prior +8k</span></span><span class="exp">Jobless rate <b>Forecast 6.9%</b> <span style="color:var(--color-neutral-500)">Prior 6.9%</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> Job losses or unemployment at 7.0%+ would materially strengthen the BOC cut case.</div>
-          </td><td><span class="badge dove">Weak→Dove</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-09-04" data-search="nfp">
-          <td>09-04 08:30 Toronto</td><td class="countdown" data-dt="2026-09-04T12:30:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>Payrolls NFP (Aug) — Last Jobs Before Sep Meeting</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">New <b>155k</b> <span style="color:var(--color-neutral-500)">Prior 114k</span></span><span class="exp">Jobless <b>4.20%</b> <span style="color:var(--color-neutral-500)">Prior 4.30%</span></span></div>
-            <div class="logic dove"><b>Transmission:</b> Decides 'forced cut'. &lt;100k or jobless up → dovish locked.</div>
-          </td><td><span class="badge dove">Weak→Dove</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-09-11" data-search="cpi">
-          <td>09-11 08:30 Toronto</td><td class="countdown" data-dt="2026-09-11T12:30:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>CPI (YoY / MoM) — First Post-Tariff Test</b>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="exp">YoY <b>3.00%</b> <span style="color:var(--color-neutral-500)">Prior 2.90%</span></span><span class="exp">MoM <b>0.30%</b> <span style="color:var(--color-neutral-500)">Prior 0.20%</span></span></div>
-            <div class="logic hawk"><b>Transmission:</b> If tariffs push CPI to 3.2%+, FOMC forced to 'skip Sep'.</div>
-          </td><td><span class="badge hawk">High→Hawk</span></td>
-        </tr>
-        <tr class="high" data-currency="USD" data-impact="HIGH" data-date="2026-09-17" data-search="fomc">
-          <td>09-17 14:00 Toronto<div style="font-family:var(--font-mono);font-size:10px;color:var(--color-neutral-500)">FOMC (18:00 UTC)</div></td><td class="countdown" data-dt="2026-09-17T18:00:00Z">—</td><td>🇺🇸 USD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>FOMC Decision + Dot Plot + Powell Presser — Final Settlement</b>
-            <div class="logic" style="border-left-color:var(--color-text)"><b>Transmission:</b> Current rope's final settlement, sum of 8 HIGH beats/misses.</div>
-          </td><td><span class="badge">Showdown</span></td>
-        </tr>
-        <tr class="high" data-currency="CAD" data-impact="HIGH" data-date="2026-09-17" data-search="boc">
-          <td>09-17 09:45 Toronto<div style="font-family:var(--font-mono);font-size:10px;color:var(--color-neutral-500)">BOC (13:45 UTC)</div></td><td class="countdown" data-dt="2026-09-17T13:45:00Z">—</td><td>🇨🇦 CAD</td><td><span class="imp imp-HIGH">HIGH</span></td>
-          <td><b>BOC Rate Decision — Spread Game</b>
-            <div class="logic" style="border-left-color:var(--color-text)"><b>Transmission:</b> If Fed hawk + BOC dove together, CAD/USD pressured 1–2%.</div>
-          </td><td><span class="badge">Showdown</span></td>
-        </tr>
+        <tr id="cal-loading"><td colspan="6" style="text-align:center;padding:28px;color:var(--color-neutral-500);font-family:var(--font-mono)">Calendar releases load from the live snapshot — if this stays put, the data feed is unreachable.</td></tr>
       </tbody>
     </table>
     </div>
@@ -1040,6 +905,8 @@ async function renderOdds(bank,meeting,opts={}){
     card.innerHTML=`<h3>${flag} ${escapeHTML(meeting.label)} <span style="margin-left:auto">Pricing unavailable</span></h3>
       <div class="src-block"><div class="src-head"><span><b>📊 Observable proxy only</b></span><span class="asof">as of ${escapeHTML(formatToronto(pricing.as_of_pricing,true))}</span></div>
       <div class="src-note"><b>${escapeHTML(level)}</b> · ${proxyURL?`<a href="${proxyURL}" target="_blank" rel="noopener">source ↗</a>`:''}<br>${note}</div></div>
+      <div data-poly-block></div>
+      <div data-verdict-block></div>
       <div class="last-meeting"><b>${escapeHTML(meeting.last_meeting?.date||'Last meeting')}:</b> ${escapeHTML(meeting.last_meeting?.decision||'Decision pending')}. ${escapeHTML(meeting.last_meeting?.note||'')}</div>`;
     return;
   }
@@ -1070,8 +937,16 @@ async function renderOdds(bank,meeting,opts={}){
     <h3>${flag} ${escapeHTML(meeting.label)} <span style="margin-left:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:${accent};background:${accentBg};border:1px solid ${accentBorder};padding:3px 7px;border-radius:999px">Futures → ${leanOf(mi)} ${Math.max(mi.cut,mi.hold,mi.hike)}%</span></h3>
     ${srcBlockHTML({icon:'📊',name:'Market-implied',metaHTML:`as of ${escapeHTML(formatToronto(pricing.as_of_pricing,true))}`,cut:mi.cut,hold:mi.hold,hike:mi.hike,footHTML:miFoot})}
     ${derivation?`<details class="derive"><summary>How this number was derived ▼</summary><div class="derive-body">${derivation}</div></details>`:''}
+    <div data-poly-block></div>
+    <div data-verdict-block></div>
     <div class="last-meeting"><b>${escapeHTML(meeting.last_meeting?.date||'Last meeting')}:</b> ${escapeHTML(meeting.last_meeting?.decision||'Decision pending')}. ${escapeHTML(meeting.last_meeting?.note||'')}</div>`;
-  if(snapshot) return;
+  if(snapshot){
+    const polyBlock=card.querySelector('[data-poly-block]');
+    if(polyBlock) polyBlock.innerHTML=polyBlockHTML(snapshot,true);
+    const verdictBlock=card.querySelector('[data-verdict-block]');
+    if(verdictBlock) verdictBlock.innerHTML=verdictHTML(mi,snapshot,'snapshot');
+    return;
+  }
   if(opts.historical){
     const polyBlock=card.querySelector('[data-poly-block]');
     if(polyBlock) polyBlock.innerHTML=`<div class="src-block"><div class="src-head"><span><b>🎲 Polymarket</b></span><span class="asof">n/a for snapshots</span></div><div class="src-note">Archived snapshots keep futures only — switch to Latest for live Polymarket odds.</div></div>`;
@@ -1299,6 +1174,19 @@ function renderDrivers(bank,bankDrivers,asOf,pricing){
     const noEdge=activeDecisionBrief?.trade_status==='NO TRADE / NO EDGE';
     const postureNote=noEdge?' · Context only under the explicit no-edge posture; normalized rope is not a position signal':'';
     summary.innerHTML=`<b style="color:var(--color-text)">${bankName} Summary · Rope ${share}% ${direction} · Net ${signed(net)}</b> — Dovish ${dovish.length} / Weight ${doveTotal.toFixed(1)} vs Hawkish ${hawkish.length} / Weight ${hawkTotal.toFixed(1)} · Mean ${mean.toFixed(1)} · Sorted by effective weight · Scale ±3 (net = 3×diff/total)${ropeMarketCheck(net,direction,pricing)}${postureNote}.`;
+  }
+  const cardsContainer=document.querySelector(`[data-summary-cards="${bank}"]`);
+  if(cardsContainer){
+    const topDrivers=[...dovish,...hawkish].sort((a,b)=>eff(b)-eff(a)).slice(0,3);
+    if(topDrivers.length){
+      cardsContainer.innerHTML=topDrivers.map(d=>{
+        const isDove=dovish.includes(d);
+        const color=isDove?'var(--color-accent-300)':'#fca5a5';
+        const val=d.actual?escapeHTML(d.actual):`Eff ${eff(d).toFixed(1)}`;
+        const sub=d.forecast?`Forecast ${escapeHTML(d.forecast)}`:`${isDove?'Dovish':'Hawkish'} ${eff(d).toFixed(1)}`;
+        return `<div class="card" style="flex:1;min-width:120px"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${escapeHTML(d.title)}">${escapeHTML(d.title)}</div><b style="font-family:var(--font-mono);font-size:18px;color:${color}">${val}</b><div style="font-size:11px;color:var(--color-neutral-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${sub}</div></div>`;
+      }).join('');
+    }
   }
 }
 
@@ -1616,27 +1504,35 @@ function renderDecisionBrief(payload){
   const pricedEntries=(brief.what_is_priced&&typeof brief.what_is_priced==='object'&&!Array.isArray(brief.what_is_priced))
     ?Object.entries(brief.what_is_priced).filter(([,value])=>usable(value)):[];
   const priced=pricedEntries.length
-    ?`<div class="decision-panel"><h3>What is already priced</h3><ul>${pricedEntries.map(([key,value])=>`<li data-key="${text(key)}"><b>${titleCase(key)}:</b> ${text(value)}</li>`).join('')}</ul></div>`
+    ?`<details class="decision-panel decision-fold" open><summary>What is already priced</summary><div class="decision-fold-body"><ul>${pricedEntries.map(([key,value])=>`<li data-key="${text(key)}"><b>${titleCase(key)}:</b> ${text(value)}</li>`).join('')}</ul></div></details>`
     :'';
   const falsifierItems=(Array.isArray(brief.falsifiers)?brief.falsifiers:[]).filter(usable);
-  const falsifiers=falsifierItems.length?`<div class="decision-panel"><h3>What would falsify this</h3>${list(falsifierItems)}</div>`:'';
+  const falsifiers=falsifierItems.length?`<details class="decision-panel decision-fold" open><summary>What would falsify this</summary><div class="decision-fold-body">${list(falsifierItems)}</div></details>`:'';
   const thresholdRows=(Array.isArray(brief.price_thresholds)?brief.price_thresholds:[]).filter(usable);
-  const thresholds=thresholdRows.length?`<div class="decision-panel"><h3>Trigger levels</h3><ul>${thresholdRows.map(t=>`<li><b>${text(t.instrument||'')}</b> (${text(t.basis||'')}): ${text(t.low_price)} = ${text(t.low_implied_rate)}% and ${text(t.high_price)} = ${text(t.high_implied_rate)}%. ${text(t.meaning||'')}</li>`).join('')}</ul></div>`:'';
+  const thresholds=thresholdRows.length?`<details class="decision-panel decision-fold" open><summary>Trigger levels</summary><div class="decision-fold-body"><ul>${thresholdRows.map(t=>`<li><b>${text(t.instrument||'')}</b> (${text(t.basis||'')}): ${text(t.low_price)} = ${text(t.low_implied_rate)}% and ${text(t.high_price)} = ${text(t.high_implied_rate)}%. ${text(t.meaning||'')}</li>`).join('')}</ul></div></details>`:'';
   const attention=usable(brief.attention_budget)
-    ?`<div class="decision-panel"><h3>90-second read</h3><p>${text(brief.attention_budget)}</p></div>`
+    ?`<details class="decision-panel decision-fold" open><summary>90-second read</summary><div class="decision-fold-body"><p>${text(brief.attention_budget)}</p></div></details>`
+    :'';
+  const changesItems=(Array.isArray(brief.changes_since_previous)?brief.changes_since_previous:[]).filter(usable);
+  const changes=changesItems.length
+    ?`<details class="decision-panel decision-fold" open><summary>What changed since the prior snapshot</summary><div class="decision-fold-body">${list(changesItems)}</div></details>`
     :'';
   const banks=Object.entries(brief.banks||{}).map(([key,bank])=>{
     const name=bank.display_name||key.toUpperCase();
     return `<article class="decision-panel" data-bank="${text(key)}"><h3>${text(name)} · ${text(bank.stance)}</h3><p>${text(bank.rationale)}</p><h3 style="margin-top:10px">Next catalysts</h3>${list(bank.next_catalysts)}<h3 style="margin-top:10px">Re-evaluate / falsification conditions</h3>${list(bank.reconsider_if)}</article>`;
   }).join('');
+  const risksItems=(Array.isArray(brief.largest_pnl_risks)?brief.largest_pnl_risks:[]).filter(usable);
+  const coverage=payload.calendar_coverage?.status||payload.calendar_coverage?.scope||'';
+  const risks=risksItems.length
+    ?`<details class="decision-panel decision-fold" open><summary>Largest P&amp;L risks · no position recommended</summary><div class="decision-fold-body">${list(risksItems)}${coverage?`<p style="margin-top:8px"><b>Calendar scope:</b> ${text(coverage)}</p>`:''}</div></details>`
+    :'';
   const sources=(Array.isArray(brief.source_references)?brief.source_references:[]).map(source=>{
     const href=safeHttps(source.url);
     if(!href) return '';
     const observed=source.observed_at_toronto?` · ${text(source.observed_at_toronto)}`:'';
     return `<a href="${escapeHTML(href)}" target="_blank" rel="noopener noreferrer">${text(source.label||'Source')} ↗</a><span>${observed}</span>`;
   }).join('');
-  const coverage=payload.calendar_coverage?.status||payload.calendar_coverage?.scope||'';
-  node.innerHTML=`<div><h2>Decision frame · ${text(brief.as_of_toronto||payload.as_of)}</h2><div class="decision-state">${text(brief.trade_status)}</div><p>${text(brief.summary)}</p></div>${alerts}<div><h3>What changed since the prior snapshot</h3>${list(brief.changes_since_previous)}</div>${attention}${priced}${thresholds}${falsifiers}<div class="decision-grid">${banks}</div><div class="decision-panel"><h3>Largest P&amp;L risks · no position recommended</h3>${list(brief.largest_pnl_risks)}${coverage?`<p><b>Calendar scope:</b> ${text(coverage)}</p>`:''}</div>${sources?`<div class="decision-sources"><b>Evidence:</b>${sources}</div>`:''}`;
+  node.innerHTML=`<div><h2>Decision frame · ${text(brief.as_of_toronto||payload.as_of)}</h2><div class="decision-state">${text(brief.trade_status)}</div><p>${text(brief.summary)}</p></div>${alerts}${attention}${changes}${priced}${thresholds}${falsifiers}<div class="decision-grid">${banks}</div>${risks}${sources?`<div class="decision-sources"><b>Evidence:</b>${sources}</div>`:''}`;
   node.hidden=false;
 }
 

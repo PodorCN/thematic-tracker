@@ -116,6 +116,14 @@ section{margin-top:56px}
 .verdict{border-left:2px solid var(--acc);background:var(--panel2);padding:20px 24px;margin-top:20px}
 .verdict p{color:var(--dim);max-width:1000px}
 .verdict b{color:var(--txt)}
+.verdict .driver-line{display:flex;align-items:baseline;gap:16px;padding:7px 0;color:var(--txt);font-size:16px}
+.verdict .driver-line + .driver-line{border-top:1px solid var(--line)}
+.verdict .driver-line b{flex:0 0 154px;letter-spacing:.03em;color:var(--dim)}
+.verdict .driver-line.market b{color:var(--teal)}
+.verdict .driver-line.theme b{color:var(--acc)}
+.verdict .driver-line.watch b{color:var(--amber)}
+.verdict .driver-line span{flex:1}
+@media(max-width:760px){.verdict .driver-line{display:block}.verdict .driver-line b{display:block;margin-bottom:3px}}
 
 /* ── timeline ────────────────────────── */
 .tl{position:relative;margin-left:8px;padding-left:44px}
@@ -332,6 +340,12 @@ function render(md){
   const callRules = valSec.filter(l=>l.startsWith("-")).map(l=>"<li>"+mdInline(l.replace(/^-\s*/,""))+"</li>").join("");
   const callbar = '<div class="callbar '+callCls+' rv"><span class="cdot"></span><span><b>THEME CALL: '+callTxt+'</b> — '+esc(callReason)+'</span></div>'
     + '<div class="callrules rv"><b>判定标准 VALIDITY</b><ul>'+callRules+'</ul></div>';
+  const verdictLabels = {MARKET:"Market-driven · 大盘",THEME:"Theme-driven · 银行",WATCH:"What changes the call · 观察"};
+  const structuredVerdict = (T.sections["VERDICT"]||"").split("\n").map(l=>l.trim()).filter(Boolean).map(line=>{
+    const m = line.match(/^(MARKET|THEME|WATCH):\s*(.+)$/);
+    return m ? `<div class="driver-line ${m[1].toLowerCase()}"><b>${verdictLabels[m[1]]}</b><span>${mdInline(m[2])}</span></div>` : "";
+  }).filter(Boolean).join("");
+  const verdictHtml = structuredVerdict || `<p><b>VERDICT:</b> ${mdInline((T.sections["VERDICT"]||"").trim())}</p>`;
   document.getElementById("app").innerHTML = `
   <section class="hero">
     <div class="kicker rv">THEMATIC TRACKER</div>
@@ -346,7 +360,7 @@ function render(md){
       <div id="chart"></div>
     </div>
     <div class="stats" style="margin-top:16px">${statsHtml}</div>
-    <div class="verdict rv"><p><b>VERDICT:</b> ${mdInline((T.sections["VERDICT"]||"").trim())}</p></div>
+    <div class="verdict rv">${verdictHtml}</div>
   </section>
   <section>
     <div class="sec-head"><h2>DRIVER TIMELINE</h2><span>newest first · ZEB daily move on the left of each card</span></div>
@@ -408,12 +422,18 @@ function drawChart(D, events){
   ];
   EVT = evT;
 
+  const allNorm = [D.zeb_norm, D.spx_norm, D.tsx_norm, D.bank_norm, D.hfin_norm]
+    .filter(Array.isArray).flat().filter(v => typeof v === "number" && !isNaN(v));
+  const yMin = allNorm.length ? Math.min(...allNorm) : 90;
+  const yMax = allNorm.length ? Math.max(...allNorm) : 110;
+  const yPad = Math.max((yMax - yMin) * 0.05, 2);
+
   const layout = {
     paper_bgcolor:"#0b100c", plot_bgcolor:"#0b100c", font:FONT,
     margin:{l:44,r:16,t:34,b:36}, hovermode:"x unified",
     xaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT}},
     yaxis:{gridcolor:GRID, zeroline:false, tickfont:{size:10,color:MUT},
-           range:[Math.min(...D.zeb_norm,...D.spx_norm)-1.5, Math.max(...D.zeb_norm,...D.bank_norm)+2],
+           range:[yMin - yPad, yMax + yPad],
            title:{text:"BASE = 100", font:{size:10,color:MUT}}},
     yaxis2:{overlaying:"y", side:"right", showgrid:false, zeroline:false,
             range:[0, Math.max(...D.volume)*6], showticklabels:false},
