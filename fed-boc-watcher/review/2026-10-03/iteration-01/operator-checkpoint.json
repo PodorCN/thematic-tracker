@@ -1,0 +1,11 @@
+{
+  "target_toronto_date": "2026-10-03",
+  "iteration": "iteration-01",
+  "as_of_toronto": "2026-10-03T01:33:00-04:00",
+  "phase": "FROZEN — structural gate PASS (13/13, brief regenerated True); independent PM review dispatched, verdict pending",
+  "status": "FROZEN (not yet reviewed)",
+  "candidate_sha256": "f12adbe3624976d416a3c890c4b93d84f770a756efd900137d39bad482df2d57",
+  "baseline": "fed-boc-watcher/review/2026-10-02/iteration-01/candidate.json",
+  "baseline_sha256": "243edac7087882c4b45eeda7c09f456fa4c5ce8c3321789cded33b967ec7965a",
+  "next_step": "run structural gate; dispatch independent PM review"
+}

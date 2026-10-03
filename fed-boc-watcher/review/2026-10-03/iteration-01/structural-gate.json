@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "candidate": "fed-boc-watcher\\review\\2026-10-03\\iteration-01\\candidate.json",
+  "candidate_sha256": "f12adbe3624976d416a3c890c4b93d84f770a756efd900137d39bad482df2d57",
+  "candidate_as_of": "2026-10-03T01:33:00-04:00",
+  "checks": {
+    "required_containment": {
+      "pass": true,
+      "problems": []
+    },
+    "as_of_coherence": {
+      "pass": true,
+      "problems": []
+    },
+    "market_close_semantics": {
+      "pass": true,
+      "problems": []
+    },
+    "provenance_traceability": {
+      "pass": true,
+      "problems": []
+    },
+    "pricing_honesty": {
+      "pass": true,
+      "problems": []
+    },
+    "derived_numbers": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_chronology": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_side_signs": {
+      "pass": true,
+      "problems": []
+    },
+    "calendar_rendered": {
+      "pass": true,
+      "problems": []
+    },
+    "renderer_contract": {
+      "pass": true,
+      "problems": []
+    },
+    "evidence_contains_claim": {
+      "pass": true,
+      "problems": []
+    },
+    "published_path_provenance": {
+      "pass": true,
+      "problems": []
+    },
+    "price_threshold_arithmetic": {
+      "pass": true,
+      "problems": []
+    }
+  },
+  "failed_checks": [],
+  "result": "PASS",
+  "note": "Structural checks only. Judgment (data accuracy, decision usefulness) is the independent PM's job, not this gate's.",
+  "brief_regeneration": {
+    "baseline": "fed-boc-watcher\\review\\2026-10-02\\iteration-01\\candidate.json",
+    "baseline_headline": "October's first data day leaned hawkish: ISM held expansion at 54.5 but prices-paid spiked to 77.9, claims stayed low at 197k, and the street's October-hike chatter (media-reported above 70% per CME FedWatch — not verifiable from here) hardened — with our own direct pricing still dark. September payrolls at 08:30 ET today is the adjudicator.",
+    "candidate_headline": "September payrolls cracked (+29k vs ~90k; July-August revised 60k lower; unemployment 4.2%) — the October hike tail should deflate, though nothing verifiable is dislocated enough to trade yet.",
+    "headline_changed": true,
+    "baseline_version": "2026-10-02-001",
+    "candidate_version": "2026-10-03-001"
+  }
+}
