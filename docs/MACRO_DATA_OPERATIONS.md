@@ -18,11 +18,9 @@ The detailed schemas are
 - `scripts/econ/fetch_calendar.py` collects the Economic Calendar from FxStreet,
   with ForexFactory as its fallback.
 - `scripts/econ/render_calendar.py` validates fetched JSON and publishes only `economic-calendar/data/archive/<date>.json`, `data/latest.json`, and `data/dates.json`. The fixed `index.html` reads these in the browser; the job must not generate dated HTML.
-- `scripts/econ/archive_fed_boc.py` validates and publishes an existing Fed/BOC
-  staging payload.
-- There is currently no Fed/BOC collector. An operator or web-enabled LLM
-  must research and update `fed-boc-watcher/data/dashboard.json` before it is
-  archived.
+- `scripts/econ/fetch_fed_boc_market.py` automates market validation data collection (the six Yahoo closes: SPY, TLT, XLF, XLE, GLD, ZEB.TO; and the ZQV26.CBT October 30-day Fed-funds proxy) with strict 2-decimal arithmetic, week-over-week base lookups, and sha256 evidence staging.
+- `scripts/econ/archive_fed_boc.py` validates and publishes an existing Fed/BOC staging payload after independent PM review approval.
+- An operator or web-enabled LLM researches policy drivers, calendar, and decision brief to complete `fed-boc-watcher/data/dashboard.json` before it is candidate-frozen and archived.
 - `.github/workflows/macro-pages-daily.yml` runs daily at `13:10 UTC` and
   publishes only the deterministic economic calendar. It deliberately cannot
   publish Fed/BOC because that output requires the independent PM review gate.
@@ -79,9 +77,13 @@ python scripts/econ/verify_data_only_changes.py --product economic-calendar --st
 
 The published page and legacy HTML archive must remain unchanged; use a clean worktree for a manual replay. With no explicit `--from`, the fetcher includes the Toronto day before the target date and a seven-day window from that date.
 
-Then research and update `fed-boc-watcher/data/dashboard.json`. Do not use the
-example payload as current data. Freeze it, obtain a separate approved PM
-review as described above, and provide both paths to the hard-gated archiver:
+For Fed/BOC Watcher:
+1. Run the automated market collector to stage the 6 Yahoo strip closes and ZQ proxy:
+   ```bash
+   uv run --isolated --python 3.11 --with-requirements requirements.txt python scripts/econ/fetch_fed_boc_market.py --date YYYY-MM-DD
+   ```
+   Inspect staged fragments in `fed-boc-watcher/data/.market-staging/YYYY-MM-DD/`, confirm the completed session date, and merge `market_fragment.json` and `zq_proxy_fragment.json` into `fed-boc-watcher/data/dashboard.json`.
+2. Research policy drivers, calendar events, and decision briefs to complete `dashboard.json`. Do not use the example payload as current data. Freeze it, obtain a separate approved PM review as described above, and provide both paths to the hard-gated archiver:
 
 ```bash
 uv run --isolated --python 3.11 --with-requirements requirements.txt python scripts/econ/archive_fed_boc.py --date YYYY-MM-DD --input fed-boc-watcher/data/dashboard.json --candidate fed-boc-watcher/review/YYYY-MM-DD/iteration-01/candidate.json --pm-review fed-boc-watcher/review/YYYY-MM-DD/iteration-01/pm-review.json
