@@ -12,10 +12,11 @@ GitHub Pages compatible: push the folder and it works as-is.
 
 ## Workflow
 
-1. **Edit** `data/current.json` only. Never edit `index.html` to change content.
-2. **Validate:** `npm run check` (schema, probability sums, weight rules, total recomputation).
-3. **Review:** copy `review/TEMPLATE.md` → `review/<today>.md`, fill it, end with `Verdict: APPROVED`.
-4. **Publish:** `npm run publish` — copies `current.json` to `data/archive/<today Toronto>.json` + `data/latest.json`, updates `dates.json`. Refuses to publish without an APPROVED review for today. Older archives are immutable; same-day re-runs overwrite only today's file.
+1. **Edit** `data/current.json` only (set `snapshot_date` = today Toronto). Never edit `index.html` to change content.
+2. **Validate:** `npm run check` (structure errors block; structural flags warn and must be dispositioned by reviewer).
+3. **Freeze:** `npm run freeze` → `review/<today>/{candidate.json, candidate.sha256, structural-flags.json}`. Candidate is immutable after this.
+4. **Review (independent, different person/model from operator):** write `review/<today>/pm-review.json` per `review/REVIEWER_AGENT.md` (SHA-bound, 6 checks, findings with evidence, every structural flag dispositioned). See `review/TEMPLATE.md`.
+5. **Publish:** `npm run publish` — publishes the reviewed bytes verbatim to `data/archive/<today Toronto>.json` + `data/latest.json`, updates `dates.json`. Fails closed on: structure errors, SHA mismatch (any post-freeze edit voids review), self-review, uncovered flags, critical/major with APPROVED, or dirty frontend/scripts. Older archives are immutable.
 
 ## Reading rules
 
