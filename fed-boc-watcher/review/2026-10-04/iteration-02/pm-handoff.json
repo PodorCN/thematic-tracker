@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "generated_at_toronto": "2026-10-04T03:32:19-04:00",
+  "round": "Round 2 (2026-10-04, weekend) - round-1 finding fix",
+  "candidate": "fed-boc-watcher/review/2026-10-04/iteration-02/candidate.json",
+  "candidate_sha256": "6ebb007beaf04c3afb8ba03e593c7f7b218d338d9e88b874952f3d5dd5fccef2",
+  "baseline": "fed-boc-watcher/review/2026-10-04/iteration-01/candidate.json (sha 8f1f3815135942669f19678de2e7f8c2f68f3195c527c7c4300e96e209fbdcb2, verdict revise)",
+  "diff_file": "fed-boc-watcher/review/2026-10-04/iteration-02/diff_iter01_vs_iter02.txt",
+  "structural_gate": "PASS — 14/14 checks incl. attempt_record_status, failed=none, brief regenerated: True (2026-10-04-001 -> 2026-10-04-002); output: fed-boc-watcher/review/2026-10-04/iteration-02/structural-gate.json",
+  "open_feedback": "ONE open finding from round 1 (recorded in review/feedback/latest.json) - this rebuild resolves it; re-verify",
+  "change_mapping": [
+    "ROUND-1 FINDING FIXED: drivers.fed.hawkish[4].source_provenance.dol_own_attempts.claims_data_page.http_status 200 -> 502 (bound with status=502); now matches the capture bytes (524-byte 502 Bad Gateway interstitial), its .headers sidecar, the retrieval-manifest entry, and the record's own note.",
+    "NEW MECHANICAL CHECK: scripts/econ/structural_gate.py gains attempt_record_status - every record declaring http_status is cross-checked against its capture's .headers sidecar and the retrieval-manifest entry in the same evidence directory. It fired on iteration-01 on the one known defect (reported as two problem strings - one per cross-check source, headers sidecar and retrieval manifest - both naming the same record) and passes on iteration-02; it runs in the build pre-flight, the CLI gate, and the archive re-check.",
+    "decision_brief: freshly rewritten for iteration-02 (new headline and wording; same verified facts; the standing contract requires a non-inherited brief for every frozen version). No evidence-bound data leaf changed except the flagged http_status.",
+    "Evidence references remain to review/2026-10-04/iteration-01/evidence/recollection (this round's frozen captures; no re-collection for a metadata fix).",
+    "Diff baseline for this round = iteration-01 candidate; the leaf diff shows the fix + the brief rewrite + as_of/version."
+  ],
+  "notes": "Operator mapped the round-1 finding to field changes only and did not judge it. Verify the fix, try to falsify the new check, and re-review the candidate as a fresh independent review (do not trust round 1)."
+}

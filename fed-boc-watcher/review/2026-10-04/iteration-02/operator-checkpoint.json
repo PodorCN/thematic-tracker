@@ -1,0 +1,12 @@
+{
+  "target_toronto_date": "2026-10-04",
+  "iteration": "iteration-02",
+  "as_of_toronto": "2026-10-04T03:34:00-04:00",
+  "phase": "APPROVED (round-2 PM, reviewed 2026-10-04T09:57:28-04:00) - publication in progress",
+  "status": "APPROVED; archiving/publish in progress",
+  "candidate_sha256": "6ebb007beaf04c3afb8ba03e593c7f7b218d338d9e88b874952f3d5dd5fccef2",
+  "baseline": "fed-boc-watcher/review/2026-10-04/iteration-01/candidate.json",
+  "baseline_sha256": "8f1f3815135942669f19678de2e7f8c2f68f3195c527c7c4300e96e209fbdcb2",
+  "next_step": "archive -> scope gates -> commit -> full suite -> push -> live acceptance",
+  "review_note": "Round-2 independent PM approved (2 minor non-blocking findings deferred: authoring_note wording overstatement; legacy attempt-record coverage limit)."
+}

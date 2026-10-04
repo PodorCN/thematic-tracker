@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "candidate": "fed-boc-watcher\\review\\2026-10-04\\iteration-02\\candidate.json",
+  "candidate_sha256": "6ebb007beaf04c3afb8ba03e593c7f7b218d338d9e88b874952f3d5dd5fccef2",
+  "candidate_as_of": "2026-10-04T03:34:00-04:00",
+  "checks": {
+    "required_containment": {
+      "pass": true,
+      "problems": []
+    },
+    "as_of_coherence": {
+      "pass": true,
+      "problems": []
+    },
+    "market_close_semantics": {
+      "pass": true,
+      "problems": []
+    },
+    "provenance_traceability": {
+      "pass": true,
+      "problems": []
+    },
+    "pricing_honesty": {
+      "pass": true,
+      "problems": []
+    },
+    "derived_numbers": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_chronology": {
+      "pass": true,
+      "problems": []
+    },
+    "driver_side_signs": {
+      "pass": true,
+      "problems": []
+    },
+    "calendar_rendered": {
+      "pass": true,
+      "problems": []
+    },
+    "renderer_contract": {
+      "pass": true,
+      "problems": []
+    },
+    "evidence_contains_claim": {
+      "pass": true,
+      "problems": []
+    },
+    "published_path_provenance": {
+      "pass": true,
+      "problems": []
+    },
+    "price_threshold_arithmetic": {
+      "pass": true,
+      "problems": []
+    },
+    "attempt_record_status": {
+      "pass": true,
+      "problems": []
+    }
+  },
+  "failed_checks": [],
+  "result": "PASS",
+  "note": "Structural checks only. Judgment (data accuracy, decision usefulness) is the independent PM's job, not this gate's.",
+  "brief_regeneration": {
+    "baseline": "fed-boc-watcher\\review\\2026-10-04\\iteration-01\\candidate.json",
+    "baseline_headline": "Weekend snapshot: no session and no releases since Friday - the payroll crack (+29k; July-August revised 60k lower) still stands as the last hard print, and the week ahead front-loads its confirmation tests with no verifiable meeting pricing to size against.",
+    "candidate_headline": "Nothing traded and nothing printed since Friday - this weekend snapshot re-verifies the same payroll crack (+29k; July-August revised 60k lower) and puts the week's confirmation sequence (ISM services, FOMC minutes, claims, Canada LFS, Michigan) ahead of any real repricing.",
+    "headline_changed": true,
+    "baseline_version": "2026-10-04-001",
+    "candidate_version": "2026-10-04-002"
+  }
+}
