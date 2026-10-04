@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rates Decisions — Fed &amp; BOC</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="masthead">
+      <div class="masthead-rule thin"></div>
+      <div class="masthead-topline S">
+        <span id="masthead-date">—</span>
+        <span>Toronto Edition</span>
+        <label class="picker">Snapshot:
+          <select id="date-picker"><option value="latest">latest</option></select>
+        </label>
+      </div>
+      <h1 class="masthead-title">The Rate Decision Journal</h1>
+      <div class="masthead-sub M">Next Fed &amp; BOC meetings — what the market prices, what the money bets, what the data says</div>
+      <div id="hdr-meta" class="M hdr-meta">loading…</div>
+      <div id="warnings" class="S warnings"></div>
+      <div class="masthead-rule thick"></div>
+    </header>
+
+    <main>
+      <section>
+        <h2 class="sec-title">I. Market Expectations <span class="sec-sub">pricing &amp; betting odds</span></h2>
+        <div id="expectations" class="grid-2"></div>
+      </section>
+
+      <section>
+        <h2 class="sec-title">II. Drivers Since Last Meeting <span class="sec-sub">the net score</span></h2>
+        <div id="drivers"></div>
+      </section>
+
+      <section>
+        <h2 class="sec-title">III. The Calendar</h2>
+        <div id="calendar"></div>
+      </section>
+    </main>
+
+    <footer class="S footer" id="sources">
+      <div class="masthead-rule thin"></div>
+      <p>Sources: <a href="https://www.federalreserve.gov" target="_blank" rel="noopener">federalreserve.gov</a>, <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">CME FedWatch</a>, <a href="https://www.bls.gov" target="_blank" rel="noopener">BLS</a>, <a href="https://www.bea.gov" target="_blank" rel="noopener">BEA</a>, <a href="https://www.bankofcanada.ca" target="_blank" rel="noopener">bankofcanada.ca</a>, <a href="https://www.statcan.gc.ca" target="_blank" rel="noopener">StatCan</a>, <a href="https://www.investing.com" target="_blank" rel="noopener">investing.com</a>, <a href="https://polymarket.com" target="_blank" rel="noopener">polymarket.com</a>, <a href="https://wowa.ca/bank-of-canada-interest-rate-forecast" target="_blank" rel="noopener">wowa.ca</a>.</p>
+    </footer>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

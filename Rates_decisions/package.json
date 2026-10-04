@@ -1,0 +1,12 @@
+{
+  "name": "rates-decisions",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Next Fed & BOC rate decision dashboard (static, JSON-driven)",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "fetch:odds": "node scripts/fetch_betting.mjs --write",
+    "check": "node scripts/publish.mjs --check",
+    "publish": "node scripts/publish.mjs"
+  }
+}
