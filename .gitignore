@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+.scratch/
+node_modules/
+dist/

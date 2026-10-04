@@ -1,4 +1,4 @@
-// Validator for <theme>/theme.md — implements the publishing checklist in agent.md.
+// Validator for <theme>/theme.md — implements the publishing checklist in AGENT.md.
 // Usage: node scripts/validate-theme.mjs [path/to/theme.md]
 // Chart-key mapping follows slot order: MAIN→zeb_norm, BENCHMARK rows→tsx_norm,spx_norm…,
 // SUPPORTIVE rows→bank_norm,hfin_norm,spx_norm… (document the slot mapping in the theme folder).

@@ -1,7 +1,7 @@
 # AGENT.md — Global Economic Calendar（全球经济日历）
 
-> 本文件夹**不走**根目录 `agent.md` 的每日 theme SOP（没有 `theme.md`、proxy 或 VALIDITY 灯）。
-> 它是自动发布 JSON、由浏览器渲染的静态宏观页；与根 `agent.md` 的四页数据-only 契约一致。发布路径与校验见 `docs/MACRO_DATA_OPERATIONS.md`。
+> 本文件夹**不走**根目录 `AGENT.md` 的每日 theme SOP（没有 `theme.md`、proxy 或 VALIDITY 灯）。
+> 它是自动发布 JSON、由浏览器渲染的静态宏观页；与根 `AGENT.md` 的数据-only 契约一致。发布路径与校验见 `docs/MACRO_DATA_OPERATIONS.md`。
 
 ## 文件与发布契约
 

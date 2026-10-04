@@ -3,10 +3,9 @@
 This is a scope check, not approval of economic claims or of frontend changes.
 Run it on the staged diff before committing and on the commit range before push.
 
-Scope: the freeze covers exactly the four product renderers
-(<product>/index.html for canadian-banks, ai-software, fed-boc-watcher,
-economic-calendar) via frontend_contract.json digests. Landing pages such as
-home/index.html are deliberately outside the freeze. A frontend change is
+Scope: the freeze covers exactly the active product renderers
+(<product>/index.html for economic-calendar) via frontend_contract.json digests.
+Landing pages such as home/index.html are deliberately outside the freeze. A frontend change is
 accepted only when the same range carries the updated contract whose digest
 binds the head bytes (re-checked here against the checkout); HTML without a
 contract update, or HTML bundled with data, is rejected on both push and PR.
@@ -20,35 +19,13 @@ import re
 import subprocess
 from pathlib import Path
 
-try:
-    from econ.validate_pm_review import validate_review
-except ModuleNotFoundError:  # invoked directly from scripts/econ
-    from validate_pm_review import validate_review
-
-
-_FED_DATA = (
-    re.compile(r"fed-boc-watcher/data/(?:dashboard|latest|dates)\.json\Z"),
-    re.compile(r"fed-boc-watcher/data/archive/\d{4}-\d{2}-\d{2}\.json\Z"),
-    re.compile(r"fed-boc-watcher/review/feedback/(?:latest\.json|history/[^/]+\.json)\Z"),
-    re.compile(r"fed-boc-watcher/review/\d{4}-\d{2}-\d{2}/iteration-\d{2}/"
-               r"(?:candidate\.json|candidate\.sha256|pm-review\.json|pm-handoff\.json|"
-               r"operator-checkpoint\.json|structural-gate\.json|evidence/.+)\Z"),
-)
 _DATE = r"\d{4}-\d{2}-\d{2}"
 _POLICIES = {
-    "fed-boc-watcher": _FED_DATA,
     "economic-calendar": (
         re.compile(rf"economic-calendar/raw/{_DATE}/economic_calendar\.json\Z"),
         re.compile(r"economic-calendar/data/(?:latest|dates)\.json\Z"),
         re.compile(rf"economic-calendar/data/archive/{_DATE}\.json\Z"),
     ),
-    **{
-        product: (
-            re.compile(rf"{product}/theme\.(?:md|txt)\Z"),
-            re.compile(rf"{product}/tracker_data/[^/]+\.csv\Z"),
-        )
-        for product in ("canadian-banks", "ai-software")
-    },
 }
 
 
@@ -69,8 +46,7 @@ def classify_changes(paths: list[str], event: str) -> list[str]:
         raise ValueError("event must be push or pull_request")
     products = set(_POLICIES)
     data = [p for p in paths if p.split("/", 1)[0] in products and
-            (p.split("/", 1)[1].startswith(("data/", "raw/", "review/", "tracker_data/"))
-             or p.split("/", 1)[1] in {"theme.md", "theme.txt"})]
+            p.split("/", 1)[1].startswith(("data/", "raw/"))]
     frontends = [p for p in paths if p in {f"{product}/index.html" for product in products}]
     if data:
         owners = {p.split("/", 1)[0] for p in data}
@@ -81,10 +57,6 @@ def classify_changes(paths: list[str], event: str) -> list[str]:
     if frontends:
         if "scripts/econ/frontend_contract.json" not in paths:
             return ["frontend changes must update frontend_contract.json"]
-        # Push lane: a merged frontend PR is indistinguishable from a direct push
-        # at the diff level, so the contract binding (re-checked against the head
-        # bytes by verify_template_binding in the same CI job) is what carries the
-        # freeze. Without the contract in range the push is rejected either way.
     return []
 
 
@@ -106,42 +78,6 @@ def verify_template_binding(repo: Path, product: str) -> list[str]:
     except (OSError, ValueError, KeyError, TypeError):
         pass
     return [template]
-
-
-def verify_fed_publication(repo: Path) -> list[str]:
-    """Check that the published JSON equals one PM-approved, frozen candidate.
-
-    This checks artifact integrity, not reviewer identity or the truth of claims.
-    """
-    root = repo / "fed-boc-watcher"
-    data = root / "data"
-    try:
-        published = json.loads((data / "latest.json").read_text(encoding="utf-8"))
-        date = published["snapshot_date"]
-        if not isinstance(date, str) or not re.fullmatch(_DATE, date):
-            return ["snapshot_date is missing or invalid"]
-        archive = json.loads((data / "archive" / f"{date}.json").read_text(encoding="utf-8"))
-        dates = json.loads((data / "dates.json").read_text(encoding="utf-8"))
-        if published != archive or dates.get("latest") != date or date not in dates.get("dates", []):
-            return ["latest, archive, and dates manifest disagree"]
-    except (OSError, ValueError, TypeError, KeyError):
-        return ["latest, archive, and dates manifest must be valid JSON"]
-    expected = {k: v for k, v in published.items() if k not in {"snapshot_date", "archived_at", "stale"}}
-    for candidate in (root / "review" / date).glob("iteration-*/candidate.json"):
-        try:
-            if json.loads(candidate.read_text(encoding="utf-8")) != expected:
-                continue
-            parent = candidate.parent
-            digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
-            if (parent / "candidate.sha256").read_text(encoding="utf-8").strip() != f"{digest}  candidate.json":
-                continue
-            if (parent / "transcription-provenance.json").exists():
-                continue
-            validate_review(candidate, parent / "pm-review.json", require_approved=True)
-            return []
-        except (OSError, ValueError, TypeError, KeyError):
-            continue
-    return ["no matching frozen candidate with an approved review and digest"]
 
 
 def _git_paths(repo: Path, *args: str) -> list[str]:
@@ -183,12 +119,8 @@ def main(argv: list[str] | None = None) -> int:
         }
         for product in data_owners | frontend_owners:
             violations += verify_template_binding(args.repo, product)
-        if "fed-boc-watcher" in data_owners and "fed-boc-watcher/data/latest.json" in changed:
-            violations += verify_fed_publication(args.repo)
     else:
         violations = validate_paths(changed, args.product) + verify_template_binding(args.repo, args.product)
-        if args.product == "fed-boc-watcher" and "fed-boc-watcher/data/latest.json" in changed:
-            violations += verify_fed_publication(args.repo)
     if violations:
         print("DATA-ONLY SCOPE REJECTED: " + ", ".join(violations))
         return 1

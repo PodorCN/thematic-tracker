@@ -1,17 +1,4 @@
-# Keep exact-byte Fed/BoC candidate hashes stable across Windows/Linux checkouts.
-/fed-boc-watcher/data/dashboard.json text eol=lf
-/fed-boc-watcher/data/latest.json text eol=lf
-/fed-boc-watcher/data/dates.json text eol=lf
-/fed-boc-watcher/data/archive/*.json text eol=lf
-
-# Raw review evidence hashes refer to downloaded source bytes; never normalize them.
-/fed-boc-watcher/review/** -text
-
-# Canonical LF for the candidate/review artifacts used by deterministic gates.
-/fed-boc-watcher/review/**/candidate.json text eol=lf
-/fed-boc-watcher/review/**/candidate.sha256 text eol=lf
-/fed-boc-watcher/review/**/candidate-source-manifest.json text eol=lf
-/fed-boc-watcher/review/**/pm-handoff.json text eol=lf
-/fed-boc-watcher/review/**/pm-review.json text eol=lf
-/fed-boc-watcher/review/**/operator-checkpoint.json text eol=lf
-/fed-boc-watcher/review/feedback/*.json text eol=lf
+# Keep JSON and data files consistent across Windows/Linux checkouts.
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
