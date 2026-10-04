@@ -788,6 +788,57 @@ def check_price_threshold_arithmetic(payload):
     return problems
 
 
+def check_attempt_record_status(payload):
+    """Attempt records that declare http_status must match their capture's bytes.
+
+    For every dict carrying both http_status and evidence_path, cross-check the
+    declared status against (a) the capture's ``.headers`` sidecar and (b) the
+    retrieval-manifest entry in the same evidence directory, where either exists.
+    Added 2026-10-04 after an independent review found a stale http_status carried
+    across a recollection (payload 200 vs a 502 capture).
+    """
+    problems = []
+    stack = [(payload, "")]
+    while stack:
+        node, path = stack.pop()
+        if isinstance(node, dict):
+            if "http_status" in node and "evidence_path" in node:
+                declared = node.get("http_status")
+                evidence = str(node.get("evidence_path") or "")
+                resolved = resolve_evidence(evidence)
+                if isinstance(declared, int) and resolved is not None:
+                    observed = []
+                    sidecar = Path(str(resolved) + ".headers")
+                    if sidecar.is_file():
+                        match = re.search(r"STATUS:\s*(\d{3})",
+                                          sidecar.read_text(encoding="utf-8", errors="replace"))
+                        if match:
+                            observed.append(("headers sidecar", int(match.group(1))))
+                    manifest_path = resolved.parent / "retrieval-manifest.json"
+                    if manifest_path.is_file():
+                        try:
+                            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                        except ValueError:
+                            manifest = None
+                        entries = (manifest or {}).get("entries") or []
+                        matching = [e for e in entries
+                                    if isinstance(e, dict) and e.get("key") == resolved.name]
+                        if matching and isinstance(matching[-1].get("http_status"), int):
+                            observed.append(("retrieval manifest", matching[-1]["http_status"]))
+                    for source, actual in observed:
+                        if actual != declared:
+                            problems.append(
+                                f"{path or 'payload'}.http_status={declared} but the {source} records "
+                                f"{actual} for {resolved.name}")
+            for key, value in node.items():
+                child = f"{path}.{key}" if path else str(key)
+                stack.append((value, child))
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                stack.append((value, f"{path}[{index}]"))
+    return problems
+
+
 CHECKS = (
     "required_containment",
     "as_of_coherence",
@@ -802,6 +853,7 @@ CHECKS = (
     "evidence_contains_claim",
     "published_path_provenance",
     "price_threshold_arithmetic",
+    "attempt_record_status",
 )
 
 RUNNERS = {
@@ -818,6 +870,7 @@ RUNNERS = {
     "evidence_contains_claim": check_evidence_contains_claim,
     "published_path_provenance": check_published_path_provenance,
     "price_threshold_arithmetic": check_price_threshold_arithmetic,
+    "attempt_record_status": check_attempt_record_status,
 }
 
 
