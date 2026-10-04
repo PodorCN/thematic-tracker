@@ -1,3 +1,8 @@
 {
-  "economic-calendar": "4d8a723f75edc618e82158e8458df5a9fae33fffc851020281e070d5d0f685d2"
+  "economic-calendar": "4d8a723f75edc618e82158e8458df5a9fae33fffc851020281e070d5d0f685d2",
+  "Rates_decisions": {
+    "index.html": "bed99cc954a736e0555e6c70a1b672ef82cbe32d99ab3fe82b6f29098d3c0c05",
+    "app.js": "67627490477d08e5adc9b2188563ac21ab02f54f562b12366a896f253957e13c",
+    "styles.css": "560b6b9c10518aa414c8c00bd7203ed575fa6d5331b975e91c3c770d97a3c7c4"
+  }
 }

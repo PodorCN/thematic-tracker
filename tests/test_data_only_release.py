@@ -105,3 +105,102 @@ def test_missing_template_or_contract_fails_closed(tmp_path):
     assert verify_template_binding(tmp_path, "economic-calendar") == [
         "economic-calendar/index.html"
     ]
+
+
+def _rates_manifest(*, app=b"js", css=b"css", html=b"<html>rates</html>\n"):
+    def digest(content: bytes) -> str:
+        return hashlib.sha256(content.replace(b"\r\n", b"\n")).hexdigest()
+
+    return {
+        "economic-calendar": "0" * 64,
+        "Rates_decisions": {
+            "index.html": digest(html),
+            "app.js": digest(app),
+            "styles.css": digest(css),
+        },
+    }
+
+
+def test_rates_data_release_allows_snapshot_and_review_bundle():
+    allowed = [
+        "Rates_decisions/data/current.json",
+        "Rates_decisions/data/latest.json",
+        "Rates_decisions/data/dates.json",
+        "Rates_decisions/data/archive/2026-10-04.json",
+        "Rates_decisions/review/2026-10-04/candidate.json",
+        "Rates_decisions/review/2026-10-04/candidate.sha256",
+        "Rates_decisions/review/2026-10-04/structural-flags.json",
+        "Rates_decisions/review/2026-10-04/pm-review.json",
+        "Rates_decisions/review/2026-10-04/review.md",
+    ]
+    assert validate_paths(allowed, "Rates_decisions") == []
+    assert classify_changes(allowed, "push") == []
+
+
+def test_rates_data_lane_rejects_renderers_mechanism_and_retired_reviews():
+    rejected = [
+        "Rates_decisions/index.html",
+        "Rates_decisions/app.js",
+        "Rates_decisions/styles.css",
+        "Rates_decisions/data/evil.json",
+        "Rates_decisions/review/2026-10-04.md",
+        "Rates_decisions/review/TEMPLATE.md",
+        "Rates_decisions/review/REVIEWER_AGENT.md",
+        "Rates_decisions/scripts/publish.mjs",
+    ]
+    assert validate_paths(rejected, "Rates_decisions") == rejected
+
+
+def test_rates_classification_blocks_unbound_frontend_and_mixed_bundles():
+    contract = "scripts/econ/frontend_contract.json"
+    assert classify_changes(["Rates_decisions/app.js"], "push")
+    assert classify_changes(["Rates_decisions/styles.css"], "pull_request")
+    assert classify_changes(
+        ["Rates_decisions/index.html", "Rates_decisions/data/latest.json", contract], "push")
+    assert classify_changes(
+        ["Rates_decisions/index.html", "Rates_decisions/app.js",
+         "Rates_decisions/styles.css", contract], "push") == []
+    assert classify_changes(["Rates_decisions/app.js", contract], "push") == []
+
+
+def test_rates_template_binding_covers_all_three_renderer_files(tmp_path):
+    root = tmp_path
+    (root / "Rates_decisions").mkdir()
+    (root / "Rates_decisions" / "index.html").write_bytes(b"<html>rates</html>\n")
+    (root / "Rates_decisions" / "app.js").write_bytes(b"js")
+    (root / "Rates_decisions" / "styles.css").write_bytes(b"css")
+    contract = root / "scripts" / "econ" / "frontend_contract.json"
+    contract.parent.mkdir(parents=True)
+    contract.write_text(json.dumps(_rates_manifest()), encoding="utf-8")
+    assert verify_template_binding(root, "Rates_decisions") == []
+    (root / "Rates_decisions" / "app.js").write_text("changed", encoding="utf-8")
+    assert verify_template_binding(root, "Rates_decisions") == ["Rates_decisions/app.js"]
+    (root / "Rates_decisions" / "styles.css").unlink()
+    assert "Rates_decisions/styles.css" in verify_template_binding(root, "Rates_decisions")
+
+
+def test_cli_rejects_staged_rates_app_change_bundled_with_data(tmp_path):
+    repo = tmp_path / "repo"
+    (repo / "Rates_decisions" / "data").mkdir(parents=True)
+    (repo / "Rates_decisions" / "index.html").write_text("<html>r</html>\n", encoding="utf-8")
+    (repo / "Rates_decisions" / "app.js").write_text("js", encoding="utf-8")
+    (repo / "Rates_decisions" / "styles.css").write_text("css", encoding="utf-8")
+    (repo / "Rates_decisions" / "data" / "latest.json").write_text("{}", encoding="utf-8")
+    manifest = repo / "scripts" / "econ" / "frontend_contract.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps(_rates_manifest(
+        html=b"<html>r</html>\n")), encoding="utf-8")
+    _git(repo, "init", "-q")
+    _git(repo, "config", "user.name", "Test")
+    _git(repo, "config", "user.email", "test@example.org")
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-qm", "baseline")
+    (repo / "Rates_decisions" / "app.js").write_text("changed", encoding="utf-8")
+    (repo / "Rates_decisions" / "data" / "latest.json").write_text('{"new":true}', encoding="utf-8")
+    _git(repo, "add", ".")
+    result = subprocess.run(
+        [sys.executable, str(SCRIPT), "--repo", str(repo), "--product", "Rates_decisions", "--staged"],
+        capture_output=True, text=True,
+    )
+    assert result.returncode != 0
+    assert "Rates_decisions/app.js" in result.stdout + result.stderr
