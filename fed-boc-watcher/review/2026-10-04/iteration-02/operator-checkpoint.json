@@ -2,11 +2,22 @@
   "target_toronto_date": "2026-10-04",
   "iteration": "iteration-02",
   "as_of_toronto": "2026-10-04T03:34:00-04:00",
-  "phase": "APPROVED (round-2 PM, reviewed 2026-10-04T09:57:28-04:00) - publication in progress",
-  "status": "APPROVED; archiving/publish in progress",
+  "phase": "PUBLISHED + LIVE ACCEPTED (commit 57627178802bf83ab635b977a3c6b36dd9877136 pushed; live latest.json sha256 fa9e4716620b90e598659c7e2a188b950e963154865e613943f59ce39dd9578e; real-browser render verified)",
+  "status": "PUBLISHED + LIVE ACCEPTED",
   "candidate_sha256": "6ebb007beaf04c3afb8ba03e593c7f7b218d338d9e88b874952f3d5dd5fccef2",
   "baseline": "fed-boc-watcher/review/2026-10-04/iteration-01/candidate.json",
   "baseline_sha256": "8f1f3815135942669f19678de2e7f8c2f68f3195c527c7c4300e96e209fbdcb2",
-  "next_step": "archive -> scope gates -> commit -> full suite -> push -> live acceptance",
-  "review_note": "Round-2 independent PM approved (2 minor non-blocking findings deferred: authoring_note wording overstatement; legacy attempt-record coverage limit)."
+  "next_step": "none; next daily run covers 2026-10-05",
+  "review_note": "Round-2 independent PM approved (2 minor non-blocking findings deferred: authoring_note wording overstatement; legacy attempt-record coverage limit).",
+  "live_acceptance": {
+    "commit": "57627178802bf83ab635b977a3c6b36dd9877136",
+    "pushed_range": "3f3eb6f..5762717",
+    "live_url": "https://podor.org/thematic-tracker/fed-boc-watcher/data/latest.json (cache-busted, HTTP 200; first fetch served the new blob; sha256 matches the committed blob)",
+    "live_latest_sha256": "fa9e4716620b90e598659c7e2a188b950e963154865e613943f59ce39dd9578e",
+    "live_version": "2026-10-04-002",
+    "live_as_of": "2026-10-04T03:34:00-04:00",
+    "render_checks": "decision-frame populated (NO TRADE / NO EDGE + new headline); both bank panels (Fed 3.88 October monthly average EFFR; BoC 2.346 quarterly average CORRA); old version token 2026-10-03-001, static odds (Hike 62%) and old headline fragment absent",
+    "suite": "95 passed, 1 skipped (pre-push, committed tree)",
+    "gates_summary": "PM approved round 2; structural 14/14 (brief regenerated True); scope gates staged+range PASS (10 paths each); pinned render 9/9"
+  }
 }

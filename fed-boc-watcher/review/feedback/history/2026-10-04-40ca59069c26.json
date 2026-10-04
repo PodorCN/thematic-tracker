@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "status": "closed",
+  "status": "open",
   "reviewed_at": "2026-10-04T03:22:30-04:00",
   "candidate_sha256": "8f1f3815135942669f19678de2e7f8c2f68f3195c527c7c4300e96e209fbdcb2",
   "review_sha256": "40ca59069c2631d8e30276638d68348bc670660060f6b085e5f0c7e7c125d2e8",
@@ -31,20 +31,5 @@
     "Rebuild the whole internally consistent candidate; do not patch prose only.",
     "Submit the rebuilt candidate to a fresh independent PM review.",
     "Do not publish until an exact-byte-bound approved review passes the gate."
-  ],
-  "closure": {
-    "closed_at_toronto": "2026-10-04T10:08:53-04:00",
-    "basis": "The single open finding (DOL claims http_status declared 200 while the capture was a 502 Bad Gateway interstitial) was fixed in iteration-02 and the round-2 independent PM review (approved, reviewed_at 2026-10-04T09:57:28-04:00) confirms it resolved; snapshot 2026-10-04-002 published in 5762717; the deployed artifact was verified equal to that approved candidate modulo snapshot_date/archived_at/stale (cache-busted HTTP 200; live sha256 fa9e4716620b90e598659c7e2a188b950e963154865e613943f59ce39dd9578e matches the committed blob; real-browser render verified).",
-    "resolved_findings": [
-      "drivers.fed.hawkish[4].source_provenance.dol_own_attempts.claims_data_page.http_status - now 502, matching the 524-byte capture, its .headers sidecar and the retrieval-manifest entry; scripts/econ/structural_gate.py gains attempt_record_status so every declared status is cross-checked against its capture evidence (mutation-verified: fires on iteration-01, clean on five prior approved candidates)."
-    ],
-    "resolved_by": {
-      "candidate": "fed-boc-watcher/review/2026-10-04/iteration-02/candidate.json",
-      "candidate_sha256": "6ebb007beaf04c3afb8ba03e593c7f7b218d338d9e88b874952f3d5dd5fccef2",
-      "pm_review": "fed-boc-watcher/review/2026-10-04/iteration-02/pm-review.json",
-      "verdict": "approved",
-      "published_version": "2026-10-04-002",
-      "publication_commit": "57627178802bf83ab635b977a3c6b36dd9877136"
-    }
-  }
+  ]
 }
