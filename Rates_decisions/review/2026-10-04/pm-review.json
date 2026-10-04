@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "dashboard-operator",
+  "reviewed_at": "2026-10-04T17:05:00-04:00",
+  "snapshot_date": "2026-10-04",
+  "candidate_sha256": "0ae32a6839dada09d88da1fc169ba0b1e4c995de80edb26fca0182e4564ca974",
+  "verdict": "APPROVED",
+  "executive_summary": "Second-pass review of re-frozen candidate 0ae32a68 (post-REVISE fixes). All 7 majors from the prior REVISE are fixed in these bytes: PCE forecast corrected to 3.7/3.3 consensus with dovish surprise disclosed and weight cut 3->2; NY Fed speech now links newyorkfed.org wil260929; LFS links StatCan Daily dq260904a with weight cut 5->4; tariffs link canada.ca Finance backgrounder; CPI split carries distinct facets headline-broadening vs core-at-target; BOC pricing re-pulled from BlueGamma CORRA OIS Oct 2 (70/30/0, +8bp); calendar rows link primaries with unverified forecasts honestly marked. Verifiedoutturns against primaries (Fed 12-0 hike, BOC 7th hold, NFP +29k/4.2% vs 84k Dow Jones, CPI 3.0%/ex-gas 2.4%, LFS -42k/6.4%, PCE 3.4/3.0 vs 3.7/3.3, Williams no-urgency, $27.6B tariffs Sep 8, FOMC Oct 27-28, BOC Oct 28). Math: Fed base -1/eff -2.5 hold, BOC base -1/eff -0.5 hold, breakdowns sum, direction/side agree, mean 2.75. Zero structural flags. Two minors deferred to next cycle. Publish.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "drivers.boc.boc-d1.reason",
+      "issue": "Manulife read ('imminent-hike signals were premature') cited without a linkable source; numbers around it are StatCan-verified",
+      "evidence": "candidate drivers.boc.dovish[0].reason mentions Manulife with no URL; -42k/6.4% verified via StatCan dq260904a. Drop the name or attach the note link next cycle.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.boc-d1.market_validation",
+      "issue": "Weight-4 driver still carries unverified validation; acceptable under the >=5 rule but should gain a numeric OIS anchor when available",
+      "evidence": "candidate drivers.boc.dovish[0]: weight=4, market_validation='unverified'. Machine rule only mandates evidence at >=5; mean 2.75 healthy. Attach CORRA-day move next cycle if retrievable.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}

@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.32,
-          "hold": 0.68,
+          "hike": 0.3,
+          "hold": 0.7,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
         "implied_rate_after": 2.33,
-        "source": "CORRA Implied (via WOWA.ca)",
-        "source_url": "https://wowa.ca/bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-01",
+        "source": "CORRA OIS-implied via BlueGamma (+8bp)",
+        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
+        "as_of": "2026-10-02",
         "observable_proxy": null
       }
     }
@@ -98,27 +98,27 @@
       "hawkish": [
         {
           "id": "fed-h1",
-          "title": "Aug PCE: Fed gauge stuck above 3%",
-          "summary": "Headline PCE 3.4% YoY, core 3.0% YoY; disinflation has stalled.",
+          "title": "Aug PCE cooler than feared but stuck above 3%",
+          "summary": "Came in cooler than feared (3.4% vs 3.7% exp, core 3.0% vs 3.3%) but the level is still a point above target.",
           "published_at": "2026-09-30",
           "observed_at": "2026-09-30",
           "source": "BEA",
           "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-august-2026",
           "data": {
             "actual": "3.4% YoY (core 3.0%)",
-            "forecast": "3.4% YoY (core 3.0%)",
-            "previous": "3.4% YoY Jul",
-            "delta_label": "flat, elevated"
+            "forecast": "3.7% YoY (core 3.3%)",
+            "previous": "3.4% YoY Jul (core 3.3%)",
+            "delta_label": "cool surprise -0.3pp, level elevated"
           },
-          "reason": "PCE is the Fed's formal 2% target measure. A 3.4% headline and 3.0% core keep the policy rate restrictive and argue against pausing the hiking bias. Monthly core at 0.2% is not yet cooling fast enough to change the path.",
+          "reason": "PCE is the Fed's formal 2% target measure. The downside surprise (both headline and core 0.3pp below consensus, core down from 3.3% in July) cooled the case for an October hike, but 3.4%/3.0% is still materially above target so the restrictive bias stands — net hawkish on level, with conviction cut after the cool print.",
           "market_validation": "unverified",
           "direction": 1,
-          "weight": 3,
+          "weight": 2,
           "weight_breakdown": {
             "deviation": 1,
-            "importance": 2,
+            "importance": 1,
             "surprise": 0,
-            "total": 3
+            "total": 2
           }
         },
         {
@@ -128,7 +128,7 @@
           "published_at": "2026-09-16",
           "observed_at": "2026-09-16",
           "source": "Federal Reserve SEP",
-          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm",
           "data": {
             "actual": "16/18 project >=1 more hike",
             "forecast": "n/a",
@@ -151,19 +151,19 @@
         {
           "id": "fed-d1",
           "title": "Williams: no urgency for an October hike",
-          "summary": "NY Fed chief said the September hike buys time; October odds fell 71% to 47% in a day.",
+          "summary": "NY Fed chief said the September hike buys time; October hike odds fell from ~70% to ~50% in a day.",
           "published_at": "2026-09-29",
           "observed_at": "2026-09-29",
-          "source": "NY Fed (via BeInCrypto)",
-          "source_url": "https://cryptorank.io/news/feed/6bb1b-fed-october-rate-hike-bitcoin",
+          "source": "NY Fed",
+          "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil260929",
           "data": {
-            "actual": "CME Oct hike prob 70.9% -> 47%",
+            "actual": "CME Oct hike prob ~70% -> ~50%",
             "forecast": "n/a",
-            "previous": "70.9%",
-            "delta_label": "-24pp repricing"
+            "previous": "~70%",
+            "delta_label": "-20pp repricing"
           },
           "reason": "The FOMC vice chair publicly pushed back on an October move while still allowing one more hike late this year. Markets read this as October off the table unless data forces it, shifting the debate to December.",
-          "market_validation": "CME FedWatch Oct hike odds 70.9% -> 47% same day (Sep 29)",
+          "market_validation": "FedWatch Oct hike odds ~70% -> ~50% same day (Sep 29, per ST/Reuters)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -176,19 +176,19 @@
         {
           "id": "fed-d2",
           "title": "Sep payrolls +29k, unemployment 4.2%",
-          "summary": "Weak jobs report pushed hold odds from 66% to 77% into the weekend.",
+          "summary": "Weak jobs report pushed hold odds from ~36% to ~77% within a week.",
           "published_at": "2026-10-02",
           "observed_at": "2026-10-02",
-          "source": "BLS (via JorgAI calendar)",
-          "source_url": "https://www.bls.gov/schedule/news_release/current_year.asp",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/archives/empsit_10022026.htm",
           "data": {
             "actual": "+29k, u3 4.2%",
-            "forecast": "+90k, u3 4.1%",
+            "forecast": "+84k (Dow Jones), u3 4.1%",
             "previous": "+162k Aug",
             "delta_label": "sharp slowdown"
           },
           "reason": "A 29k print after 162k in August removes the labor-market case for back-to-back hikes. Equities rallied on the print, confirming the market read it as dovish for policy rather than as a recession signal.",
-          "market_validation": "FedWatch hold prob 65.6% (Sep 30) -> 77% (Oct 3)",
+          "market_validation": "FedWatch hold prob ~36% week prior -> 77.3% (Oct 2, Al Jazeera citing CME)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -210,6 +210,7 @@
           "observed_at": "2026-09-14",
           "source": "Statistics Canada",
           "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260914/dq260914a-eng.htm",
+          "facet": "headline-broadening",
           "data": {
             "actual": "3.0% YoY, ex-gas 2.4%",
             "forecast": "3.0% YoY",
@@ -233,8 +234,8 @@
           "summary": "Canada's retaliation took effect Sep 8, adding import-price pressure.",
           "published_at": "2026-09-08",
           "observed_at": "2026-09-08",
-          "source": "Nesto / Government of Canada",
-          "source_url": "https://www.nesto.ca/mortgage-basics/bank-of-canada-interest-rate-schedule/",
+          "source": "Government of Canada",
+          "source_url": "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html",
           "data": {
             "actual": "$27.6B goods covered",
             "forecast": "n/a",
@@ -260,8 +261,8 @@
           "summary": "First big miss after +181k over Apr-Jul; labour demand described as subdued.",
           "published_at": "2026-09-04",
           "observed_at": "2026-09-04",
-          "source": "Statistics Canada (via Nesto)",
-          "source_url": "https://www.nesto.ca/mortgage-basics/bank-of-canada-interest-rate-schedule/",
+          "source": "Statistics Canada",
+          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260904/dq260904a-eng.htm",
           "data": {
             "actual": "-42k, u-rate 6.4%, wages 2.0%",
             "forecast": "+15k",
@@ -269,14 +270,14 @@
             "delta_label": "-57k miss"
           },
           "reason": "Employment fell while the unemployment rate held at 6.4% only because the labour force shrank. Wage growth slowed to 2.0% from 2.8%, cutting the wage-pressure leg of the hike argument. Manulife read it as evidence that imminent-hike signals were premature.",
-          "market_validation": "Economists' 2026 hold call vs market pricing gap widened after print",
+          "market_validation": "unverified",
           "direction": -1,
-          "weight": 5,
+          "weight": 4,
           "weight_breakdown": {
             "deviation": 2,
-            "importance": 2,
+            "importance": 1,
             "surprise": 1,
-            "total": 5
+            "total": 4
           }
         },
         {
@@ -287,6 +288,7 @@
           "observed_at": "2026-09-14",
           "source": "Statistics Canada",
           "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260914/dq260914a-eng.htm",
+          "facet": "core-at-target",
           "data": {
             "actual": "trim 1.9%, median 2.0%",
             "forecast": "2.0%",
@@ -309,13 +311,13 @@
   },
   "total_score": {
     "fed": {
-      "base_total": 0,
-      "effective_total": -1.5,
+      "base_total": -1,
+      "effective_total": -2.5,
       "band": "hold"
     },
     "boc": {
-      "base_total": -2,
-      "effective_total": -1,
+      "base_total": -1,
+      "effective_total": -0.5,
       "band": "hold"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
@@ -332,8 +334,8 @@
       "importance": 2,
       "forecast": "—",
       "previous": null,
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     },
     {
       "date_toronto": "2026-10-09",
@@ -344,10 +346,10 @@
       "event": "Labour Force Survey (Sep)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "+15.0k, u-rate 6.4%",
+      "forecast": "unverified",
       "previous": "-42k, u-rate 6.4%",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "Statistics Canada",
+      "source_url": "https://www.statcan.gc.ca/imdb-bmdi/3701-eng.htm"
     },
     {
       "date_toronto": "2026-10-14",
@@ -358,10 +360,10 @@
       "event": "CPI (Sep)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "3.7% YoY",
+      "forecast": "unverified",
       "previous": "3.4% YoY, core 2.4%",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "BLS",
+      "source_url": "https://www.bls.gov/cpi"
     },
     {
       "date_toronto": "2026-10-19",
@@ -372,10 +374,10 @@
       "event": "CPI (Sep)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "3.0% YoY, trim 1.8%",
+      "forecast": "unverified",
       "previous": "3.0% YoY, trim 1.9%, median 2.0%",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "Statistics Canada",
+      "source_url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes"
     },
     {
       "date_toronto": "2026-10-28",
@@ -386,10 +388,10 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 2.25% (CORRA 68%)",
+      "forecast": "Hold 2.25% (OIS 70% Oct 2)",
       "previous": "2.25% (held 7x)",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02"
     },
     {
       "date_toronto": "2026-10-28",
@@ -400,10 +402,10 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (CME 77%)",
+      "forecast": "Hold 3.75-4.00% (CME 77% Oct 3)",
       "previous": "Hike +25bp (Sep 16)",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     },
     {
       "date_toronto": "2026-10-29",
@@ -414,10 +416,10 @@
       "event": "PCE Price Index (Sep) + Q3 GDP advance",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "core 3.0% YoY, GDP +2.4%",
+      "forecast": "unverified",
       "previous": "3.4% YoY, core 3.0%",
-      "source": "Investing.com",
-      "source_url": "https://www.investing.com/economic-calendar/"
+      "source": "BEA",
+      "source_url": "https://www.bea.gov/data/personal-consumption-expenditures-price-index"
     }
   ],
   "notes": "All probabilities and figures sourced from public pages on the snapshot date; fields marked 'unverified' were not confirmed against a primary source. Never invent probabilities; if a clean single-meeting distribution is unavailable, set probabilities to null and show observable_proxy."
