@@ -18,6 +18,10 @@ economic-calendar/       ← 看板 2：全球经济日历（Actions 每日全�
   AGENT.md                 日历数据抓取、发布契约与本地测试说明
 scripts/econ/frontend_contract.json ← 前端渲染器 SHA-256 冻结基线
 scripts/econ/verify_data_only_changes.py ← 日常发布路径与数据-only 机器门禁
+scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结字节 + SHA 绑定 + verdict 自洽
+  core.py / freeze.py / validate_pm_review.py ← 与产品无关的门禁原语（Python 标准库 only）
+  flags_<product>.py ← 各产品结构旗标插件（机器只报旗，PM 做判断）
+  REVIEWER_AGENT.md / pm-review.schema.json / TEMPLATE.md ← 全仓统一审阅信条与模板
 ```
 
 ### 0.1 维护对象总览
@@ -51,7 +55,9 @@ scripts/econ/verify_data_only_changes.py ← 日常发布路径与数据-only �
 1. （可选）抓取最新 Polymarket 赔率：`node scripts/fetch_betting.mjs`
 2. 编辑数据源：仅修改 `Rates_decisions/data/current.json`
 3. 机器数据校验：`npm --prefix Rates_decisions run check`
-4. 独立审阅签字：复制 `review/TEMPLATE.md` 至 `review/<today Toronto>.md`，确认 `Verdict: APPROVED`
+4. 冻结 + 独立审阅签字：`npm --prefix Rates_decisions run freeze` 冻结候选并生成 SHA；
+   reviewer 按 [`scripts/review/REVIEWER_AGENT.md`](./scripts/review/REVIEWER_AGENT.md) 写
+   `review/<today>/pm-review.json`（SHA 绑定，`APPROVED` 方可发布）
 5. 归档发布：`npm --prefix Rates_decisions run publish`
 
 ### 1.2 Economic Calendar 日历维护
@@ -91,3 +97,19 @@ scripts/econ/verify_data_only_changes.py ← 日常发布路径与数据-only �
   ```
   门禁退出码非 0 时绝对禁止提交或推送。
 - **发布需经严格审阅**：带有审阅机制的看板（如 `Rates_decisions`），必须在通过机器检验且具有 APPROVED 审阅凭证后方可执行 publish 归档。
+
+## 4. 共享审阅层（所有 tracker 共用同一个 reviewer 机制）
+
+`scripts/review/` 是全仓唯一的审阅实现：冻结字节canonical、SHA 三方绑定、角色分离、
+verdict/严重度自洽、结构旗标全覆盖——这些与产品无关，任何 tracker 不许自造第二套。
+各产品的采用策略不同：
+
+| 产品 | 采用方式 | 说明 |
+|---|---|---|
+| `Rates_decisions` | 阻塞式（blocking） | 无 APPROVED 的 `pm-review.json` 就拒发；checks 六项见其 `review/REVIEWER_AGENT.md` |
+| `economic-calendar` | 机器 only（advisory） | GitHub Actions 全自动流水线不断；共享层仅作审计参考，不加人工闸门 |
+| 未来新 tracker | 二选一并写进其 `AGENT.md` | blocking：声明 checks 清单 + 冻结包路径；advisory：只跑结构旗标 |
+
+新增 blocking 产品时：写一个 `scripts/review/flags_<product>.py`（只报旗、不做判断），
+在产品 `AGENT.md` 声明 checks 清单，`_POLICIES`（`verify_data_only_changes.py`）与
+`frontend_contract.json` 同步扩展。三件缺一不可，否则新门禁对它是空文。

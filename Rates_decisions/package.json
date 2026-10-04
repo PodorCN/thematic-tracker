@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "node dev-server.js",
     "fetch:odds": "node scripts/fetch_betting.mjs --write",
-    "check": "node scripts/publish.mjs --check",
-    "freeze": "node scripts/freeze.mjs",
-    "review:check": "node scripts/validate_pm_review.mjs --candidate review/$(TZ=America/Toronto date +%F)/candidate.json --review review/$(TZ=America/Toronto date +%F)/pm-review.json --flags review/$(TZ=America/Toronto date +%F)/structural-flags.json",
-    "publish": "node scripts/publish.mjs"
+    "check": "python3 scripts/publish.py --check",
+    "freeze": "python3 scripts/freeze.py",
+    "review:check": "python3 scripts/check_review.py",
+    "publish": "python3 scripts/publish.py"
   }
 }

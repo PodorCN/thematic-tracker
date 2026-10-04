@@ -1,7 +1,9 @@
 # AGENT.md — Rates Decisions（美加央行下一次利率决议看板）专属指令
 
 > ⚠️ 本文件夹**不走**根目录 `AGENT.md` 的每日 theme SOP（没有 `theme.md`、proxy 或 VALIDITY 灯）。
-> 它是基于 JSON 数据驱动的利率决议 2 分钟快览看板，配有独立的 PM 审阅机制与归档流水线。
+> 它是基于 JSON 数据驱动的利率决议 2 分钟快览看板。
+> 审阅机制用的是全仓共享 gate（`scripts/review/`：冻结字节、SHA 绑定、verdict 自洽），
+> 本文件只保留 Rates 特有的结构校验、打分规则与源规则。
 
 ## 1. 角色与定位
 
@@ -21,21 +23,20 @@ Rates_decisions/
     dates.json            已归档日期清单（降序排列）
     archive/<date>.json   每日不可变历史快照（字节 == 当日 reviewed candidate）
   review/
-    REVIEWER_AGENT.md       独立审阅者指令（必读：角色分离/证据/严重度/打分审计）
-    pm-review.schema.json   pm-review.json 的机器 schema
-    TEMPLATE.md             新流程模板（冻结→审阅→发布）
+    REVIEWER_AGENT.md       本产品审阅附录（六个 checks + 打分/源规则；通用信条见 scripts/review/REVIEWER_AGENT.md）
+    TEMPLATE.md             本产品命令速查（通用模板见 scripts/review/TEMPLATE.md）
     <YYYY-MM-DD>/           当日冻结包（缺一不可，否则拒发）：
       candidate.json          冻结候选（freeze 写入后不可变）
       candidate.sha256        候选字节 SHA-256
       structural-flags.json   机器旗标（reviewer 必须逐条 disposition）
-      pm-review.json          独立审阅结论（reviewer 亲手写，SHA 绑定）
+      pm-review.json          独立审阅结论（reviewer 亲手写，SHA 绑定，schema 见 scripts/review/pm-review.schema.json）
       review.md               人类可读版（可选，需与 json verdict 一致）
     *.md                    旧版自由文本审阅（已退役，仅留档，publish 不认）
   scripts/
-    freeze.mjs              冻结候选 + 生成 SHA + 结构旗标（npm run freeze）
-    validate_pm_review.mjs  审阅结论校验（schema/SHA/角色/严重度，npm run review:check）
-    publish.mjs           数据校验与归档发布脚本（npm run check / npm run publish）
-    fetch_betting.mjs     Polymarket 预测市场赔率抓取脚本
+    publish.py              结构校验 + reviewer 门禁 + 归档（npm run check / npm run publish；调用 scripts/review/ 共享层）
+    freeze.py               冻结包装器（npm run freeze；调用共享 freeze + 本产品 flags 插件）
+    check_review.py         审阅预检包装器（npm run review:check）
+    fetch_betting.mjs       Polymarket 预测市场赔率抓取脚本（Node 工具，非门禁）
 ```
 
 ## 3. 维护流程（SOP）
@@ -58,16 +59,13 @@ npm run check
 # band 标签一致、source_url https、日历 datetimes、snapshot_date 口径
 
 # 4. 冻结候选（冻结后 data/current.json 任何改动都会让审阅作废）
-node scripts/freeze.mjs
+npm run freeze
 # -> review/<today>/candidate.json + candidate.sha256 + structural-flags.json
 
-# 5. 独立 PM 审阅（reviewer 必须与 operator 不同人/模型，禁 self；详见 REVIEWER_AGENT.md）
+# 5. 独立 PM 审阅（reviewer 必须与 operator 不同人/模型，禁 self；通用信条见 scripts/review/REVIEWER_AGENT.md）
 #    reviewer 按 structural-flags.json 逐条写 review/<today>/pm-review.json：
 #    candidate_sha256 绑定、六个 checks、findings（critical/major 拦）、flags_dispositioned 全覆盖
-node scripts/validate_pm_review.mjs \
-  --candidate review/<today>/candidate.json \
-  --review review/<today>/pm-review.json \
-  --flags review/<today>/structural-flags.json --require-approved
+npm run review:check
 
 # 6. 发布归档（publish 会重验：结构 + SHA 三方一致 + review 结论 + 旗标全覆盖 + 前端干净）
 npm run publish
