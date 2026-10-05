@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-04T10:00:00-04:00",
-  "snapshot_date": "2026-10-04",
+  "as_of": "2026-10-05T10:00:00-04:00",
+  "snapshot_date": "2026-10-05",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -65,14 +65,14 @@
         "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
         "probabilities": {
           "cut": 0.01,
-          "hold": 0.82,
-          "hike": 0.17
+          "hold": 0.78,
+          "hike": 0.21
         },
         "status": "available",
-        "volume": "$25.2M",
-        "liquidity": "$2.9M",
-        "as_of": "2026-10-04",
-        "note": "Live odds: Hold 82%, Hike 17%, Cut 1%."
+        "volume": "$26.5M",
+        "liquidity": "$3.0M",
+        "as_of": "2026-10-05",
+        "note": "Live odds: Hold 78%, Hike 21%, Cut 1%."
       }
     ],
     "boc": [
@@ -86,9 +86,9 @@
           "hike": 0.3
         },
         "status": "available",
-        "volume": "$135.6k",
-        "liquidity": "$32.6k",
-        "as_of": "2026-10-04",
+        "volume": "$136.1k",
+        "liquidity": "$33.4k",
+        "as_of": "2026-10-05",
         "note": "Live odds: Hold 70%, Hike 30%, Cut 0%."
       }
     ]
@@ -145,6 +145,31 @@
             "surprise": 0,
             "total": 3
           }
+        },
+        {
+          "id": "fed-h3",
+          "title": "Jefferson Oct 1: upside inflation risks, cascade of shocks",
+          "summary": "Vice Chair says inflation 3.4% too high for 5+ years; energy/AI/trade shocks cascade with upside risks tilted.",
+          "published_at": "2026-10-01",
+          "observed_at": "2026-10-01",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261001a.htm",
+          "data": {
+            "actual": "PCE 3.4% Aug, above 2% for 5+ years",
+            "forecast": "n/a",
+            "previous": "3.4% Jul",
+            "delta_label": "level elevated, risks up"
+          },
+          "reason": "The Vice Chair backed the September hike and warned energy/AI-buildout/trade shocks hitting together keep upside risks tilted. That locks in a restrictive bias even while he asks for more time on timing — hawkish on level, neutral on October vs December.",
+          "market_validation": "10Y touched 24Y high ~5.24% same week (Oct 1, Reuters)",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 0,
+            "total": 3
+          }
         }
       ],
       "dovish": [
@@ -189,6 +214,31 @@
           },
           "reason": "A 29k print after 162k in August removes the labor-market case for back-to-back hikes. Equities rallied on the print, confirming the market read it as dovish for policy rather than as a recession signal.",
           "market_validation": "FedWatch hold prob ~36% week prior -> 77.3% (Oct 2, Al Jazeera citing CME)",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d3",
+          "title": "Williams + Jefferson lean against October hike; Street shifts to Dec",
+          "summary": "Top two FOMC leaders say no urgency / need more time; Oct hike pricing collapses ~70% to ~25%.",
+          "published_at": "2026-10-01",
+          "observed_at": "2026-10-01",
+          "source": "Reuters (via Williams, Jefferson)",
+          "source_url": "https://www.reuters.com/business/fed-may-take-time-make-next-interest-rate-move-jefferson-says-2026-10-01",
+          "data": {
+            "actual": "Oct hike odds ~70% -> ~25%",
+            "forecast": "n/a",
+            "previous": "~70% early week",
+            "delta_label": "-45pp repricing"
+          },
+          "reason": "Williams (no urgency, one more hike late this year) plus Jefferson (future moves need trends in data, may take more time) jointly pushed October off the table while keeping December live. Evercore/SGH read it as authoritative guidance; brokerages now pencil December.",
+          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters); CME 17-18% post-NFP (Oct 2, CNBC)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -252,6 +302,31 @@
             "surprise": 1,
             "total": 2
           }
+        },
+        {
+          "id": "boc-h3",
+          "title": "UBS/Manulife/Oxford/Scotia move calls to Oct hike; UBS sees Sep CPI 3.3%",
+          "summary": "After 7 holds, Street baseline flips: UBS calls Oct + Jan to 2.75%; Manulife/Oxford see Oct + Dec.",
+          "published_at": "2026-10-02",
+          "observed_at": "2026-10-02",
+          "source": "MPA (via UBS, Manulife, Oxford Economics, Scotia)",
+          "source_url": "https://www.mpamag.com/ca/mortgage-industry/industry-trends/rate-hike-calls-gather-pace-ahead-of-october-boc-decision/592150",
+          "data": {
+            "actual": "UBS Oct + Jan to 2.75%; Sep CPI fcast 3.3%",
+            "forecast": "3.0% Aug",
+            "previous": "hold thru 2026",
+            "delta_label": "call flip to Oct"
+          },
+          "reason": "UBS Watt cites Macklem's shift (upside risks rising, less willing to look through headline) plus Halifax warning about moving too slow. Manulife Lapointe (Oct+Dec on inflation dynamics), Oxford Davenport (Oct+Dec), Scotia (Oct) join; RBC still holds near-term but calls it a close call. Sep CPI Oct 19 is the swing print.",
+          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5)",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
         }
       ],
       "dovish": [
@@ -269,7 +344,7 @@
             "previous": "+181k Apr-Jul",
             "delta_label": "-57k miss"
           },
-          "reason": "Employment fell while the unemployment rate held at 6.4% only because the labour force shrank. Wage growth slowed to 2.0% from 2.8%, cutting the wage-pressure leg of the hike argument. Manulife read it as evidence that imminent-hike signals were premature.",
+          "reason": "Employment fell while the unemployment rate held at 6.4% only because the labour force shrank. Wage growth slowed to 2.0% from 2.8%, cutting the wage-pressure leg of the hike argument.",
           "market_validation": "unverified",
           "direction": -1,
           "weight": 4,
@@ -305,6 +380,31 @@
             "surprise": 0,
             "total": 2
           }
+        },
+        {
+          "id": "boc-d3",
+          "title": "G7 to release 100M barrels oil + diesel to curb spike",
+          "summary": "G7 coordinated release over 4 months + substantial diesel within 20 days as diesel hits $2.75/L record.",
+          "published_at": "2026-10-02",
+          "observed_at": "2026-10-02",
+          "source": "Financial Post (via G7/IEA statement)",
+          "source_url": "https://financialpost.com/commodities/energy/oil-gas/canada-g7-release-oil-diesel-into-market",
+          "data": {
+            "actual": "100M barrels over 4 months",
+            "forecast": "n/a",
+            "previous": "Hormuz blockade squeeze",
+            "delta_label": "supply relief"
+          },
+          "reason": "Gasoline from the Hormuz blockade is what holds BOC headline at 3.0%. A coordinated crude + diesel release (IEA-coordinated, diesel share ~30% per IEA Sep report) directly eases the energy leg the Bank wants to look through, with gas at $1.72/L and diesel at record highs.",
+          "market_validation": "unverified",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 0,
+            "importance": 1,
+            "surprise": 1,
+            "total": 2
+          }
         }
       ]
     }
@@ -316,8 +416,8 @@
       "band": "hold"
     },
     "boc": {
-      "base_total": -1,
-      "effective_total": -0.5,
+      "base_total": 0,
+      "effective_total": 1.5,
       "band": "hold"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
