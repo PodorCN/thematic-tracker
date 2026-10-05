@@ -77,12 +77,13 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
 
 ### 1.3 General Theme Tracker 主题站维护（blocking）
 详细 SOP 见 [`general-theme-tracker/AGENT.md`](./general-theme-tracker/AGENT.md)：
-1. 编辑周包：仅修改 `general-theme-tracker/data/themes/<week>/*.yaml`（+ market snapshot + commentary）
-2. 机器数据校验：`npm --prefix general-theme-tracker run validate`（YAML schema_v1）+ `python3 general-theme-tracker/scripts/publish.py --check`
+1. 编辑周包：仅修改 `general-theme-tracker/data/themes/<week>/*.yaml`（+ market snapshot + commentary），全英文
+2. 机器数据校验：`npm --prefix general-theme-tracker run validate`（YAML schema_v1，含 English-only）+ `python3 general-theme-tracker/scripts/publish.py --check`
 3. 冻结 + 独立审阅签字：`npm --prefix general-theme-tracker run freeze` 整周打包冻结并生成 SHA；
    reviewer 按 [`scripts/review/REVIEWER_AGENT.md`](./scripts/review/REVIEWER_AGENT.md) + 产品附录写
    `review/<today>/pm-review.json`（SHA 绑定，六个 checks 全 pass + `APPROVED` 方可发布）
-4. 归档发布：`npm --prefix general-theme-tracker run publish`（重建周包比对字节后归档 `data/archive/<today>.json`）
+4. 归档发布：`npm --prefix general-theme-tracker run publish`（重建周包比对字节后归档 `data/archive/<today>.json` + `data/latest.json`，静态 `index.html` 读 latest.json 渲染）
+5. 主页入口：`home/index.html` 第三个卡片链到 `../general-theme-tracker/`（landing 页不进冻结，改动走独立前端 PR）
 
 ---
 

@@ -5,7 +5,7 @@ import RebasedChart from '@/sections/RebasedChart'
 import { ConvictionTag, NoiseScore, StatusTag } from '@/sections/pills'
 import type { Theme } from '@/types/theme'
 
-// Theme 详情页 — 固定 8 段模板（PRD §4），报刊特写版式
+// Theme detail page — fixed 8-section template (PRD §4), broadsheet feature layout
 export default function ThemeDetail() {
   const { id } = useParams<{ id: string }>()
   const [theme, setTheme] = useState<Theme | null>(null)
@@ -29,20 +29,20 @@ export default function ThemeDetail() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  if (err) return <div className="w-full p-8 t-body num-down sm:px-6 lg:px-10">加载失败：{err}</div>
-  if (!theme) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">加载中…</div>
+  if (err) return <div className="w-full p-8 t-body num-down sm:px-6 lg:px-10">Load failed: {err}</div>
+  if (!theme) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">Loading…</div>
 
   const p = theme.performance
   const mins = readingMinutes(theme.body_text)
   const stats = [
-    { label: '1W 超额', v: p.excess_1w },
-    { label: '1M 超额', v: p.excess_1m },
-    { label: 'YTD 超额', v: p.excess_ytd },
+    { label: '1W excess', v: p.excess_1w },
+    { label: '1M excess', v: p.excess_1m },
+    { label: 'YTD excess', v: p.excess_ytd },
   ]
 
   return (
     <div className="w-full px-4 pb-16 sm:px-6 lg:px-10">
-      {/* 阅读进度条 */}
+      {/* Reading progress bar */}
       <div className="sticky top-0 z-10 -mx-4 bg-white/95 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
         <div className="flex items-center gap-3">
           <Link to="/" className="t-kicker hover:text-gray-900 shrink-0">
@@ -55,7 +55,7 @@ export default function ThemeDetail() {
         </div>
       </div>
 
-      {/* 1. 头部 */}
+      {/* 1. Header */}
       <header className="border-b-2 border-black pb-6 pt-6">
         <p className="t-kicker">Theme · {theme.week} · {theme.horizon}</p>
         <h1 className="t-display-sm mt-3 max-w-4xl">{theme.title}</h1>
@@ -69,7 +69,7 @@ export default function ThemeDetail() {
         </div>
       </header>
 
-      {/* 2. Performance vs Benchmark — 大数字 + 图 */}
+      {/* 2. Performance vs Benchmark — big numbers + chart */}
       <section className="border-b border-gray-200 py-7">
         <p className="t-kicker mb-5">Performance vs Benchmark</p>
         <div className="grid grid-cols-3 gap-2 border-y border-gray-200 py-4 sm:gap-4">
@@ -109,7 +109,7 @@ export default function ThemeDetail() {
         </table>
         <p className="t-explainer mt-3">
           {p.proxy_ticker} {p.proxy_price} {p.currency} · {p.return_type === 'price' ? 'Price Return' : 'Total Return'} · as of{' '}
-          <span className="t-time">{fmtUtc(p.as_of_utc)}</span> · {p.source} · 基准：{p.benchmark_rationale}
+          <span className="t-time">{fmtUtc(p.as_of_utc)}</span> · {p.source} · Benchmark: {p.benchmark_rationale}
         </p>
       </section>
 
@@ -132,9 +132,9 @@ export default function ThemeDetail() {
                   </span>
                 </p>
                 <p className="t-body mt-1 text-gray-700">
-                  {px.why_represents}。流动性：{px.liquidity_note}。
+                  {px.why_represents} Liquidity: {px.liquidity_note}.
                 </p>
-                <p className="t-explainer mt-1">缺陷：{px.tracking_gap}</p>
+                <p className="t-explainer mt-1">Flaw: {px.tracking_gap}</p>
               </div>
             </div>
           ))}
@@ -179,10 +179,10 @@ export default function ThemeDetail() {
           <table className="w-full min-w-[620px] border-t border-gray-300">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="t-kicker-plain py-2 text-left">验证点</th>
-              <th className="t-kicker-plain py-2 text-left">日期 UTC</th>
+              <th className="t-kicker-plain py-2 text-left">Checkpoint</th>
+              <th className="t-kicker-plain py-2 text-left">Date UTC</th>
               <th className="t-kicker-plain py-2 text-left">Bull</th>
-              <th className="t-kicker-plain py-2 text-left">Bear / 证伪</th>
+              <th className="t-kicker-plain py-2 text-left">Bear / falsifier</th>
             </tr>
           </thead>
           <tbody>
@@ -207,15 +207,15 @@ export default function ThemeDetail() {
         <p className="t-kicker mb-4">Theme vs Noise</p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
           <NoiseScore score={theme.theme_vs_noise.score} />
-          {(
-            [
-              ['persistence', '持续性'],
-              ['breadth', '广度'],
-              ['volume_confirm', '量价确认'],
-              ['falsifiable_catalyst', '可证伪 Catalyst'],
-              ['repricing_logic', 'Re-price 逻辑'],
-            ] as const
-          ).map(([k, label]) => (
+            {(
+              [
+                ['persistence', 'Persistence'],
+                ['breadth', 'Breadth'],
+                ['volume_confirm', 'Price-volume confirmation'],
+                ['falsifiable_catalyst', 'Falsifiable catalyst'],
+                ['repricing_logic', 'Re-pricing logic'],
+              ] as const
+            ).map(([k, label]) => (
             <span key={k} className={`t-explainer ${theme.theme_vs_noise[k] ? 'text-gray-900' : 'text-gray-400'}`}>
               {theme.theme_vs_noise[k] ? '✓' : '✗'} {label}
             </span>
@@ -223,11 +223,11 @@ export default function ThemeDetail() {
         </div>
       </section>
 
-      {/* 8. 解释（默认折叠） */}
+      {/* 8. Explainer (folded by default) */}
       {theme.explainer && (
         <section className="py-7">
           <details>
-            <summary className="t-kicker cursor-pointer hover:text-gray-900">口径与术语</summary>
+            <summary className="t-kicker cursor-pointer hover:text-gray-900">Conventions & terms</summary>
             <p className="t-explainer mt-3 max-w-3xl whitespace-pre-line border-l-2 border-gray-200 pl-4">{theme.explainer}</p>
           </details>
         </section>

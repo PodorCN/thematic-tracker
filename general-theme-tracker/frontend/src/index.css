@@ -38,41 +38,41 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   编辑排版系统（Bloomberg 式）— 严格三档 + 标签/数据档
+   Editorial type system (Bloomberg-style) — strict three tiers + tag/data tiers
    ══════════════════════════════════════════════════════════ */
 @layer components {
-  /* 档一：标题 — serif, 21-22px / 700 */
+  /* Tier 1: headlines — serif, 21-22px / 700 */
   .t-title {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 21px;
     line-height: 1.3;
     font-weight: 700;
     color: #111111;
   }
   .t-headline {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 22px;
     line-height: 1.35;
     font-weight: 700;
     color: #111111;
   }
-  /* 档二：正文 — serif, 15.5px / 1.6 */
+  /* Tier 2: body — serif, 15.5px / 1.6 */
   .t-body {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 15.5px;
     line-height: 1.6;
     font-weight: 400;
     color: #1a1a1a;
   }
-  /* 档三：解释 — 13px 灰 */
+  /* Tier 3: explainer — 13px gray */
   .t-explainer {
     font-size: 13px;
     line-height: 1.55;
     color: #6b7280;
   }
-  /* 展示级：头版头条 / 大数字（不受正文三档限制，仅用于 display） */
+  /* Display tier: front-page heads / big numerals (exempt from the body tiers, display use only) */
   .t-display {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 42px;
     line-height: 1.12;
     font-weight: 700;
@@ -80,7 +80,7 @@
     color: #111111;
   }
   .t-display-sm {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 30px;
     line-height: 1.18;
     font-weight: 700;
@@ -88,7 +88,7 @@
     color: #111111;
   }
   .t-dek {
-    font-family: Georgia, 'Times New Roman', 'Songti SC', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 17px;
     line-height: 1.5;
     color: #4b5563;
@@ -101,13 +101,13 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
   }
-  /* 数据/时间 — monospace 13px */
+  /* Data/time — monospace 13px */
   .t-time {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 13px;
     font-variant-numeric: tabular-nums;
   }
-  /* 栏目标签 kicker — 11px 大写宽字距 + Bloomberg 红色方块 */
+  /* Section kicker — 11px uppercase wide tracking + Bloomberg red block */
   .t-kicker {
     position: relative;
     padding-left: 11px;
@@ -127,7 +127,7 @@
     height: 6px;
     background: #e51503;
   }
-  /* 无方块变体：表头、行内元信息用 */
+  /* Block-less variant: table heads and inline meta */
   .t-kicker-plain {
     font-size: 11px;
     font-weight: 700;
@@ -135,7 +135,7 @@
     text-transform: uppercase;
     color: #6b7280;
   }
-  /* 状态标签 — 圆点 + 大写小字 */
+  /* Status tag — dot + uppercase small caps */
   .t-tag {
     font-size: 11px;
     font-weight: 700;
@@ -145,7 +145,7 @@
     align-items: center;
     gap: 5px;
   }
-  /* 发丝线 */
+  /* Hairlines */
   .rule {
     border-top: 1px solid #e3e3e3;
   }
@@ -154,7 +154,7 @@
   }
 }
 
-/* 移动端字级缩放（<640px） */
+/* Mobile type scale (<640px) */
 @media (max-width: 640px) {
   .t-display {
     font-size: 29px;
@@ -180,7 +180,7 @@
   .bb-red {
     color: #e51503;
   }
-  /* Bloomberg 式链接：黑字下划线，hover 变红 */
+  /* Bloomberg-style links: black underline, red on hover */
   .link-ed {
     color: #111111;
     text-decoration: underline;

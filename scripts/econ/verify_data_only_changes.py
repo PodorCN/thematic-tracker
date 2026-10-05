@@ -39,6 +39,7 @@ _POLICIES = {
         re.compile(rf"general-theme-tracker/data/themes/{_WEEK}/theme_[A-Za-z0-9_-]+\.yaml\Z"),
         re.compile(rf"general-theme-tracker/data/market/snapshot_{_WEEK}\.yaml\Z"),
         re.compile(rf"general-theme-tracker/data/commentary/{_WEEK}\.yaml\Z"),
+        re.compile(r"general-theme-tracker/data/(?:latest|dates)\.json\Z"),
         re.compile(rf"general-theme-tracker/data/archive/{_DATE}\.json\Z"),
         re.compile(rf"general-theme-tracker/review/{_DATE}/{_REVIEW_BUNDLE}\Z"),
     ),
@@ -50,6 +51,7 @@ _FRONTENDS = {
     "economic-calendar": ("index.html",),
     "Rates_decisions": ("index.html", "app.js", "styles.css"),
     "general-theme-tracker": (
+        "index.html",
         "frontend/src/pages/Home.tsx",
         "frontend/src/pages/ThemeDetail.tsx",
         "frontend/src/pages/Archive.tsx",
@@ -87,7 +89,7 @@ def _is_data_lane(path: str) -> bool:
         )
     if top == "general-theme-tracker":
         return rest.startswith(("data/themes/", "data/market/", "data/commentary/",
-                                "data/archive/")) or bool(
+                                "data/archive/", "data/latest.json", "data/dates.json")) or bool(
             re.fullmatch(rf"review/{_DATE}/{_REVIEW_BUNDLE}", rest)
         )
     return False

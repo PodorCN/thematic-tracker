@@ -6,9 +6,10 @@
     "styles.css": "560b6b9c10518aa414c8c00bd7203ed575fa6d5331b975e91c3c770d97a3c7c4"
   },
   "general-theme-tracker": {
-    "frontend/src/pages/Home.tsx": "8a0adc7e83ec3fb1bfd9e9b7c3956790b25245ec6ea5fea83a5cd4f387f5f258",
-    "frontend/src/pages/ThemeDetail.tsx": "a30a42a4b1460db5928ede3a60aa337e263c78f81e288d5ee4d797365b48a8fd",
-    "frontend/src/pages/Archive.tsx": "427e856d7da81d3c01ae7f16501604b71beb086cb7a288496541d338aa18a699",
-    "frontend/src/lib/api.ts": "9bd9dcb3b3d00c90ba34d01d3f9c09e54b823cb1e0816d419bc3478d315daae1"
+    "index.html": "6584f32c52d81e71cdb3ba5f06e5b38d59ac09963f2c19f67832b47e3b3d9b25",
+    "frontend/src/pages/Home.tsx": "37cca5988f303c8198da19844e5fa0bd97efe71579919f49bd11097f86f01787",
+    "frontend/src/pages/ThemeDetail.tsx": "1cff3de57bd5a1e9995ca58faaa7e4369d35d1170eea4cbaca88e58d8f35c43a",
+    "frontend/src/pages/Archive.tsx": "1acdeac5702f960ca217e4261158948db91f5557e78b4499322c6d7ee41723d6",
+    "frontend/src/lib/api.ts": "35fabca8c2a597f5a13075c13a7a7d8f8903ab801a2602a95e857d16a660a116"
   }
 }

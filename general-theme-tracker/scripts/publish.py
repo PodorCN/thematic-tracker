@@ -195,8 +195,9 @@ def _build(week: str | None, snapshot_date: str) -> dict:
 
 
 def _frontend_dirty() -> list[str] | None:
-    watched = ["general-theme-tracker/frontend/src/", "general-theme-tracker/backend/",
-               "general-theme-tracker/scripts/", "general-theme-tracker/frontend/vite.config.ts",
+    watched = ["general-theme-tracker/index.html", "general-theme-tracker/frontend/src/",
+               "general-theme-tracker/backend/", "general-theme-tracker/scripts/",
+               "general-theme-tracker/frontend/vite.config.ts",
                "general-theme-tracker/frontend/tailwind.config.js"]
     try:
         out = subprocess.run(
@@ -328,8 +329,10 @@ def main(argv: list[str] | None = None) -> int:
     archive_path = DATA_DIR / "archive" / f"{today}.json"
     archive_path.parent.mkdir(parents=True, exist_ok=True)
     archive_path.write_bytes(cand_bytes)
+    (DATA_DIR / "latest.json").write_bytes(cand_bytes)
     print(f"✓ published snapshot {today} (week={current.get('week')}, "
           f"bytes == reviewed candidate {filed_sha[:12]}…)")
+    print("  archive + latest.json updated (static index.html reads ./data/latest.json)")
     return 0
 
 

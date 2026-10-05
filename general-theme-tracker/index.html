@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thematic Tracker // Today</title>
+<!--
+  Static renderer for GitHub Pages (frozen frontend).
+  Reads ./data/latest.json at runtime (written by publish.py, bytes == reviewed candidate).
+  Routine data PRs must NOT touch this file; changes ship in a standalone
+  frontend PR with an updated scripts/econ/frontend_contract.json digest.
+-->
+<style>
+  :root{--ink:#111;--mut:#6b7280;--line:#e3e3e3;--red:#e51503;--up:#0a7d44;--down:#c0352b;}
+  *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;-webkit-font-smoothing:antialiased}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header.mast{background:#000;color:#fff}
+  header.mast .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+  .brand{font-size:15px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace}
+  .brand i{display:inline-block;width:10px;height:10px;background:var(--red)}
+  nav a{color:#9ca3af;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;margin-left:20px;font-family:ui-monospace,Menlo,monospace}
+  nav a:hover{color:#fff}
+  .ticker{display:flex;flex-wrap:wrap;gap:8px 22px;border-bottom:1px solid var(--line);
+    padding:10px 0;font-size:13px}
+  .ticker b{font-family:ui-monospace,Menlo,monospace}
+  .up{color:var(--up)} .down{color:var(--down)}
+  .regime{border-bottom:2px solid #000;padding:28px 0}
+  .kicker{position:relative;padding-left:11px;font-size:11px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--mut);font-family:ui-monospace,Menlo,monospace}
+  .kicker::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:6px;height:6px;background:var(--red)}
+  h1.display{font-size:40px;line-height:1.12;margin:14px 0 0;letter-spacing:-.01em}
+  .dek{font-size:17px;color:#4b5563;margin:12px 0 0}
+  .theme{border-bottom:1px solid var(--line);padding:26px 0}
+  .theme h2{font-size:24px;margin:8px 0 6px}
+  .theme h2 a{color:inherit;text-decoration:none} .theme h2 a:hover{text-decoration:underline}
+  .tags{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;font-family:ui-monospace,Menlo,monospace}
+  table.perf{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}
+  table.perf th,table.perf td{border-bottom:1px solid #f0f0f0;padding:7px 4px;text-align:right}
+  table.perf th:first-child,table.perf td:first-child{text-align:left}
+  .expl{font-size:13px;color:var(--mut)} details{margin-top:10px}
+  summary{cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--mut);font-family:ui-monospace,Menlo,monospace}
+  .ev{display:flex;gap:14px;margin:12px 0}
+  .ev time{flex:0 0 150px;color:var(--mut);border-right:1px solid var(--line);padding-right:12px}
+  .ev a{color:#111} .ev a:hover{color:var(--red)}
+  table.dep{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  table.dep th,table.dep td{border-bottom:1px solid #f0f0f0;padding:8px;text-align:left;vertical-align:top}
+  footer{padding:22px 0 60px}
+  #err{display:none;padding:40px 0;font-size:15px;color:var(--down)}
+  .diff{display:flex;gap:10px;align-items:baseline;margin:8px 0;font-size:13px}
+  .pill{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    font-family:ui-monospace,Menlo,monospace}
+  @media(max-width:640px){h1.display{font-size:28px}.ev time{flex-basis:110px}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap">
+  <span class="brand"><i></i>Thematic Tracker</span>
+  <nav><a href="./">Today</a><a href="./#archive">Archive</a></nav>
+</div></header>
+<div class="wrap">
+  <div id="err"></div>
+  <div id="app" style="display:none">
+    <div class="ticker" id="ticker"></div>
+    <section class="regime">
+      <span class="kicker" id="regime-kicker">Market Regime</span>
+      <h1 class="display" id="regime-line"></h1>
+      <p class="dek" id="regime-sub"></p>
+    </section>
+    <section id="diffs" style="padding:18px 0;border-bottom:1px solid var(--line)"></section>
+    <div id="themes"></div>
+    <section id="archive" style="padding:24px 0">
+      <span class="kicker">Archive · Weekly Commentary Digests</span>
+      <div id="sources"></div>
+    </section>
+    <footer><p class="expl">Closing prices only · Price Return · Sources inline · Not investment advice</p></footer>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  function fmtPct(n, unit){ unit = unit || '%'; var s = n > 0 ? '+' : ''; return s + n.toFixed(1) + unit; }
+  function fmtUtc(iso){ try { return new Date(iso).toISOString().replace('T',' ').slice(0,16) + 'Z'; } catch(e){ return iso; } }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var STATUS_COLOR = { Emerging:'#7c3aed', New:'#e51503', Continuing:'#0a7d44', Fading:'#b45309', Dead:'#9ca3af' };
+  function statusTag(s){ var c = STATUS_COLOR[s] || '#666';
+    return '<span class="pill" style="color:'+c+'"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+c+'"></span> '+esc(s)+'</span>'; }
+  function chartSVG(series, pl, bl){
+    if(!series || series.length < 2) return '';
+    var W=620,H=180,pl_=34,pr=44,pt=12,pb=22;
+    var all=[]; series.forEach(function(p){ all.push(p.proxy,p.benchmark); });
+    var min=Math.min.apply(null,all), max=Math.max.apply(null,all), span=(max-min)||1;
+    var lo=min-span*0.08, hi=max+span*0.08;
+    function X(i){ return pl_+(i/(series.length-1))*(W-pl_-pr); }
+    function Y(v){ return pt+(1-(v-lo)/(hi-lo))*(H-pt-pb); }
+    function line(k){ return series.map(function(p,i){ return (i?'L':'M')+X(i).toFixed(1)+','+Y(p[k]).toFixed(1); }).join(' '); }
+    var last=series[series.length-1];
+    return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%" role="img" aria-label="rebased performance chart">'
+      + '<line x1="'+pl_+'" x2="'+(W-pr)+'" y1="'+Y(100)+'" y2="'+Y(100)+'" stroke="#9CA3AF" stroke-dasharray="4 3"/>'
+      + '<path d="'+line('benchmark')+'" fill="none" stroke="#B4BCC8" stroke-width="1.5"/>'
+      + '<path d="'+line('proxy')+'" fill="none" stroke="#111827" stroke-width="2.5"/>'
+      + '<circle cx="'+X(series.length-1)+'" cy="'+Y(last.proxy)+'" r="3.5" fill="#111827"/>'
+      + '<circle cx="'+X(series.length-1)+'" cy="'+Y(last.benchmark)+'" r="2.5" fill="#B4BCC8"/>'
+      + '<text x="'+(W-pr+6)+'" y="'+(Y(last.proxy)+3)+'" font-size="11" font-weight="700" fill="#111827">'+last.proxy.toFixed(1)+'</text>'
+      + '<text x="'+(W-pr+6)+'" y="'+(Y(last.benchmark)+3)+'" font-size="11" fill="#6B7280">'+last.benchmark.toFixed(1)+'</text>'
+      + '<text x="'+X(0)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="#6B7280">'+esc(String(series[0].date).slice(0,10))+'</text>'
+      + '<text x="'+X(series.length-1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="#6B7280">'+esc(String(last.date).slice(0,10))+'</text>'
+      + '</svg><p class="expl">— '+esc(pl)+' · — '+esc(bl)+' · Rebased to 100</p>';
+  }
+  function themeHTML(t){
+    var p=t.performance, h='';
+    h += '<article class="theme" id="'+esc(t.id)+'">';
+    h += '<span class="kicker">Theme · '+esc(t.week)+' · '+esc(t.horizon)+'</span>';
+    h += '<h2>'+esc(t.title)+'</h2><p class="dek">'+esc(t.status_note)+'</p>';
+    h += '<div class="tags">'+statusTag(t.status)+'<span style="color:#6b7280">'+esc(t.conviction)+' Conviction</span>'
+       + '<span style="color:#6b7280">Noise score '+t.theme_vs_noise.score+'/5</span></div>';
+    h += '<table class="perf"><thead><tr><th></th><th>1W</th><th>1M</th><th>YTD</th></tr></thead><tbody>';
+    h += '<tr><td><b>'+esc(p.proxy_ticker)+'</b></td><td class="'+(p.ret_1w>=0?'up':'down')+'">'+fmtPct(p.ret_1w)+'</td>'
+       + '<td class="'+(p.ret_1m>=0?'up':'down')+'">'+fmtPct(p.ret_1m)+'</td>'
+       + '<td class="'+(p.ret_ytd>=0?'up':'down')+'">'+fmtPct(p.ret_ytd)+'</td></tr>';
+    h += '<tr><td class="expl">'+esc(p.benchmark_name)+'</td><td class="expl">'+fmtPct(p.benchmark_ret_1w)+'</td>'
+       + '<td class="expl">'+fmtPct(p.benchmark_ret_1m)+'</td><td class="expl">'+fmtPct(p.benchmark_ret_ytd)+'</td></tr>';
+    h += '<tr><td><b>Excess (pp)</b></td><td class="'+(p.excess_1w>=0?'up':'down')+'"><b>'+fmtPct(p.excess_1w,'pp')+'</b></td>'
+       + '<td class="'+(p.excess_1m>=0?'up':'down')+'"><b>'+fmtPct(p.excess_1m,'pp')+'</b></td>'
+       + '<td class="'+(p.excess_ytd>=0?'up':'down')+'"><b>'+fmtPct(p.excess_ytd,'pp')+'</b></td></tr>';
+    h += '</tbody></table>';
+    h += '<p class="expl">'+esc(p.proxy_ticker)+' '+p.proxy_price+' '+esc(p.currency)+' · '+esc(p.return_type==='price'?'Price Return':'Total Return')
+       + ' · as of <span class="mono">'+fmtUtc(p.as_of_utc)+'</span> · '+esc(p.source)+' · Benchmark: '+esc(p.benchmark_rationale)+'</p>';
+    h += chartSVG(t.series, p.proxy_ticker, p.benchmark_name);
+    h += '<p class="kicker" style="margin-top:18px">Proxy to Track</p>';
+    t.proxies.forEach(function(px){
+      h += '<p style="font-size:15px"><b class="mono" style="font-size:13px">'+esc(px.ticker)+'</b> <b>'+esc(px.name)+'</b> '
+         + '<span class="expl">'+esc(px.type)+' · '+esc(px.region)+(px.expense?' · '+esc(px.expense):'')+'</span><br>'
+         + esc(px.why_represents)+' Liquidity: '+esc(px.liquidity_note)+'<br><span class="expl">Flaw: '+esc(px.tracking_gap)+'</span></p>';
+    });
+    h += '<p class="kicker" style="margin-top:18px">Why Now / Thesis</p><p style="font-size:15.5px;line-height:1.6;white-space:pre-line">'+esc(t.body_text)+'</p>';
+    h += '<p class="kicker" style="margin-top:18px">Key Events</p>';
+    t.events.forEach(function(ev){
+      h += '<div class="ev"><time class="mono">'+fmtUtc(ev.event_time_utc)+'</time><div><div style="font-size:15px">'+esc(ev.title)+'</div>'
+         + '<div class="expl"><span class="mono" style="font-size:11px">'+esc(ev.type)+'</span> <a href="'+esc(ev.url)+'" target="_blank" rel="noreferrer">'+esc(ev.source)+' ↗</a></div></div></div>';
+    });
+    h += '<p class="kicker" style="margin-top:18px">Depends On / What to Watch</p>';
+    h += '<table class="dep"><thead><tr><th>Checkpoint</th><th>Date UTC</th><th>Bull</th><th>Bear / falsifier</th></tr></thead><tbody>';
+    t.depends_on.forEach(function(d){
+      h += '<tr><td><b>'+esc(d.event_name)+'</b><br><span class="expl">'+esc(d.why_matters)+'</span></td>'
+         + '<td class="mono">'+esc(String(d.due_date).slice(0,10))+'</td>'
+         + '<td class="up">'+esc(d.if_bull)+'</td><td class="down">'+esc(d.if_bear)+'</td></tr>';
+    });
+    h += '</tbody></table>';
+    var vn=t.theme_vs_noise, names={persistence:'Persistence',breadth:'Breadth',volume_confirm:'Price-volume confirmation',falsifiable_catalyst:'Falsifiable catalyst',repricing_logic:'Re-pricing logic'};
+    h += '<p class="kicker" style="margin-top:18px">Theme vs Noise ('+vn.score+'/5)</p><p class="expl">'
+       + Object.keys(names).map(function(k){ return (vn[k]?'✓ ':'✗ ')+names[k]; }).join(' · ') + '</p>';
+    if(t.explainer){ h += '<details><summary>Conventions &amp; terms</summary><p class="expl" style="white-space:pre-line;border-left:2px solid var(--line);padding-left:12px">'+esc(t.explainer)+'</p></details>'; }
+    return h + '</article>';
+  }
+  fetch('./data/latest.json').then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(function(doc){
+    var ms = doc.market_snapshot, themes = doc.themes.filter(function(t){ return t.status !== 'Dead'; });
+    document.title = 'Thematic Tracker // ' + doc.week;
+    document.getElementById('ticker').innerHTML = ms.benchmarks.map(function(b){
+      var up = b.chg_1d >= 0, u = b.chg_unit === 'bp' ? (up?'+':'')+b.chg_1d+'bp' : fmtPct(Math.abs(b.chg_1d)).replace('+','');
+      return '<span><span class="expl" style="font-weight:700">'+esc(b.name)+'</span> <b>'+b.value.toLocaleString()+'</b> '
+        + '<span class="'+(up?'up':'down')+'"><b>'+(up?'▲':'▼')+u+'</b></span></span>';
+    }).join('') + '<span class="mono" style="margin-left:auto;color:var(--red)">'+fmtUtc(ms.as_of_utc)+'</span>';
+    document.getElementById('regime-kicker').textContent = 'Market Regime · Week ' + doc.week;
+    document.getElementById('regime-line').textContent = ms.regime.oneliner;
+    document.getElementById('regime-sub').innerHTML = '<b style="color:#111">'+esc(ms.regime.stance)+'</b> · ' + ms.regime.keywords.map(esc).join(' · ');
+    var DC = { new:'#e51503', continuing:'#0a7d44', fading:'#b45309', dead:'#9ca3af' };
+    document.getElementById('diffs').innerHTML = '<span class="kicker">Yesterday → Today</span>' + ms.yesterday_diff.map(function(d){
+      var c = DC[d.change] || '#666';
+      return '<div class="diff"><span class="pill" style="color:'+c+'">● '+esc(d.change)+'</span><span><a href="#'+esc(d.theme_id)+'" style="color:#111"><b>'+esc(d.theme_id)+'</b></a> <span class="expl">— '+esc(d.note)+'</span></span></div>';
+    }).join('');
+    document.getElementById('themes').innerHTML = themes.map(themeHTML).join('');
+    var cm = doc.commentary;
+    document.getElementById('sources').innerHTML = (cm && cm.sources ? cm.sources : []).map(function(s){
+      return '<div style="border-bottom:1px solid var(--line);padding:14px 0"><span class="kicker">'+esc(s.firm)+'</span> '
+        + '<a href="'+esc(s.url)+'" target="_blank" rel="noreferrer" style="color:#111;font-weight:700">'+esc(s.title)+' ↗</a>'
+        + '<p style="font-size:15px;color:#374151">'+esc(s.key_takeaway)+'</p></div>';
+    }).join('');
+    document.getElementById('app').style.display = 'block';
+  }).catch(function(e){
+    var el = document.getElementById('err');
+    el.style.display = 'block';
+    el.textContent = 'Could not load ./data/latest.json (' + e.message + '). Publish the week bundle first: python3 scripts/publish.py';
+  });
+})();
+</script>
+</body>
+</html>

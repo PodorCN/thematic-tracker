@@ -1,5 +1,5 @@
-// 同时启动 backend (:8787) 与 frontend (Vite)。
-// CLI 的 --port/--host 参数只转发给前端；backend 端口固定，避免冲突。
+// Start backend (:8787) and frontend (Vite) together.
+// CLI --port/--host flags only forward to the frontend; the backend port stays fixed to avoid conflicts.
 const { spawn } = require('child_process');
 const path = require('path');
 

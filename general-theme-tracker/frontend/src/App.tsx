@@ -47,7 +47,7 @@ export default function App() {
 
       <footer className="rule mt-16">
         <div className="w-full px-4 py-4 sm:px-6 lg:px-10">
-          <p className="t-explainer">价格均为收盘价 · Price Return 口径 · 来源见各条目 · 非投资建议</p>
+          <p className="t-explainer">Closing prices only · Price Return · Sources inline · Not investment advice</p>
         </div>
       </footer>
     </div>

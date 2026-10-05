@@ -1,4 +1,4 @@
-// 与 data/schema/theme.schema.yaml (schema_v1) 对齐
+// Aligned with data/schema/theme.schema.yaml (schema_v1)
 export type ThemeStatus = 'Emerging' | 'New' | 'Continuing' | 'Fading' | 'Dead'
 export type Conviction = 'High' | 'Med' | 'Low'
 

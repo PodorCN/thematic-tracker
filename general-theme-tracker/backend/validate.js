@@ -1,6 +1,6 @@
-// Schema v1 校验器 — Agent PR 合并前必跑（CI gate）
-// 用法：node backend/validate.js
-// 退出码：0 = 全部通过；1 = 有 FAIL
+// Schema v1 validator — agents must run it before merging a PR (CI gate)
+// Usage: node backend/validate.js
+// Exit code: 0 = all pass; 1 = any FAIL
 
 const fs = require('fs');
 const path = require('path');
@@ -23,8 +23,8 @@ function ok(file, msg) {
   console.log(`  ✓ [${file}] ${msg}`);
 }
 
-function cnLen(s) {
-  // 粗略：CJK 字符按 1 计，其余按英文单词折算（200wpm 规则的前置粗检）
+function bodyStats(s) {
+  // English-only product: any CJK char is a blocking violation; words counted at 200wpm for the 5-minute rule
   const cjk = (s.match(/[一-鿿]/g) || []).length;
   const words = (s.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length;
   return { cjk, words };
@@ -42,14 +42,17 @@ function validateTheme(file, t) {
   if (t.conviction && !CONVICTION.includes(t.conviction)) fail(name, `bad conviction: ${t.conviction}`);
   if (t.horizon && !HORIZON.includes(t.horizon)) fail(name, `bad horizon: ${t.horizon}`);
 
-  // 5-min rule
+  // 5-min rule + English-only
   if (t.body_text) {
-    const { cjk, words } = cnLen(t.body_text);
-    if (cjk > 900) fail(name, `body_text CJK chars ${cjk} > 900 (>5min)`);
-    if (words > 500) fail(name, `body_text EN words ${words} > 500 (>5min)`);
+    const { cjk, words } = bodyStats(t.body_text);
+    if (cjk > 0) fail(name, `body_text has ${cjk} non-English char(s) — English-only`);
+    if (words > 500) fail(name, `body_text ${words} words > 500 (>5min)`);
+  }
+  for (const k of ['title', 'status_note', 'explainer']) {
+    if (typeof t[k] === 'string' && /[一-鿿]/.test(t[k])) fail(name, `${k} has non-English char(s) — English-only`);
   }
 
-  // performance & excess 复核（Reviewer 规则：误差 >0.2pp 打回）
+  // performance & excess recheck (reviewer rule: mismatch >0.2pp sent back)
   const p = t.performance;
   if (p) {
     for (const k of ['ret_1w', 'ret_1m', 'ret_ytd', 'benchmark_ret_1w', 'benchmark_ret_1m', 'benchmark_ret_ytd', 'excess_1w', 'excess_1m', 'excess_ytd', 'proxy_price']) {
@@ -68,7 +71,7 @@ function validateTheme(file, t) {
 
   if (Array.isArray(t.series) && t.series.length < 2) fail(name, 'series needs >= 2 points');
 
-  // proxies 1-3，ETF 必须有费率
+  // proxies 1-3, ETFs must state fees
   if (Array.isArray(t.proxies)) {
     if (t.proxies.length < 1 || t.proxies.length > 3) fail(name, `proxies count ${t.proxies.length} not in 1-3`);
     t.proxies.forEach((px, i) => {
@@ -80,7 +83,7 @@ function validateTheme(file, t) {
     });
   }
 
-  // events 必须有 UTC + source + url（无时间无源 = 不可发布）
+  // events must carry UTC + source + url (no time or no source = unpublishable)
   if (Array.isArray(t.events)) {
     if (t.events.length < 1) fail(name, 'events empty');
     t.events.forEach((ev, i) => {
@@ -91,7 +94,7 @@ function validateTheme(file, t) {
     });
   }
 
-  // 没有 Next Catalyst 降级 Noise
+  // no Next Catalyst means demote to Noise
   if (!Array.isArray(t.depends_on) || t.depends_on.length < 1) {
     fail(name, 'depends_on empty — no next catalyst, demote to Noise');
   } else {
@@ -102,13 +105,13 @@ function validateTheme(file, t) {
     });
   }
 
-  // Theme vs Noise：score 必须等于 true 计数
+  // Theme vs Noise: score must equal the true-count
   const vn = t.theme_vs_noise;
   if (vn) {
     const keys = ['persistence', 'breadth', 'volume_confirm', 'falsifiable_catalyst', 'repricing_logic'];
     const count = keys.filter((k) => vn[k] === true).length;
     if (vn.score !== count) fail(name, `theme_vs_noise.score=${vn.score} but true-count=${count}`);
-    if (count < 3 && t.status !== 'Dead') console.warn(`  ! [${name}] noise score ${count} < 3 — 应降级不上首页`);
+    if (count < 3 && t.status !== 'Dead') console.warn(`  ! [${name}] noise score ${count} < 3 — demote off the homepage`);
   }
 }
 

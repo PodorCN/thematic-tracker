@@ -13,10 +13,10 @@
 ## Theme scoring rubric (binding)
 
 See `general-theme-tracker/AGENT.md` §4 + `data/schema/theme.schema.yaml`:
-excess recompute tolerance 0.2pp; body 900 CJK / 500 EN words; series ≥2 points;
-proxies 1–3 with ETF expense + liquidity note + tracking gap; every event needs
+excess recompute tolerance 0.2pp; body ~500 English words max; series ≥2 points;
+proxies 1–3 with ETF fee + liquidity note + tracking gap; every event needs
 UTC + source + https URL; `depends_on` non-empty (else Noise);
-`theme_vs_noise.score == true-count`, `score >= 3` for homepage
+`theme_vs_noise.score == true-count`, `score >= 3` for the homepage
 (`New`/`Continuing` with `score < 3` is blocked; `Fading`/`Dead` excepted).
 
 ## Theme source rule (binding)
@@ -25,4 +25,4 @@ Claiming a primary (earnings release, StatCan/BLS/Fed/BoC, exchange close)
 requires linking that primary domain; `via X` retellings must be labeled and
 down-weighted. `as_of_UTC` >7d vs `snapshot_date` is a structural error;
 >48h is a reviewer major. Machine flags every mismatch; the reviewer decides
-the severity.
+the severity. Non-English strings anywhere are blocking findings.

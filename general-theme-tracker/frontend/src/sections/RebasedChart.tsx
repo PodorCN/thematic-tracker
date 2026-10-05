@@ -1,6 +1,6 @@
 import type { SeriesPoint } from '@/types/theme'
 
-// Proxy vs Benchmark 归一化走势（Rebased to 100），纯 SVG 无依赖
+// Proxy vs Benchmark rebased chart (Rebased to 100), dependency-free SVG
 export default function RebasedChart({
   series,
   proxyLabel,

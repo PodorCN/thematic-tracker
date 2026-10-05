@@ -1,6 +1,6 @@
 import type { ActiveResponse, Commentary, Snapshot, Theme } from '@/types/theme'
 
-// 前端只读 API，绝不直接碰 data/ 原始 YAML（产品原则 #4）
+// The frontend only reads the API — it never touches raw data/ YAML (product principle #4)
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(path)
   if (!res.ok) throw new Error(`${path} → ${res.status}`)
@@ -12,11 +12,10 @@ export const fetchTheme = (id: string) => get<Theme>(`/api/themes/${id}`)
 export const fetchSnapshot = () => get<Snapshot>('/api/market/snapshot')
 export const fetchCommentary = () => get<Commentary>('/api/commentary')
 
-// 5-min rule：CJK 180 字/min，英文 200 wpm，取较大者
+// 5-min rule: ~200 English wpm
 export function readingMinutes(text: string): number {
-  const cjk = (text.match(/[一-鿿]/g) || []).length
-  const words = (text.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length
-  return Math.max(1, Math.ceil(Math.max(cjk / 180, words / 200)))
+  const words = (text.match(/\S+/g) || []).length
+  return Math.max(1, Math.ceil(words / 200))
 }
 
 export function fmtPct(n: number, unit = '%'): string {

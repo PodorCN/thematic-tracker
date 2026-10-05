@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { fetchCommentary } from '@/lib/api'
 import type { Commentary } from '@/types/theme'
 
-// Archive — Weekly Commentary 来源库，报刊附录式
+// Archive — Weekly Commentary source library, appendix-style
 export default function Archive() {
   const [data, setData] = useState<Commentary | null>(null)
   const [err, setErr] = useState<string | null>(null)
@@ -14,15 +14,15 @@ export default function Archive() {
       .catch((e) => setErr(e.message))
   }, [])
 
-  if (err) return <div className="w-full p-8 t-body num-down sm:px-6 lg:px-10">加载失败：{err}</div>
-  if (!data) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">加载中…</div>
+  if (err) return <div className="w-full p-8 t-body num-down sm:px-6 lg:px-10">Load failed: {err}</div>
+  if (!data) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">Loading…</div>
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-10">
       <section className="border-b border-gray-200 py-7">
         <p className="t-kicker">Archive · Weekly Commentary Digests</p>
-        <h1 className="t-headline mt-3">来源库 · {data.week}</h1>
-        <p className="t-explainer mt-2">每周必扫清单的原始出处。提炼分歧点，不搬运摘要。</p>
+        <h1 className="t-headline mt-3">Source library · {data.week}</h1>
+        <p className="t-explainer mt-2">The mandatory weekly reading list, in its original sources. Distill disagreements — never relay summaries.</p>
       </section>
       <div>
         {data.sources.map((s, i) => (
@@ -35,7 +35,7 @@ export default function Archive() {
             </div>
             <p className="t-body mt-1.5 max-w-3xl text-gray-700">{s.key_takeaway}</p>
             <p className="t-explainer mt-1.5">
-              关联：
+              Related:
               {s.related_themes.map((t, j) => (
                 <span key={t}>
                   {j > 0 && ' · '}

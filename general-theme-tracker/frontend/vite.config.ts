@@ -7,7 +7,7 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 export default defineConfig({
   base: './',
   plugins: [inspectAttr(), react()],
-  // 端口/Host 由 CLI 参数控制（npm run dev -- --port N），不在此硬编码
+  // Port/host come from CLI flags (npm run dev -- --port N), never hardcoded here
   server: {
     proxy: {
       '/api': {

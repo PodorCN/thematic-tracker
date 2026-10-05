@@ -8,7 +8,7 @@ const STATUS_COLOR: Record<ThemeStatus, string> = {
   Dead: '#9ca3af',
 }
 
-// Bloomberg 式状态标签：圆点 + 大写小字，无彩色胶囊
+// Bloomberg-style status tag: dot + uppercase small caps, no colored pills
 export function StatusTag({ status }: { status: ThemeStatus }) {
   return (
     <span className="t-tag" style={{ color: STATUS_COLOR[status] }}>

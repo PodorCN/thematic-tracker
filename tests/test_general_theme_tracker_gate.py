@@ -117,15 +117,16 @@ def test_publisher_declares_six_blocking_checks():
 
 def test_data_release_allows_week_bundle_and_review_bundle():
     allowed = [
-        "general-theme-tracker/data/themes/2026-W40/theme_ai_capex_supercycle.yaml",
-        "general-theme-tracker/data/market/snapshot_2026-W40.yaml",
-        "general-theme-tracker/data/commentary/2026-W40.yaml",
-        "general-theme-tracker/data/archive/2026-10-04.json",
-        "general-theme-tracker/review/2026-10-04/candidate.json",
-        "general-theme-tracker/review/2026-10-04/candidate.sha256",
-        "general-theme-tracker/review/2026-10-04/structural-flags.json",
-        "general-theme-tracker/review/2026-10-04/pm-review.json",
-        "general-theme-tracker/review/2026-10-04/review.md",
+        "general-theme-tracker/data/themes/2026-W41/theme_ai_capex_supercycle.yaml",
+        "general-theme-tracker/data/market/snapshot_2026-W41.yaml",
+        "general-theme-tracker/data/commentary/2026-W41.yaml",
+        "general-theme-tracker/data/latest.json",
+        "general-theme-tracker/data/archive/2026-10-05.json",
+        "general-theme-tracker/review/2026-10-05/candidate.json",
+        "general-theme-tracker/review/2026-10-05/candidate.sha256",
+        "general-theme-tracker/review/2026-10-05/structural-flags.json",
+        "general-theme-tracker/review/2026-10-05/pm-review.json",
+        "general-theme-tracker/review/2026-10-05/review.md",
     ]
     assert validate_paths(allowed, "general-theme-tracker") == []
     assert classify_changes(allowed, "push") == []
@@ -133,6 +134,7 @@ def test_data_release_allows_week_bundle_and_review_bundle():
 
 def test_data_lane_rejects_renderers_schema_and_legacy_reviews():
     rejected = [
+        "general-theme-tracker/index.html",
         "general-theme-tracker/frontend/src/pages/Home.tsx",
         "general-theme-tracker/frontend/src/lib/api.ts",
         "general-theme-tracker/backend/server.js",
@@ -145,21 +147,26 @@ def test_data_lane_rejects_renderers_schema_and_legacy_reviews():
 
 def test_classification_blocks_mixed_data_frontend_bundle():
     contract = "scripts/econ/frontend_contract.json"
-    assert classify_changes(
-        ["general-theme-tracker/frontend/src/pages/Home.tsx",
-         "general-theme-tracker/frontend/src/lib/api.ts",
-         "general-theme-tracker/frontend/src/pages/ThemeDetail.tsx",
-         "general-theme-tracker/frontend/src/pages/Archive.tsx", contract], "push") == []
+    renderers = [
+        "general-theme-tracker/index.html",
+        "general-theme-tracker/frontend/src/pages/Home.tsx",
+        "general-theme-tracker/frontend/src/lib/api.ts",
+        "general-theme-tracker/frontend/src/pages/ThemeDetail.tsx",
+        "general-theme-tracker/frontend/src/pages/Archive.tsx",
+    ]
+    assert classify_changes(renderers + [contract], "push") == []
     assert classify_changes(
         ["general-theme-tracker/frontend/src/pages/Home.tsx"], "push")
     assert classify_changes(
-        ["general-theme-tracker/data/themes/2026-W40/theme_x.yaml",
+        ["general-theme-tracker/index.html"], "push")
+    assert classify_changes(
+        ["general-theme-tracker/data/themes/2026-W41/theme_x.yaml",
          "general-theme-tracker/frontend/src/pages/Home.tsx", contract], "push")
 
 
-def test_template_binding_covers_four_renderer_files(tmp_path):
+def test_template_binding_covers_all_five_renderer_files(tmp_path):
     root = tmp_path
-    for rel in ("frontend/src/pages/Home.tsx", "frontend/src/pages/ThemeDetail.tsx",
+    for rel in ("index.html", "frontend/src/pages/Home.tsx", "frontend/src/pages/ThemeDetail.tsx",
                 "frontend/src/pages/Archive.tsx", "frontend/src/lib/api.ts"):
         target = root / "general-theme-tracker" / rel
         target.parent.mkdir(parents=True, exist_ok=True)

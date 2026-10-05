@@ -7,6 +7,7 @@
 # 1. operator edits data only (week bundle YAMLs)
 #    Only touch general-theme-tracker/data/themes/<week>/*.yaml
 #    + data/market/snapshot_<week>.yaml + data/commentary/<week>.yaml.
+#    English-only: every string is English.
 
 # 2. structure check (JS schema + Python bundle gate)
 npm run validate                  # YAML schema_v1
@@ -25,7 +26,7 @@ npm run review:check
 
 # 6. publish (fails closed; publishes exactly the reviewed bytes)
 npm run publish
-# -> data/archive/<today>.json (bytes == reviewed candidate)
+# -> data/archive/<today>.json + data/latest.json (bytes == reviewed candidate)
 ```
 
 Rules: `APPROVED` needs zero critical/major + all six checks pass + flags

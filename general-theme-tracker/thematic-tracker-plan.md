@@ -1,63 +1,64 @@
-# Thematic Tracker: 产品 Plan + 可直接执行的 Prompt
+# Thematic Tracker: Product Plan + Copy-Paste Prompts
 
-> 角色：Senior PM + Portfolio Manager 双视角，为你写的 Build Plan。
+> Role: written for you from a Senior PM + Portfolio Manager double perspective.
 
-## 1. 产品一句话
+## 1. Product in One Line
 
-一个给 PM 看的 **Theme 第一视角站**：现在市场最重要的 Theme 是什么？表现如何？用什么 track？为什么形成？依赖什么 catalyst？昨天 vs 今天有何变化？是 Theme 还是 Noise？
+A **theme-first site for PMs**: what are the most important market themes right now? How are they performing? What tracks them? Why did they form? What catalyst do they depend on? What changed yesterday vs today? Theme or noise?
 
-5分钟内读懂一个 Theme，不读解释也能决策，想深挖有解释。
-
----
-
-## 2. 用户故事 / PM 痛点
-
-作为 Portfolio Manager，我每天开盘前 / 周会前想回答：
-
-1. **What matters now?** 现在 Top 5 Theme 是什么？新的 Theme 是什么？昨天的 Theme 死了还是延续？
-2. **How is it performing?** Theme 近 1W / 1M / YTD 表现如何？vs Benchmark (SPX / QQQ / TSX Composite) 超额多少？
-3. **How to track it?** 有什么 Proxy？比如加拿大金融业：`XFN.TO, ZEB.TO, S&P/TSX Capped Financials Index`。要可交易、可跟踪、有流动性。
-4. **Why now?** 是什么 Re-price？什么 News / Event 触发？Timing + Source 必须有。
-5. **What does it depend on?** 下一个验证点是什么？下个Q财报？央行会议？大选？数据发布？如果证伪会怎样？
-6. **Theme or Noise?** 帮我过滤。大量的 Weekly Commentary 是最好的 Theme 来源，但要提炼，不是搬运。
+Understand a theme in 5 minutes, decide without reading the explainer, dig deeper when you want to.
 
 ---
 
-## 3. 产品原则
+## 2. User Stories / PM Pain Points
 
-1. **Decision-first, not news-first：** 每个 Theme 必须回答 So What + What Next，不只是发生了什么。
-2. **5-min rule：** 单个 Theme 正文阅读 <5min (~700-900中文字 / ~500英词)。解释不计入，但默认折叠。
-3. **Timing is everything：** 任何 News/Event 必须带 `UTC时间 + Source + Link`，无时间无源 = 不可发布。
-4. **前后端隔离：** Agent 每周只更新 `content / data`，绝不碰 `UI code`。靠 API contract + schema version 隔离。
-5. **Dual-agent制：** 发布前必须有第二个 Agent扮演 Portfolio Manager Reviewer，专挑 data error 和前后矛盾。
+As a Portfolio Manager, before the open / ahead of the weekly meeting I want to answer:
+
+1. **What matters now?** What are today's Top 5 themes? What's new? Did yesterday's themes die or continue?
+2. **How is it performing?** Theme performance over 1W / 1M / YTD? Excess vs benchmarks (SPX / QQQ / TSX Composite)?
+3. **How to track it?** What proxies exist? E.g. Canadian financials: `XFN.TO, ZEB.TO, S&P/TSX Capped Financials Index`. Must be tradable, trackable, liquid.
+4. **Why now?** What re-priced? What news / event triggered it? Timing + Source are mandatory.
+5. **What does it depend on?** What's the next checkpoint? Next Q earnings? Central bank meeting? Election? Data release? What if falsified?
+6. **Theme or Noise?** Filter for me. Piles of Weekly Commentary are the best theme source — but distill, don't relay.
 
 ---
 
-## 4. 信息架构 (IA)
+## 3. Product Principles
 
-**首页 / Today：**
-* Market Regime 一句话 (Risk-on/off, 关键词3个)
-* Active Themes (3-7个)：状态 = New / Continuing / Fading / Dead
-* Yesterday's Themes 追踪：延续？加强？证伪？
-* Benchmark 条：SPX, NDX, TSX, 10Y, USD/CAD, Oil/Gold
+1. **Decision-first, not news-first:** every theme must answer So What + What Next, not just what happened.
+2. **5-min rule:** a single theme's body reads in <5min (~500 English words). Explainers don't count but stay folded by default.
+3. **Timing is everything:** every news/event carries `UTC time + Source + Link`; no time or no source = unpublishable.
+4. **Frontend/backend separation:** agents only update `content / data` weekly, never touch `UI code`. Separated by API contract + schema version.
+5. **Dual-agent rule:** a second agent playing Portfolio Manager Reviewer must sign off before publish, hunting data errors and contradictions.
+6. **English-only:** all content, prompts, docs, and UI strings are English.
 
-**Theme 详情页结构 (固定模板，不许 Agent 自创)：**
+---
+
+## 4. Information Architecture (IA)
+
+**Home / Today:**
+* Market Regime in one line (risk-on/off, 3 keywords)
+* Active Themes (3–7): status = New / Continuing / Fading / Dead
+* Yesterday's Themes tracker: continued? strengthened? falsified?
+* Benchmark strip: SPX, NDX, TSX, 10Y, USD/CAD, Oil/Gold
+
+**Theme detail page structure (fixed template — agents must not invent their own):**
 1. Title + Status + Conviction (High/Med/Low) + Horizon (Tactical 2-8w / Cyclical 3-12m)
 2. Performance vs Benchmark (chart + table)
-3. Proxy to Track (1-3个)
-4. Why Now / Thesis (Re-price逻辑)
+3. Proxy to Track (1–3)
+4. Why Now / Thesis (re-pricing logic)
 5. Key Events / News Timeline
 6. Depends On / What to Watch (Next Catalyst + Bear case)
-7. Theme vs Noise 判定
-8. 解释 (Smaller, 可展开) : 术语、计算方法、数据口径
+7. Theme vs Noise verdict
+8. Explainer (smaller, expandable): terms, methods, data conventions
 
-**Archive / Weekly Commentary Digests：** 原始来源库，可溯源。
+**Archive / Weekly Commentary Digests:** the raw source library, traceable.
 
 ---
 
-## 5. 后端设计：让每周更新不乱
+## 5. Backend Design: Keeping Weekly Updates Clean
 
-**核心原则：Frontend 只读 API，Agent 只写 Content DB。**
+**Core principle: frontend only reads the API, agents only write the Content DB.**
 
 DB Tables:
 
@@ -71,118 +72,118 @@ commentary_sources(id, week, firm, url, key_takeaway)
 reviews(theme_id, reviewer_version, pass_fail, issues[])
 ```
 
-API Contract (Frontend 锁定)：
+API Contract (frontend-locked):
 * `GET /api/themes/active?date=YYYY-MM-DD`
 * `GET /api/themes/:id`
 * `GET /api/themes/history?theme_id=`
 
-> Agent 更新流程：只允许新增 `content_version` + PR 到 `data/` 目录 (yaml/json)，触发 CI schema validation，通过 + Reviewer PASS 才能 merge，前端自动重新渲染，无需改代码。
+> Agent update flow: only new `content_version` PRs into `data/` (yaml/json) are allowed; CI schema validation must pass plus Reviewer PASS before merge; the frontend re-renders automatically, no code changes.
 
-文件隔离：
+File separation:
 ```
-/frontend/  # Next.js / React, 不许 Agent 动
+/frontend/  # Next.js / React, agents keep out
 /backend/   # API + DB
-/data/themes/2026-W40/theme_xxx.yaml  # Agent 唯一可写区
-/prompts/   # Agent prompts 版本管理
+/data/themes/2026-W41/theme_xxx.yaml  # the agent's only writable area
+/prompts/   # versioned agent prompts
 ```
 
 ---
 
-## 6. 字体与阅读规范 (严格三档)
+## 6. Typography & Reading Rules (strict three tiers)
 
-只允许三类：
+Only three classes allowed:
 
-* **Title：** 20-22px, 700, 一行主题 + 状态标签。例：`加拿大银行盈利重估 [Continuing | High Conviction]`
-* **正文 Body：** 15-16px, 400, 1.6行高。承载所有决策信息。超过900字打回。
-* **解释 Explainer：** 13px, 灰色 `#6B7280`, 默认折叠 `<details>`。解释口径、术语、计算细节。你可以不读，但想读必须能读懂。
+* **Title:** 20–22px, 700, one-line theme + status tag. E.g. `Canadian Bank Earnings Momentum [Continuing | High Conviction]`
+* **Body:** 15–16px, 400, 1.6 line height. Carries all decision content. Over ~500 words gets sent back.
+* **Explainer:** 13px, gray `#6B7280`, folded `<details>` by default. Explains conventions, terms, calculation details. Skippable, but complete when opened.
 
-正文禁止引入第四种 size/颜色加粗滥用。News 时间用 `Monospace 13px` 内嵌于正文时间轴，但不算新档次。
+Body text must not introduce a fourth size/color or abuse bold. News timestamps use `Monospace 13px` inside the body timeline but don't count as a new tier.
 
-阅读时长检测：发布前计算 `word_count / 200wpm`，正文 >5min 自动 FAIL。
-
----
-
-## 7. Performance vs Benchmark 规范
-
-每个 Theme 必须有：
-
-* 基准选择逻辑：US Theme -> SPX, Tech -> NDX, Canada -> S&P/TSX Composite，必须说明为什么选它。
-* 区间：1W / 1M / YTD + Since Theme inception
-* 数据字段：`Proxy price, as_of_UTC, source (Yahoo/CapitalIQ/Bloomberg), excess return`
-* 图：Proxy vs Benchmark 归一化 (Rebased to 100)
-* 禁止事项：禁止用盘中价冒充收盘价，禁止混用 Total Return / Price Return 不注明。
-
-示例：`ZEB.TO +8.2% 1M vs TSX +2.1%, 超额 +6.1pp, as of 2026-10-03 close, Source: TMX`
+Reading-time check: before publish compute `word_count / 200wpm`; bodies over 5min auto-FAIL.
 
 ---
 
-## 8. Proxy 选择规范
+## 7. Performance vs Benchmark Rules
 
-每个 Theme 1-3个 Proxy，按优先级：
-1. 流动性 ETF (例：加拿大金融 `ZEB.TO, XFN.TO`)
-2. Index (例：`S&P/TSX Capped Financials`)
-3. Basket (3-5只龙头，注明权重)
+Every theme must have:
 
-必须含：Ticker, 费用, AUM/日均量, 为什么能代表此 Theme, 有什么 tracking 缺陷。
+* Benchmark logic: US theme → SPX, Tech → SPX spread (QQQ vs SPX), Canada → S&P/TSX Composite — always state why.
+* Windows: 1W / 1M / YTD + Since theme inception
+* Data fields: `Proxy price, as_of_UTC, source (Yahoo/CapitalIQ/Bloomberg), excess return`
+* Chart: proxy vs benchmark rebased to 100
+* Forbidden: passing intraday prices off as closes; mixing Total Return / Price Return without labeling.
+
+Example: `ZEB.TO +8.2% 1M vs TSX +2.1%, excess +6.1pp, as of 2026-10-03 close, Source: TMX`
 
 ---
 
-## 9. Why Now + Depends On 规范
+## 8. Proxy Selection Rules
 
-**Why Now 必须回答 Re-price 三问：**
-* 以前 Price-in 了什么？现在为什么不对了？
-* 触发器是哪个 Event (Earnings / Macro / Policy)？
-* 市场共识 vs 你的边际变化？
+1–3 proxies per theme, prioritized:
+1. Liquid ETF (e.g. Canadian financials `ZEB.TO, XFN.TO`)
+2. Index (e.g. `S&P/TSX Capped Financials`)
+3. Basket (3–5 leaders with weights stated)
 
-**Depends On / What to Watch 表格：**
+Must include: ticker, fee, AUM/average volume, why it represents this theme, tracking flaws.
 
-| 下一验证点 | 日期 (UTC) | 为什么重要 | Bull会看到什么 | Bear/证伪信号 |
+---
+
+## 9. Why Now + Depends On Rules
+
+**Why Now must answer the three re-pricing questions:**
+* What was priced in before? Why is it wrong now?
+* Which event is the trigger (Earnings / Macro / Policy)?
+* Consensus vs your marginal change?
+
+**Depends On / What to Watch table:**
+
+| Next checkpoint | Date (UTC) | Why it matters | What bulls see | Bear / falsification signal |
 |---|---|---|---|---|
-| 例：RY/BMO Q3财报 | 2026-XX-XX | NIM/信贷损失 | ... | ... |
+| E.g. RY/BMO Q3 earnings | 2026-XX-XX | NIM/credit losses | ... | ... |
 
-没有 Next Catalyst 的 Theme 降级为 Noise。
-
----
-
-## 10. Theme vs Noise 判别 (Reviewer 重点查)
-
-Theme 需满足 ≥3条，否则标 Noise 不上首页：
-
-1. 持续性 >2周或跨 2+ 独立 Commentary 提及
-2. 广度：≥3只股票 / ≥2子行业同向
-3. 量价确认：Proxy 超额 +成交量放大
-4. 有可证伪 Catalyst
-5. 有 Re-price 逻辑，非单一 headline 脉冲
-
-状态机：`Emerging -> New -> Continuing -> Fading -> Dead`，每天更新状态变化原因一句话。
-
-Weekly Commentary 是主要输入：Goldman/BofA/MS/JPM/DB + BMO/RBC/TD 每周必扫，提炼分歧点，不是摘要。
+A theme with no Next Catalyst is demoted to Noise.
 
 ---
 
-## 11. 双 Agent 工作流 (关键：防 Data Error)
+## 10. Theme vs Noise Filter (Reviewer checks hardest)
+
+A theme needs ≥3 of the following, otherwise it's Noise and stays off Home:
+
+1. Persistence > 2 weeks or cited across 2+ independent Commentaries
+2. Breadth: ≥3 stocks / ≥2 sub-industries moving together
+3. Price-volume confirmation: proxy excess + expanding volume
+4. A falsifiable catalyst exists
+5. Re-pricing logic, not a single-headline spike
+
+State machine: `Emerging -> New -> Continuing -> Fading -> Dead`, with a one-line reason for every status change.
+
+Weekly Commentary is the main input: Goldman/BofA/MS/JPM/DB + BMO/RBC/TD swept every week — distill the disagreements, don't summarize.
+
+---
+
+## 11. Dual-Agent Workflow (key: prevent data errors)
 
 ### Agent A - Theme Writer (Updater)
 
-> 每周/每日跑，读 Commentary + 行情，输出 `data/themes/*.yaml` 符合 schema。
+> Runs weekly/daily, reads Commentary + market data, writes `data/themes/*.yaml` per schema.
 
 ### Agent B - Portfolio Manager Reviewer (Gatekeeper)
 
-发布前必须跑，不通过不能发布。Reviewer 人设：刻薄、多疑的 PM，只信数字和逻辑。
+Must run before publish; no publish without a pass. Reviewer persona: harsh, skeptical PM that trusts only numbers and logic.
 
-**Review Checklist (硬性)：**
-1. Data error？价格/日期/涨跌幅能否对上 Source？as_of 是否过期？
-2. 前后矛盾？Thesis 说利好，Catalyst 却是利空？Conviction High 但 Proxy 很弱？
-3. Timing/Source 缺失？每个 Event 有 UTC + Link？
-4. 超 5min？字数超？
-5. Theme/Noise 误判？
-6. Proxy 可交易？流动性太差打回。
+**Review checklist (hard):**
+1. Data errors? Do prices/dates/gains match the source? Is as_of stale?
+2. Contradictions? Thesis says bullish but catalysts read bearish? High conviction on weak proxies?
+3. Missing Timing/Source? Every event with UTC + Link?
+4. Over 5min? Body too long?
+5. Theme/Noise misjudged?
+6. Proxy untradable? Thin liquidity gets sent back.
 
-输出：`PASS / FAIL + issue list + fix suggestion`。FAIL 必须打回 Writer 修改，最多 2轮，第二轮仍 FAIL 则降级为 Draft 不发布。
+Output: `PASS / FAIL + issue list + fix suggestions`. FAIL returns to Writer for at most 2 rounds; a second-round FAIL demotes to Draft, unpublished.
 
 ---
 
-## 12. 可直接复制的 Prompts
+## 12. Copy-Paste Prompts
 
 ### Prompt 1: Theme Writer
 
@@ -199,13 +200,13 @@ Task: Output 3-7 themes in YAML following schema_v1. Each theme MUST include:
 - events[]: each with event_time_UTC, source, url
 - depends_on[]: next catalyst with due_date, bull/bear case
 - theme_vs_noise_score (5 criteria)
-- body_text <900 Chinese chars, explainer separate
+- body_text under 500 English words, explainer separate
 
 Constraints:
 - 3 font classes only. Body <5min read.
 - No event without time+source.
 - No forward-looking claim without catalyst.
-- Language: concise, PM tone.
+- Language: English only, concise, PM tone.
 ```
 
 ### Prompt 2: PM Reviewer (Gatekeeper)
@@ -224,7 +225,7 @@ Output JSON: {verdict: PASS/FAIL, issues: [{severity: blocker/major/minor, locat
 If FAIL blocker exists, DO NOT approve. Be harsh.
 ```
 
-### Prompt 3: Frontend Builder (隔离用)
+### Prompt 3: Frontend Builder (isolation)
 
 ```text
 Build a read-only frontend that ONLY consumes /api/themes/*.
@@ -237,15 +238,12 @@ Build a read-only frontend that ONLY consumes /api/themes/*.
 
 ---
 
-## 13. 验收标准 Definition of Done
+## 13. Definition of Done
 
-* 首页 5min 能看完所有 Active Themes 标题+结论
-* 单 Theme 正文 <5min，解释折叠但完整
-* 每个 Event 可点击溯源 + UTC 时间正确
-* 前端改动与数据更新完全解耦：Agent PR 只碰 `/data/`
-* Reviewer 报告存档可查，FAIL 率、修改记录可见
-* 每日有 Yesterday vs Today diff：新增/延续/消退一目了然
-
----
-
-你要我下一步帮你把这个 plan 落成 `PRD.md + prompts/ + data schema yaml` 脚手架吗？
+* Home reads in 5min: all Active Theme headlines + conclusions
+* Single theme body <5min, explainer folded but complete
+* Every event click-traces to source with correct UTC time
+* Frontend changes fully decoupled from data updates: agent PRs only touch `/data/`
+* Reviewer reports archived and queryable; FAIL rate and edit history visible
+* Daily Yesterday-vs-Today diff: added/continued/faded at a glance
+* English-only output throughout

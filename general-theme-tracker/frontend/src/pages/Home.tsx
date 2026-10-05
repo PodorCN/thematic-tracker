@@ -30,10 +30,10 @@ export default function Home() {
   if (err)
     return (
       <div className="w-full p-8 sm:px-6 lg:px-10">
-        <p className="t-body num-down">API 连接失败：{err}。请确认已用 npm run dev 启动（backend :8787）。</p>
+        <p className="t-body num-down">API connection failed: {err}. Start it with npm run dev (backend :8787).</p>
       </div>
     )
-  if (!active || !snap) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">加载中…</div>
+  if (!active || !snap) return <div className="w-full p-8 t-explainer sm:px-6 lg:px-10">Loading…</div>
 
   const themes = [...active.themes].sort((a, b) => (STATUS_RANK[a.status] ?? 9) - (STATUS_RANK[b.status] ?? 9))
   const lead: Theme | undefined = themes[0]
@@ -56,7 +56,7 @@ export default function Home() {
         <span className="t-time bb-red ml-auto max-sm:w-full max-sm:text-right">{fmtUtc(snap.as_of_utc)}</span>
       </div>
 
-      {/* 头版头条：Market Regime */}
+      {/* Front-page lead: Market Regime */}
       <section className="border-b-2 border-black py-7 sm:py-10">
         <div className="flex items-baseline justify-between">
           <p className="t-kicker">Market Regime</p>
@@ -70,7 +70,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* 主打 Theme 特写 */}
+      {/* Featured lead Theme */}
       {lead && (
         <section className="border-b border-gray-200 py-8">
           <p className="t-kicker mb-4">Lead Theme</p>
@@ -92,7 +92,7 @@ export default function Home() {
               <p className={`t-stat mt-3 ${lead.performance.excess_1m >= 0 ? 'num-up' : 'num-down'}`}>
                 {fmtPct(lead.performance.excess_1m, 'pp')}
               </p>
-              <p className="t-explainer mt-1.5">1M 超额收益</p>
+              <p className="t-explainer mt-1.5">1M excess return</p>
               <p className="t-time mt-4 text-gray-700">
                 1W {fmtPct(lead.performance.excess_1w, 'pp')} · YTD {fmtPct(lead.performance.excess_ytd, 'pp')}
               </p>
@@ -130,11 +130,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 其余 Themes — 索引 */}
+      {/* Remaining Themes — index */}
       <section className="py-7">
         <div className="flex items-baseline justify-between">
           <p className="t-kicker">Also Active</p>
-          <span className="t-explainer">共 {active.count} 个</span>
+          <span className="t-explainer">Showing all {active.count}</span>
         </div>
         <div>
           {rest.map((t, i) => (
@@ -154,7 +154,7 @@ export default function Home() {
                 <p className={`t-time mt-1 text-[15px] font-semibold ${t.performance.excess_1m >= 0 ? 'num-up' : 'num-down'}`}>
                   {fmtPct(t.performance.excess_1m, 'pp')}
                 </p>
-                <p className="t-explainer mt-0.5">1M 超额 · ~{readingMinutes(t.body_text)} min</p>
+                <p className="t-explainer mt-0.5">1M excess · ~{readingMinutes(t.body_text)} min</p>
               </div>
             </Link>
           ))}

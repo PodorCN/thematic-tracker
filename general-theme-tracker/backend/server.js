@@ -1,11 +1,11 @@
 // Thematic Tracker — read-only API over data/*.yaml
-// 路由（API Contract v1）：
+// Routes (API Contract v1):
 //   GET /api/themes/active?date=YYYY-MM-DD
 //   GET /api/themes/:id
 //   GET /api/themes/history?theme_id=
 //   GET /api/market/snapshot?week=YYYY-Www
 //   GET /api/commentary?week=YYYY-Www
-// 原则：只读 data/，绝不写。Agent 更新只碰 data/，前端自动反映。
+// Rule: read data/, never write. Agents only touch data/; the frontend reflects it automatically.
 
 const http = require('http');
 const fs = require('fs');
@@ -13,7 +13,7 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
-const PORT = process.env.PORT || 8787; // 固定端口；CLI --port 只影响前端
+const PORT = process.env.PORT || 8787; // fixed port; CLI --port only affects the frontend
 
 function loadYaml(file) {
   return yaml.load(fs.readFileSync(file, 'utf8'));
