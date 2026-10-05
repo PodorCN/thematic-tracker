@@ -19,7 +19,7 @@
 
 body {
   margin: 0;
-  background: #e9e4d6;
+  background: var(--paper);
   color: var(--ink);
   font-family: Georgia, "Times New Roman", "Songti SC", serif;
   line-height: 1.5;
@@ -35,11 +35,9 @@ a:hover {
 }
 
 .page {
-  max-width: 1120px;
-  margin: 24px auto 48px;
+  width: 100%;
+  min-height: 100vh;
   background: var(--paper);
-  border: 1px solid var(--rule-soft);
-  box-shadow: 0 2px 18px rgba(0,0,0,.12);
   padding: 0 0 24px;
 }
 
@@ -49,7 +47,7 @@ a:hover {
 .S { font-size: 12.5px; color: var(--muted); font-weight: 400; }
 
 /* Masthead */
-.masthead { padding: 18px 36px 0; }
+.masthead { padding: 18px clamp(20px, 4vw, 64px) 0; }
 .masthead-rule.thin  { border-top: 1px solid var(--rule); margin-bottom: 3px; }
 .masthead-rule.thick { border-top: 4px double var(--rule); margin-top: 14px; }
 .masthead-topline {
@@ -75,7 +73,7 @@ a:hover {
 .warnings { text-align: center; margin-top: 6px; }
 .warnings .warn { color: var(--amber); margin-right: 16px; }
 
-main { padding: 4px 36px; }
+main { padding: 4px clamp(20px, 4vw, 64px); }
 section { margin-top: 26px; }
 
 .sec-title {
@@ -338,7 +336,7 @@ table.cal a { color: var(--ink); }
 .imp { letter-spacing: 2px; color: var(--ink); white-space: nowrap; }
 .imp .off { color: var(--rule-soft); }
 
-.footer { padding: 16px 36px 0; }
+.footer { padding: 16px clamp(20px, 4vw, 64px) 0; }
 .footer a { color: var(--ink); }
 .footer p { margin: 8px 0; }
 
