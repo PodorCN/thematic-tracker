@@ -4,5 +4,11 @@
     "index.html": "bed99cc954a736e0555e6c70a1b672ef82cbe32d99ab3fe82b6f29098d3c0c05",
     "app.js": "67627490477d08e5adc9b2188563ac21ab02f54f562b12366a896f253957e13c",
     "styles.css": "560b6b9c10518aa414c8c00bd7203ed575fa6d5331b975e91c3c770d97a3c7c4"
+  },
+  "general-theme-tracker": {
+    "frontend/src/pages/Home.tsx": "8a0adc7e83ec3fb1bfd9e9b7c3956790b25245ec6ea5fea83a5cd4f387f5f258",
+    "frontend/src/pages/ThemeDetail.tsx": "a30a42a4b1460db5928ede3a60aa337e263c78f81e288d5ee4d797365b48a8fd",
+    "frontend/src/pages/Archive.tsx": "427e856d7da81d3c01ae7f16501604b71beb086cb7a288496541d338aa18a699",
+    "frontend/src/lib/api.ts": "9bd9dcb3b3d00c90ba34d01d3f9c09e54b823cb1e0816d419bc3478d315daae1"
   }
 }

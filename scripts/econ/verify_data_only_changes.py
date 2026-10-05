@@ -4,7 +4,8 @@ This is a scope check, not approval of economic claims or of frontend changes.
 Run it on the staged diff before committing and on the commit range before push.
 
 Scope: the freeze covers exactly the active product renderers
-(economic-calendar: index.html; Rates_decisions: index.html + app.js + styles.css)
+(economic-calendar: index.html; Rates_decisions: index.html + app.js + styles.css;
+general-theme-tracker: frontend/src/pages/Home.tsx + ThemeDetail.tsx + Archive.tsx + lib/api.ts)
 via frontend_contract.json digests. Landing pages such as home/index.html are
 deliberately outside the freeze. A frontend change is
 accepted only when the same range carries the updated contract whose digest
@@ -21,6 +22,7 @@ import subprocess
 from pathlib import Path
 
 _DATE = r"\d{4}-\d{2}-\d{2}"
+_WEEK = r"\d{4}-W\d{2}"
 _REVIEW_BUNDLE = r"(?:candidate\.json|candidate\.sha256|structural-flags\.json|pm-review\.json|review\.md)"
 _POLICIES = {
     "economic-calendar": (
@@ -33,6 +35,13 @@ _POLICIES = {
         re.compile(rf"Rates_decisions/data/archive/{_DATE}\.json\Z"),
         re.compile(rf"Rates_decisions/review/{_DATE}/{_REVIEW_BUNDLE}\Z"),
     ),
+    "general-theme-tracker": (
+        re.compile(rf"general-theme-tracker/data/themes/{_WEEK}/theme_[A-Za-z0-9_-]+\.yaml\Z"),
+        re.compile(rf"general-theme-tracker/data/market/snapshot_{_WEEK}\.yaml\Z"),
+        re.compile(rf"general-theme-tracker/data/commentary/{_WEEK}\.yaml\Z"),
+        re.compile(rf"general-theme-tracker/data/archive/{_DATE}\.json\Z"),
+        re.compile(rf"general-theme-tracker/review/{_DATE}/{_REVIEW_BUNDLE}\Z"),
+    ),
 }
 
 # Browser-served renderer files frozen per product. Manifest values may be a
@@ -40,6 +49,12 @@ _POLICIES = {
 _FRONTENDS = {
     "economic-calendar": ("index.html",),
     "Rates_decisions": ("index.html", "app.js", "styles.css"),
+    "general-theme-tracker": (
+        "frontend/src/pages/Home.tsx",
+        "frontend/src/pages/ThemeDetail.tsx",
+        "frontend/src/pages/Archive.tsx",
+        "frontend/src/lib/api.ts",
+    ),
 }
 _FRONTEND_FILES = {
     f"{product}/{name}" for product, names in _FRONTENDS.items() for name in names
@@ -68,6 +83,11 @@ def _is_data_lane(path: str) -> bool:
         return rest.startswith(("data/", "raw/"))
     if top == "Rates_decisions":
         return rest.startswith("data/") or bool(
+            re.fullmatch(rf"review/{_DATE}/{_REVIEW_BUNDLE}", rest)
+        )
+    if top == "general-theme-tracker":
+        return rest.startswith(("data/themes/", "data/market/", "data/commentary/",
+                                "data/archive/")) or bool(
             re.fullmatch(rf"review/{_DATE}/{_REVIEW_BUNDLE}", rest)
         )
     return False

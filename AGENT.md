@@ -16,6 +16,8 @@ Rates_decisions/         ← 看板 1：美加央行利率决议看板（JSON �
   AGENT.md                 current.json 维护、check 校验、PM 审阅与 publish 流程
 economic-calendar/       ← 看板 2：全球经济日历（Actions 每日全自动抓取与发布 JSON）
   AGENT.md                 日历数据抓取、发布契约与本地测试说明
+general-theme-tracker/   ← 看板 3：PM 向投资主题站（YAML 周包驱动 + 整周打包冻结）
+  AGENT.md                 themes 周包维护、check 校验、PM 审阅与 publish 流程
 scripts/econ/frontend_contract.json ← 前端渲染器 SHA-256 冻结基线
 scripts/econ/verify_data_only_changes.py ← 日常发布路径与数据-only 机器门禁
 scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结字节 + SHA 绑定 + verdict 自洽
@@ -26,12 +28,13 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
 
 ### 0.1 维护对象总览
 
-本仓库当前核心维护 **2 个宏观与利率决策看板（Macro & Rate Decisions Dashboards）**：
+本仓库当前核心维护 **3 个看板（2 个宏观利率 + 1 个投资主题）**：
 
 | # | 目录/对象 | 核心定位与数据源 | 更新与发布机制 | 专属指令入口 |
 |---|---|---|---|---|
 | **1** | `Rates_decisions/` | 下次美加利率决议 2 分钟快览看板；`data/current.json` | 本地 `npm run check` 校验 + 独立 PM 审阅签字后 `npm run publish` 归档 | [`Rates_decisions/AGENT.md`](./Rates_decisions/AGENT.md) |
 | **2** | `economic-calendar/` | 全球高影响经济日历；FxStreet/ForexFactory JSON | **GitHub Actions 全自动抓取与发布**（每日 13:10 UTC） | [`economic-calendar/AGENT.md`](./economic-calendar/AGENT.md) |
+| **3** | `general-theme-tracker/` | PM 向投资主题站；`data/themes/<week>/*.yaml` 周包 | 本地整周打包冻结 + 独立 PM 审阅签字后 `publish` 归档（blocking） | [`general-theme-tracker/AGENT.md`](./general-theme-tracker/AGENT.md) |
 
 > 💡 **关于投资主题（Theme）**：目前暂无活跃 Theme。如后续需要新增具体的主题跟踪器（如特定行业或策略），请参考 [§2 新增一个 Theme 的标准化流程](#2-未来新增-theme-的标准化流程)。
 
@@ -40,10 +43,11 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
 ## 0.2 Agent 导航与行动指引
 
 当你以 Agent 身份进入本仓库执行任务时：
-1. **确认目标**：先看 §0.1 清单，明确当前任务是针对 `Rates_decisions` 还是 `economic-calendar`。
+1. **确认目标**：先看 §0.1 清单，明确当前任务是针对 `Rates_decisions`、`economic-calendar` 还是 `general-theme-tracker`。
 2. **读专属规则**：立即打开对应目录下的 `AGENT.md`：
    - 维护利率决议看板：进入 [`Rates_decisions/AGENT.md`](./Rates_decisions/AGENT.md)
    - 维护全球经济日历：进入 [`economic-calendar/AGENT.md`](./economic-calendar/AGENT.md)
+   - 维护投资主题站：进入 [`general-theme-tracker/AGENT.md`](./general-theme-tracker/AGENT.md)
 3. **严格区分数据与前端**：所有日常数据更新**仅限修改数据文件**（如 JSON 数据源），严禁在日常数据更新提交中夹带修改前端 `index.html`。
 
 ---
@@ -71,6 +75,15 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
   python -m pytest tests/test_econ_render.py -q
   ```
 
+### 1.3 General Theme Tracker 主题站维护（blocking）
+详细 SOP 见 [`general-theme-tracker/AGENT.md`](./general-theme-tracker/AGENT.md)：
+1. 编辑周包：仅修改 `general-theme-tracker/data/themes/<week>/*.yaml`（+ market snapshot + commentary）
+2. 机器数据校验：`npm --prefix general-theme-tracker run validate`（YAML schema_v1）+ `python3 general-theme-tracker/scripts/publish.py --check`
+3. 冻结 + 独立审阅签字：`npm --prefix general-theme-tracker run freeze` 整周打包冻结并生成 SHA；
+   reviewer 按 [`scripts/review/REVIEWER_AGENT.md`](./scripts/review/REVIEWER_AGENT.md) + 产品附录写
+   `review/<today>/pm-review.json`（SHA 绑定，六个 checks 全 pass + `APPROVED` 方可发布）
+4. 归档发布：`npm --prefix general-theme-tracker run publish`（重建周包比对字节后归档 `data/archive/<today>.json`）
+
 ---
 
 ## 2. 未来新增 Theme 的标准化流程
@@ -88,7 +101,7 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
 
 - **严禁虚构造假**：价格必须取自行情真实数据，所有驱动因素必须附带真实来源 URL。未知或无法验证的数据必须明确标为 `"unverified"` 或 `"unavailable"`，严禁臆测。
 - **数据与前端严格解耦**：
-  - 日常数据发布只允许触碰数据文件（JSON、CSV 或 review 审阅凭证）。
+  - 日常数据发布只允许触碰数据文件（JSON/YAML、CSV 或 review 审阅凭证）。
   - 各模块的 `index.html`、CSS、JS、模板以及脚本均属于开发变更，严禁在日常数据更新提交中夹带。
 - **修改 HTML 必须走独立开发 PR**：若需改动页面展示，必须单独开分支与 PR，更新 `scripts/econ/frontend_contract.json` 中该页面的 SHA-256 哈希，完成真浏览器测试与代码审查后方可合并。
 - **提交前必跑机器门禁**：在暂存数据后、commit 之前，必须执行：
@@ -96,7 +109,7 @@ scripts/review/ ← 【共享审阅层】全仓统一 reviewer 机制：冻结�
   python scripts/econ/verify_data_only_changes.py --product economic-calendar --staged
   ```
   门禁退出码非 0 时绝对禁止提交或推送。
-- **发布需经严格审阅**：带有审阅机制的看板（如 `Rates_decisions`），必须在通过机器检验且具有 APPROVED 审阅凭证后方可执行 publish 归档。
+- **发布需经严格审阅**：带有审阅机制的看板（如 `Rates_decisions`、`general-theme-tracker`），必须在通过机器检验且具有 APPROVED 审阅凭证后方可执行 publish 归档。
 
 ## 4. 共享审阅层（所有 tracker 共用同一个 reviewer 机制）
 
@@ -107,6 +120,7 @@ verdict/严重度自洽、结构旗标全覆盖——这些与产品无关，任
 | 产品 | 采用方式 | 说明 |
 |---|---|---|
 | `Rates_decisions` | 阻塞式（blocking） | 无 APPROVED 的 `pm-review.json` 就拒发；checks 六项见其 `review/REVIEWER_AGENT.md` |
+| `general-theme-tracker` | 阻塞式（blocking） | 整周 YAML 打包冻结，无 APPROVED 就拒发；checks 六项见其 `review/REVIEWER_AGENT.md` |
 | `economic-calendar` | 机器 only（advisory） | GitHub Actions 全自动流水线不断；共享层仅作审计参考，不加人工闸门 |
 | 未来新 tracker | 二选一并写进其 `AGENT.md` | blocking：声明 checks 清单 + 冻结包路径；advisory：只跑结构旗标 |
 
