@@ -1,0 +1,109 @@
+# Theme Schema v1 — data/themes/<YYYY-Www>/theme_*.yaml
+# 校验脚本：backend/validate.js
+# 规则摘要：无 time+source 的 event 不可发布；正文 <900 中字；score<3 降级 Noise。
+
+schema_v: 1
+fields:
+  # ---- 头部 ----
+  schema_v:        { type: integer, required: true, const: 1 }
+  id:              { type: string,  required: true, pattern: "^[a-z0-9-]+$" }
+  week:            { type: string,  required: true, pattern: "^\\d{4}-W\\d{2}$" }
+  title:           { type: string,  required: true, max_len: 40 }
+  status:          { type: enum,    required: true, values: [Emerging, New, Continuing, Fading, Dead] }
+  status_note:     { type: string,  required: true, max_len: 120, note: "状态变化原因，一句话" }
+  conviction:      { type: enum,    required: true, values: [High, Med, Low] }
+  horizon:         { type: enum,    required: true, values: ["Tactical 2-8w", "Cyclical 3-12m"] }
+  created_at:      { type: date,    required: true }
+  updated_at:      { type: date,    required: true }
+  data_quality:    { type: enum,    required: true, values: [production, sample] }
+
+  # ---- 正文（5-min rule）----
+  body_text:       { type: string,  required: true, max_cn_chars: 900, max_en_words: 500 }
+  explainer:       { type: string,  required: false, note: "术语/口径/计算细节，前端默认折叠" }
+
+  # ---- Performance vs Benchmark ----
+  performance:
+    type: object
+    required: true
+    fields:
+      proxy_ticker:        { type: string, required: true }
+      proxy_price:         { type: number, required: true, note: "收盘价，禁止盘中价" }
+      currency:            { type: string, required: true }
+      return_type:         { type: enum,   required: true, values: [price, total_return] }
+      ret_1w:              { type: number, required: true, unit: pct }
+      ret_1m:              { type: number, required: true, unit: pct }
+      ret_ytd:             { type: number, required: true, unit: pct }
+      benchmark_ticker:    { type: string, required: true }
+      benchmark_name:      { type: string, required: true }
+      benchmark_ret_1w:    { type: number, required: true, unit: pct }
+      benchmark_ret_1m:    { type: number, required: true, unit: pct }
+      benchmark_ret_ytd:   { type: number, required: true, unit: pct }
+      excess_1w:           { type: number, required: true, unit: pp, check: "abs(excess_1w - (ret_1w - benchmark_ret_1w)) <= 0.2" }
+      excess_1m:           { type: number, required: true, unit: pp, check: "abs(excess_1m - (ret_1m - benchmark_ret_1m)) <= 0.2" }
+      excess_ytd:          { type: number, required: true, unit: pp, check: "abs(excess_ytd - (ret_ytd - benchmark_ret_ytd)) <= 0.2" }
+      as_of_utc:           { type: datetime, required: true, freshness_h: 48 }
+      source:              { type: string, required: true }
+      benchmark_rationale: { type: string, required: true, note: "为什么选这个基准" }
+
+  # ---- 归一化走势图（Rebased to 100）----
+  series:
+    type: list
+    required: true
+    min_items: 2
+    item_fields:
+      date:      { type: date,   required: true }
+      proxy:     { type: number, required: true }
+      benchmark: { type: number, required: true }
+
+  # ---- Proxy to Track（1-3 个）----
+  proxies:
+    type: list
+    required: true
+    min_items: 1
+    max_items: 3
+    item_fields:
+      ticker:         { type: string, required: true }
+      name:           { type: string, required: true }
+      type:           { type: enum,   required: true, values: [ETF, Index, Basket] }
+      region:         { type: string, required: true }
+      expense:        { type: string, required: false, note: "ETF 必填费率；Index/Basket 可免" }
+      liquidity_note: { type: string, required: true, note: "AUM/日均量/点差" }
+      why_represents: { type: string, required: true }
+      tracking_gap:   { type: string, required: true, note: "tracking 缺陷" }
+
+  # ---- Key Events / News Timeline ----
+  events:
+    type: list
+    required: true
+    min_items: 1
+    item_fields:
+      event_time_utc: { type: datetime, required: true, note: "无时间 = 不可发布" }
+      title:          { type: string,   required: true }
+      source:         { type: string,   required: true, note: "无来源 = 不可发布" }
+      url:            { type: url,      required: true }
+      type:           { type: enum,     required: true, values: [macro, earnings, policy, geopolitics] }
+
+  # ---- Depends On / What to Watch ----
+  depends_on:
+    type: list
+    required: true
+    min_items: 1
+    note: "没有 Next Catalyst 的 Theme 降级为 Noise"
+    item_fields:
+      event_name:  { type: string, required: true }
+      due_date:    { type: string, required: true, note: "ISO 日期或带 UTC 的 datetime" }
+      why_matters: { type: string, required: true }
+      if_bull:     { type: string, required: true }
+      if_bear:     { type: string, required: true, note: "证伪信号" }
+
+  # ---- Theme vs Noise 判定 ----
+  theme_vs_noise:
+    type: object
+    required: true
+    fields:
+      persistence:          { type: boolean, required: true, note: ">2周 或 跨2+独立Commentary" }
+      breadth:              { type: boolean, required: true, note: ">=3只股票 / >=2子行业同向" }
+      volume_confirm:       { type: boolean, required: true, note: "超额 + 成交量放大" }
+      falsifiable_catalyst: { type: boolean, required: true }
+      repricing_logic:      { type: boolean, required: true }
+      score:                { type: integer, required: true, min: 0, max: 5, check: "score == 五项true计数；score>=3 才是 Theme" }

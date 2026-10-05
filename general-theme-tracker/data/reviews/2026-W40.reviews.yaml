@@ -1,0 +1,46 @@
+# PM Reviewer 报告存档 — 2026-W40（发布前 Gate 记录）
+week: 2026-W40
+reviewer_version: pm-reviewer-v1
+reviewed_at_utc: "2026-10-04T15:30:00Z"
+
+reviews:
+  - theme_id: oil-war-premium
+    pass_fail: PASS
+    round: 1
+    issues:
+      - severity: minor
+        location: proxies[1]
+        reason: CL=F 为期货非 ETF，多数组合不可直接持有
+        fix: 已在 liquidity_note/tracking_gap 中明示展期成本与波动风险
+    summary_1line: excess 复核误差 <0.2pp；事件均带 UTC+来源；地缘 Theme 与可证伪 catalyst 齐全。
+  - theme_id: us-rates-repricing
+    pass_fail: PASS
+    round: 2
+    issues:
+      - severity: major
+        location: performance
+        reason: 第一轮用 10Y 收益率本身作 proxy，不可交易，打回
+        fix: 改为 TLT 并在正文与 benchmark_rationale 中明示「交易方向为空久期」
+      - severity: minor
+        location: events[3]
+        reason: 非农数据与加息概率变化需同源核对
+        fix: 已统一至 Yahoo Finance 当日 live blog
+    summary_1line: 第二轮通过；方向表达清晰，10/27-28 FOMC 为明确验证点。
+  - theme_id: ai-capex-supercycle
+    pass_fail: PASS
+    round: 1
+    issues:
+      - severity: minor
+        location: body_text
+        reason: 需提示估值已回落 14%，避免「追高叙事」
+        fix: 已加入估值消化与「验收入阶段」表述
+    summary_1line: 数据自洽；估值风险提示到位；catalyst 链完整。
+  - theme_id: ca-bank-earnings-momentum
+    pass_fail: PASS
+    round: 1
+    issues:
+      - severity: minor
+        location: theme_vs_noise
+        reason: volume_confirm=false，score 4，状态 Fading 与证据一致
+        fix: 无需修改，状态机自洽
+    summary_1line: 降级 Fading 判断与「估值最贵+机构减持」证据匹配。

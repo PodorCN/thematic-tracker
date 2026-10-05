@@ -1,0 +1,25 @@
+# Market Regime + Benchmark 条 + Yesterday vs Today diff
+# 数据：2026-10-02 收盘，Source: Yahoo Finance / US Treasury
+week: 2026-W40
+as_of_utc: "2026-10-02T20:00:00Z"
+data_quality: production
+
+regime:
+  stance: Risk-on（脆弱）
+  oneliner: 非农爆冷浇灭 10 月加息预期，科技股收纪录新高；但 10Y 5.28% 与油价战争溢价仍是两大悬顶变量。
+  keywords: [就业降温, Fed 观望, 地缘溢价]
+
+benchmarks:
+  - { ticker: "^GSPC",   name: SPX,     value: 7722.72,  chg_1d: 0.73,  chg_unit: "%" }
+  - { ticker: "^NDX",    name: NDX,     value: 30807.93, chg_1d: 1.00,  chg_unit: "%" }
+  - { ticker: "^GSPTSE", name: TSX,     value: 35502.70, chg_1d: 0.99,  chg_unit: "%" }
+  - { ticker: "^TNX",    name: US 10Y,  value: 5.277,    chg_1d: 4,     chg_unit: bp }
+  - { ticker: "USDCAD=X", name: USD/CAD, value: 1.4220,  chg_1d: -0.11, chg_unit: "%" }
+  - { ticker: "CL=F",    name: WTI,     value: 91.11,    chg_1d: -1.90, chg_unit: "%" }
+  - { ticker: "GC=F",    name: Gold,    value: 4162.30,  chg_1d: -0.95, chg_unit: "%" }
+
+yesterday_diff:
+  - { theme_id: us-rates-repricing,       change: new,        note: "10Y 触及 5.29% 创 2002 年来新高，弱非农也压不住长端" }
+  - { theme_id: ai-capex-supercycle,      change: continuing, note: "NVDA 盘中新高 $237.87，NDX 收盘纪录 30,808" }
+  - { theme_id: oil-war-premium,          change: continuing, note: "G7 储备释放压制涨幅，OPEC+ 周日会议在即" }
+  - { theme_id: ca-bank-earnings-momentum, change: fading,    note: "估值 2010 年来最贵，机构减持，ZEB 周跌 2.2%" }

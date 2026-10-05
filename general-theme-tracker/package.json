@@ -1,0 +1,19 @@
+{
+  "name": "thematic-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Theme 第一视角站 — PM 向 Thematic Tracker（前后端隔离，Agent 只写 data/）",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "api": "node backend/server.js",
+    "validate": "node backend/validate.js",
+    "candidate": "node scripts/build_candidate.mjs",
+    "check": "python3 scripts/publish.py --check",
+    "freeze": "python3 scripts/freeze.py",
+    "review:check": "python3 scripts/check_review.py",
+    "publish": "python3 scripts/publish.py"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

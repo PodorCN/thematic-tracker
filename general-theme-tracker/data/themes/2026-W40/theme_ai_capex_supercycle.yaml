@@ -1,0 +1,113 @@
+schema_v: 1
+id: ai-capex-supercycle
+week: 2026-W40
+title: AI 资本开支超级周期
+status: Continuing
+status_note: 延续：NVDA 周五盘中创历史新高 $237.87，NDX 收盘纪录；弱非农解除加息压力助攻。
+conviction: High
+horizon: Cyclical 3-12m
+created_at: 2026-07-06
+updated_at: 2026-10-02
+data_quality: production
+
+body_text: |
+  AI 资本开支是 2026 年美股最持久的单一叙事：NDX YTD +21%，10 月 2 日收盘创纪录 30,808，
+  NVDA 市值 $5.72 万亿。与上半年不同，边际变化有三：一是融资结构——Barclays 估算 hyperscaler
+  今年发债约 $2,000 亿投入数据中心，capex 从「自有现金流」升级为「杠杆驱动」，链条拉长但脆弱性上升；
+  二是估值已先行消化——NDX 前瞻市盈率 21.7x，较 2026 年高点回落 14%，盈利兑现接棒估值扩张；
+  三是宏观配合——9 月非农爆冷后 10 月加息概率降至 25% 以下，贴现率压力暂缓。
+  So What：主线仍在，但从「买预期」进入「验收入」阶段，持仓应向有订单与收入的芯片/基建环节集中。
+  What Next：10 月底起 hyperscaler Q3 财报的资本开支指引是总开关；任何一家下修都会触发链条重估。
+
+explainer: |
+  Hyperscaler 指自建超大规模数据中心的云厂商。NDX 21.7x 为前瞻市盈率（Citadel Securities 数据）。
+  半导体行业协会预期 2026 年全球芯片销售额 $1.51 万亿（+90%），2027 年 $1.9 万亿（+27%）。
+  收益为 Price Return 口径；QQQ 跟踪 Nasdaq-100，不含股息。
+
+performance:
+  proxy_ticker: QQQ
+  proxy_price: 749.58
+  currency: USD
+  return_type: price
+  ret_1w: 0.68
+  ret_1m: 5.8
+  ret_ytd: 21.42
+  benchmark_ticker: "^GSPC"
+  benchmark_name: S&P 500
+  benchmark_ret_1w: -0.27
+  benchmark_ret_1m: 0.73
+  benchmark_ret_ytd: 11.98
+  excess_1w: 1.0
+  excess_1m: 5.1
+  excess_ytd: 9.4
+  as_of_utc: "2026-10-02T20:00:00Z"
+  source: Yahoo Finance
+  benchmark_rationale: Tech Theme 对标 NDX 本身与 SPX 的相对强弱；QQQ vs SPX 即超额口径。
+
+series:
+  - { date: 2026-08-07, proxy: 100.0, benchmark: 100.0 }
+  - { date: 2026-08-14, proxy: 101.11, benchmark: 100.36 }
+  - { date: 2026-08-21, proxy: 98.67, benchmark: 98.93 }
+  - { date: 2026-08-28, proxy: 99.09, benchmark: 99.41 }
+  - { date: 2026-09-04, proxy: 99.44, benchmark: 99.5 }
+  - { date: 2026-09-11, proxy: 98.87, benchmark: 98.7 }
+  - { date: 2026-09-18, proxy: 99.78, benchmark: 98.62 }
+  - { date: 2026-09-25, proxy: 103.08, benchmark: 99.82 }
+  - { date: 2026-10-02, proxy: 103.78, benchmark: 99.55 }
+
+proxies:
+  - ticker: QQQ
+    name: Invesco QQQ Trust
+    type: ETF
+    region: US
+    expense: 0.20%
+    liquidity_note: 全球流动性最好的 ETF 之一，期权链最深
+    why_represents: NDX 直接跟踪工具，AI 权重（NVDA/MSFT/AMZN/META）占比高
+    tracking_gap: 含非 AI 消费/医药持仓，纯度不及 SOXX；等权替代方案会改变风险敞口
+
+events:
+  - event_time_utc: "2026-09-28T00:00:00Z"
+    title: Barclays 估算 hyperscaler 今年发债约 $2,000 亿投入数据中心建设
+    source: The Industry Spread
+    url: https://theindustryspread.com/nasdaq-100-capped-32500-q3-2026-ai-capex/
+    type: macro
+  - event_time_utc: "2026-10-02T00:00:00Z"
+    title: Citadel Securities：NDX 前瞻市盈率 21.7x，较 2026 年高点回落 14%；Q4 中期选举年季节性强
+    source: Citadel Securities
+    url: https://www.citadelsecurities.com/news-and-insights/global-market-intelligence/october-the-q4-reload/
+    type: macro
+  - event_time_utc: "2026-10-02T18:10:00Z"
+    title: NVDA 盘中创历史新高 $237.87，市值 $5.72 万亿；Nasdaq 100 收于纪录高位
+    source: Yahoo Finance
+    url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: earnings
+  - event_time_utc: "2026-10-02T12:42:00Z"
+    title: 9 月非农爆冷 +2.9 万，10 月加息概率骤降，科技股领涨
+    source: Yahoo Finance
+    url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: macro
+
+depends_on:
+  - event_name: Hyperscaler Q3 财报季（资本开支指引）
+    due_date: "2026-10-28"
+    why_matters: capex 指引是整条 AI 链的总开关，发债融资模式下指引下修影响被放大
+    if_bull: 指引上调/持平 + 明确披露数据中心供不应求
+    if_bear: 任何一家下修 capex 或暗示 ROI 压力 → 链条重估，Theme 降级
+  - event_name: NVDA 季度财报
+    due_date: "2026-11-25"
+    why_matters: 占 NDX 年内涨幅 32% 以上，是周期最直接的体温计
+    if_bull: 数据中心收入指引超预期
+    if_bear: 指引增速放缓 → 估值与盈利双杀风险
+  - event_name: 12 月 FOMC
+    due_date: "2026-12-16"
+    why_matters: 若高盛预期的 12 月加息兑现，高估值板块的贴现率压力回归
+    if_bull: 暂停加息 → 估值压力暂缓
+    if_bear: 加息 → 21.7x 市盈率承压
+
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: true
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 5

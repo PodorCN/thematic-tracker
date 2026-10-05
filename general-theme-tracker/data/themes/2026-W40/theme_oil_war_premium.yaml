@@ -1,0 +1,121 @@
+schema_v: 1
+id: oil-war-premium
+week: 2026-W40
+title: 中东供应危机：油价战争溢价
+status: Continuing
+status_note: 美伊冲突第 5 周，WTI 自 9 月高点 $100+ 回落至 $91，OPEC+ 周日会议与 G7 储备释放是本周变量。
+conviction: High
+horizon: Tactical 2-8w
+created_at: 2026-09-01
+updated_at: 2026-10-02
+data_quality: production
+
+body_text: |
+  年初市场 price-in 的是「2026 供给过剩」，WTI 去年 12 月还在 $55。9 月起美伊冲突升级——美军击沉伊朗油轮、
+  沙特东西管线与 Yanbu 出口遇袭——WTI 一度突破 $100，战争溢价取代过剩叙事成为定价主线。
+  当前 $91 的位置是多空拉锯的结果：实物端依旧紧（美国商业库存低于五年均值、曲线深度 backwardation、
+  沙特出口仅部分恢复），但 G7 已示意释放应急柴油与原油储备、需求预测被 OPEC 与 IEA 双双下修，
+  每一次外交进展头条都触发急跌。So What：这不是需求驱动的大宗周期，而是地缘供给冲击，
+  交易表达应集中在上游权重高的能源股而非原油期货本身（展期成本高、回撤剧烈）。
+  What Next：10 月 4 日 OPEC+ 会议（11 月配额）与每周 EIA 库存是高频验证点；
+  若 Hormuz 通行量持续恢复 + 美伊谈判落地，溢价将快速回吐。
+
+explainer: |
+  Backwardation（现货升水）= 近月合约价格高于远月，表明实物紧张。本轮 11 月 WTI 对 12 月升水约 $3.7。
+  战争溢价（war premium）指价格中由地缘风险贡献的部分，历史上在供应恢复后回吐速度快。
+  收益均为 Price Return 口径，XLE 为美股能源板块 ETF（约 91% 为油气公司），不直接跟踪油价。
+
+performance:
+  proxy_ticker: XLE
+  proxy_price: 62.82
+  currency: USD
+  return_type: price
+  ret_1w: 1.26
+  ret_1m: -2.93
+  ret_ytd: 42.49
+  benchmark_ticker: "^GSPC"
+  benchmark_name: S&P 500
+  benchmark_ret_1w: -0.27
+  benchmark_ret_1m: 0.73
+  benchmark_ret_ytd: 11.98
+  excess_1w: 1.5
+  excess_1m: -3.7
+  excess_ytd: 30.5
+  as_of_utc: "2026-10-02T20:00:00Z"
+  source: Yahoo Finance
+  benchmark_rationale: 美股板块 Theme，对标 SPX；XLE 为能源板块流动性最好的 ETF。
+
+series:
+  - { date: 2026-08-07, proxy: 100.0, benchmark: 100.0 }
+  - { date: 2026-08-14, proxy: 107.67, benchmark: 100.36 }
+  - { date: 2026-08-21, proxy: 110.68, benchmark: 98.93 }
+  - { date: 2026-08-28, proxy: 109.01, benchmark: 99.41 }
+  - { date: 2026-09-04, proxy: 111.41, benchmark: 99.5 }
+  - { date: 2026-09-11, proxy: 113.29, benchmark: 98.7 }
+  - { date: 2026-09-18, proxy: 111.84, benchmark: 98.62 }
+  - { date: 2026-09-25, proxy: 108.54, benchmark: 99.82 }
+  - { date: 2026-10-02, proxy: 109.9, benchmark: 99.55 }
+
+proxies:
+  - ticker: XLE
+    name: Energy Select Sector SPDR
+    type: ETF
+    region: US
+    expense: 0.09%
+    liquidity_note: AUM ~USD 30B 量级，日均成交数千万股，期权链深
+    why_represents: 91% 持仓为油气公司，直接受益于高油价带来的现金流上修
+    tracking_gap: 个股有对冲与资本开支纪律，不随油价 1:1 波动；炼厂占比低
+  - ticker: CL=F
+    name: NYMEX WTI 近月期货
+    type: Index
+    region: US
+    liquidity_note: 全球流动性最深的原油合约
+    why_represents: 战争溢价最纯粹的表达
+    tracking_gap: 展期成本在 backwardation 下为正但波动极大，不适合多数组合直接持有
+
+events:
+  - event_time_utc: "2026-09-08T22:50:00Z"
+    title: 美军击沉五艘伊朗油轮，WTI 突破 $100
+    source: OilPrice
+    url: https://oilprice.com/futures/wti-midland
+    type: geopolitics
+  - event_time_utc: "2026-09-28T00:00:00Z"
+    title: 曲线 backwardation 加深，美国原油库存低于五年均值，沙特出口仅部分恢复
+    source: Commodity Board
+    url: https://commodity-board.com/crude-oil-backwardation-steepens-as-prices-correct-from-geopolitical-highs
+    type: macro
+  - event_time_utc: "2026-10-01T22:15:00Z"
+    title: G7 示意释放应急柴油与原油储备，油价回落助美股收高
+    source: Bloomberg
+    url: https://www.bloomberg.com/news/articles/2026-10-01/asian-stocks-to-fall-on-oil-rally-bonds-in-focus-markets-wrap
+    type: policy
+  - event_time_utc: "2026-10-02T20:02:00Z"
+    title: 中东冲突升级风险延续，油价周线收涨，Brent 报 ~$102
+    source: Yahoo Finance
+    url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: geopolitics
+
+depends_on:
+  - event_name: OPEC+ 部长级会议（11 月配额）
+    due_date: "2026-10-04"
+    why_matters: 决定减产纪律是否松动；若大幅增产且冲突缓和，溢价基础动摇
+    if_bull: 维持配额或象征性增产，叠加 Hormuz 通行受阻延续
+    if_bear: 显著增产 + 沙特出口完全恢复 → 溢价回吐，降级观察
+  - event_name: 美伊外交谈判进展
+    due_date: "2026-10-15"
+    why_matters: 9 月多次「谈判进展」头条触发单日急跌，是最大的反向风险
+    if_bull: 谈判破裂、军事部署加码 → 高盛情景 $120
+    if_bear: 框架协议达成 → 战争溢价快速消退，Theme 归档
+  - event_name: EIA 周度库存报告
+    due_date: "2026-10-07T14:30:00Z"
+    why_matters: 库存低于五年均值是实物紧张的核心证据
+    if_bull: 继续去库或低于预期累库
+    if_bear: 连续大幅累库 → 实物叙事弱化
+
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: true
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 5

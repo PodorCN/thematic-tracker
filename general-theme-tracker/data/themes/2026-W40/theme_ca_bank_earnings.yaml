@@ -1,0 +1,117 @@
+schema_v: 1
+id: ca-bank-earnings-momentum
+week: 2026-W40
+title: 加拿大银行盈利动能
+status: Fading
+status_note: 降级观察：Q3 六大行全超预期后估值达 2010 年来最贵，机构开始减持，板块周跌 2.2%。
+conviction: Med
+horizon: Cyclical 3-12m
+created_at: 2026-08-27
+updated_at: 2026-10-02
+data_quality: production
+
+body_text: |
+  8 月 25-27 日六大行 Q3 财报全部超预期：RBC 净利润创纪录 $60 亿（+11%）、ROE 17.9%；
+  TD 创纪录且 CET1 14.3%，管理层暗示到 2027 年可向股东返还超 $130 亿。但拆解结构后成色打折——
+  超预期主要来自财富管理、资本市场与交易收入（RBC 财富收入 +16%、TD 批发银行净利 +87%、
+  RBC 参与 SpaceX IPO 承销团），而本土个人银行信贷增长偏弱，分析师已指出 RBC 该板块「略轻」。
+  板块前瞻估值为 2010 年以来最贵，First Avenue 等机构 9 月开始减持 RY/TD/BMO，ZEB 本周 -2.2%。
+  So What：盈利动能是真的，但价格已充分定价，超额收益阶段大概率结束，从「做多」转为「持有观察」。
+  What Next：12 月初 Q4 财报看两点——个人银行信贷是否回暖、拨备是否抬头（Q3 RBC 拨备已 +14%）；
+  关税对跨境商业信贷的影响是尾部风险。
+
+explainer: |
+  CET1（核心一级资本充足率）越高，可用于回购/分红的冗余资本越多。TD 目标 2027 年回到 13%，
+  当前 14.3% 意味着约 $130 亿+ 的潜在返还空间。ZEB 为等权重六大行 ETF；收益为 Price Return 口径，
+  加拿大银行股股息率 ~2.8-3%，Total Return 口径会更高。
+
+performance:
+  proxy_ticker: ZEB.TO
+  proxy_price: 73.42
+  currency: CAD
+  return_type: price
+  ret_1w: -2.22
+  ret_1m: -1.48
+  ret_ytd: 27.86
+  benchmark_ticker: "^GSPTSE"
+  benchmark_name: S&P/TSX Composite
+  benchmark_ret_1w: -0.83
+  benchmark_ret_1m: -1.63
+  benchmark_ret_ytd: 11.41
+  excess_1w: -1.4
+  excess_1m: 0.2
+  excess_ytd: 16.5
+  as_of_utc: "2026-10-02T20:00:00Z"
+  source: Yahoo Finance
+  benchmark_rationale: 加拿大本土金融板块，对标本国大盘 S&P/TSX Composite（金融业权重约 1/3）。
+
+series:
+  - { date: 2026-08-07, proxy: 100.0, benchmark: 100.0 }
+  - { date: 2026-08-14, proxy: 102.27, benchmark: 100.96 }
+  - { date: 2026-08-21, proxy: 96.0, benchmark: 100.66 }
+  - { date: 2026-08-28, proxy: 97.35, benchmark: 100.47 }
+  - { date: 2026-09-04, proxy: 98.79, benchmark: 100.36 }
+  - { date: 2026-09-11, proxy: 97.62, benchmark: 98.12 }
+  - { date: 2026-09-18, proxy: 98.54, benchmark: 98.42 }
+  - { date: 2026-09-25, proxy: 98.48, benchmark: 98.4 }
+  - { date: 2026-10-02, proxy: 96.3, benchmark: 97.59 }
+
+proxies:
+  - ticker: ZEB.TO
+    name: BMO Equal Weight Banks Index ETF
+    type: ETF
+    region: Canada
+    expense: 0.28%
+    liquidity_note: 加拿大最活跃的银行板块 ETF，点差窄
+    why_represents: 等权重覆盖六大行，对应板块整体盈利动能
+    tracking_gap: 等权重稀释 RY/TD 权重；不含股息，银行股息率高导致口径低估
+  - ticker: XFN.TO
+    name: iShares S&P/TSX Capped Financials ETF
+    type: ETF
+    region: Canada
+    expense: 0.61%
+    liquidity_note: 流动性良好
+    why_represents: 市值加权覆盖全金融板块（含保险资管）
+    tracking_gap: 非银金融稀释银行纯度，费率偏高
+
+events:
+  - event_time_utc: "2026-08-27T10:00:00Z"
+    title: RBC Q3 净利润创纪录 $60 亿（+11% YoY），ROE 17.9%，拨备 $10 亿（+14%）
+    source: Newswire.ca
+    url: https://www.newswire.ca/news-releases/royal-bank-of-canada-reports-third-quarter-2026-results-873288683.html
+    type: earnings
+  - event_time_utc: "2026-08-27T10:30:00Z"
+    title: TD Q3 创纪录，ROE 16%，批发银行净利 +87%，暗示 2027 年前返还超 $130 亿
+    source: TradingView / PRNewswire
+    url: https://www.tradingview.com/news/prnewswire:98fa847cae970:0-td-bank-group-reports-third-quarter-2026-results/
+    type: earnings
+  - event_time_utc: "2026-09-03T00:00:00Z"
+    title: 六大行 Q3 全超预期，但板块前瞻估值达 2010 年来最贵；超预期主要来自手续费业务，个人银行偏弱
+    source: FundMore Weekly
+    url: https://blog.fundmore.ai/canadian-banks-q3-2026-personal-banking
+    type: macro
+  - event_time_utc: "2026-09-10T00:00:00Z"
+    title: 加拿大央行维持政策利率 2.25% 不变
+    source: Kalkine Canada
+    url: https://kalkine.ca/news/financial/bank-of-canada-holds-at-225-is-royal-bank-of-canada-a-top-canadian-bank-stock-for-september-2026
+    type: policy
+
+depends_on:
+  - event_name: RY / TD 等 Q4 财报（2026 财年）
+    due_date: "2026-12-02"
+    why_matters: 验证手续费驱动的超预期能否延续到全年，以及个人银行信贷与拨备走向
+    if_bull: 个人银行回暖 + 拨备稳定 + 回购兑现 → 估值消化后重估
+    if_bear: 拨备继续抬升 + 资本市场收入回落 → 估值业绩双压，归档 Dead
+  - event_name: 加拿大央行议息会议
+    due_date: "2026-10-28"
+    why_matters: 利率路径影响 NIM 与房贷续约压力；当前维持 2.25%
+    if_bull: 维持利率 + 软着陆措辞
+    if_bear: 暗示再度宽松（衰退信号）或关税冲击措辞升级
+
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

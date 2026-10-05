@@ -1,0 +1,114 @@
+schema_v: 1
+id: us-rates-repricing
+week: 2026-W40
+title: 长端利率重估：10Y 站上 5%
+status: New
+status_note: 本周新进入：10Y 触及 5.29% 创 2002 年来新高，长端抛售「自成逻辑」。
+conviction: High
+horizon: Tactical 2-8w
+created_at: 2026-09-30
+updated_at: 2026-10-02
+data_quality: production
+
+body_text: |
+  9 月 4 日以来 10Y 从 4.78% 一路上行至 5.29%——2002 年以来首次。这轮抛售分两段：前半段由 2 年期领涨
+  （Warsh 执掌的 Fed 9 月 16 日加息 25bp，点阵图转鹰），后半段长端自己接力，即便 8 月 PCE 回落至 3.4%
+  也未能阻止——说明驱动已从政策预期切换到期限溢价与供给。周五非农仅 +2.9 万（预期 +8.5 万），
+  10 月加息概率从 64% 砸到 25% 以下，但 10Y 盘中先跌后涨收于 5.28%：弱就业也压不住长端，
+  这是本 Theme 最强的确认信号。So What：交易表达是做空久期（TLT 本周 -1.9%、YTD -8.7%），
+  高利率同时压制利率敏感板块（公用事业 XLU 1M -6%），并抬高所有风险资产的贴现率。
+  What Next：10 月 27-28 日 FOMC 是关键验证点；高盛已把下一次加息预期推到 12 月，
+  若长端在暂停加息下仍创新高，「higher-for-longer + 期限溢价」叙事将完全确立。
+
+explainer: |
+  期限溢价（term premium）= 投资者持有长期债券要求的额外补偿，与政策预期无关，
+  通常由供给（发债量）、通胀不确定性与海外需求决定。本页 TLT 收益为 Price Return 口径；
+  该 Theme 的盈利表达是做空 TLT 或缩短组合久期，表中展示的是 TLT 自身表现。
+
+performance:
+  proxy_ticker: TLT
+  proxy_price: 77.48
+  currency: USD
+  return_type: price
+  ret_1w: -1.93
+  ret_1m: -5.07
+  ret_ytd: -8.74
+  benchmark_ticker: "^GSPC"
+  benchmark_name: S&P 500
+  benchmark_ret_1w: -0.27
+  benchmark_ret_1m: 0.73
+  benchmark_ret_ytd: 11.98
+  excess_1w: -1.7
+  excess_1m: -5.8
+  excess_ytd: -20.7
+  as_of_utc: "2026-10-02T20:00:00Z"
+  source: Yahoo Finance
+  benchmark_rationale: 利率 Theme 无直接指数基准，列 SPX 以呈现「股债跷跷板」的相对表现；交易方向为空久期。
+
+series:
+  - { date: 2026-08-07, proxy: 100.0, benchmark: 100.0 }
+  - { date: 2026-08-14, proxy: 99.13, benchmark: 100.36 }
+  - { date: 2026-08-21, proxy: 99.14, benchmark: 98.93 }
+  - { date: 2026-08-28, proxy: 100.14, benchmark: 99.41 }
+  - { date: 2026-09-04, proxy: 99.72, benchmark: 99.5 }
+  - { date: 2026-09-11, proxy: 98.09, benchmark: 98.7 }
+  - { date: 2026-09-18, proxy: 98.55, benchmark: 98.62 }
+  - { date: 2026-09-25, proxy: 96.21, benchmark: 99.82 }
+  - { date: 2026-10-02, proxy: 94.36, benchmark: 99.55 }
+
+proxies:
+  - ticker: TLT
+    name: iShares 20+ Year Treasury Bond ETF
+    type: ETF
+    region: US
+    expense: 0.15%
+    liquidity_note: AUM ~USD 40B+，期权市场极深，做空/对冲工具完备
+    why_represents: 长端美债最标准的可交易表达，本 Theme 方向为空
+    tracking_gap: 含票息再投资，Price Return 口径低估持有损失；久期 ~17 年波动大
+
+events:
+  - event_time_utc: "2026-09-16T18:00:00Z"
+    title: FOMC 加息 25bp（Warsh 任内），IORB 上调至 3.90%，9 月 30 日生效
+    source: LexRegPulse
+    url: https://lexregpulse.com/brief/2026-10-01
+    type: policy
+  - event_time_utc: "2026-09-23T20:00:00Z"
+    title: 10Y 突破 5.01%，道指单日跌 918 点，美股全面承压
+    source: MoneyPuran
+    url: https://moneypuran.com/us-stocks-fall-yield-crosses-5-percent/
+    type: macro
+  - event_time_utc: "2026-10-01T10:29:00Z"
+    title: 10Y 触及 5.29%，为 2002 年以来最高；高盛将下次加息预期推迟至 12 月
+    source: LexRegPulse
+    url: https://lexregpulse.com/brief/2026-10-01
+    type: macro
+  - event_time_utc: "2026-10-02T12:30:00Z"
+    title: 9 月非农 +2.9 万远低于预期 +8.5 万，失业率 4.2%，10 月加息概率降至 25% 以下，长端先跌后涨
+    source: Yahoo Finance
+    url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: macro
+
+depends_on:
+  - event_name: FOMC 议息会议
+    due_date: "2026-10-28T18:00:00Z"
+    why_matters: 验证「暂停加息但长端继续走熊」是否成立；声明对期限溢价/缩表的措辞是关键
+    if_bull: 暂停加息 + 承认通胀回落，但长端仍高位 → 期限溢价叙事确立
+    if_bear: 鸽派指引 + 长端回落至 5% 下方 → Theme 降级观察
+  - event_name: 9 月 CPI
+    due_date: "2026-10-14T12:30:00Z"
+    why_matters: 8 月 PCE 3.4% 有口径调整争议，CPI 是更干净的通胀读数
+    if_bull: 核心 CPI 环比 ≤0.2%，长端企稳 → 重估暂停
+    if_bear: 通胀反弹 → 抛售加剧，Theme 加强
+  - event_name: 12 月 FOMC（高盛加息预期时点）
+    due_date: "2026-12-16"
+    why_matters: 若 12 月真加息，higher-for-longer 完全兑现
+    if_bull: 不加息且长端回落 → Theme 逐步退出
+    if_bear: 加息 → Theme 升级为 Cyclical
+
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: true
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 5
