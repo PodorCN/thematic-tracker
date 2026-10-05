@@ -1,4 +1,4 @@
-# Weekly Commentary 来源库（Archive 页用）— 2026-W40 实扫
+# Weekly Commentary source library (for the Archive page) — 2026-W40, actually scanned
 week: 2026-W40
 data_quality: production
 
@@ -6,35 +6,35 @@ sources:
   - firm: Bloomberg
     title: Stocks Climb as Calm Prevails Before Payrolls — Markets Wrap
     url: https://www.bloomberg.com/news/articles/2026-10-01/asian-stocks-to-fall-on-oil-rally-bonds-in-focus-markets-wrap
-    key_takeaway: 就业放缓推升降息暂停预期，NDX 创纪录；G7 示意释放应急柴油与原油储备，10 月加息概率降至 25% 以下
+    key_takeaway: Softening jobs data lifted pause expectations; NDX hit a record; G7 signaled emergency diesel and crude releases while October hike odds fell below 25%
     related_themes: [us-rates-repricing, ai-capex-supercycle, oil-war-premium]
   - firm: Yahoo Finance
     title: Stock Market Today — September Jobs Report Live Coverage
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
-    key_takeaway: 非农 +2.9 万 vs 预期 +8.5 万，失业率 4.2%；NVDA 盘中新高 $237.87；白宫经济顾问委员会主席称市场预期年内不再加息
+    key_takeaway: Payrolls +29k vs +85k expected, unemployment 4.2%; NVDA intraday record $237.87; White House economists say markets expect no more hikes this year
     related_themes: [us-rates-repricing, ai-capex-supercycle]
   - firm: Citadel Securities
     title: October — The Q4 Reload
     url: https://www.citadelsecurities.com/news-and-insights/global-market-intelligence/october-the-q4-reload/
-    key_takeaway: NDX 前瞻市盈率 21.7x、较高点回落 14%；中期选举年 Q4 季节性强（10 月 NDX 历史均值 +3.9%）
+    key_takeaway: NDX forward P/E 21.7x, down 14% from the high; midterm-year Q4 seasonality is strong (October NDX averages +3.9% historically)
     related_themes: [ai-capex-supercycle]
   - firm: Rigzone
     title: Commodity Prices — Oil Weekly Digest
     url: https://www.rigzone.com/news/topic/commodity_prices/
-    key_takeaway: 高盛警告若中东航运袭击升级油价可看 $120；美伊冲突反复推动油价单周 +9.7%
+    key_takeaway: Goldman warns oil could see $120 if Middle East shipping attacks escalate; US-Iran tensions drove oil up 9.7% on the week
     related_themes: [oil-war-premium]
   - firm: Commodity Board
     title: Crude Oil Market Update — Backwardation, Price Correction & Diesel Weakness
     url: https://commodity-board.com/crude-oil-backwardation-steepens-as-prices-correct-from-geopolitical-highs
-    key_takeaway: 曲线深度 backwardation、库存低于五年均值；沙特出口部分恢复，需求预测被 OPEC/IEA 下修
+    key_takeaway: Curve deeply backwardated with stocks below the five-year average; Saudi exports partly restored while OPEC/IEA cut demand forecasts
     related_themes: [oil-war-premium]
   - firm: FundMore
     title: Every Canadian Bank Beat Q3 2026 Estimates — So Why Is Personal Banking the Story?
     url: https://blog.fundmore.ai/canadian-banks-q3-2026-personal-banking
-    key_takeaway: 六大行全超预期但估值为 2010 年来最贵；超预期靠财富/资本市场，个人银行偏弱，机构开始减持
+    key_takeaway: All Big Six beat but valuations are the richest since 2010; beats came from wealth/capital markets while personal banking lagged, and institutions started trimming
     related_themes: [ca-bank-earnings-momentum]
   - firm: LexRegPulse
     title: Daily Brief — 10-Year Treasury Yield Reaches Highest Since 2002
     url: https://lexregpulse.com/brief/2026-10-01
-    key_takeaway: 10Y 5.29%；债券抛售「自成逻辑」；Fed 9 月加息正式生效（IORB 3.90%）；高盛推后下次加息至 12 月
+    key_takeaway: 10Y at 5.29%; the bond selloff has "a logic of its own"; the Fed's September hike took effect (IORB 3.90%); Goldman pushed its next-hike call to December
     related_themes: [us-rates-repricing]

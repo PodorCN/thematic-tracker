@@ -1,0 +1,837 @@
+{
+  "snapshot_date": "2026-10-05",
+  "week": "2026-W41",
+  "themes": [
+    {
+      "schema_v": 1,
+      "id": "ai-capex-supercycle",
+      "week": "2026-W41",
+      "title": "AI Capex Supercycle",
+      "status": "Continuing",
+      "status_note": "Continuing: QQQ +0.9% Monday to $756.20; Nasdaq Composite record 27,477 on Nvidia/Microsoft leadership into earnings season.",
+      "conviction": "High",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-07-06T00:00:00.000Z",
+      "updated_at": "2026-10-05T00:00:00.000Z",
+      "data_quality": "production",
+      "body_text": "The AI capex chain opened the new week with confirmation: QQQ gained 0.9% Monday to close at $756.20 while the\nNasdaq Composite set its first record since Sep 22 at 27,477 (+1.05%), led by Nvidia and Microsoft as oil's\npullback cleared the tape for earnings season. The setup is unchanged from Friday — hyperscalers funding\nroughly $200B of 2026 data-center build with debt (Barclays), NDX forward multiples digested to 21.7x (down\n14% from the high), and October hike odds below 25% after the +29k payrolls shock. Breadth is the honest\ncaveat: the S&P added only 0.66% and sits 0.3% below its August record while the Nasdaq sprints, so this is a\nmega-cap-tech move, not a market-wide one. So what: the \"verify the revenue\" phase continues — own links with\norders and backlog, not multiple-expansion stories. What next: the earnings runway starts with hyperscaler Q3\ncapex guidance from late October (master switch for the chain) and NVDA's own print on Nov 25; any guidance\ncut reprices the whole chain at once.\n",
+      "explainer": "Hyperscaler = cloud vendors building their own hyperscale data centers. NDX 21.7x is forward P/E\n(Citadel Securities). Returns are Price Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close,\n1M vs Sep 4 adjusted close, YTD vs Dec 30, 2025 adjusted close. QQQ tracks the Nasdaq-100 excluding\ndividends.\n",
+      "performance": {
+        "proxy_ticker": "QQQ",
+        "proxy_price": 756.2,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 2.7,
+        "ret_1m": 5.3,
+        "ret_ytd": 22.5,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 1.2,
+        "benchmark_ret_1m": 0.7,
+        "benchmark_ret_ytd": 12.7,
+        "excess_1w": 1.5,
+        "excess_1m": 4.6,
+        "excess_ytd": 9.8,
+        "as_of_utc": "2026-10-05T20:00:00Z",
+        "source": "Yahoo Finance",
+        "benchmark_rationale": "For a tech theme, QQQ versus SPX frames relative strength against the broad market; that spread is the excess series."
+      },
+      "series": [
+        {
+          "date": "2026-08-07T00:00:00.000Z",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-14T00:00:00.000Z",
+          "proxy": 101.11,
+          "benchmark": 100.36
+        },
+        {
+          "date": "2026-08-21T00:00:00.000Z",
+          "proxy": 98.67,
+          "benchmark": 98.93
+        },
+        {
+          "date": "2026-08-28T00:00:00.000Z",
+          "proxy": 99.09,
+          "benchmark": 99.41
+        },
+        {
+          "date": "2026-09-04T00:00:00.000Z",
+          "proxy": 99.44,
+          "benchmark": 99.5
+        },
+        {
+          "date": "2026-09-11T00:00:00.000Z",
+          "proxy": 98.87,
+          "benchmark": 98.7
+        },
+        {
+          "date": "2026-09-18T00:00:00.000Z",
+          "proxy": 99.78,
+          "benchmark": 98.62
+        },
+        {
+          "date": "2026-09-25T00:00:00.000Z",
+          "proxy": 103.08,
+          "benchmark": 99.82
+        },
+        {
+          "date": "2026-10-02T00:00:00.000Z",
+          "proxy": 103.78,
+          "benchmark": 99.55
+        },
+        {
+          "date": "2026-10-05T00:00:00.000Z",
+          "proxy": 104.7,
+          "benchmark": 100.21
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.20%",
+          "liquidity_note": "One of the world's most liquid ETFs with the deepest options chain",
+          "why_represents": "Direct NDX tracker with heavy AI weight (NVDA/MSFT/AMZN/META)",
+          "tracking_gap": "Holds non-AI consumer and healthcare names, so less pure than SOXX; equal-weight alternatives change the risk exposure"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-28T00:00:00Z",
+          "title": "Barclays estimates hyperscalers will issue roughly $200B in debt this year for data center buildouts",
+          "source": "The Industry Spread",
+          "url": "https://theindustryspread.com/nasdaq-100-capped-32500-q3-2026-ai-capex/",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-02T00:00:00Z",
+          "title": "Citadel Securities: NDX forward P/E 21.7x, down 14% from the 2026 high; Q4 seasonality strong in a midterm year",
+          "source": "Citadel Securities",
+          "url": "https://www.citadelsecurities.com/news-and-insights/global-market-intelligence/october-the-q4-reload/",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-02T18:10:00Z",
+          "title": "NVDA hits an intraday record $237.87 for a $5.72T market cap; Nasdaq 100 closes at a record",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html",
+          "type": "earnings"
+        },
+        {
+          "event_time_utc": "2026-10-02T12:42:00Z",
+          "title": "September payrolls shock at +29k; October hike odds collapse; tech leads the rally",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-05T20:00:00Z",
+          "title": "Nasdaq record close 27,477 (+1.05%) on Nvidia/Microsoft; S&P +0.66% to 7,774, within 0.3% of its August high",
+          "source": "Reuters",
+          "url": "https://www.lse.co.uk/news/us-stocks-nasdaq-notches-record-high-close-as-investors-focus-on-earnings-y6ymqkwsz37ssyk.html",
+          "type": "macro"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "Hyperscaler Q3 earnings (capex guidance)",
+          "due_date": "2026-10-28",
+          "why_matters": "Capex guidance is the master switch for the whole AI chain; under debt-funded buildouts a cut lands harder",
+          "if_bull": "Guidance raised or held, with explicit data-center shortage disclosure",
+          "if_bear": "Any capex cut or ROI-pressure hint → chain repricing, theme downgraded"
+        },
+        {
+          "event_name": "NVDA quarterly earnings",
+          "due_date": "2026-11-25",
+          "why_matters": "Over 32% of NDX's YTD gain — the cycle's most direct thermometer",
+          "if_bull": "Data-center revenue guidance beats",
+          "if_bear": "Guidance growth slows → valuation-plus-earnings double hit"
+        },
+        {
+          "event_name": "December FOMC",
+          "due_date": "2026-12-16",
+          "why_matters": "If Goldman's December hike materializes, discount-rate pressure returns to high-multiple segments",
+          "if_bull": "Pause → multiple pressure eases",
+          "if_bear": "Hike → the 21.7x multiple comes under pressure"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": true,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 5
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "ca-bank-earnings-momentum",
+      "week": "2026-W41",
+      "title": "Canadian Bank Earnings Momentum",
+      "status": "Fading",
+      "status_note": "Still Fading: ZEB -0.5% Monday to C$73.04 against a flat TSX; December Q4 results and the Oct 28 BoC decision are the next checkpoints.",
+      "conviction": "Med",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-10-05T00:00:00.000Z",
+      "data_quality": "production",
+      "body_text": "Monday added another small exhibit to the downgrade file: ZEB slipped 0.5% to C$73.04 while the TSX finished\nessentially flat at 35,518.55 — banks underperforming the home market for a second straight week as the\n\"richest valuations since 2010\" overhang meets institutional trimming that began in September. Nothing in the\nQ3 fundamentals changed — record Big Six prints (RBC $6B net income, TD's $13B+ return pipeline) stand — but\nthe mix problem is now consensus: fee and trading income carried the beats while personal-banking credit\nstayed soft, and RBC's Q3 provisions (+14%) are the line to watch into Q4. With USD/CAD at 1.4250 near a\n52-week high, cross-border and tariff headlines add one more overhang for December. So what: the call stays\n\"hold and watch,\" not \"buy the dip\" — the excess-return phase (+15.7pp YTD) is history until Q4 proves the\ncredit cycle clean. What next: the Oct 28 BoC decision (NIM and mortgage-renewal read) comes first, then\nearly-December Q4 results must show personal-banking revival with provisions stable; further provision builds\nplus fading capital-markets income would push this file from Fading to Dead.\n",
+      "explainer": "CET1 (common equity tier 1 ratio): the higher it is, the more excess capital is available for buybacks and\ndividends. TD targets 13% by 2027; at 14.3% today that implies $13B+ of potential returns. Returns are Price\nReturn on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs Dec 30,\n2025 adjusted close. ZEB is the equal-weight Big Six ETF; with bank dividend yields around 2.8-3%, Total\nReturn would read higher.\n",
+      "performance": {
+        "proxy_ticker": "ZEB.TO",
+        "proxy_price": 73.04,
+        "currency": "CAD",
+        "return_type": "price",
+        "ret_1w": -2.5,
+        "ret_1m": -3,
+        "ret_ytd": 27.2,
+        "benchmark_ticker": "^GSPTSE",
+        "benchmark_name": "S&P/TSX Composite",
+        "benchmark_ret_1w": 0.1,
+        "benchmark_ret_1m": -2.7,
+        "benchmark_ret_ytd": 11.5,
+        "excess_1w": -2.6,
+        "excess_1m": -0.3,
+        "excess_ytd": 15.7,
+        "as_of_utc": "2026-10-05T20:00:00Z",
+        "source": "Yahoo Finance",
+        "benchmark_rationale": "A domestic Canadian financials theme benchmarked against the home-market S&P/TSX Composite (financials are roughly one-third of index weight)."
+      },
+      "series": [
+        {
+          "date": "2026-08-07T00:00:00.000Z",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-14T00:00:00.000Z",
+          "proxy": 102.27,
+          "benchmark": 100.96
+        },
+        {
+          "date": "2026-08-21T00:00:00.000Z",
+          "proxy": 96,
+          "benchmark": 100.66
+        },
+        {
+          "date": "2026-08-28T00:00:00.000Z",
+          "proxy": 97.35,
+          "benchmark": 100.47
+        },
+        {
+          "date": "2026-09-04T00:00:00.000Z",
+          "proxy": 98.79,
+          "benchmark": 100.36
+        },
+        {
+          "date": "2026-09-11T00:00:00.000Z",
+          "proxy": 97.62,
+          "benchmark": 98.12
+        },
+        {
+          "date": "2026-09-18T00:00:00.000Z",
+          "proxy": 98.54,
+          "benchmark": 98.42
+        },
+        {
+          "date": "2026-09-25T00:00:00.000Z",
+          "proxy": 98.48,
+          "benchmark": 98.4
+        },
+        {
+          "date": "2026-10-02T00:00:00.000Z",
+          "proxy": 96.3,
+          "benchmark": 97.59
+        },
+        {
+          "date": "2026-10-05T00:00:00.000Z",
+          "proxy": 95.8,
+          "benchmark": 97.63
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "ZEB.TO",
+          "name": "BMO Equal Weight Banks Index ETF",
+          "type": "ETF",
+          "region": "Canada",
+          "expense": "0.28%",
+          "liquidity_note": "Canada's most active bank-sector ETF with tight spreads",
+          "why_represents": "Equal-weight Big Six coverage matching sector-wide earnings momentum",
+          "tracking_gap": "Equal weighting dilutes RY/TD; ex-dividends, and high bank yields make the series understate returns"
+        },
+        {
+          "ticker": "XFN.TO",
+          "name": "iShares S&P/TSX Capped Financials ETF",
+          "type": "ETF",
+          "region": "Canada",
+          "expense": "0.61%",
+          "liquidity_note": "Liquid",
+          "why_represents": "Cap-weighted full financials coverage (including insurers and asset managers)",
+          "tracking_gap": "Non-bank financials dilute bank purity; fee is on the high side"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-08-27T10:00:00Z",
+          "title": "RBC Q3 record $6B net income (+11% YoY), ROE 17.9%, provisions $1B (+14%)",
+          "source": "Newswire.ca",
+          "url": "https://www.newswire.ca/news-releases/royal-bank-of-canada-reports-third-quarter-2026-results-873288683.html",
+          "type": "earnings"
+        },
+        {
+          "event_time_utc": "2026-08-27T10:30:00Z",
+          "title": "TD Q3 records, 16% ROE, wholesale banking net income +87%, hints at $13B+ returns by 2027",
+          "source": "TradingView / PRNewswire",
+          "url": "https://www.tradingview.com/news/prnewswire:98fa847cae970:0-td-bank-group-reports-third-quarter-2026-results/",
+          "type": "earnings"
+        },
+        {
+          "event_time_utc": "2026-09-03T00:00:00Z",
+          "title": "All Big Six beat Q3, but sector forward valuation is the richest since 2010; beats driven by fee businesses while personal banking stays soft",
+          "source": "FundMore Weekly",
+          "url": "https://blog.fundmore.ai/canadian-banks-q3-2026-personal-banking",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-09-10T00:00:00Z",
+          "title": "Bank of Canada holds the policy rate at 2.25%",
+          "source": "Kalkine Canada",
+          "url": "https://kalkine.ca/news/financial/bank-of-canada-holds-at-225-is-royal-bank-of-canada-a-top-canadian-bank-stock-for-september-2026",
+          "type": "policy"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "RY / TD and peers' Q4 results (FY2026)",
+          "due_date": "2026-12-02",
+          "why_matters": "Verifies whether fee-driven beats extend into the full year, and where personal-banking credit and provisions head",
+          "if_bull": "Personal banking revives + provisions stable + buybacks delivered → re-rating after valuation digestion",
+          "if_bear": "Provisions keep rising + capital-markets income fades → valuation and earnings pressured together, archived as Dead"
+        },
+        {
+          "event_name": "Bank of Canada rate decision",
+          "due_date": "2026-10-28",
+          "why_matters": "The rate path drives NIM and mortgage-renewal pressure; currently on hold at 2.25%",
+          "if_bull": "Hold + soft-landing language",
+          "if_bear": "Signals further easing (a recession signal) or escalated tariff-impact language"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "oil-war-premium",
+      "week": "2026-W41",
+      "title": "Middle East Supply Shock: The Oil War Premium",
+      "status": "Continuing",
+      "status_note": "Continuing: OPEC+ held November quotas steady; crude fell ~2% on reserve releases but XLE still gained 1% — the premium is compressing, not collapsing.",
+      "conviction": "High",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-01T00:00:00.000Z",
+      "updated_at": "2026-10-05T00:00:00.000Z",
+      "data_quality": "production",
+      "body_text": "Sunday's OPEC+ verdict landed exactly as the cautious expected: the seven core producers (Saudi Arabia, Russia,\nIraq, Kuwait, Kazakhstan, Algeria, Oman) held November quotas unchanged, with the next review on Nov 1 and a\nfull ministerial on Nov 29. With the Iran war still shutting in large volumes, most of 2026's paper output\nincreases never reached the market — the group concedes meaningful changes are unlikely before 2027. Monday's\nmarket read the decision as neutral-to-soft: Brent fell 1.9% to $100.32 and WTI settled near $89.30 (-2.0%) as\nG7 reserve-release signals and steady quotas combined, while energy equities diverged upward — XLE gained 1.0%\nto $63.45, extending its YTD run to +43.9% (+31.2pp over SPX). So what: the premium is compressing on diplomacy\nand barrels, not collapsing on fundamentals — physical tightness (sub-five-year-average stocks, deep\nbackwardation) still underwrites $90+ WTI. Keep exposure in upstream-heavy equities, not futures. What next:\nWednesday's EIA stocks print tests the physical case; Nov 1 decides December quotas; any US-Iran framework\nheadline remains the fastest way to lose the premium.\n",
+      "explainer": "Backwardation = front-month contracts priced above deferred months, signaling physical tightness. War premium =\nthe geopolitics-driven slice of the price; history shows it unwinds fast once supply recovers. Returns are\nPrice Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs\nDec 30, 2025 adjusted close. XLE is the US energy-sector ETF (about 91% oil & gas companies), not a crude\ntracker.\n",
+      "performance": {
+        "proxy_ticker": "XLE",
+        "proxy_price": 63.45,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 2.2,
+        "ret_1m": -0.4,
+        "ret_ytd": 43.9,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 1.2,
+        "benchmark_ret_1m": 0.7,
+        "benchmark_ret_ytd": 12.7,
+        "excess_1w": 1,
+        "excess_1m": -1.1,
+        "excess_ytd": 31.2,
+        "as_of_utc": "2026-10-05T20:00:00Z",
+        "source": "Yahoo Finance",
+        "benchmark_rationale": "A US equity-sector theme benchmarked against SPX; XLE is the most liquid energy-sector ETF."
+      },
+      "series": [
+        {
+          "date": "2026-08-07T00:00:00.000Z",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-14T00:00:00.000Z",
+          "proxy": 107.67,
+          "benchmark": 100.36
+        },
+        {
+          "date": "2026-08-21T00:00:00.000Z",
+          "proxy": 110.68,
+          "benchmark": 98.93
+        },
+        {
+          "date": "2026-08-28T00:00:00.000Z",
+          "proxy": 109.01,
+          "benchmark": 99.41
+        },
+        {
+          "date": "2026-09-04T00:00:00.000Z",
+          "proxy": 111.41,
+          "benchmark": 99.5
+        },
+        {
+          "date": "2026-09-11T00:00:00.000Z",
+          "proxy": 113.29,
+          "benchmark": 98.7
+        },
+        {
+          "date": "2026-09-18T00:00:00.000Z",
+          "proxy": 111.84,
+          "benchmark": 98.62
+        },
+        {
+          "date": "2026-09-25T00:00:00.000Z",
+          "proxy": 108.54,
+          "benchmark": 99.82
+        },
+        {
+          "date": "2026-10-02T00:00:00.000Z",
+          "proxy": 109.9,
+          "benchmark": 99.55
+        },
+        {
+          "date": "2026-10-05T00:00:00.000Z",
+          "proxy": 111,
+          "benchmark": 100.21
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "XLE",
+          "name": "Energy Select Sector SPDR",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.09%",
+          "liquidity_note": "AUM on the order of USD 30B, tens of millions of shares a day, deep options chain",
+          "why_represents": "91% held in oil & gas companies that directly benefit from high-crude cash-flow upgrades",
+          "tracking_gap": "Majors hedge output and keep capex discipline — no 1:1 oil tracking; low refiner weight"
+        },
+        {
+          "ticker": "CL=F",
+          "name": "NYMEX WTI front-month futures",
+          "type": "Index",
+          "region": "US",
+          "liquidity_note": "The world's deepest crude contract",
+          "why_represents": "The purest expression of the war premium",
+          "tracking_gap": "Roll costs are positive under backwardation but extremely volatile — unsuitable for most portfolios to hold directly"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-08T22:50:00Z",
+          "title": "US forces sink five Iranian tankers; WTI breaks above $100",
+          "source": "OilPrice",
+          "url": "https://oilprice.com/futures/wti-midland",
+          "type": "geopolitics"
+        },
+        {
+          "event_time_utc": "2026-09-28T00:00:00Z",
+          "title": "Curve backwardation deepens; US crude stocks below the five-year average; Saudi exports only partly restored",
+          "source": "Commodity Board",
+          "url": "https://commodity-board.com/crude-oil-backwardation-steepens-as-prices-correct-from-geopolitical-highs",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-01T22:15:00Z",
+          "title": "G7 signals emergency diesel and crude reserve releases; retreating oil helps US stocks close higher",
+          "source": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-10-01/asian-stocks-to-fall-on-oil-rally-bonds-in-focus-markets-wrap",
+          "type": "policy"
+        },
+        {
+          "event_time_utc": "2026-10-02T20:02:00Z",
+          "title": "Middle East escalation risk persists; oil ends the week higher with Brent around $102",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html",
+          "type": "geopolitics"
+        },
+        {
+          "event_time_utc": "2026-10-04T11:42:00Z",
+          "title": "OPEC+ seven hold November quotas unchanged; next review Nov 1, full ministerial Nov 29",
+          "source": "OPEC",
+          "url": "https://www.opec.org/pr-detail/616-4-october-2026.html",
+          "type": "policy"
+        },
+        {
+          "event_time_utc": "2026-10-05T20:00:00Z",
+          "title": "Brent falls 1.9% to $100.32 and WTI settles near $89.30 on steady quotas plus reserve releases; XLE gains 1.0%",
+          "source": "Associated Press",
+          "url": "https://www.stl.news/nasdaq-hits-record-as-tech-leads-wall-street-higher/",
+          "type": "macro"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "OPEC+ November 1 meeting (December quotas)",
+          "due_date": "2026-11-01",
+          "why_matters": "Decides December quotas and advances the capacity audit that will set 2027 output shares",
+          "if_bull": "Quotas held again with conflict volumes still shut in → premium floor holds",
+          "if_bear": "Path to restoring halted output opens → premium unwinds, moved to watchlist"
+        },
+        {
+          "event_name": "US-Iran diplomacy",
+          "due_date": "2026-10-15",
+          "why_matters": "Talks-progress headlines repeatedly triggered single-day plunges — the biggest contrarian risk",
+          "if_bull": "Talks collapse and military buildup grows → Goldman's $120 scenario",
+          "if_bear": "Framework deal reached → war premium unwinds fast, theme archived"
+        },
+        {
+          "event_name": "Weekly EIA stocks report",
+          "due_date": "2026-10-07T14:30:00Z",
+          "why_matters": "Below-average stocks are the core evidence of physical tightness",
+          "if_bull": "Further draws or smaller-than-expected builds",
+          "if_bear": "Consecutive large builds → physical narrative weakens"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": true,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 5
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "us-rates-repricing",
+      "week": "2026-W41",
+      "title": "Long-End Repricing: 10Y Above 5%",
+      "status": "Continuing",
+      "status_note": "Upgraded to Continuing: the 10Y closed Monday at a new 5.31% high even as the Nasdaq set a record — weak data cannot rally bonds, and strong data cannot either.",
+      "conviction": "High",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-30T00:00:00.000Z",
+      "updated_at": "2026-10-05T00:00:00.000Z",
+      "data_quality": "production",
+      "body_text": "The long end keeps writing its own script. Monday's tape was the cleanest test yet: the Nasdaq closed at a\nrecord 27,477 (+1.05%) and the S&P added 0.66% to 7,774 — yet the 10Y still pushed to a new closing high of\n5.31%, up from 5.28% Friday. Friday had already delivered the mirror image: payrolls of just +29k (vs +85k\nexpected) crushed October hike odds below 25%, and the 10Y still finished at 5.28%. Neither weak growth nor\nstrong risk appetite can pull yields down; the driver is term premium and supply, not policy expectations.\nSo what: the trade expression stays short duration — TLT fell another 0.5% Monday to $77.11 and is now -9.2%\nYTD, lagging SPX by nearly 22 points. The stock-bond seesaw is broken in both directions, which keeps discount\nrates elevated across all risk assets even on record-equity days. What next: September CPI on Oct 14 is the\nlast clean inflation read before the Oct 27-28 FOMC; a soft core print that still fails to dent 5%+ yields\nwould cement the term-premium regime, while any dovish surprise plus a break back below 5% puts this theme on\nwatch.\n",
+      "explainer": "Term premium = the extra compensation investors demand for holding long bonds, unrelated to policy\nexpectations; typically driven by supply (issuance), inflation uncertainty, and foreign demand. Returns are\nPrice Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs\nDec 30, 2025 adjusted close. The way to trade this theme is short TLT or shortening portfolio duration —\nthe table shows TLT itself.\n",
+      "performance": {
+        "proxy_ticker": "TLT",
+        "proxy_price": 77.11,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": -1.9,
+        "ret_1m": -5.8,
+        "ret_ytd": -9.2,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 1.2,
+        "benchmark_ret_1m": 0.7,
+        "benchmark_ret_ytd": 12.7,
+        "excess_1w": -3.1,
+        "excess_1m": -6.5,
+        "excess_ytd": -21.9,
+        "as_of_utc": "2026-10-05T20:00:00Z",
+        "source": "Yahoo Finance",
+        "benchmark_rationale": "A rates theme has no direct index benchmark; SPX is shown to frame the stock-bond seesaw in relative terms. Trade direction is short duration."
+      },
+      "series": [
+        {
+          "date": "2026-08-07T00:00:00.000Z",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-14T00:00:00.000Z",
+          "proxy": 99.13,
+          "benchmark": 100.36
+        },
+        {
+          "date": "2026-08-21T00:00:00.000Z",
+          "proxy": 99.14,
+          "benchmark": 98.93
+        },
+        {
+          "date": "2026-08-28T00:00:00.000Z",
+          "proxy": 100.14,
+          "benchmark": 99.41
+        },
+        {
+          "date": "2026-09-04T00:00:00.000Z",
+          "proxy": 99.72,
+          "benchmark": 99.5
+        },
+        {
+          "date": "2026-09-11T00:00:00.000Z",
+          "proxy": 98.09,
+          "benchmark": 98.7
+        },
+        {
+          "date": "2026-09-18T00:00:00.000Z",
+          "proxy": 98.55,
+          "benchmark": 98.62
+        },
+        {
+          "date": "2026-09-25T00:00:00.000Z",
+          "proxy": 96.21,
+          "benchmark": 99.82
+        },
+        {
+          "date": "2026-10-02T00:00:00.000Z",
+          "proxy": 94.36,
+          "benchmark": 99.55
+        },
+        {
+          "date": "2026-10-05T00:00:00.000Z",
+          "proxy": 93.91,
+          "benchmark": 100.21
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "TLT",
+          "name": "iShares 20+ Year Treasury Bond ETF",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.15%",
+          "liquidity_note": "AUM around USD 40B with the deepest options market — a complete toolkit for shorting and hedging",
+          "why_represents": "The standard tradable expression of the long US bond; this theme's direction is short",
+          "tracking_gap": "Includes reinvested coupons, so Price Return understates holding losses; ~17-year duration means high volatility"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-16T18:00:00Z",
+          "title": "FOMC hikes 25bp under Chair Warsh; IORB raised to 3.90%, effective Sep 30",
+          "source": "LexRegPulse",
+          "url": "https://lexregpulse.com/brief/2026-10-01",
+          "type": "policy"
+        },
+        {
+          "event_time_utc": "2026-09-23T20:00:00Z",
+          "title": "10Y breaks above 5.01%; Dow drops 918 points in a broad US selloff",
+          "source": "MoneyPuran",
+          "url": "https://moneypuran.com/us-stocks-fall-yield-crosses-5-percent/",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-01T10:29:00Z",
+          "title": "10Y touches 5.29%, highest since 2002; Goldman pushes its next-hike call to December",
+          "source": "LexRegPulse",
+          "url": "https://lexregpulse.com/brief/2026-10-01",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-02T12:30:00Z",
+          "title": "September payrolls +29k, far below +85k expected; unemployment 4.2%; October hike odds fall below 25% while the long end dips then rallies",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html",
+          "type": "macro"
+        },
+        {
+          "event_time_utc": "2026-10-05T20:00:00Z",
+          "title": "10Y closes at a new 5.31% high even as the Nasdaq sets a record; TLT falls 0.5% on the day",
+          "source": "Associated Press",
+          "url": "https://www.stl.news/nasdaq-hits-record-as-tech-leads-wall-street-higher/",
+          "type": "macro"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC meeting",
+          "due_date": "2026-10-28T18:00:00Z",
+          "why_matters": "Tests whether \"hikes paused but the long end keeps selling off\" holds; statement language on term premium and balance-sheet runoff is key",
+          "if_bull": "Hikes paused + disinflation acknowledged, yet the long end stays elevated → term-premium narrative confirmed",
+          "if_bear": "Dovish guidance + long end back below 5% → theme moved to watchlist"
+        },
+        {
+          "event_name": "September CPI",
+          "due_date": "2026-10-14T12:30:00Z",
+          "why_matters": "August PCE at 3.4% is clouded by methodology tweaks; CPI is the cleaner inflation read",
+          "if_bull": "Core CPI m/m at or below 0.2% and the long end stabilizes → repricing pauses",
+          "if_bear": "Inflation rebounds → selloff deepens, theme strengthens"
+        },
+        {
+          "event_name": "December FOMC (Goldman's hike call)",
+          "due_date": "2026-12-16",
+          "why_matters": "An actual December hike would fully deliver higher-for-longer",
+          "if_bull": "No hike and the long end retreats → theme gradually exits",
+          "if_bear": "Hike → theme upgraded to Cyclical"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": true,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 5
+      }
+    }
+  ],
+  "market_snapshot": {
+    "week": "2026-W41",
+    "as_of_utc": "2026-10-05T20:00:00Z",
+    "data_quality": "production",
+    "regime": {
+      "stance": "Risk-on (fragile)",
+      "oneliner": "Nasdaq record 27,477 on Nvidia/Microsoft and a $100 Brent pullback — but the 10Y closed at a new 5.31% high and OPEC+ kept every barrel of leverage.",
+      "keywords": [
+        "Record Nasdaq",
+        "5.31% 10Y",
+        "OPEC+ holds"
+      ]
+    },
+    "benchmarks": [
+      {
+        "ticker": "^GSPC",
+        "name": "SPX",
+        "value": 7773.95,
+        "chg_1d": 0.66,
+        "chg_unit": "%"
+      },
+      {
+        "ticker": "^NDX",
+        "name": "NDX",
+        "value": 31076.44,
+        "chg_1d": 0.87,
+        "chg_unit": "%"
+      },
+      {
+        "ticker": "^GSPTSE",
+        "name": "TSX",
+        "value": 35518.55,
+        "chg_1d": 0.04,
+        "chg_unit": "%"
+      },
+      {
+        "ticker": "^TNX",
+        "name": "US 10Y",
+        "value": 5.31,
+        "chg_1d": 3,
+        "chg_unit": "bp"
+      },
+      {
+        "ticker": "USDCAD=X",
+        "name": "USD/CAD",
+        "value": 1.425,
+        "chg_1d": 0.21,
+        "chg_unit": "%"
+      },
+      {
+        "ticker": "CL=F",
+        "name": "WTI",
+        "value": 89.3,
+        "chg_1d": -1.99,
+        "chg_unit": "%"
+      },
+      {
+        "ticker": "GC=F",
+        "name": "Gold",
+        "value": 4167.6,
+        "chg_1d": 0.13,
+        "chg_unit": "%"
+      }
+    ],
+    "yesterday_diff": [
+      {
+        "theme_id": "us-rates-repricing",
+        "change": "continuing",
+        "note": "Upgraded to Continuing: 10Y new high 5.31% on a record-equity day"
+      },
+      {
+        "theme_id": "ai-capex-supercycle",
+        "change": "continuing",
+        "note": "QQQ +0.9% to $756.20; Nasdaq record on NVDA/MSFT into earnings"
+      },
+      {
+        "theme_id": "oil-war-premium",
+        "change": "continuing",
+        "note": "OPEC+ held November quotas; Brent -1.9% to $100.32 on reserve releases"
+      },
+      {
+        "theme_id": "ca-bank-earnings-momentum",
+        "change": "fading",
+        "note": "ZEB -0.5% to C$73.04 vs flat TSX; December Q4 + Oct 28 BoC ahead"
+      }
+    ]
+  },
+  "commentary": {
+    "week": "2026-W41",
+    "data_quality": "production",
+    "sources": [
+      {
+        "firm": "Reuters",
+        "title": "Nasdaq Notches Record High Close as Investors Focus on Earnings",
+        "url": "https://www.lse.co.uk/news/us-stocks-nasdaq-notches-record-high-close-as-investors-focus-on-earnings-y6ymqkwsz37ssyk.html",
+        "key_takeaway": "Nasdaq record 27,477.31 (+1.05%) on Nvidia/Microsoft; S&P +0.66% to 7,773.95, about 0.3% below its August record; oil dip plus earnings ahead",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "us-rates-repricing"
+        ]
+      },
+      {
+        "firm": "Wall Street Journal",
+        "title": "U.S. Stocks Rise as AI Bets Offset Bond-Yield Fears",
+        "url": "https://www.wsj.com/finance/stocks/u-s-stocks-rise-as-ai-bets-offset-bond-yield-fears-9dd6ce7f?mod=rss_markets_main",
+        "key_takeaway": "All three US indexes higher with the Nasdaq at a record; AI positioning overpowered 5%+ yield anxiety into Monday's close",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "us-rates-repricing"
+        ]
+      },
+      {
+        "firm": "Associated Press",
+        "title": "How Major US Stock Indexes Fared Monday 10/5/2026",
+        "url": "https://wtop.com/national/2026/10/how-major-us-stock-indexes-fared-monday-10-5-2026/",
+        "key_takeaway": "Buyout announcements lifted a narrow market; 10Y at 5.31% (up from 5.28% Friday); Brent $100.32 (-1.9%) on the day",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "us-rates-repricing",
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "OPEC",
+        "title": "Press Release: Seven OPEC+ Countries Reaffirm Commitment to Market Stability",
+        "url": "https://www.opec.org/pr-detail/616-4-october-2026.html",
+        "key_takeaway": "November quotas held at September levels; monthly reviews continue with the next meeting Nov 1",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "Bloomberg",
+        "title": "OPEC+ Holds November Oil Production Targets Steady as Supply Remains Constrained",
+        "url": "https://www.worldoil.com/news/2026/10/4/opec-holds-november-oil-production-targets-steady-as-supply-remains-constrained",
+        "key_takeaway": "Sunday video decision keeps targets flat with Middle East conflict shutting in output; December plans likely finalized Nov 1, full 2027 policy on Nov 29",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "Associated Press",
+        "title": "Major Oil Exporters Agree to Keep Production Steady in November",
+        "url": "https://www.washingtonpost.com/business/2026/10/04/oil-production-opec-iran-diesel/c3b20a7e-c01b-11f1-8170-681419af1cc9_story.html",
+        "key_takeaway": "Seven exporters hold with Brent above $100 on the Iran war; next subgroup review Nov 1",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      }
+    ]
+  }
+}

@@ -1,50 +1,52 @@
 schema_v: 1
 id: oil-war-premium
-week: 2026-W40
+week: 2026-W41
 title: "Middle East Supply Shock: The Oil War Premium"
 status: Continuing
-status_note: "Week 5 of the US-Iran confrontation; WTI eased from September highs above $100 to $91, with Sunday's OPEC+ meeting and G7 reserve releases as this week's variables."
+status_note: "Continuing: OPEC+ held November quotas steady; crude fell ~2% on reserve releases but XLE still gained 1% — the premium is compressing, not collapsing."
 conviction: High
 horizon: Tactical 2-8w
 created_at: 2026-09-01
-updated_at: 2026-10-02
+updated_at: 2026-10-05
 data_quality: production
 
 body_text: |
-  The market came into 2026 priced for "oversupply," with WTI still at $55 last December. Since September the
-  US-Iran confrontation has escalated — US forces sank Iranian tankers, Saudi Arabia's East-West pipeline and
-  Yanbu exports were hit — and WTI broke above $100: war premium replaced oversupply as the pricing script. The
-  current $91 reflects a tug-of-war: physical markets remain tight (US commercial stocks below the five-year
-  average, a deeply backwardated curve, Saudi exports only partly restored), but the G7 has signaled emergency
-  diesel and crude releases, OPEC and the IEA both cut demand forecasts, and every diplomatic-progress headline
-  triggers a sharp drop. So what: this is not a demand-driven commodity cycle but a geopolitical supply shock —
-  exposure belongs in upstream-heavy energy equities, not crude futures themselves (high roll costs, violent
-  drawdowns). What next: the Oct 4 OPEC+ meeting (November quotas) and weekly EIA stocks are the
-  high-frequency checkpoints; if Hormuz flows keep recovering and US-Iran talks land, the premium unwinds fast.
+  Sunday's OPEC+ verdict landed exactly as the cautious expected: the seven core producers (Saudi Arabia, Russia,
+  Iraq, Kuwait, Kazakhstan, Algeria, Oman) held November quotas unchanged, with the next review on Nov 1 and a
+  full ministerial on Nov 29. With the Iran war still shutting in large volumes, most of 2026's paper output
+  increases never reached the market — the group concedes meaningful changes are unlikely before 2027. Monday's
+  market read the decision as neutral-to-soft: Brent fell 1.9% to $100.32 and WTI settled near $89.30 (-2.0%) as
+  G7 reserve-release signals and steady quotas combined, while energy equities diverged upward — XLE gained 1.0%
+  to $63.45, extending its YTD run to +43.9% (+31.2pp over SPX). So what: the premium is compressing on diplomacy
+  and barrels, not collapsing on fundamentals — physical tightness (sub-five-year-average stocks, deep
+  backwardation) still underwrites $90+ WTI. Keep exposure in upstream-heavy equities, not futures. What next:
+  Wednesday's EIA stocks print tests the physical case; Nov 1 decides December quotas; any US-Iran framework
+  headline remains the fastest way to lose the premium.
 
 explainer: |
-  Backwardation = front-month contracts priced above deferred months, signaling physical tightness. This round,
-  November WTI trades about $3.7 above December. War premium = the geopolitics-driven slice of the price;
-  history shows it unwinds fast once supply recovers. All returns are Price Return; XLE is the US energy-sector
-  ETF (about 91% oil & gas companies), not a crude tracker.
+  Backwardation = front-month contracts priced above deferred months, signaling physical tightness. War premium =
+  the geopolitics-driven slice of the price; history shows it unwinds fast once supply recovers. Returns are
+  Price Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs
+  Dec 30, 2025 adjusted close. XLE is the US energy-sector ETF (about 91% oil & gas companies), not a crude
+  tracker.
 
 performance:
   proxy_ticker: XLE
-  proxy_price: 62.82
+  proxy_price: 63.45
   currency: USD
   return_type: price
-  ret_1w: 1.26
-  ret_1m: -2.93
-  ret_ytd: 42.49
+  ret_1w: 2.2
+  ret_1m: -0.4
+  ret_ytd: 43.9
   benchmark_ticker: "^GSPC"
   benchmark_name: S&P 500
-  benchmark_ret_1w: -0.27
-  benchmark_ret_1m: 0.73
-  benchmark_ret_ytd: 11.98
-  excess_1w: 1.5
-  excess_1m: -3.7
-  excess_ytd: 30.5
-  as_of_utc: "2026-10-02T20:00:00Z"
+  benchmark_ret_1w: 1.2
+  benchmark_ret_1m: 0.7
+  benchmark_ret_ytd: 12.7
+  excess_1w: 1.0
+  excess_1m: -1.1
+  excess_ytd: 31.2
+  as_of_utc: "2026-10-05T20:00:00Z"
   source: Yahoo Finance
   benchmark_rationale: A US equity-sector theme benchmarked against SPX; XLE is the most liquid energy-sector ETF.
 
@@ -58,6 +60,7 @@ series:
   - { date: 2026-09-18, proxy: 111.84, benchmark: 98.62 }
   - { date: 2026-09-25, proxy: 108.54, benchmark: 99.82 }
   - { date: 2026-10-02, proxy: 109.9, benchmark: 99.55 }
+  - { date: 2026-10-05, proxy: 111.0, benchmark: 100.21 }
 
 proxies:
   - ticker: XLE
@@ -97,16 +100,26 @@ events:
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: geopolitics
+  - event_time_utc: "2026-10-04T11:42:00Z"
+    title: OPEC+ seven hold November quotas unchanged; next review Nov 1, full ministerial Nov 29
+    source: OPEC
+    url: https://www.opec.org/pr-detail/616-4-october-2026.html
+    type: policy
+  - event_time_utc: "2026-10-05T20:00:00Z"
+    title: Brent falls 1.9% to $100.32 and WTI settles near $89.30 on steady quotas plus reserve releases; XLE gains 1.0%
+    source: Associated Press
+    url: https://www.stl.news/nasdaq-hits-record-as-tech-leads-wall-street-higher/
+    type: macro
 
 depends_on:
-  - event_name: OPEC+ ministerial meeting (November quotas)
-    due_date: "2026-10-04"
-    why_matters: Decides whether cut discipline loosens; a large hike plus easing conflict would shake the premium's base
-    if_bull: Quotas held or token hike, with Hormuz disruption continuing
-    if_bear: Large hike + full Saudi export recovery → premium unwinds, moved to watchlist
+  - event_name: OPEC+ November 1 meeting (December quotas)
+    due_date: "2026-11-01"
+    why_matters: Decides December quotas and advances the capacity audit that will set 2027 output shares
+    if_bull: Quotas held again with conflict volumes still shut in → premium floor holds
+    if_bear: Path to restoring halted output opens → premium unwinds, moved to watchlist
   - event_name: US-Iran diplomacy
     due_date: "2026-10-15"
-    why_matters: September's repeated "talks progress" headlines each triggered single-day plunges — the biggest contrarian risk
+    why_matters: Talks-progress headlines repeatedly triggered single-day plunges — the biggest contrarian risk
     if_bull: Talks collapse and military buildup grows → Goldman's $120 scenario
     if_bear: Framework deal reached → war premium unwinds fast, theme archived
   - event_name: Weekly EIA stocks report

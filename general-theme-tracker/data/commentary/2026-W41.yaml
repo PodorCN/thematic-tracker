@@ -1,0 +1,35 @@
+# Weekly Commentary source library (for the Archive page) — 2026-W41, actually scanned
+week: 2026-W41
+data_quality: production
+
+sources:
+  - firm: Reuters
+    title: Nasdaq Notches Record High Close as Investors Focus on Earnings
+    url: https://www.lse.co.uk/news/us-stocks-nasdaq-notches-record-high-close-as-investors-focus-on-earnings-y6ymqkwsz37ssyk.html
+    key_takeaway: Nasdaq record 27,477.31 (+1.05%) on Nvidia/Microsoft; S&P +0.66% to 7,773.95, about 0.3% below its August record; oil dip plus earnings ahead
+    related_themes: [ai-capex-supercycle, us-rates-repricing]
+  - firm: Wall Street Journal
+    title: U.S. Stocks Rise as AI Bets Offset Bond-Yield Fears
+    url: https://www.wsj.com/finance/stocks/u-s-stocks-rise-as-ai-bets-offset-bond-yield-fears-9dd6ce7f?mod=rss_markets_main
+    key_takeaway: All three US indexes higher with the Nasdaq at a record; AI positioning overpowered 5%+ yield anxiety into Monday's close
+    related_themes: [ai-capex-supercycle, us-rates-repricing]
+  - firm: Associated Press
+    title: How Major US Stock Indexes Fared Monday 10/5/2026
+    url: https://wtop.com/national/2026/10/how-major-us-stock-indexes-fared-monday-10-5-2026/
+    key_takeaway: Buyout announcements lifted a narrow market; 10Y at 5.31% (up from 5.28% Friday); Brent $100.32 (-1.9%) on the day
+    related_themes: [ai-capex-supercycle, us-rates-repricing, oil-war-premium]
+  - firm: OPEC
+    title: "Press Release: Seven OPEC+ Countries Reaffirm Commitment to Market Stability"
+    url: https://www.opec.org/pr-detail/616-4-october-2026.html
+    key_takeaway: November quotas held at September levels; monthly reviews continue with the next meeting Nov 1
+    related_themes: [oil-war-premium]
+  - firm: Bloomberg
+    title: OPEC+ Holds November Oil Production Targets Steady as Supply Remains Constrained
+    url: https://www.worldoil.com/news/2026/10/4/opec-holds-november-oil-production-targets-steady-as-supply-remains-constrained
+    key_takeaway: Sunday video decision keeps targets flat with Middle East conflict shutting in output; December plans likely finalized Nov 1, full 2027 policy on Nov 29
+    related_themes: [oil-war-premium]
+  - firm: Associated Press
+    title: Major Oil Exporters Agree to Keep Production Steady in November
+    url: https://www.washingtonpost.com/business/2026/10/04/oil-production-opec-iran-diesel/c3b20a7e-c01b-11f1-8170-681419af1cc9_story.html
+    key_takeaway: Seven exporters hold with Brent above $100 on the Iran war; next subgroup review Nov 1
+    related_themes: [oil-war-premium]

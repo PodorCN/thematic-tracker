@@ -1,50 +1,52 @@
 schema_v: 1
 id: ca-bank-earnings-momentum
-week: 2026-W40
+week: 2026-W41
 title: Canadian Bank Earnings Momentum
 status: Fading
-status_note: "Under review for downgrade: after all Big Six beat Q3, valuations sit at the richest since 2010, institutions are trimming, and the sector fell 2.2% on the week."
+status_note: "Still Fading: ZEB -0.5% Monday to C$73.04 against a flat TSX; December Q4 results and the Oct 28 BoC decision are the next checkpoints."
 conviction: Med
 horizon: Cyclical 3-12m
 created_at: 2026-08-27
-updated_at: 2026-10-02
+updated_at: 2026-10-05
 data_quality: production
 
 body_text: |
-  All Big Six Q3 reports (Aug 25-27) beat: RBC posted record $6B net income (+11%) with 17.9% ROE; TD also set
-  records with 14.3% CET1, management hinting over $13B could be returned to shareholders by 2027. But the mix
-  flatters — the beats came mostly from wealth management, capital markets, and trading income (RBC wealth +16%,
-  TD wholesale banking net income +87%, RBC in the SpaceX IPO underwriting syndicate), while domestic
-  personal-banking loan growth was soft and analysts flagged RBC's segment as "slightly light." The sector's
-  forward valuation is the richest since 2010; First Avenue and others began trimming RY/TD/BMO in September,
-  and ZEB fell 2.2% this week. So what: the earnings momentum is real, but the price already reflects it — the
-  excess-return phase is most likely over, shifting from "buy" to "hold and watch." What next: early-December Q4
-  results must answer two questions — whether personal-banking credit revives and whether provisions keep
-  climbing (RBC Q3 provisions already +14%); tariff fallout on cross-border commercial lending is the tail risk.
+  Monday added another small exhibit to the downgrade file: ZEB slipped 0.5% to C$73.04 while the TSX finished
+  essentially flat at 35,518.55 — banks underperforming the home market for a second straight week as the
+  "richest valuations since 2010" overhang meets institutional trimming that began in September. Nothing in the
+  Q3 fundamentals changed — record Big Six prints (RBC $6B net income, TD's $13B+ return pipeline) stand — but
+  the mix problem is now consensus: fee and trading income carried the beats while personal-banking credit
+  stayed soft, and RBC's Q3 provisions (+14%) are the line to watch into Q4. With USD/CAD at 1.4250 near a
+  52-week high, cross-border and tariff headlines add one more overhang for December. So what: the call stays
+  "hold and watch," not "buy the dip" — the excess-return phase (+15.7pp YTD) is history until Q4 proves the
+  credit cycle clean. What next: the Oct 28 BoC decision (NIM and mortgage-renewal read) comes first, then
+  early-December Q4 results must show personal-banking revival with provisions stable; further provision builds
+  plus fading capital-markets income would push this file from Fading to Dead.
 
 explainer: |
   CET1 (common equity tier 1 ratio): the higher it is, the more excess capital is available for buybacks and
-  dividends. TD targets 13% by 2027; at 14.3% today that implies $13B+ of potential returns. ZEB is the
-  equal-weight Big Six ETF; returns are Price Return — with Canadian bank dividend yields around 2.8-3%,
-  Total Return would read higher.
+  dividends. TD targets 13% by 2027; at 14.3% today that implies $13B+ of potential returns. Returns are Price
+  Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs Dec 30,
+  2025 adjusted close. ZEB is the equal-weight Big Six ETF; with bank dividend yields around 2.8-3%, Total
+  Return would read higher.
 
 performance:
   proxy_ticker: ZEB.TO
-  proxy_price: 73.42
+  proxy_price: 73.04
   currency: CAD
   return_type: price
-  ret_1w: -2.22
-  ret_1m: -1.48
-  ret_ytd: 27.86
+  ret_1w: -2.5
+  ret_1m: -3.0
+  ret_ytd: 27.2
   benchmark_ticker: "^GSPTSE"
   benchmark_name: S&P/TSX Composite
-  benchmark_ret_1w: -0.83
-  benchmark_ret_1m: -1.63
-  benchmark_ret_ytd: 11.41
-  excess_1w: -1.4
-  excess_1m: 0.2
-  excess_ytd: 16.5
-  as_of_utc: "2026-10-02T20:00:00Z"
+  benchmark_ret_1w: 0.1
+  benchmark_ret_1m: -2.7
+  benchmark_ret_ytd: 11.5
+  excess_1w: -2.6
+  excess_1m: -0.3
+  excess_ytd: 15.7
+  as_of_utc: "2026-10-05T20:00:00Z"
   source: Yahoo Finance
   benchmark_rationale: A domestic Canadian financials theme benchmarked against the home-market S&P/TSX Composite (financials are roughly one-third of index weight).
 
@@ -58,6 +60,7 @@ series:
   - { date: 2026-09-18, proxy: 98.54, benchmark: 98.42 }
   - { date: 2026-09-25, proxy: 98.48, benchmark: 98.4 }
   - { date: 2026-10-02, proxy: 96.3, benchmark: 97.59 }
+  - { date: 2026-10-05, proxy: 95.8, benchmark: 97.63 }
 
 proxies:
   - ticker: ZEB.TO

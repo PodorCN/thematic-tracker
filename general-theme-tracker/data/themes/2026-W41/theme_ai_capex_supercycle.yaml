@@ -1,49 +1,50 @@
 schema_v: 1
 id: ai-capex-supercycle
-week: 2026-W40
+week: 2026-W41
 title: AI Capex Supercycle
 status: Continuing
-status_note: "Continuing: NVDA hit an intraday record $237.87 on Friday; NDX closed at a record; soft payrolls removed hike pressure and helped."
+status_note: "Continuing: QQQ +0.9% Monday to $756.20; Nasdaq Composite record 27,477 on Nvidia/Microsoft leadership into earnings season."
 conviction: High
 horizon: Cyclical 3-12m
 created_at: 2026-07-06
-updated_at: 2026-10-02
+updated_at: 2026-10-05
 data_quality: production
 
 body_text: |
-  AI capex is 2026's most durable US equity narrative: NDX +21% YTD with a record close of 30,808 on Oct 2,
-  and NVDA worth $5.72T. Three marginal changes versus H1: first, funding structure — Barclays estimates
-  hyperscalers will issue roughly $200B in debt this year for data centers, upgrading capex from "self-funded
-  cash flow" to "leverage-driven": a longer chain, but a more fragile one; second, valuation already digested —
-  NDX forward P/E of 21.7x, down 14% from the 2026 high, with earnings delivery taking over from multiple
-  expansion; third, macro cooperation — after the soft September payrolls, October hike odds fell below 25%
-  and discount-rate pressure eased. So what: the main line holds, but the phase has shifted from "buy the
-  expectation" to "verify the revenue" — exposure belongs in chips and infrastructure links with orders and
-  revenue. What next: hyperscaler Q3 capex guidance from late October is the master switch; any cut triggers
-  a chain-wide repricing.
+  The AI capex chain opened the new week with confirmation: QQQ gained 0.9% Monday to close at $756.20 while the
+  Nasdaq Composite set its first record since Sep 22 at 27,477 (+1.05%), led by Nvidia and Microsoft as oil's
+  pullback cleared the tape for earnings season. The setup is unchanged from Friday — hyperscalers funding
+  roughly $200B of 2026 data-center build with debt (Barclays), NDX forward multiples digested to 21.7x (down
+  14% from the high), and October hike odds below 25% after the +29k payrolls shock. Breadth is the honest
+  caveat: the S&P added only 0.66% and sits 0.3% below its August record while the Nasdaq sprints, so this is a
+  mega-cap-tech move, not a market-wide one. So what: the "verify the revenue" phase continues — own links with
+  orders and backlog, not multiple-expansion stories. What next: the earnings runway starts with hyperscaler Q3
+  capex guidance from late October (master switch for the chain) and NVDA's own print on Nov 25; any guidance
+  cut reprices the whole chain at once.
 
 explainer: |
   Hyperscaler = cloud vendors building their own hyperscale data centers. NDX 21.7x is forward P/E
-  (Citadel Securities). The semiconductor industry association expects 2026 global chip sales of $1.51T (+90%)
-  and $1.9T in 2027 (+27%). Returns are Price Return; QQQ tracks the Nasdaq-100 excluding dividends.
+  (Citadel Securities). Returns are Price Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close,
+  1M vs Sep 4 adjusted close, YTD vs Dec 30, 2025 adjusted close. QQQ tracks the Nasdaq-100 excluding
+  dividends.
 
 performance:
   proxy_ticker: QQQ
-  proxy_price: 749.58
+  proxy_price: 756.2
   currency: USD
   return_type: price
-  ret_1w: 0.68
-  ret_1m: 5.8
-  ret_ytd: 21.42
+  ret_1w: 2.7
+  ret_1m: 5.3
+  ret_ytd: 22.5
   benchmark_ticker: "^GSPC"
   benchmark_name: S&P 500
-  benchmark_ret_1w: -0.27
-  benchmark_ret_1m: 0.73
-  benchmark_ret_ytd: 11.98
-  excess_1w: 1.0
-  excess_1m: 5.1
-  excess_ytd: 9.4
-  as_of_utc: "2026-10-02T20:00:00Z"
+  benchmark_ret_1w: 1.2
+  benchmark_ret_1m: 0.7
+  benchmark_ret_ytd: 12.7
+  excess_1w: 1.5
+  excess_1m: 4.6
+  excess_ytd: 9.8
+  as_of_utc: "2026-10-05T20:00:00Z"
   source: Yahoo Finance
   benchmark_rationale: For a tech theme, QQQ versus SPX frames relative strength against the broad market; that spread is the excess series.
 
@@ -57,6 +58,7 @@ series:
   - { date: 2026-09-18, proxy: 99.78, benchmark: 98.62 }
   - { date: 2026-09-25, proxy: 103.08, benchmark: 99.82 }
   - { date: 2026-10-02, proxy: 103.78, benchmark: 99.55 }
+  - { date: 2026-10-05, proxy: 104.7, benchmark: 100.21 }
 
 proxies:
   - ticker: QQQ
@@ -88,6 +90,11 @@ events:
     title: September payrolls shock at +29k; October hike odds collapse; tech leads the rally
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: macro
+  - event_time_utc: "2026-10-05T20:00:00Z"
+    title: Nasdaq record close 27,477 (+1.05%) on Nvidia/Microsoft; S&P +0.66% to 7,774, within 0.3% of its August high
+    source: Reuters
+    url: https://www.lse.co.uk/news/us-stocks-nasdaq-notches-record-high-close-as-investors-focus-on-earnings-y6ymqkwsz37ssyk.html
     type: macro
 
 depends_on:

@@ -1,50 +1,52 @@
 schema_v: 1
 id: us-rates-repricing
-week: 2026-W40
+week: 2026-W41
 title: "Long-End Repricing: 10Y Above 5%"
-status: New
-status_note: "New this week: 10Y touched 5.29%, highest since 2002; the long-end selloff has a logic of its own."
+status: Continuing
+status_note: "Upgraded to Continuing: the 10Y closed Monday at a new 5.31% high even as the Nasdaq set a record — weak data cannot rally bonds, and strong data cannot either."
 conviction: High
 horizon: Tactical 2-8w
 created_at: 2026-09-30
-updated_at: 2026-10-02
+updated_at: 2026-10-05
 data_quality: production
 
 body_text: |
-  Since Sep 4 the 10Y has climbed from 4.78% to 5.29% — the first time since 2002. The selloff came in two
-  legs: the front end led first (the Warsh Fed hiked 25bp on Sep 16 and the dot plot turned hawkish), then the
-  long end took over on its own — even soft August PCE at 3.4% could not stop it, a sign the driver has shifted
-  from policy expectations to term premium and supply. Friday's payrolls printed just +29k (vs +85k expected),
-  crushing October hike odds from 64% to below 25%, yet the 10Y dipped then rallied back to 5.28%: even weak
-  jobs cannot hold down the long end — the strongest confirmation of this theme. So what: the trade expression
-  is short duration (TLT -1.9% this week, -8.7% YTD); high rates simultaneously punish rate-sensitive sectors
-  (utilities XLU -6% in 1M) and raise the discount rate on all risk assets. What next: the Oct 27-28 FOMC is the
-  key checkpoint; Goldman has pushed its next-hike call to December — if the long end makes new highs even as
-  hikes pause, the "higher-for-longer plus term premium" narrative is fully established.
+  The long end keeps writing its own script. Monday's tape was the cleanest test yet: the Nasdaq closed at a
+  record 27,477 (+1.05%) and the S&P added 0.66% to 7,774 — yet the 10Y still pushed to a new closing high of
+  5.31%, up from 5.28% Friday. Friday had already delivered the mirror image: payrolls of just +29k (vs +85k
+  expected) crushed October hike odds below 25%, and the 10Y still finished at 5.28%. Neither weak growth nor
+  strong risk appetite can pull yields down; the driver is term premium and supply, not policy expectations.
+  So what: the trade expression stays short duration — TLT fell another 0.5% Monday to $77.11 and is now -9.2%
+  YTD, lagging SPX by nearly 22 points. The stock-bond seesaw is broken in both directions, which keeps discount
+  rates elevated across all risk assets even on record-equity days. What next: September CPI on Oct 14 is the
+  last clean inflation read before the Oct 27-28 FOMC; a soft core print that still fails to dent 5%+ yields
+  would cement the term-premium regime, while any dovish surprise plus a break back below 5% puts this theme on
+  watch.
 
 explainer: |
   Term premium = the extra compensation investors demand for holding long bonds, unrelated to policy
-  expectations; typically driven by supply (issuance), inflation uncertainty, and foreign demand. TLT returns
-  on this page are Price Return; the way to trade this theme is short TLT or shortening portfolio duration —
+  expectations; typically driven by supply (issuance), inflation uncertainty, and foreign demand. Returns are
+  Price Return on unadjusted closes (Yahoo Finance): 1W vs Sep 28 close, 1M vs Sep 4 adjusted close, YTD vs
+  Dec 30, 2025 adjusted close. The way to trade this theme is short TLT or shortening portfolio duration —
   the table shows TLT itself.
 
 performance:
   proxy_ticker: TLT
-  proxy_price: 77.48
+  proxy_price: 77.11
   currency: USD
   return_type: price
-  ret_1w: -1.93
-  ret_1m: -5.07
-  ret_ytd: -8.74
+  ret_1w: -1.9
+  ret_1m: -5.8
+  ret_ytd: -9.2
   benchmark_ticker: "^GSPC"
   benchmark_name: S&P 500
-  benchmark_ret_1w: -0.27
-  benchmark_ret_1m: 0.73
-  benchmark_ret_ytd: 11.98
-  excess_1w: -1.7
-  excess_1m: -5.8
-  excess_ytd: -20.7
-  as_of_utc: "2026-10-02T20:00:00Z"
+  benchmark_ret_1w: 1.2
+  benchmark_ret_1m: 0.7
+  benchmark_ret_ytd: 12.7
+  excess_1w: -3.1
+  excess_1m: -6.5
+  excess_ytd: -21.9
+  as_of_utc: "2026-10-05T20:00:00Z"
   source: Yahoo Finance
   benchmark_rationale: A rates theme has no direct index benchmark; SPX is shown to frame the stock-bond seesaw in relative terms. Trade direction is short duration.
 
@@ -58,6 +60,7 @@ series:
   - { date: 2026-09-18, proxy: 98.55, benchmark: 98.62 }
   - { date: 2026-09-25, proxy: 96.21, benchmark: 99.82 }
   - { date: 2026-10-02, proxy: 94.36, benchmark: 99.55 }
+  - { date: 2026-10-05, proxy: 93.91, benchmark: 100.21 }
 
 proxies:
   - ticker: TLT
@@ -89,6 +92,11 @@ events:
     title: September payrolls +29k, far below +85k expected; unemployment 4.2%; October hike odds fall below 25% while the long end dips then rallies
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
+    type: macro
+  - event_time_utc: "2026-10-05T20:00:00Z"
+    title: 10Y closes at a new 5.31% high even as the Nasdaq sets a record; TLT falls 0.5% on the day
+    source: Associated Press
+    url: https://www.stl.news/nasdaq-hits-record-as-tech-leads-wall-street-higher/
     type: macro
 
 depends_on:

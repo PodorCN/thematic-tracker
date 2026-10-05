@@ -1,0 +1,25 @@
+# Market Regime + Benchmark strip + Yesterday vs Today diff
+# Data: Oct 5, 2026 close. Sources: Yahoo Finance (closes), AP (10Y, Brent), US Treasury
+week: 2026-W41
+as_of_utc: "2026-10-05T20:00:00Z"
+data_quality: production
+
+regime:
+  stance: Risk-on (fragile)
+  oneliner: Nasdaq record 27,477 on Nvidia/Microsoft and a $100 Brent pullback — but the 10Y closed at a new 5.31% high and OPEC+ kept every barrel of leverage.
+  keywords: [Record Nasdaq, 5.31% 10Y, OPEC+ holds]
+
+benchmarks:
+  - { ticker: "^GSPC",   name: SPX,     value: 7773.95,  chg_1d: 0.66,  chg_unit: "%" }
+  - { ticker: "^NDX",    name: NDX,     value: 31076.44, chg_1d: 0.87,  chg_unit: "%" }
+  - { ticker: "^GSPTSE", name: TSX,     value: 35518.55, chg_1d: 0.04,  chg_unit: "%" }
+  - { ticker: "^TNX",    name: US 10Y,  value: 5.31,     chg_1d: 3,     chg_unit: bp }
+  - { ticker: "USDCAD=X", name: USD/CAD, value: 1.4250,  chg_1d: 0.21,  chg_unit: "%" }
+  - { ticker: "CL=F",    name: WTI,     value: 89.30,    chg_1d: -1.99, chg_unit: "%" }
+  - { ticker: "GC=F",    name: Gold,    value: 4167.60,  chg_1d: 0.13,  chg_unit: "%" }
+
+yesterday_diff:
+  - { theme_id: us-rates-repricing,       change: continuing, note: "Upgraded to Continuing: 10Y new high 5.31% on a record-equity day" }
+  - { theme_id: ai-capex-supercycle,      change: continuing, note: "QQQ +0.9% to $756.20; Nasdaq record on NVDA/MSFT into earnings" }
+  - { theme_id: oil-war-premium,          change: continuing, note: "OPEC+ held November quotas; Brent -1.9% to $100.32 on reserve releases" }
+  - { theme_id: ca-bank-earnings-momentum, change: fading,    note: "ZEB -0.5% to C$73.04 vs flat TSX; December Q4 + Oct 28 BoC ahead" }
