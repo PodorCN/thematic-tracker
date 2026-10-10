@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-09T22:35:00-04:00",
+  "snapshot_date": "2026-10-09",
+  "candidate_sha256": "99df323aa2e18c53bc59e1924bb3da79b49b1aa76ce6f9101e5c29201f5984de",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent review of frozen candidate 99df323aa2e1 (snapshot 2026-10-09). Hash chain verified: candidate.sha256 == candidate bytes; data/current.json bytes == candidate; machine flags regenerated locally (flags_rates_decisions.py) -> zero structural flags, identical to the committed file. Live checks this session: Fed raised to 3.75-4.00% on Sep 16 by 12-0 vote, minutes published Oct 7 ('not sufficient progress on inflation', 'most participants ... another increase ... by year end', staff inflation path returning to 2% in 2029) - federalreserve.gov; next meeting Oct 27-28 per FOMC calendar. BOC: Sep 2 hold at 2.25% (7th consecutive, bankofcanada.ca rate table); next decision Oct 28 + MPR. Pricing: Fed 82/18 - CME FedWatch target-rate table shows 375-400 at 82.3% (hike ~17-18%), corroborated 16-19% across Oct 9 prints; BOC 72/28 (+7bp) - exact match to live BlueGamma CORRA OIS page ('Hike 28% Hold 72% ... as of 09 Oct 2026'), consistent with the Reuters swap print of 27% from 40% after the Sep LFS. Polymarket live: Fed 83.5/15.5/0.6 Vol $31.5M Liq $3.0M; BOC 81.6/16.5/0.9 Vol $162.2k - within rounding of candidate. Drivers (15): spot-checked against primaries - BEA PCE Aug 3.4%/core 3.0%; BLS Sep +29k/u3 4.2% (Oct 2 release); SEP 16/18 one-more-hike; Jefferson Oct 1 and Waller Oct 8 speech texts; Williams Sep 29 'no need for urgency'; Reuters Oct 1 ~70%->~25%; Al Jazeera Oct 2 77.3% (from 35.8%) exact; StatCan Aug CPI 3.0%/ex-gas 2.4%/trim 1.9%/median 2.0%; StatCan Sep LFS -68k/u3 6.5%/participation 64.8% (lowest since Dec 1997 ex-2020)/-41k YTD (RBC: 'year-to-date employment count at -41,000'); BOC deliberations quote exact; UBS/Manulife/Oxford/Scotia calls (MPA Oct 2, incl. Sep CPI 3.3% forecast); G7 100M-bbl release + diesel $2.75/L + Brent +4.1% close $104.28 (FP/Reuters); canada.ca $27.6B counter-tariffs. Math recomputed: Fed base +3 / eff +1.75 hold; BOC base +2 / eff -1.0 hold; mean |weight| 2.6. Prior-round minors addressed: CME re-pulled (as_of Oct 9), CORRA OIS re-pulled via BlueGamma, boc-d1 now carries numeric OIS validation. Two minors deferred to next cycle. No critical/major findings.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "drivers.fed.fed-d2.data.previous",
+      "issue": "August baseline cited as '+162k Aug' without the same-release revision: the Oct 2 BLS release revised August down to +133k (July to -10k), so the pre-revision figure slightly understates the slowdown this driver is built on. Cite the revision next cycle.",
+      "evidence": "BLS release (https://www.bls.gov/news.release/archives/empsit_10022026.htm): 'the change for August was revised down by 29,000, from +162,000 to +133,000' and July 'revised down by 31,000, from +21,000 to -10,000'; candidate field previous='+162k Aug'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.boc-h1.market_validation",
+      "issue": "Validation '~60% (Sep 9, Nesto)' not reproducible at that date; documented ~60% OIS prints cluster Sep 16-23, while early-September prints ran lower. Re-date to mid/late September or re-source next cycle.",
+      "evidence": "Coverage this session: stockwirex ('surged from below 10% to roughly 60%' on 16 September), riskstock ('about 60% on Sept. 23, up from about 30% at the start of September'), CBRE September commentary ('roughly 60% chance ... at the October 28 meeting'), brandmagazine ('45% ... as of September 10'). No Nesto piece at Sep 9 showing ~60% located.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
