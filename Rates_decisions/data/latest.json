@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-09T22:13:40-04:00",
-  "snapshot_date": "2026-10-09",
+  "as_of": "2026-10-12T08:11:37-04:00",
+  "snapshot_date": "2026-10-12",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -26,7 +26,7 @@
         "implied_rate_after": 3.92,
         "source": "CME FedWatch",
         "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
-        "as_of": "2026-10-09",
+        "as_of": "2026-10-12",
         "observable_proxy": null
       }
     },
@@ -52,7 +52,7 @@
         "implied_rate_after": 2.32,
         "source": "CORRA OIS-implied via BlueGamma (+7bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-09",
+        "as_of": "2026-10-12",
         "observable_proxy": null
       }
     }
@@ -65,14 +65,14 @@
         "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
         "probabilities": {
           "cut": 0.01,
-          "hold": 0.83,
-          "hike": 0.16
+          "hold": 0.82,
+          "hike": 0.17
         },
         "status": "available",
-        "volume": "$31.5M",
+        "volume": "$32.2M",
         "liquidity": "$3.0M",
-        "as_of": "2026-10-09",
-        "note": "Live odds: Hold 83%, Hike 16%, Cut 1%."
+        "as_of": "2026-10-12",
+        "note": "Live odds: Hold 82%, Hike 17%, Cut 1%."
       }
     ],
     "boc": [
@@ -81,15 +81,15 @@
         "event_slug": "bank-of-canada-decision-in-october-20260715203359314",
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
         "probabilities": {
-          "cut": 0.01,
-          "hold": 0.82,
-          "hike": 0.17
+          "cut": 0.0,
+          "hold": 0.85,
+          "hike": 0.15
         },
         "status": "available",
-        "volume": "$162.2k",
-        "liquidity": "$42.7k",
-        "as_of": "2026-10-09",
-        "note": "Live odds: Hold 82%, Hike 17%, Cut 1%."
+        "volume": "$165.7k",
+        "liquidity": "$31.4k",
+        "as_of": "2026-10-12",
+        "note": "Live odds: Hold 85%, Hike 15%, Cut 0%."
       }
     ]
   },
@@ -186,7 +186,7 @@
             "delta_label": "hawkish shift broadened"
           },
           "reason": "The minutes document how broad the tightening bias became in September: every participant backed the hike, most expect another by year-end, and the staff pushed the return to 2% out to 2029. They deliberately leave October vs December open, which is why October pricing stays near 18% while the year-end hike sits around 80%+.",
-          "market_validation": "Oct-28 hike ~18% / hold ~82%; year-end cumulative hike ~83% (CME FedWatch, Oct 9)",
+          "market_validation": "Oct-28 hike ~18% / hold ~82%; year-end cumulative hike ~84% (CME FedWatch, Oct 12)",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -259,11 +259,11 @@
           "data": {
             "actual": "+29k, u3 4.2%",
             "forecast": "+84k (Dow Jones), u3 4.1%",
-            "previous": "+162k Aug",
+            "previous": "+133k Aug (revised from +162k; Jul revised to -10k)",
             "delta_label": "sharp slowdown"
           },
-          "reason": "A 29k print after 162k in August removes the labor-market case for back-to-back hikes. Equities rallied on the print, confirming the market read it as dovish for policy rather than as a recession signal.",
-          "market_validation": "FedWatch hold prob ~36% week prior -> 77.3% (Oct 2, Al Jazeera citing CME); ~82% Oct 9 (CME FedWatch)",
+          "reason": "A 29k print after a revised 133k in August removes the labor-market case for back-to-back hikes. Equities rallied on the print, confirming the market read it as dovish for policy rather than as a recession signal.",
+          "market_validation": "FedWatch hold prob ~36% week prior -> 77.3% (Oct 2, Al Jazeera citing CME); ~82% Oct 12 (CME FedWatch)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -288,7 +288,7 @@
             "delta_label": "-45pp repricing"
           },
           "reason": "Williams (no urgency, one more hike late this year) plus Jefferson (future moves need trends in data, may take more time) jointly pushed October off the table while keeping December live. Evercore/SGH read it as authoritative guidance; brokerages now pencil December.",
-          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters); ~18% Oct 9 (CME FedWatch)",
+          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters); ~18% Oct 12 (CME FedWatch)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -318,7 +318,7 @@
             "delta_label": "ex-gas +0.2pp"
           },
           "reason": "Gasoline (Hormuz blockade) holds the headline at the top of the 1-3% band, but the ex-gasoline acceleration shows pressure broadening beyond energy. That combination is what keeps October hike pricing alive despite soft jobs data.",
-          "market_validation": "OIS-implied Oct hike odds ~60% (Sep 9, Nesto)",
+          "market_validation": "OIS-implied Oct hike odds ~60% (Sep 23, up from ~30% at the start of September)",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -368,7 +368,7 @@
             "delta_label": "call flip to Oct"
           },
           "reason": "UBS Watt cites Macklem's shift (upside risks rising, less willing to look through headline) plus Halifax warning about moving too slow. Manulife Lapointe (Oct+Dec on inflation dynamics), Oxford Davenport (Oct+Dec), Scotia (Oct) join; RBC still holds near-term but calls it a close call. Sep CPI Oct 19 is the swing print.",
-          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5)",
+          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5) -> 15% (Oct 12)",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -393,7 +393,7 @@
             "delta_label": "conditional tightening risk"
           },
           "reason": "The committee-level account behind the September hold: the main risks had become more acute, inflation was likely higher for longer, and if energy passes through to other prices a policy response could be needed. Conditional, not a pre-commitment — members also noted the economy is still in excess supply with a soft labour market — but it is the official basis for the hike calls now in the street.",
-          "market_validation": "OIS-implied Oct hike: ~33% Oct 1 -> ~28% Oct 9 (BlueGamma)",
+          "market_validation": "OIS-implied Oct hike: ~33% Oct 1 -> ~28% Oct 12 (BlueGamma OIS)",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -420,7 +420,7 @@
             "delta_label": "-77k vs consensus; 2nd straight drop"
           },
           "reason": "A second consecutive monthly decline — -110k over August-September — wiped out all of 2026's employment gains (-41k YTD, concentrated in the public sector). Weakness was broad: youth -48k, Quebec/BC down, participation at its lowest since 1997 outside the pandemic. It is the Bank's last labour read before Oct 28: TD, BMO, CIBC and Desjardins all read it as taking an October hike off the table. Wages did tick up to +2.3%, and Desjardins warns energy passthrough could still force tightening soon.",
-          "market_validation": "OIS-implied Oct hike odds ~40% -> ~25% on the print (LSEG, Oct 9); BlueGamma OIS 72% hold / 28% hike (+7bp), Oct 9",
+          "market_validation": "OIS-implied Oct hike odds ~40% -> ~25% on the print (LSEG, Oct 9); BlueGamma OIS 72% hold / 28% hike (+7bp), Oct 12",
           "direction": -1,
           "weight": 4,
           "weight_breakdown": {
@@ -487,12 +487,12 @@
   "total_score": {
     "fed": {
       "base_total": 3,
-      "effective_total": 1.75,
+      "effective_total": 2.5,
       "band": "hold"
     },
     "boc": {
       "base_total": 2,
-      "effective_total": -1.0,
+      "effective_total": -1.25,
       "band": "hold"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
@@ -513,6 +513,34 @@
       "source_url": "https://www.bls.gov/cpi"
     },
     {
+      "date_toronto": "2026-10-15",
+      "datetime_toronto": "2026-10-15T08:30:00-04:00",
+      "datetime_utc": "2026-10-15T12:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "PPI (Sep)",
+      "impact": "MEDIUM",
+      "importance": 2,
+      "forecast": "unverified",
+      "previous": "unverified",
+      "source": "BLS",
+      "source_url": "https://www.bls.gov/ppi/"
+    },
+    {
+      "date_toronto": "2026-10-15",
+      "datetime_toronto": "2026-10-15T08:30:00-04:00",
+      "datetime_utc": "2026-10-15T12:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "Retail Sales (Sep)",
+      "impact": "MEDIUM",
+      "importance": 2,
+      "forecast": "unverified",
+      "previous": "unverified",
+      "source": "US Census Bureau",
+      "source_url": "https://www.census.gov/retail/index.html"
+    },
+    {
       "date_toronto": "2026-10-19",
       "datetime_toronto": "2026-10-19T08:30:00-04:00",
       "datetime_utc": "2026-10-19T12:30:00Z",
@@ -527,6 +555,20 @@
       "source_url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes"
     },
     {
+      "date_toronto": "2026-10-19",
+      "datetime_toronto": "2026-10-19T11:30:00-04:00",
+      "datetime_utc": "2026-10-19T15:30:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "BoC Business Outlook Survey + Consumer Expectations Survey",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified",
+      "previous": "unverified",
+      "source": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/publications/business-outlook-survey/"
+    },
+    {
       "date_toronto": "2026-10-28",
       "datetime_toronto": "2026-10-28T09:45:00-04:00",
       "datetime_utc": "2026-10-28T13:45:00Z",
@@ -535,7 +577,7 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 2.25% (CORRA OIS 72% hold, Oct 9)",
+      "forecast": "Hold 2.25% (CORRA OIS 72% hold / 28% hike, BlueGamma, Oct 12)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/"
@@ -549,7 +591,7 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (CME 82% hold, Oct 9)",
+      "forecast": "Hold 3.75-4.00% (CME FedWatch ~82% hold / 18% hike, Oct 12)",
       "previous": "Hike +25bp (Sep 16)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"

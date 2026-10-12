@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-12T08:51:30-04:00",
+  "snapshot_date": "2026-10-12",
+  "candidate_sha256": "0a612d2b142753a9644e548640d2a6492953f5a7898d01bec1ee3c1080094358",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent review of frozen candidate 0a612d2b1427 (snapshot 2026-10-12; operator rates-decisions-writer). Hash chain verified: candidate.sha256 == candidate.json bytes == data/current.json bytes (0a612d2b…4358); machine flags regenerated locally -> zero, identical to the committed file. Live verification this session: (Fed) Sep 16 hike to 3.75-4.00% by 12-0 vote; Oct 7 minutes quote 'not sufficient progress', 'most participants … another increase … by year end', staff path to 2% in 2029, 'insurance against inflation remaining persistently above target'; next meeting Oct 27-28 (federalreserve.gov). SEP dots: 16/18 see >=1 more hike (Waller Oct 8 speech: 'Sixteen of the 18 participants who submitted dots'; 12+4 vs 2 none). (BOC) Sep 2 hold at 2.25% = 7th consecutive (bankofcanada.ca rate table); next decision Oct 28 09:45 ET + MPR; BOS+CSCE Oct 19 11:30 ET (upcoming-events page). Pricing: Fed 82/18 matches CME FedWatch 17.7% Oct hike / 84.1% cumulative by Dec (StockWire X, Oct 12; FxStreet; centralbank.watch 17.7/82.3). BOC 72/28 (+7bp) exact match to live BlueGamma CORRA OIS ('As of 12 Oct 2026 … 72% probability … +7 bp'; badges Hike 28/Hold 72/Cut 0). Polymarket live (gamma-api): Fed hold 83.5 / hike 16.5, Vol $32.2M, Liq $3.07M; BOC hold 84.5 / hike 14.9, Vol $165.7k — within rounding of candidate; BOC hike history via CLOB 30.5% Oct 5 -> 14.9% Oct 12 consistent with '30% -> 15%'. Drivers (15) spot-checked against primaries: BEA PCE Aug 3.4%/core 3.0% vs 3.7%/3.3% consensus; BLS Sep +29k/u3 4.2% vs +84k/4.1%, Aug 162k->133k, Jul 21k->-10k; StatCan Aug CPI 3.0%/ex-gas 2.4%/trim 1.9%/median 2.0%; Sep LFS -68k/u3 6.5%/participation 64.8% (lowest since Dec 1997 ex-2020), public sector -70k, Quebec -49k/BC -20k; Jefferson Oct 1 / Waller Oct 8 / Williams Sep 29 speech texts; BoC deliberations quote verbatim; canada.ca $27.6B counter-tariffs eff. Sep 8; MPA Oct 2 (UBS to 2.75% Oct+Jan, Sep CPI 3.3%; Manulife/Oxford Oct+Dec; Scotia Oct; RBC close call); FP Oct 2 (G7 100M bbl over 4 months, diesel $2.75/L); Brent $104.28 +4% Oct 8 (CNBC/dpa); 10Y 5.24% (highest since Apr 2002). Market validations reproduce: Williams 70%->~50% (247wallst/Yahoo); Reuters ~70%->~25% (article verified, talkmarkets); LSEG BoC 40%->25% (Canadian Press/LSEG); riskstock Sep 23 ~60% up from ~30% (boc-h1 fix, word-for-word). Calendar rows confirmed: US CPI Oct 14 08:30 (BLS release schedule + FxStreet calendar), PPI/Retail Sales Oct 15 08:30, Canada CPI Oct 19 08:30 (StatCan 'Next release … Monday, October 19'), BoC BOS+CSCE Oct 19 11:30, BoC Oct 28 09:45 + MPR, FOMC decision Oct 28 14:00, BEA PCE+Q3 GDP advance Oct 29 08:30. Math recomputed: Fed base +3 / eff +2.5 hold; BOC base +2 / eff -1.25 hold; mean |weight| 2.6 / 2.57; implied rates 3.875->3.92 and 2.25->2.32 (+7bp). Prior-round minors both fixed and re-verified: fed-d2 cites the BLS revisions (Aug +133k, Jul -10k); boc-h1 re-dated/re-sourced (Sep 23, up from ~30% start-September) and reproduces. No critical/major findings; zero machine flags. All six checks pass.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [],
+  "flags_dispositioned": []
+}
