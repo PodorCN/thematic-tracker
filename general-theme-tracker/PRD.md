@@ -6,7 +6,7 @@
 
 A **theme-first site for PMs**: what are the most important market themes right now? How are they performing? What tracks them? Why did they form? What catalyst do they depend on? What changed yesterday vs today? Theme or noise?
 
-Understand a theme in 5 minutes, decide without reading the explainer, dig deeper when you want to.
+Understand a theme in 2 minutes, decide without reading the explainer, dig deeper when you want to (up to 5min folded).
 
 ## 2. Users & Pain Points
 
@@ -22,7 +22,7 @@ Portfolio Managers, before the open / ahead of the weekly meeting, want to answe
 ## 3. Product Principles
 
 1. **Decision-first, not news-first**: every theme must answer So What + What Next.
-2. **5-min rule**: a single theme's body reads in < 5min (~500 English words); explainers are folded by default and don't count.
+2. **2-min core, up to 5min folded**: a single theme's body reads in <= 2min (~200 English words, legacy 500 words = 5min caliber); it must state what happened (price action + trigger). Folded explainer / extended content may add up to 5min total (~500 words combined). Every theme also carries a `summary` (<= ~100 words) for the pre-click card: what happened + proxy vs benchmark + so what.
 3. **Timing is everything**: every news/event carries `UTC time + Source + Link`; no time or no source = unpublishable.
 4. **Frontend/backend separation**: agents only touch `data/`, never frontend code. Separated by API contract + schema version.
 5. **Dual-agent rule**: a second agent playing PM Reviewer must sign off before publish, hunting data errors and contradictions.
@@ -31,16 +31,24 @@ Portfolio Managers, before the open / ahead of the weekly meeting, want to answe
 ## 4. Information Architecture
 
 - **Home / Today**
+  - Date banner at the very top: Week + snapshot_date + data as_of_UTC + Toronto today, with Updated-today / Stale indicator — so the reader knows at a glance whether the page was updated today
+  - Theme Board: one row per theme — yesterday→today change, proxy, 1W/1M/YTD excess (pp), next checkpoint, Theme-vs-Noise score
+  - Per-theme one-minute card (identical blocks for every theme, <= ~1min each, no paragraph walls):
+    1. Header — status, conviction, horizon, since-date, noise score (failed checks named) + title + one-line `status_note`
+    2. How it formed — `chain` as numbered boxes joined by arrows, each a date + plain-English headline + one explanatory sentence written for an average reader (jargon explained in-step); the last step is highlighted as "Now"
+    3. Is it working — table of proxy / benchmark / excess over 1W / 1M / YTD + rebased sparkline
+    4. What decides it next — table of the next 2 checkpoints on/after the data date: date / checkpoint / holds if / breaks if
+    5. Track-with tickers + link to full detail (Summary, thesis, events, remaining checkpoints stay in detail)
   - Market Regime in one line (risk-on/off + 3 keywords)
   - Active Themes (3–7), status = New / Continuing / Fading / Dead
-  - Yesterday's Themes tracker: continued? strengthened? falsified?
+  - Yesterday's Themes tracker: the Theme Board's first column (new / continuing / fading / dead)
   - Benchmark strip: SPX, NDX, TSX, 10Y, USD/CAD, Oil, Gold
 - **Theme detail page** (fixed template; agents must not invent structure)
   1. Title + Status + Conviction (High/Med/Low) + Horizon (Tactical 2–8w / Cyclical 3–12m)
   2. Performance vs Benchmark (chart + table)
   3. Proxy to Track (1–3)
-  4. Why Now / Thesis (re-pricing logic)
-  5. Key Events / News Timeline
+  4. Why Now / Thesis (re-pricing logic; 2min core must state what happened)
+  5. Key Events / News Timeline (each event carries proxy return + benchmark return for the same window, so the move is benchmarked)
   6. Depends On / What to Watch (Next Catalyst + Bear case)
   7. Theme vs Noise verdict
   8. Explainer (expandable): terms, methods, data conventions
@@ -92,10 +100,10 @@ Only new `content_version` PRs into `data/` (yaml) are allowed; run `node backen
 | Tier | Spec | Use |
 |---|---|---|
 | Title | 20–22px / 700 | One-line theme + status tag |
-| Body | 15–16px / 400 / 1.6 line height | All decision content; over ~500 words gets sent back |
-| Explainer | 13px / `#6B7280` / folded `<details>` by default | Conventions, terms, calculation details |
+| Body | 15–16px / 400 / 1.6 line height | All decision content; body is the 2min core (<= ~200 words) and must state what happened |
+| Explainer | 13px / `#6B7280` / folded `<details>` by default | Conventions, terms, calculation details + folded extension up to 5min total |
 
-News timestamps use Monospace 13px inline in the timeline (not a new tier). Before publish, compute `word_count / 200wpm`; bodies over 5min auto-FAIL.
+News timestamps use Monospace 13px inline in the timeline (not a new tier). Before publish, compute `word_count / 100wpm` (legacy caliber: 500 words = 5min); bodies over 2min (~200 words) auto-FAIL; body + explainer over 5min (~500 words combined) auto-FAIL.
 
 ## 7. Performance vs Benchmark Rules
 
@@ -129,13 +137,13 @@ State machine: `Emerging -> New -> Continuing -> Fading -> Dead`, with a one-lin
 ## 11. Dual-Agent Workflow
 
 - **Agent A — Theme Writer**: runs weekly/daily, reads Commentary + market data, writes `data/themes/*.yaml` per schema_v1. Prompt: `prompts/theme_writer.md`.
-- **Agent B — PM Reviewer (Gatekeeper)**: mandatory before publish; a harsh, skeptical PM persona that trusts only numbers and logic. Checklist: data accuracy / internal consistency / complete Timing+Source / 5-min readability / Theme-Noise calls / proxy tradability. Outputs `PASS / FAIL + issue list`; FAIL returns to Writer for at most 2 rounds, then demotes to Draft. Prompt: `prompts/pm_reviewer.md`; reports archived under `review/<date>/`.
+- **Agent B — PM Reviewer (Gatekeeper)**: mandatory before publish; a harsh, skeptical PM persona that trusts only numbers and logic. Checklist: data accuracy / internal consistency / complete Timing+Source / 2-min readability (body <= ~200 words, total <= ~500) + what-happened stated / event proxy+benchmark returns present / Theme-Noise calls / proxy tradability. Outputs `PASS / FAIL + issue list`; FAIL returns to Writer for at most 2 rounds, then demotes to Draft. Prompt: `prompts/pm_reviewer.md`; reports archived under `review/<date>/`.
 
 ## 12. Definition of Done
 
-- Home reads in 5min: all Active Theme headlines + conclusions
-- Single theme body < 5min, explainer folded but complete
-- Every event click-traces to source with correct UTC time
+- Home reads in ~5min: date banner on top + Theme Board + one-minute card per theme (<= ~1min each)
+- Single theme body <= 2min (~200 words, must state what happened), folded extension up to 5min total (~500 words combined), explainer folded but complete
+- Every event click-traces to source with correct UTC time + carries proxy return vs benchmark return for the same window
 - Frontend changes fully decoupled from data updates: agent PRs only touch `/data/`
 - Reviewer reports archived and queryable; FAIL rate and edit history visible
 - Daily Yesterday-vs-Today diff: added / continued / faded at a glance

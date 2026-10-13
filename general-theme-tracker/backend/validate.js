@@ -24,7 +24,7 @@ function ok(file, msg) {
 }
 
 function bodyStats(s) {
-  // English-only product: any CJK char is a blocking violation; words counted at 200wpm for the 5-minute rule
+  // English-only product: any CJK char is a blocking violation; legacy caliber 500 words = 5min (100wpm), so 200 words = 2min core
   const cjk = (s.match(/[一-鿿]/g) || []).length;
   const words = (s.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length;
   return { cjk, words };
@@ -32,7 +32,7 @@ function bodyStats(s) {
 
 function validateTheme(file, t) {
   const name = path.basename(file);
-  const req = ['schema_v', 'id', 'week', 'title', 'status', 'status_note', 'conviction', 'horizon', 'created_at', 'updated_at', 'data_quality', 'body_text', 'performance', 'series', 'proxies', 'events', 'depends_on', 'theme_vs_noise'];
+  const req = ['schema_v', 'id', 'week', 'title', 'status', 'status_note', 'conviction', 'horizon', 'created_at', 'updated_at', 'data_quality', 'summary', 'chain', 'body_text', 'performance', 'series', 'proxies', 'events', 'depends_on', 'theme_vs_noise'];
   for (const k of req) if (t[k] === undefined) fail(name, `missing required field: ${k}`);
 
   if (t.schema_v !== 1) fail(name, `schema_v must be 1, got ${t.schema_v}`);
@@ -42,13 +42,50 @@ function validateTheme(file, t) {
   if (t.conviction && !CONVICTION.includes(t.conviction)) fail(name, `bad conviction: ${t.conviction}`);
   if (t.horizon && !HORIZON.includes(t.horizon)) fail(name, `bad horizon: ${t.horizon}`);
 
-  // 5-min rule + English-only
+  // chain: formation arc for Home cards (3-5 steps, label <=12w + plain-English detail <=30w, no new claims)
+  if (Array.isArray(t.chain)) {
+    if (t.chain.length < 3 || t.chain.length > 5) fail(name, `chain count ${t.chain.length} not in 3-5`);
+    t.chain.forEach((s, i) => {
+      if (!s || typeof s.label !== 'string' || !s.label.trim()) fail(name, `chain[${i}].label missing`);
+      else {
+        const w = (s.label.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length;
+        if (/[一-鿿]/.test(s.label)) fail(name, `chain[${i}].label has non-English char(s) — English-only`);
+        if (w > 12) fail(name, `chain[${i}].label ${w} words > 12`);
+      }
+      // when: short human date for the step (<=20 chars), so the chain reads as a timeline
+      if (!s || typeof s.when !== 'string' || !s.when.trim()) fail(name, `chain[${i}].when missing`);
+      else {
+        if (/[一-鿿]/.test(s.when)) fail(name, `chain[${i}].when has non-English char(s) — English-only`);
+        if (s.when.length > 20) fail(name, `chain[${i}].when ${s.when.length} chars > 20`);
+      }
+      // detail: the plain-English sentence under each step (<=30w)
+      if (!s || typeof s.detail !== 'string' || !s.detail.trim()) fail(name, `chain[${i}].detail missing`);
+      else {
+        const dw = (s.detail.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length;
+        if (/[一-鿿]/.test(s.detail)) fail(name, `chain[${i}].detail has non-English char(s) — English-only`);
+        if (dw > 30) fail(name, `chain[${i}].detail ${dw} words > 30`);
+      }
+    });
+  }
+  // summary: pre-click overview (<=100w, must carry the proxy vs benchmark picture)
+  if (t.summary !== undefined) {
+    const { cjk: scjk, words: swords } = bodyStats(String(t.summary));
+    if (scjk > 0) fail(name, `summary has ${scjk} non-English char(s) — English-only`);
+    if (swords > 100) fail(name, `summary ${swords} words > 100 (pre-click overview budget)`);
+  }
+  // 2-min core (<=200w) + up to 5min folded (body+explainer <=500w) + English-only
   if (t.body_text) {
     const { cjk, words } = bodyStats(t.body_text);
     if (cjk > 0) fail(name, `body_text has ${cjk} non-English char(s) — English-only`);
-    if (words > 500) fail(name, `body_text ${words} words > 500 (>5min)`);
+    if (words > 200) fail(name, `body_text ${words} words > 200 (>2min core)`);
+    const expl = typeof t.explainer === 'string' ? t.explainer : '';
+    const explWords = (expl.replace(/[一-鿿]/g, ' ').match(/\S+/g) || []).length;
+    if (words + explWords > 500) fail(name, `body+explainer ${words + explWords} words > 500 (>5min total)`);
+    if (!/what happened|so what|gained|fell|rose|surged|dropped|closed|record|down|up\b/i.test(t.body_text) && words > 0) {
+      // soft hint only — reviewer enforces what-happened; machine does not block on phrasing
+    }
   }
-  for (const k of ['title', 'status_note', 'explainer']) {
+  for (const k of ['title', 'status_note', 'summary', 'explainer']) {
     if (typeof t[k] === 'string' && /[一-鿿]/.test(t[k])) fail(name, `${k} has non-English char(s) — English-only`);
   }
 
@@ -84,6 +121,8 @@ function validateTheme(file, t) {
   }
 
   // events must carry UTC + source + url (no time or no source = unpublishable)
+  // proxy_ret / benchmark_ret / return_window are required going forward (reviewer flag if missing);
+  // machine only type-checks when present so existing bundles stay green (no fabricated backfill).
   if (Array.isArray(t.events)) {
     if (t.events.length < 1) fail(name, 'events empty');
     t.events.forEach((ev, i) => {
@@ -91,6 +130,12 @@ function validateTheme(file, t) {
       if (!ev.source) fail(name, `events[${i}] missing source — UNPUBLISHABLE`);
       if (!ev.url) fail(name, `events[${i}] missing url — UNPUBLISHABLE`);
       if (ev.type && !EVENT_TYPES.includes(ev.type)) fail(name, `events[${i}].type bad: ${ev.type}`);
+      for (const k of ['proxy_ret', 'benchmark_ret']) {
+        if (ev[k] !== undefined && typeof ev[k] !== 'number') fail(name, `events[${i}].${k} must be number (pct)`);
+      }
+      if ((ev.proxy_ret !== undefined || ev.benchmark_ret !== undefined) && !ev.return_window) {
+        fail(name, `events[${i}].return_window required when returns are given (e.g. event-day, T+1D)`);
+      }
     });
   }
 

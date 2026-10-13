@@ -92,7 +92,7 @@ def validate(doc: dict) -> list[str]:
             continue
         for k in ("schema_v", "id", "week", "title", "status", "status_note",
                   "conviction", "horizon", "created_at", "updated_at",
-                  "body_text", "performance", "series", "proxies",
+                  "summary", "chain", "body_text", "performance", "series", "proxies",
                   "events", "depends_on", "theme_vs_noise"):
             if t.get(k) is None:
                 fail(f"{loc} missing required field: {k}")
@@ -106,11 +106,47 @@ def validate(doc: dict) -> list[str]:
             fail(f"{loc}.conviction bad: {t['conviction']}")
         if t.get("horizon") and t["horizon"] not in HORIZON:
             fail(f"{loc}.horizon bad: {t['horizon']}")
+        chain = t.get("chain")
+        if not isinstance(chain, list) or not 3 <= len(chain) <= 5:
+            fail(f"{loc}.chain must be 3-5 steps (got {len(chain) if isinstance(chain, list) else chain!r})")
+        else:
+            for j, s in enumerate(chain):
+                lab = s.get("label") if isinstance(s, dict) else None
+                if not lab:
+                    fail(f"{loc}.chain[{j}].label missing")
+                else:
+                    if len(_CJK.findall(lab)) > 0:
+                        fail(f"{loc}.chain[{j}].label has non-English chars — English-only")
+                    if len(re.findall(r"\S+", _CJK.sub(" ", lab))) > 12:
+                        fail(f"{loc}.chain[{j}].label over 12 words")
+                when = s.get("when") if isinstance(s, dict) else None
+                if not when or not isinstance(when, str):
+                    fail(f"{loc}.chain[{j}].when missing")
+                elif len(_CJK.findall(when)) > 0 or len(when) > 20:
+                    fail(f"{loc}.chain[{j}].when must be a short English date label (<= 20 chars)")
+                det = s.get("detail") if isinstance(s, dict) else None
+                if not det:
+                    fail(f"{loc}.chain[{j}].detail missing")
+                else:
+                    if len(_CJK.findall(det)) > 0:
+                        fail(f"{loc}.chain[{j}].detail has non-English chars — English-only")
+                    if len(re.findall(r"\S+", _CJK.sub(" ", det))) > 30:
+                        fail(f"{loc}.chain[{j}].detail over 30 words")
+        summ = t.get("summary") or ""
+        if len(_CJK.findall(summ)) > 0:
+            fail(f"{loc}.summary has non-English chars — English-only")
+        if len(re.findall(r"\S+", _CJK.sub(" ", summ))) > 100:
+            fail(f"{loc}.summary EN words > 100 (pre-click overview budget)")
         body = t.get("body_text") or ""
         if len(_CJK.findall(body)) > 900:
-            fail(f"{loc}.body_text CJK > 900 (>5min)")
-        if len(re.findall(r"\S+", _CJK.sub(" ", body))) > 500:
-            fail(f"{loc}.body_text EN words > 500 (>5min)")
+            fail(f"{loc}.body_text CJK > 900 (>5min total)")
+        en_words = len(re.findall(r"\S+", _CJK.sub(" ", body)))
+        if en_words > 200:
+            fail(f"{loc}.body_text EN words > 200 (>2min core)")
+        expl = t.get("explainer") or ""
+        expl_words = len(re.findall(r"\S+", _CJK.sub(" ", str(expl)))) if isinstance(expl, str) else 0
+        if en_words + expl_words > 500:
+            fail(f"{loc}.body+explainer EN words > 500 (>5min total)")
         p = t.get("performance") or {}
         for k in ("ret_1w", "ret_1m", "ret_ytd", "benchmark_ret_1w",
                   "benchmark_ret_1m", "benchmark_ret_ytd",
@@ -159,6 +195,15 @@ def validate(doc: dict) -> list[str]:
                 url = ev.get("url") if isinstance(ev, dict) else None
                 if not (isinstance(url, str) and _HTTPS.match(url)):
                     fail(f"{ef}.url must be https://")
+                # Event returns are reviewer-required going forward; machine only
+                # type-checks when present so existing bundles stay green.
+                if isinstance(ev, dict):
+                    for k in ("proxy_ret", "benchmark_ret"):
+                        if ev.get(k) is not None and not isinstance(ev.get(k), (int, float)):
+                            fail(f"{ef}.{k} must be number (pct)")
+                    if (ev.get("proxy_ret") is not None or ev.get("benchmark_ret") is not None) \
+                            and not ev.get("return_window"):
+                        fail(f"{ef}.return_window required when returns are given")
         depends = t.get("depends_on")
         if not isinstance(depends, list) or not depends:
             fail(f"{loc}.depends_on empty — no next catalyst, demote to Noise")

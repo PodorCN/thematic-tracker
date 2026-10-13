@@ -40,12 +40,21 @@ export interface Proxy {
   tracking_gap: string
 }
 
+export interface ChainStep {
+  when?: string // short date label, e.g. "Sep 16"; optional for the same reason as detail
+  label: string
+  detail?: string // plain-English sentence; optional so bundles published before it existed still render
+}
+
 export interface ThemeEvent {
   event_time_utc: string
   title: string
   source: string
   url: string
   type: 'macro' | 'earnings' | 'policy' | 'geopolitics'
+  proxy_ret?: number
+  benchmark_ret?: number
+  return_window?: string
 }
 
 export interface Catalyst {
@@ -77,6 +86,8 @@ export interface Theme {
   created_at: string
   updated_at: string
   data_quality: 'production' | 'sample'
+  summary: string
+  chain: ChainStep[]
   body_text: string
   explainer?: string
   performance: Performance

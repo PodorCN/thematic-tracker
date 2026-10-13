@@ -6,10 +6,10 @@
     "styles.css": "560b6b9c10518aa414c8c00bd7203ed575fa6d5331b975e91c3c770d97a3c7c4"
   },
   "general-theme-tracker": {
-    "index.html": "6584f32c52d81e71cdb3ba5f06e5b38d59ac09963f2c19f67832b47e3b3d9b25",
-    "frontend/src/pages/Home.tsx": "37cca5988f303c8198da19844e5fa0bd97efe71579919f49bd11097f86f01787",
-    "frontend/src/pages/ThemeDetail.tsx": "1cff3de57bd5a1e9995ca58faaa7e4369d35d1170eea4cbaca88e58d8f35c43a",
+    "index.html": "f3bd46060da5b1e4b35f7a93e94ff29056ae43d01d43d726d00eacd5a4e536bc",
+    "frontend/src/pages/Home.tsx": "49ea0e314d817524e04a0cf548252e13d86aaa5f05e7063e49a66307a420a2ce",
+    "frontend/src/pages/ThemeDetail.tsx": "6ee99ea0a4c6184ae07f78cb2d48a511b9529b09515c562ecde1be9b03f80380",
     "frontend/src/pages/Archive.tsx": "1acdeac5702f960ca217e4261158948db91f5557e78b4499322c6d7ee41723d6",
-    "frontend/src/lib/api.ts": "35fabca8c2a597f5a13075c13a7a7d8f8903ab801a2602a95e857d16a660a116"
+    "frontend/src/lib/api.ts": "ac3dc92c7441223dea52a351e44bc04ee1f91d60d20fbffbdf12e33c4d543090"
   }
 }

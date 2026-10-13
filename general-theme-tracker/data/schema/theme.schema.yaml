@@ -1,6 +1,7 @@
 # Theme Schema v1 — data/themes/<YYYY-Www>/theme_*.yaml
 # Validator: backend/validate.js
-# Rules summary: events without time+source are unpublishable; body < ~500 English words; score<3 demotes to Noise.
+# Rules summary: events without time+source are unpublishable; body <= ~200 English words (2min core, must state what happened); body+explainer <= ~500 words combined (up to 5min folded); score<3 demotes to Noise.
+# Reading caliber (legacy): 500 words = 5min (100wpm); 200 words = 2min.
 # English-only: non-English strings fail validation.
 
 schema_v: 1
@@ -18,9 +19,31 @@ fields:
   updated_at:      { type: date,    required: true }
   data_quality:    { type: enum,    required: true, values: [production, sample] }
 
-  # ---- body (5-min rule) ----
-  body_text:       { type: string,  required: true, max_cn_chars: 900, max_en_words: 500 }
-  explainer:       { type: string,  required: false, note: "terms/conventions/calculation details, folded in the frontend by default" }
+  # ---- summary (pre-click overview, ~100 words) ----
+  # Shown on Home cards before click: what happened + proxy vs benchmark + so what.
+  summary:         { type: string,  required: true, max_cn_chars: 180, max_en_words: 100 }
+
+  # ---- formation chain (pre-click visual, 3-5 steps) ----
+  # Rendered as numbered boxes joined by arrows on Home cards; the last step is shown as "Now" (current state).
+  # Distilled only from sourced body/events — no new claims, no new numbers.
+  # Written for an average reader, not a desk: label = plain-English headline (<= 12 words, a full thought,
+  # no shorthand like "tug" / "script" / "digested"); detail = one or two plain sentences (<= 30 words) saying
+  # what happened and why it matters. Any term a newspaper reader would not know is spelled out or explained
+  # in the same step (e.g. "the 10-year Treasury yield", "ZEB, a fund holding the six big banks").
+  chain:
+    type: list
+    required: true
+    min_items: 3
+    max_items: 5
+    item_fields:
+      when:   { type: string, required: true, max_len: 20, note: "when this step happened, short and human: 'Sep 16', 'Dec 2025', 'H1 2026', 'Sep 28 - Oct 1'. Only dates already stated in body/events" }
+      label:  { type: string, required: true, max_en_words: 12 }
+      detail: { type: string, required: true, max_en_words: 30 }
+
+  # ---- body (2-min core, up to 5min folded) ----
+  # Strict three tiers: Title 20-22px/700, Body 15-16px/1.6 (2min core), Explainer 13px #6B7280 folded.
+  body_text:       { type: string,  required: true, max_cn_chars: 360, max_en_words: 200, note: "2min core, must state what happened (price action + trigger)" }
+  explainer:       { type: string,  required: false, note: "terms/conventions/calculation details + folded extension; body+explainer combined <= ~500 words (up to 5min total)" }
 
   # ---- Performance vs Benchmark ----
   performance:
@@ -72,7 +95,7 @@ fields:
       why_represents: { type: string, required: true }
       tracking_gap:   { type: string, required: true, note: "tracking flaws" }
 
-  # ---- Key Events / News Timeline ----
+  # ---- Key Events / News Timeline (each event benchmarked) ----
   events:
     type: list
     required: true
@@ -83,6 +106,9 @@ fields:
       source:         { type: string,   required: true, note: "no source = unpublishable" }
       url:            { type: url,      required: true }
       type:           { type: enum,     required: true, values: [macro, earnings, policy, geopolitics] }
+      proxy_ret:      { type: number,   required: false, unit: pct, note: "proxy % move in return_window (Yahoo closes); required going forward (missing triggers reviewer flag)" }
+      benchmark_ret:  { type: number,   required: false, unit: pct, note: "benchmark % move in the same window; required going forward" }
+      return_window:  { type: string,   required: false, note: "event-day = close-vs-prior-close on the event date; next-session = first trading session on/after a non-trading date. Market action, not causal attribution." }
 
   # ---- Depends On / What to Watch ----
   depends_on:

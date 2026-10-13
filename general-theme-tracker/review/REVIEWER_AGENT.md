@@ -13,9 +13,12 @@
 ## Theme scoring rubric (binding)
 
 See `general-theme-tracker/AGENT.md` §4 + `data/schema/theme.schema.yaml`:
-excess recompute tolerance 0.2pp; body ~500 English words max; series ≥2 points;
+excess recompute tolerance 0.2pp; body ~200 English words max (2min core, must state what happened);
+summary ~100 words max (pre-click overview with the proxy-vs-benchmark picture);
+chain 3-5 dated steps (`when` <= 20 chars, chronological, traceable to dated events/body), each label ~12 words max + plain-English detail ~30 words max (readable by a non-market reader, jargon explained in-step), traceable to sourced body/events (no new claims);
+body + explainer ~500 words combined max (up to 5min folded); series ≥2 points;
 proxies 1–3 with ETF fee + liquidity note + tracking gap; every event needs
-UTC + source + https URL; `depends_on` non-empty (else Noise);
+UTC + source + https URL + proxy_ret/benchmark_ret for the same return_window (benchmarked move); `depends_on` non-empty (else Noise);
 `theme_vs_noise.score == true-count`, `score >= 3` for the homepage
 (`New`/`Continuing` with `score < 3` is blocked; `Fading`/`Dead` excepted).
 

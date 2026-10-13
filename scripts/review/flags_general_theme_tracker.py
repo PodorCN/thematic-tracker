@@ -114,14 +114,58 @@ def structural_flags(doc: dict) -> list[dict]:
                 push("stale_performance", f"{loc}.performance.as_of_utc",
                      f"as_of {p.get('as_of_utc')} is {age_days}d older than snapshot_date "
                      f"{snap} — re-pull or mark unavailable")
-        # --- body 5-min rule ---
+        # --- chain: formation arc (3-5 steps, label <=12w + plain-English detail <=30w) ---
+        chain = t.get("chain")
+        if not isinstance(chain, list) or not chain:
+            push("missing_chain", f"{loc}.chain",
+                 "chain missing — every theme needs 3-5 formation steps for Home cards")
+        else:
+            if not 3 <= len(chain) <= 5:
+                push("chain_count", f"{loc}.chain",
+                     f"chain count {len(chain)} not in 3-5")
+            for j, s in enumerate(chain):
+                lab = s.get("label") if isinstance(s, dict) else None
+                if not lab:
+                    push("chain_gap", f"{loc}.chain[{j}].label", "chain step label missing")
+                elif _en_words(str(lab)) > 12:
+                    push("chain_label_long", f"{loc}.chain[{j}].label",
+                         f"chain label {_en_words(str(lab))} words > 12 — keep steps scannable")
+                when = s.get("when") if isinstance(s, dict) else None
+                if not when:
+                    push("chain_when_gap", f"{loc}.chain[{j}].when",
+                         "chain step date missing — each step needs a short 'when' label")
+                elif len(str(when)) > 20:
+                    push("chain_when_long", f"{loc}.chain[{j}].when",
+                         f"chain when {len(str(when))} chars > 20 — keep it a short date label")
+                det = s.get("detail") if isinstance(s, dict) else None
+                if not det:
+                    push("chain_detail_gap", f"{loc}.chain[{j}].detail",
+                         "chain step detail missing — each step needs a plain-English sentence")
+                elif _en_words(str(det)) > 30:
+                    push("chain_detail_long", f"{loc}.chain[{j}].detail",
+                         f"chain detail {_en_words(str(det))} words > 30 — one or two short sentences")
+        # --- summary: pre-click overview (<=100w, carries proxy vs benchmark) ---
+        summ = t.get("summary") or ""
+        if not summ:
+            push("missing_summary", f"{loc}.summary",
+                 "summary missing — every theme needs a <=100-word pre-click overview")
+        else:
+            if _en_words(str(summ)) > 100:
+                push("summary_too_long", f"{loc}.summary",
+                     f"summary EN words {_en_words(str(summ))} > 100 — cut to the overview budget")
+        # --- body 2-min core + up to 5min folded (legacy caliber 500w = 5min) ---
         body = t.get("body_text") or ""
-        if _cjk_len(body) > 900:
+        expl = t.get("explainer") or ""
+        if _cjk_len(body) > 360:
             push("body_too_long", f"{loc}.body_text",
-                 f"body CJK chars {_cjk_len(body)} > 900 (>5min) — cut or split")
-        if _en_words(body) > 500:
+                 f"body CJK chars {_cjk_len(body)} > 360 (>2min core) — cut or split")
+        if _en_words(body) > 200:
             push("body_too_long", f"{loc}.body_text",
-                 f"body EN words {_en_words(body)} > 500 (>5min) — cut or split")
+                 f"body EN words {_en_words(body)} > 200 (>2min core) — cut or split")
+        total_words = _en_words(body) + _en_words(str(expl) if isinstance(expl, str) else "")
+        if total_words > 500:
+            push("body_too_long", f"{loc}.body_text",
+                 f"body+explainer EN words {total_words} > 500 (>5min total) — cut or split")
         # --- series ---
         series = t.get("series")
         if not isinstance(series, list) or len(series) < 2:
@@ -162,6 +206,14 @@ def structural_flags(doc: dict) -> list[dict]:
                 if not (isinstance(url, str) and _HTTPS.match(url)):
                     push("missing_event_time_source", ef + ".url",
                          f"event url must be https:// (got {url!r})")
+                # Key Events must carry benchmarked returns going forward.
+                if isinstance(ev, dict) and (
+                    ev.get("proxy_ret") is None or ev.get("benchmark_ret") is None
+                    or not ev.get("return_window")
+                ):
+                    push("missing_event_return", ef,
+                         "event missing proxy_ret/benchmark_ret/return_window — "
+                         "each Key Event must show proxy return vs benchmark return")
         # --- depends_on: no catalyst -> Noise ---
         depends = t.get("depends_on")
         if not isinstance(depends, list) or not depends:

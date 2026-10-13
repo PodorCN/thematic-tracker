@@ -26,7 +26,8 @@
   nav a:hover{color:#fff}
   .ticker{display:flex;flex-wrap:wrap;gap:8px 22px;border-bottom:1px solid var(--line);
     padding:10px 0;font-size:13px}
-  .ticker b{font-family:ui-monospace,Menlo,monospace}
+  .ticker b{font-family:ui-monospace,Menlo,monospace} .ticker>span{white-space:nowrap}
+  #datebanner{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px} #datebanner .pill{margin-left:auto;white-space:nowrap}
   .up{color:var(--up)} .down{color:var(--down)}
   .regime{border-bottom:2px solid #000;padding:28px 0}
   .kicker{position:relative;padding-left:11px;font-size:11px;font-weight:700;letter-spacing:.14em;
@@ -56,6 +57,40 @@
   .diff{display:flex;gap:10px;align-items:baseline;margin:8px 0;font-size:13px}
   .pill{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
     font-family:ui-monospace,Menlo,monospace}
+  .sans{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+  .board-wrap{overflow-x:auto}
+  table.board{width:100%;min-width:680px;border-collapse:collapse;font-size:13px;margin-top:10px}
+  table.board th{border-bottom:1px solid #111;padding:0 8px 6px;text-align:left;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--mut);font-family:ui-monospace,Menlo,monospace}
+  table.board td{border-bottom:1px solid var(--line);padding:8px;vertical-align:baseline}
+  table.board .pill{white-space:nowrap} table.board .r{text-align:right} table.board th:first-child,table.board td:first-child{padding-left:0}
+  table.board a{color:#111;font-weight:700;text-decoration:none} table.board a:hover{text-decoration:underline}
+  .chain{display:flex;list-style:none;margin:8px 0 0;padding:0}
+  .chain li{display:flex;flex:1;min-width:0}
+  .chain .node{flex:1;border:1px solid #d1d5db;padding:9px 12px;font-size:14px;font-weight:700;line-height:1.35}
+  .chain .node p{margin:4px 0 0;font-size:13px;font-weight:400;line-height:1.5;color:#4b5563} .chain .now p{color:#d1d5db}
+  .chain .node small{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px;font:700 11px ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--mut)}
+  .chain .node small b{color:#111;white-space:nowrap;text-transform:uppercase}
+  .chain .now{background:#111827;border-color:#111827;color:#fff} .chain .now small{color:#d1d5db} .chain .now small b{color:#fff}
+  .chain .arr{display:flex;align-items:center;justify-content:center;padding:0 6px;color:#9ca3af}
+  .card-grid{display:grid;grid-template-columns:280px 1fr;gap:22px 36px;margin-top:22px}
+  .card-grid table.perf{margin-top:8px}
+  .watch .row{display:grid;grid-template-columns:52px 1fr 1.35fr 1.35fr;gap:4px 14px;border-bottom:1px solid #f0f0f0;
+    padding:9px 0;font-size:13px;line-height:1.5;color:#374151}
+  .watch .head{border-bottom:1px solid var(--line);padding:8px 0 6px;font:700 11px ui-monospace,Menlo,monospace;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .watch .row b{color:#111} .watch .row b.up{color:var(--up)} .watch .row b.down{color:var(--down)}
+  .cardfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 20px;margin-top:10px}
+  details.full{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+  details.full>summary{color:#111}
+  .board-m{display:none;border-top:1px solid #111;margin-top:10px}
+  .board-m a{display:block;border-bottom:1px solid var(--line);padding:11px 0;color:inherit;text-decoration:none}
+  .board-m .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .board-m .ttl{font-size:15px;font-weight:700;line-height:1.3;margin:4px 0 5px}
+  .board-m .nums{display:flex;flex-wrap:wrap;gap:2px 16px}
+  @media(max-width:900px){.chain,.chain li{flex-direction:column}.chain .arr{padding:2px 0;transform:rotate(90deg)}}
+  @media(max-width:760px){.card-grid{grid-template-columns:1fr}.watch .row{grid-template-columns:1fr}.watch .head{display:none}}
+  @media(max-width:640px){.board-wrap{display:none}.board-m{display:block}}
   @media(max-width:640px){h1.display{font-size:28px}.ev time{flex-basis:110px}}
 </style>
 </head>
@@ -67,6 +102,7 @@
 <div class="wrap">
   <div id="err"></div>
   <div id="app" style="display:none">
+    <div id="datebanner" style="border-bottom:2px solid #000;padding:8px 0;font-size:12px"></div>
     <div class="ticker" id="ticker"></div>
     <section class="regime">
       <span class="kicker" id="regime-kicker">Market Regime</span>
@@ -113,13 +149,83 @@
       + '<text x="'+X(series.length-1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="#6B7280">'+esc(String(last.date).slice(0,10))+'</text>'
       + '</svg><p class="expl">— '+esc(pl)+' · — '+esc(bl)+' · Rebased to 100</p>';
   }
-  function themeHTML(t){
-    var p=t.performance, h='';
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDay(iso){ var a = String(iso).slice(0,10).split('-'); return a.length === 3 ? MONTHS[+a[1]-1]+' '+(+a[2]) : String(iso); }
+  // Next checkpoints on/after the data date, soonest first (falls back to all if none are upcoming)
+  function nextCatalysts(deps, asOf, n){
+    var ref = String(asOf).slice(0,10);
+    var sorted = deps.slice().sort(function(a,b){ return String(a.due_date) < String(b.due_date) ? -1 : 1; });
+    var upcoming = sorted.filter(function(d){ return String(d.due_date).slice(0,10) >= ref; });
+    return (upcoming.length ? upcoming : sorted).slice(0, n);
+  }
+  var NOISE_NAMES = {persistence:'Persistence',breadth:'Breadth',volume_confirm:'Price-volume confirmation',falsifiable_catalyst:'Falsifiable catalyst',repricing_logic:'Re-pricing logic'};
+  function noiseDots(score){ var d=''; for(var i=1;i<=5;i++) d += '<span style="color:'+(i<=score?'#111':'#d1d5db')+'">●</span>';
+    return '<span class="mono" style="font-size:11px;letter-spacing:.05em">'+d+' <span style="color:#6b7280">'+score+'/5</span></span>'; }
+  function chainHTML(steps){
+    if(!steps || !steps.length) return '';
+    return '<ol class="chain sans">' + steps.map(function(st,i){
+      var last = i === steps.length-1;
+      return '<li><div class="node'+(last?' now':'')+'"><small><span>'+(last?'NOW':('0'+(i+1)).slice(-2))+'</span>'+(st.when?'<b>'+esc(st.when)+'</b>':'')+'</small>'+esc(st.label)+(st.detail?'<p>'+esc(st.detail)+'</p>':'')+'</div>'
+        + (last?'':'<span class="arr" aria-hidden="true">→</span>') + '</li>';
+    }).join('') + '</ol>';
+  }
+  function sparkSVG(series, pl, bl){
+    if(!series || series.length < 2) return '';
+    var W=280,H=64,all=[]; series.forEach(function(p){ all.push(p.proxy,p.benchmark); });
+    var min=Math.min.apply(null,all), span=(Math.max.apply(null,all)-min)||1;
+    function X(i){ return 3+(i/(series.length-1))*(W-6); }
+    function Y(v){ return 4+(1-(v-min)/span)*(H-8); }
+    function line(k){ return series.map(function(p,i){ return (i?'L':'M')+X(i).toFixed(1)+','+Y(p[k]).toFixed(1); }).join(' '); }
+    return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:360px;display:block;margin-top:10px" role="img" aria-label="'+esc(pl)+' versus '+esc(bl)+' sparkline">'
+      + '<path d="'+line('benchmark')+'" fill="none" stroke="#B4BCC8" stroke-width="1.5"/>'
+      + '<path d="'+line('proxy')+'" fill="none" stroke="#111827" stroke-width="2"/>'
+      + '<circle cx="'+X(series.length-1)+'" cy="'+Y(series[series.length-1].proxy)+'" r="2.5" fill="#111827"/>'
+      + '</svg><p class="expl" style="margin:2px 0 0">— '+esc(pl)+' · <span style="color:#B4BCC8">—</span> '+esc(bl)+' · rebased</p>';
+  }
+  function boardHTML(themes, ms){
+    var DC = { new:'#e51503', continuing:'#0a7d44', fading:'#b45309', dead:'#9ca3af' };
+    function chip(c){ var col = DC[c] || '#666'; return '<span class="pill" style="color:'+col+'">● '+esc(c)+'</span>'; }
+    function num(v){ return '<td class="mono r '+(v>=0?'up':'down')+'"><b>'+(v>0?'+':'')+v.toFixed(1)+'</b></td>'; }
+    var diffs = ms.yesterday_diff || [], seen = {};
+    var h = '<span class="kicker">Theme Board · Yesterday → Today</span><div class="board-wrap"><table class="board sans"><thead><tr>'
+      + '<th>Today</th><th>Theme</th><th>Proxy</th><th class="r">1W</th><th class="r">1M</th><th class="r">YTD</th><th>Next checkpoint</th><th>Theme vs noise</th></tr></thead><tbody>';
+    themes.forEach(function(t){
+      seen[t.id] = 1;
+      var d = diffs.filter(function(x){ return x.theme_id === t.id; })[0], p = t.performance, nx = nextCatalysts(t.depends_on, ms.as_of_utc, 1)[0];
+      h += '<tr><td>'+(d ? chip(d.change) : statusTag(t.status))+'</td><td><a href="#'+esc(t.id)+'">'+esc(t.title)+'</a></td>'
+        + '<td class="mono"><b>'+esc(p.proxy_ticker)+'</b></td>'+num(p.excess_1w)+num(p.excess_1m)+num(p.excess_ytd)
+        + '<td class="expl">'+(nx ? '<b class="mono" style="color:#111">'+fmtDay(nx.due_date)+'</b> '+esc(nx.event_name) : '')+'</td>'
+        + '<td>'+noiseDots(t.theme_vs_noise.score)+'</td></tr>';
+    });
+    diffs.forEach(function(d){ if(seen[d.theme_id]) return;
+      h += '<tr><td>'+chip(d.change)+'</td><td class="expl" colspan="7"><b>'+esc(d.theme_id)+'</b> — '+esc(d.note)+'</td></tr>'; });
+    h += '</tbody></table></div>';
+    // Phones: one stacked block per theme (no sideways scrolling)
+    h += '<div class="board-m sans">';
+    themes.forEach(function(t){
+      var d = diffs.filter(function(x){ return x.theme_id === t.id; })[0], p = t.performance, nx = nextCatalysts(t.depends_on, ms.as_of_utc, 1)[0];
+      function n(k, v){ return '<span><span style="color:#6b7280">'+k+'</span> <b class="'+(v>=0?'up':'down')+'">'+(v>0?'+':'')+v.toFixed(1)+'</b></span>'; }
+      h += '<a href="#'+esc(t.id)+'"><div class="top">'+(d ? chip(d.change) : statusTag(t.status))+noiseDots(t.theme_vs_noise.score)+'</div>'
+        + '<div class="ttl">'+esc(t.title)+'</div><div class="nums mono"><b>'+esc(p.proxy_ticker)+'</b>'+n('1W',p.excess_1w)+n('1M',p.excess_1m)+n('YTD',p.excess_ytd)+'</div>'
+        + (nx ? '<div class="expl" style="margin-top:4px">Next: <b class="mono" style="color:#111">'+fmtDay(nx.due_date)+'</b> '+esc(nx.event_name)+'</div>' : '')+'</a>';
+    });
+    diffs.forEach(function(d){ if(seen[d.theme_id]) return;
+      h += '<a>'+chip(d.change)+'<div class="expl" style="margin-top:4px"><b>'+esc(d.theme_id)+'</b> — '+esc(d.note)+'</div></a>'; });
+    return h + '</div><p class="expl" style="margin:6px 0 0">1W / 1M / YTD = excess vs benchmark, pp</p>';
+  }
+  // One-minute card (what it is -> how it formed -> is it working -> what decides it next); everything else folds under Full detail
+  function themeHTML(t, n, asOf){
+    var p=t.performance, h='', vn=t.theme_vs_noise;
+    var failed = Object.keys(NOISE_NAMES).filter(function(k){ return !vn[k]; }).map(function(k){ return NOISE_NAMES[k].toLowerCase(); });
+    var watch = nextCatalysts(t.depends_on, asOf, 2), more = t.depends_on.length - watch.length;
     h += '<article class="theme" id="'+esc(t.id)+'">';
-    h += '<span class="kicker">Theme · '+esc(t.week)+' · '+esc(t.horizon)+'</span>';
-    h += '<h2>'+esc(t.title)+'</h2><p class="dek">'+esc(t.status_note)+'</p>';
-    h += '<div class="tags">'+statusTag(t.status)+'<span style="color:#6b7280">'+esc(t.conviction)+' Conviction</span>'
-       + '<span style="color:#6b7280">Noise score '+t.theme_vs_noise.score+'/5</span></div>';
+    h += '<div class="tags"><span class="mono" style="color:#9ca3af">'+('0'+n).slice(-2)+'</span>'+statusTag(t.status)
+       + '<span style="color:#6b7280">'+esc(t.conviction)+' Conviction</span><span style="color:#6b7280">'+esc(t.horizon)+'</span>'
+       + '<span style="color:#6b7280">Since '+fmtDay(t.created_at)+'</span>'+noiseDots(vn.score)
+       + (failed.length ? '<span class="expl" style="letter-spacing:0;text-transform:none;font-weight:400">fails: '+esc(failed.join(', '))+'</span>' : '')+'</div>';
+    h += '<h2>'+esc(t.title)+'</h2><p class="dek" style="margin-top:0">'+esc(t.status_note)+'</p>';
+    if (t.chain && t.chain.length) h += '<p class="kicker" style="margin:18px 0 0">How it formed</p>'+chainHTML(t.chain);
+    h += '<div class="card-grid"><div><p class="kicker" style="margin:0">Is it working · '+esc(p.proxy_ticker)+' vs '+esc(p.benchmark_name)+'</p>';
     h += '<table class="perf"><thead><tr><th></th><th>1W</th><th>1M</th><th>YTD</th></tr></thead><tbody>';
     h += '<tr><td><b>'+esc(p.proxy_ticker)+'</b></td><td class="'+(p.ret_1w>=0?'up':'down')+'">'+fmtPct(p.ret_1w)+'</td>'
        + '<td class="'+(p.ret_1m>=0?'up':'down')+'">'+fmtPct(p.ret_1m)+'</td>'
@@ -129,7 +235,17 @@
     h += '<tr><td><b>Excess (pp)</b></td><td class="'+(p.excess_1w>=0?'up':'down')+'"><b>'+fmtPct(p.excess_1w,'pp')+'</b></td>'
        + '<td class="'+(p.excess_1m>=0?'up':'down')+'"><b>'+fmtPct(p.excess_1m,'pp')+'</b></td>'
        + '<td class="'+(p.excess_ytd>=0?'up':'down')+'"><b>'+fmtPct(p.excess_ytd,'pp')+'</b></td></tr>';
-    h += '</tbody></table>';
+    h += '</tbody></table>'+sparkSVG(t.series, p.proxy_ticker, p.benchmark_name)+'</div>';
+    h += '<div class="watch sans"><p class="kicker" style="margin:0">What decides it next</p>'
+       + '<div class="row head"><span>Date</span><span>Checkpoint</span><span>Holds if</span><span>Breaks if</span></div>';
+    watch.forEach(function(d){
+      h += '<div class="row"><b class="mono">'+fmtDay(d.due_date)+'</b><b>'+esc(d.event_name)+'</b>'
+         + '<span><b class="up">▲</b> '+esc(d.if_bull)+'</span><span><b class="down">▼</b> '+esc(d.if_bear)+'</span></div>';
+    });
+    h += '<div class="cardfoot expl"><span>Track with '+t.proxies.map(function(px){ return '<b class="mono" style="color:#111">'+esc(px.ticker)+'</b> '+esc(px.type); }).join(' · ')+'</span></div>';
+    h += '</div></div>';
+    h += '<details class="full"><summary>Full detail — thesis, '+t.events.length+' sourced events'+(more>0?', '+more+' more checkpoint'+(more>1?'s':''):'')+'</summary>';
+    if (t.summary) h += '<p style="font-size:15.5px;line-height:1.6;margin:14px 0 0;max-width:640px">'+esc(t.summary)+'</p>';
     h += '<p class="expl">'+esc(p.proxy_ticker)+' '+p.proxy_price+' '+esc(p.currency)+' · '+esc(p.return_type==='price'?'Price Return':'Total Return')
        + ' · as of <span class="mono">'+fmtUtc(p.as_of_utc)+'</span> · '+esc(p.source)+' · Benchmark: '+esc(p.benchmark_rationale)+'</p>';
     h += chartSVG(t.series, p.proxy_ticker, p.benchmark_name);
@@ -142,8 +258,15 @@
     h += '<p class="kicker" style="margin-top:18px">Why Now / Thesis</p><p style="font-size:15.5px;line-height:1.6;white-space:pre-line">'+esc(t.body_text)+'</p>';
     h += '<p class="kicker" style="margin-top:18px">Key Events</p>';
     t.events.forEach(function(ev){
-      h += '<div class="ev"><time class="mono">'+fmtUtc(ev.event_time_utc)+'</time><div><div style="font-size:15px">'+esc(ev.title)+'</div>'
-         + '<div class="expl"><span class="mono" style="font-size:11px">'+esc(ev.type)+'</span> <a href="'+esc(ev.url)+'" target="_blank" rel="noreferrer">'+esc(ev.source)+' ↗</a></div></div></div>';
+      h += '<div class="ev"><time class="mono">'+fmtUtc(ev.event_time_utc)+'</time><div><div style="font-size:15px">'+esc(ev.title)+'</div>';
+      if (typeof ev.proxy_ret === 'number' && typeof ev.benchmark_ret === 'number') {
+        var act = ev.proxy_ret - ev.benchmark_ret;
+        h += '<div class="mono" style="font-size:12px;color:#374151;margin-top:2px">'
+          + esc(p.proxy_ticker) + ' ' + fmtPct(ev.proxy_ret) + ' vs ' + esc(p.benchmark_name) + ' ' + fmtPct(ev.benchmark_ret)
+          + ' (' + fmtPct(act, 'pp') + ' active)'
+          + (ev.return_window ? ' · ' + esc(ev.return_window) : '') + '</div>';
+      }
+      h += '<div class="expl"><span class="mono" style="font-size:11px">'+esc(ev.type)+'</span> <a href="'+esc(ev.url)+'" target="_blank" rel="noreferrer">'+esc(ev.source)+' ↗</a></div></div></div>';
     });
     h += '<p class="kicker" style="margin-top:18px">Depends On / What to Watch</p>';
     h += '<table class="dep"><thead><tr><th>Checkpoint</th><th>Date UTC</th><th>Bull</th><th>Bear / falsifier</th></tr></thead><tbody>';
@@ -153,15 +276,26 @@
          + '<td class="up">'+esc(d.if_bull)+'</td><td class="down">'+esc(d.if_bear)+'</td></tr>';
     });
     h += '</tbody></table>';
-    var vn=t.theme_vs_noise, names={persistence:'Persistence',breadth:'Breadth',volume_confirm:'Price-volume confirmation',falsifiable_catalyst:'Falsifiable catalyst',repricing_logic:'Re-pricing logic'};
+    var names=NOISE_NAMES;
     h += '<p class="kicker" style="margin-top:18px">Theme vs Noise ('+vn.score+'/5)</p><p class="expl">'
        + Object.keys(names).map(function(k){ return (vn[k]?'✓ ':'✗ ')+names[k]; }).join(' · ') + '</p>';
     if(t.explainer){ h += '<details><summary>Conventions &amp; terms</summary><p class="expl" style="white-space:pre-line;border-left:2px solid var(--line);padding-left:12px">'+esc(t.explainer)+'</p></details>'; }
-    return h + '</article>';
+    return h + '</details></article>';
   }
   fetch('./data/latest.json').then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(function(doc){
     var ms = doc.market_snapshot, themes = doc.themes.filter(function(t){ return t.status !== 'Dead'; });
     document.title = 'Thematic Tracker // ' + doc.week;
+    // Date banner — very top: Week + snapshot_date + data as_of + Toronto today + stale indicator
+    try {
+      var todayToronto = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      var asOfToronto = '';
+      try { asOfToronto = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms.as_of_utc)); } catch (e2) { asOfToronto = ''; }
+      var stale = asOfToronto !== todayToronto;
+      document.getElementById('datebanner').innerHTML = '<span class="mono" style="font-weight:700">Week ' + esc(doc.week) + '</span>'
+        + ' <span class="expl">Snapshot ' + esc(doc.snapshot_date || '') + ' · Data as of <span class="mono">' + fmtUtc(ms.as_of_utc) + '</span>'
+        + ' · Today (Toronto) ' + esc(todayToronto) + '</span>'
+        + ' <span class="pill" style="color:' + (stale ? '#b45309' : '#0a7d44') + '">● ' + (stale ? 'Stale — not updated today' : 'Updated today') + '</span>';
+    } catch (e) { /* banner is best-effort */ }
     document.getElementById('ticker').innerHTML = ms.benchmarks.map(function(b){
       var up = b.chg_1d >= 0, u = b.chg_unit === 'bp' ? (up?'+':'')+b.chg_1d+'bp' : fmtPct(Math.abs(b.chg_1d)).replace('+','');
       return '<span><span class="expl" style="font-weight:700">'+esc(b.name)+'</span> <b>'+b.value.toLocaleString()+'</b> '
@@ -170,12 +304,10 @@
     document.getElementById('regime-kicker').textContent = 'Market Regime · Week ' + doc.week;
     document.getElementById('regime-line').textContent = ms.regime.oneliner;
     document.getElementById('regime-sub').innerHTML = '<b style="color:#111">'+esc(ms.regime.stance)+'</b> · ' + ms.regime.keywords.map(esc).join(' · ');
-    var DC = { new:'#e51503', continuing:'#0a7d44', fading:'#b45309', dead:'#9ca3af' };
-    document.getElementById('diffs').innerHTML = '<span class="kicker">Yesterday → Today</span>' + ms.yesterday_diff.map(function(d){
-      var c = DC[d.change] || '#666';
-      return '<div class="diff"><span class="pill" style="color:'+c+'">● '+esc(d.change)+'</span><span><a href="#'+esc(d.theme_id)+'" style="color:#111"><b>'+esc(d.theme_id)+'</b></a> <span class="expl">— '+esc(d.note)+'</span></span></div>';
-    }).join('');
-    document.getElementById('themes').innerHTML = themes.map(themeHTML).join('');
+    var RANK = { New:0, Emerging:1, Continuing:2, Fading:3, Dead:4 };
+    themes = themes.map(function(t,i){ return [t,i]; }).sort(function(a,b){ return (RANK[a[0].status]-RANK[b[0].status]) || (a[1]-b[1]); }).map(function(x){ return x[0]; });
+    document.getElementById('diffs').innerHTML = boardHTML(themes, ms);
+    document.getElementById('themes').innerHTML = themes.map(function(t,i){ return themeHTML(t, i+1, ms.as_of_utc); }).join('');
     var cm = doc.commentary;
     document.getElementById('sources').innerHTML = (cm && cm.sources ? cm.sources : []).map(function(s){
       return '<div style="border-bottom:1px solid var(--line);padding:14px 0"><span class="kicker">'+esc(s.firm)+'</span> '

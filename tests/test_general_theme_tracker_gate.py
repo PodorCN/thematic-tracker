@@ -33,6 +33,10 @@ def _good_theme(theme_id="t1"):
         "status": "Continuing", "status_note": "n", "conviction": "Med",
         "horizon": "Cyclical 3-12m", "created_at": "2026-10-01",
         "updated_at": "2026-10-04", "body_text": "short body",
+        "summary": "short pre-click overview with the proxy versus benchmark picture",
+        "chain": [{"when": "Sep 16", "label": "step one formed", "detail": "what happened first, in plain words"},
+                  {"when": "Sep 23", "label": "step two repriced", "detail": "what changed and why it matters"},
+                  {"when": "Oct 2", "label": "step three confirmed", "detail": "where things stand now"}],
         "performance": {
             "proxy_ticker": "QQQ", "proxy_price": 10.0, "currency": "USD",
             "return_type": "price", "ret_1w": 1.0, "ret_1m": 2.0, "ret_ytd": 3.0,
@@ -54,6 +58,7 @@ def _good_theme(theme_id="t1"):
         "events": [{
             "event_time_utc": "2026-10-02T12:00:00Z", "title": "payrolls",
             "source": "BLS", "url": "https://www.bls.gov/news.htm", "type": "macro",
+            "proxy_ret": 0.9, "benchmark_ret": 0.4, "return_window": "event-day",
         }],
         "depends_on": [{
             "event_name": "CPI", "due_date": "2026-10-15", "why_matters": "m",

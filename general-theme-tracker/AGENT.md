@@ -9,7 +9,8 @@
 
 A theme-first site: what are the most important market themes right now? How are they performing? What tracks them?
 Why did they form? What catalyst do they depend on? What changed yesterday vs today? Theme or noise?
-Read a theme in 5 minutes (body < ~500 English words, explainer folded).
+Read a theme core in 2 minutes (body <= ~200 English words, must state what happened; folded extension up to 5min total, explainer folded).
+Strict three tiers: Title 20-22px/700, Body 15-16px/1.6, Explainer 13px #6B7280 folded. Date banner at the very top of every page.
 
 ## 2. File Layout & Contracts
 
@@ -81,9 +82,13 @@ npm run publish
   Total Return / Price Return mixing must be labeled.
 - **timing_source**: every event needs `event_time_UTC + source + https url`;
   no time or no source = unpublishable; performance needs `as_of_UTC + source + benchmark_rationale`.
+  Every Key Event must carry `proxy_ret + benchmark_ret` for the same `return_window` (benchmarked move); missing returns trigger a reviewer flag.
+- **date banner**: every page renders Week + snapshot_date + data as_of_UTC + Toronto today at the very top, with an Updated-today / Stale indicator.
 - **freshness**: `as_of_UTC` more than 7d older than snapshot_date is a hard machine error in publish;
   reviewers hold the PRD 48h ideal (anything older earns a major at minimum).
-- **readability**: bodies over ~500 English words are blocked (>5min); unexplained jargon sent back.
+- **readability**: body over ~200 English words is blocked (>2min); body + explainer over ~500 words combined is blocked (>5min total); body must state what happened (price action + trigger); unexplained jargon sent back.
+- **summary**: every theme carries `summary` <= ~100 English words — the pre-click overview on Home cards (what happened + proxy vs benchmark + so what); over 100 blocked.
+- **chain**: every theme carries `chain` of 3-5 formation steps, each a short `when` date label (<= 20 chars, chronological, only dates already in body/events), a plain-English `label` (<= 12 English words) plus a `detail` sentence (<= 30 English words) an average reader can follow without market jargon, distilled only from sourced body/events — no new claims; rendered as the Home card's "How it formed" chain (the last step is shown as "Now", so it must state the current state).
 - **theme_noise**: `score == count of true flags`, `score >= 3` for a Theme;
   `score < 3` filed as New/Continuing on Home is blocked (demote to Noise/Draft; Fading/Dead excepted).
 - **proxy_tradability**: 1–3 proxies per theme; ETFs must state fees;

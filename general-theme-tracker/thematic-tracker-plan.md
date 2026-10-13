@@ -1,6 +1,7 @@
 # Thematic Tracker: Product Plan + Copy-Paste Prompts
 
 > Role: written for you from a Senior PM + Portfolio Manager double perspective.
+> Superseded reading rule (see PRD.md canonical): body is now a 2min core (<= ~200 English words, legacy 500 words = 5min caliber, must state what happened) with folded extension up to 5min total; strict three tiers Title/Body/Explainer; Key Events carry proxy+benchmark returns; date banner at the very top.
 
 ## 1. Product in One Line
 

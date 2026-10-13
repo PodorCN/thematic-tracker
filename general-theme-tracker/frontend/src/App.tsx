@@ -8,12 +8,12 @@ export default function App() {
     <div className="min-h-screen bg-white">
       {/* Masthead */}
       <header className="bg-black text-white">
-        <div className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-10">
+        <div className="flex w-full items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-10">
           <NavLink to="/" className="text-[14px] font-extrabold tracking-[0.18em] uppercase flex items-center gap-2 whitespace-nowrap sm:text-[17px] sm:tracking-[0.22em]">
             <span className="inline-block h-2.5 w-2.5 bg-[#e51503]" />
             Thematic Tracker
           </NavLink>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-4 sm:gap-6">
             <span className="t-time hidden text-gray-400 sm:block">
               {new Date().toISOString().slice(0, 10)} · CLOSE EDITION
             </span>
