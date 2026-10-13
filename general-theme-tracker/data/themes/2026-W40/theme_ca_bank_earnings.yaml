@@ -10,6 +10,28 @@ created_at: 2026-08-27
 updated_at: 2026-10-02
 data_quality: production
 
+summary: |
+  This downgrade file formed after all Big Six beat Q3 — RBC's record $6B, TD's $13B-plus pipeline — on
+  fee and trading income while personal banking stayed soft. With valuations the richest since 2010,
+  institutions began trimming in September and ZEB fell 2.2% on the week. Proxy versus benchmark reads
+  ZEB -2.2% against the TSX -0.8% over one week and -1.5% versus -1.6% over one month, with ZEB +27.9%
+  year to date. So what: the excess phase is likely over — hold and watch. What next: December Q4 must
+  show reviving personal banking with stable provisions.
+
+chain:
+  - when: "Aug 27"
+    label: "Canada's six big banks reported record third-quarter profits"
+    detail: "All six beat forecasts in results reported in late August; RBC alone earned a record $6B."
+  - when: "Aug 27 - Sep 3"
+    label: "But profits came from fees and trading, not everyday lending"
+    detail: "Wealth management, capital markets and trading drove the beats, while personal-banking loan growth was soft."
+  - when: "September"
+    label: "Bank shares became the most expensive since 2010"
+    detail: "With the sector at its richest valuation since 2010, large investors began trimming their holdings in September."
+  - when: "Oct 2"
+    label: "Bank stocks fell 2.2% this week; the theme is under review"
+    detail: "ZEB, a fund holding the six big banks, lost 2.2% on the week against a 0.8% drop for the TSX index. The call shifts from buy to hold and watch."
+
 body_text: |
   All Big Six Q3 reports (Aug 25-27) beat: RBC posted record $6B net income (+11%) with 17.9% ROE; TD also set
   records with 14.3% CET1, management hinting over $13B could be returned to shareholders by 2027. But the mix
@@ -83,21 +105,33 @@ events:
     source: Newswire.ca
     url: https://www.newswire.ca/news-releases/royal-bank-of-canada-reports-third-quarter-2026-results-873288683.html
     type: earnings
+    proxy_ret: -0.8
+    benchmark_ret: 0.1
+    return_window: event-day
   - event_time_utc: "2026-08-27T10:30:00Z"
     title: TD Q3 records, 16% ROE, wholesale banking net income +87%, hints at $13B+ returns by 2027
     source: TradingView / PRNewswire
     url: https://www.tradingview.com/news/prnewswire:98fa847cae970:0-td-bank-group-reports-third-quarter-2026-results/
     type: earnings
+    proxy_ret: -0.8
+    benchmark_ret: 0.1
+    return_window: event-day
   - event_time_utc: "2026-09-03T00:00:00Z"
     title: All Big Six beat Q3, but sector forward valuation is the richest since 2010; beats driven by fee businesses while personal banking stays soft
     source: FundMore Weekly
     url: https://blog.fundmore.ai/canadian-banks-q3-2026-personal-banking
     type: macro
+    proxy_ret: 1.6
+    benchmark_ret: 1.5
+    return_window: event-day
   - event_time_utc: "2026-09-10T00:00:00Z"
     title: Bank of Canada holds the policy rate at 2.25%
     source: Kalkine Canada
     url: https://kalkine.ca/news/financial/bank-of-canada-holds-at-225-is-royal-bank-of-canada-a-top-canadian-bank-stock-for-september-2026
     type: policy
+    proxy_ret: 0.3
+    benchmark_ret: -1.1
+    return_window: event-day
 
 depends_on:
   - event_name: RY / TD and peers' Q4 results (FY2026)

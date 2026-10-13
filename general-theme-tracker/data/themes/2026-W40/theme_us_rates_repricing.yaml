@@ -10,6 +10,28 @@ created_at: 2026-09-30
 updated_at: 2026-10-02
 data_quality: production
 
+summary: |
+  This selloff formed in two legs: the front end led on the September 16 Warsh Fed hike and hawkish dots,
+  then the long end broke away — the 10Y crossed 5.01% in a 918-point Dow selloff and soft 3.4% PCE could
+  not stop it, proving term premium and supply, not policy expectations, drive yields. Friday's weak +29k
+  payrolls crushed October hike odds from 64% to below 25%, yet the 10Y merely dipped then rallied to
+  5.28%. Proxy versus benchmark reads TLT -1.9% against SPX -0.3% over one week and -5.1% versus +0.7%
+  over one month. So what: short duration.
+
+chain:
+  - when: "Sep 16"
+    label: "The Fed raised interest rates"
+    detail: "Under Chair Warsh the Fed hiked by a quarter point and its rate forecasts turned tougher."
+  - when: "Sep 23"
+    label: "Long-term borrowing costs broke above 5%"
+    detail: "The 10-year Treasury yield crossed 5.01% on September 23 as the Dow fell 918 points in a broad selloff."
+  - when: "By Oct 1"
+    label: "Softer inflation did not bring yields back down"
+    detail: "Even a soft 3.4% inflation reading (PCE) failed to help. Investors are demanding extra pay to hold long bonds, known as term premium."
+  - when: "Oct 2"
+    label: "Weak jobs data did not help either: the 10-year held near 5.28%"
+    detail: "Only 29,000 jobs were added in September against 85,000 expected. The yield dipped, then climbed back to 5.28%. TLT, a long-bond fund, is down 8.7% this year."
+
 body_text: |
   Since Sep 4 the 10Y has climbed from 4.78% to 5.29% — the first time since 2002. The selloff came in two
   legs: the front end led first (the Warsh Fed hiked 25bp on Sep 16 and the dot plot turned hawkish), then the
@@ -75,21 +97,33 @@ events:
     source: LexRegPulse
     url: https://lexregpulse.com/brief/2026-10-01
     type: policy
+    proxy_ret: 0.2
+    benchmark_ret: -0.4
+    return_window: event-day
   - event_time_utc: "2026-09-23T20:00:00Z"
     title: 10Y breaks above 5.01%; Dow drops 918 points in a broad US selloff
     source: MoneyPuran
     url: https://moneypuran.com/us-stocks-fall-yield-crosses-5-percent/
     type: macro
+    proxy_ret: -1.6
+    benchmark_ret: -0.8
+    return_window: event-day
   - event_time_utc: "2026-10-01T10:29:00Z"
     title: 10Y touches 5.29%, highest since 2002; Goldman pushes its next-hike call to December
     source: LexRegPulse
     url: https://lexregpulse.com/brief/2026-10-01
     type: macro
+    proxy_ret: -0.1
+    benchmark_ret: 0.2
+    return_window: event-day
   - event_time_utc: "2026-10-02T12:30:00Z"
     title: September payrolls +29k, far below +85k expected; unemployment 4.2%; October hike odds fall below 25% while the long end dips then rallies
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: macro
+    proxy_ret: -0.3
+    benchmark_ret: 0.7
+    return_window: event-day
 
 depends_on:
   - event_name: FOMC meeting

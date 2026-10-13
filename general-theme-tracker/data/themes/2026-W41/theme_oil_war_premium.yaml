@@ -10,6 +10,28 @@ created_at: 2026-09-01
 updated_at: 2026-10-05
 data_quality: production
 
+summary: |
+  This premium formed when US-Iran confrontation replaced a $55 oversupply script: tankers sunk and Saudi
+  pipeline and export hits drove WTI above $100, while sub-average stocks, deep backwardation, and only
+  partly restored Saudi exports kept physical tight. G7 reserve releases, OPEC and IEA demand cuts, and
+  diplomacy headlines then tugged both ways until OPEC+ held November quotas — Brent -1.9% to $100.32,
+  XLE +1.0% to $63.45. Proxy versus benchmark reads XLE +2.2% against SPX +1.2% over one week and -0.4%
+  versus +0.7% over one month. So what: compressing, not collapsing — upstream equities, not futures.
+
+chain:
+  - when: "Dec 2025"
+    label: "The year began with oil expected to be plentiful and cheap"
+    detail: "Markets were priced for oversupply, with US crude (WTI) at about $55 a barrel last December."
+  - when: "Sep 8"
+    label: "A US-Iran confrontation cut into supply and oil topped $100"
+    detail: "In September US forces sank Iranian tankers and Saudi pipeline and export routes were hit. The fear-driven jump in price is the war premium."
+  - when: "Sep 28 - Oct 1"
+    label: "Real-world oil stayed scarce while governments pushed back"
+    detail: "US stockpiles sit below their five-year average and Saudi exports are only partly restored, but G7 countries signaled emergency reserve releases to cool prices."
+  - when: "Oct 4-5"
+    label: "The war premium is shrinking, not disappearing"
+    detail: "OPEC+ kept November output quotas unchanged. Crude fell about 2%, yet XLE, a fund of US energy stocks, still rose 1%."
+
 body_text: |
   Sunday's OPEC+ verdict landed exactly as the cautious expected: the seven core producers (Saudi Arabia, Russia,
   Iraq, Kuwait, Kazakhstan, Algeria, Oman) held November quotas unchanged, with the next review on Nov 1 and a
@@ -85,31 +107,49 @@ events:
     source: OilPrice
     url: https://oilprice.com/futures/wti-midland
     type: geopolitics
+    proxy_ret: 1.1
+    benchmark_ret: -0.6
+    return_window: event-day
   - event_time_utc: "2026-09-28T00:00:00Z"
     title: Curve backwardation deepens; US crude stocks below the five-year average; Saudi exports only partly restored
     source: Commodity Board
     url: https://commodity-board.com/crude-oil-backwardation-steepens-as-prices-correct-from-geopolitical-highs
     type: macro
+    proxy_ret: 0.1
+    benchmark_ret: -0.8
+    return_window: event-day
   - event_time_utc: "2026-10-01T22:15:00Z"
     title: G7 signals emergency diesel and crude reserve releases; retreating oil helps US stocks close higher
     source: Bloomberg
     url: https://www.bloomberg.com/news/articles/2026-10-01/asian-stocks-to-fall-on-oil-rally-bonds-in-focus-markets-wrap
     type: policy
+    proxy_ret: 2.0
+    benchmark_ret: 0.2
+    return_window: event-day
   - event_time_utc: "2026-10-02T20:02:00Z"
     title: Middle East escalation risk persists; oil ends the week higher with Brent around $102
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: geopolitics
+    proxy_ret: 0.2
+    benchmark_ret: 0.7
+    return_window: event-day
   - event_time_utc: "2026-10-04T11:42:00Z"
     title: OPEC+ seven hold November quotas unchanged; next review Nov 1, full ministerial Nov 29
     source: OPEC
     url: https://www.opec.org/pr-detail/616-4-october-2026.html
     type: policy
+    proxy_ret: 1.0
+    benchmark_ret: 0.7
+    return_window: next-session
   - event_time_utc: "2026-10-05T20:00:00Z"
     title: Brent falls 1.9% to $100.32 and WTI settles near $89.30 on steady quotas plus reserve releases; XLE gains 1.0%
     source: Associated Press
     url: https://www.stl.news/nasdaq-hits-record-as-tech-leads-wall-street-higher/
     type: macro
+    proxy_ret: 1.0
+    benchmark_ret: 0.7
+    return_window: event-day
 
 depends_on:
   - event_name: OPEC+ November 1 meeting (December quotas)

@@ -10,6 +10,28 @@ created_at: 2026-07-06
 updated_at: 2026-10-05
 data_quality: production
 
+summary: |
+  2026's most durable US equity story formed in three repricings: hyperscaler capex went from self-funded
+  cash flow to $200B of debt-funded build (Barclays) — a longer but more fragile chain; the NDX multiple
+  digested to 21.7x, down 14% from the high, shifting the burden to earnings delivery; then soft September
+  payrolls crushed October hike odds below 25% and cleared the tape for a record Nasdaq 27,477. Proxy
+  versus benchmark now reads QQQ +2.7% against SPX +1.2% over one week and +5.3% versus +0.7% over one
+  month. So what: the phase is verify-the-revenue — own order-backed links, not multiple expansion.
+
+chain:
+  - when: "H1 2026"
+    label: "Big tech first paid for AI data centers with its own cash"
+    detail: "In the first half of 2026, the cloud giants funded their AI build-out from their own cash flow."
+  - when: "Sep 28"
+    label: "Now they are borrowing about $200B to keep building"
+    detail: "Barclays estimates the cloud giants will issue roughly $200B of debt this year for data centers. The boom can run longer, but it is more fragile."
+  - when: "Oct 2"
+    label: "Tech stocks got cheaper relative to expected profits"
+    detail: "The Nasdaq-100 trades at 21.7 times expected earnings, down 14% from this year's high. Further gains now depend on profits actually arriving."
+  - when: "Oct 5"
+    label: "Rate-hike fears eased and the Nasdaq hit a record"
+    detail: "A weak jobs report cut the odds of an October rate hike below 25%. Monday the Nasdaq closed at a record 27,477, led by Nvidia and Microsoft."
+
 body_text: |
   The AI capex chain opened the new week with confirmation: QQQ gained 0.9% Monday to close at $756.20 while the
   Nasdaq Composite set its first record since Sep 22 at 27,477 (+1.05%), led by Nvidia and Microsoft as oil's
@@ -76,26 +98,41 @@ events:
     source: The Industry Spread
     url: https://theindustryspread.com/nasdaq-100-capped-32500-q3-2026-ai-capex/
     type: macro
+    proxy_ret: -1.1
+    benchmark_ret: -0.8
+    return_window: event-day
   - event_time_utc: "2026-10-02T00:00:00Z"
     title: "Citadel Securities: NDX forward P/E 21.7x, down 14% from the 2026 high; Q4 seasonality strong in a midterm year"
     source: Citadel Securities
     url: https://www.citadelsecurities.com/news-and-insights/global-market-intelligence/october-the-q4-reload/
     type: macro
+    proxy_ret: 1.0
+    benchmark_ret: 0.7
+    return_window: event-day
   - event_time_utc: "2026-10-02T18:10:00Z"
     title: NVDA hits an intraday record $237.87 for a $5.72T market cap; Nasdaq 100 closes at a record
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: earnings
+    proxy_ret: 1.0
+    benchmark_ret: 0.7
+    return_window: event-day
   - event_time_utc: "2026-10-02T12:42:00Z"
     title: September payrolls shock at +29k; October hike odds collapse; tech leads the rally
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: macro
+    proxy_ret: 1.0
+    benchmark_ret: 0.7
+    return_window: event-day
   - event_time_utc: "2026-10-05T20:00:00Z"
     title: Nasdaq record close 27,477 (+1.05%) on Nvidia/Microsoft; S&P +0.66% to 7,774, within 0.3% of its August high
     source: Reuters
     url: https://www.lse.co.uk/news/us-stocks-nasdaq-notches-record-high-close-as-investors-focus-on-earnings-y6ymqkwsz37ssyk.html
     type: macro
+    proxy_ret: 0.9
+    benchmark_ret: 0.7
+    return_window: event-day
 
 depends_on:
   - event_name: Hyperscaler Q3 earnings (capex guidance)

@@ -10,6 +10,28 @@ created_at: 2026-09-01
 updated_at: 2026-10-02
 data_quality: production
 
+summary: |
+  This premium formed when US-Iran confrontation replaced a $55 oversupply script: tankers sunk and Saudi
+  pipeline and export hits drove WTI above $100, while sub-average stocks, deep backwardation, and partly
+  restored Saudi exports kept physical tight. G7 reserve releases, OPEC and IEA demand cuts, and diplomacy
+  headlines now tug both ways with WTI near $91 into Sunday's OPEC+ meeting. Proxy versus benchmark reads
+  XLE +1.3% against SPX -0.3% over one week and -2.9% versus +0.7% over one month. So what: upstream
+  equities over futures until quotas decide.
+
+chain:
+  - when: "Dec 2025"
+    label: "The year began with oil expected to be plentiful and cheap"
+    detail: "Markets were priced for oversupply, with US crude (WTI) at about $55 a barrel last December."
+  - when: "Sep 8"
+    label: "A US-Iran confrontation cut into supply and oil topped $100"
+    detail: "In September US forces sank Iranian tankers and Saudi pipeline and export routes were hit. The fear-driven jump in price is the war premium."
+  - when: "Sep 28 - Oct 1"
+    label: "Real-world oil stayed scarce while governments pushed back"
+    detail: "US stockpiles sit below their five-year average and Saudi exports are only partly restored, but G7 countries signaled emergency reserve releases to cool prices."
+  - when: "Oct 2"
+    label: "Oil has eased to about $91 ahead of a key producer meeting"
+    detail: "WTI is off its September highs above $100. Sunday's OPEC+ meeting on November output and the G7 reserve releases are this week's swing factors."
+
 body_text: |
   The market came into 2026 priced for "oversupply," with WTI still at $55 last December. Since September the
   US-Iran confrontation has escalated — US forces sank Iranian tankers, Saudi Arabia's East-West pipeline and
@@ -82,21 +104,33 @@ events:
     source: OilPrice
     url: https://oilprice.com/futures/wti-midland
     type: geopolitics
+    proxy_ret: 1.1
+    benchmark_ret: -0.6
+    return_window: event-day
   - event_time_utc: "2026-09-28T00:00:00Z"
     title: Curve backwardation deepens; US crude stocks below the five-year average; Saudi exports only partly restored
     source: Commodity Board
     url: https://commodity-board.com/crude-oil-backwardation-steepens-as-prices-correct-from-geopolitical-highs
     type: macro
+    proxy_ret: 0.1
+    benchmark_ret: -0.8
+    return_window: event-day
   - event_time_utc: "2026-10-01T22:15:00Z"
     title: G7 signals emergency diesel and crude reserve releases; retreating oil helps US stocks close higher
     source: Bloomberg
     url: https://www.bloomberg.com/news/articles/2026-10-01/asian-stocks-to-fall-on-oil-rally-bonds-in-focus-markets-wrap
     type: policy
+    proxy_ret: 2.0
+    benchmark_ret: 0.2
+    return_window: event-day
   - event_time_utc: "2026-10-02T20:02:00Z"
     title: Middle East escalation risk persists; oil ends the week higher with Brent around $102
     source: Yahoo Finance
     url: https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html
     type: geopolitics
+    proxy_ret: 0.2
+    benchmark_ret: 0.7
+    return_window: event-day
 
 depends_on:
   - event_name: OPEC+ ministerial meeting (November quotas)
