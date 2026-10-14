@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-14T14:25:57-04:00",
+  "snapshot_date": "2026-10-14",
+  "candidate_sha256": "5146b106a658c35c7e435fdb08b1e7df5bdf77695337c9295a1ef9a77daa38b3",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent review of frozen candidate 5146b106a658 (snapshot 2026-10-14; operator rates-decisions-writer). Hash chain verified: candidate.sha256 == candidate.json raw bytes == canonical sha of data/current.json = 5146b106a658c35c7e435fdb08b1e7df5bdf77695337c9295a1ef9a77daa38b3; machine structural flags regenerated locally -> zero, byte-identical to the committed structural-flags.json; prior round (2026-10-12) closed with zero open findings - nothing carried. Official policy confirmed live: Fed hiked +25bp to 3.75-4.00% on Sep 16 (12-0 vote); Oct 7 minutes retained the tightening bias; next meeting Oct 27-28; SEP 'sixteen of the 18' dots via Waller's Oct 8 speech (federalreserve.gov pages live). BoC held at 2.25% on Sep 2 (7th consecutive); next decision Oct 28 09:45 ET with MPR; Business Outlook + Consumer Expectations Surveys Oct 19 11:30 ET. Pricing matches live sources: Fed 63/37/0 vs CME FedWatch 62.9/37.1 for Oct-28 (path: 22.1% Oct 13 -> 53.7%/'about 54%' right after the 8:30 ET CPI print per CNBC/Reuters -> eased to ~37-38% by mid-afternoon; CNBC: 'better than 96%' for at least one hike by year-end - matches the candidate's '>96%'); implied 3.97 = 3.875 + 0.37 x 25bp. BoC 63/37/0 (+9bp) exact match to live BlueGamma CORRA OIS (Hike 37 / Hold 63 / Cut 0 on Oct 14; 28/72 on Oct 12); implied 2.34 = 2.25 + 9.25bp. Polymarket live (gamma-api): Fed hold 67 / hike 33, BoC hold 79 / hike 21; BoC volume $178.6k exact match and ~$32.4k liquidity vs filed $32.1k is live-book jitter. Drivers (16) spot-checked against primaries: BLS Sep CPI archive USDL-26-1574 (+0.6% m/m, 3.7% y/y = highest since May per eToro; core +0.3% / 2.6%; gasoline +9.1% = over half of the monthly all-items increase); BEA Aug PCE 3.4% / core 3.0%; Sep LFS -68k, u-rate 6.5%, participation 64.8%; StatCan Aug CPI 3.0% with ex-gasoline 2.4% 'after 3 months at 2.2%' (July release: 'rose 2.2% for the third consecutive month'); canada.ca counter-tariff list; BoC deliberations quote verbatim; Jefferson / Waller / Williams speech pages live; MPA Oct 2 and Financial Post oil pages live. All source domains match the claiming institution (bls.gov, federalreserve.gov, newyorkfed.org, bea.gov, statcan.gc.ca, bankofcanada.ca, canada.ca); Reuters/CME block this network's IP but were verified via mirror renders and syndicated copies; 'via X' retellings labeled and down-weighted, not counted as independent validation. Market validations reproduce: FedWatch 22.1 -> 54 -> 37.1 and year-end >96%; hold prob ~36 -> 77.3 (Oct 2) and ~82% (Oct 12); 70 -> 50 (Sep 29) and 70 -> 25 (Oct 1); Polymarket BoC 30 -> 21; BlueGamma 33 -> 28 -> 37; LSEG 40 -> 25; 10Y 24Y high ~5.24% (Oct 1). Calendar verified: PPI + Retail Sales Oct 15 08:30 ET; StatCan CPI Oct 19; BoC BOS + CSCE Oct 19; BoC decision + MPR Oct 28 09:45; FOMC Oct 28 14:00; BEA PCE + Q3 GDP Oct 29 08:30. Math recomputed: Fed base +7 / effective +7.25 'strong hike lean' (market still holds 63% - divergence surfaced, not averaged); BoC base +2 / effective -1.25 'hold'; mean |weight| 2.78 / 2.57; no weight >= 5 (no numeric-validation gap); the one same-URL pair (boc-h1/boc-d2) carries distinct facets. Verdict: APPROVED - zero critical/major/minor findings; no machine flags to disposition; publish.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [],
+  "flags_dispositioned": []
+}
