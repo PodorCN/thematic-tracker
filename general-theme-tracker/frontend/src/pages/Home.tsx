@@ -237,7 +237,7 @@ function Board({ themes, snap }: { themes: Theme[]; snap: Snapshot }) {
   return (
     <section className="border-b border-gray-200 py-7">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <p className="t-kicker">Theme Board · Yesterday → Today</p>
+        <p className="t-kicker">Theme Board · Previous snapshot → Current</p>
         <span className="t-explainer">1W / 1M / YTD = excess vs benchmark, pp</span>
       </div>
       {/* Phones: one stacked block per theme (no sideways scrolling) */}
@@ -368,6 +368,10 @@ export default function Home() {
       {(() => {
         const today = torontoToday()
         const stale = isStale(snap.as_of_utc, today)
+        const researchToday = !!snap.news_as_of_utc && !isStale(snap.news_as_of_utc, today)
+        const age = Date.now() - new Date(snap.as_of_utc).getTime()
+        const recent = Number.isFinite(age) && age >= 0 && age <= 48 * 60 * 60 * 1000
+        const current = researchToday && recent
         return (
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b-2 border-black py-2">
             <span className="t-kicker">Week {snap.week}</span>
@@ -375,13 +379,13 @@ export default function Home() {
             <span className="t-time text-gray-500">Today (Toronto) {today}</span>
             <span
               className="t-tag ml-auto"
-              style={{ color: stale ? '#b45309' : '#0a7d44' }}
+              style={{ color: current ? '#0a7d44' : '#b45309' }}
             >
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full"
-                style={{ background: stale ? '#b45309' : '#0a7d44' }}
+                style={{ background: current ? '#0a7d44' : '#b45309' }}
               />
-              {stale ? 'Stale — not updated today' : 'Updated today'}
+              {researchToday ? `Research checked today${!recent ? ' · older or invalid quotes' : stale ? ' · prior-date quotes' : ''}` : stale ? 'Prior-date market quotes' : 'Same-date market quotes'}
             </span>
           </div>
         )
@@ -400,6 +404,8 @@ export default function Home() {
         ))}
         <span className="t-time bb-red ml-auto max-sm:w-full max-sm:text-right">{fmtUtc(snap.as_of_utc)}</span>
       </div>
+
+      {snap.observation_note && <p className="t-explainer mt-2">{snap.observation_note}</p>}
 
       {/* Front-page lead: Market Regime */}
       <section className="border-b-2 border-black py-7 sm:py-10">
