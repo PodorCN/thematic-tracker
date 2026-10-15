@@ -18,23 +18,22 @@ const STATUS_RANK: Record<string, number> = { New: 0, Emerging: 1, Continuing: 2
 function Chain({ steps }: { steps: ChainStep[] }) {
   if (!steps || !steps.length) return null
   return (
-    <ol className="flex flex-col lg:flex-row lg:items-stretch">
+    <ol className="flex flex-col">
       {steps.map((s, i) => {
         const last = i === steps.length - 1
         return (
-          <li key={i} className="flex flex-col lg:min-w-0 lg:flex-1 lg:flex-row lg:items-stretch">
-            <div className={`flex-1 border px-3 py-2.5 ${last ? 'border-gray-900 bg-gray-900' : 'border-gray-300'}`}>
-              <p className={`t-kicker-plain flex items-baseline justify-between gap-2 ${last ? '!text-gray-300' : ''}`}>
+          <li key={i} className="flex min-w-0 flex-col">
+            <div className={`border px-4 py-3 lg:grid lg:grid-cols-[150px_minmax(0,1fr)] lg:gap-x-6 ${last ? 'border-gray-900 bg-gray-900' : 'border-gray-300'}`}>
+              <p className={`t-kicker-plain flex items-baseline justify-between gap-2 lg:row-span-2 lg:flex-col lg:items-start lg:justify-start ${last ? '!text-gray-300' : ''}`}>
                 <span>{last ? 'Now' : String(i + 1).padStart(2, '0')}</span>
                 {s.when && <span className={`whitespace-nowrap ${last ? 'text-white' : 'text-gray-900'}`}>{s.when}</span>}
               </p>
-              <p className={`mt-1 text-[14px] font-bold leading-snug ${last ? 'text-white' : 'text-gray-900'}`}>{s.label}</p>
-              {s.detail && <p className={`t-explainer mt-1 ${last ? '!text-gray-300' : '!text-gray-600'}`}>{s.detail}</p>}
+              <p className={`t-body mt-1 font-bold ${last ? 'text-white' : 'text-gray-900'}`}>{s.label}</p>
+              {s.detail && <p className={`t-body mt-1 lg:col-start-2 ${last ? 'text-gray-300' : 'text-gray-600'}`}>{s.detail}</p>}
             </div>
             {!last && (
-              <span className="flex items-center justify-center px-1.5 text-gray-400" aria-hidden="true">
-                <span className="lg:hidden">↓</span>
-                <span className="hidden lg:inline">→</span>
+              <span className="flex h-[22px] items-center justify-center text-gray-400" aria-hidden="true">
+                ↓
               </span>
             )}
           </li>
@@ -65,13 +64,11 @@ function MiniChart({
   const y = (v: number) => 4 + (1 - (v - min) / span) * (H - 8)
   const line = (key: 'proxy' | 'benchmark') =>
     series.map((pt, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(pt[key]).toFixed(1)}`).join(' ')
-  const last = series[series.length - 1]
   return (
     <div className="mt-3">
-      <svg viewBox={`0 0 ${W} ${H}`} className="block w-full max-w-sm overflow-visible lg:max-w-none" role="img" aria-label={`${proxyLabel} versus ${benchmarkLabel} sparkline`}>
-        <path d={line('benchmark')} fill="none" stroke="#B4BCC8" strokeWidth="1.5" />
-        <path d={line('proxy')} fill="none" stroke="#111827" strokeWidth="2" />
-        <circle cx={x(series.length - 1)} cy={y(last.proxy)} r="2.5" fill="#111827" />
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="block h-[180px] w-full overflow-visible" role="img" aria-label={`${proxyLabel} versus ${benchmarkLabel} sparkline`}>
+        <path d={line('benchmark')} fill="none" stroke="#B4BCC8" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <path d={line('proxy')} fill="none" stroke="#111827" strokeWidth="2" vectorEffect="non-scaling-stroke" />
       </svg>
       <div className="t-explainer mt-1 flex gap-3">
         <span className="inline-flex items-center gap-1">
@@ -175,7 +172,7 @@ function ThemeCard({ t, n, asOfUtc }: { t: Theme; n: number; asOfUtc: string }) 
       <p className="t-kicker mb-2 mt-5">How it formed</p>
       <Chain steps={t.chain} />
 
-      <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-6 lg:grid-cols-[300px_1fr]">
+      <div className="mt-7 grid grid-cols-1 gap-y-7">
         <div>
           <p className="t-kicker mb-2">Is it working · {p.proxy_ticker} vs {p.benchmark_name}</p>
           <PerfTable p={p} />

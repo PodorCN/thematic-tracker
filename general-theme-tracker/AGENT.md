@@ -5,6 +5,15 @@
 > Shared doctrine: [`scripts/review/REVIEWER_AGENT.md`](../scripts/review/REVIEWER_AGENT.md).
 > This file keeps only Theme-specific structure checks, scoring rules, and source rules.
 
+## Start here for autonomous research
+
+Read [RESEARCH_PLAYBOOK.md](RESEARCH_PLAYBOOK.md) before collecting or updating
+data. It specifies discovery, evidence capture, calculation anchors, failure
+handling, reviewer handoff and the Definition of Done. Read it together with
+the schema and this file; numeric/source/review requirements remain blocking.
+An explicitly requested frontend change ships separately and must update the
+frontend contract; routine research never edits frontend code.
+
 ## 1. Role & Scope
 
 A theme-first site: what are the most important market themes right now? How are they performing? What tracks them?

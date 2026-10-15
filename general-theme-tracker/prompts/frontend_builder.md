@@ -25,3 +25,11 @@ Build a read-only frontend that ONLY consumes /api/themes/*.
 
 - `index.html` at the product root is a frozen static renderer that reads `./data/latest.json` (written by publish, bytes == reviewed candidate). It mirrors the Vite app's content contract: regime line, benchmark strip, theme cards, perf tables, timelines, catalyst tables.
 - `index.html` is frontend: routine data PRs must not touch it; changes ship in a standalone frontend PR with an updated `frontend_contract.json` digest.
+
+## Layout contract
+
+- Use the available viewport width with responsive side gutters; no 1000px centered shell.
+- Major blocks flow vertically: header, formation chain, performance, next checkpoints, folded detail.
+- Formation steps remain a vertical timeline on desktop and mobile. Tables may use columns within a block.
+- Preserve the dated banner, source links, return units, status labels and folded detail. Never substitute fresh-looking dates for stale observations.
+- Keep both the public static renderer and the Vite Home view consistent. Verify desktop and narrow mobile widths; no page-level horizontal overflow.
