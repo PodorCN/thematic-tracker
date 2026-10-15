@@ -1,0 +1,304 @@
+schema_v: 1
+id: ai-capex-supercycle
+week: 2026-W42
+title: "AI Capex: Demand Versus Funding Costs"
+status: Fading
+status_note: >-
+  Downgraded to Fading: QQQ lost 3.80% in a week; demand evidence remains, but bullish price confirmation
+  weakened.
+conviction: Med
+horizon: Cyclical 3-12m
+created_at: "2026-07-06"
+updated_at: "2026-10-15"
+data_quality: production
+summary: >-
+  The AI spending story now faces a financing test. QQQ returned -3.80% over one week versus -1.06% for the
+  S&P 500 (-2.74pp excess), despite remaining ahead over one month. October 14 inflation coincided with broad
+  technology weakness. ASML still reports firm demand. Today's PPI adds inflation risk, but its US
+  closing-price response is unavailable. Fading means price confirmation weakened; it does not establish that
+  AI investment has collapsed.
+body_text: >-
+  QQQ closed at $756.20 on October 5, then fell to $747.58 on October 8 and $728.95 on October 14. The last
+  session lost 1.97% versus the S&P 500's 1.11% decline; Nvidia, Broadcom and AMD also fell. That weakens the
+  idea that AI demand alone can protect expensive growth shares.
+
+  The October 14 BLS release put headline inflation at 3.7% yearly. Higher financing costs are a plausible
+  pressure on data-center investment, not a measured cause of the decline. ASML's October 14 results describe
+  firm equipment demand, countering a demand-collapse narrative. Today's PPI release adds inflation risk but
+  has no completed US closing-price response yet.
+
+  The marginal change is from unconditional spending optimism to scrutiny of funding and cash returns.
+  Conviction is Med and status Fading. Watch the October 28 FOMC and November 10 CPI: sustained relative
+  recovery plus intact customer spending would restore confirmation; funding stress and weaker orders would
+  damage the thesis.
+chain:
+  - when: Oct 5
+    label: Technology began the period with a stronger closing price
+    detail: QQQ, a fund tracking major Nasdaq companies, closed at $756.20.
+  - when: Oct 8
+    label: The fund began giving back those gains
+    detail: QQQ closed at $747.58. A lower price began challenging the earlier optimism.
+  - when: Oct 14-15
+    label: Inflation pressure now competes with chip demand
+    detail: >-
+      QQQ fell to $728.95 after CPI. ASML reported firm equipment demand; today PPI added inflation risk, with
+      its closing reaction still unknown.
+explainer: >-
+  Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00
+  UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return
+  uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M
+  September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100
+  on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table.
+  Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the
+  preceding 20 sessions, excluding the latest day. QQQ is a concentrated growth-stock proxy, not a pure AI
+  capital-expenditure index. Breadth confirmation is false: the measured October 14 moves in NVDA, AVGO and
+  AMD were negative. Volume ratio was 1.52x, but downside volume is not confirmation of a bullish capex
+  thesis. Today PPI: https://www.bls.gov/news.release/ppi.nr0.htm . ASML:
+  https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026
+  .
+performance:
+  proxy_ticker: QQQ
+  proxy_price: 728.95
+  currency: USD
+  return_type: price
+  ret_1w: -3.7982
+  ret_1m: 2.7877
+  ret_ytd: 18.6616
+  benchmark_ticker: ^GSPC
+  benchmark_name: S&P 500
+  benchmark_ret_1w: -1.0617
+  benchmark_ret_1m: 1.2987
+  benchmark_ret_ytd: 12.7593
+  excess_1w: -2.7365
+  excess_1m: 1.489
+  excess_ytd: 5.9023
+  as_of_utc: "2026-10-14T20:00:00Z"
+  source: >-
+    Yahoo Finance daily quote.close (split adjusted, distributions excluded);
+    https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+  benchmark_rationale: >-
+    US technology exposure is compared with broad US equity beta; QQQ outperformance is not a direct
+    measurement of AI revenues.
+series:
+  - date: "2026-08-03"
+    proxy: 100
+    benchmark: 100
+  - date: "2026-08-04"
+    proxy: 103.3968
+    benchmark: 101.7896
+  - date: "2026-08-05"
+    proxy: 102.4612
+    benchmark: 101.619
+  - date: "2026-08-06"
+    proxy: 102.0827
+    benchmark: 101.4402
+  - date: "2026-08-07"
+    proxy: 103.2797
+    benchmark: 102.0675
+  - date: "2026-08-10"
+    proxy: 102.9711
+    benchmark: 102.0079
+  - date: "2026-08-11"
+    proxy: 102.6255
+    benchmark: 101.6802
+  - date: "2026-08-12"
+    proxy: 103.3754
+    benchmark: 101.9472
+  - date: "2026-08-13"
+    proxy: 104.571
+    benchmark: 102.6115
+  - date: "2026-08-14"
+    proxy: 104.4281
+    benchmark: 102.4375
+  - date: "2026-08-17"
+    proxy: 104.2567
+    benchmark: 101.902
+  - date: "2026-08-18"
+    proxy: 102.4912
+    benchmark: 101.2007
+  - date: "2026-08-19"
+    proxy: 102.2869
+    benchmark: 101.4141
+  - date: "2026-08-20"
+    proxy: 101.5513
+    benchmark: 100.535
+  - date: "2026-08-21"
+    proxy: 101.9098
+    benchmark: 100.9719
+  - date: "2026-08-24"
+    proxy: 100.8928
+    benchmark: 100.6889
+  - date: "2026-08-25"
+    proxy: 101.5213
+    benchmark: 101.0102
+  - date: "2026-08-26"
+    proxy: 101.6141
+    benchmark: 100.9894
+  - date: "2026-08-27"
+    proxy: 103.0054
+    benchmark: 101.7169
+  - date: "2026-08-28"
+    proxy: 102.3369
+    benchmark: 101.4638
+  - date: "2026-08-31"
+    proxy: 102.384
+    benchmark: 101.1268
+  - date: "2026-09-01"
+    proxy: 101.0813
+    benchmark: 100.4075
+  - date: "2026-09-02"
+    proxy: 101.3099
+    benchmark: 100.8697
+  - date: "2026-09-03"
+    proxy: 102.514
+    benchmark: 101.9368
+  - date: "2026-09-04"
+    proxy: 102.6983
+    benchmark: 101.5538
+  - date: "2026-09-08"
+    proxy: 102.6126
+    benchmark: 100.9607
+  - date: "2026-09-09"
+    proxy: 102.3198
+    benchmark: 100.4718
+  - date: "2026-09-10"
+    proxy: 101.2313
+    benchmark: 99.8842
+  - date: "2026-09-11"
+    proxy: 102.1155
+    benchmark: 100.7431
+  - date: "2026-09-14"
+    proxy: 101.3013
+    benchmark: 100.2563
+  - date: "2026-09-15"
+    proxy: 100.6385
+    benchmark: 99.8057
+  - date: "2026-09-16"
+    proxy: 100.6642
+    benchmark: 99.3594
+  - date: "2026-09-17"
+    proxy: 102.4069
+    benchmark: 100.4902
+  - date: "2026-09-18"
+    proxy: 103.054
+    benchmark: 100.6579
+  - date: "2026-09-21"
+    proxy: 105.9137
+    benchmark: 102.1604
+  - date: "2026-09-22"
+    proxy: 106.7693
+    benchmark: 102.1596
+  - date: "2026-09-23"
+    proxy: 105.8766
+    benchmark: 101.3885
+  - date: "2026-09-24"
+    proxy: 105.8608
+    benchmark: 101.3635
+  - date: "2026-09-25"
+    proxy: 106.3465
+    benchmark: 101.8803
+  - date: "2026-09-28"
+    proxy: 105.2081
+    benchmark: 101.0945
+  - date: "2026-09-29"
+    proxy: 105.408
+    benchmark: 100.9255
+  - date: "2026-09-30"
+    proxy: 105.6709
+    benchmark: 100.6715
+  - date: "2026-10-01"
+    proxy: 105.9937
+    benchmark: 100.8677
+  - date: "2026-10-02"
+    proxy: 107.0722
+    benchmark: 101.6081
+  - date: "2026-10-05"
+    proxy: 108.0178
+    benchmark: 102.2821
+  - date: "2026-10-06"
+    proxy: 108.512
+    benchmark: 102.8739
+  - date: "2026-10-07"
+    proxy: 108.2363
+    benchmark: 102.6481
+  - date: "2026-10-08"
+    proxy: 106.7865
+    benchmark: 102.1691
+  - date: "2026-10-09"
+    proxy: 107.3136
+    benchmark: 102.7767
+  - date: "2026-10-12"
+    proxy: 106.5665
+    benchmark: 102.7201
+  - date: "2026-10-13"
+    proxy: 106.2137
+    benchmark: 102.6965
+  - date: "2026-10-14"
+    proxy: 104.1253
+    benchmark: 101.5583
+proxies:
+  - ticker: QQQ
+    name: Invesco QQQ ETF
+    type: ETF
+    region: US
+    expense: 0.18% total expense ratio (issuer page checked Oct 15)
+    liquidity_note: >-
+      Latest complete session volume 51,067,700 shares; issuer describes QQQ as the second-most traded ETF
+      (June 2026 measure).
+    why_represents: Large Nasdaq growth companies include major AI platform and chip exposures.
+    tracking_gap: >-
+      Also holds unrelated growth businesses; concentration and discount rates can overwhelm AI demand.
+      Issuer: https://www.invesco.com/qqq-etf/en/home.html
+events:
+  - event_time_utc: "2026-10-05T20:00:00Z"
+    title: >-
+      QQQ closed at $756.20; this is a measured price observation, not an independently verified capex
+      announcement.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: 0.8832
+    benchmark_ret: 0.6634
+    return_window: event-day (2026-10-02 to 2026-10-05 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-08T20:00:00Z"
+    title: QQQ closed at $747.58 as the recent price advance weakened.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: -1.3395
+    benchmark_ret: -0.4667
+    return_window: event-day (2026-10-07 to 2026-10-08 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-14T12:30:00Z"
+    title: >-
+      September CPI rose 0.6% monthly and 3.7% yearly; core rose 0.3% monthly. Returns below are the full
+      release-day session, not measured causal effects.
+    source: BLS (primary release)
+    url: https://www.bls.gov/news.release/archives/cpi_10142026.htm
+    type: macro
+    proxy_ret: -1.9662
+    benchmark_ret: -1.1083
+    return_window: event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)
+depends_on:
+  - event_name: FOMC decision (official calendar)
+    due_date: "2026-10-28"
+    why_matters: >-
+      Tests whether inflation changes the policy path; calendar:
+      https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+    if_bull: Restrained guidance and falling financing costs support risk assets
+    if_bear: A higher-rate path and weak cash-flow guidance pressure valuations
+  - event_name: October US CPI (BLS scheduled release)
+    due_date: "2026-11-10T13:30:00Z"
+    why_matters: >-
+      Next consumer-price test; scheduled in the September release:
+      https://www.bls.gov/news.release/archives/cpi_10142026.htm
+    if_bull: Slower core inflation reduces borrowing-cost pressure
+    if_bear: Renewed broad inflation keeps restrictive-rate risk alive
+theme_vs_noise:
+  persistence: true
+  breadth: false
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 3
