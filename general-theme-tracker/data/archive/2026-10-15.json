@@ -1,0 +1,1724 @@
+{
+  "snapshot_date": "2026-10-15",
+  "week": "2026-W42",
+  "themes": [
+    {
+      "schema_v": 1,
+      "id": "ai-capex-supercycle",
+      "week": "2026-W42",
+      "title": "AI Capex: Demand Versus Funding Costs",
+      "status": "Fading",
+      "status_note": "Downgraded to Fading: QQQ lost 3.80% in a week; demand evidence remains, but bullish price confirmation weakened.",
+      "conviction": "Med",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-07-06",
+      "updated_at": "2026-10-15",
+      "data_quality": "production",
+      "summary": "The AI spending story now faces a financing test. QQQ returned -3.80% over one week versus -1.06% for the S&P 500 (-2.74pp excess), despite remaining ahead over one month. October 14 inflation coincided with broad technology weakness. ASML still reports firm demand. Today's PPI adds inflation risk, but its US closing-price response is unavailable. Fading means price confirmation weakened; it does not establish that AI investment has collapsed.",
+      "body_text": "QQQ closed at $756.20 on October 5, then fell to $747.58 on October 8 and $728.95 on October 14. The last session lost 1.97% versus the S&P 500's 1.11% decline; Nvidia, Broadcom and AMD also fell. That weakens the idea that AI demand alone can protect expensive growth shares.\nThe October 14 BLS release put headline inflation at 3.7% yearly. Higher financing costs are a plausible pressure on data-center investment, not a measured cause of the decline. ASML's October 14 results describe firm equipment demand, countering a demand-collapse narrative. Today's PPI release adds inflation risk but has no completed US closing-price response yet.\nThe marginal change is from unconditional spending optimism to scrutiny of funding and cash returns. Conviction is Med and status Fading. Watch the October 28 FOMC and November 10 CPI: sustained relative recovery plus intact customer spending would restore confirmation; funding stress and weaker orders would damage the thesis.",
+      "chain": [
+        {
+          "when": "Oct 5",
+          "label": "Technology began the period with a stronger closing price",
+          "detail": "QQQ, a fund tracking major Nasdaq companies, closed at $756.20."
+        },
+        {
+          "when": "Oct 8",
+          "label": "The fund began giving back those gains",
+          "detail": "QQQ closed at $747.58. A lower price began challenging the earlier optimism."
+        },
+        {
+          "when": "Oct 14-15",
+          "label": "Inflation pressure now competes with chip demand",
+          "detail": "QQQ fell to $728.95 after CPI. ASML reported firm equipment demand; today PPI added inflation risk, with its closing reaction still unknown."
+        }
+      ],
+      "explainer": "Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00 UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100 on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table. Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the preceding 20 sessions, excluding the latest day. QQQ is a concentrated growth-stock proxy, not a pure AI capital-expenditure index. Breadth confirmation is false: the measured October 14 moves in NVDA, AVGO and AMD were negative. Volume ratio was 1.52x, but downside volume is not confirmation of a bullish capex thesis. Today PPI: https://www.bls.gov/news.release/ppi.nr0.htm . ASML: https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026 .",
+      "performance": {
+        "proxy_ticker": "QQQ",
+        "proxy_price": 728.95,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": -3.7982,
+        "ret_1m": 2.7877,
+        "ret_ytd": 18.6616,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": -1.0617,
+        "benchmark_ret_1m": 1.2987,
+        "benchmark_ret_ytd": 12.7593,
+        "excess_1w": -2.7365,
+        "excess_1m": 1.489,
+        "excess_ytd": 5.9023,
+        "as_of_utc": "2026-10-14T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "US technology exposure is compared with broad US equity beta; QQQ outperformance is not a direct measurement of AI revenues."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 103.3968,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 102.4612,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 102.0827,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 103.2797,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 102.9711,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 102.6255,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 103.3754,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 104.571,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 104.4281,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 104.2567,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 102.4912,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 102.2869,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 101.5513,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 101.9098,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 100.8928,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 101.5213,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 101.6141,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 103.0054,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 102.3369,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 102.384,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 101.0813,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 101.3099,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 102.514,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 102.6983,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 102.6126,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 102.3198,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 101.2313,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 102.1155,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 101.3013,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 100.6385,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 100.6642,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 102.4069,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 103.054,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 105.9137,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 106.7693,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 105.8766,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 105.8608,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 106.3465,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 105.2081,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 105.408,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 105.6709,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 105.9937,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 107.0722,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 108.0178,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 108.512,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 108.2363,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 106.7865,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 107.3136,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 106.5665,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 106.2137,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 104.1253,
+          "benchmark": 101.5583
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ ETF",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.18% total expense ratio (issuer page checked Oct 15)",
+          "liquidity_note": "Latest complete session volume 51,067,700 shares; issuer describes QQQ as the second-most traded ETF (June 2026 measure).",
+          "why_represents": "Large Nasdaq growth companies include major AI platform and chip exposures.",
+          "tracking_gap": "Also holds unrelated growth businesses; concentration and discount rates can overwhelm AI demand. Issuer: https://www.invesco.com/qqq-etf/en/home.html"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-05T20:00:00Z",
+          "title": "QQQ closed at $756.20; this is a measured price observation, not an independently verified capex announcement.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 0.8832,
+          "benchmark_ret": 0.6634,
+          "return_window": "event-day (2026-10-02 to 2026-10-05 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-08T20:00:00Z",
+          "title": "QQQ closed at $747.58 as the recent price advance weakened.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -1.3395,
+          "benchmark_ret": -0.4667,
+          "return_window": "event-day (2026-10-07 to 2026-10-08 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-14T12:30:00Z",
+          "title": "September CPI rose 0.6% monthly and 3.7% yearly; core rose 0.3% monthly. Returns below are the full release-day session, not measured causal effects.",
+          "source": "BLS (primary release)",
+          "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+          "type": "macro",
+          "proxy_ret": -1.9662,
+          "benchmark_ret": -1.1083,
+          "return_window": "event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC decision (official calendar)",
+          "due_date": "2026-10-28",
+          "why_matters": "Tests whether inflation changes the policy path; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "Restrained guidance and falling financing costs support risk assets",
+          "if_bear": "A higher-rate path and weak cash-flow guidance pressure valuations"
+        },
+        {
+          "event_name": "October US CPI (BLS scheduled release)",
+          "due_date": "2026-11-10T13:30:00Z",
+          "why_matters": "Next consumer-price test; scheduled in the September release: https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+          "if_bull": "Slower core inflation reduces borrowing-cost pressure",
+          "if_bear": "Renewed broad inflation keeps restrictive-rate risk alive"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": false,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 3
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "ca-bank-earnings-momentum",
+      "week": "2026-W42",
+      "title": "Canadian Banks: Recovery Needs Proof",
+      "status": "Fading",
+      "status_note": "Still Fading: ZEB recovered 1.94% in a week but lagged TSX over a month; employment weakness tests credit quality.",
+      "conviction": "Low",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-08-27",
+      "updated_at": "2026-10-15",
+      "data_quality": "production",
+      "summary": "Canadian banks show a weekly repair, not a verified restart of the earnings trade. ZEB gained +1.94% in one week against +1.55% for the TSX, but its -2.24% one-month return lagged the index's -0.33%. Canada's October 9 employment report raised credit-demand questions. October 19 Bank of Canada surveys, the October 28 decision and RBC's confirmed December 3 results provide the next evidence. Status remains Fading and conviction Low.",
+      "body_text": "ZEB closed at C$74.55 on September 14, C$71.49 on October 7 and C$72.88 on October 14. One-week repair of 1.94% beat the TSX's 1.55%, but the one-month decline of 2.24% lagged the index's 0.33% loss. RBC, TD and BMO each advanced over the latest week; that is breadth in a rebound, not a new earnings beat.\nStatistics Canada's October 9 release reported 68,000 fewer jobs and 6.5% unemployment in September. Weaker employment could reduce loan demand or raise credit costs; that is a risk channel, not measured deterioration in bank provisions. The old earnings-momentum expectation therefore still lacks a fresh fundamental confirmation.\nStatus remains Fading with Low conviction. October 19 business and consumer surveys and the October 28 BoC decision test the growth backdrop. RBC confirms December 3 for its next results. Better credit outcomes and durable relative gains would strengthen the case; rising provisions or persistent monthly underperformance would weaken it.",
+      "chain": [
+        {
+          "when": "Sep 14",
+          "label": "Banks started the monthly window at a higher price",
+          "detail": "ZEB, a fund holding major Canadian banks, closed at C$74.55."
+        },
+        {
+          "when": "Oct 7-9",
+          "label": "Prices weakened and employment created another risk",
+          "detail": "ZEB closed at C$71.49 on October 7. The October 9 labour report showed an employment decline of 68,000."
+        },
+        {
+          "when": "Oct 14",
+          "label": "The rebound still needs earnings evidence",
+          "detail": "ZEB recovered to C$72.88 but remained below its September price. A weekly recovery does not establish improving credit quality."
+        }
+      ],
+      "explainer": "Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00 UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100 on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table. Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the preceding 20 sessions, excluding the latest day. All bank and TSX returns are in CAD with no FX conversion. Canadian markets were closed October 12 for Thanksgiving; the inner-joined chart excludes it, while US charts retain it. ZEB latest volume was 1.38x the preceding 20 sessions, but volume_confirm remains false because monthly relative-price confirmation is absent. Breadth is measured from positive October 7-14 RY.TO, TD.TO and BMO.TO returns. No new provision or margin figure is asserted. Labour source: https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm .",
+      "performance": {
+        "proxy_ticker": "ZEB.TO",
+        "proxy_price": 72.88,
+        "currency": "CAD",
+        "return_type": "price",
+        "ret_1w": 1.9443,
+        "ret_1m": -2.2401,
+        "ret_ytd": 25.0086,
+        "benchmark_ticker": "^GSPTSE",
+        "benchmark_name": "S&P/TSX Composite",
+        "benchmark_ret_1w": 1.5484,
+        "benchmark_ret_1m": -0.3305,
+        "benchmark_ret_ytd": 12.2086,
+        "excess_1w": 0.3959,
+        "excess_1m": -1.9096,
+        "excess_ytd": 12.7999,
+        "as_of_utc": "2026-10-14T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "CAD Canadian bank equities are compared with the CAD broad Canadian price index on common TSX sessions."
+      },
+      "series": [
+        {
+          "date": "2026-08-04",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 100.63,
+          "benchmark": 100.9631
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 100.6431,
+          "benchmark": 100.9349
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 100.4725,
+          "benchmark": 101.6189
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 100.3412,
+          "benchmark": 101.8343
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 100.1312,
+          "benchmark": 101.8834
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 101.7325,
+          "benchmark": 102.4035
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 102.2575,
+          "benchmark": 102.675
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 102.7563,
+          "benchmark": 102.594
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 102.5988,
+          "benchmark": 102.4197
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 101.0631,
+          "benchmark": 101.5818
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 97.7294,
+          "benchmark": 101.6765
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 96.0231,
+          "benchmark": 101.5748
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 96.4562,
+          "benchmark": 102.2865
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 96.115,
+          "benchmark": 102.5488
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 98.7006,
+          "benchmark": 103.2289
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 98.4381,
+          "benchmark": 102.827
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 97.6506,
+          "benchmark": 102.8845
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 97.6112,
+          "benchmark": 102.1013
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 96.7581,
+          "benchmark": 101.3097
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 96.1018,
+          "benchmark": 100.0673
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 98.005,
+          "benchmark": 100.81
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 99.5669,
+          "benchmark": 102.3225
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 99.055,
+          "benchmark": 101.9893
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 97.9787,
+          "benchmark": 100.898
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 96.9419,
+          "benchmark": 100.2933
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 97.2569,
+          "benchmark": 99.1752
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 97.8869,
+          "benchmark": 99.7092
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 97.8475,
+          "benchmark": 99.7232
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 97.5719,
+          "benchmark": 99.3869
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 97.585,
+          "benchmark": 99.1333
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 98.3856,
+          "benchmark": 100.2031
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 98.8056,
+          "benchmark": 100.0142
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 100.3544,
+          "benchmark": 100.5804
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 99.4225,
+          "benchmark": 101.4916
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 97.2962,
+          "benchmark": 99.8598
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 97.48,
+          "benchmark": 99.7344
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 98.7531,
+          "benchmark": 99.998
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 98.3725,
+          "benchmark": 99.1294
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 97.5719,
+          "benchmark": 99.0467
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 96.2331,
+          "benchmark": 98.4199
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 95.9443,
+          "benchmark": 98.1934
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 96.3643,
+          "benchmark": 99.1651
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 95.8656,
+          "benchmark": 99.2095
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 96.4168,
+          "benchmark": 99.5752
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 93.8312,
+          "benchmark": 97.878
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 93.2406,
+          "benchmark": 98.1671
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 94.5925,
+          "benchmark": 99.6173
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 96.2069,
+          "benchmark": 100.5095
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 95.6556,
+          "benchmark": 99.3936
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "ZEB.TO",
+          "name": "BMO Equal Weight Banks Index ETF",
+          "type": "ETF",
+          "region": "Canada",
+          "expense": "0.28% audited MER (issuer factsheet)",
+          "liquidity_note": "Latest complete session volume 1,879,800 shares; Canadian listing, assess the bid-ask spread.",
+          "why_represents": "An equal-weight basket of major Canadian bank stocks isolates bank exposure better than broad financials.",
+          "tracking_gap": "Concentrated sector fund; distributions excluded from this price-return table. No direct measure of provisions or loan growth. Issuer: https://www.bmoetfs.ca/etfs/zeb-bmo-equal-weight-banks-index-etf"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-14T20:00:00Z",
+          "title": "ZEB closed at C$74.55, the price anchor for the one-month comparison.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -0.0402,
+          "benchmark_ret": 0.014,
+          "return_window": "event-day (2026-09-11 to 2026-09-14 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-07T20:00:00Z",
+          "title": "ZEB closed at C$71.49 before the Canadian labour release; this is a closing observation.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -2.6817,
+          "benchmark_ret": -1.7044,
+          "return_window": "event-day (2026-10-06 to 2026-10-07 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-14T20:00:00Z",
+          "title": "ZEB closed at C$72.88: a 0.57% session decline, but still a gain from October 7.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -0.573,
+          "benchmark_ret": -1.1102,
+          "return_window": "event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "BoC business and consumer surveys",
+          "due_date": "2026-10-19",
+          "why_matters": "Official survey release tests demand and investment expectations: https://www.bankofcanada.ca/press/upcoming-events/",
+          "if_bull": "Firmer demand and stable credit intentions support the earnings outlook",
+          "if_bear": "Weaker hiring and spending intentions raise credit-demand concerns"
+        },
+        {
+          "event_name": "BoC decision and Monetary Policy Report",
+          "due_date": "2026-10-28",
+          "why_matters": "Official schedule; growth and inflation jointly affect margins and credit: https://www.bankofcanada.ca/2025/08/bank-canada-publishes-2026-schedule-policy-interest-rate-announcements-other-major-publications/",
+          "if_bull": "A stable policy path and resilient growth support earnings visibility",
+          "if_bear": "A weaker growth outlook or disruptive inflation raises credit and valuation risk"
+        },
+        {
+          "event_name": "RBC fiscal Q4 results (confirmed)",
+          "due_date": "2026-12-03",
+          "why_matters": "RBC issuer reporting calendar, not an estimate for every bank: https://www.rbc.com/investor-relations/financial-information.html",
+          "if_bull": "Stable provisions, loan growth and margins validate a recovery",
+          "if_bear": "Higher provisions or weaker guidance undermine the earnings case"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "oil-war-premium",
+      "week": "2026-W42",
+      "title": "Energy Strength and the Supply Premium",
+      "status": "Continuing",
+      "status_note": "Continuing: XLE gained 6.74% in a week; supply risk persists, but weaker demand and low volume temper conviction.",
+      "conviction": "Med",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-01",
+      "updated_at": "2026-10-15",
+      "data_quality": "production",
+      "summary": "Energy remains the strongest measured theme: XLE returned +6.74% in one week versus -1.06% for the S&P 500, an +7.80pp spread. October 14's IEA report describes fragile supply recovery alongside falling demand. Exxon, Chevron and ConocoPhillips participated in the weekly rise. The signal is continuing relative strength, not a claim that energy equities track crude one-for-one. Latest XLE volume was below its preceding 20-session average.",
+      "body_text": "XLE moved from $64.53 on September 14 to $65.24 on October 8 and $67.63 on October 14. Its one-week gain of 6.74% beat the S&P 500's 1.06% loss. Exxon, Chevron and ConocoPhillips all rose over that week. WTI's October 14 daily bar was $95.09, but its one-month return was negative: energy stocks and crude are different exposures.\nThe October 14 IEA report describes renewed regional supply risks, fragile export recovery and continued market deficits, while also cutting demand expectations. This supports a conditional supply-premium explanation; demand destruction is the competing case, not a detail to hide.\nStatus stays Continuing with Med conviction. Volume confirmation is false at 0.75x the preceding 20-session average, so price breadth alone does not justify High conviction. The next scheduled EIA report on October 21 can test inventories. Repeated stock builds and normalizing supply would undermine the premium; further tightness would support it.",
+      "chain": [
+        {
+          "when": "Sep 14",
+          "label": "Energy equities carried an elevated supply-risk backdrop",
+          "detail": "XLE closed at $64.53. The IEA later described September supply disruption and recovery in its October report."
+        },
+        {
+          "when": "Oct 8",
+          "label": "Energy stocks strengthened again",
+          "detail": "XLE closed at $65.24, beginning a renewed rise into the following week."
+        },
+        {
+          "when": "Oct 14",
+          "label": "Energy outperformed while the supply picture remained uncertain",
+          "detail": "XLE reached $67.63. The IEA described fragile supply recovery alongside weaker demand; low trading volume limits confidence."
+        }
+      ],
+      "explainer": "Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00 UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100 on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table. Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the preceding 20 sessions, excluding the latest day. XLE volume was 0.75x its previous 20 sessions, so volume_confirm is false. Breadth uses the positive October 7-14 returns of XOM, CVX and COP. WTI is a rolling front-month futures series; its provider daily bar is not the same instrument or fixing time as an equity close. No fresh US inventory level is claimed: the available EIA landing-page capture was stale; October 15 release figures were not verified. Supply/demand context: https://www.iea.org/reports/oil-market-report-october-2026 .",
+      "performance": {
+        "proxy_ticker": "XLE",
+        "proxy_price": 67.63,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 6.7393,
+        "ret_1m": 4.804,
+        "ret_ytd": 51.2637,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": -1.0617,
+        "benchmark_ret_1m": 1.2987,
+        "benchmark_ret_ytd": 12.7593,
+        "excess_1w": 7.8009,
+        "excess_1m": 3.5053,
+        "excess_ytd": 38.5044,
+        "as_of_utc": "2026-10-14T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "US energy-sector equities are compared with broad US equities; this measures sector excess, not a pure oil-price or war-premium return."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 99.5407,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 97.4826,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 98.9284,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 97.8057,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 102.3643,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 103.6401,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 103.8102,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 103.8612,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 105.307,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 106.4467,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 108.3177,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 108.1476,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 108.4368,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 108.2497,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 107.3482,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 105.5622,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 106.1915,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 105.9534,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 106.6168,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 108.794,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 110.1718,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 110.7331,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 109.9167,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 108.9641,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 110.1718,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 111.0903,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 110.444,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 110.8012,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 109.7636,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 112.1449,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 108.9131,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 109.6785,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 109.3893,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 106.2426,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 105.0859,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 106.0895,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 106.4807,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 105.5282,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 105.6302,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 104.6777,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 104.6096,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 106.6508,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 106.8549,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 107.9265,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 108.4368,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 107.7734,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 110.9712,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 110.6991,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 112.281,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 114.3051,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 115.0366,
+          "benchmark": 101.5583
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "XLE",
+          "name": "State Street Energy Select Sector SPDR ETF",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.08% gross expense ratio (issuer checked Oct 15)",
+          "liquidity_note": "Latest complete session volume 25,205,400 shares; observe spreads before using it.",
+          "why_represents": "Liquid US energy-sector equity exposure includes large integrated producers.",
+          "tracking_gap": "Equity valuations, refining, dividends and company hedging cause deviations from spot crude. Issuer: https://www.ssga.com/us/en/individual/etfs/state-street-energy-select-sector-spdr-etf-xle"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-14T20:00:00Z",
+          "title": "XLE closed at $64.53; price observation used as the one-month anchor.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -0.9364,
+          "benchmark_ret": -0.4832,
+          "return_window": "event-day (2026-09-11 to 2026-09-14 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-08T20:00:00Z",
+          "title": "XLE closed at $65.24; measured energy-equity strength does not isolate a geopolitical cause.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 2.9672,
+          "benchmark_ret": -0.4667,
+          "return_window": "event-day (2026-10-07 to 2026-10-08 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-14T20:00:00Z",
+          "title": "XLE closed at $67.63, rising 0.64% while broad US equities fell. Same-day IEA context is discussed separately.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 0.6399,
+          "benchmark_ret": -1.1083,
+          "return_window": "event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "Next scheduled EIA petroleum report",
+          "due_date": "2026-10-21T14:30:00Z",
+          "why_matters": "Inventories test physical tightness; the standard Wednesday time follows the Oct 15 holiday exception: https://www.eia.gov/petroleum/supply/weekly/schedule.php",
+          "if_bull": "Draws and sustained supply disruptions support producer cash flows",
+          "if_bear": "Repeated builds and restored exports weaken the premium"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "us-rates-repricing",
+      "week": "2026-W42",
+      "title": "High Yields: The Bond Selloff Pauses",
+      "status": "Fading",
+      "status_note": "Downgraded to Fading: the 10Y eased to 5.19% and TLT gained 2.26% over a week despite hot CPI.",
+      "conviction": "Med",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-30",
+      "updated_at": "2026-10-15",
+      "data_quality": "production",
+      "summary": "The earlier rising-yield thesis has lost near-term price confirmation. TLT returned +2.26% in one week versus -1.06% for the S&P 500; the 10-year yield eased from 5.311% on October 5 to 5.190% on October 14. Inflation is still a risk, and today's PPI reinforces it, but hot data has not yet produced another sustained bond selloff. Status is Fading, with the next FOMC decision the main test.",
+      "body_text": "The October 5 observation was a 5.311% 10-year yield and a $77.11 TLT close. By October 8 TLT was $77.87; on October 14 it reached $78.89 as the yield eased to 5.190%. TLT gained 2.26% over one week, although its one-month return remained negative.\nOctober 14 CPI raised the inflation concern, yet bonds rallied that session. Today's October 15 PPI release adds a 1.3% monthly and 6.3% yearly increase in final-demand producer prices; no completed US closing reaction is available for it yet. The divergence prevents a claim that higher inflation mechanically means higher long yields every day.\nThe prior expectation was a persistent long-bond selloff; the marginal evidence is a rebound. Status moves to Fading, conviction Med. A lower TLT price would confirm the higher-yield direction; its returns are shown without sign inversion. The October 28 FOMC and November 10 CPI are the tests. A sustained yield break below 5% would further weaken the thesis; renewed highs would revive it.",
+      "chain": [
+        {
+          "when": "Oct 5",
+          "label": "Long-term borrowing costs were elevated",
+          "detail": "The 10-year Treasury yield was 5.311%, and TLT, a fund of long-term Treasury bonds, closed at $77.11."
+        },
+        {
+          "when": "Oct 8",
+          "label": "Long bonds started to recover",
+          "detail": "TLT closed at $77.87. Rising bond prices weaken a thesis based on a continuing bond selloff."
+        },
+        {
+          "when": "Oct 14-15",
+          "label": "Bonds recovered despite renewed inflation concerns",
+          "detail": "TLT reached $78.89 and the yield eased to 5.190% after CPI. Today PPI added inflation risk, with its closing reaction still unknown."
+        }
+      ],
+      "explainer": "Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00 UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100 on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table. Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the preceding 20 sessions, excluding the latest day. TLT is long duration; a bearish bond thesis benefits from a falling proxy, unlike a bullish stock thesis. SPX is only cross-asset opportunity-cost context, not an interest-rate benchmark. The 10-year yield fell 2.7 basis points on Oct 14 (5.217% to 5.190%); this is a yield change, not a bond return. No unsupported decomposition into term premium versus policy expectations is claimed. Today PPI: https://www.bls.gov/news.release/ppi.nr0.htm .",
+      "performance": {
+        "proxy_ticker": "TLT",
+        "proxy_price": 78.89,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 2.2553,
+        "ret_1m": -2.5207,
+        "ret_ytd": -9.4883,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": -1.0617,
+        "benchmark_ret_1m": 1.2987,
+        "benchmark_ret_ytd": 12.7593,
+        "excess_1w": 3.317,
+        "excess_1m": -3.8194,
+        "excess_ytd": -22.2476,
+        "as_of_utc": "2026-10-14T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "SPX is cross-asset opportunity-cost context only. The thesis direction is higher yields/lower TLT; positive TLT excess now weakens that direction and is not relabeled as bearish profit."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 100.7665,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 100.9855,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 100.4015,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 100.6935,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 99.8418,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 100,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 99.9027,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 100.4867,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 99.8175,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 98.978,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 99.3552,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 101.0098,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 100.1825,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 99.8297,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 100.4502,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 101.5574,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 101.3505,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 101.1437,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 100.8395,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 100.4015,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 99.6107,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 99.708,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 99.854,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 100.0243,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 100.0122,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 99.4403,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 98.2845,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 98.394,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 98.467,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 98.1993,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 98.4061,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 99.5012,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 98.8563,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 99.5255,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 99.4647,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 97.8951,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 96.6298,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 96.5081,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 95.6564,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 95.1819,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 94.6344,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 94.5492,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 94.2694,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 93.8192,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 94.026,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 93.8679,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 94.7439,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 94.8777,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 94.9629,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 95.3522,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 95.9849,
+          "benchmark": 101.5583
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "TLT",
+          "name": "iShares 20+ Year Treasury Bond ETF",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.15% expense ratio (issuer checked Oct 15)",
+          "liquidity_note": "Latest complete session volume 50,909,600 shares; long-duration ETF with active listed trading.",
+          "why_represents": "Its long Treasury holdings respond inversely to long-term yields.",
+          "tracking_gap": "Coupon income, curve shape and maturity mix differ from a single 10-year yield; long-only ETF ownership is not a short-duration position. Issuer: https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-05T20:00:00Z",
+          "title": "TLT closed at $77.11; Yahoo 10-year yield observation was 5.311%.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -0.4775,
+          "benchmark_ret": 0.6634,
+          "return_window": "event-day (2026-10-02 to 2026-10-05 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-08T20:00:00Z",
+          "title": "TLT recovered to $77.87; the prior uninterrupted-selloff narrative lost price support.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 0.9332,
+          "benchmark_ret": -0.4667,
+          "return_window": "event-day (2026-10-07 to 2026-10-08 completed common-session closes; observation, not causal proof)"
+        },
+        {
+          "event_time_utc": "2026-10-14T12:30:00Z",
+          "title": "September CPI rose 0.6% monthly and 3.7% yearly; core rose 0.3% monthly. Returns below are the full release-day session, not measured causal effects.",
+          "source": "BLS (primary release)",
+          "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+          "type": "macro",
+          "proxy_ret": 0.6635,
+          "benchmark_ret": -1.1083,
+          "return_window": "event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC decision: higher-yield thesis test",
+          "due_date": "2026-10-28",
+          "why_matters": "Cases refer to the higher-yield thesis, not a long TLT holding. Official meeting calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "Renewed yield highs and falling TLT would revive the higher-yield thesis",
+          "if_bear": "Lower yields and a stronger TLT keep the thesis Fading; sustained sub-5% 10Y further weakens it"
+        },
+        {
+          "event_name": "October CPI: bond-market response",
+          "due_date": "2026-11-10T13:30:00Z",
+          "why_matters": "Direction matters: long TLT gains oppose the higher-yield thesis. Official release schedule: https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+          "if_bull": "Persistent inflation followed by rising long yields and falling TLT would restore price confirmation",
+          "if_bear": "Softer inflation or another TLT rally despite hot data keeps price confirmation absent"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": false,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 3
+      }
+    }
+  ],
+  "market_snapshot": {
+    "week": "2026-W42",
+    "as_of_utc": "2026-10-14T20:00:00Z",
+    "data_quality": "production",
+    "news_as_of_utc": "2026-10-15T19:05:37.442Z",
+    "observation_note": "Equities: October 14 completed 16:00 ET closes. Other instruments: Yahoo October 14 daily bars, with their own fixing/settlement times, not simultaneous live quotes. October 15 news has no completed US closing reaction yet.",
+    "regime": {
+      "stance": "Mixed: energy strength, AI and rate trades tested",
+      "oneliner": "Inflation unsettles the AI rally; energy leads, while the long-bond selloff pauses. October 15 news is checked against October 14 completed closes.",
+      "keywords": [
+        "QQQ 1W -3.80%",
+        "XLE 1W +6.74%",
+        "10Y 5.190%"
+      ]
+    },
+    "benchmarks": [
+      {
+        "ticker": "^GSPC",
+        "name": "SPX",
+        "value": 7718.9399,
+        "chg_1d": -1.1083,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^NDX",
+        "name": "NDX",
+        "value": 29950.8203,
+        "chg_1d": -2.0238,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^GSPTSE",
+        "name": "TSX",
+        "value": 35584.5,
+        "chg_1d": -1.1102,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^TNX",
+        "name": "US 10Y",
+        "value": 5.19,
+        "chg_1d": -2.7,
+        "chg_unit": "bp",
+        "observation_date": "2026-10-14",
+        "convention": "Yahoo yield-index daily close"
+      },
+      {
+        "ticker": "USDCAD=X",
+        "name": "USD/CAD",
+        "value": 1.4217,
+        "chg_1d": -0.4447,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Yahoo daily FX close, not equity fixing"
+      },
+      {
+        "ticker": "CL=F",
+        "name": "WTI",
+        "value": 95.09,
+        "chg_1d": 1.0091,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Yahoo front-month daily close, not equity fixing"
+      },
+      {
+        "ticker": "GC=F",
+        "name": "Gold",
+        "value": 4107.8999,
+        "chg_1d": -1.6614,
+        "chg_unit": "%",
+        "observation_date": "2026-10-14",
+        "convention": "Yahoo front-month daily close, not equity fixing"
+      }
+    ],
+    "yesterday_diff": [
+      {
+        "theme_id": "ai-capex-supercycle",
+        "change": "fading",
+        "note": "Since previous published October 5 snapshot: Downgraded to Fading: QQQ lost 3.80% in a week; demand evidence remains, but bullish price confirmation weakened."
+      },
+      {
+        "theme_id": "oil-war-premium",
+        "change": "continuing",
+        "note": "Since previous published October 5 snapshot: Continuing: XLE gained 6.74% in a week; supply risk persists, but weaker demand and low volume temper conviction."
+      },
+      {
+        "theme_id": "us-rates-repricing",
+        "change": "fading",
+        "note": "Since previous published October 5 snapshot: Downgraded to Fading: the 10Y eased to 5.19% and TLT gained 2.26% over a week despite hot CPI."
+      },
+      {
+        "theme_id": "ca-bank-earnings-momentum",
+        "change": "fading",
+        "note": "Since previous published October 5 snapshot: Still Fading: ZEB recovered 1.94% in a week but lagged TSX over a month; employment weakness tests credit quality."
+      }
+    ]
+  },
+  "commentary": {
+    "week": "2026-W42",
+    "data_quality": "production",
+    "sources": [
+      {
+        "firm": "BLS",
+        "title": "September CPI: consumed October 14 release",
+        "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+        "key_takeaway": "Headline CPI +0.6% monthly and 3.7% yearly; core +0.3% monthly. The next CPI is November 10.",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "us-rates-repricing"
+        ]
+      },
+      {
+        "firm": "BLS",
+        "title": "September PPI: October 15 morning news",
+        "url": "https://www.bls.gov/news.release/ppi.nr0.htm",
+        "key_takeaway": "Final-demand PPI rose 1.3% monthly and 6.3% yearly. This release cannot explain October 14 closing returns.",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "us-rates-repricing"
+        ]
+      },
+      {
+        "firm": "IEA",
+        "title": "October Oil Market Report",
+        "url": "https://www.iea.org/reports/oil-market-report-october-2026",
+        "key_takeaway": "Fragile supply recovery and renewed disruption coexist with lower demand forecasts; a conditional premium, not an unqualified shortage trade.",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "Statistics Canada",
+        "title": "September Labour Force Survey",
+        "url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm",
+        "key_takeaway": "October 9 release: employment fell 68,000 and unemployment was 6.5%. Credit implications are analyst inference, not a reported bank loss.",
+        "related_themes": [
+          "ca-bank-earnings-momentum"
+        ]
+      },
+      {
+        "firm": "ASML",
+        "title": "Third-quarter results, released October 14",
+        "url": "https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026",
+        "key_takeaway": "Issuer results provide an independent equipment-demand check; strong company results do not eliminate discount-rate risk.",
+        "related_themes": [
+          "ai-capex-supercycle"
+        ]
+      },
+      {
+        "firm": "Federal Reserve",
+        "title": "Official FOMC meeting calendar",
+        "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "key_takeaway": "Next meeting is October 27-28; December is December 8-9. Old estimated dates are not carried forward.",
+        "related_themes": [
+          "us-rates-repricing",
+          "ai-capex-supercycle"
+        ]
+      },
+      {
+        "firm": "Bank of Canada",
+        "title": "Official upcoming events and policy schedule",
+        "url": "https://www.bankofcanada.ca/press/upcoming-events/",
+        "key_takeaway": "Business and consumer surveys October 19; policy decision and Monetary Policy Report October 28.",
+        "related_themes": [
+          "ca-bank-earnings-momentum"
+        ]
+      },
+      {
+        "firm": "RBC",
+        "title": "Issuer reporting calendar",
+        "url": "https://www.rbc.com/investor-relations/financial-information.html",
+        "key_takeaway": "RBC confirms December 3 for fiscal Q4 results. This is not a confirmed date for all six banks.",
+        "related_themes": [
+          "ca-bank-earnings-momentum"
+        ]
+      },
+      {
+        "firm": "Yahoo Finance",
+        "title": "Reproducible daily histories through October 14",
+        "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits",
+        "key_takeaway": "Split-adjusted, distribution-excluded daily closes; all return anchors recomputed, not copied from the previous snapshot.",
+        "related_themes": [
+          "ai-capex-supercycle",
+          "oil-war-premium",
+          "us-rates-repricing",
+          "ca-bank-earnings-momentum"
+        ]
+      }
+    ]
+  }
+}

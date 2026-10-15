@@ -1,0 +1,75 @@
+week: 2026-W42
+data_quality: production
+sources:
+  - firm: BLS
+    title: "September CPI: consumed October 14 release"
+    url: https://www.bls.gov/news.release/archives/cpi_10142026.htm
+    key_takeaway: Headline CPI +0.6% monthly and 3.7% yearly; core +0.3% monthly. The next CPI is November 10.
+    related_themes:
+      - ai-capex-supercycle
+      - us-rates-repricing
+  - firm: BLS
+    title: "September PPI: October 15 morning news"
+    url: https://www.bls.gov/news.release/ppi.nr0.htm
+    key_takeaway: >-
+      Final-demand PPI rose 1.3% monthly and 6.3% yearly. This release cannot explain October 14 closing
+      returns.
+    related_themes:
+      - ai-capex-supercycle
+      - us-rates-repricing
+  - firm: IEA
+    title: October Oil Market Report
+    url: https://www.iea.org/reports/oil-market-report-october-2026
+    key_takeaway: >-
+      Fragile supply recovery and renewed disruption coexist with lower demand forecasts; a conditional
+      premium, not an unqualified shortage trade.
+    related_themes:
+      - oil-war-premium
+  - firm: Statistics Canada
+    title: September Labour Force Survey
+    url: https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm
+    key_takeaway: >-
+      October 9 release: employment fell 68,000 and unemployment was 6.5%. Credit implications are analyst
+      inference, not a reported bank loss.
+    related_themes:
+      - ca-bank-earnings-momentum
+  - firm: ASML
+    title: Third-quarter results, released October 14
+    url: >-
+      https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026
+    key_takeaway: >-
+      Issuer results provide an independent equipment-demand check; strong company results do not eliminate
+      discount-rate risk.
+    related_themes:
+      - ai-capex-supercycle
+  - firm: Federal Reserve
+    title: Official FOMC meeting calendar
+    url: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+    key_takeaway: Next meeting is October 27-28; December is December 8-9. Old estimated dates are not carried forward.
+    related_themes:
+      - us-rates-repricing
+      - ai-capex-supercycle
+  - firm: Bank of Canada
+    title: Official upcoming events and policy schedule
+    url: https://www.bankofcanada.ca/press/upcoming-events/
+    key_takeaway: Business and consumer surveys October 19; policy decision and Monetary Policy Report October 28.
+    related_themes:
+      - ca-bank-earnings-momentum
+  - firm: RBC
+    title: Issuer reporting calendar
+    url: https://www.rbc.com/investor-relations/financial-information.html
+    key_takeaway: RBC confirms December 3 for fiscal Q4 results. This is not a confirmed date for all six banks.
+    related_themes:
+      - ca-bank-earnings-momentum
+  - firm: Yahoo Finance
+    title: Reproducible daily histories through October 14
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    key_takeaway: >-
+      Split-adjusted, distribution-excluded daily closes; all return anchors recomputed, not copied from the
+      previous snapshot.
+    related_themes:
+      - ai-capex-supercycle
+      - oil-war-premium
+      - us-rates-repricing
+      - ca-bank-earnings-momentum

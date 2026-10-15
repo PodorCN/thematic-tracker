@@ -1,0 +1,300 @@
+schema_v: 1
+id: ca-bank-earnings-momentum
+week: 2026-W42
+title: "Canadian Banks: Recovery Needs Proof"
+status: Fading
+status_note: >-
+  Still Fading: ZEB recovered 1.94% in a week but lagged TSX over a month; employment weakness tests credit
+  quality.
+conviction: Low
+horizon: Cyclical 3-12m
+created_at: "2026-08-27"
+updated_at: "2026-10-15"
+data_quality: production
+summary: >-
+  Canadian banks show a weekly repair, not a verified restart of the earnings trade. ZEB gained +1.94% in one
+  week against +1.55% for the TSX, but its -2.24% one-month return lagged the index's -0.33%. Canada's October
+  9 employment report raised credit-demand questions. October 19 Bank of Canada surveys, the October 28
+  decision and RBC's confirmed December 3 results provide the next evidence. Status remains Fading and
+  conviction Low.
+body_text: >-
+  ZEB closed at C$74.55 on September 14, C$71.49 on October 7 and C$72.88 on October 14. One-week repair of
+  1.94% beat the TSX's 1.55%, but the one-month decline of 2.24% lagged the index's 0.33% loss. RBC, TD and
+  BMO each advanced over the latest week; that is breadth in a rebound, not a new earnings beat.
+
+  Statistics Canada's October 9 release reported 68,000 fewer jobs and 6.5% unemployment in September. Weaker
+  employment could reduce loan demand or raise credit costs; that is a risk channel, not measured
+  deterioration in bank provisions. The old earnings-momentum expectation therefore still lacks a fresh
+  fundamental confirmation.
+
+  Status remains Fading with Low conviction. October 19 business and consumer surveys and the October 28 BoC
+  decision test the growth backdrop. RBC confirms December 3 for its next results. Better credit outcomes and
+  durable relative gains would strengthen the case; rising provisions or persistent monthly underperformance
+  would weaken it.
+chain:
+  - when: Sep 14
+    label: Banks started the monthly window at a higher price
+    detail: ZEB, a fund holding major Canadian banks, closed at C$74.55.
+  - when: Oct 7-9
+    label: Prices weakened and employment created another risk
+    detail: ZEB closed at C$71.49 on October 7. The October 9 labour report showed an employment decline of 68,000.
+  - when: Oct 14
+    label: The rebound still needs earnings evidence
+    detail: >-
+      ZEB recovered to C$72.88 but remained below its September price. A weekly recovery does not establish
+      improving credit quality.
+explainer: >-
+  Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00
+  UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return
+  uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M
+  September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100
+  on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table.
+  Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the
+  preceding 20 sessions, excluding the latest day. All bank and TSX returns are in CAD with no FX conversion.
+  Canadian markets were closed October 12 for Thanksgiving; the inner-joined chart excludes it, while US
+  charts retain it. ZEB latest volume was 1.38x the preceding 20 sessions, but volume_confirm remains false
+  because monthly relative-price confirmation is absent. Breadth is measured from positive October 7-14 RY.TO,
+  TD.TO and BMO.TO returns. No new provision or margin figure is asserted. Labour source:
+  https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm .
+performance:
+  proxy_ticker: ZEB.TO
+  proxy_price: 72.88
+  currency: CAD
+  return_type: price
+  ret_1w: 1.9443
+  ret_1m: -2.2401
+  ret_ytd: 25.0086
+  benchmark_ticker: ^GSPTSE
+  benchmark_name: S&P/TSX Composite
+  benchmark_ret_1w: 1.5484
+  benchmark_ret_1m: -0.3305
+  benchmark_ret_ytd: 12.2086
+  excess_1w: 0.3959
+  excess_1m: -1.9096
+  excess_ytd: 12.7999
+  as_of_utc: "2026-10-14T20:00:00Z"
+  source: >-
+    Yahoo Finance daily quote.close (split adjusted, distributions excluded);
+    https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+  benchmark_rationale: CAD Canadian bank equities are compared with the CAD broad Canadian price index on common TSX sessions.
+series:
+  - date: "2026-08-04"
+    proxy: 100
+    benchmark: 100
+  - date: "2026-08-05"
+    proxy: 100.63
+    benchmark: 100.9631
+  - date: "2026-08-06"
+    proxy: 100.6431
+    benchmark: 100.9349
+  - date: "2026-08-07"
+    proxy: 100.4725
+    benchmark: 101.6189
+  - date: "2026-08-10"
+    proxy: 100.3412
+    benchmark: 101.8343
+  - date: "2026-08-11"
+    proxy: 100.1312
+    benchmark: 101.8834
+  - date: "2026-08-12"
+    proxy: 101.7325
+    benchmark: 102.4035
+  - date: "2026-08-13"
+    proxy: 102.2575
+    benchmark: 102.675
+  - date: "2026-08-14"
+    proxy: 102.7563
+    benchmark: 102.594
+  - date: "2026-08-17"
+    proxy: 102.5988
+    benchmark: 102.4197
+  - date: "2026-08-18"
+    proxy: 101.0631
+    benchmark: 101.5818
+  - date: "2026-08-19"
+    proxy: 97.7294
+    benchmark: 101.6765
+  - date: "2026-08-20"
+    proxy: 96.0231
+    benchmark: 101.5748
+  - date: "2026-08-21"
+    proxy: 96.4562
+    benchmark: 102.2865
+  - date: "2026-08-24"
+    proxy: 96.115
+    benchmark: 102.5488
+  - date: "2026-08-25"
+    proxy: 98.7006
+    benchmark: 103.2289
+  - date: "2026-08-26"
+    proxy: 98.4381
+    benchmark: 102.827
+  - date: "2026-08-27"
+    proxy: 97.6506
+    benchmark: 102.8845
+  - date: "2026-08-28"
+    proxy: 97.6112
+    benchmark: 102.1013
+  - date: "2026-08-31"
+    proxy: 96.7581
+    benchmark: 101.3097
+  - date: "2026-09-01"
+    proxy: 96.1018
+    benchmark: 100.0673
+  - date: "2026-09-02"
+    proxy: 98.005
+    benchmark: 100.81
+  - date: "2026-09-03"
+    proxy: 99.5669
+    benchmark: 102.3225
+  - date: "2026-09-04"
+    proxy: 99.055
+    benchmark: 101.9893
+  - date: "2026-09-08"
+    proxy: 97.9787
+    benchmark: 100.898
+  - date: "2026-09-09"
+    proxy: 96.9419
+    benchmark: 100.2933
+  - date: "2026-09-10"
+    proxy: 97.2569
+    benchmark: 99.1752
+  - date: "2026-09-11"
+    proxy: 97.8869
+    benchmark: 99.7092
+  - date: "2026-09-14"
+    proxy: 97.8475
+    benchmark: 99.7232
+  - date: "2026-09-15"
+    proxy: 97.5719
+    benchmark: 99.3869
+  - date: "2026-09-16"
+    proxy: 97.585
+    benchmark: 99.1333
+  - date: "2026-09-17"
+    proxy: 98.3856
+    benchmark: 100.2031
+  - date: "2026-09-18"
+    proxy: 98.8056
+    benchmark: 100.0142
+  - date: "2026-09-21"
+    proxy: 100.3544
+    benchmark: 100.5804
+  - date: "2026-09-22"
+    proxy: 99.4225
+    benchmark: 101.4916
+  - date: "2026-09-23"
+    proxy: 97.2962
+    benchmark: 99.8598
+  - date: "2026-09-24"
+    proxy: 97.48
+    benchmark: 99.7344
+  - date: "2026-09-25"
+    proxy: 98.7531
+    benchmark: 99.998
+  - date: "2026-09-28"
+    proxy: 98.3725
+    benchmark: 99.1294
+  - date: "2026-09-29"
+    proxy: 97.5719
+    benchmark: 99.0467
+  - date: "2026-09-30"
+    proxy: 96.2331
+    benchmark: 98.4199
+  - date: "2026-10-01"
+    proxy: 95.9443
+    benchmark: 98.1934
+  - date: "2026-10-02"
+    proxy: 96.3643
+    benchmark: 99.1651
+  - date: "2026-10-05"
+    proxy: 95.8656
+    benchmark: 99.2095
+  - date: "2026-10-06"
+    proxy: 96.4168
+    benchmark: 99.5752
+  - date: "2026-10-07"
+    proxy: 93.8312
+    benchmark: 97.878
+  - date: "2026-10-08"
+    proxy: 93.2406
+    benchmark: 98.1671
+  - date: "2026-10-09"
+    proxy: 94.5925
+    benchmark: 99.6173
+  - date: "2026-10-13"
+    proxy: 96.2069
+    benchmark: 100.5095
+  - date: "2026-10-14"
+    proxy: 95.6556
+    benchmark: 99.3936
+proxies:
+  - ticker: ZEB.TO
+    name: BMO Equal Weight Banks Index ETF
+    type: ETF
+    region: Canada
+    expense: 0.28% audited MER (issuer factsheet)
+    liquidity_note: Latest complete session volume 1,879,800 shares; Canadian listing, assess the bid-ask spread.
+    why_represents: >-
+      An equal-weight basket of major Canadian bank stocks isolates bank exposure better than broad
+      financials.
+    tracking_gap: >-
+      Concentrated sector fund; distributions excluded from this price-return table. No direct measure of
+      provisions or loan growth. Issuer: https://www.bmoetfs.ca/etfs/zeb-bmo-equal-weight-banks-index-etf
+events:
+  - event_time_utc: "2026-09-14T20:00:00Z"
+    title: ZEB closed at C$74.55, the price anchor for the one-month comparison.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: -0.0402
+    benchmark_ret: 0.014
+    return_window: event-day (2026-09-11 to 2026-09-14 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-07T20:00:00Z"
+    title: ZEB closed at C$71.49 before the Canadian labour release; this is a closing observation.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: -2.6817
+    benchmark_ret: -1.7044
+    return_window: event-day (2026-10-06 to 2026-10-07 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-14T20:00:00Z"
+    title: "ZEB closed at C$72.88: a 0.57% session decline, but still a gain from October 7."
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: -0.573
+    benchmark_ret: -1.1102
+    return_window: event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)
+depends_on:
+  - event_name: BoC business and consumer surveys
+    due_date: "2026-10-19"
+    why_matters: >-
+      Official survey release tests demand and investment expectations:
+      https://www.bankofcanada.ca/press/upcoming-events/
+    if_bull: Firmer demand and stable credit intentions support the earnings outlook
+    if_bear: Weaker hiring and spending intentions raise credit-demand concerns
+  - event_name: BoC decision and Monetary Policy Report
+    due_date: "2026-10-28"
+    why_matters: >-
+      Official schedule; growth and inflation jointly affect margins and credit:
+      https://www.bankofcanada.ca/2025/08/bank-canada-publishes-2026-schedule-policy-interest-rate-announcements-other-major-publications/
+    if_bull: A stable policy path and resilient growth support earnings visibility
+    if_bear: A weaker growth outlook or disruptive inflation raises credit and valuation risk
+  - event_name: RBC fiscal Q4 results (confirmed)
+    due_date: "2026-12-03"
+    why_matters: >-
+      RBC issuer reporting calendar, not an estimate for every bank:
+      https://www.rbc.com/investor-relations/financial-information.html
+    if_bull: Stable provisions, loan growth and margins validate a recovery
+    if_bear: Higher provisions or weaker guidance undermine the earnings case
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

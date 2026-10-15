@@ -1,0 +1,296 @@
+schema_v: 1
+id: oil-war-premium
+week: 2026-W42
+title: Energy Strength and the Supply Premium
+status: Continuing
+status_note: >-
+  Continuing: XLE gained 6.74% in a week; supply risk persists, but weaker demand and low volume temper
+  conviction.
+conviction: Med
+horizon: Tactical 2-8w
+created_at: "2026-09-01"
+updated_at: "2026-10-15"
+data_quality: production
+summary: >-
+  Energy remains the strongest measured theme: XLE returned +6.74% in one week versus -1.06% for the S&P 500,
+  an +7.80pp spread. October 14's IEA report describes fragile supply recovery alongside falling demand.
+  Exxon, Chevron and ConocoPhillips participated in the weekly rise. The signal is continuing relative
+  strength, not a claim that energy equities track crude one-for-one. Latest XLE volume was below its
+  preceding 20-session average.
+body_text: >-
+  XLE moved from $64.53 on September 14 to $65.24 on October 8 and $67.63 on October 14. Its one-week gain of
+  6.74% beat the S&P 500's 1.06% loss. Exxon, Chevron and ConocoPhillips all rose over that week. WTI's
+  October 14 daily bar was $95.09, but its one-month return was negative: energy stocks and crude are
+  different exposures.
+
+  The October 14 IEA report describes renewed regional supply risks, fragile export recovery and continued
+  market deficits, while also cutting demand expectations. This supports a conditional supply-premium
+  explanation; demand destruction is the competing case, not a detail to hide.
+
+  Status stays Continuing with Med conviction. Volume confirmation is false at 0.75x the preceding 20-session
+  average, so price breadth alone does not justify High conviction. The next scheduled EIA report on October
+  21 can test inventories. Repeated stock builds and normalizing supply would undermine the premium; further
+  tightness would support it.
+chain:
+  - when: Sep 14
+    label: Energy equities carried an elevated supply-risk backdrop
+    detail: >-
+      XLE closed at $64.53. The IEA later described September supply disruption and recovery in its October
+      report.
+  - when: Oct 8
+    label: Energy stocks strengthened again
+    detail: XLE closed at $65.24, beginning a renewed rise into the following week.
+  - when: Oct 14
+    label: Energy outperformed while the supply picture remained uncertain
+    detail: >-
+      XLE reached $67.63. The IEA described fragile supply recovery alongside weaker demand; low trading
+      volume limits confidence.
+explainer: >-
+  Snapshot refreshed October 15 before the US/Canada close. Performance and charts stop at October 14, 20:00
+  UTC; October 15 news is identified separately and has no completed US-session reaction yet. Price Return
+  uses Yahoo quote.close: split adjusted, no cash-distribution reinvestment. 1W anchors October 7; 1M
+  September 14; YTD December 31, 2025. Benchmarks use the same dates. Series rebase each common session to 100
+  on August 3. A lower long-bond price means a higher yield, so TLT returns must not be inverted in the table.
+  Volume confirmation requires thesis-direction price confirmation plus latest volume at least 1.25 times the
+  preceding 20 sessions, excluding the latest day. XLE volume was 0.75x its previous 20 sessions, so
+  volume_confirm is false. Breadth uses the positive October 7-14 returns of XOM, CVX and COP. WTI is a
+  rolling front-month futures series; its provider daily bar is not the same instrument or fixing time as an
+  equity close. No fresh US inventory level is claimed: the available EIA landing-page capture was stale;
+  October 15 release figures were not verified. Supply/demand context:
+  https://www.iea.org/reports/oil-market-report-october-2026 .
+performance:
+  proxy_ticker: XLE
+  proxy_price: 67.63
+  currency: USD
+  return_type: price
+  ret_1w: 6.7393
+  ret_1m: 4.804
+  ret_ytd: 51.2637
+  benchmark_ticker: ^GSPC
+  benchmark_name: S&P 500
+  benchmark_ret_1w: -1.0617
+  benchmark_ret_1m: 1.2987
+  benchmark_ret_ytd: 12.7593
+  excess_1w: 7.8009
+  excess_1m: 3.5053
+  excess_ytd: 38.5044
+  as_of_utc: "2026-10-14T20:00:00Z"
+  source: >-
+    Yahoo Finance daily quote.close (split adjusted, distributions excluded);
+    https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+  benchmark_rationale: >-
+    US energy-sector equities are compared with broad US equities; this measures sector excess, not a pure
+    oil-price or war-premium return.
+series:
+  - date: "2026-08-03"
+    proxy: 100
+    benchmark: 100
+  - date: "2026-08-04"
+    proxy: 99.5407
+    benchmark: 101.7896
+  - date: "2026-08-05"
+    proxy: 97.4826
+    benchmark: 101.619
+  - date: "2026-08-06"
+    proxy: 98.9284
+    benchmark: 101.4402
+  - date: "2026-08-07"
+    proxy: 97.8057
+    benchmark: 102.0675
+  - date: "2026-08-10"
+    proxy: 102.3643
+    benchmark: 102.0079
+  - date: "2026-08-11"
+    proxy: 103.6401
+    benchmark: 101.6802
+  - date: "2026-08-12"
+    proxy: 103.8102
+    benchmark: 101.9472
+  - date: "2026-08-13"
+    proxy: 103.8612
+    benchmark: 102.6115
+  - date: "2026-08-14"
+    proxy: 105.307
+    benchmark: 102.4375
+  - date: "2026-08-17"
+    proxy: 106.4467
+    benchmark: 101.902
+  - date: "2026-08-18"
+    proxy: 108.3177
+    benchmark: 101.2007
+  - date: "2026-08-19"
+    proxy: 108.1476
+    benchmark: 101.4141
+  - date: "2026-08-20"
+    proxy: 108.4368
+    benchmark: 100.535
+  - date: "2026-08-21"
+    proxy: 108.2497
+    benchmark: 100.9719
+  - date: "2026-08-24"
+    proxy: 107.3482
+    benchmark: 100.6889
+  - date: "2026-08-25"
+    proxy: 105.5622
+    benchmark: 101.0102
+  - date: "2026-08-26"
+    proxy: 106.1915
+    benchmark: 100.9894
+  - date: "2026-08-27"
+    proxy: 105.9534
+    benchmark: 101.7169
+  - date: "2026-08-28"
+    proxy: 106.6168
+    benchmark: 101.4638
+  - date: "2026-08-31"
+    proxy: 108.794
+    benchmark: 101.1268
+  - date: "2026-09-01"
+    proxy: 110.1718
+    benchmark: 100.4075
+  - date: "2026-09-02"
+    proxy: 110.7331
+    benchmark: 100.8697
+  - date: "2026-09-03"
+    proxy: 109.9167
+    benchmark: 101.9368
+  - date: "2026-09-04"
+    proxy: 108.9641
+    benchmark: 101.5538
+  - date: "2026-09-08"
+    proxy: 110.1718
+    benchmark: 100.9607
+  - date: "2026-09-09"
+    proxy: 111.0903
+    benchmark: 100.4718
+  - date: "2026-09-10"
+    proxy: 110.444
+    benchmark: 99.8842
+  - date: "2026-09-11"
+    proxy: 110.8012
+    benchmark: 100.7431
+  - date: "2026-09-14"
+    proxy: 109.7636
+    benchmark: 100.2563
+  - date: "2026-09-15"
+    proxy: 112.1449
+    benchmark: 99.8057
+  - date: "2026-09-16"
+    proxy: 108.9131
+    benchmark: 99.3594
+  - date: "2026-09-17"
+    proxy: 109.6785
+    benchmark: 100.4902
+  - date: "2026-09-18"
+    proxy: 109.3893
+    benchmark: 100.6579
+  - date: "2026-09-21"
+    proxy: 106.2426
+    benchmark: 102.1604
+  - date: "2026-09-22"
+    proxy: 105.0859
+    benchmark: 102.1596
+  - date: "2026-09-23"
+    proxy: 106.0895
+    benchmark: 101.3885
+  - date: "2026-09-24"
+    proxy: 106.4807
+    benchmark: 101.3635
+  - date: "2026-09-25"
+    proxy: 105.5282
+    benchmark: 101.8803
+  - date: "2026-09-28"
+    proxy: 105.6302
+    benchmark: 101.0945
+  - date: "2026-09-29"
+    proxy: 104.6777
+    benchmark: 100.9255
+  - date: "2026-09-30"
+    proxy: 104.6096
+    benchmark: 100.6715
+  - date: "2026-10-01"
+    proxy: 106.6508
+    benchmark: 100.8677
+  - date: "2026-10-02"
+    proxy: 106.8549
+    benchmark: 101.6081
+  - date: "2026-10-05"
+    proxy: 107.9265
+    benchmark: 102.2821
+  - date: "2026-10-06"
+    proxy: 108.4368
+    benchmark: 102.8739
+  - date: "2026-10-07"
+    proxy: 107.7734
+    benchmark: 102.6481
+  - date: "2026-10-08"
+    proxy: 110.9712
+    benchmark: 102.1691
+  - date: "2026-10-09"
+    proxy: 110.6991
+    benchmark: 102.7767
+  - date: "2026-10-12"
+    proxy: 112.281
+    benchmark: 102.7201
+  - date: "2026-10-13"
+    proxy: 114.3051
+    benchmark: 102.6965
+  - date: "2026-10-14"
+    proxy: 115.0366
+    benchmark: 101.5583
+proxies:
+  - ticker: XLE
+    name: State Street Energy Select Sector SPDR ETF
+    type: ETF
+    region: US
+    expense: 0.08% gross expense ratio (issuer checked Oct 15)
+    liquidity_note: Latest complete session volume 25,205,400 shares; observe spreads before using it.
+    why_represents: Liquid US energy-sector equity exposure includes large integrated producers.
+    tracking_gap: >-
+      Equity valuations, refining, dividends and company hedging cause deviations from spot crude. Issuer:
+      https://www.ssga.com/us/en/individual/etfs/state-street-energy-select-sector-spdr-etf-xle
+events:
+  - event_time_utc: "2026-09-14T20:00:00Z"
+    title: XLE closed at $64.53; price observation used as the one-month anchor.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: -0.9364
+    benchmark_ret: -0.4832
+    return_window: event-day (2026-09-11 to 2026-09-14 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-08T20:00:00Z"
+    title: XLE closed at $65.24; measured energy-equity strength does not isolate a geopolitical cause.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: 2.9672
+    benchmark_ret: -0.4667
+    return_window: event-day (2026-10-07 to 2026-10-08 completed common-session closes; observation, not causal proof)
+  - event_time_utc: "2026-10-14T20:00:00Z"
+    title: >-
+      XLE closed at $67.63, rising 0.64% while broad US equities fell. Same-day IEA context is discussed
+      separately.
+    source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+    url: >-
+      https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1764547200&period2=1792108800&interval=1d&events=div%2Csplits
+    type: macro
+    proxy_ret: 0.6399
+    benchmark_ret: -1.1083
+    return_window: event-day (2026-10-13 to 2026-10-14 completed common-session closes; observation, not causal proof)
+depends_on:
+  - event_name: Next scheduled EIA petroleum report
+    due_date: "2026-10-21T14:30:00Z"
+    why_matters: >-
+      Inventories test physical tightness; the standard Wednesday time follows the Oct 15 holiday exception:
+      https://www.eia.gov/petroleum/supply/weekly/schedule.php
+    if_bull: Draws and sustained supply disruptions support producer cash flows
+    if_bear: Repeated builds and restored exports weaken the premium
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

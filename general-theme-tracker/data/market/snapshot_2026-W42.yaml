@@ -1,0 +1,88 @@
+week: 2026-W42
+as_of_utc: "2026-10-14T20:00:00Z"
+data_quality: production
+news_as_of_utc: "2026-10-15T19:05:37.442Z"
+observation_note: >-
+  Equities: October 14 completed 16:00 ET closes. Other instruments: Yahoo October 14 daily bars, with their
+  own fixing/settlement times, not simultaneous live quotes. October 15 news has no completed US closing
+  reaction yet.
+regime:
+  stance: "Mixed: energy strength, AI and rate trades tested"
+  oneliner: >-
+    Inflation unsettles the AI rally; energy leads, while the long-bond selloff pauses. October 15 news is
+    checked against October 14 completed closes.
+  keywords:
+    - QQQ 1W -3.80%
+    - XLE 1W +6.74%
+    - 10Y 5.190%
+benchmarks:
+  - ticker: ^GSPC
+    name: SPX
+    value: 7718.9399
+    chg_1d: -1.1083
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Equity index close, 16:00 ET
+  - ticker: ^NDX
+    name: NDX
+    value: 29950.8203
+    chg_1d: -2.0238
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Equity index close, 16:00 ET
+  - ticker: ^GSPTSE
+    name: TSX
+    value: 35584.5
+    chg_1d: -1.1102
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Equity index close, 16:00 ET
+  - ticker: ^TNX
+    name: US 10Y
+    value: 5.19
+    chg_1d: -2.7
+    chg_unit: bp
+    observation_date: "2026-10-14"
+    convention: Yahoo yield-index daily close
+  - ticker: USDCAD=X
+    name: USD/CAD
+    value: 1.4217
+    chg_1d: -0.4447
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Yahoo daily FX close, not equity fixing
+  - ticker: CL=F
+    name: WTI
+    value: 95.09
+    chg_1d: 1.0091
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Yahoo front-month daily close, not equity fixing
+  - ticker: GC=F
+    name: Gold
+    value: 4107.8999
+    chg_1d: -1.6614
+    chg_unit: "%"
+    observation_date: "2026-10-14"
+    convention: Yahoo front-month daily close, not equity fixing
+yesterday_diff:
+  - theme_id: ai-capex-supercycle
+    change: fading
+    note: >-
+      Since previous published October 5 snapshot: Downgraded to Fading: QQQ lost 3.80% in a week; demand
+      evidence remains, but bullish price confirmation weakened.
+  - theme_id: oil-war-premium
+    change: continuing
+    note: >-
+      Since previous published October 5 snapshot: Continuing: XLE gained 6.74% in a week; supply risk
+      persists, but weaker demand and low volume temper conviction.
+  - theme_id: us-rates-repricing
+    change: fading
+    note: >-
+      Since previous published October 5 snapshot: Downgraded to Fading: the 10Y eased to 5.19% and TLT gained
+      2.26% over a week despite hot CPI.
+  - theme_id: ca-bank-earnings-momentum
+    change: fading
+    note: >-
+      Since previous published October 5 snapshot: Still Fading: ZEB recovered 1.94% in a week but lagged TSX
+      over a month; employment weakness tests credit quality.
