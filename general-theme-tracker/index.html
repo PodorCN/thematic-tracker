@@ -15,9 +15,9 @@
   *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);
     font-family:Georgia,'Times New Roman',serif;-webkit-font-smoothing:antialiased}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  .wrap{width:100%;margin:0;padding:0 clamp(20px,3vw,56px)}
   header.mast{background:#000;color:#fff}
-  header.mast .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+  header.mast .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
   .brand{font-size:15px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
     display:flex;align-items:center;gap:8px;font-family:ui-monospace,Menlo,monospace}
   .brand i{display:inline-block;width:10px;height:10px;background:var(--red)}
@@ -37,7 +37,7 @@
   h1.display{font-size:40px;line-height:1.12;margin:14px 0 0;letter-spacing:-.01em}
   .dek{font-size:17px;color:#4b5563;margin:12px 0 0}
   .theme{border-bottom:1px solid var(--line);padding:26px 0}
-  .theme h2{font-size:24px;margin:8px 0 6px}
+  .theme h2{font-size:22px;line-height:1.3;margin:8px 0 6px}
   .theme h2 a{color:inherit;text-decoration:none} .theme h2 a:hover{text-decoration:underline}
   .tags{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11px;font-weight:700;
     letter-spacing:.1em;text-transform:uppercase;font-family:ui-monospace,Menlo,monospace}
@@ -65,15 +65,26 @@
   table.board td{border-bottom:1px solid var(--line);padding:8px;vertical-align:baseline}
   table.board .pill{white-space:nowrap} table.board .r{text-align:right} table.board th:first-child,table.board td:first-child{padding-left:0}
   table.board a{color:#111;font-weight:700;text-decoration:none} table.board a:hover{text-decoration:underline}
-  .chain{display:flex;list-style:none;margin:8px 0 0;padding:0}
-  .chain li{display:flex;flex:1;min-width:0}
+  .chain{display:flex;flex-direction:column;list-style:none;margin:12px 0 0;padding:0}
+  .chain li{display:flex;flex-direction:column;min-width:0}
   .chain .node{flex:1;border:1px solid #d1d5db;padding:9px 12px;font-size:14px;font-weight:700;line-height:1.35}
   .chain .node p{margin:4px 0 0;font-size:13px;font-weight:400;line-height:1.5;color:#4b5563} .chain .now p{color:#d1d5db}
   .chain .node small{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px;font:700 11px ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--mut)}
   .chain .node small b{color:#111;white-space:nowrap;text-transform:uppercase}
   .chain .now{background:#111827;border-color:#111827;color:#fff} .chain .now small{color:#d1d5db} .chain .now small b{color:#fff}
-  .chain .arr{display:flex;align-items:center;justify-content:center;padding:0 6px;color:#9ca3af}
-  .card-grid{display:grid;grid-template-columns:280px 1fr;gap:22px 36px;margin-top:22px}
+  .chain .arr{display:flex;align-items:center;justify-content:center;height:22px;color:#9ca3af}
+  .card-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin-top:28px}
+  .card-grid>div{min-width:0}
+  .card-grid svg{width:100%;height:180px;display:block;margin-top:16px}
+  .theme{scroll-margin-top:24px}
+  .theme .dek{font-size:16px;line-height:1.6}
+  .theme p{overflow-wrap:anywhere}
+  .chain .node{font-size:16px;line-height:1.6;padding:14px 18px}
+  .chain .node p{font-size:15px;line-height:1.6}
+  .watch .row:not(.head){font-size:15px;line-height:1.6;padding:14px 0}
+  table.perf{font-size:15px}
+  .full>svg{width:100%;height:280px}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:4px}
   .card-grid table.perf{margin-top:8px}
   .watch .row{display:grid;grid-template-columns:52px 1fr 1.35fr 1.35fr;gap:4px 14px;border-bottom:1px solid #f0f0f0;
     padding:9px 0;font-size:13px;line-height:1.5;color:#374151}
@@ -88,8 +99,8 @@
   .board-m .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
   .board-m .ttl{font-size:15px;font-weight:700;line-height:1.3;margin:4px 0 5px}
   .board-m .nums{display:flex;flex-wrap:wrap;gap:2px 16px}
-  @media(max-width:900px){.chain,.chain li{flex-direction:column}.chain .arr{padding:2px 0;transform:rotate(90deg)}}
-  @media(max-width:760px){.card-grid{grid-template-columns:1fr}.watch .row{grid-template-columns:1fr}.watch .head{display:none}}
+  @media(min-width:900px){.chain .node{display:grid;grid-template-columns:150px minmax(0,1fr);column-gap:24px}.chain .node small{grid-row:1 / 3;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:4px;margin:4px 0 0}.chain .node p{grid-column:2}}
+  @media(max-width:760px){.watch .row{grid-template-columns:1fr}.watch .head{display:none}.ev{flex-direction:column;gap:4px}.ev time{flex-basis:auto;border:0}.dep{display:block;overflow-x:auto}.watch .row span{padding-top:4px}}
   @media(max-width:640px){.board-wrap{display:none}.board-m{display:block}}
   @media(max-width:640px){h1.display{font-size:28px}.ev time{flex-basis:110px}}
 </style>
@@ -166,7 +177,7 @@
     return '<ol class="chain sans">' + steps.map(function(st,i){
       var last = i === steps.length-1;
       return '<li><div class="node'+(last?' now':'')+'"><small><span>'+(last?'NOW':('0'+(i+1)).slice(-2))+'</span>'+(st.when?'<b>'+esc(st.when)+'</b>':'')+'</small>'+esc(st.label)+(st.detail?'<p>'+esc(st.detail)+'</p>':'')+'</div>'
-        + (last?'':'<span class="arr" aria-hidden="true">→</span>') + '</li>';
+        + (last?'':'<span class="arr" aria-hidden="true">↓</span>') + '</li>';
     }).join('') + '</ol>';
   }
   function sparkSVG(series, pl, bl){
@@ -176,10 +187,9 @@
     function X(i){ return 3+(i/(series.length-1))*(W-6); }
     function Y(v){ return 4+(1-(v-min)/span)*(H-8); }
     function line(k){ return series.map(function(p,i){ return (i?'L':'M')+X(i).toFixed(1)+','+Y(p[k]).toFixed(1); }).join(' '); }
-    return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:360px;display:block;margin-top:10px" role="img" aria-label="'+esc(pl)+' versus '+esc(bl)+' sparkline">'
-      + '<path d="'+line('benchmark')+'" fill="none" stroke="#B4BCC8" stroke-width="1.5"/>'
-      + '<path d="'+line('proxy')+'" fill="none" stroke="#111827" stroke-width="2"/>'
-      + '<circle cx="'+X(series.length-1)+'" cy="'+Y(series[series.length-1].proxy)+'" r="2.5" fill="#111827"/>'
+    return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img" aria-label="'+esc(pl)+' versus '+esc(bl)+' sparkline">'
+      + '<path d="'+line('benchmark')+'" fill="none" stroke="#B4BCC8" stroke-width="1.5" vector-effect="non-scaling-stroke"/>'
+      + '<path d="'+line('proxy')+'" fill="none" stroke="#111827" stroke-width="2" vector-effect="non-scaling-stroke"/>'
       + '</svg><p class="expl" style="margin:2px 0 0">— '+esc(pl)+' · <span style="color:#B4BCC8">—</span> '+esc(bl)+' · rebased</p>';
   }
   function boardHTML(themes, ms){
