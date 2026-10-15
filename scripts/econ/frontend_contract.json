@@ -6,8 +6,8 @@
     "styles.css": "560b6b9c10518aa414c8c00bd7203ed575fa6d5331b975e91c3c770d97a3c7c4"
   },
   "general-theme-tracker": {
-    "index.html": "c4616357ae0ef3a8e77bbc3897e35bbe7e749a3ab85d4bf585d735fdc7a8ab0a",
-    "frontend/src/pages/Home.tsx": "be3cf91610d94b347ca19ea5c53ee89eb4256eeb765592d93f7aac360de65681",
+    "index.html": "01bbb8cdfe1fb78661d1b90c5c70a4667fd8df23bdf6f2022892a44b6dfaca36",
+    "frontend/src/pages/Home.tsx": "f0b738518dd18075672eb27e04514e91dd68cb29e6348100fdc114c04d5ca531",
     "frontend/src/pages/ThemeDetail.tsx": "6ee99ea0a4c6184ae07f78cb2d48a511b9529b09515c562ecde1be9b03f80380",
     "frontend/src/pages/Archive.tsx": "1acdeac5702f960ca217e4261158948db91f5557e78b4499322c6d7ee41723d6",
     "frontend/src/lib/api.ts": "ac3dc92c7441223dea52a351e44bc04ee1f91d60d20fbffbdf12e33c4d543090"

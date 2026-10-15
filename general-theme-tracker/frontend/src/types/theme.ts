@@ -115,6 +115,8 @@ export interface Benchmark {
 export interface Snapshot {
   week: string
   as_of_utc: string
+  news_as_of_utc?: string
+  observation_note?: string
   regime: { stance: string; oneliner: string; keywords: string[] }
   benchmarks: Benchmark[]
   yesterday_diff: { theme_id: string; change: 'new' | 'continuing' | 'fading' | 'dead'; note: string }[]
