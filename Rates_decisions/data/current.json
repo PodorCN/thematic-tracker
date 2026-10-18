@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-16T08:17:16-04:00",
-  "snapshot_date": "2026-10-16",
+  "as_of": "2026-10-18T11:43:53-04:00",
+  "snapshot_date": "2026-10-18",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -43,15 +43,15 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.36,
-          "hold": 0.64,
+          "hike": 0.34,
+          "hold": 0.66,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
-        "implied_rate_after": 2.34,
-        "source": "CORRA OIS-implied via BlueGamma (+9bp)",
-        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
+        "implied_rate_after": 2.335,
+        "source": "LSEG Data & Analytics, CORRA OIS-implied (via The Canadian Press)",
+        "source_url": "https://www.thecanadianpressnews.ca/business/bank-of-canada-set-for-pair-of-important-data-drops-ahead-of-live-rate-decision/article_9503b624-1c5f-5915-b585-d9c392d76fc0.html",
         "as_of": "2026-10-16",
         "observable_proxy": null
       }
@@ -667,7 +667,7 @@
     },
     "boc": {
       "base_total": 0,
-      "effective_total": -3.5,
+      "effective_total": -3.25,
       "band": "hold"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
@@ -702,6 +702,20 @@
       "source_url": "https://www.bankofcanada.ca/publications/business-outlook-survey/"
     },
     {
+      "date_toronto": "2026-10-19",
+      "datetime_toronto": "2026-10-19T22:00:00-04:00",
+      "datetime_utc": "2026-10-20T02:00:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "Alberta referendum: 10 non-binding questions incl. Q10 (start process toward an independence vote) - polls close 8pm MT",
+      "impact": "HIGH",
+      "importance": 2,
+      "forecast": "unverified",
+      "previous": "n/a",
+      "source": "Elections Alberta",
+      "source_url": "https://www.elections.ab.ca/resources/media/news-releases/2026-10-13/"
+    },
+    {
       "date_toronto": "2026-10-28",
       "datetime_toronto": "2026-10-28T09:45:00-04:00",
       "datetime_utc": "2026-10-28T13:45:00Z",
@@ -710,7 +724,7 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 2.25% (CORRA OIS 64% hold / 36% hike, BlueGamma, Oct 16)",
+      "forecast": "Hold 2.25% (LSEG OIS 66% hold / 34% hike, Oct 16)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/"
