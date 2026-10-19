@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-19T09:02:11-04:00",
+  "snapshot_date": "2026-10-19",
+  "candidate_sha256": "fafc453d5dbd3186a7102e035437604a04375177e7b24c522ab94c900b034e2c",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent review of frozen candidate fafc453d5dbd (snapshot 2026-10-19; operator rates-decisions-writer). Hash chain verified: candidate.sha256 == raw sha256 of candidate.json == canonical sha of data/current.json (working-tree bytes differ from the candidate only by CRLF; LF-normalized bytes are byte-identical) = fafc453d5dbd3186a7102e035437604a04375177e7b24c522ab94c900b034e2c; machine structural flags regenerated locally -> zero, matching the committed structural-flags.json; publish.py --check -> 'structure valid'. Prior round (2026-10-16) closed with 1 minor (fed-h4/fed-d6 quote hygiene) - both fragments are now verbatim against the minutes ('they had not seen sufficient progress on lowering inflation') and Reuters/Bowman ('I don't feel any urgency for taking further action at this point, we really need to take some time and understand how things will evolve'), so nothing carried. Official policy confirmed live on federalreserve.gov: Sep 16 hike +25bp to 3.75-4.00% by a 12-0 vote (statement + implementation note: IORB to 3.90%, RRP 3.75%, primary credit 4.0%); Oct 7 minutes: all participants supported the hike, 'most participants assessed that another increase ... would likely be appropriate by year end', staff inflation forecast higher for 2026-2028 with 2% reached in 2029; next meeting Oct 27-28 (fomccalendars.htm); SEP dots 16 of 18 eye a further 2026 hike (WSJ: 'Sixteen of 18 Fed officials penciled in at least one more rate hike'; median 4.1% = one more quarter point from the 3.875% midpoint), so fed-h2's count is right even though the field links the press-conference page. bankofcanada.ca: Sep 2 hold at 2.25% = 7th consecutive hold since the Oct 29, 2025 cut; next decision Oct 28 09:45 ET with MPR; Business Outlook Survey + Canadian Survey of Consumer Expectations confirmed for Oct 19 11:30 ET by the Bank's own advisory. Pricing cross-checked against live sources: Fed 85.1/14.9/0 matches CME FedWatch readings cited for Oct 19 (growbeansprout mirrors 85.1% hold 'as of 19 Oct 2026'; invezz 85.1% on Oct 16, 'up from around 72%') with the honest caveat that same-day mirrors are dispersed (82-87% hold) - no reprice needed for the hold call; implied 3.92 vs arithmetic 3.912 (3.875 + 0.149 x 25bp) is a 0.01 rounding slip. BoC 71/29/0, +18bp implied -> 2.43 exactly matches the BlueGamma CORRA OIS page ('Current overnight rate 2.25%; Next meeting: 28 Oct 2026; Market-implied move +19bp; Hike 75 / Hold 26', read at 08:45 ET after the 08:30 CPI - i.e. 4pp tighter than the 08:11 freeze, drift not error); the Oct 16 -> Oct 19 jump from ~36% to ~71% is corroborated (Globe and Mail/Bloomberg data: ~35% on Friday; Macklem's Saturday remarks + Monday repricing). Polymarket live via gamma-api: Fed hold 88.5 / hike 11.5 vs filed 88/12, volume $47.55M exact on $47.5M; BoC hold 68.75 / hike 31.2 vs filed 67/33 on volume $266.6k vs $260.0k - both within half-hour book drift. Drivers (22) spot-checked against primaries: BLS API WPSFD49104 (Sep +0.68% m/m, 5.0% y/y) and WPSFD49116 (+0.49% m/m) confirm the PPI core split; BLS Sep CPI 3.7%/core 2.6%/0.6% m/m; CES0000000001 Sep +29k, +133k Aug, -10k Jul and LNS14000000 4.2% match fed-d2 exactly; BEA Aug PCE 3.4%/core 3.0% (forecast 3.7/3.3) and StatCan Aug CPI 3.0% with trim 1.9/median 2.0 and LFS Sep -68k/u-rate 6.5%/participation 64.8%/wages +2.3% all reproduce; Jefferson Oct 1 ('cascade of shocks', 3.4% PCE, upside risks), Williams Sep 29 ('no need for urgency'), Hammack Oct 12 ('a restrictive policy stance will be needed'; conditions 'neutral rather than holding demand back'), Warsh Oct 16 (CNBC: 'I don't prejudge meetings', traders to <15% per Straits Times/Business Times - CNBC's own 72.3% is the stale pre-speech read, noted in the 10-16 round), Daly/Bowman Reuters quotes, Macklem Oct 17 Globe ('Brent ~US$110', 'US$75' July assumption, 'drift up from where it is today: 3 per cent'), MPA bank calls, canada.ca $27.6B counter-tariffs, G7 100M barrels / diesel $2.75L record - all live and verbatim. Math recomputed: Fed base +5 / effective +3.75 'lean hike' (band follows base as publish.py enforces; market prices an 85% hold - divergence surfaced, not averaged); BoC base +6 / effective +2.75 'lean hike'; mean |weight| 2.79 / 2.75; no weight >=5; balanced facets on the one same-URL pair (boc-h1 headline-broadening vs boc-d2 core-at-target). Verdict: APPROVED - zero critical/major, 7 minors for future cycles (see findings; none touch the totals), no machine flags to disposition; publish.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "drivers.fed.fed-h1.data.previous",
+      "issue": "Prior-period core PCE is quoted pre-revision: 3.3% for July, but the same September 30 BEA release carried the annual update that cut July core to 3.0% (headline July also revised 3.7% -> 3.4%). The reason's 'core down from 3.3% in July' therefore misstates the trend - on revised data core was flat at 3.0% (3.01% vs 2.98%).",
+      "evidence": "bea.gov/news/2026/personal-income-and-outlays-august-2026 (3.4%/$3.0% 12-month; Annual Update of the National Economic Accounts paragraph); CNBC 2026-09-30 'revisions lowered the core July PCE level by 0.36 percentage point'; portfolio-terminal.com/blog/pce-inflation-august-2026 table: July revised 3.7%/3.3% -> 3.4%/3.0%. Candidate field reads '3.4% YoY Jul (core 3.3%)'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.fed-h2.source_url",
+      "issue": "Source claims 'Federal Reserve SEP' but the URL is the September 16 press-conference page, which does not contain the dot plot; the 16/18 count lives in the projections table. Domain matches, so no machine flag - swap to the SEP table for auditability.",
+      "evidence": "candidate fed-h2 source_url=https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm (page title 'September 15-16, 2026 FOMC Meeting' press conference); claim verified independently on https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm (2026 median 4.1, range 4.1-4.4) and WSJ 'Sixteen of 18 Fed officials penciled in at least one more rate hike for this year'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.fed-h4.market_validation",
+      "issue": "The Oct 13 -> Oct 14 repricing quoted as validation for the Oct 7 minutes (22.1% -> 37.1% Oct-28 hike odds) is the same print-day move fed-h6 attributes to the Sep CPI; the minutes predate it by a week, so the attribution is weak/duplicated. Use the Oct 7-8 read or restate as unverified.",
+      "evidence": "candidate fed-h4 market_validation='Oct-28 hike odds 22.1% -> 37.1% (Oct 13 -> Oct 14)' identical to fed-h6 'FedWatch Oct-28 hike odds 22.1% (Oct 13) -> ~54% spike post-print (CNBC) -> 37.1%' for the CPI released 8:30 ET Oct 14; fed-h4's own reason says October sat 'near 18% until the Sep CPI reopened it'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[2] (fed-d3)",
+      "issue": "Reuters retelling of the Oct 1 Williams/Jefferson remarks overlaps fed-h3 (Jefferson's Oct 1 speech) and fed-d1 (Williams Sep 29): the same communication is scored +3 hawkish and -3 dovish with no facet fields, and a second-hand retelling is used as its own market_validation (shared doctrine: label via X, down-weight, do not treat as independent validation). Net effect on the total is zero, but add distinct facets or merge the retelling next cycle.",
+      "evidence": "fed-h3 source=federalreserve.gov/newsevents/speech/jefferson20261001a.htm (+3); fed-d3 source='Reuters (via Williams, Jefferson)' reuters.com/.../fed-may-take-time-make-next-interest-rate-move-jefferson-says-2026-10-01 (-3) whose reason re-cites Williams' 'no urgency' already carried by fed-d1; neither carries a facet field.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.implied_rate_after",
+      "issue": "Implied post-meeting rate is 3.92 for an 85.1/14.9 hike distribution; arithmetic gives 3.875 + 0.149 x 0.25 = 3.912 -> 3.91. The 2026-10-16 archive filed 3.91 for the identical probabilities, so today's 3.92 is an internal rounding drift.",
+      "evidence": "candidate meetings.fed.pricing {hike 0.149, hold 0.851, implied_rate_after 3.92}; Rates_decisions/data/archive/2026-10-16.json same probabilities with implied_rate_after 3.91.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "calendar['BoC Business Outlook Survey + Consumer Expectations Survey'].source_url",
+      "issue": "The calendar row's source_url 301-redirects to a 2015 PDF (bos-autumn2015.pdf); event date/time are correct, but the link does not support them. Point it at the current BOS landing page or the Bank's October 19 advisory.",
+      "evidence": "curl -I https://www.bankofcanada.ca/publications/business-outlook-survey/ -> 301 Location: https://www.bankofcanada.ca/wp-content/uploads/2015/10/bos-autumn2015.pdf; date/time confirmed by bankofcanada.ca/2026/10/the-bank-of-canada-releases-the-third-quarter-issues-of-the-business-outlook-survey-... ('On Monday, October 19, 2026 ... Time: 11:30 (Eastern Time)').",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.boc-h5.title/summary",
+      "issue": "'significantly' is set in quotes but the word is not in the linked Globe and Mail piece (which says 'revise its inflation forecast higher'); it appears in Reuters' write-up of the same remarks. The substance (higher forecast, hike question reopened) is correct - quote hygiene only.",
+      "evidence": "theglobeandmail.com/business/article-bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/ text contains 'significantly more expensive' only (no 'significantly' for the forecast) while reuters.com/world/americas/bank-canada-sees-sharply-higher-inflation-outlook-oil-surges-macklem-says-2026-10-17/ reads 'expects to raise its quarterly inflation forecast significantly this month'.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
