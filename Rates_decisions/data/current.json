@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-16T08:17:16-04:00",
-  "snapshot_date": "2026-10-16",
+  "as_of": "2026-10-19T08:11:35-04:00",
+  "snapshot_date": "2026-10-19",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -22,11 +22,11 @@
           "cut": 0
         },
         "probability_status": "available",
-        "implied_rate_before": 3.875,
-        "implied_rate_after": 3.91,
+        "implied_rate_before": 3.88,
+        "implied_rate_after": 3.92,
         "source": "CME FedWatch",
         "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-19",
         "observable_proxy": null
       }
     },
@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.36,
-          "hold": 0.64,
+          "hike": 0.71,
+          "hold": 0.29,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
-        "implied_rate_after": 2.34,
-        "source": "CORRA OIS-implied via BlueGamma (+9bp)",
+        "implied_rate_after": 2.43,
+        "source": "CORRA OIS-implied via BlueGamma (+18bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-19",
         "observable_proxy": null
       }
     }
@@ -65,14 +65,14 @@
         "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
         "probabilities": {
           "cut": 0,
-          "hold": 0.86,
-          "hike": 0.14
+          "hold": 0.88,
+          "hike": 0.12
         },
         "status": "available",
-        "volume": "$43.5M",
-        "liquidity": "$4.2M",
-        "as_of": "2026-10-16",
-        "note": "Live odds: Hold 86%, Hike 14%, Cut 0%."
+        "volume": "$47.5M",
+        "liquidity": "$4.6M",
+        "as_of": "2026-10-19",
+        "note": "Live odds: Hold 88%, Hike 12%, Cut 0%."
       }
     ],
     "boc": [
@@ -82,14 +82,14 @@
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
         "probabilities": {
           "cut": 0,
-          "hold": 0.82,
-          "hike": 0.18
+          "hold": 0.67,
+          "hike": 0.33
         },
         "status": "available",
-        "volume": "$182.3k",
-        "liquidity": "$66.8k",
-        "as_of": "2026-10-16",
-        "note": "Live odds: Hold 82%, Hike 18%, Cut 0%."
+        "volume": "$260.0k",
+        "liquidity": "$73.3k",
+        "as_of": "2026-10-19",
+        "note": "Live odds: Hold 67%, Hike 33%, Cut 0%."
       }
     ]
   },
@@ -174,7 +174,7 @@
         {
           "id": "fed-h4",
           "title": "Oct 7 minutes: all backed Sept hike; most see another by year-end",
-          "summary": "Minutes show unanimous support, 'not sufficient progress' on inflation, raised staff inflation path — no October/December pick.",
+          "summary": "Minutes show unanimous support, 'had not seen sufficient progress on lowering inflation', raised staff inflation path — no October/December pick.",
           "published_at": "2026-10-07",
           "observed_at": "2026-10-07",
           "source": "Federal Reserve (FOMC Minutes)",
@@ -432,7 +432,7 @@
           "source": "Reuters (via Bowman)",
           "source_url": "https://www.reuters.com/business/feds-bowman-says-theres-time-wait-see-before-any-more-action-2026-10-14",
           "data": {
-            "actual": "'No urgency for taking further action at this point... need to take some time and understand how things will evolve'",
+            "actual": "'I don't feel any urgency for taking further action at this point... need to take some time and understand how things will evolve'",
             "forecast": "n/a",
             "previous": "unverified",
             "delta_label": "no rush after September hike"
@@ -518,7 +518,7 @@
             "delta_label": "call flip to Oct"
           },
           "reason": "UBS Watt cites Macklem's shift (upside risks rising, less willing to look through headline) plus Halifax warning about moving too slow. Manulife Lapointe (Oct+Dec on inflation dynamics), Oxford Davenport (Oct+Dec), Scotia (Oct) join; RBC still holds near-term but calls it a close call. Sep CPI Oct 19 is the swing print.",
-          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5) -> 21% (Oct 14)",
+          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5) -> 21% (Oct 14) -> 33% (Oct 19)",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -543,7 +543,7 @@
             "delta_label": "conditional tightening risk"
           },
           "reason": "The committee-level account behind the September hold: the main risks had become more acute, inflation was likely higher for longer, and if energy passes through to other prices a policy response could be needed. Conditional, not a pre-commitment — members also noted the economy is still in excess supply with a soft labour market — but it is the official basis for the hike calls now in the street.",
-          "market_validation": "OIS-implied Oct hike: ~33% Oct 1 -> ~28% Oct 12 -> ~37% Oct 14 (+9bp implied move, BlueGamma)",
+          "market_validation": "OIS-implied Oct hike: ~33% Oct 1 -> ~28% Oct 12 -> ~37% Oct 14 -> ~71% Oct 19 (+18bp implied move, BlueGamma)",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -551,6 +551,31 @@
             "importance": 1,
             "surprise": 0,
             "total": 2
+          }
+        },
+        {
+          "id": "boc-h5",
+          "title": "Macklem Oct 17: BoC to raise inflation forecast 'significantly' as oil stays ~$100",
+          "summary": "Governor says the Bank will revise its quarterly inflation forecast sharply higher at the Oct 28 MPR — oil runs well above the July US$75 assumption — and frames the decision as whether inflation returns to 2% 'on its own' or the Bank 'will have to raise interest rates'.",
+          "published_at": "2026-10-17",
+          "observed_at": "2026-10-17",
+          "source": "The Globe and Mail",
+          "source_url": "https://www.theglobeandmail.com/business/article-bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/",
+          "data": {
+            "actual": "BoC to raise inflation forecast 'significantly'; Brent ~US$110 (Oct 17) vs July assumption US$75; 'if oil prices stay around $100, we expect inflation to gradually drift up from where it is today: 3 per cent'",
+            "forecast": "n/a",
+            "previous": "Jul MPR: Brent assumed ~US$75; inflation seen drifting back to ~2%",
+            "delta_label": "hawkish outlook shift, hike question reopened"
+          },
+          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be significant and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move.",
+          "market_validation": "CORRA OIS Oct-28 hike odds 36% -> 71% and implied move +9bp -> +18bp (Oct 16 -> Oct 19, BlueGamma)",
+          "direction": 1,
+          "weight": 4,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 1,
+            "total": 4
           }
         }
       ],
@@ -630,31 +655,6 @@
             "surprise": 1,
             "total": 2
           }
-        },
-        {
-          "id": "boc-d4",
-          "title": "Macklem Oct 16: still looking through energy - but patience has a limit",
-          "summary": "'We haven't raised our rates yet. We've been looking through the increase in energy prices, but the longer this goes, the harder that gets.'",
-          "published_at": "2026-10-16",
-          "observed_at": "2026-10-16",
-          "source": "Reuters (via FXStreet)",
-          "source_url": "https://www.fxstreet.com/news/bocs-macklem-says-canada-has-not-raised-rates-yet-as-energy-prices-pose-challenges-202610160455",
-          "data": {
-            "actual": "'We haven't raised our rates yet... the longer this goes, the harder that gets' (IMF panel, Bangkok)",
-            "forecast": "n/a",
-            "previous": "Sep 21 Halifax: prepared to adjust policy as risks evolve",
-            "delta_label": "status quo with a warning"
-          },
-          "reason": "The Governor's final steer before the Oct 19 CPI: policy is still treating the energy run-up as something to look through, which keeps October centered on a hold, while the 'harder that gets' caveat preserves a live tightening tail if pass-through shows up on Monday or in the MPR. Markets barely moved on it.",
-          "market_validation": "No material repricing: OIS hold 63%->64%, +9bp (Oct 14->16, BlueGamma); hike odds stay well below pre-jobs levels",
-          "direction": -1,
-          "weight": 2,
-          "weight_breakdown": {
-            "deviation": 0,
-            "importance": 1,
-            "surprise": 1,
-            "total": 2
-          }
         }
       ]
     }
@@ -666,9 +666,9 @@
       "band": "lean hike"
     },
     "boc": {
-      "base_total": 0,
-      "effective_total": -3.5,
-      "band": "hold"
+      "base_total": 6,
+      "effective_total": 2.75,
+      "band": "lean hike"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
   },
@@ -682,7 +682,7 @@
       "event": "CPI (Sep)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "unverified",
+      "forecast": "3.2% YoY, +0.2% m/m (Reuters poll)",
       "previous": "3.0% YoY, trim 1.9%, median 2.0%",
       "source": "Statistics Canada",
       "source_url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes"
@@ -710,7 +710,7 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 2.25% (CORRA OIS 64% hold / 36% hike, BlueGamma, Oct 16)",
+      "forecast": "71% hike to 2.50% / 29% hold 2.25% (CORRA OIS via BlueGamma, Oct 19)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/"
@@ -724,7 +724,7 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (CME FedWatch 85.1% hold / 14.9% hike, Oct 16)",
+      "forecast": "Hold 3.75-4.00% (CME FedWatch 85.1% hold / 14.9% hike, Oct 19)",
       "previous": "Hike +25bp (Sep 16)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
