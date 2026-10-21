@@ -187,7 +187,7 @@
             "delta_label": "hawkish shift broadened"
           },
           "reason": "The minutes document how broad the tightening bias became in September: every participant backed the hike, most expect another by year-end, and the staff pushed the return to 2% out to 2029. They deliberately leave October vs December open — pricing kept the year-end move as the base case and October near 18% until the Sep CPI reopened it.",
-          "market_validation": "Oct-28 hike odds ~18% after the release (CME FedWatch, Oct 12); year-end cumulative hike >96%",
+          "market_validation": "unverified",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -351,8 +351,8 @@
         },
         {
           "id": "fed-d3",
-          "title": "Williams + Jefferson lean against October hike; Street shifts to Dec",
-          "summary": "Top two FOMC leaders say no urgency / need more time; Oct hike pricing collapses ~70% to ~25%.",
+          "title": "Jefferson Oct 1: future moves need data trends; Street shifts to Dec",
+          "summary": "Vice Chair says the next move may take more time and needs trends in the data; Oct hike pricing collapses ~70% to ~25% (Reuters).",
           "published_at": "2026-10-01",
           "observed_at": "2026-10-01",
           "source": "Reuters (via Williams, Jefferson)",
@@ -363,15 +363,15 @@
             "previous": "~70% early week",
             "delta_label": "-45pp repricing"
           },
-          "reason": "Williams (no urgency, one more hike late this year) plus Jefferson (future moves need trends in data, may take more time) jointly pushed October off the table while keeping December live. Evercore/SGH read it as authoritative guidance; brokerages now pencil December.",
-          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters); ~18% Oct 12 (CME FedWatch)",
+          "reason": "Jefferson's timing message (future moves need trends in data, may take more time) - on top of Williams' no-urgency line already scored in fed-d1 - pushed October off the table while keeping December live; brokerages repenciled December. Reuters retelling, down-weighted; the inflation-level side of the same speech is scored in fed-h3.",
+          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters)",
           "direction": -1,
-          "weight": 3,
+          "weight": 2,
           "weight_breakdown": {
-            "deviation": 1,
+            "deviation": 0,
             "importance": 1,
             "surprise": 1,
-            "total": 3
+            "total": 2
           },
           "facet": "october-timing"
         },
@@ -567,9 +567,9 @@
             "actual": "3.1% YoY; +0.1% m/m NSA (+0.4% SA); gasoline +27.8% y/y",
             "forecast": "3.2% YoY, +0.2% m/m (Reuters poll)",
             "previous": "3.0% YoY Aug; gasoline +22.8% y/y",
-            "delta_label": "+0.1pp, above 1-3% band; 0.1pp under consensus"
+            "delta_label": "+0.1pp, back above 1-3% band; 0.1pp under consensus"
           },
-          "reason": "The last CPI before Oct 28 pushed the headline out of the 1-3% control range for the first time this cycle, entirely on energy. With Macklem already flagging a sharply higher MPR inflation path, a headline above 3% is the number the Bank has said it will not let become entrenched - hawkish on level, though the mild miss vs consensus keeps the weight modest.",
+          "reason": "The last CPI before Oct 28 put the headline back above the 1-3% control range after three months (Reuters), entirely on energy. With Macklem already flagging a sharply higher MPR inflation path, a headline above 3% is the number the Bank has said it will not let become entrenched - hawkish on level, though the mild miss vs consensus keeps the weight modest.",
           "market_validation": "unverified",
           "direction": 1,
           "weight": 2,
@@ -589,13 +589,13 @@
           "source": "Bank of Canada",
           "source_url": "https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/",
           "data": {
-            "actual": "~Half of firms plan cost pass-through (up from Q2); BOS indicator -0.33; firms' Sept-response expectations 3.7% 1y / 3.1% 2y (RBC read); CSCE 5y expectations up to match short-term",
+            "actual": "~Half of firms plan cost pass-through (up from Q2); firms' Sept-response expectations 3.7% 1y / 3.1% 2y (RBC read); CSCE 5y expectations up to match short-term. Offsets: BOS indicator improved to -0.33 (from -0.38), firms expecting recession 6% (from 17%)",
             "forecast": "n/a",
             "previous": "Q2 BOS indicator -0.38; fewer firms planning pass-through",
             "delta_label": "pass-through broadening; long-run anchor slipping"
           },
           "reason": "This is the exact spillover channel the September deliberations said could require a policy response: firms plan to pass energy and tariff costs on, and consumers' long-run expectations have drifted up to meet short-term ones (Middle East war and tariffs cited). Within hours BMO, RBC Dominion Securities and Desjardins flipped to an Oct 28 hike to 2.50%, joining Scotia. Caveat: three-quarters of responses predate the Aug 21 trade-talk breakdown, and later responses ran hotter still.",
-          "market_validation": "CORRA OIS Oct-28 hike odds ~70% earlier Oct 19 -> 87% by 2:45pm (Bloomberg via CMT News); 78% on Oct 20 (BBH)",
+          "market_validation": "CORRA OIS Oct-28 hike odds ~70% earlier Oct 19 -> ~80-87% by late afternoon (Bloomberg via CMT News / Briefs); 78% on Oct 20 (BBH)",
           "direction": 1,
           "weight": 4,
           "weight_breakdown": {
@@ -646,7 +646,7 @@
             "previous": "Hormuz blockade squeeze",
             "delta_label": "supply relief"
           },
-          "reason": "Gasoline from the Hormuz blockade is what holds BOC headline above the band. A coordinated crude + diesel release (IEA-coordinated, 100M barrels over 4 months, diesel tranche within 20 days) is the lever aimed at easing the energy leg the Bank wants to look through - but it has not cooled pump prices yet: Sep CPI gasoline ran +27.8% y/y, and Brent touched ~$112 (six-month high) on Oct 20 before settling ~$108.8 on Hormuz-diplomacy headlines (Kitco/Reuters). Supply relief remains a promise, not a print.",
+          "reason": "Gasoline from the Hormuz blockade is what holds BOC headline above the band. A coordinated crude + diesel release (IEA-coordinated, 100M barrels over 4 months, diesel tranche within 20 days) is the lever aimed at easing the energy leg the Bank wants to look through - but it has not cooled pump prices yet: Sep CPI gasoline ran +27.8% y/y, and Brent touched ~$112 (a multi-month high) on Oct 20 before settling ~$108.8 on Hormuz-diplomacy headlines (Kitco/Reuters). Supply relief remains a promise, not a print.",
           "market_validation": "unverified",
           "direction": -1,
           "weight": 2,
@@ -672,15 +672,15 @@
             "previous": "trim 1.9%, median 2.0%; ex-gasoline 2.4% (Aug)",
             "delta_label": "core -0.1pp each; ex-gas -0.2pp"
           },
-          "reason": "Underlying inflation is at or just below 2% and the ex-gasoline acceleration that made August look like broadening has reversed - the textbook case for looking through an energy shock. It is the strongest data argument for a hold, which is why Standard Chartered and BBH call the ~100bp of priced tightening excessive. Swaps overrode it the same day once the surveys landed, so it caps conviction rather than flipping the call.",
+          "reason": "Underlying inflation is at or just below 2% and the ex-gasoline acceleration that made August look like broadening has reversed - the textbook case for looking through an energy shock. It is the strongest data argument for a hold: BBH (Oct 20) calls the ~100bp priced over the next year excessive, and Standard Chartered expects no hike through 2027. Swaps overrode it the same day once the surveys landed, so it caps conviction rather than flipping the call. No verified core consensus, so no surprise point.",
           "market_validation": "Hike odds little moved on the 08:30 print (~70% pre-surveys), then rose to 87% after the 11:30 surveys (Bloomberg via CMT News)",
           "direction": -1,
-          "weight": 3,
+          "weight": 2,
           "weight_breakdown": {
             "deviation": 0,
             "importance": 2,
-            "surprise": 1,
-            "total": 3
+            "surprise": 0,
+            "total": 2
           }
         }
       ]
@@ -688,13 +688,13 @@
   },
   "total_score": {
     "fed": {
-      "base_total": 5,
-      "effective_total": 3.0,
+      "base_total": 6,
+      "effective_total": 3.5,
       "band": "lean hike"
     },
     "boc": {
-      "base_total": 8,
-      "effective_total": 5.5,
+      "base_total": 9,
+      "effective_total": 6.5,
       "band": "strong hike lean"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
