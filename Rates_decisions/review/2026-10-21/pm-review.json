@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-21T08:52:12-04:00",
+  "snapshot_date": "2026-10-21",
+  "candidate_sha256": "82c8a075cc9b140536565196bc5a038a67064ffdfb1ef288cd8b1a5427b9f92a",
+  "verdict": "REVISE",
+  "executive_summary": "Fed side is clean and every Fed number reproduced against primaries (Sep 16 hike 3.75-4.00% 12-0, Sep CPI 3.7%/core 2.6%, PPI +1.3% m/m, payrolls +29k/4.2%, PCE 3.4%/core 3.0%, SEP 16-of-18, Oct 7 minutes, Jefferson/Waller/Williams/Hammack/Warsh/Daly/Bowman all verified), and FedWatch 86.2% hold / 13.8% hike reproduces exactly at 08:25 ET. The BoC pricing block does not: the candidate's own cited BlueGamma page reads 93% hike / 7% hold / +23bp as of 21 Oct 08:09:32 ET, and an 07:00 ET copy of that page read 89% / +22bp as of 20 Oct, so 95% / 5% / +24bp cannot be reproduced from the source, and the same figure is repeated in calendar[0].forecast and boc-h1.market_validation. BoC driver data itself is sound (Sep CPI 3.1%, CPI-trim 1.8 / median 1.9, -68k jobs, Q3 BOS, Sep 2 deliberations, Macklem Oct 17). Four minors for a future cycle: boc-d1's 'wipes out 2026 gains' overstatement, boc-h5's '$100 oil' when Brent is ~US$110, fed-h1's unsourced consensus, and an unexplained Fed driver-vs-pricing divergence. Operator: re-read the BlueGamma page, restate the BoC block (93/7/+23bp unless you can attach the exact quote for 95/+24bp), re-freeze, and the Fed side can ship unchanged.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "fail",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "meetings.boc.pricing.probabilities",
+      "issue": "BoC Oct-28 hike probability 0.95 (hold 0.05) with implied_rate_after 2.49 (+24bp) is not reproducible from the cited BlueGamma page, which reads 93% hike / 7% hold / +23bp as of 21 Oct 08:09:32 ET and read 89% / +22bp as of 20 Oct at 07:00 ET. The same 95% / +24bp pair is propagated into calendar[0].forecast ('Hike to 2.50% 95% / hold 2.25% 5%') and into drivers.boc.hawkish[0].market_validation ('-> 95% ... +24bp').",
+      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast fetched 2026-10-21 08:52 ET contains <time dateTime=\"2026-10-21T12:09:32\">21 Oct 2026</time> followed by 'overnight index swap pricing implies a 93% probability the Bank of Canada hikes at the 28 Oct 2026 rate announcement, with a market-implied move of +23 bp' and badges 'Hike 93% Hold 7% Cut 0%'. A cached copy of the same URL taken 2026-10-21 07:00 ET reads 'As of 20 Oct 2026 ... implies a 89% probability ... market-implied move of +22 bp'. Neither snapshot yields 95% / 5% / +24bp; the candidate's own archive series (2026-10-19 = 0.71 hike / +18bp) also jumps past the 2026-10-20 value of 89%.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.dovish[0].title",
+      "issue": "Driver boc-d1 title says the second straight decline 'wipes out 2026 gains', which the cited StatCan release contradicts: the two declines total -110k against +181k of April-July gains, and employment is still up year over year. The -68k payload itself is correct.",
+      "evidence": "https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm: 'Employment declined by 68,000 (-0.3%) in September' but 'Prior to these two consecutive monthly declines, employment had trended up from April to July (+181,000; +0.9%)' and 'On a year-over-year basis, employment was up by 95,000 (+0.5%) in September'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[2].title",
+      "issue": "Driver boc-h5 is titled 'BoC will revise its inflation forecast higher as oil holds ~$100'; the cited article puts Brent at ~US$110 and WTI at US$101, with $100 being Macklem's hypothetical trigger, not the spot level. Direction and weight are unaffected.",
+      "evidence": "https://www.theglobeandmail.com/business/article-bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/ (Oct 17, 2026): 'Brent, the international benchmark, is trading at around US$110 while West Texas Intermediate is US$101' and Macklem's conditional quote 'If oil prices stay around $100, we expect inflation to gradually drift up'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[0].data.forecast",
+      "issue": "fed-h1 states a consensus of '3.7% YoY (core 3.3%)' and a -0.3pp surprise, but the only link on the driver is the BEA release, which publishes actuals only; the forecast half of the surprise is unauditable from the evidence attached.",
+      "evidence": "https://www.bea.gov/news/2026/personal-income-and-outlays-august-2026 contains 'the PCE price index for August increased 3.4 percent' and 'Excluding food and energy, the PCE price index increased 3.0 percent from one year ago' with no consensus figure; no second source_url in drivers.fed.hawkish[0] carries 3.7% / 3.3%.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "total_score.fed",
+      "issue": "Fed drivers score +3.0 effective (+5 base), labelled 'lean hike', while the same snapshot prices an 86.2% hold. The notes only reconcile the BoC OIS-vs-Polymarket gap and say nothing about the Fed driver-vs-pricing divergence, so the reader gets two opposite signals with no explanation in a 2-minute read.",
+      "evidence": "candidate total_score.fed = {base_total 5, effective_total 3.0, band 'lean hike'} versus meetings.fed.pricing.probabilities.hold = 0.862; notes field mentions only 'Polymarket shows a lower 73% hike - the two instruments diverge' for the BoC leg.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
