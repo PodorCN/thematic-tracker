@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-19T08:11:35-04:00",
-  "snapshot_date": "2026-10-19",
+  "as_of": "2026-10-21T08:08:58-04:00",
+  "snapshot_date": "2026-10-21",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -17,16 +17,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.149,
-          "hold": 0.851,
+          "hike": 0.138,
+          "hold": 0.862,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
-        "implied_rate_after": 3.92,
+        "implied_rate_after": 3.91,
         "source": "CME FedWatch",
         "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
-        "as_of": "2026-10-19",
+        "as_of": "2026-10-21",
         "observable_proxy": null
       }
     },
@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.71,
-          "hold": 0.29,
+          "hike": 0.95,
+          "hold": 0.05,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
-        "implied_rate_after": 2.43,
-        "source": "CORRA OIS-implied via BlueGamma (+18bp)",
+        "implied_rate_after": 2.49,
+        "source": "CORRA OIS-implied via BlueGamma (+24bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-19",
+        "as_of": "2026-10-21",
         "observable_proxy": null
       }
     }
@@ -69,9 +69,9 @@
           "hike": 0.12
         },
         "status": "available",
-        "volume": "$47.5M",
-        "liquidity": "$4.6M",
-        "as_of": "2026-10-19",
+        "volume": "$51.8M",
+        "liquidity": "$5.8M",
+        "as_of": "2026-10-21",
         "note": "Live odds: Hold 88%, Hike 12%, Cut 0%."
       }
     ],
@@ -82,14 +82,14 @@
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
         "probabilities": {
           "cut": 0,
-          "hold": 0.67,
-          "hike": 0.33
+          "hold": 0.27,
+          "hike": 0.73
         },
         "status": "available",
-        "volume": "$260.0k",
-        "liquidity": "$73.3k",
-        "as_of": "2026-10-19",
-        "note": "Live odds: Hold 67%, Hike 33%, Cut 0%."
+        "volume": "$375.0k",
+        "liquidity": "$90.4k",
+        "as_of": "2026-10-21",
+        "note": "Live odds: Hold 27%, Hike 73%, Cut 0%."
       }
     ]
   },
@@ -99,7 +99,7 @@
         {
           "id": "fed-h1",
           "title": "Aug PCE cooler than feared but stuck above 3%",
-          "summary": "Came in cooler than feared (3.4% vs 3.7% exp, core 3.0% vs 3.3%) but the level is still a point above target.",
+          "summary": "Came in cooler than feared (3.4% vs 3.7% exp, core 3.0% vs 3.3%) but the level is still a point above target, and the annual revision left July core flat at 3.0% rather than falling.",
           "published_at": "2026-09-30",
           "observed_at": "2026-09-30",
           "source": "BEA",
@@ -107,10 +107,10 @@
           "data": {
             "actual": "3.4% YoY (core 3.0%)",
             "forecast": "3.7% YoY (core 3.3%)",
-            "previous": "3.4% YoY Jul (core 3.3%)",
+            "previous": "3.4% YoY Jul (core 3.0% after annual revision)",
             "delta_label": "cool surprise -0.3pp, level elevated"
           },
-          "reason": "PCE is the Fed's formal 2% target measure. The downside surprise (both headline and core 0.3pp below consensus, core down from 3.3% in July) cooled the case for an October hike, but 3.4%/3.0% is still materially above target so the restrictive bias stands — net hawkish on level, with conviction cut after the cool print.",
+          "reason": "PCE is the Fed's formal 2% target measure. The downside surprise (both headline and core 0.3pp below consensus, core flat at 3.0% in July on revised data) cooled the case for an October hike, but 3.4%/3.0% is still materially above target so the restrictive bias stands — net hawkish on level, with conviction cut after the cool print.",
           "market_validation": "unverified",
           "direction": 1,
           "weight": 2,
@@ -128,7 +128,7 @@
           "published_at": "2026-09-16",
           "observed_at": "2026-09-16",
           "source": "Federal Reserve SEP",
-          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm",
+          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
           "data": {
             "actual": "16/18 project >=1 more hike",
             "forecast": "n/a",
@@ -186,7 +186,7 @@
             "delta_label": "hawkish shift broadened"
           },
           "reason": "The minutes document how broad the tightening bias became in September: every participant backed the hike, most expect another by year-end, and the staff pushed the return to 2% out to 2029. They deliberately leave October vs December open — pricing kept the year-end move as the base case and October near 18% until the Sep CPI reopened it.",
-          "market_validation": "Oct-28 hike odds 22.1% -> 37.1% (Oct 13 -> Oct 14); year-end cumulative hike >96% (CME FedWatch)",
+          "market_validation": "Oct-28 hike odds sat ~18-22% around the Oct 7 minutes; the 22.1% -> 37.1% move is the Oct 14 CPI repricing (fed-h6), not a minutes reaction (CME FedWatch)",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -454,21 +454,21 @@
       "hawkish": [
         {
           "id": "boc-h1",
-          "title": "Aug CPI 3.0%, top of the band; ex-gas broadening",
-          "summary": "Headline at 3.0% YoY; ex-gasoline rose to 2.4% after 3 months at 2.2%.",
-          "published_at": "2026-09-14",
-          "observed_at": "2026-09-14",
+          "title": "Sep CPI 3.1%: headline back above the 3% band on energy",
+          "summary": "Headline 3.1% YoY (forecast 3.2%, prev 3.0%), +0.1% m/m (+0.4% seasonally adjusted); gasoline +27.8% and energy +19.0% drove it, ex-gasoline 2.2%.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
           "source": "Statistics Canada",
-          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260914/dq260914a-eng.htm",
-          "facet": "headline-broadening",
+          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm",
+          "facet": "headline-energy",
           "data": {
-            "actual": "3.0% YoY, ex-gas 2.4%",
-            "forecast": "3.0% YoY",
-            "previous": "3.0% Jul",
-            "delta_label": "ex-gas +0.2pp"
+            "actual": "3.1% YoY, +0.1% m/m (+0.4% SA); gasoline +27.8%, energy +19.0%; ex-gas 2.2%",
+            "forecast": "3.2% YoY, +0.2% m/m (Reuters poll)",
+            "previous": "3.0% YoY Aug, -0.1% m/m; gasoline +22.8%",
+            "delta_label": "above the 1-3% band, one tick below consensus"
           },
-          "reason": "Gasoline (Hormuz blockade) holds the headline at the top of the 1-3% band, but the ex-gasoline acceleration shows pressure broadening beyond energy. That combination is what keeps October hike pricing alive despite soft jobs data.",
-          "market_validation": "OIS-implied Oct hike odds ~60% (Sep 23, up from ~30% at the start of September)",
+          "reason": "The last CPI before the Oct 28 decision puts headline back above the Bank's 1-3% band for the first time since June: gasoline +27.8% and fuel oil +57.8% did the work while groceries cooled to 1.7%. The Bank can look through energy only while it stays contained, and this print keeps the energy leg hot into the MPR even though the one-tick downside surprise and softer core argue against a pre-emptive move.",
+          "market_validation": "CORRA OIS Oct-28 hike odds 71% (Oct 19 snapshot) -> 95%; implied move +18bp -> +24bp (Oct 21, BlueGamma). Polymarket hike 33% -> 73% over the same two days.",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -476,31 +476,6 @@
             "importance": 2,
             "surprise": 0,
             "total": 3
-          }
-        },
-        {
-          "id": "boc-h2",
-          "title": "Counter-tariffs on $27.6B of US goods in force",
-          "summary": "Canada's retaliation took effect Sep 8, adding import-price pressure.",
-          "published_at": "2026-09-08",
-          "observed_at": "2026-09-08",
-          "source": "Government of Canada",
-          "source_url": "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html",
-          "data": {
-            "actual": "$27.6B goods covered",
-            "forecast": "n/a",
-            "previous": "announced earlier",
-            "delta_label": "now effective"
-          },
-          "reason": "Tariffs raise import costs directly and can feed into goods CPI over coming months. The Bank has said monetary policy cannot offset tariffs but must keep them from jeopardizing price stability.",
-          "market_validation": "unverified",
-          "direction": 1,
-          "weight": 2,
-          "weight_breakdown": {
-            "deviation": 0,
-            "importance": 1,
-            "surprise": 1,
-            "total": 2
           }
         },
         {
@@ -555,19 +530,19 @@
         },
         {
           "id": "boc-h5",
-          "title": "Macklem Oct 17: BoC to raise inflation forecast 'significantly' as oil stays ~$100",
-          "summary": "Governor says the Bank will revise its quarterly inflation forecast sharply higher at the Oct 28 MPR — oil runs well above the July US$75 assumption — and frames the decision as whether inflation returns to 2% 'on its own' or the Bank 'will have to raise interest rates'.",
+          "title": "Macklem Oct 17: BoC will revise its inflation forecast higher as oil holds ~$100",
+          "summary": "Governor says the Bank will revise its quarterly inflation forecast higher at the Oct 28 MPR - oil runs well above the July US$75 assumption - and frames the decision as whether inflation returns to 2% 'on its own' or the Bank 'will have to raise interest rates'.",
           "published_at": "2026-10-17",
           "observed_at": "2026-10-17",
           "source": "The Globe and Mail",
           "source_url": "https://www.theglobeandmail.com/business/article-bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/",
           "data": {
-            "actual": "BoC to raise inflation forecast 'significantly'; Brent ~US$110 (Oct 17) vs July assumption US$75; 'if oil prices stay around $100, we expect inflation to gradually drift up from where it is today: 3 per cent'",
+            "actual": "BoC to revise its inflation forecast higher; Brent ~US$110 (Oct 17) vs July assumption US$75; 'if oil prices stay around $100, we expect inflation to gradually drift up from where it is today: 3 per cent'",
             "forecast": "n/a",
             "previous": "Jul MPR: Brent assumed ~US$75; inflation seen drifting back to ~2%",
             "delta_label": "hawkish outlook shift, hike question reopened"
           },
-          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be significant and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move.",
+          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be material and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move.",
           "market_validation": "CORRA OIS Oct-28 hike odds 36% -> 71% and implied move +9bp -> +18bp (Oct 16 -> Oct 19, BlueGamma)",
           "direction": 1,
           "weight": 4,
@@ -576,6 +551,31 @@
             "importance": 2,
             "surprise": 1,
             "total": 4
+          }
+        },
+        {
+          "id": "boc-h6",
+          "title": "Q3 BOS: inflation expectations up again after the tariff breakdown",
+          "summary": "The Bank's own survey shows sentiment improved (recession-planning share 17% -> 6%), but one-year-ahead inflation expectations rose again in September as new US tariffs, Canadian counter-tariffs and cost pass-through hit pricing plans.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
+          "source": "Bank of Canada (Business Outlook Survey)",
+          "source_url": "https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/",
+          "data": {
+            "actual": "One-year-ahead inflation expectations rose again in September; firms with larger cost increases plan to keep passing them on; recession-planning share 17% -> 6%",
+            "forecast": "n/a",
+            "previous": "Q2: sentiment deteriorating, inflation expectations easing",
+            "delta_label": "expectations re-accelerating"
+          },
+          "reason": "This is the Bank's cleanest read on whether the energy shock is becoming an expectations shock, and it says the risk is live: expectations fell through July-August but turned up again in September once the trade talks broke down and oil rebounded, and firms say they will keep passing costs through. It supports Macklem's framing of Oct 28 as a choice between waiting for inflation to return to 2% on its own and nudging it there with rates.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
           }
         }
       ],
@@ -607,20 +607,20 @@
         },
         {
           "id": "boc-d2",
-          "title": "Core inflation at target: trim 1.9%, median 2.0%",
-          "summary": "BOC's preferred core measures sit exactly on the 2% target.",
-          "published_at": "2026-09-14",
-          "observed_at": "2026-09-14",
-          "source": "Statistics Canada",
-          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/260914/dq260914a-eng.htm",
+          "title": "Sep core holds at target: trim 1.8%, median 1.9%",
+          "summary": "Both of the Bank's preferred core measures eased in September and sit below 2%, so the above-band headline still looks like an energy story rather than a broadening one.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
+          "source": "Bank of Canada (CPI-trim / CPI-median)",
+          "source_url": "https://www.bankofcanada.ca/rates/price-indexes/cpi/",
           "facet": "core-at-target",
           "data": {
-            "actual": "trim 1.9%, median 2.0%",
-            "forecast": "2.0%",
-            "previous": "~2.0%",
-            "delta_label": "on target"
+            "actual": "CPI-trim 1.8%, CPI-median 1.9% (Sep)",
+            "forecast": "n/a",
+            "previous": "trim 1.9%, median 2.0% (Aug)",
+            "delta_label": "both -0.1pp"
           },
-          "reason": "The Bank has repeatedly said it will look through an energy shock while it stays contained. Core at target gives the Governing Council room to hold and wait for the October MPR forecast round.",
+          "reason": "Core at or below 2% is the main argument for holding: it says the 3.1% headline is gasoline and fuel oil, not demand. It is also why the Street is split - Oxford and RBC read it as room to wait, while UBS, Manulife and Scotiabank argue the Bank should move before energy expectations feed through.",
           "market_validation": "unverified",
           "direction": -1,
           "weight": 2,
@@ -662,45 +662,17 @@
   "total_score": {
     "fed": {
       "base_total": 5,
-      "effective_total": 3.75,
+      "effective_total": 3.0,
       "band": "lean hike"
     },
     "boc": {
       "base_total": 6,
-      "effective_total": 2.75,
+      "effective_total": 5.0,
       "band": "lean hike"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
   },
   "calendar": [
-    {
-      "date_toronto": "2026-10-19",
-      "datetime_toronto": "2026-10-19T08:30:00-04:00",
-      "datetime_utc": "2026-10-19T12:30:00Z",
-      "date_only": false,
-      "currency": "CAD",
-      "event": "CPI (Sep)",
-      "impact": "HIGH",
-      "importance": 3,
-      "forecast": "3.2% YoY, +0.2% m/m (Reuters poll)",
-      "previous": "3.0% YoY, trim 1.9%, median 2.0%",
-      "source": "Statistics Canada",
-      "source_url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes"
-    },
-    {
-      "date_toronto": "2026-10-19",
-      "datetime_toronto": "2026-10-19T11:30:00-04:00",
-      "datetime_utc": "2026-10-19T15:30:00Z",
-      "date_only": false,
-      "currency": "CAD",
-      "event": "BoC Business Outlook Survey + Consumer Expectations Survey",
-      "impact": "HIGH",
-      "importance": 3,
-      "forecast": "unverified",
-      "previous": "unverified",
-      "source": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/publications/business-outlook-survey/"
-    },
     {
       "date_toronto": "2026-10-28",
       "datetime_toronto": "2026-10-28T09:45:00-04:00",
@@ -710,10 +682,10 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "71% hike to 2.50% / 29% hold 2.25% (CORRA OIS via BlueGamma, Oct 19)",
+      "forecast": "Hike to 2.50% 95% / hold 2.25% 5% (CORRA OIS via BlueGamma, Oct 21)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/"
+      "source_url": "https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/"
     },
     {
       "date_toronto": "2026-10-28",
@@ -724,7 +696,7 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (CME FedWatch 85.1% hold / 14.9% hike, Oct 19)",
+      "forecast": "Hold 3.75-4.00% (CME FedWatch 86.2% hold / 13.8% hike, Oct 21)",
       "previous": "Hike +25bp (Sep 16)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
@@ -739,10 +711,10 @@
       "impact": "HIGH",
       "importance": 3,
       "forecast": "unverified",
-      "previous": "3.4% YoY, core 3.0%",
+      "previous": "PCE 3.4% YoY, core 3.0% (Aug)",
       "source": "BEA",
-      "source_url": "https://www.bea.gov/data/personal-consumption-expenditures-price-index"
+      "source_url": "https://www.bea.gov/news/schedule"
     }
   ],
-  "notes": "All probabilities and figures sourced from public pages on the snapshot date; fields marked 'unverified' were not confirmed against a primary source. Never invent probabilities; if a clean single-meeting distribution is unavailable, set probabilities to null and show observable_proxy."
+  "notes": "Fed pricing: CME FedWatch (Oct 21). BoC pricing: CORRA OIS via BlueGamma (+24bp implied, Oct 21); Polymarket shows a lower 73% hike - the two instruments diverge and both are shown rather than averaged. The Fed is in its pre-meeting communications blackout, so nothing official sits between the Oct 16 Warsh remarks and the Oct 28 decision. Canada's September CPI and Q3 Business Outlook Survey both landed Oct 19. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
 }
