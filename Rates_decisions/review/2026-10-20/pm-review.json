@@ -2,102 +2,88 @@
   "schema_version": "1.0",
   "reviewer": "independent-pm",
   "operator": "rates-decisions-writer",
-  "reviewed_at": "2026-10-20T21:14:17-04:00",
+  "reviewed_at": "2026-10-20T21:17:28-04:00",
   "snapshot_date": "2026-10-20",
-  "candidate_sha256": "8b709e133a88d26dbfdd695b3dc0ff28572ea00905a0d6c3e37cc3f6fac0522b",
-  "verdict": "REVISE",
-  "executive_summary": "Independent review of frozen candidate 8b709e133a88 (snapshot 2026-10-20; operator rates-decisions-writer). Hash chain verified: candidate.sha256 == raw sha256 of candidate.json == canonical sha (scripts/review/core.canonical) of data/current.json = 8b709e133a88d26dbfdd695b3dc0ff28572ea00905a0d6c3e37cc3f6fac0522b; data/current.json is byte-identical to the candidate after LF normalization. npm run check -> 'structure valid / no structural flags'; flags_rates_decisions.py regenerated locally -> [] (matches committed structural-flags.json), so flags_dispositioned is empty. Scoring recomputed by hand against as_of 2026-10-20: Fed hawkish base 22 / eff 15.5 (fed-h2 34d x0.25; h1,h3 x0.5; h4,h5,h8 x0.75; h6,h7 x1), dovish base 17 / eff 12.5 -> base +5, effective +3.0, band 'lean hike' (follows base as publish.py enforces; effective +3.0 sits on the hold boundary and FedWatch prices ~83% hold - divergence surfaced, not an error). BoC hawkish base 17 / eff 12.5, dovish base 9 / eff 7.0 -> base +8, effective +5.5, band 'strong hike lean' - matches. Mean |weight| Fed 2.79, BoC 2.89; no weight >=5; one same-URL split (boc-h6 headline-energy vs boc-d4 core-cooling, StatCan dq261019a) has distinct facets and separate transmission chains. Implied rates: Fed 3.875 + 0.172x0.25 = 3.918 -> 3.92 (prior-round rounding slip now resolved); BoC 2.25 + 0.78x0.25 = 2.445 -> 2.45. Prior round (2026-10-19, 7 next_cycle minors): fed-h1 previous (revised Jul 3.4/3.0), fed-h2 source_url (fomcprojtabl20260916), boc-h5 'significantly' attribution and Fed implied_rate_after are fixed; the BOS calendar row is moot (event passed, row removed); fed-h4 market_validation and the fed-d3 Williams/Reuters overlap are only partially addressed and carried again (minors). Facts verified via WebSearch (direct fetch of statcan/bankofcanada/cmegroup/polymarket blocked by network policy, so primary pages were corroborated through indexed copies and wire coverage): Sep CPI 3.1% vs 3.2% consensus, gasoline +27.8% (Aug +22.8%), ex-gasoline 2.2% from 2.4%, CPI-trim 1.8% from 1.9%, CPI-median 1.9% from 2.0% (Reuters/US News, briefs.co, wowa.ca, ActionForex headline); Q3 BOS indicator -0.33 vs -0.38 (investinglive; Q2 later revised -0.39), 'roughly half of firms, more than in the previous quarter' plan to pass on war/tariff costs (Bank of Canada BOS Q3 2026 text), ~three-quarters of interviews before the trade-talk breakdown (The Hub/CP), CSCE 5y expectations up (~3.91% vs 3.39%); BMO, RBC (securities unit) and Desjardins flipped to an Oct 28 hike to 2.50% on Oct 19 (Bloomberg via CMT News); BBH Oct 20 'swaps pricing a 78% probability' of +25bp and '100 bps of tightening priced over the next year as excessive' (FXStreet 202610201438) - BoC pricing confirmed; corroborating range ~80% (Bloomberg, late Oct 19) to ~85% (LSEG/Reuters, early Oct 20), Commerzbank '36% to more than 75%'. Fed: CME FedWatch ~80% hold on Oct 19 (Forbes) is consistent with 82.8/17.2 on Oct 20, Dec hike firmly expected; Polymarket October hold 86 / hike 14 (KuCoin flash) consistent with the filed 85/15; Brent Dec settled $108.79 after a $111.99 high on Oct 20 (CNBC); UMich Oct prelim 46.3, 1y 4.7%, 5y 3.5%, final due Oct 23 (investinglive/advisorperspectives); BEA Q3 GDP advance + Sep Personal Income & Outlays both Oct 29 08:30 (bea.gov schedule); StatCan Aug retail advance estimate +1.3% and Jul -0.7% (CP/BNN). Not independently verifiable here: exact 82.8/17.2 FedWatch print, the '87% by 2:45pm' Bloomberg/CMT figure (indexed coverage shows ~80-85%), Polymarket volume $49.9M and the stale BoC Polymarket 67/33 (correctly labelled stale), CPI m/m +0.1% NSA/+0.4% SA and the +0.2% m/m consensus, RBC's 3.7%/3.1% firm-expectation read, the Oct 23 08:30 retail-sales timestamp and ex-autos +1.0% consensus. None of these changes the hold/hike call or a band; they are noted as minors or left as labelled. Blocking issue (1 major): boc-h6 reason states September 'pushed the headline out of the 1-3% control range for the first time this cycle' - false: May 2026 CPI printed 3.2% y/y (released Jun 22) and Reuters describes September as above the upper limit 'once again after three months'. A wrong claim stated as fact in a scored driver - drivers check fails. Verdict: REVISE. Operator: rewrite the boc-h6 reason (e.g., 'back above the 1-3% range for the first time since May'), re-run check + freeze, and resubmit; the scoring, pricing and calendar otherwise reproduce and the minors below can ride to the next cycle.",
+  "candidate_sha256": "02409a5a89b5d4855897e627e2950f20d019dd0d0fc08a4333943d40a03ee486",
+  "verdict": "APPROVED",
+  "executive_summary": "Round-2 independent review of re-frozen candidate 02409a5a89b5 (snapshot 2026-10-20; operator rates-decisions-writer; re-freeze commit 7c977c0 after round-1 REVISE on 8b709e133a88, commit 57e3c5f). Hash chain verified: candidate.sha256 == raw sha256 of candidate.json == canonical sha (scripts/review/core.canonical) of data/current.json = 02409a5a89b5d4855897e627e2950f20d019dd0d0fc08a4333943d40a03ee486; current.json is byte-identical to the candidate after LF normalization. npm run check -> 'structure valid / no structural flags'; flags_rates_decisions.py regenerated -> [] (matches structural-flags.json), so flags_dispositioned is empty. git diff 57e3c5f 7c977c0 -- Rates_decisions/data/current.json touches only fed-h4, fed-d3, boc-h6, boc-h7, boc-d3, boc-d4 and total_score, as the operator stated. Math recomputed by hand against as_of 2026-10-20: Fed hawkish base 22 / eff 15.5 (unchanged); dovish base 16 / eff 12.0 (fed-d3 now w2, 19d x0.5 = 1.0) -> base +6, effective +3.5, band 'lean hike' (>+3..+6.9) - matches. BoC hawkish base 17 / eff 12.5; dovish base 8 / eff 6.0 (boc-d1 4x0.75, boc-d3 2x0.5, boc-d4 2x1) -> base +9, effective +6.5, band 'strong hike lean' - matches. Mean |weight| Fed 2.71, BoC 2.78; no weight >=5. Every weight_breakdown sums to its weight; the edited breakdowns are fed-d3 0/1/1=2 and boc-d4 0/2/0=2. Facets: boc-h6 'headline-energy' vs boc-d4 'core-cooling' (same StatCan URL) use distinct transmission chains. Jefferson's Oct 1 speech is now split cleanly: fed-h3 'inflation-level' (primary, w3) vs fed-d3 'october-timing' (Reuters retelling, down-weighted to w2). Williams is no longer counted twice. Round-1 findings: the major (boc-h6 'first time this cycle') is closed. The reason now reads 'back above the 1-3% control range after three months (Reuters)', which matches May 2026 CPI at 3.2% and Jun-Aug at 2.8/3.0/3.0. fed-h4 market_validation is now 'unverified' (closed). fed-d3 Williams re-count and weight are closed. boc-h7 now lists the offsets (indicator -0.33 from -0.38; recession expectations 6% from 17%), states its validation as a ~80-87% range consistent with Briefs/Bloomberg (~80%) and LSEG/Reuters (~85%), and labels the RBC read as RBC's (closed). boc-d4 surprise point is dropped because no consensus is verified (closed). boc-d3 'multi-month high' (closed). Correction of my own round-1 finding: the boc-d4 'Standard Chartered conflated with BBH' finding was partly wrong. Standard Chartered (Dan Pan) published an Oct 20 note (FXStreet 202610201244, 'BoC rate hike bets seen as excessive') that keeps a 2.25% hold through end-2026 and 2027 and calls ~100bp of priced tightening too much. I had relied on its August note (~65bp). The new wording ('Standard Chartered expects no hike through 2027') matches that base case. Pan does flag one or two early-2027 hikes as a conditional risk. Pricing and facts re-confirmed from round 1 (WebSearch; direct fetch blocked by network policy): BoC 78% via BBH Oct 20 (FXStreet 202610201438), implied 2.25 + 0.78x0.25 = 2.45; Fed 82.8/17.2 is consistent with ~80% hold on Oct 19 (Forbes/CME), implied 3.875 + 0.172x0.25 = 3.92. Also re-confirmed: Polymarket Fed 86/14 vs filed 85/15; BoC Polymarket honestly labelled stale. Sep CPI 3.1/trim 1.8/median 1.9/ex-gas 2.2/gasoline +27.8%; BOS 'roughly half of firms, more than in the previous quarter'; BMO/RBC/Desjardins flip; Brent $111.99 high / $108.79 settle; UMich Oct 23; BEA GDP + PCE Oct 29. Still not independently verifiable: exact 82.8/17.2 print, the 87% top of range, CPI m/m NSA/SA and m/m consensus, RBC's 3.7/3.1 firm read, Polymarket volume, Oct 23 retail-sales time and ex-autos consensus. All are labelled or secondary, and none moves a band. Two new minors are left for the next cycle: (1) fed-d3 still says 'Reuters (via Williams, Jefferson)', and its ~70% -> ~25% repricing overlaps the Sep 29 ~70% -> ~50% leg already credited to fed-d1. (2) boc-d4 market_validation still says the surveys took odds to '87%', which was not updated to the ~80-87% range used in boc-h7. Neither changes a weight, total or band. The Fed card shows 'lean hike' on base +6 while FedWatch prices ~83% hold. The tooling ties the band to the base score; the divergence is surfaced in the pricing panel and is not a defect. Verdict: APPROVED - zero critical/major, all six checks pass, no machine flags; this approval binds sha 02409a5a89b5 only.",
   "checks": {
     "official_policy": "pass",
     "pricing": "pass",
-    "drivers": "fail",
+    "drivers": "pass",
     "market_validation": "pass",
     "freshness": "pass",
     "decision_usefulness": "pass"
   },
   "findings": [
     {
-      "severity": "major",
-      "field": "drivers.boc.hawkish[4].reason (boc-h6)",
-      "issue": "Reason claims the Sep CPI 'pushed the headline out of the 1-3% control range for the first time this cycle'. That is false: headline CPI was 3.2% y/y in May 2026, already above the band, so September is a re-breach after three months inside it. The wrong framing makes the breach look novel and overstates the hawkish signal.",
-      "evidence": "candidate boc-h6 reason='...pushed the headline out of the 1-3% control range for the first time this cycle, entirely on energy'. May 2026 CPI 3.2% y/y vs 2.8% Apr, released 2026-06-22 (wealthprofessional.ca/news/industry-news/canadas-may-inflation-rate-revealed/392789; metalsmine.com/news/1404744-canada-consumer-price-index-may-2026; babypips 'headline-canada-cpi-may-2026'); Reuters/Yahoo 2026-10-19 'Inflation rises to 3.1% in September': CPI 'above the Bank of Canada's upper limit once again after three months'.",
-      "disposition": "must_fix"
-    },
-    {
       "severity": "minor",
-      "field": "drivers.fed.dovish[2] (fed-d3)",
-      "issue": "Carried from 2026-10-19 and only partly fixed. Facets now split fed-h3 ('inflation-level') from fed-d3 ('october-timing'), but fed-d3 still restates Williams' 'no urgency', which fed-d1 already scores at -3 (both drivers are about October timing). It is also a Reuters retelling scored at the same weight as primary-source drivers and used as its own market_validation. Merging the Williams part would make the Fed total more hawkish (base +5 -> about +6..+8), so this is no longer neutral to the band. This is the second round; escalate to major if it is still unfixed next cycle.",
-      "evidence": "candidate fed-d1 source_url=https://www.newyorkfed.org/newsevents/speeches/2026/wil260929 (-3, 'no urgency', ~70%->~50%); fed-d3 source='Reuters (via Williams, Jefferson)', weight 3, facet 'october-timing', reason 'Williams (no urgency, one more hike late this year) plus Jefferson...', market_validation 'Oct hike ~70% -> ~25% (Oct 1, Reuters)'. Prior finding: Rates_decisions/review/2026-10-19/pm-review.json findings[3].",
+      "field": "drivers.fed.dovish[2].source / market_validation (fed-d3)",
+      "issue": "Leftover wording after the Jefferson-only rewrite. The source label still reads 'Reuters (via Williams, Jefferson)'. The data/market_validation '~70% -> ~25%' starts from the pre-Williams ~70%, so the Sep 29 ~70% -> ~50% leg already credited to fed-d1 is counted again as validation. Relabel the source 'Reuters (via Jefferson)' and restate the move as ~50% -> ~25% (or 'cumulative with fed-d1').",
+      "evidence": "candidate fed-d3 source='Reuters (via Williams, Jefferson)', title='Jefferson Oct 1: future moves need data trends...', data.actual='Oct hike odds ~70% -> ~25%', market_validation='Oct hike ~70% -> ~25% (Oct 1, Reuters)'; fed-d1 data.actual='CME Oct hike prob ~70% -> ~50%' (2026-09-29).",
       "disposition": "next_cycle"
     },
     {
       "severity": "minor",
-      "field": "drivers.fed.hawkish[3].market_validation (fed-h4)",
-      "issue": "Carried from 2026-10-19 and only partly fixed. The CPI-day move was replaced with an Oct 12 level ('~18% after the release'), but the Oct 12 reading is five days after the Oct 7 minutes, after Waller and the payroll repricing, and it is a level, not a move caused by the minutes. The same '~18% Oct 12 (CME FedWatch)' reading is also used to validate the dovish fed-d3, so one number supports both sides. Use an Oct 7-8 move or set it to 'unverified'.",
-      "evidence": "candidate fed-h4 market_validation='Oct-28 hike odds ~18% after the release (CME FedWatch, Oct 12); year-end cumulative hike >96%'; fed-d3 market_validation='...; ~18% Oct 12 (CME FedWatch)'; fed-h4 published_at 2026-10-07.",
+      "field": "drivers.boc.dovish[2].market_validation (boc-d4)",
+      "issue": "boc-d4 still says odds 'rose to 87% after the 11:30 surveys'. The same move was restated in boc-h7 as '~80-87% by late afternoon' because 87% could not be corroborated (indexed coverage shows ~80% Bloomberg/Briefs and ~85% LSEG/Reuters). The two drivers should quote the move the same way.",
+      "evidence": "candidate boc-d4 market_validation='...then rose to 87% after the 11:30 surveys (Bloomberg via CMT News)'; boc-h7 market_validation='~70% earlier Oct 19 -> ~80-87% by late afternoon (Bloomberg via CMT News / Briefs)'; briefs.co 'Bank of Canada Hike Bets Surge After Inflation Data' (~80%).",
       "disposition": "next_cycle"
     },
     {
       "severity": "minor",
-      "field": "drivers.boc.hawkish[5] (boc-h7).data / market_validation",
-      "issue": "The headline facts check out (about half of firms, more than in Q2, plan to pass costs through; indicator -0.33 vs -0.38; consumers' 5y expectations up; BMO, RBC and Desjardins flipped). But the data block lists only the hawkish parts of a survey whose overall sentiment improved (future-sales balance +42 vs +15; firms expecting a recession 6% vs 17%). The '87% by 2:45pm' and the RBC '3.7% 1y / 3.1% 2y' firm-expectation read could not be corroborated: indexed coverage shows about 80% (Bloomberg, late Oct 19) to about 85% (LSEG/Reuters, early Oct 20). Add the offsetting survey readings and label the 87% as a single secondary print.",
-      "evidence": "candidate boc-h7 data.actual='~Half of firms plan cost pass-through (up from Q2); BOS indicator -0.33; firms' Sept-response expectations 3.7% 1y / 3.1% 2y (RBC read)...'; market_validation='...-> 87% by 2:45pm (Bloomberg via CMT News); 78% on Oct 20 (BBH)'; https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/ (sentiment improved; roughly half of firms pass-through); briefs.co 'Bank of Canada Hike Bets Surge After Inflation Data' (~80% from almost 70%); hashtaginvesting 'Canada's Rate-Hike Odds Hit Nearly 85%' (LSEG via Reuters, early 2026-10-20).",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
-      "field": "drivers.boc.dovish[2] (boc-d4).weight_breakdown.surprise",
-      "issue": "surprise=1 is not supported by any evidence: data.forecast is 'unverified', and a pre-release preview (RBC) expected core to ease to about 1.8%. Without a consensus, the 'surprise' point is unsupported. Removing it would make boc-d4 a 2 and move the BoC base from +8 to +9 (band unchanged), so the effect is cosmetic, but every breakdown part needs evidence.",
-      "evidence": "candidate boc-d4 data.forecast='unverified', weight_breakdown {deviation 0, importance 2, surprise 1, total 3}; RBC Week Ahead (week of 2026-10-19): 'core inflation seen edging down to 1.8% in September'.",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
-      "field": "drivers.boc.dovish[2].reason (boc-d4)",
-      "issue": "'Standard Chartered and BBH call the ~100bp of priced tightening excessive' merges two different claims. BBH (Oct 20) called the ~100bp priced over 12 months excessive. Standard Chartered's 'highly excessive' remark was in an August note about ~65bp priced by mid-2027. Attribute each separately and give each its own date.",
-      "evidence": "FXStreet 2026-10-20 (canadian-dollar-market-pricing-seen-excessive-despite-hike-bets-bbh-202610201438): Haddad 'views the 100 bps of tightening priced over the next year as excessive'; vtmarkets.com 'Standard Chartered sees Bank of Canada holding at 2.25%' (Aug 2026): pricing of 'about 65 basis points of rate hikes by mid-2027' 'highly excessive'.",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
-      "field": "drivers.boc.dovish[1].reason (boc-d3)",
-      "issue": "The Brent figures are right (intraday high ~$112, settle ~$108.8 on Oct 20), but the 'six-month high' label conflicts with wire coverage that called it a five-month high. Wording only.",
-      "evidence": "CNBC 2026-10-20 cnbc.com/2026/10/20/oil-price-wti-brent-crude.html: Brent 'settle at $108.79 per barrel, after a session high of $111.99'; sharjah24.ae/en/Articles/2026/10/20/mm02 'Oil prices retreat after Brent reaches five-month high'; candidate boc-d3 reason 'Brent touched ~$112 (six-month high)'.",
+      "field": "drivers.boc.hawkish[5].data.actual (boc-h7)",
+      "issue": "The 'firms' Sept-response expectations 3.7% 1y / 3.1% 2y (RBC read)' figure could not be corroborated with indexed sources. It is honestly labelled as RBC's read and is not used for the weight; accepted as a labelled secondary number.",
+      "evidence": "candidate boc-h7 data.actual contains '3.7% 1y / 3.1% 2y (RBC read)'; WebSearch 2026-10-20 found no matching RBC/The Hub text (thehub.ca/2026/10/20/3-inflation-for-2-years-expected-in-bank-of-canada-survey-of-firms/ headline only).",
       "disposition": "accepted"
     },
     {
       "severity": "minor",
-      "field": "drivers.fed.hawkish[0].data.previous (fed-h1)",
-      "issue": "Prior-round finding closed: July PCE is now quoted post-revision (3.4%, core 3.0%), and the reason says 'core flat at 3.0%'.",
-      "evidence": "candidate fed-h1 data.previous='3.4% YoY Jul (core 3.0%), revised from 3.7%/3.3% in the annual update'; Rates_decisions/review/2026-10-19/pm-review.json findings[0].",
+      "field": "drivers.boc.hawkish[4].reason (boc-h6)",
+      "issue": "(Was MAJOR in round 1; recorded here as closed.) Round-1 blocking finding closed. 'First time this cycle' is replaced by 'back above the 1-3% control range after three months (Reuters)', and the delta_label now says 'back above 1-3% band'.",
+      "evidence": "candidate 02409a5a89b5 boc-h6 reason='...put the headline back above the 1-3% control range after three months (Reuters)...'; May 2026 CPI 3.2% (wealthprofessional.ca/news/industry-news/canadas-may-inflation-rate-revealed/392789); Reuters 2026-10-19 'once again after three months'.",
       "disposition": "fixed"
     },
     {
       "severity": "minor",
-      "field": "drivers.fed.hawkish[1].source_url (fed-h2)",
-      "issue": "Prior-round finding closed: the SEP driver now links the projections table instead of the press-conference page.",
-      "evidence": "candidate fed-h2 source_url=https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm; Rates_decisions/review/2026-10-19/pm-review.json findings[1].",
+      "field": "drivers.fed.dovish[2] (fed-d3)",
+      "issue": "Round-1 overlap closed: Williams is no longer counted again. fed-d3 is now Jefferson timing only (facet october-timing), labelled a down-weighted Reuters retelling and cut from w3 to w2 (0/1/1); fed-h3 carries the inflation-level side of the same speech. Leftover label hygiene is filed separately above.",
+      "evidence": "candidate fed-d3 weight 2, weight_breakdown {deviation 0, importance 1, surprise 1, total 2}, reason '...on top of Williams' no-urgency line already scored in fed-d1... Reuters retelling, down-weighted'; git diff 57e3c5f 7c977c0.",
       "disposition": "fixed"
     },
     {
       "severity": "minor",
-      "field": "meetings.fed.pricing.implied_rate_after",
-      "issue": "Prior-round rounding slip resolved. With the new 82.8/17.2 distribution, 3.875 + 0.172 x 0.25 = 3.918, so the filed 3.92 is now correct. BoC 2.25 + 0.78 x 0.25 = 2.445 -> 2.45 is also correct.",
-      "evidence": "candidate meetings.fed.pricing {hike 0.172, hold 0.828, implied_rate_after 3.92}; meetings.boc.pricing {hike 0.78, implied_rate_after 2.45}; Rates_decisions/review/2026-10-19/pm-review.json findings[4].",
+      "field": "drivers.fed.hawkish[3].market_validation (fed-h4)",
+      "issue": "Round-1 carry closed: the misattributed Oct 12 level is gone and the validation is now 'unverified'.",
+      "evidence": "candidate fed-h4 market_validation='unverified'.",
       "disposition": "fixed"
     },
     {
       "severity": "minor",
-      "field": "drivers.boc.hawkish[3] (boc-h5) title/summary/data.actual",
-      "issue": "Prior-round quote-hygiene finding closed: 'significantly' is now attributed to Reuters, and the Globe wording is 'revise ... higher'.",
-      "evidence": "candidate boc-h5 data.actual='BoC to revise inflation forecast higher (Reuters: 'significantly')...'; Rates_decisions/review/2026-10-19/pm-review.json findings[6].",
+      "field": "drivers.boc.hawkish[5] (boc-h7)",
+      "issue": "Round-1 balance finding closed. The data now lists offsets (BOS indicator improved to -0.33 from -0.38; firms expecting recession 6% from 17%), and the validation is stated as a range (~80-87%) instead of a single uncorroborated 87%.",
+      "evidence": "candidate boc-h7 data.actual '...Offsets: BOS indicator improved to -0.33 (from -0.38), firms expecting recession 6% (from 17%)'; market_validation '~70% earlier Oct 19 -> ~80-87% by late afternoon'; investinglive 'Bank of Canada Q3 business outlook survey -0.33 vs -0.38 prior'.",
       "disposition": "fixed"
     },
     {
       "severity": "minor",
-      "field": "calendar['BoC Business Outlook Survey + Consumer Expectations Survey']",
-      "issue": "Prior-round broken-link finding is moot: the event happened on 2026-10-19 and the row was correctly removed. The release is now scored as driver boc-h7, whose link is the current BOS Q3 2026 page.",
-      "evidence": "git diff HEAD~1 -- Rates_decisions/data/current.json removes the 2026-10-19 BOS calendar row; boc-h7 source_url=https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/; Rates_decisions/review/2026-10-19/pm-review.json findings[5].",
+      "field": "drivers.boc.dovish[2].weight_breakdown.surprise (boc-d4)",
+      "issue": "Round-1 finding closed: the surprise point was dropped because no core consensus is verified (w3 -> w2, 0/2/0).",
+      "evidence": "candidate boc-d4 weight 2, weight_breakdown {deviation 0, importance 2, surprise 0, total 2}; reason '...No verified core consensus, so no surprise point.'",
+      "disposition": "fixed"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.dovish[2].reason (boc-d4)",
+      "issue": "Round-1 attribution finding withdrawn as partly mistaken by the reviewer, and the new wording is accurate. Standard Chartered's Oct 20 note (not only the August one) calls the ~100bp of priced tightening too much and keeps a 2.25% hold through 2026-27. The revised reason, which separates BBH (Oct 20, ~100bp over 12m) from Standard Chartered (no hike through 2027), matches the sources.",
+      "evidence": "fxstreet.com/news/canadian-dollar-boc-rate-hike-bets-seen-as-excessive-standard-chartered-202610201244 (Dan Pan: hold at 2.25% through end-2026 and 2027; ~100bp pricing too much; one or two early-2027 hikes possible if core picks up); fxstreet ...-bbh-202610201438; candidate boc-d4 reason.",
+      "disposition": "fixed"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.dovish[1].reason (boc-d3)",
+      "issue": "Round-1 wording finding closed: 'six-month high' -> 'a multi-month high'. The $112 high and ~$108.8 settle match CNBC ($111.99 / $108.79).",
+      "evidence": "candidate boc-d3 reason '...Brent touched ~$112 (a multi-month high) on Oct 20 before settling ~$108.8'; cnbc.com/2026/10/20/oil-price-wti-brent-crude.html.",
       "disposition": "fixed"
     }
   ],

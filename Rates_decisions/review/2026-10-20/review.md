@@ -1,32 +1,30 @@
-# Rates_decisions PM review: 2026-10-20
+# Rates_decisions PM review: 2026-10-20 (round 2)
 
 - Reviewer: independent-pm. Operator: rates-decisions-writer.
-- Candidate sha256: `8b709e133a88d26dbfdd695b3dc0ff28572ea00905a0d6c3e37cc3f6fac0522b` (the same hash for candidate.sha256, the candidate.json bytes and canonical data/current.json)
-- **Verdict: REVISE**. The machine-checked record is `pm-review.json`, and this file mirrors it.
+- Candidate sha256: `02409a5a89b5d4855897e627e2950f20d019dd0d0fc08a4333943d40a03ee486` (re-freeze 7c977c0). This replaces round 1 (REVISE on 8b709e133a88, commit 57e3c5f).
+- **Verdict: APPROVED.** This approval binds sha 02409a5a89b5 only. The machine-checked record is `pm-review.json`, and this file mirrors it.
 
 ## Checks
-| check | result |
-|---|---|
-| official_policy | pass |
-| pricing | pass |
-| drivers | **fail** |
-| market_validation | pass |
-| freshness | pass |
-| decision_usefulness | pass |
+All six pass: official_policy, pricing, drivers, market_validation, freshness, decision_usefulness. No structural flags (committed and regenerated).
 
-Structural flags: none, both in the committed file and when regenerated. Scoring reproduces: Fed base +5, effective +3.0, "lean hike". BoC base +8, effective +5.5, "strong hike lean".
+## Math (recomputed, as_of 2026-10-20)
+- Fed: hawkish 22 / eff 15.5, dovish 16 / eff 12.0 -> base +6, effective +3.5, "lean hike".
+- BoC: hawkish 17 / eff 12.5, dovish 8 / eff 6.0 -> base +9, effective +6.5, "strong hike lean".
+- Implied rates: Fed 3.92, BoC 2.45. Mean |weight| 2.71 / 2.78. No weight >=5.
 
-## Blocking (major, must_fix)
-- **boc-h6 reason**: "pushed the headline out of the 1-3% control range for the first time this cycle" is false. May 2026 CPI was 3.2% y/y, and Reuters says September is above the upper limit "once again after three months". Rewrite it (e.g., "back above the range for the first time since May"), then re-run check and freeze.
+## Round-1 findings: status
+- boc-h6 "first time this cycle" (was MAJOR): **fixed**. Now "back above ... after three months (Reuters)".
+- fed-d3 Williams re-count: **fixed**. Now Jefferson timing only, w2, labelled as a retelling.
+- fed-h4 validation: **fixed** ("unverified").
+- boc-h7 balance/87%: **fixed**. Offsets added, range ~80-87%.
+- boc-d4 surprise point: **fixed** (w2).
+- boc-d4 Standard Chartered: **withdrawn**. My round-1 finding was partly wrong: StanChart's Oct 20 note does call ~100bp excessive and keeps the hold through 2027. The new wording is accurate.
+- boc-d3 "six-month": **fixed** ("multi-month").
 
-## Minor (next cycle unless noted)
-- fed-d3: Williams overlap with fed-d1, and a Reuters retelling is scored at full weight. Second carry; escalates to major next time.
-- fed-h4: the Oct 12 18% level is not a move caused by the minutes, and the same reading also validates the dovish fed-d3.
-- boc-h7: the data block is one-sided (BOS sentiment improved). The 87% and RBC 3.7/3.1 figures are not corroborated; indexed coverage shows about 80-85%.
-- boc-d4: surprise=1 with forecast "unverified".
-- boc-d4: Standard Chartered (Aug, ~65bp) and BBH (Oct 20, ~100bp) are conflated.
-- boc-d3: "six-month" vs "five-month" high (accepted).
-- Fixed since 2026-10-19: fed-h1 previous, fed-h2 source_url, the Fed implied rate, boc-h5 attribution, and the BOS calendar row (moot).
+## Open minors (next cycle)
+- fed-d3: the source label still says "via Williams, Jefferson", and its ~70% -> ~25% move overlaps fed-d1's ~70% -> ~50% leg.
+- boc-d4: market_validation still says "87%", while boc-h7 uses ~80-87%.
+- boc-h7: the RBC 3.7%/3.1% read is not corroborated. It is labelled as RBC's, so accepted.
 
 ## Not verifiable (network policy)
-The exact 82.8/17.2 FedWatch print, Polymarket volume and the BoC Polymarket line (labelled stale), CPI m/m NSA/SA and the m/m consensus, the 87% intraday print, and the Oct 23 retail-sales timestamp and ex-autos consensus. None of these changes a band or the call.
+The exact 82.8/17.2 FedWatch print, the 87% top of the range, CPI m/m NSA/SA and the m/m consensus, the RBC firm read, Polymarket volume, and the Oct 23 retail-sales time and ex-autos consensus. None of these moves a band.
