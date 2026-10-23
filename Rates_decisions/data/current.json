@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-21T08:08:58-04:00",
-  "snapshot_date": "2026-10-21",
+  "as_of": "2026-10-23T08:08:45-04:00",
+  "snapshot_date": "2026-10-23",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -17,16 +17,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.138,
-          "hold": 0.862,
+          "hike": 0.24,
+          "hold": 0.76,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
-        "implied_rate_after": 3.91,
-        "source": "CME FedWatch",
-        "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
-        "as_of": "2026-10-21",
+        "implied_rate_after": 3.94,
+        "source": "SOFR OIS-implied via BlueGamma (+6bp)",
+        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast",
+        "as_of": "2026-10-23",
         "observable_proxy": null
       }
     },
@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.95,
-          "hold": 0.05,
+          "hike": 0.74,
+          "hold": 0.26,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
-        "implied_rate_after": 2.49,
-        "source": "CORRA OIS-implied via BlueGamma (+24bp)",
+        "implied_rate_after": 2.44,
+        "source": "CORRA OIS-implied via BlueGamma (+19bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-21",
+        "as_of": "2026-10-23",
         "observable_proxy": null
       }
     }
@@ -65,14 +65,14 @@
         "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
         "probabilities": {
           "cut": 0,
-          "hold": 0.88,
-          "hike": 0.12
+          "hold": 0.93,
+          "hike": 0.07
         },
         "status": "available",
-        "volume": "$51.8M",
+        "volume": "$57.8M",
         "liquidity": "$5.8M",
-        "as_of": "2026-10-21",
-        "note": "Live odds: Hold 88%, Hike 12%, Cut 0%."
+        "as_of": "2026-10-23",
+        "note": "Live odds: Hold 93%, Hike 7%, Cut 0%."
       }
     ],
     "boc": [
@@ -82,14 +82,14 @@
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
         "probabilities": {
           "cut": 0,
-          "hold": 0.27,
-          "hike": 0.73
+          "hold": 0.18,
+          "hike": 0.82
         },
         "status": "available",
-        "volume": "$375.0k",
-        "liquidity": "$90.4k",
-        "as_of": "2026-10-21",
-        "note": "Live odds: Hold 27%, Hike 73%, Cut 0%."
+        "volume": "$453.1k",
+        "liquidity": "$88.1k",
+        "as_of": "2026-10-23",
+        "note": "Live odds: Hold 18%, Hike 82%, Cut 0%."
       }
     ]
   },
@@ -98,19 +98,19 @@
       "hawkish": [
         {
           "id": "fed-h1",
-          "title": "Aug PCE cooler than feared but stuck above 3%",
-          "summary": "Came in cooler than feared (3.4% vs 3.7% exp, core 3.0% vs 3.3%) but the level is still a point above target, and the annual revision left July core flat at 3.0% rather than falling.",
+          "title": "Aug PCE 3.4%, core 3.0%: level still a point above target",
+          "summary": "BEA's August PCE price index held at 3.4% year over year with core at 3.0%, unchanged from July after the annual revision; the level stays well above the Fed's 2% goal.",
           "published_at": "2026-09-30",
           "observed_at": "2026-09-30",
           "source": "BEA",
           "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-august-2026",
           "data": {
             "actual": "3.4% YoY (core 3.0%)",
-            "forecast": "3.7% YoY (core 3.3%)",
+            "forecast": "unverified (BEA release carries actuals only)",
             "previous": "3.4% YoY Jul (core 3.0% after annual revision)",
-            "delta_label": "cool surprise -0.3pp, level elevated"
+            "delta_label": "flat vs July, level elevated"
           },
-          "reason": "PCE is the Fed's formal 2% target measure. The downside surprise (both headline and core 0.3pp below consensus, core flat at 3.0% in July on revised data) cooled the case for an October hike, but 3.4%/3.0% is still materially above target so the restrictive bias stands — net hawkish on level, with conviction cut after the cool print.",
+          "reason": "PCE is the Fed's formal 2% target measure. August did not extend the run-up — headline held at 3.4% and core at 3.0% after the annual revision — but a full point above target keeps the restrictive bias in place. No fresh upside surprise is why this sits at weight 2 rather than higher; the consensus print is not in the cited release, so the surprise leg is scored at zero.",
           "market_validation": "unverified",
           "direction": 1,
           "weight": 2,
@@ -468,7 +468,7 @@
             "delta_label": "above the 1-3% band, one tick below consensus"
           },
           "reason": "The last CPI before the Oct 28 decision puts headline back above the Bank's 1-3% band for the first time since June: gasoline +27.8% and fuel oil +57.8% did the work while groceries cooled to 1.7%. The Bank can look through energy only while it stays contained, and this print keeps the energy leg hot into the MPR even though the one-tick downside surprise and softer core argue against a pre-emptive move.",
-          "market_validation": "CORRA OIS Oct-28 hike odds 71% (Oct 19 snapshot) -> 95%; implied move +18bp -> +24bp (Oct 21, BlueGamma). Polymarket hike 33% -> 73% over the same two days.",
+          "market_validation": "OIS-implied Oct-28 hike odds ~37% (14 Oct) -> 71% (19 Oct) on the CPI; 74% on 23 Oct with a +19bp implied move (BlueGamma). Polymarket hike 33% (19 Oct) -> 82% (23 Oct).",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -530,7 +530,7 @@
         },
         {
           "id": "boc-h5",
-          "title": "Macklem Oct 17: BoC will revise its inflation forecast higher as oil holds ~$100",
+          "title": "Macklem Oct 17: BoC will revise its inflation forecast higher with Brent near US$110",
           "summary": "Governor says the Bank will revise its quarterly inflation forecast higher at the Oct 28 MPR - oil runs well above the July US$75 assumption - and frames the decision as whether inflation returns to 2% 'on its own' or the Bank 'will have to raise interest rates'.",
           "published_at": "2026-10-17",
           "observed_at": "2026-10-17",
@@ -542,7 +542,7 @@
             "previous": "Jul MPR: Brent assumed ~US$75; inflation seen drifting back to ~2%",
             "delta_label": "hawkish outlook shift, hike question reopened"
           },
-          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be material and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move.",
+          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be material and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move. Since then Brent has gone further: it settled at US$113.17 on 22 Oct, the highest since early May, and traded US$114.31 on 23 Oct after Houthi attacks on Saudi facilities (Reuters), so the forecast revision he flagged is being written against an oil price well above the July US$75 assumption.",
           "market_validation": "CORRA OIS Oct-28 hike odds 36% -> 71% and implied move +9bp -> +18bp (Oct 16 -> Oct 19, BlueGamma)",
           "direction": 1,
           "weight": 4,
@@ -582,7 +582,7 @@
       "dovish": [
         {
           "id": "boc-d1",
-          "title": "Sep jobs -68k; second straight decline wipes out 2026 gains",
+          "title": "Sep jobs -68k: second straight decline, -110k over two months",
           "summary": "Employment fell 68k (vs +9.2k expected), u-rate 6.5%; participation 64.8%, lowest since 1997 outside the pandemic.",
           "published_at": "2026-10-09",
           "observed_at": "2026-10-09",
@@ -594,7 +594,7 @@
             "previous": "-42k Aug; wages +2.0%",
             "delta_label": "-77k vs consensus; 2nd straight drop"
           },
-          "reason": "A second consecutive monthly decline — -110k over August-September — wiped out all of 2026's employment gains (-41k YTD, concentrated in the public sector). Weakness was broad: youth -48k, Quebec/BC down, participation at its lowest since 1997 outside the pandemic. It is the Bank's last labour read before Oct 28: TD, BMO, CIBC and Desjardins all read it as taking an October hike off the table. Wages did tick up to +2.3%, and Desjardins warns energy passthrough could still force tightening soon.",
+          "reason": "A second consecutive monthly decline — -110k over August-September — reversed most of the April-July gain (+181k); employment is still up 95k year over year. Weakness was broad: youth -48k, Quebec/BC down, participation at its lowest since 1997 outside the pandemic. It is the Bank's last labour read before Oct 28: TD, BMO, CIBC and Desjardins all read it as taking an October hike off the table. Wages did tick up to +2.3%, and Desjardins warns energy passthrough could still force tightening soon.",
           "market_validation": "OIS-implied Oct hike odds ~40% -> ~25% on the print (LSEG, Oct 9); partly retraced to 63% hold / 37% hike (+9bp implied, BlueGamma, Oct 14)",
           "direction": -1,
           "weight": 4,
@@ -662,7 +662,7 @@
   "total_score": {
     "fed": {
       "base_total": 5,
-      "effective_total": 3.0,
+      "effective_total": 1.5,
       "band": "lean hike"
     },
     "boc": {
@@ -682,7 +682,7 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike to 2.50% 95% / hold 2.25% 5% (CORRA OIS via BlueGamma, Oct 21)",
+      "forecast": "Hike to 2.50% 74% / hold 2.25% 26% (CORRA OIS via BlueGamma, Oct 23)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/"
@@ -696,7 +696,7 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (CME FedWatch 86.2% hold / 13.8% hike, Oct 21)",
+      "forecast": "Hold 3.75-4.00% (SOFR OIS via BlueGamma 76% hold / 24% hike, Oct 23)",
       "previous": "Hike +25bp (Sep 16)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
@@ -716,5 +716,5 @@
       "source_url": "https://www.bea.gov/news/schedule"
     }
   ],
-  "notes": "Fed pricing: CME FedWatch (Oct 21). BoC pricing: CORRA OIS via BlueGamma (+24bp implied, Oct 21); Polymarket shows a lower 73% hike - the two instruments diverge and both are shown rather than averaged. The Fed is in its pre-meeting communications blackout, so nothing official sits between the Oct 16 Warsh remarks and the Oct 28 decision. Canada's September CPI and Q3 Business Outlook Survey both landed Oct 19. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
+  "notes": "Pricing: Fed SOFR OIS via BlueGamma (23 Oct 07:48 ET) 76% hold / 24% hike, +6bp; CME FedWatch prints seen on 22-23 Oct were 84-86% hold (the CME page itself returns 403 from this host), and Polymarket is 93% hold — the instruments diverge and are shown, not averaged. BoC CORRA OIS via BlueGamma (23 Oct 07:50 ET) 74% hike / 26% hold, +19bp; Polymarket 82% hike. Both central banks are in their pre-meeting blackouts (Fed since 17 Oct, BoC since 20 Oct under its MPR blackout rule), so no official communication sits between the 16-17 Oct remarks and the 28 Oct decisions. Canada August retail sales land at 08:30 ET today and US flash PMIs at 09:45 ET, both after this snapshot. Brent settled US$113.17 on 22 Oct, its highest since early May, and traded US$114.31 on 23 Oct on Houthi attacks on Saudi facilities. Fed drivers sum to +5 base / +1.5 effective (lean hike, the next-move direction into December) while October pricing is a 76-93% hold: that divergence is deliberate and is not averaged. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
 }
