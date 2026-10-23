@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-23T08:47:47-04:00",
+  "snapshot_date": "2026-10-23",
+  "candidate_sha256": "afdc9b549b1e8a7aec304b8f1a11df53ce966d7fdf59f7a40688b62db2570bb4",
+  "verdict": "REVISE",
+  "executive_summary": "Everything on the official-policy side reproduces against primaries: Fed hiked 25bp to 3.75-4.00% on 16 Sep by 12-0, the SEP dots put 16 of 18 participants above the current 3.875% midpoint for end-2026, the 7 Oct minutes say 'all participants supported' the hike and 'most participants assessed that another increase ... would likely be appropriate by year end', Jefferson's 1 Oct speech carries the 3.4% PCE / 'more than five years above target' language, and the BoC held 2.25% on 2 Sep (7th consecutive hold) with 28 Oct + MPR confirmed on bankofcanada.ca. Macro prints also reproduce: BEA Aug PCE 3.4%/core 3.0%; Sep CPI 3.74%/core 2.56%, +0.59% m/m; Sep PPI final demand +1.34% m/m / 6.35% y/y (core +0.68%/4.98%); payrolls +29k with u3 4.2%; StatCan Sep CPI 3.1% (gasoline +27.8%, energy +19.0%, ex-gas 2.2%); StatCan Sep jobs -68k, 6.5%, wages +2.3%; BoC CPI-trim 1.8% / median 1.9%; Macklem's 17 Oct Brent ~US$110 line and the G7 100M-barrel release both check out. Two things block publication. First, the Fed pricing block is not reproducible: at review time the cited BlueGamma SOFR OIS page reads 20% hike / 81% hold / +5bp (as of 23 Oct 2026), not the candidate's 24% / 76% / +6bp, and that stale figure is repeated in calendar[1].forecast and notes. Second, the Fed driver set double-counts two communications: Williams (29 Sep) is fed-d1 and again inside fed-d3, and Jefferson's single 1 Oct speech is fed-h3 (hawkish, weight 3) and again fed-d3 (dovish, weight 3), with no distinct facet recorded; removing the duplicate moves the Fed base total 5 -> 2 and effective 1.5 -> 0.0, i.e. the 'lean hike' band itself depends on the duplicate. BoC pricing is within 1pp of its cited page and the BoC driver set is clean. Publish withheld; nothing after this review may be archived against this sha.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "fail",
+    "drivers": "fail",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "meetings.fed.pricing.probabilities.hike",
+      "issue": "Fed Oct-28 hike 0.24 / hold 0.76 / implied_rate_after 3.94 (+6bp) cannot be reproduced from the cited BlueGamma SOFR OIS page, which reads 20% hike / 81% hold / +5bp (implied 3.93) for the same 23 Oct 2026 date; the 76/24 split is repeated in calendar[1].forecast and notes, so the error propagates to the published headline.",
+      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast read 2026-10-23 08:45 ET: 'Hike 20% Hold 81% Cut 0%', 'market-implied move of +5 bp from the current federal funds rate of 3.88%', 'As of 23 Oct 2026' — candidate meetings.fed.pricing.probabilities.hike=0.24, hold=0.76, implied_rate_after=3.94, source='SOFR OIS-implied via BlueGamma (+6bp)'.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "major",
+      "field": "drivers.fed.dovish[2]",
+      "issue": "fed-d3 re-counts two communications already carried as primaries — Williams (29 Sep) is also fed-d1 and Jefferson's 1 Oct speech is also fed-h3 — so the same two releases are scored three times, and Jefferson's single speech sits on both sides at weight 3 with no distinct facet recorded; deleting the duplicate moves the Fed base total 5 -> 2 and effective 1.5 -> 0.0, flipping the band from 'lean hike' to 'hold'.",
+      "evidence": "drivers.fed.dovish[2].title='Williams + Jefferson lean against October hike; Street shifts to Dec', published_at=2026-10-01, weight=3, no facet key; drivers.fed.dovish[0] = NY Fed wil260929 (Williams, 2026-09-29, weight 3); drivers.fed.hawkish[2] = federalreserve.gov speech jefferson20261001a (2026-10-01, weight 3); total_score.fed.base_total=5, effective_total=1.5, band='lean hike'.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.boc.pricing.probabilities.hike",
+      "issue": "BoC Oct-28 hike 0.74 / hold 0.26 is 1pp off the cited page (75% / 25%), which is within same-day drift but not distinguishable from a misread because every pricing block records only a date, never a capture time.",
+      "evidence": "BlueGamma BoC page read 2026-10-23 08:45 ET: 'Hike 75% Hold 25% Cut 0%', '+19 bp', 'As of 23 Oct 2026'; candidate meetings.boc.pricing.probabilities.hike=0.74, hold=0.26, as_of='2026-10-23' (date only), implied move +19bp matches.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].probabilities.hold",
+      "issue": "Polymarket Fed hold 0.93 / hike 0.07 is ~1.5pp away from the live book (hold 0.915 / hike 0.085) and the quoted volume is stale ($57.8M vs $59.1M now), a small drift rather than a wrong market.",
+      "evidence": "gamma-api.polymarket.com/events?slug=fed-decision-in-october-20260617190323537 'No change' outcomePrices ['0.915','0.085'], '25 bps increase' ['0.085','0.915'], volume 59,136,191; candidate betting.fed[0] hold=0.93, hike=0.07, volume='$57.8M'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[0].data.actual",
+      "issue": "fed-d1 puts market probabilities (CME Oct hike ~70% -> ~50%) in data.actual, but the cited NY Fed speech contains no probability numbers — only 'there is no need for urgency'; the repricing belongs in market_validation with its own pointer, as the item's market_validation already does.",
+      "evidence": "https://www.newyorkfed.org/newsevents/speeches/2026/wil260929 text: 'With the policy action we took at our September meeting, there is no need for urgency, and we have time to gather more information' — no '70%' or '50%' anywhere in the speech; candidate drivers.fed.dovish[0].data.actual='CME Oct hike prob ~70% -> ~50%'.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
