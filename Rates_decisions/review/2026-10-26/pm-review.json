@@ -2,14 +2,14 @@
   "schema_version": "1.0",
   "reviewer": "independent-pm",
   "operator": "rates-decisions-writer",
-  "reviewed_at": "2026-10-26T08:52:31-04:00",
+  "reviewed_at": "2026-10-26T18:21:06-04:00",
   "snapshot_date": "2026-10-26",
-  "candidate_sha256": "efb59803f6231c3f368a02a598389f317836b3a17317e35b81b3d6ccb5131643",
-  "verdict": "REVISE",
-  "executive_summary": "Official policy reproduces end to end against primaries: the 16 Sep FOMC statement raised the target range 25bp to 3.75-4.00% by a 12-0 vote, the 16 Sep SEP median dot sits at 4.1% for end-2026 with 16 of 18 participants above today's 3.875% midpoint (CNBC/PNC read the same grid), the 7 Oct minutes say 'most participants assessed that another increase ... would likely be appropriate by year end', and the BoC held 2.25% on 2 Sep with the 28 Oct announcement + MPR confirmed at 09:45 ET on bankofcanada.ca; both blackouts are correctly dated (Fed from 17 Oct, BoC eight days before an MPR date = 20 Oct, which is why Macklem's 17 Oct Bangkok remarks are still usable). Every macro print in the driver set also reproduces: BEA Aug PCE 3.4% / core 3.0%, BLS Sep CPI 3.7% / core 2.6%, Sep PPI 1.3% m/m and 6.3% y/y (largest since Mar 2022), payrolls +29k with u3 4.2% against a +84k / 4.1% consensus, StatCan Sep CPI 3.1% with gasoline +27.8% and CPI-trim 1.8% / CPI-median 1.9%, LFS -68k and 6.5%, and the BoC Q3 BOS line about one-year-ahead expectations rising in September. Weight arithmetic is clean: every weight_breakdown sums to its weight, directions match their arrays, the age decay recomputes to +2 base / +0.75 effective for the Fed and +6 / +5.0 for the BoC, mean absolute weight is 2.77 and 2.75 (inside 2-4), and the September release split across boc-h1 and boc-d2 carries distinct facets. The previous round's double-count (Williams and Jefferson re-counted as one entry) is genuinely fixed: fed-d3 is now Jefferson's 1 Oct speech alone, with Williams left as fed-d1. The blocker is the Fed pricing block: it publishes a 79% hold / 21% hike / +5bp / 3.93 print that no live venue supports this morning and that contradicts the CME 90.6% hold figure quoted in the same note; the cited BlueGamma page reads 87% hold / 13% hike at +3bp. That is the same field that failed on 21 Oct and again on 23 Oct (24/76 against a page reading 20/81), which is why the live board has not moved off 2026-10-19; the fix is not a re-typing exercise - re-pull the SOFR-OIS block at freeze time and reconcile it against the FedWatch number the note already carries before the snapshot is frozen.",
+  "candidate_sha256": "3db984e196468455f9849680a07dd75f6069df8a43c126239e2fe4e2c8ca7536",
+  "verdict": "APPROVED",
+  "executive_summary": "Fed and BoC pricing both reproduce at their own recorded page as_of, which clears the blocker that failed the 08:52 round: the BlueGamma SOFR-OIS page read at 2026-10-26T21:30:03Z prints Hike 15% / Hold 85% / Cut 0% with a +4bp move off 3.88% (implied 3.92), identical to meetings.fed.pricing (0.15/0.85, 3.88 -> 3.92, stamped 17:06:18 ET); the CORRA-OIS page stamped 2026-10-26T22:03:16Z prints Hike 91% / Hold 9% / +23bp off 2.25% (implied 2.48), exactly the candidate's 0.91/0.09 and as_of 18:03:16 ET - the operator's note about a 94% -> 91% refresh on the hour is consistent with the two page vintages I captured. Official policy reproduces against primaries: the 16 Sep FOMC statement raised the target range 25bp to 3-3/4 to 4 percent by a 12-0 vote, the SEP median end-2026 dot is 4.1% with 16 of 18 dots at or above 4.125 (median arithmetic confirms the 16/18 claim), the 7 Oct minutes say 'most participants assessed that another increase ... would likely be appropriate by year end' and the staff path is higher for 2026-28 with 2% only in 2029; the BoC held 2.25% on 2 Sep (seventh consecutive hold) and the 28 Oct announcement + MPR is confirmed at 09:45 ET, with both blackout dates correct. Every macro print checked back to its primary: BEA Aug PCE 3.4% / core 3.0%, BLS Sep CPI 3.7% / core 2.6% (+0.6% m/m), Sep PPI 1.3% m/m and 6.3% y/y (largest since Mar 2022) with the ex-food-and-energy core at 0.7% m/m / 5.0% y/y, payrolls +29k with u3 4.2% (Jul -10k, Aug +133k revised), StatCan Sep CPI 3.1% (gasoline +27.8%, ex-gasoline 2.2%, CPI-trim 1.8% / CPI-median 1.9%), LFS -68k / 6.5% / participation 64.8%, Q3 BOS one-year expectations up again in September with recession planning 17% -> 6%, the September deliberations quote, Macklem's 17 Oct Globe interview (Brent ~US$110, July assumption US$75), the Waller/Jefferson/Williams/Cleveland/Daly/Bowman quotes, the G7 100M bbl release, and the BEA 29 Oct 08:30 PCE + Q3 GDP calendar entry. Weight arithmetic recomputes exactly (+2 base / +0.75 effective for the Fed, +6 / +5.0 for the BoC, mean |weight| 2.77 and 2.75, no weight >=5, the September CPI release split only by distinct facets), the live Polymarket books match the betting block within rounding, and the three prior minors are fixed (Reuters label, 74% -> 75%, BoC pricing no longer single-venue). Four minors remain, all next_cycle and none blocking: the BoC betting hold leg rounds 17.25% to 0.18; the Fed page has re-stamped to 17:30 ET with an unchanged print; centralbank.watch is model output (FRB/US), not a market venue; and the PPI previous y/y predates this release's August revision. The call is coherent with its pricing (Fed hold 85%, BoC hike 91%) and no divergence badge is warranted.",
   "checks": {
     "official_policy": "pass",
-    "pricing": "fail",
+    "pricing": "pass",
     "drivers": "pass",
     "market_validation": "pass",
     "freshness": "pass",
@@ -17,32 +17,39 @@
   },
   "findings": [
     {
-      "severity": "major",
-      "field": "meetings.fed.pricing.probabilities / meetings.fed.pricing.implied_rate_after",
-      "issue": "Fed Oct-28 block publishes hike 0.21 / hold 0.79 with implied_rate_after 3.93 (+5bp) stamped as_of 2026-10-26T08:06:49, but the cited BlueGamma SOFR-OIS page reads Hike 13% / Hold 87% / Cut 0% with a +3bp move off 3.88% (i.e. 3.91), and its own as-of stamp is 26 Oct 12:34:17Z. Three other independent reads taken today cluster at 87-94% hold, so the published 79% is reproducible from no venue, and the candidate's own note quotes a same-morning CME FedWatch print of 90.6% hold - an 11.6pp gap against the number the same block publishes. Same field failed the 23 Oct round (24/76 against a page reading 20/81); the block was re-typed, not re-pulled.",
-      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast read 2026-10-26 08:45 ET: 'Hike 13% Hold 87% Cut 0%', 'market-implied move of +3 bp from the current federal funds rate of 3.88%', page as-of <time dateTime=\"2026-10-26T12:34:17\">26 Oct 2026</time>; centralbank.watch (data as of 23 Oct 2026) 'Rate Hike 9.7% / No Change 90.3%'; gamma-api.polymarket.com/events?slug=fed-decision-in-october-20260617190323537 'No change' outcomePrices ['0.9455','0.0545'] and '25 bps increase' ['0.055','0.945']; candidate notes: 'the same morning's CME FedWatch print was 90.6% hold for 27-28 Oct'. Candidate meetings.fed.pricing: hike 0.21, hold 0.79, implied_rate_before 3.88, implied_rate_after 3.93, as_of '2026-10-26T08:06:49-04:00'.",
-      "disposition": "must_fix"
-    },
-    {
       "severity": "minor",
-      "field": "drivers.fed.dovish[5].source",
-      "issue": "fed-d6 labels a Reuters news story 'Reuters (via Bowman)', which applies the via convention backwards: the Rates annex reserves 'via X' for second-hand retellings that must be down-weighted, while this is Reuters' own first-hand reporting of Bowman's remarks. The label invites the reader (and any future scoring pass) to discount a primary wire as a retelling.",
-      "evidence": "candidate drivers.fed.dovish[5].source = 'Reuters (via Bowman)', source_url = https://www.reuters.com/business/feds-bowman-says-theres-time-wait-see-before-any-more-action-2026-10-14; identical Reuters copy at https://www.kitco.com/news/off-the-wire/2026-10-14/feds-bowman-says-theres-time-wait-and-see-any-more-action ('By Reuters', published Oct 14 2026) carrying 'I don't feel any urgency for taking further action at this point, we really need to take some time and understand how things will evolve'.",
+      "field": "betting.boc[0].probabilities.hold",
+      "issue": "The BoC betting block rounds the hold leg up to 0.18 while its own note and the live Polymarket book print 17.25%, so the two legs of the same venue disagree by 0.75pp (hike 0.82 is right).",
+      "evidence": "candidate betting.boc[0].probabilities = {hike 0.82, hold 0.18, cut 0}; candidate.notes: 'BoC hike 82.3% / hold 17.25% ($472k volume, $84k liquidity)'; https://gamma-api.polymarket.com/events?slug=bank-of-canada-decision-in-october-20260715203359314 read 2026-10-26 22:12Z: 'No Change' outcomePrices [\"0.1725\",\"0.8275\"], '25 bps increase' [\"0.8215\",\"0.1785\"].",
       "disposition": "next_cycle"
     },
     {
       "severity": "minor",
-      "field": "drivers.boc.hawkish[0].market_validation",
-      "issue": "boc-h1 dates the CPI repricing as '74% on 23 Oct', but the BlueGamma BoC page read on 23 Oct was 75% hike / 25% hold at +19bp. A 1pp gap inside a historical validation string, carried over uncorrected from the previous round.",
-      "evidence": "candidate boc-h1 market_validation: 'OIS-implied Oct-28 hike odds ~37% (14 Oct) -> 71% (19 Oct) on the CPI; 74% on 23 Oct with a +19bp implied move (BlueGamma)'; Rates_decisions/review/2026-10-23/pm-review.json finding field meetings.boc.pricing.probabilities.hike records 'BlueGamma BoC page read 2026-10-23 08:45 ET: Hike 75% Hold 25% Cut 0%, +19 bp'.",
+      "field": "meetings.fed.pricing.as_of",
+      "issue": "The Fed block stamps 17:06:18 ET but the cited page now carries a later stamp, 2026-10-26T21:30:03Z (17:30:03 ET), with identical printed probabilities (15/85/0, +4bp) - a re-stamp rather than a reprice; next cycle should record the stamp of the pull that actually produced the numbers.",
+      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast read 2026-10-26 22:14Z: 'As of <time dateTime=\"2026-10-26T21:30:03\">26 Oct 2026</time>, overnight index swap pricing implies a 85% probability the Federal Reserve holds at the 28 Oct 2026 FOMC meeting, with a market-implied move of +4 bp from the current federal funds rate of 3.88%', badges Hike 15% / Hold 85% / Cut 0%; candidate meetings.fed.pricing as_of 2026-10-26T17:06:18-04:00, hike 0.15 / hold 0.85 / implied_rate_after 3.92.",
       "disposition": "next_cycle"
     },
     {
       "severity": "minor",
-      "field": "meetings.boc.pricing.probabilities.hike",
-      "issue": "The BoC headline takes the top of the current OIS band. BlueGamma prints 92% (+23bp) and is quoted exactly, but rateprobability.com at 08:00 ET today prices 77% (+19.3bp), WOWA's CORRA strip on 25 Oct prices 77%, Rabobank cites 85% and Bloomberg-via-Globe 'nearly 90%'. On its own the single 92% line reads ~10-15pp stronger than the OIS consensus; a second CORRA-OIS venue beside it, the way the betting venues are already listed, would let the reader see the dispersion without averaging.",
-      "evidence": "https://rateprobability.com/boc 'As of: 08:00 10/26/2026 ... Next meeting pricing 77% HIKE +19.3 bps ... Oct 28, 2026 2.44% 77.2% 19.3'; https://wowa.ca/bank-of-canada-interest-rate 'as of October 25, 2026 ... 2026-10-28 | 2.5% | 77% | 2.25% | 23%'; https://www.rabobank.com/knowledge/q011555511-bank-of-canada-preview-we-say-no-but-the-market-says-go 'OIS pricing implying 85% of a 25bp hike'; candidate meetings.boc.pricing hike 0.92, implied_rate_after 2.48 confirms BlueGamma 92% / +23bp.",
+      "field": "notes",
+      "issue": "The note lists centralbank.watch's 90.3% no-change beside genuine market venues without saying it is a model output (FRB/US), not observable pricing; it is dated 23 Oct, so it adds no same-day information.",
+      "evidence": "https://centralbank.watch/ read 2026-10-26: 'View Model FRB/US -> Rate Change Probabilities* ... Rate Hike 9.7% ... No Change 90.3%' with 'Data as of October 23, 2026'; candidate.notes presents it as 'centralbank.watch prints 90.3% Fed no-change' in the same list as the OIS and Polymarket reads.",
       "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[6].data.previous",
+      "issue": "The PPI 'previous' string carries 5.4% y/y for August while this release's Table A shows August revised to 5.6% y/y; only the m/m leg is labelled '(revised)', so the previous 12-month print is stale by 0.2pp.",
+      "evidence": "BLS PPI September 2026 https://www.bls.gov/news.release/archives/ppi_10152026.htm Table A, August 2026 row: total final demand 5.6 (12-month) and core 4.8; candidate drivers.fed.hawkish[6].data.previous = '0.5% m/m Aug (revised); 5.4% y/y; core 4.6% y/y'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing",
+      "issue": "Prior-round blocker (candidate efb59803f623, 08:52 review) re-checked against the new bytes and new evidence: the published 15/85 +4bp block now reproduces from the cited page, so this field is closed.",
+      "evidence": "review/2026-10-26/pm-review.json (08:52 round) demanded the Fed 79/21 block be re-pulled; new candidate 3db984e19646 has hike 0.15 / hold 0.85 / implied_rate_after 3.92 at as_of 2026-10-26T17:06:18-04:00 and the BlueGamma page read 2026-10-26 22:14Z prints Hike 15% / Hold 85% / +4bp off 3.88% (page as_of 2026-10-26T21:30:03Z).",
+      "disposition": "fixed"
     }
   ],
   "flags_dispositioned": []
