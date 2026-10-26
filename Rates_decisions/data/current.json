@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-23T08:08:45-04:00",
-  "snapshot_date": "2026-10-23",
+  "as_of": "2026-10-26T08:06:49-04:00",
+  "snapshot_date": "2026-10-26",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -17,16 +17,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.24,
-          "hold": 0.76,
+          "hike": 0.21,
+          "hold": 0.79,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
-        "implied_rate_after": 3.94,
-        "source": "SOFR OIS-implied via BlueGamma (+6bp)",
+        "implied_rate_after": 3.93,
+        "source": "SOFR OIS-implied via BlueGamma (+5bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast",
-        "as_of": "2026-10-23",
+        "as_of": "2026-10-26T08:06:49-04:00",
         "observable_proxy": null
       }
     },
@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.74,
-          "hold": 0.26,
+          "hike": 0.92,
+          "hold": 0.08,
           "cut": 0
         },
         "probability_status": "available",
         "implied_rate_before": 2.25,
-        "implied_rate_after": 2.44,
-        "source": "CORRA OIS-implied via BlueGamma (+19bp)",
+        "implied_rate_after": 2.48,
+        "source": "CORRA OIS-implied via BlueGamma (+23bp)",
         "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-23",
+        "as_of": "2026-10-26T08:06:49-04:00",
         "observable_proxy": null
       }
     }
@@ -65,14 +65,14 @@
         "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
         "probabilities": {
           "cut": 0,
-          "hold": 0.93,
-          "hike": 0.07
+          "hold": 0.95,
+          "hike": 0.05
         },
         "status": "available",
-        "volume": "$57.8M",
-        "liquidity": "$5.8M",
-        "as_of": "2026-10-23",
-        "note": "Live odds: Hold 93%, Hike 7%, Cut 0%."
+        "volume": "$67.7M",
+        "liquidity": "$9.2M",
+        "as_of": "2026-10-26T08:06:49-04:00",
+        "note": "Live odds: Hold 95%, Hike 5%, Cut 0%."
       }
     ],
     "boc": [
@@ -82,14 +82,14 @@
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
         "probabilities": {
           "cut": 0,
-          "hold": 0.18,
-          "hike": 0.82
+          "hold": 0.17,
+          "hike": 0.83
         },
         "status": "available",
-        "volume": "$453.1k",
-        "liquidity": "$88.1k",
-        "as_of": "2026-10-23",
-        "note": "Live odds: Hold 18%, Hike 82%, Cut 0%."
+        "volume": "$470.5k",
+        "liquidity": "$67.0k",
+        "as_of": "2026-10-26T08:06:49-04:00",
+        "note": "Live odds: Hold 17%, Hike 83%, Cut 0%."
       }
     ]
   },
@@ -137,31 +137,6 @@
           },
           "reason": "The dot plot does not choose between October and December, but it caps how dovish the committee can sound without contradicting its own projections. It sets a hawkish baseline for the October meeting.",
           "market_validation": "unverified",
-          "direction": 1,
-          "weight": 3,
-          "weight_breakdown": {
-            "deviation": 1,
-            "importance": 2,
-            "surprise": 0,
-            "total": 3
-          }
-        },
-        {
-          "id": "fed-h3",
-          "title": "Jefferson Oct 1: upside inflation risks, cascade of shocks",
-          "summary": "Vice Chair says inflation 3.4% too high for 5+ years; energy/AI/trade shocks cascade with upside risks tilted.",
-          "published_at": "2026-10-01",
-          "observed_at": "2026-10-01",
-          "source": "Federal Reserve",
-          "source_url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261001a.htm",
-          "data": {
-            "actual": "PCE 3.4% Aug, above 2% for 5+ years",
-            "forecast": "n/a",
-            "previous": "3.4% Jul",
-            "delta_label": "level elevated, risks up"
-          },
-          "reason": "The Vice Chair backed the September hike and warned energy/AI-buildout/trade shocks hitting together keep upside risks tilted. That locks in a restrictive bias even while he asks for more time on timing — hawkish on level, neutral on October vs December.",
-          "market_validation": "10Y touched 24Y high ~5.24% same week (Oct 1, Reuters)",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
@@ -307,13 +282,13 @@
           "source": "NY Fed",
           "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil260929",
           "data": {
-            "actual": "CME Oct hike prob ~70% -> ~50%",
+            "actual": "\"With the policy action we took at our September meeting, there is no need for urgency, and we have time to gather more information\"",
             "forecast": "n/a",
-            "previous": "~70%",
-            "delta_label": "-20pp repricing"
+            "previous": "Sep 16 FOMC: hiked 25bp (12-0)",
+            "delta_label": "signalled patience on October"
           },
           "reason": "The FOMC vice chair publicly pushed back on an October move while still allowing one more hike late this year. Markets read this as October off the table unless data forces it, shifting the debate to December.",
-          "market_validation": "FedWatch Oct hike odds ~70% -> ~50% same day (Sep 29, per ST/Reuters)",
+          "market_validation": "FedWatch Oct-28 hike odds ~70% -> ~50% the day he spoke (Sep 29, per Reuters/ST); 37.1% on 14 Oct after CPI; 21% on 26 Oct (SOFR OIS via BlueGamma)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -350,20 +325,20 @@
         },
         {
           "id": "fed-d3",
-          "title": "Williams + Jefferson lean against October hike; Street shifts to Dec",
-          "summary": "Top two FOMC leaders say no urgency / need more time; Oct hike pricing collapses ~70% to ~25%.",
+          "title": "Jefferson Oct 1: policymakers 'may take more time' before moving again",
+          "summary": "Vice Chair says inflation is too high and he sees upside risks, but the Committee will form its own judgment and that 'may take more time' as the data trend becomes clearer.",
           "published_at": "2026-10-01",
           "observed_at": "2026-10-01",
-          "source": "Reuters (via Williams, Jefferson)",
-          "source_url": "https://www.reuters.com/business/fed-may-take-time-make-next-interest-rate-move-jefferson-says-2026-10-01",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261001a.htm",
           "data": {
-            "actual": "Oct hike odds ~70% -> ~25%",
+            "actual": "\"My colleagues and I will need to come to our own judgment, which may take more time\"; trend to be read as more data arrive",
             "forecast": "n/a",
-            "previous": "~70% early week",
-            "delta_label": "-45pp repricing"
+            "previous": "Sep 16 FOMC: supported the 25bp hike (12-0)",
+            "delta_label": "patient on timing, hawkish on level"
           },
-          "reason": "Williams (no urgency, one more hike late this year) plus Jefferson (future moves need trends in data, may take more time) jointly pushed October off the table while keeping December live. Evercore/SGH read it as authoritative guidance; brokerages now pencil December.",
-          "market_validation": "Oct hike ~70% -> ~25% (Oct 1, Reuters); ~18% Oct 12 (CME FedWatch)",
+          "reason": "Jefferson put inflation at 3.4% in August and 'above our 2 percent target for more than five years', and said he sees upside risks to inflation - but the operative line for 28 Oct is that the Committee will form its own judgment and that 'may take more time', with the trend to be judged as more data arrive. That is a patient-timing signal from the Vice Chair, and it is scored here on timing alone: his level view is already carried by the PCE and SEP drivers. October hike odds fell from ~70% to ~25% around his remarks (Reuters).",
+          "market_validation": "Oct-28 hike odds ~70% -> ~25% (Oct 1, Reuters); 18% by 12 Oct (CME FedWatch); 21% on 26 Oct (SOFR OIS via BlueGamma)",
           "direction": -1,
           "weight": 3,
           "weight_breakdown": {
@@ -661,9 +636,9 @@
   },
   "total_score": {
     "fed": {
-      "base_total": 5,
-      "effective_total": 1.5,
-      "band": "lean hike"
+      "base_total": 2,
+      "effective_total": 0.75,
+      "band": "hold"
     },
     "boc": {
       "base_total": 6,
@@ -682,7 +657,7 @@
       "event": "BOC rate decision + Monetary Policy Report",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike to 2.50% 74% / hold 2.25% 26% (CORRA OIS via BlueGamma, Oct 23)",
+      "forecast": "Hike to 2.50% 92% / hold 2.25% 8% (CORRA OIS via BlueGamma, Oct 26)",
       "previous": "2.25% (held 7x)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/"
@@ -696,7 +671,7 @@
       "event": "FOMC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% (SOFR OIS via BlueGamma 76% hold / 24% hike, Oct 23)",
+      "forecast": "Hold 3.75-4.00% 79% / hike 21% (SOFR OIS via BlueGamma, Oct 26)",
       "previous": "Hike +25bp (Sep 16)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
@@ -716,5 +691,5 @@
       "source_url": "https://www.bea.gov/news/schedule"
     }
   ],
-  "notes": "Pricing: Fed SOFR OIS via BlueGamma (23 Oct 07:48 ET) 76% hold / 24% hike, +6bp; CME FedWatch prints seen on 22-23 Oct were 84-86% hold (the CME page itself returns 403 from this host), and Polymarket is 93% hold — the instruments diverge and are shown, not averaged. BoC CORRA OIS via BlueGamma (23 Oct 07:50 ET) 74% hike / 26% hold, +19bp; Polymarket 82% hike. Both central banks are in their pre-meeting blackouts (Fed since 17 Oct, BoC since 20 Oct under its MPR blackout rule), so no official communication sits between the 16-17 Oct remarks and the 28 Oct decisions. Canada August retail sales land at 08:30 ET today and US flash PMIs at 09:45 ET, both after this snapshot. Brent settled US$113.17 on 22 Oct, its highest since early May, and traded US$114.31 on 23 Oct on Houthi attacks on Saudi facilities. Fed drivers sum to +5 base / +1.5 effective (lean hike, the next-move direction into December) while October pricing is a 76-93% hold: that divergence is deliberate and is not averaged. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
+  "notes": "Pricing: Fed SOFR OIS via BlueGamma (08:06 ET, 26 Oct) 79% hold / 21% hike / 0% cut, market-implied +5bp on the 3.88% effective fed funds rate (implied 3.93); the same morning's CME FedWatch print was 90.6% hold for 27-28 Oct and 79.7% for a December hike, Kalshi was 91% hold (25 Oct) and Polymarket 95% hold. BoC CORRA OIS via BlueGamma (08:06 ET, 26 Oct) 92% hike / 8% hold, +23bp on 2.25% (implied 2.48); Polymarket 83% and Kalshi 82% hike, and Reuters' 21-23 Oct poll has 19 of 34 economists on a hike to 2.50%. The venues are shown side by side and never averaged. Both central banks are inside their pre-meeting blackouts (Fed since 17 Oct, BoC under its MPR rule), so nothing official has been said since Warsh on 16 Oct and Macklem on 17 Oct - the last inputs are data, not guidance: the US October flash PMI at 57.6 on 23 Oct with firms reporting faster price increases, initial claims at 194k for the week to 17 Oct, Canada's August retail sales at +1.2% with a +0.7% advance estimate for September, and the September CPI/PPI prints already in the driver set. Oil is the swing: Brent settled at US$116.72 on 23 Oct, +6.2% on the week and the highest since April, before easing to about US$115 on 26 Oct as Washington played down an immediate strike on Iran. Fed drivers sum to +2 base / +0.75 effective (hold): the previous +5 counted Williams (29 Sep) and Jefferson (1 Oct) twice, so those communications now sit one entry per speech and the October hold the market prices is no longer contradicted by a double count - the December move (79.7% FedWatch) is carried by pricing, not by double-weighting the same speeches. BoC drivers sum to +6 base / +5.0 effective (lean hike) against 92% OIS hike pricing. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
 }
