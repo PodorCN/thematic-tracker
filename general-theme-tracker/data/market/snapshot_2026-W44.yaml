@@ -1,0 +1,78 @@
+week: 2026-W44
+as_of_utc: '2026-10-27T20:00:00Z'
+data_quality: production
+news_as_of_utc: '2026-10-28T02:30:00Z'
+observation_note: 'Equities and ETFs: October 27 completed 16:00 ET closes. Other instruments: Yahoo daily bars with their own fixing or settlement times (WTI front-month, gold futures, FX), not simultaneous live quotes. October 27 news is checked against the same completed session. The WTI and gold futures bars carry unusually low volume (5.6% and 8.1% of their two-year medians), so their settlement levels are treated as provisional and cross-checked against same-day cash and ETF moves; no intraday bar is used.'
+regime:
+  stance: Oil-led inflation, AI credit stress, a Treasury haven bid
+  oneliner: Crude above $100 keeps the Fed's hiking bias alive, while AI debt worries push money into Treasuries and out of gold and expensive growth.
+  keywords:
+  - WTI $101.38
+  - 10Y 4.99%
+  - XLE 1M +9.9%
+benchmarks:
+- ticker: ^GSPC
+  name: SPX
+  value: 7722.6001
+  chg_1d: 0.597
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Equity index close, 16:00 ET
+- ticker: ^NDX
+  name: NDX
+  value: 29651.4414
+  chg_1d: 1.2914
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Equity index close, 16:00 ET
+- ticker: ^GSPTSE
+  name: TSX
+  value: 36171.4883
+  chg_1d: 0.6323
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Equity index close, 16:00 ET
+- ticker: ^TNX
+  name: US 10Y
+  value: 4.993
+  chg_1d: 0.7
+  chg_unit: bp
+  observation_date: '2026-10-27'
+  convention: Yahoo yield-index daily close; change in basis points
+- ticker: USDCAD=X
+  name: USD/CAD
+  value: 1.4013
+  chg_1d: 0.0
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Yahoo daily FX close, not an equity fixing
+- ticker: CL=F
+  name: WTI
+  value: 101.38
+  chg_1d: -0.3734
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Yahoo front-month daily settlement, not an equity close
+- ticker: GC=F
+  name: Gold
+  value: 4060.0
+  chg_1d: 0.5349
+  chg_unit: '%'
+  observation_date: '2026-10-27'
+  convention: Yahoo front-month daily settlement, not an equity close
+yesterday_diff:
+- theme_id: ai-capex-supercycle
+  change: fading
+  note: 'Still Fading: since the October 15 snapshot the constraint moved from demand to financing; QQQ fell 3.1% over the month and Meta''s negative free cash flow made AI debt the story.'
+- theme_id: oil-war-premium
+  change: continuing
+  note: 'Continuing: XLE added 9.9% over the month as WTI held above $100; the October 27 peace-talk headline cut the premium but not the trend.'
+- theme_id: ca-bank-earnings-momentum
+  change: upgraded
+  note: 'Upgraded from Fading to Continuing: all Big Six banks rose in the week as BoC hike odds moved from about 35% to nearly 90%.'
+- theme_id: us-rates-repricing
+  change: fading
+  note: 'Still Fading: the 10-year fell from 5.31% on October 5 to 4.99%, and TLT gained 2.9% over the month despite hot CPI.'
+- theme_id: gold-war-premium-unwind
+  change: new
+  note: 'New this week: gold is about 27% below its January peak, with silver and miners falling faster over the month as real yields stayed high.'

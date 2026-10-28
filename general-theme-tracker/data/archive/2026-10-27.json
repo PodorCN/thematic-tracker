@@ -1,0 +1,2392 @@
+{
+  "snapshot_date": "2026-10-27",
+  "week": "2026-W44",
+  "themes": [
+    {
+      "schema_v": 1,
+      "id": "ai-capex-supercycle",
+      "week": "2026-W44",
+      "title": "AI Capex: Growth Now Funded With Debt",
+      "status": "Fading",
+      "status_note": "Still Fading: QQQ fell 3.1% in a month as Meta's negative free cash flow and AI credit stress hit the trade.",
+      "conviction": "Med",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-07-06",
+      "updated_at": "2026-10-27",
+      "data_quality": "production",
+      "summary": "AI spending is no longer a pure demand story. QQQ returned -3.12% over one month against -0.27% for the S&P 500, and Meta is down 17.5% over the month, including a 6.98% drop after it reported negative free cash flow, $135-145 billion of 2026 capex and a new non-voting share class to raise money. CoreWeave's credit default swaps trade above 1,000 basis points and its 2031 bond yields about 15.6%. Nvidia says demand is off the charts but capital is scarce. Fading means financing, not demand, is now the constraint; a one-week rebound does not reverse that.",
+      "body_text": "QQQ closed at $721.25 on October 27. It lost 3.12% over one month while the S&P 500 lost 0.27%, and the semiconductor ETF SMH fell 8.01%. The weakness is concentrated in the companies paying for the build-out: Meta fell 17.49% over the month, Alphabet 6.79%, AMD 11.16%, Micron 14.18% and Vertiv 17.66%.\n\nThe trigger was Meta's October 21 third-quarter report. Capital spending for 2026 is now $135-145 billion, free cash flow was negative $2.12 billion, and the company created a Class C non-voting stock explicitly to finance AI growth. Meta fell 6.98% the next session and its five-year credit default swap spread reached a record. CoreWeave's swaps had already passed 1,000 basis points on October 15, with its 9.75% 2031 bond yielding about 15.6%.\n\nThe competing explanation is that this is only a valuation reset. Demand evidence is still strong: Nvidia's chief executive said neocloud demand is off the charts, and QQQ rose 0.50% in the last week while AMD gained 4.77%.\n\nSo what: the marginal change is from who can buy chips to who can finance them. Watch the October 28 FOMC, October 29 PCE, credit spreads and Nvidia's November 17 results.",
+      "chain": [
+        {
+          "when": "Oct 15",
+          "label": "Credit markets priced AI debt as risky",
+          "detail": "CoreWeave's five-year credit default swaps passed 1,000 basis points; its 2031 bond yielded about 15.6%."
+        },
+        {
+          "when": "Oct 21",
+          "label": "Meta reported negative free cash flow and $135-145 billion capex",
+          "detail": "It also created a non-voting share class to raise money for AI investment."
+        },
+        {
+          "when": "Oct 22",
+          "label": "The stock market repriced the financing risk",
+          "detail": "Meta fell 6.98% and QQQ 2.86% in the session as the financing question hit the whole complex."
+        },
+        {
+          "when": "Oct 27",
+          "label": "Prices bounced but the funding question remains",
+          "detail": "QQQ rose 1.27% and AMD 5.45% in the latest session; credit spreads are still the test."
+        }
+      ],
+      "explainer": "Snapshot uses October 27 US closes (20:00 UTC). Price Return uses Yahoo quote.close, split adjusted and excluding distributions. 1W anchors October 20, 1M September 25, YTD December 31, 2025, with the proxy and benchmark on the same common sessions. QQQ is a concentrated growth fund, not an AI revenue index, and SMH is the semiconductor subset. Volume confirmation needs the latest volume at least 1.25 times the prior 20 sessions excluding the latest day; QQQ was 0.85x, so it fails. A credit default swap spread is the annual cost of insuring against default; 1,000 basis points means 10% of notional a year. Negative free cash flow means operating cash flow did not cover capital spending. The debt-to-capex link is a financing interpretation supported by the cited issuer and credit-market reports, not a measured causal model. Nvidia demand comment: https://www.cnbc.com/2026/10/22/treasurys-bonds-ai-yields.html .",
+      "performance": {
+        "proxy_ticker": "QQQ",
+        "proxy_price": 721.25,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 0.5044,
+        "ret_1m": -3.1229,
+        "ret_ytd": 17.4081,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 0.1301,
+        "benchmark_ret_1m": -0.2687,
+        "benchmark_ret_ytd": 12.8128,
+        "excess_1w": 0.3744,
+        "excess_1m": -2.8542,
+        "excess_ytd": 4.5954,
+        "as_of_utc": "2026-10-27T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "US technology exposure is compared with broad US equity beta; QQQ outperformance is not a direct measurement of AI revenue or of data-centre returns."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 103.3968,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 102.4612,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 102.0827,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 103.2797,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 102.9711,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 102.6255,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 103.3754,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 104.571,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 104.4281,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 104.2567,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 102.4912,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 102.2869,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 101.5513,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 101.9098,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 100.8928,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 101.5213,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 101.6141,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 103.0054,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 102.3369,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 102.384,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 101.0813,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 101.3099,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 102.514,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 102.6983,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 102.6126,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 102.3198,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 101.2313,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 102.1155,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 101.3013,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 100.6385,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 100.6642,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 102.4069,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 103.054,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 105.9137,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 106.7693,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 105.8766,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 105.8608,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 106.3465,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 105.2081,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 105.408,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 105.6709,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 105.9937,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 107.0722,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 108.0178,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 108.512,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 108.2363,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 106.7865,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 107.3136,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 106.5665,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 106.2137,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 104.1253,
+          "benchmark": 101.5583
+        },
+        {
+          "date": "2026-10-15",
+          "proxy": 103.9896,
+          "benchmark": 101.8888
+        },
+        {
+          "date": "2026-10-16",
+          "proxy": 101.3899,
+          "benchmark": 100.7755
+        },
+        {
+          "date": "2026-10-19",
+          "proxy": 102.6126,
+          "benchmark": 101.1872
+        },
+        {
+          "date": "2026-10-20",
+          "proxy": 102.5083,
+          "benchmark": 101.4745
+        },
+        {
+          "date": "2026-10-21",
+          "proxy": 103.5896,
+          "benchmark": 102.0613
+        },
+        {
+          "date": "2026-10-22",
+          "proxy": 100.6285,
+          "benchmark": 100.828
+        },
+        {
+          "date": "2026-10-23",
+          "proxy": 100.6185,
+          "benchmark": 100.305
+        },
+        {
+          "date": "2026-10-26",
+          "proxy": 101.7327,
+          "benchmark": 101.0035
+        },
+        {
+          "date": "2026-10-27",
+          "proxy": 103.0254,
+          "benchmark": 101.6065
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.18% total expense ratio (issuer page checked October 15)",
+          "liquidity_note": "Latest complete session volume 30.8 million shares, 0.85x its 20-session average; among the most heavily traded ETFs.",
+          "why_represents": "Large Nasdaq growth companies include the main AI platforms and chip designers funding the build-out.",
+          "tracking_gap": "Holds unrelated growth businesses and is market-cap weighted, so a few large names dominate; discount rates can overwhelm AI demand. Issuer: https://www.invesco.com/qqq-etf/en/home.html"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-15T20:00:00Z",
+          "title": "CoreWeave's five-year credit default swaps closed above 1,000 basis points, a distressed level, as investors questioned AI infrastructure debt.",
+          "source": "CNBC credit-market report",
+          "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+          "type": "macro",
+          "proxy_ret": -0.1303,
+          "benchmark_ret": 0.3254,
+          "return_window": "event-day (2026-10-14 to 2026-10-15 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-21T20:06:00Z",
+          "title": "Meta reported negative free cash flow of $2.12 billion, kept 2026 capex at $135-145 billion and announced a non-voting Class C stock to finance AI growth; the shares fell 6.98% in the next session.",
+          "source": "Meta Platforms investor relations (primary release)",
+          "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+          "type": "earnings",
+          "proxy_ret": -2.8585,
+          "benchmark_ret": -1.2084,
+          "return_window": "next-session (2026-10-21 to 2026-10-22 completed common-session closes; release was after the October 21 close)"
+        },
+        {
+          "event_time_utc": "2026-10-27T20:00:00Z",
+          "title": "QQQ closed at $721.25, up 1.27% in the session while the S&P 500 rose 0.60%; the one-week return turned positive.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 1.2707,
+          "benchmark_ret": 0.597,
+          "return_window": "event-day (2026-10-26 to 2026-10-27 completed common-session closes)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC decision",
+          "due_date": "2026-10-28T18:00:00Z",
+          "why_matters": "The policy path sets the discount rate for long-duration AI cash flows; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "A hold with restrained guidance lowers financing pressure and supports growth valuations",
+          "if_bear": "A hawkish hold or a December hike signal raises the cost of the build-out"
+        },
+        {
+          "event_name": "PCE inflation, September",
+          "due_date": "2026-10-29T12:30:00Z",
+          "why_matters": "The Fed's preferred inflation measure; schedule: https://www.bea.gov/news/schedule",
+          "if_bull": "Softer core PCE reduces the hike path and rate pressure",
+          "if_bear": "Sticky core PCE keeps restrictive rates and financing stress alive"
+        },
+        {
+          "event_name": "Nvidia third-quarter fiscal 2027 results",
+          "due_date": "2026-11-17T21:20:00Z",
+          "why_matters": "The largest AI demand checkpoint; confirmed on the issuer events page: https://investor.nvidia.com/events-and-presentations/events-and-presentations/default.aspx",
+          "if_bull": "Strong orders and guidance confirm that demand, not financing, still sets the pace",
+          "if_bear": "Capex cuts or slower orders would confirm that funding constraints are reaching demand"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "ca-bank-earnings-momentum",
+      "week": "2026-W44",
+      "title": "Canadian Banks: Rally Into a Rate Hike",
+      "status": "Continuing",
+      "status_note": "Upgraded to Continuing: all Big Six banks rose in the week as BoC hike odds approached 90%.",
+      "conviction": "Med",
+      "horizon": "Cyclical 3-12m",
+      "created_at": "2026-08-27",
+      "updated_at": "2026-10-27",
+      "data_quality": "production",
+      "summary": "Canadian banks are priced for a hiking cycle. ZEB returned +2.60% in one week against +0.18% for the TSX, and +30.19% this year against +14.06%. Every Big Six bank rose in the latest week, led by National Bank and CIBC. The Bank of Canada is expected to raise its policy rate to 2.50% on October 28, which supports lending margins but raises credit costs while unemployment is elevated. September inflation was 3.1%. Continuing, with the decision and RBC's December 3 results as the tests.",
+      "body_text": "ZEB, which holds the six largest Canadian banks, closed at C$75.90 on October 27. It gained 2.60% over one week against 0.18% for the S&P/TSX Composite, and 30.19% this year against 14.06%. Its 0.88% one-month gain slightly lagged the index's 1.04%, but all six big banks rose between 1.57% and 3.12% that week.\n\nThe driver is monetary policy, not a new earnings release. Swap markets moved from about a 35% chance of an October hike to nearly 90% after Governor Tiff Macklem said on October 17 that the inflation outlook would be quite a bit higher than the July forecast. Statistics Canada reported September inflation at 3.1% on October 19, with gasoline up 27.8% from a year earlier, and the Bank of Canada decides on October 28.\n\nHigher rates help net interest margins, but they also raise borrower stress: unemployment is elevated and the housing market is weak. That is the competing explanation for why the rally may be borrowing future good news.\n\nSo what: the sector has price confirmation and breadth, but volume was only 0.35 times its 20-session average. The October 28 decision, the December 9 BoC meeting and RBC's December 3 results are the next evidence.",
+      "chain": [
+        {
+          "when": "Oct 17",
+          "label": "The Bank of Canada hinted at a faster inflation path",
+          "detail": "Governor Macklem said the outlook would be quite a bit higher than July's forecast."
+        },
+        {
+          "when": "Oct 19",
+          "label": "September inflation ran at 3.1 percent",
+          "detail": "Gasoline prices were 27.8% higher than a year earlier, while the core measures were near 2%."
+        },
+        {
+          "when": "Oct 21",
+          "label": "Markets moved to price a quarter-point hike",
+          "detail": "Swap-market odds rose to about 87%, and ZEB gained 1.69% that session."
+        },
+        {
+          "when": "Oct 27",
+          "label": "Banks kept rising before the decision",
+          "detail": "ZEB rose 0.85% and all six banks advanced; the Bank of Canada decides on October 28."
+        }
+      ],
+      "explainer": "Snapshot uses October 27 Toronto closes (16:00 ET, 20:00 UTC). Price Return uses Yahoo quote.close for ZEB.TO and the S&P/TSX Composite, split adjusted and excluding distributions; both legs use the same common sessions. 1W anchors October 20, 1M September 25, YTD December 31, 2025. ZEB is equal weighted, so it is not the cap-weighted bank exposure in the TSX. Volume confirmation requires at least 1.25 times the preceding 20 sessions excluding the latest day; ZEB was 0.35x, so it fails. A policy rate affects bank margins through asset repricing and funding costs, and credit losses through borrower stress; the link here is an inference from the rate-pricing data, not a reported margin change. Source for the rate decision: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/ .",
+      "performance": {
+        "proxy_ticker": "ZEB.TO",
+        "proxy_price": 75.9,
+        "currency": "CAD",
+        "return_type": "price",
+        "ret_1w": 2.5953,
+        "ret_1m": 0.8772,
+        "ret_ytd": 30.1887,
+        "benchmark_ticker": "^GSPTSE",
+        "benchmark_name": "S&P/TSX Composite",
+        "benchmark_ret_1w": 0.1758,
+        "benchmark_ret_1m": 1.0351,
+        "benchmark_ret_ytd": 14.0596,
+        "excess_1w": 2.4195,
+        "excess_1m": -0.1579,
+        "excess_ytd": 16.1291,
+        "as_of_utc": "2026-10-27T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPTSE?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "The S&P/TSX Composite is the domestic opportunity cost for a Canadian bank basket, so the spread isolates the sector call rather than the Canadian market direction."
+      },
+      "series": [
+        {
+          "date": "2026-07-31",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 99.882,
+          "benchmark": 101.6337
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 100.5113,
+          "benchmark": 102.6125
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 100.5244,
+          "benchmark": 102.5839
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 100.354,
+          "benchmark": 103.2791
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 100.2229,
+          "benchmark": 103.498
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 100.0131,
+          "benchmark": 103.5479
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 101.6125,
+          "benchmark": 104.0765
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 102.1369,
+          "benchmark": 104.3525
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 102.635,
+          "benchmark": 104.2701
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 102.4777,
+          "benchmark": 104.093
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 100.9439,
+          "benchmark": 103.2413
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 97.6141,
+          "benchmark": 103.3376
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 95.9098,
+          "benchmark": 103.2342
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 96.3424,
+          "benchmark": 103.9576
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 96.0016,
+          "benchmark": 104.2241
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 98.5842,
+          "benchmark": 104.9154
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 98.322,
+          "benchmark": 104.5069
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 97.5354,
+          "benchmark": 104.5654
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 97.4961,
+          "benchmark": 103.7694
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 96.6439,
+          "benchmark": 102.9648
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 95.9885,
+          "benchmark": 101.7021
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 97.8894,
+          "benchmark": 102.457
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 99.4494,
+          "benchmark": 103.9942
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 98.9381,
+          "benchmark": 103.6555
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 97.8631,
+          "benchmark": 102.5464
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 96.8275,
+          "benchmark": 101.9318
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 97.1421,
+          "benchmark": 100.7954
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 97.7714,
+          "benchmark": 101.3382
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 97.732,
+          "benchmark": 101.3524
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 97.4567,
+          "benchmark": 101.0106
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 97.4698,
+          "benchmark": 100.7528
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 98.2695,
+          "benchmark": 101.8401
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 98.689,
+          "benchmark": 101.6482
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 100.236,
+          "benchmark": 102.2236
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 99.3052,
+          "benchmark": 103.1497
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 97.1814,
+          "benchmark": 101.4912
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 97.365,
+          "benchmark": 101.3638
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 98.6366,
+          "benchmark": 101.6317
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 98.2564,
+          "benchmark": 100.7489
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 97.4567,
+          "benchmark": 100.6648
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 96.1196,
+          "benchmark": 100.0278
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 95.8311,
+          "benchmark": 99.7976
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 96.2507,
+          "benchmark": 100.7852
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 95.7525,
+          "benchmark": 100.8304
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 96.3031,
+          "benchmark": 101.2019
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 93.7205,
+          "benchmark": 99.4771
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 93.1306,
+          "benchmark": 99.7709
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 94.4809,
+          "benchmark": 101.2448
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 96.0933,
+          "benchmark": 102.1515
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 95.5427,
+          "benchmark": 101.0174
+        },
+        {
+          "date": "2026-10-15",
+          "proxy": 96.8013,
+          "benchmark": 102.5862
+        },
+        {
+          "date": "2026-10-16",
+          "proxy": 96.893,
+          "benchmark": 102.6983
+        },
+        {
+          "date": "2026-10-19",
+          "proxy": 96.1982,
+          "benchmark": 101.9943
+        },
+        {
+          "date": "2026-10-20",
+          "proxy": 96.9848,
+          "benchmark": 102.5035
+        },
+        {
+          "date": "2026-10-21",
+          "proxy": 98.6235,
+          "benchmark": 103.1196
+        },
+        {
+          "date": "2026-10-22",
+          "proxy": 98.3482,
+          "benchmark": 102.1217
+        },
+        {
+          "date": "2026-10-23",
+          "proxy": 97.6665,
+          "benchmark": 101.5957
+        },
+        {
+          "date": "2026-10-26",
+          "proxy": 98.6628,
+          "benchmark": 102.0385
+        },
+        {
+          "date": "2026-10-27",
+          "proxy": 99.5018,
+          "benchmark": 102.6838
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "ZEB.TO",
+          "name": "BMO Equal Weight Banks Index ETF",
+          "type": "ETF",
+          "region": "Canada",
+          "expense": "0.28% management expense ratio (issuer factsheet checked October 15)",
+          "liquidity_note": "Latest complete session volume 654,834 units, 0.35x its 20-session average; the large-bank basket is less liquid than the individual shares.",
+          "why_represents": "Equal-weight holdings in the six largest Canadian banks, the cleanest listed proxy for the sector call.",
+          "tracking_gap": "Equal weighting differs from the TSX financial weight; the ETF holds banks only and excludes insurers and asset managers. Issuer: https://www.bmogam.com/ca-en/products/etf/bmo-equal-weight-banks-index-etf-zeb/"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-19T12:30:00Z",
+          "title": "September CPI rose 3.1% year over year, led by a 27.8% increase in gasoline prices; core measures were near 2%.",
+          "source": "Statistics Canada, Consumer Price Index September 2026 (primary)",
+          "url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm",
+          "type": "macro",
+          "proxy_ret": -0.7171,
+          "benchmark_ret": -0.6855,
+          "return_window": "event-day (2026-10-16 to 2026-10-19 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-21T20:00:00Z",
+          "title": "Swap-market odds of a 25 basis point hike reached about 87% on October 21, up from about 34% on October 16; ZEB rose 1.69% that session.",
+          "source": "Canadian News Media, citing Bloomberg/CBC swap-market data (secondary)",
+          "url": "https://canadanewsmedia.ca/several-big-banks-now-see-bank-of-canada-hike-on-oct-28",
+          "type": "policy",
+          "proxy_ret": 1.6896,
+          "benchmark_ret": 0.601,
+          "return_window": "event-day (2026-10-20 to 2026-10-21 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-27T20:00:00Z",
+          "title": "ZEB closed at C$75.90, up 0.85% while the S&P/TSX Composite rose 0.63%, on the session before the BoC decision.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": 0.8504,
+          "benchmark_ret": 0.6323,
+          "return_window": "event-day (2026-10-26 to 2026-10-27 completed common-session closes)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "Bank of Canada policy decision and Monetary Policy Report",
+          "due_date": "2026-10-28T13:45:00Z",
+          "why_matters": "The decision sets the policy rate and the inflation path for bank margins and credit; schedule: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+          "if_bull": "A hike with contained inflation forecasts supports margins without a credit scare",
+          "if_bear": "A hold, or a hike paired with weak growth forecasts, removes the margin tailwind"
+        },
+        {
+          "event_name": "RBC fiscal fourth-quarter results",
+          "due_date": "2026-12-03T13:00:00Z",
+          "why_matters": "First Big Six report of the new quarter; issuer calendar: https://www.rbc.com/investor-relations/financial-information.html",
+          "if_bull": "Stable provisions and margin expansion confirm the earnings case",
+          "if_bear": "Rising provisions or weak loan growth would contradict the rally"
+        },
+        {
+          "event_name": "Bank of Canada December decision",
+          "due_date": "2026-12-09T14:45:00Z",
+          "why_matters": "Follow-up decision after the October move; schedule: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+          "if_bull": "A second hike with stable credit supports the margin story",
+          "if_bear": "A pause signals the inflation shock is fading and removes the rate tailwind"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "gold-war-premium-unwind",
+      "week": "2026-W44",
+      "title": "Gold: The War Premium Drains Out",
+      "status": "New",
+      "status_note": "New: gold is 27% below its January peak and GLD lost 5.4% in a month as real yields stayed high.",
+      "conviction": "Med",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-10-27",
+      "updated_at": "2026-10-27",
+      "data_quality": "production",
+      "summary": "Gold's safe-haven premium is unwinding. GLD returned -5.37% over one month against -0.27% for the S&P 500, and -6.06% this year. Gold futures settled at $4,060, about 27% below January's $5,595 peak; silver fell 15.8% and miners 10.4% over the month. The driver is opportunity cost: the Fed hiked in September, December hike odds are about 83%, and real yields remain high even after the 10-year yield slipped below 5%. A one-day bounce is the counterevidence.",
+      "body_text": "GLD closed at $372.28 on October 27. It lost 5.37% over one month while the S&P 500 lost 0.27%, and it is down 6.06% this year. December gold futures settled at $4,060, 27% below January's $5,595 peak. Silver fell 15.80% over the month and the miners ETF GDX fell 10.42%, so the move is across the complex rather than one contract.\n\nThe first leg was September 28: gold futures settled 3.52% lower as the 10-year yield traded above 5.2% and October hike odds rose to about 70%, less than two weeks after the Fed's September 16 hike to 3.75-4.00%. The second leg was October 22, when GLD fell 2.63% and silver 4.63% while crude stayed near $100 and kept the inflation and hike path alive.\n\nThe competing explanation is that this is only a correction: the metal had fallen quickly, and it rose 1.21% on October 27 as oil softened before the Fed.\n\nSo what: the marginal buyer now earns a positive real yield in Treasuries. Watch the October 28 FOMC, October 29 PCE and December 9 decision; a dovish surprise or a Hormuz deal that lowers oil would help gold, while a December hike would not.",
+      "chain": [
+        {
+          "when": "Jan 2026",
+          "label": "Gold peaked at $5,595 an ounce",
+          "detail": "The metal has since fallen about 27% and is down 6.06% this year."
+        },
+        {
+          "when": "Sep 16-28",
+          "label": "A Fed hike and higher yields broke the trade",
+          "detail": "The Fed raised rates on September 16; on September 28 gold futures fell 3.52% as the 10-year topped 5.2%."
+        },
+        {
+          "when": "Oct 22",
+          "label": "Metals fell again while oil kept inflation alive",
+          "detail": "GLD lost 2.63% and silver 4.63%, with Brent above $110 and December hike odds about 83%."
+        },
+        {
+          "when": "Oct 27",
+          "label": "Gold sits near $4,060, far below its peak",
+          "detail": "GLD rose 1.21% on softer oil; the metal is still down 6.06% this year."
+        }
+      ],
+      "explainer": "Snapshot uses October 27 US closes for GLD (20:00 UTC) and the Comex settlement for December gold futures (13:30 ET, 17:30 UTC); the two are not simultaneous. Price Return uses Yahoo quote.close, split adjusted and excluding distributions; GLD carries a 0.40% expense ratio, so it lags spot gold by that drag plus tracking error. 1W anchors October 20, 1M September 25, YTD December 31, 2025. Real yield means the nominal Treasury yield minus expected inflation; a higher real yield raises the opportunity cost of a metal that pays no coupon. Volume confirmation needs at least 1.25 times the prior 20 sessions excluding the latest day; GLD was 0.67x, so it fails. The January peak and the September 28 settlement are secondary reports of Comex and spot data, labelled as such; the daily closes in the table come from Yahoo. Front-month futures series: https://query1.finance.yahoo.com/v8/finance/chart/GC=F .",
+      "performance": {
+        "proxy_ticker": "GLD",
+        "proxy_price": 372.28,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": -1.422,
+        "ret_1m": -5.371,
+        "ret_ytd": -6.0634,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 0.1301,
+        "benchmark_ret_1m": -0.2687,
+        "benchmark_ret_ytd": 12.8128,
+        "excess_1w": -1.552,
+        "excess_1m": -5.1022,
+        "excess_ytd": -18.8762,
+        "as_of_utc": "2026-10-27T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "The S&P 500 is the opportunity cost of a non-yielding asset for a US-dollar investor; the comparison is cross-asset, not a gold-specific benchmark."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 100.6591,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 104.8237,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 104.8317,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 107.1992,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 108.2941,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 107.869,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 108.9344,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 107.331,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 108.0089,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 109.0877,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 107.2207,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 111.3341,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 111.7161,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 113.8952,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 114.7911,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 115.1624,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 113.3464,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 113.6908,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 110.0024,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 109.876,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 106.7364,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 108.3587,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 110.3602,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 109.4321,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 107.5354,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 108.512,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 106.6315,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 107.2799,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 105.6845,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 106.037,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 105.3886,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 107.1696,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 107.9255,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 107.175,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 107.6296,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 105.6953,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 105.3752,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 105.8379,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 101.668,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 103.0077,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 102.4562,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 102.9728,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 102.2679,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 102.1092,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 102.8409,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 101.1218,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 101.859,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 103.4624,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 102.8086,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 102.6795,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 101.1514,
+          "benchmark": 101.5583
+        },
+        {
+          "date": "2026-10-15",
+          "proxy": 102.9593,
+          "benchmark": 101.8888
+        },
+        {
+          "date": "2026-10-16",
+          "proxy": 102.771,
+          "benchmark": 100.7755
+        },
+        {
+          "date": "2026-10-19",
+          "proxy": 102.1468,
+          "benchmark": 101.1872
+        },
+        {
+          "date": "2026-10-20",
+          "proxy": 101.598,
+          "benchmark": 101.4745
+        },
+        {
+          "date": "2026-10-21",
+          "proxy": 101.9478,
+          "benchmark": 102.0613
+        },
+        {
+          "date": "2026-10-22",
+          "proxy": 99.2709,
+          "benchmark": 100.828
+        },
+        {
+          "date": "2026-10-23",
+          "proxy": 98.628,
+          "benchmark": 100.305
+        },
+        {
+          "date": "2026-10-26",
+          "proxy": 98.9535,
+          "benchmark": 101.0035
+        },
+        {
+          "date": "2026-10-27",
+          "proxy": 100.1533,
+          "benchmark": 101.6065
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "GLD",
+          "name": "SPDR Gold Shares",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.40% gross expense ratio (issuer page checked October 27)",
+          "liquidity_note": "Latest complete session volume 5.3 million shares, 0.67x its 20-session average; the largest physically backed gold ETF.",
+          "why_represents": "Holds allocated gold bullion, so the price tracks the metal rather than miners' operating leverage.",
+          "tracking_gap": "Fee drag and custody costs make it lag spot over time; it is a US-dollar product, so currency moves affect non-US holders. Issuer: https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-09-28T17:30:00Z",
+          "title": "December gold futures settled 3.52% lower at $4,135.40 as the 10-year yield traded above 5.2% and October hike odds rose to about 70%.",
+          "source": "Yahoo Finance report of Comex settlement data (secondary)",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-silver-crash-10-yield-050700476.html",
+          "type": "macro",
+          "proxy_ret": -3.9399,
+          "benchmark_ret": -0.7712,
+          "return_window": "event-day (2026-09-25 to 2026-09-28 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-22T20:00:00Z",
+          "title": "GLD closed at $381.26, down 2.63% while the S&P 500 fell 1.21%; silver fell 4.63% the same session.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -2.6257,
+          "benchmark_ret": -1.2084,
+          "return_window": "event-day (2026-10-21 to 2026-10-22 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-23T17:30:00Z",
+          "title": "Spot gold finished October 23 at about $3,995.80 an ounce, down roughly 4% for the week and at its lowest since mid-July.",
+          "source": "Yahoo Finance commodity report",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-prices-break-4-000-021700377.html",
+          "type": "macro",
+          "proxy_ret": -0.6477,
+          "benchmark_ret": -0.5187,
+          "return_window": "event-day (2026-10-22 to 2026-10-23 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-27T17:30:00Z",
+          "title": "Gold rose about 1% as lower oil prices eased inflation concerns before the Fed decision; GLD gained 1.21%.",
+          "source": "CNBC commodity report",
+          "url": "https://www.cnbc.com/2026/10/27/gold-eases-on-firmer-dollar-ahead-of-fed-decision.html",
+          "type": "macro",
+          "proxy_ret": 1.2125,
+          "benchmark_ret": 0.597,
+          "return_window": "event-day (2026-10-26 to 2026-10-27 completed common-session closes)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC decision",
+          "due_date": "2026-10-28T18:00:00Z",
+          "why_matters": "The policy path sets nominal and real yields, the main opportunity cost for gold; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "A hold with dovish guidance lowers real yields and supports a relief rally",
+          "if_bear": "A hawkish hold or a December hike signal keeps real yields high and pressures gold"
+        },
+        {
+          "event_name": "PCE inflation, September",
+          "due_date": "2026-10-29T12:30:00Z",
+          "why_matters": "The Fed's preferred inflation measure; schedule: https://www.bea.gov/news/schedule",
+          "if_bull": "Softer core PCE lowers the hike path and helps gold",
+          "if_bear": "Sticky core PCE keeps the hiking bias and the real-yield pressure"
+        },
+        {
+          "event_name": "FOMC decision, December",
+          "due_date": "2026-12-09T19:00:00Z",
+          "why_matters": "Markets price about an 83% chance of a December hike (CME FedWatch via CNBC, October 27); calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "No hike or a dovish dot plot revives the metal",
+          "if_bear": "A second hike confirms the higher-for-longer regime"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "oil-war-premium",
+      "week": "2026-W44",
+      "title": "Oil Above $100: The War Supply Premium",
+      "status": "Continuing",
+      "status_note": "Continuing: XLE gained 9.9% in a month and WTI held near $101; peace-talk headlines cap the premium.",
+      "conviction": "Med",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-01",
+      "updated_at": "2026-10-27",
+      "data_quality": "production",
+      "summary": "Oil's war premium is still being paid. West Texas Intermediate settled at $101.38 on October 27 and Brent has traded above $110, while XLE returned +9.95% over one month against -0.27% for the S&P 500. Exxon, Chevron and ConocoPhillips each rose more than 10% over the month. The October IEA report still shows supply below demand and inventories far under pre-war levels, but it also cuts its demand forecast. Peace talks knocked oil lower on October 27. Continuing, with volume confirmation absent.",
+      "body_text": "West Texas Intermediate settled at $101.38 on October 27, and XLE closed at $68.21. The energy fund gained 9.95% over one month against a 0.27% decline for the S&P 500, and it is up 52.56% this year. Exxon Mobil, Chevron and ConocoPhillips gained 12.03%, 11.63% and 16.23% over the same month; this is broad participation, not one name.\n\nBrent settled at $109.86 on October 16 after tanker attacks off Saudi Arabia and Russian refinery strikes, then jumped 4% to $113.17 on October 22. The IEA's October report puts 2026 supply at 100.7 million barrels a day against 102.4 million of demand and says observed inventories remain roughly 500 million barrels below pre-conflict levels.\n\nThe competing explanation is demand destruction, which the same IEA report shows, and Goldman Sachs still forecasts Brent near $90 for the fourth quarter. On October 27, talk of Middle East peace talks pushed oil futures down more than 1% and XLE fell 2.05%.\n\nSo what: the premium is real but headline-driven. Volume was 0.99 times the prior 20 sessions, so breadth alone does not support High conviction. The next tests are the October 28 EIA inventory report and whether talks produce actual barrels.",
+      "chain": [
+        {
+          "when": "Oct 16",
+          "label": "Tanker attacks off Saudi Arabia and refinery strikes lifted crude",
+          "detail": "Brent settled at $109.86 and WTI at $101.41 after projectiles hit tankers near the Saudi coast and Ukrainian strikes hit Russian refining."
+        },
+        {
+          "when": "Oct 22",
+          "label": "A report of possible new strikes on Iran lifted crude",
+          "detail": "Brent rose 4% to $113.17 after a New York Times report on possible US and Israeli strikes on Iran."
+        },
+        {
+          "when": "Oct 27",
+          "label": "Peace-talk headlines cut the premium",
+          "detail": "Oil fell more than 1% and XLE lost 2.05% while the S&P 500 rose 0.60%."
+        }
+      ],
+      "explainer": "Snapshot uses October 27 completed sessions: US and Canadian equities at 16:00 ET (20:00 UTC); WTI is the Yahoo front-month daily settlement, not a simultaneous equity quote. Price Return uses Yahoo quote.close, split adjusted and excluding cash distributions. 1W anchors October 20, 1M September 25, YTD December 31, 2025; both legs use the same common sessions. XLE holds integrated majors, refiners and service companies, so it is not a crude contract and can lag or lead spot prices. Volume confirmation requires the latest volume to be at least 1.25 times the preceding 20 sessions excluding the latest day; XLE was 0.99x, so it fails. The premium is an inference from dated supply events plus prices, not a measured decomposition of barrels lost. IEA October report: https://www.iea.org/reports/oil-market-report-october-2026 (the IEA page blocks automated fetch; the same figures are quoted at https://energynewsbeat.co/crude-oil/oil-over-100-as-markets-struggle-to-balance-amid-tanker-attacks-and-shipping-disruptions). Goldman's Brent view is a secondary report: https://discoveryalert.com/news/oil-prices-houthi-strikes-saudi-brent-october-2026 .",
+      "performance": {
+        "proxy_ticker": "XLE",
+        "proxy_price": 68.21,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 0.3531,
+        "ret_1m": 9.9452,
+        "ret_ytd": 52.5609,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 0.1301,
+        "benchmark_ret_1m": -0.2687,
+        "benchmark_ret_ytd": 12.8128,
+        "excess_1w": 0.223,
+        "excess_1m": 10.2139,
+        "excess_ytd": 39.7482,
+        "as_of_utc": "2026-10-27T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "Broad US equity beta is the opportunity cost of holding an energy sector fund; the spread measures the sector rotation, not the change in the crude price itself."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 99.5407,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 97.4826,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 98.9284,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 97.8057,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 102.3643,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 103.6401,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 103.8102,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 103.8612,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 105.307,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 106.4467,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 108.3177,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 108.1476,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 108.4368,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 108.2497,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 107.3482,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 105.5622,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 106.1915,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 105.9534,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 106.6168,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 108.794,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 110.1718,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 110.7331,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 109.9167,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 108.9641,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 110.1718,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 111.0903,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 110.444,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 110.8012,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 109.7636,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 112.1449,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 108.9131,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 109.6785,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 109.3893,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 106.2426,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 105.0859,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 106.0895,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 106.4807,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 105.5282,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 105.6302,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 104.6777,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 104.6096,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 106.6508,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 106.8549,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 107.9265,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 108.4368,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 107.7734,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 110.9712,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 110.6991,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 112.281,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 114.3051,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 115.0366,
+          "benchmark": 101.5583
+        },
+        {
+          "date": "2026-10-15",
+          "proxy": 113.2165,
+          "benchmark": 101.8888
+        },
+        {
+          "date": "2026-10-16",
+          "proxy": 116.0742,
+          "benchmark": 100.7755
+        },
+        {
+          "date": "2026-10-19",
+          "proxy": 115.3257,
+          "benchmark": 101.1872
+        },
+        {
+          "date": "2026-10-20",
+          "proxy": 115.6149,
+          "benchmark": 101.4745
+        },
+        {
+          "date": "2026-10-21",
+          "proxy": 115.9381,
+          "benchmark": 102.0613
+        },
+        {
+          "date": "2026-10-22",
+          "proxy": 114.9345,
+          "benchmark": 100.828
+        },
+        {
+          "date": "2026-10-23",
+          "proxy": 117.9282,
+          "benchmark": 100.305
+        },
+        {
+          "date": "2026-10-26",
+          "proxy": 118.4555,
+          "benchmark": 101.0035
+        },
+        {
+          "date": "2026-10-27",
+          "proxy": 116.0231,
+          "benchmark": 101.6065
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "XLE",
+          "name": "Energy Select Sector SPDR Fund",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.08% gross expense ratio (issuer page checked October 27)",
+          "liquidity_note": "Latest complete session volume 31.6 million shares, 0.99x its 20-session average; a heavily traded sector fund.",
+          "why_represents": "Holds large US integrated oil companies, refiners and energy service firms, the equity exposure to the supply premium.",
+          "tracking_gap": "Not crude: refiners can benefit from product cracks while producers need the crude price; weights drift with market cap. Issuer: https://www.ssga.com/us/en/individual/etfs/state-street-energy-select-sector-spdr-etf-xle"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-16T18:30:00Z",
+          "title": "Brent settled at $109.86 and WTI at $101.41 after projectiles hit tankers near the Saudi coast and Ukrainian strikes hit Russian refining.",
+          "source": "Energy News Beat weekly oil wrap (secondary, cites IEA and settlement data)",
+          "url": "https://energynewsbeat.co/crude-oil/oil-over-100-as-markets-struggle-to-balance-amid-tanker-attacks-and-shipping-disruptions",
+          "type": "geopolitics",
+          "proxy_ret": 2.524,
+          "benchmark_ret": -1.0927,
+          "return_window": "event-day (2026-10-15 to 2026-10-16 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-22T18:30:00Z",
+          "title": "Brent jumped 4% to $113.17 on a New York Times report that the US and Israel may resume strikes on Iran; WTI settled at $99.47.",
+          "source": "CNBC bond-market report (oil settlement levels cited)",
+          "url": "https://www.cnbc.com/2026/10/22/treasurys-bonds-ai-yields.html",
+          "type": "geopolitics",
+          "proxy_ret": -0.8656,
+          "benchmark_ret": -1.2084,
+          "return_window": "event-day (2026-10-21 to 2026-10-22 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-27T20:00:00Z",
+          "title": "Oil fell more than 1% as attention turned to Middle East peace talks; XLE closed 2.05% lower while the S&P 500 rose.",
+          "source": "CNBC commodity report",
+          "url": "https://www.cnbc.com/2026/10/27/gold-eases-on-firmer-dollar-ahead-of-fed-decision.html",
+          "type": "geopolitics",
+          "proxy_ret": -2.0534,
+          "benchmark_ret": 0.597,
+          "return_window": "event-day (2026-10-26 to 2026-10-27 completed common-session closes)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "EIA Weekly Petroleum Status Report",
+          "due_date": "2026-10-28T14:30:00Z",
+          "why_matters": "Official US crude and product inventories; schedule: https://www.eia.gov/petroleum/supply/weekly/schedule.php",
+          "if_bull": "Another large crude draw with product inventories tight keeps the supply premium intact",
+          "if_bear": "Repeated builds and recovering Gulf flows would show the premium is fading"
+        },
+        {
+          "event_name": "IEA Oil Market Report, November edition",
+          "due_date": "2026-11-13T09:00:00Z",
+          "why_matters": "Updated supply, demand and inventory estimates; schedule: https://www.iea.org/data-and-statistics/data-product/oil-market-report-omr",
+          "if_bull": "Further supply losses or inventory draws support the premium",
+          "if_bear": "Higher demand cuts and recovering supply would undermine it"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": true,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 4
+      }
+    },
+    {
+      "schema_v": 1,
+      "id": "us-rates-repricing",
+      "week": "2026-W44",
+      "title": "Long Yields: The Inflation Trade Stalls",
+      "status": "Fading",
+      "status_note": "Still Fading: the 10-year fell to 4.99% and TLT gained 2.9% in a month despite hot inflation.",
+      "conviction": "Low",
+      "horizon": "Tactical 2-8w",
+      "created_at": "2026-09-30",
+      "updated_at": "2026-10-27",
+      "data_quality": "production",
+      "summary": "The higher-yield trade has lost its price confirmation. TLT returned +2.91% over one month against -0.27% for the S&P 500, and the 10-year yield is 4.99% after peaking at 5.31% on October 5. On October 22 the yield fell 17 basis points in one session, the largest daily drop since March 2023, as investors bought Treasuries instead of AI shares. Oil above $100 and 3.7% inflation still argue the other way. Fading, with the October 28 FOMC and December hike odds as the test.",
+      "body_text": "TLT closed at $81.63 on October 27, up 2.91% over one month while the S&P 500 fell 0.27%. The 10-year yield closed at 4.993%, down from 5.31% on October 5, and the two-year fell to about 4.65% on October 22. That is the opposite of the higher-yield thesis built after the September 16 hike.\n\nThe trigger was a haven bid, not softer inflation. On October 22 the 10-year yield fell more than 17 basis points, its biggest one-day decline since March 2023, as AI-related shares sold off and investors moved into government debt. CoreWeave's credit stress and Meta's negative free cash flow made Treasuries look like the safe asset again, even with Brent above $110.\n\nThe competing explanation is that the inflation problem has not gone away. Headline CPI was 3.7% in September and oil is above $100; markets still price about an 83% chance of a December hike, which would normally push long yields back up.\n\nSo what: price confirmation is absent, so the status stays Fading and conviction is Low. A close back above 5.31% would revive the thesis; a break below 4.9% with a December hike still priced would weaken it further.",
+      "chain": [
+        {
+          "when": "Sep 16",
+          "label": "The Fed began hiking again",
+          "detail": "The target range moved to 3.75-4.00%, the first increase since 2023."
+        },
+        {
+          "when": "Oct 5",
+          "label": "The 10-year yield peaked above 5.3 percent",
+          "detail": "TLT closed at $77.11 and long yields were at their highest in more than two decades."
+        },
+        {
+          "when": "Oct 22",
+          "label": "Haven buying drove the biggest yield drop since 2023",
+          "detail": "The 10-year fell about 19 basis points to 4.953% on the ^TNX series as AI shares sold off."
+        },
+        {
+          "when": "Oct 27",
+          "label": "The 10-year is back below 5 percent",
+          "detail": "TLT closed at $81.63; the higher-yield thesis still lacks price confirmation."
+        }
+      ],
+      "explainer": "Snapshot uses October 27 US closes (20:00 UTC). Price Return uses Yahoo quote.close, split adjusted and excluding distributions; TLT has a 0.15% expense ratio and roughly 17 years of duration, so a 1% yield move changes its price by about 17%. 1W anchors October 20, 1M September 25, YTD December 31, 2025, with the proxy and benchmark on the same sessions. The 10-year figure is the Yahoo ^TNX yield index, not a bond return; a lower TLT price means a higher yield, and the table is not sign-inverted. Volume confirmation needs at least 1.25 times the prior 20 sessions excluding the latest day; TLT was 0.42x, so it fails. No decomposition into term premium versus policy expectations is claimed. Fed calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm . CNBC reported a 17bp drop to 4.972% on its index for October 22; the ^TNX series closed at 4.953%, a 19.3bp drop. September CPI (3.7%): https://www.bls.gov/news.release/archives/cpi_10142026.htm (the BLS page blocks scripted access; the figure matches the October 14 release carried in the prior archive). December odds (83%): https://www.cnbc.com/2026/10/27/gold-eases-on-firmer-dollar-ahead-of-fed-decision.html .",
+      "performance": {
+        "proxy_ticker": "TLT",
+        "proxy_price": 81.63,
+        "currency": "USD",
+        "return_type": "price",
+        "ret_1w": 1.872,
+        "ret_1m": 2.9123,
+        "ret_ytd": -6.3447,
+        "benchmark_ticker": "^GSPC",
+        "benchmark_name": "S&P 500",
+        "benchmark_ret_1w": 0.1301,
+        "benchmark_ret_1m": -0.2687,
+        "benchmark_ret_ytd": 12.8128,
+        "excess_1w": 1.7419,
+        "excess_1m": 3.181,
+        "excess_ytd": -19.1575,
+        "as_of_utc": "2026-10-27T20:00:00Z",
+        "source": "Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+        "benchmark_rationale": "The S&P 500 is cross-asset opportunity-cost context only, not an interest-rate benchmark; the thesis is about long yields, and TLT returns are shown without sign inversion."
+      },
+      "series": [
+        {
+          "date": "2026-08-03",
+          "proxy": 100,
+          "benchmark": 100
+        },
+        {
+          "date": "2026-08-04",
+          "proxy": 100.7665,
+          "benchmark": 101.7896
+        },
+        {
+          "date": "2026-08-05",
+          "proxy": 100.9855,
+          "benchmark": 101.619
+        },
+        {
+          "date": "2026-08-06",
+          "proxy": 100.4015,
+          "benchmark": 101.4402
+        },
+        {
+          "date": "2026-08-07",
+          "proxy": 100.6935,
+          "benchmark": 102.0675
+        },
+        {
+          "date": "2026-08-10",
+          "proxy": 99.8418,
+          "benchmark": 102.0079
+        },
+        {
+          "date": "2026-08-11",
+          "proxy": 100,
+          "benchmark": 101.6802
+        },
+        {
+          "date": "2026-08-12",
+          "proxy": 99.9027,
+          "benchmark": 101.9472
+        },
+        {
+          "date": "2026-08-13",
+          "proxy": 100.4867,
+          "benchmark": 102.6115
+        },
+        {
+          "date": "2026-08-14",
+          "proxy": 99.8175,
+          "benchmark": 102.4375
+        },
+        {
+          "date": "2026-08-17",
+          "proxy": 98.978,
+          "benchmark": 101.902
+        },
+        {
+          "date": "2026-08-18",
+          "proxy": 99.3552,
+          "benchmark": 101.2007
+        },
+        {
+          "date": "2026-08-19",
+          "proxy": 101.0098,
+          "benchmark": 101.4141
+        },
+        {
+          "date": "2026-08-20",
+          "proxy": 100.1825,
+          "benchmark": 100.535
+        },
+        {
+          "date": "2026-08-21",
+          "proxy": 99.8297,
+          "benchmark": 100.9719
+        },
+        {
+          "date": "2026-08-24",
+          "proxy": 100.4502,
+          "benchmark": 100.6889
+        },
+        {
+          "date": "2026-08-25",
+          "proxy": 101.5574,
+          "benchmark": 101.0102
+        },
+        {
+          "date": "2026-08-26",
+          "proxy": 101.3505,
+          "benchmark": 100.9894
+        },
+        {
+          "date": "2026-08-27",
+          "proxy": 101.1437,
+          "benchmark": 101.7169
+        },
+        {
+          "date": "2026-08-28",
+          "proxy": 100.8395,
+          "benchmark": 101.4638
+        },
+        {
+          "date": "2026-08-31",
+          "proxy": 100.4015,
+          "benchmark": 101.1268
+        },
+        {
+          "date": "2026-09-01",
+          "proxy": 99.6107,
+          "benchmark": 100.4075
+        },
+        {
+          "date": "2026-09-02",
+          "proxy": 99.708,
+          "benchmark": 100.8697
+        },
+        {
+          "date": "2026-09-03",
+          "proxy": 99.854,
+          "benchmark": 101.9368
+        },
+        {
+          "date": "2026-09-04",
+          "proxy": 100.0243,
+          "benchmark": 101.5538
+        },
+        {
+          "date": "2026-09-08",
+          "proxy": 100.0122,
+          "benchmark": 100.9607
+        },
+        {
+          "date": "2026-09-09",
+          "proxy": 99.4403,
+          "benchmark": 100.4718
+        },
+        {
+          "date": "2026-09-10",
+          "proxy": 98.2845,
+          "benchmark": 99.8842
+        },
+        {
+          "date": "2026-09-11",
+          "proxy": 98.394,
+          "benchmark": 100.7431
+        },
+        {
+          "date": "2026-09-14",
+          "proxy": 98.467,
+          "benchmark": 100.2563
+        },
+        {
+          "date": "2026-09-15",
+          "proxy": 98.1993,
+          "benchmark": 99.8057
+        },
+        {
+          "date": "2026-09-16",
+          "proxy": 98.4061,
+          "benchmark": 99.3594
+        },
+        {
+          "date": "2026-09-17",
+          "proxy": 99.5012,
+          "benchmark": 100.4902
+        },
+        {
+          "date": "2026-09-18",
+          "proxy": 98.8563,
+          "benchmark": 100.6579
+        },
+        {
+          "date": "2026-09-21",
+          "proxy": 99.5255,
+          "benchmark": 102.1604
+        },
+        {
+          "date": "2026-09-22",
+          "proxy": 99.4647,
+          "benchmark": 102.1596
+        },
+        {
+          "date": "2026-09-23",
+          "proxy": 97.8951,
+          "benchmark": 101.3885
+        },
+        {
+          "date": "2026-09-24",
+          "proxy": 96.6298,
+          "benchmark": 101.3635
+        },
+        {
+          "date": "2026-09-25",
+          "proxy": 96.5081,
+          "benchmark": 101.8803
+        },
+        {
+          "date": "2026-09-28",
+          "proxy": 95.6564,
+          "benchmark": 101.0945
+        },
+        {
+          "date": "2026-09-29",
+          "proxy": 95.1819,
+          "benchmark": 100.9255
+        },
+        {
+          "date": "2026-09-30",
+          "proxy": 94.6344,
+          "benchmark": 100.6715
+        },
+        {
+          "date": "2026-10-01",
+          "proxy": 94.5492,
+          "benchmark": 100.8677
+        },
+        {
+          "date": "2026-10-02",
+          "proxy": 94.2694,
+          "benchmark": 101.6081
+        },
+        {
+          "date": "2026-10-05",
+          "proxy": 93.8192,
+          "benchmark": 102.2821
+        },
+        {
+          "date": "2026-10-06",
+          "proxy": 94.026,
+          "benchmark": 102.8739
+        },
+        {
+          "date": "2026-10-07",
+          "proxy": 93.8679,
+          "benchmark": 102.6481
+        },
+        {
+          "date": "2026-10-08",
+          "proxy": 94.7439,
+          "benchmark": 102.1691
+        },
+        {
+          "date": "2026-10-09",
+          "proxy": 94.8777,
+          "benchmark": 102.7767
+        },
+        {
+          "date": "2026-10-12",
+          "proxy": 94.9629,
+          "benchmark": 102.7201
+        },
+        {
+          "date": "2026-10-13",
+          "proxy": 95.3522,
+          "benchmark": 102.6965
+        },
+        {
+          "date": "2026-10-14",
+          "proxy": 95.9849,
+          "benchmark": 101.5583
+        },
+        {
+          "date": "2026-10-15",
+          "proxy": 97.2989,
+          "benchmark": 101.8888
+        },
+        {
+          "date": "2026-10-16",
+          "proxy": 97.3963,
+          "benchmark": 100.7755
+        },
+        {
+          "date": "2026-10-19",
+          "proxy": 96.6784,
+          "benchmark": 101.1872
+        },
+        {
+          "date": "2026-10-20",
+          "proxy": 97.4936,
+          "benchmark": 101.4745
+        },
+        {
+          "date": "2026-10-21",
+          "proxy": 97.6274,
+          "benchmark": 102.0613
+        },
+        {
+          "date": "2026-10-22",
+          "proxy": 99.4525,
+          "benchmark": 100.828
+        },
+        {
+          "date": "2026-10-23",
+          "proxy": 98.9658,
+          "benchmark": 100.305
+        },
+        {
+          "date": "2026-10-26",
+          "proxy": 99.3795,
+          "benchmark": 101.0035
+        },
+        {
+          "date": "2026-10-27",
+          "proxy": 99.3186,
+          "benchmark": 101.6065
+        }
+      ],
+      "proxies": [
+        {
+          "ticker": "TLT",
+          "name": "iShares 20+ Year Treasury Bond ETF",
+          "type": "ETF",
+          "region": "US",
+          "expense": "0.15% expense ratio (issuer page checked October 27)",
+          "liquidity_note": "Latest complete session volume 19.5 million shares, 0.42x its 20-session average; one of the most liquid long-duration Treasury ETFs.",
+          "why_represents": "Holds long-dated US Treasuries, the instrument whose price falls when long yields rise.",
+          "tracking_gap": "Duration is roughly 17 years, so it is not a 10-year proxy; it excludes shorter maturities and is exposed to curve shape, not just the 10-year point. Issuer: https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf"
+        }
+      ],
+      "events": [
+        {
+          "event_time_utc": "2026-10-22T20:00:00Z",
+          "title": "The 10-year yield fell more than 17 basis points to 4.972%, the biggest one-day drop since March 2023, as investors bought havens during the AI-led selloff.",
+          "source": "CNBC bond-market report",
+          "url": "https://www.cnbc.com/2026/10/22/treasurys-bonds-ai-yields.html",
+          "type": "macro",
+          "proxy_ret": 1.8694,
+          "benchmark_ret": -1.2084,
+          "return_window": "event-day (2026-10-21 to 2026-10-22 completed common-session closes)"
+        },
+        {
+          "event_time_utc": "2026-10-27T20:00:00Z",
+          "title": "TLT closed at $81.63, down 0.06% while the S&P 500 rose 0.60%, with the 10-year yield at 4.993% before the FOMC.",
+          "source": "Yahoo Finance closing observation (proxy and benchmark histories captured)",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits",
+          "type": "macro",
+          "proxy_ret": -0.0612,
+          "benchmark_ret": 0.597,
+          "return_window": "event-day (2026-10-26 to 2026-10-27 completed common-session closes)"
+        }
+      ],
+      "depends_on": [
+        {
+          "event_name": "FOMC decision",
+          "due_date": "2026-10-28T18:00:00Z",
+          "why_matters": "The statement and guidance set the near-term path for long yields; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "A hawkish hold with a December hike signal pushes long yields back up and revives the thesis",
+          "if_bear": "A dovish hold keeps yields down and confirms the fade"
+        },
+        {
+          "event_name": "PCE inflation, September",
+          "due_date": "2026-10-29T12:30:00Z",
+          "why_matters": "The Fed's preferred inflation measure; schedule: https://www.bea.gov/news/schedule",
+          "if_bull": "Sticky core PCE raises the hike path and long yields",
+          "if_bear": "Softer PCE supports the haven bid and lower yields"
+        },
+        {
+          "event_name": "FOMC decision, December",
+          "due_date": "2026-12-09T19:00:00Z",
+          "why_matters": "About 83% of a hike is priced; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+          "if_bull": "A hike or hawkish dots restore the higher-yield direction",
+          "if_bear": "No hike and lower dots leave the thesis without a driver"
+        }
+      ],
+      "theme_vs_noise": {
+        "persistence": true,
+        "breadth": false,
+        "volume_confirm": false,
+        "falsifiable_catalyst": true,
+        "repricing_logic": true,
+        "score": 3
+      }
+    }
+  ],
+  "market_snapshot": {
+    "week": "2026-W44",
+    "as_of_utc": "2026-10-27T20:00:00Z",
+    "data_quality": "production",
+    "news_as_of_utc": "2026-10-28T02:30:00Z",
+    "observation_note": "Equities and ETFs: October 27 completed 16:00 ET closes. Other instruments: Yahoo daily bars with their own fixing or settlement times (WTI front-month, gold futures, FX), not simultaneous live quotes. October 27 news is checked against the same completed session. The WTI and gold futures bars carry unusually low volume (5.6% and 8.1% of their two-year medians), so their settlement levels are treated as provisional and cross-checked against same-day cash and ETF moves; no intraday bar is used.",
+    "regime": {
+      "stance": "Oil-led inflation, AI credit stress, a Treasury haven bid",
+      "oneliner": "Crude above $100 keeps the Fed's hiking bias alive, while AI debt worries push money into Treasuries and out of gold and expensive growth.",
+      "keywords": [
+        "WTI $101.38",
+        "10Y 4.99%",
+        "XLE 1M +9.9%"
+      ]
+    },
+    "benchmarks": [
+      {
+        "ticker": "^GSPC",
+        "name": "SPX",
+        "value": 7722.6001,
+        "chg_1d": 0.597,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^NDX",
+        "name": "NDX",
+        "value": 29651.4414,
+        "chg_1d": 1.2914,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^GSPTSE",
+        "name": "TSX",
+        "value": 36171.4883,
+        "chg_1d": 0.6323,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Equity index close, 16:00 ET"
+      },
+      {
+        "ticker": "^TNX",
+        "name": "US 10Y",
+        "value": 4.993,
+        "chg_1d": 0.7,
+        "chg_unit": "bp",
+        "observation_date": "2026-10-27",
+        "convention": "Yahoo yield-index daily close; change in basis points"
+      },
+      {
+        "ticker": "USDCAD=X",
+        "name": "USD/CAD",
+        "value": 1.4013,
+        "chg_1d": 0,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Yahoo daily FX close, not an equity fixing"
+      },
+      {
+        "ticker": "CL=F",
+        "name": "WTI",
+        "value": 101.38,
+        "chg_1d": -0.3734,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Yahoo front-month daily settlement, not an equity close"
+      },
+      {
+        "ticker": "GC=F",
+        "name": "Gold",
+        "value": 4060,
+        "chg_1d": 0.5349,
+        "chg_unit": "%",
+        "observation_date": "2026-10-27",
+        "convention": "Yahoo front-month daily settlement, not an equity close"
+      }
+    ],
+    "yesterday_diff": [
+      {
+        "theme_id": "ai-capex-supercycle",
+        "change": "fading",
+        "note": "Still Fading: since the October 15 snapshot the constraint moved from demand to financing; QQQ fell 3.1% over the month and Meta's negative free cash flow made AI debt the story."
+      },
+      {
+        "theme_id": "oil-war-premium",
+        "change": "continuing",
+        "note": "Continuing: XLE added 9.9% over the month as WTI held above $100; the October 27 peace-talk headline cut the premium but not the trend."
+      },
+      {
+        "theme_id": "ca-bank-earnings-momentum",
+        "change": "upgraded",
+        "note": "Upgraded from Fading to Continuing: all Big Six banks rose in the week as BoC hike odds moved from about 35% to nearly 90%."
+      },
+      {
+        "theme_id": "us-rates-repricing",
+        "change": "fading",
+        "note": "Still Fading: the 10-year fell from 5.31% on October 5 to 4.99%, and TLT gained 2.9% over the month despite hot CPI."
+      },
+      {
+        "theme_id": "gold-war-premium-unwind",
+        "change": "new",
+        "note": "New this week: gold is about 27% below its January peak, with silver and miners falling faster over the month as real yields stayed high."
+      }
+    ]
+  },
+  "commentary": {
+    "week": "2026-W44",
+    "data_quality": "production",
+    "sources": [
+      {
+        "firm": "Federal Reserve",
+        "title": "Official FOMC meeting calendar",
+        "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "key_takeaway": "The September 16 decision raised the target range to 3.75-4.00%. The October 27-28 and December 8-9 meetings are the next checkpoints.",
+        "related_themes": [
+          "us-rates-repricing",
+          "ai-capex-supercycle",
+          "gold-war-premium-unwind"
+        ]
+      },
+      {
+        "firm": "BEA",
+        "title": "Personal Income and Outlays release schedule",
+        "url": "https://www.bea.gov/news/schedule",
+        "key_takeaway": "September PCE is scheduled for October 29, 2026.",
+        "related_themes": [
+          "us-rates-repricing",
+          "gold-war-premium-unwind",
+          "ai-capex-supercycle"
+        ]
+      },
+      {
+        "firm": "Meta Platforms",
+        "title": "Third-quarter 2026 results (October 21)",
+        "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+        "key_takeaway": "2026 capex of $135-145 billion, negative free cash flow of $2.12 billion and a new non-voting Class C stock to finance AI growth.",
+        "related_themes": [
+          "ai-capex-supercycle"
+        ]
+      },
+      {
+        "firm": "CNBC",
+        "title": "CoreWeave credit default swaps hit distress levels (October 15)",
+        "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html",
+        "key_takeaway": "CoreWeave's five-year swaps traded above 1,000 basis points and its 2031 bond yielded nearly 16%, a credit signal on AI infrastructure debt.",
+        "related_themes": [
+          "ai-capex-supercycle"
+        ]
+      },
+      {
+        "firm": "IEA",
+        "title": "Oil Market Report, October 2026",
+        "url": "https://www.iea.org/reports/oil-market-report-october-2026",
+        "key_takeaway": "2026 supply is put at 100.7 million barrels a day against 102.4 million of demand; inventories remain well below pre-conflict levels.",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "Energy News Beat",
+        "title": "Oil weekly wrap, October 16 (secondary)",
+        "url": "https://energynewsbeat.co/crude-oil/oil-over-100-as-markets-struggle-to-balance-amid-tanker-attacks-and-shipping-disruptions",
+        "key_takeaway": "Brent settled at $109.86 and WTI at $101.41 after projectiles hit tankers near the Saudi coast and Ukrainian strikes hit Russian refining.",
+        "related_themes": [
+          "oil-war-premium"
+        ]
+      },
+      {
+        "firm": "Statistics Canada",
+        "title": "Consumer Price Index, September 2026 (October 19)",
+        "url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm",
+        "key_takeaway": "Headline CPI was 3.1% year over year, led by a 27.8% rise in gasoline; the core measures were near 2%.",
+        "related_themes": [
+          "ca-bank-earnings-momentum"
+        ]
+      },
+      {
+        "firm": "Bank of Canada",
+        "title": "Policy interest rate and decision schedule",
+        "url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+        "key_takeaway": "The policy rate is 2.25%. The October 28 decision comes with the Monetary Policy Report; the next decision is December 9.",
+        "related_themes": [
+          "ca-bank-earnings-momentum"
+        ]
+      },
+      {
+        "firm": "Yahoo Finance",
+        "title": "Reproducible daily histories through October 27",
+        "url": "https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1730073600&period2=1793318400&interval=1d&events=div%2Csplits",
+        "key_takeaway": "Split-adjusted, distribution-excluded daily closes; every return anchor was recomputed for this snapshot.",
+        "related_themes": [
+          "oil-war-premium",
+          "ai-capex-supercycle",
+          "ca-bank-earnings-momentum",
+          "gold-war-premium-unwind",
+          "us-rates-repricing"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,293 @@
+schema_v: 1
+id: ca-bank-earnings-momentum
+week: 2026-W44
+title: 'Canadian Banks: Rally Into a Rate Hike'
+status: Continuing
+status_note: 'Upgraded to Continuing: all Big Six banks rose in the week as BoC hike odds approached 90%.'
+conviction: Med
+horizon: Cyclical 3-12m
+created_at: '2026-08-27'
+updated_at: '2026-10-27'
+data_quality: production
+summary: Canadian banks are priced for a hiking cycle. ZEB returned +2.60% in one week against +0.18% for the TSX, and +30.19% this year against +14.06%. Every Big Six bank rose in the latest week, led by National Bank and CIBC. The Bank of Canada is expected to raise its policy rate to 2.50% on October 28, which supports lending margins but raises credit costs while unemployment is elevated. September inflation was 3.1%. Continuing, with the decision and RBC's December 3 results as the tests.
+body_text: 'ZEB, which holds the six largest Canadian banks, closed at C$75.90 on October 27. It gained 2.60% over one week against 0.18% for the S&P/TSX Composite, and 30.19% this year against 14.06%. Its 0.88% one-month gain slightly lagged the index''s 1.04%, but all six big banks rose between 1.57% and 3.12% that week.
+
+
+  The driver is monetary policy, not a new earnings release. Swap markets moved from about a 35% chance of an October hike to nearly 90% after Governor Tiff Macklem said on October 17 that the inflation outlook would be quite a bit higher than the July forecast. Statistics Canada reported September inflation at 3.1% on October 19, with gasoline up 27.8% from a year earlier, and the Bank of Canada decides on October 28.
+
+
+  Higher rates help net interest margins, but they also raise borrower stress: unemployment is elevated and the housing market is weak. That is the competing explanation for why the rally may be borrowing future good news.
+
+
+  So what: the sector has price confirmation and breadth, but volume was only 0.35 times its 20-session average. The October 28 decision, the December 9 BoC meeting and RBC''s December 3 results are the next evidence.'
+chain:
+- when: Oct 17
+  label: The Bank of Canada hinted at a faster inflation path
+  detail: Governor Macklem said the outlook would be quite a bit higher than July's forecast.
+- when: Oct 19
+  label: September inflation ran at 3.1 percent
+  detail: Gasoline prices were 27.8% higher than a year earlier, while the core measures were near 2%.
+- when: Oct 21
+  label: Markets moved to price a quarter-point hike
+  detail: Swap-market odds rose to about 87%, and ZEB gained 1.69% that session.
+- when: Oct 27
+  label: Banks kept rising before the decision
+  detail: ZEB rose 0.85% and all six banks advanced; the Bank of Canada decides on October 28.
+explainer: 'Snapshot uses October 27 Toronto closes (16:00 ET, 20:00 UTC). Price Return uses Yahoo quote.close for ZEB.TO and the S&P/TSX Composite, split adjusted and excluding distributions; both legs use the same common sessions. 1W anchors October 20, 1M September 25, YTD December 31, 2025. ZEB is equal weighted, so it is not the cap-weighted bank exposure in the TSX. Volume confirmation requires at least 1.25 times the preceding 20 sessions excluding the latest day; ZEB was 0.35x, so it fails. A policy rate affects bank margins through asset repricing and funding costs, and credit losses through borrower stress; the link here is an inference from the rate-pricing data, not a reported margin change. Source for the rate decision: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/ .'
+performance:
+  proxy_ticker: ZEB.TO
+  proxy_price: 75.9
+  currency: CAD
+  return_type: price
+  ret_1w: 2.5953
+  ret_1m: 0.8772
+  ret_ytd: 30.1887
+  benchmark_ticker: ^GSPTSE
+  benchmark_name: S&P/TSX Composite
+  benchmark_ret_1w: 0.1758
+  benchmark_ret_1m: 1.0351
+  benchmark_ret_ytd: 14.0596
+  excess_1w: 2.4195
+  excess_1m: -0.1579
+  excess_ytd: 16.1291
+  as_of_utc: '2026-10-27T20:00:00Z'
+  source: Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPTSE?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  benchmark_rationale: The S&P/TSX Composite is the domestic opportunity cost for a Canadian bank basket, so the spread isolates the sector call rather than the Canadian market direction.
+series:
+- date: '2026-07-31'
+  proxy: 100.0
+  benchmark: 100.0
+- date: '2026-08-04'
+  proxy: 99.882
+  benchmark: 101.6337
+- date: '2026-08-05'
+  proxy: 100.5113
+  benchmark: 102.6125
+- date: '2026-08-06'
+  proxy: 100.5244
+  benchmark: 102.5839
+- date: '2026-08-07'
+  proxy: 100.354
+  benchmark: 103.2791
+- date: '2026-08-10'
+  proxy: 100.2229
+  benchmark: 103.498
+- date: '2026-08-11'
+  proxy: 100.0131
+  benchmark: 103.5479
+- date: '2026-08-12'
+  proxy: 101.6125
+  benchmark: 104.0765
+- date: '2026-08-13'
+  proxy: 102.1369
+  benchmark: 104.3525
+- date: '2026-08-14'
+  proxy: 102.635
+  benchmark: 104.2701
+- date: '2026-08-17'
+  proxy: 102.4777
+  benchmark: 104.093
+- date: '2026-08-18'
+  proxy: 100.9439
+  benchmark: 103.2413
+- date: '2026-08-19'
+  proxy: 97.6141
+  benchmark: 103.3376
+- date: '2026-08-20'
+  proxy: 95.9098
+  benchmark: 103.2342
+- date: '2026-08-21'
+  proxy: 96.3424
+  benchmark: 103.9576
+- date: '2026-08-24'
+  proxy: 96.0016
+  benchmark: 104.2241
+- date: '2026-08-25'
+  proxy: 98.5842
+  benchmark: 104.9154
+- date: '2026-08-26'
+  proxy: 98.322
+  benchmark: 104.5069
+- date: '2026-08-27'
+  proxy: 97.5354
+  benchmark: 104.5654
+- date: '2026-08-28'
+  proxy: 97.4961
+  benchmark: 103.7694
+- date: '2026-08-31'
+  proxy: 96.6439
+  benchmark: 102.9648
+- date: '2026-09-01'
+  proxy: 95.9885
+  benchmark: 101.7021
+- date: '2026-09-02'
+  proxy: 97.8894
+  benchmark: 102.457
+- date: '2026-09-03'
+  proxy: 99.4494
+  benchmark: 103.9942
+- date: '2026-09-04'
+  proxy: 98.9381
+  benchmark: 103.6555
+- date: '2026-09-08'
+  proxy: 97.8631
+  benchmark: 102.5464
+- date: '2026-09-09'
+  proxy: 96.8275
+  benchmark: 101.9318
+- date: '2026-09-10'
+  proxy: 97.1421
+  benchmark: 100.7954
+- date: '2026-09-11'
+  proxy: 97.7714
+  benchmark: 101.3382
+- date: '2026-09-14'
+  proxy: 97.732
+  benchmark: 101.3524
+- date: '2026-09-15'
+  proxy: 97.4567
+  benchmark: 101.0106
+- date: '2026-09-16'
+  proxy: 97.4698
+  benchmark: 100.7528
+- date: '2026-09-17'
+  proxy: 98.2695
+  benchmark: 101.8401
+- date: '2026-09-18'
+  proxy: 98.689
+  benchmark: 101.6482
+- date: '2026-09-21'
+  proxy: 100.236
+  benchmark: 102.2236
+- date: '2026-09-22'
+  proxy: 99.3052
+  benchmark: 103.1497
+- date: '2026-09-23'
+  proxy: 97.1814
+  benchmark: 101.4912
+- date: '2026-09-24'
+  proxy: 97.365
+  benchmark: 101.3638
+- date: '2026-09-25'
+  proxy: 98.6366
+  benchmark: 101.6317
+- date: '2026-09-28'
+  proxy: 98.2564
+  benchmark: 100.7489
+- date: '2026-09-29'
+  proxy: 97.4567
+  benchmark: 100.6648
+- date: '2026-09-30'
+  proxy: 96.1196
+  benchmark: 100.0278
+- date: '2026-10-01'
+  proxy: 95.8311
+  benchmark: 99.7976
+- date: '2026-10-02'
+  proxy: 96.2507
+  benchmark: 100.7852
+- date: '2026-10-05'
+  proxy: 95.7525
+  benchmark: 100.8304
+- date: '2026-10-06'
+  proxy: 96.3031
+  benchmark: 101.2019
+- date: '2026-10-07'
+  proxy: 93.7205
+  benchmark: 99.4771
+- date: '2026-10-08'
+  proxy: 93.1306
+  benchmark: 99.7709
+- date: '2026-10-09'
+  proxy: 94.4809
+  benchmark: 101.2448
+- date: '2026-10-13'
+  proxy: 96.0933
+  benchmark: 102.1515
+- date: '2026-10-14'
+  proxy: 95.5427
+  benchmark: 101.0174
+- date: '2026-10-15'
+  proxy: 96.8013
+  benchmark: 102.5862
+- date: '2026-10-16'
+  proxy: 96.893
+  benchmark: 102.6983
+- date: '2026-10-19'
+  proxy: 96.1982
+  benchmark: 101.9943
+- date: '2026-10-20'
+  proxy: 96.9848
+  benchmark: 102.5035
+- date: '2026-10-21'
+  proxy: 98.6235
+  benchmark: 103.1196
+- date: '2026-10-22'
+  proxy: 98.3482
+  benchmark: 102.1217
+- date: '2026-10-23'
+  proxy: 97.6665
+  benchmark: 101.5957
+- date: '2026-10-26'
+  proxy: 98.6628
+  benchmark: 102.0385
+- date: '2026-10-27'
+  proxy: 99.5018
+  benchmark: 102.6838
+proxies:
+- ticker: ZEB.TO
+  name: BMO Equal Weight Banks Index ETF
+  type: ETF
+  region: Canada
+  expense: 0.28% management expense ratio (issuer factsheet checked October 15)
+  liquidity_note: Latest complete session volume 654,834 units, 0.35x its 20-session average; the large-bank basket is less liquid than the individual shares.
+  why_represents: Equal-weight holdings in the six largest Canadian banks, the cleanest listed proxy for the sector call.
+  tracking_gap: 'Equal weighting differs from the TSX financial weight; the ETF holds banks only and excludes insurers and asset managers. Issuer: https://www.bmogam.com/ca-en/products/etf/bmo-equal-weight-banks-index-etf-zeb/'
+events:
+- event_time_utc: '2026-10-19T12:30:00Z'
+  title: September CPI rose 3.1% year over year, led by a 27.8% increase in gasoline prices; core measures were near 2%.
+  source: Statistics Canada, Consumer Price Index September 2026 (primary)
+  url: https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm
+  type: macro
+  proxy_ret: -0.7171
+  benchmark_ret: -0.6855
+  return_window: event-day (2026-10-16 to 2026-10-19 completed common-session closes)
+- event_time_utc: '2026-10-21T20:00:00Z'
+  title: Swap-market odds of a 25 basis point hike reached about 87% on October 21, up from about 34% on October 16; ZEB rose 1.69% that session.
+  source: Canadian News Media, citing Bloomberg/CBC swap-market data (secondary)
+  url: https://canadanewsmedia.ca/several-big-banks-now-see-bank-of-canada-hike-on-oct-28
+  type: policy
+  proxy_ret: 1.6896
+  benchmark_ret: 0.601
+  return_window: event-day (2026-10-20 to 2026-10-21 completed common-session closes)
+- event_time_utc: '2026-10-27T20:00:00Z'
+  title: ZEB closed at C$75.90, up 0.85% while the S&P/TSX Composite rose 0.63%, on the session before the BoC decision.
+  source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+  url: https://query1.finance.yahoo.com/v8/finance/chart/ZEB.TO?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  type: macro
+  proxy_ret: 0.8504
+  benchmark_ret: 0.6323
+  return_window: event-day (2026-10-26 to 2026-10-27 completed common-session closes)
+depends_on:
+- event_name: Bank of Canada policy decision and Monetary Policy Report
+  due_date: '2026-10-28T13:45:00Z'
+  why_matters: 'The decision sets the policy rate and the inflation path for bank margins and credit; schedule: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/'
+  if_bull: A hike with contained inflation forecasts supports margins without a credit scare
+  if_bear: A hold, or a hike paired with weak growth forecasts, removes the margin tailwind
+- event_name: RBC fiscal fourth-quarter results
+  due_date: '2026-12-03T13:00:00Z'
+  why_matters: 'First Big Six report of the new quarter; issuer calendar: https://www.rbc.com/investor-relations/financial-information.html'
+  if_bull: Stable provisions and margin expansion confirm the earnings case
+  if_bear: Rising provisions or weak loan growth would contradict the rally
+- event_name: Bank of Canada December decision
+  due_date: '2026-12-09T14:45:00Z'
+  why_matters: 'Follow-up decision after the October move; schedule: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/'
+  if_bull: A second hike with stable credit supports the margin story
+  if_bear: A pause signals the inflation shock is fading and removes the rate tailwind
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

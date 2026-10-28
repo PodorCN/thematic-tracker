@@ -1,0 +1,65 @@
+week: 2026-W44
+data_quality: production
+sources:
+- firm: Federal Reserve
+  title: Official FOMC meeting calendar
+  url: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+  key_takeaway: The September 16 decision raised the target range to 3.75-4.00%. The October 27-28 and December 8-9 meetings are the next checkpoints.
+  related_themes:
+  - us-rates-repricing
+  - ai-capex-supercycle
+  - gold-war-premium-unwind
+- firm: BEA
+  title: Personal Income and Outlays release schedule
+  url: https://www.bea.gov/news/schedule
+  key_takeaway: September PCE is scheduled for October 29, 2026.
+  related_themes:
+  - us-rates-repricing
+  - gold-war-premium-unwind
+  - ai-capex-supercycle
+- firm: Meta Platforms
+  title: Third-quarter 2026 results (October 21)
+  url: https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx
+  key_takeaway: 2026 capex of $135-145 billion, negative free cash flow of $2.12 billion and a new non-voting Class C stock to finance AI growth.
+  related_themes:
+  - ai-capex-supercycle
+- firm: CNBC
+  title: CoreWeave credit default swaps hit distress levels (October 15)
+  url: https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html
+  key_takeaway: CoreWeave's five-year swaps traded above 1,000 basis points and its 2031 bond yielded nearly 16%, a credit signal on AI infrastructure debt.
+  related_themes:
+  - ai-capex-supercycle
+- firm: IEA
+  title: Oil Market Report, October 2026
+  url: https://www.iea.org/reports/oil-market-report-october-2026
+  key_takeaway: 2026 supply is put at 100.7 million barrels a day against 102.4 million of demand; inventories remain well below pre-conflict levels.
+  related_themes:
+  - oil-war-premium
+- firm: Energy News Beat
+  title: Oil weekly wrap, October 16 (secondary)
+  url: https://energynewsbeat.co/crude-oil/oil-over-100-as-markets-struggle-to-balance-amid-tanker-attacks-and-shipping-disruptions
+  key_takeaway: Brent settled at $109.86 and WTI at $101.41 after projectiles hit tankers near the Saudi coast and Ukrainian strikes hit Russian refining.
+  related_themes:
+  - oil-war-premium
+- firm: Statistics Canada
+  title: Consumer Price Index, September 2026 (October 19)
+  url: https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm
+  key_takeaway: Headline CPI was 3.1% year over year, led by a 27.8% rise in gasoline; the core measures were near 2%.
+  related_themes:
+  - ca-bank-earnings-momentum
+- firm: Bank of Canada
+  title: Policy interest rate and decision schedule
+  url: https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/
+  key_takeaway: The policy rate is 2.25%. The October 28 decision comes with the Monetary Policy Report; the next decision is December 9.
+  related_themes:
+  - ca-bank-earnings-momentum
+- firm: Yahoo Finance
+  title: Reproducible daily histories through October 27
+  url: https://query1.finance.yahoo.com/v8/finance/chart/XLE?period1=1730073600&period2=1793318400&interval=1d&events=div%2Csplits
+  key_takeaway: Split-adjusted, distribution-excluded daily closes; every return anchor was recomputed for this snapshot.
+  related_themes:
+  - oil-war-premium
+  - ai-capex-supercycle
+  - ca-bank-earnings-momentum
+  - gold-war-premium-unwind
+  - us-rates-repricing

@@ -1,0 +1,296 @@
+schema_v: 1
+id: ai-capex-supercycle
+week: 2026-W44
+title: 'AI Capex: Growth Now Funded With Debt'
+status: Fading
+status_note: 'Still Fading: QQQ fell 3.1% in a month as Meta''s negative free cash flow and AI credit stress hit the trade.'
+conviction: Med
+horizon: Cyclical 3-12m
+created_at: '2026-07-06'
+updated_at: '2026-10-27'
+data_quality: production
+summary: AI spending is no longer a pure demand story. QQQ returned -3.12% over one month against -0.27% for the S&P 500, and Meta is down 17.5% over the month, including a 6.98% drop after it reported negative free cash flow, $135-145 billion of 2026 capex and a new non-voting share class to raise money. CoreWeave's credit default swaps trade above 1,000 basis points and its 2031 bond yields about 15.6%. Nvidia says demand is off the charts but capital is scarce. Fading means financing, not demand, is now the constraint; a one-week rebound does not reverse that.
+body_text: 'QQQ closed at $721.25 on October 27. It lost 3.12% over one month while the S&P 500 lost 0.27%, and the semiconductor ETF SMH fell 8.01%. The weakness is concentrated in the companies paying for the build-out: Meta fell 17.49% over the month, Alphabet 6.79%, AMD 11.16%, Micron 14.18% and Vertiv 17.66%.
+
+
+  The trigger was Meta''s October 21 third-quarter report. Capital spending for 2026 is now $135-145 billion, free cash flow was negative $2.12 billion, and the company created a Class C non-voting stock explicitly to finance AI growth. Meta fell 6.98% the next session and its five-year credit default swap spread reached a record. CoreWeave''s swaps had already passed 1,000 basis points on October 15, with its 9.75% 2031 bond yielding about 15.6%.
+
+
+  The competing explanation is that this is only a valuation reset. Demand evidence is still strong: Nvidia''s chief executive said neocloud demand is off the charts, and QQQ rose 0.50% in the last week while AMD gained 4.77%.
+
+
+  So what: the marginal change is from who can buy chips to who can finance them. Watch the October 28 FOMC, October 29 PCE, credit spreads and Nvidia''s November 17 results.'
+chain:
+- when: Oct 15
+  label: Credit markets priced AI debt as risky
+  detail: CoreWeave's five-year credit default swaps passed 1,000 basis points; its 2031 bond yielded about 15.6%.
+- when: Oct 21
+  label: Meta reported negative free cash flow and $135-145 billion capex
+  detail: It also created a non-voting share class to raise money for AI investment.
+- when: Oct 22
+  label: The stock market repriced the financing risk
+  detail: Meta fell 6.98% and QQQ 2.86% in the session as the financing question hit the whole complex.
+- when: Oct 27
+  label: Prices bounced but the funding question remains
+  detail: QQQ rose 1.27% and AMD 5.45% in the latest session; credit spreads are still the test.
+explainer: 'Snapshot uses October 27 US closes (20:00 UTC). Price Return uses Yahoo quote.close, split adjusted and excluding distributions. 1W anchors October 20, 1M September 25, YTD December 31, 2025, with the proxy and benchmark on the same common sessions. QQQ is a concentrated growth fund, not an AI revenue index, and SMH is the semiconductor subset. Volume confirmation needs the latest volume at least 1.25 times the prior 20 sessions excluding the latest day; QQQ was 0.85x, so it fails. A credit default swap spread is the annual cost of insuring against default; 1,000 basis points means 10% of notional a year. Negative free cash flow means operating cash flow did not cover capital spending. The debt-to-capex link is a financing interpretation supported by the cited issuer and credit-market reports, not a measured causal model. Nvidia demand comment: https://www.cnbc.com/2026/10/22/treasurys-bonds-ai-yields.html .'
+performance:
+  proxy_ticker: QQQ
+  proxy_price: 721.25
+  currency: USD
+  return_type: price
+  ret_1w: 0.5044
+  ret_1m: -3.1229
+  ret_ytd: 17.4081
+  benchmark_ticker: ^GSPC
+  benchmark_name: S&P 500
+  benchmark_ret_1w: 0.1301
+  benchmark_ret_1m: -0.2687
+  benchmark_ret_ytd: 12.8128
+  excess_1w: 0.3744
+  excess_1m: -2.8542
+  excess_ytd: 4.5954
+  as_of_utc: '2026-10-27T20:00:00Z'
+  source: Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  benchmark_rationale: US technology exposure is compared with broad US equity beta; QQQ outperformance is not a direct measurement of AI revenue or of data-centre returns.
+series:
+- date: '2026-08-03'
+  proxy: 100.0
+  benchmark: 100.0
+- date: '2026-08-04'
+  proxy: 103.3968
+  benchmark: 101.7896
+- date: '2026-08-05'
+  proxy: 102.4612
+  benchmark: 101.619
+- date: '2026-08-06'
+  proxy: 102.0827
+  benchmark: 101.4402
+- date: '2026-08-07'
+  proxy: 103.2797
+  benchmark: 102.0675
+- date: '2026-08-10'
+  proxy: 102.9711
+  benchmark: 102.0079
+- date: '2026-08-11'
+  proxy: 102.6255
+  benchmark: 101.6802
+- date: '2026-08-12'
+  proxy: 103.3754
+  benchmark: 101.9472
+- date: '2026-08-13'
+  proxy: 104.571
+  benchmark: 102.6115
+- date: '2026-08-14'
+  proxy: 104.4281
+  benchmark: 102.4375
+- date: '2026-08-17'
+  proxy: 104.2567
+  benchmark: 101.902
+- date: '2026-08-18'
+  proxy: 102.4912
+  benchmark: 101.2007
+- date: '2026-08-19'
+  proxy: 102.2869
+  benchmark: 101.4141
+- date: '2026-08-20'
+  proxy: 101.5513
+  benchmark: 100.535
+- date: '2026-08-21'
+  proxy: 101.9098
+  benchmark: 100.9719
+- date: '2026-08-24'
+  proxy: 100.8928
+  benchmark: 100.6889
+- date: '2026-08-25'
+  proxy: 101.5213
+  benchmark: 101.0102
+- date: '2026-08-26'
+  proxy: 101.6141
+  benchmark: 100.9894
+- date: '2026-08-27'
+  proxy: 103.0054
+  benchmark: 101.7169
+- date: '2026-08-28'
+  proxy: 102.3369
+  benchmark: 101.4638
+- date: '2026-08-31'
+  proxy: 102.384
+  benchmark: 101.1268
+- date: '2026-09-01'
+  proxy: 101.0813
+  benchmark: 100.4075
+- date: '2026-09-02'
+  proxy: 101.3099
+  benchmark: 100.8697
+- date: '2026-09-03'
+  proxy: 102.514
+  benchmark: 101.9368
+- date: '2026-09-04'
+  proxy: 102.6983
+  benchmark: 101.5538
+- date: '2026-09-08'
+  proxy: 102.6126
+  benchmark: 100.9607
+- date: '2026-09-09'
+  proxy: 102.3198
+  benchmark: 100.4718
+- date: '2026-09-10'
+  proxy: 101.2313
+  benchmark: 99.8842
+- date: '2026-09-11'
+  proxy: 102.1155
+  benchmark: 100.7431
+- date: '2026-09-14'
+  proxy: 101.3013
+  benchmark: 100.2563
+- date: '2026-09-15'
+  proxy: 100.6385
+  benchmark: 99.8057
+- date: '2026-09-16'
+  proxy: 100.6642
+  benchmark: 99.3594
+- date: '2026-09-17'
+  proxy: 102.4069
+  benchmark: 100.4902
+- date: '2026-09-18'
+  proxy: 103.054
+  benchmark: 100.6579
+- date: '2026-09-21'
+  proxy: 105.9137
+  benchmark: 102.1604
+- date: '2026-09-22'
+  proxy: 106.7693
+  benchmark: 102.1596
+- date: '2026-09-23'
+  proxy: 105.8766
+  benchmark: 101.3885
+- date: '2026-09-24'
+  proxy: 105.8608
+  benchmark: 101.3635
+- date: '2026-09-25'
+  proxy: 106.3465
+  benchmark: 101.8803
+- date: '2026-09-28'
+  proxy: 105.2081
+  benchmark: 101.0945
+- date: '2026-09-29'
+  proxy: 105.408
+  benchmark: 100.9255
+- date: '2026-09-30'
+  proxy: 105.6709
+  benchmark: 100.6715
+- date: '2026-10-01'
+  proxy: 105.9937
+  benchmark: 100.8677
+- date: '2026-10-02'
+  proxy: 107.0722
+  benchmark: 101.6081
+- date: '2026-10-05'
+  proxy: 108.0178
+  benchmark: 102.2821
+- date: '2026-10-06'
+  proxy: 108.512
+  benchmark: 102.8739
+- date: '2026-10-07'
+  proxy: 108.2363
+  benchmark: 102.6481
+- date: '2026-10-08'
+  proxy: 106.7865
+  benchmark: 102.1691
+- date: '2026-10-09'
+  proxy: 107.3136
+  benchmark: 102.7767
+- date: '2026-10-12'
+  proxy: 106.5665
+  benchmark: 102.7201
+- date: '2026-10-13'
+  proxy: 106.2137
+  benchmark: 102.6965
+- date: '2026-10-14'
+  proxy: 104.1253
+  benchmark: 101.5583
+- date: '2026-10-15'
+  proxy: 103.9896
+  benchmark: 101.8888
+- date: '2026-10-16'
+  proxy: 101.3899
+  benchmark: 100.7755
+- date: '2026-10-19'
+  proxy: 102.6126
+  benchmark: 101.1872
+- date: '2026-10-20'
+  proxy: 102.5083
+  benchmark: 101.4745
+- date: '2026-10-21'
+  proxy: 103.5896
+  benchmark: 102.0613
+- date: '2026-10-22'
+  proxy: 100.6285
+  benchmark: 100.828
+- date: '2026-10-23'
+  proxy: 100.6185
+  benchmark: 100.305
+- date: '2026-10-26'
+  proxy: 101.7327
+  benchmark: 101.0035
+- date: '2026-10-27'
+  proxy: 103.0254
+  benchmark: 101.6065
+proxies:
+- ticker: QQQ
+  name: Invesco QQQ Trust
+  type: ETF
+  region: US
+  expense: 0.18% total expense ratio (issuer page checked October 15)
+  liquidity_note: Latest complete session volume 30.8 million shares, 0.85x its 20-session average; among the most heavily traded ETFs.
+  why_represents: Large Nasdaq growth companies include the main AI platforms and chip designers funding the build-out.
+  tracking_gap: 'Holds unrelated growth businesses and is market-cap weighted, so a few large names dominate; discount rates can overwhelm AI demand. Issuer: https://www.invesco.com/qqq-etf/en/home.html'
+events:
+- event_time_utc: '2026-10-15T20:00:00Z'
+  title: CoreWeave's five-year credit default swaps closed above 1,000 basis points, a distressed level, as investors questioned AI infrastructure debt.
+  source: CNBC credit-market report
+  url: https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html
+  type: macro
+  proxy_ret: -0.1303
+  benchmark_ret: 0.3254
+  return_window: event-day (2026-10-14 to 2026-10-15 completed common-session closes)
+- event_time_utc: '2026-10-21T20:06:00Z'
+  title: Meta reported negative free cash flow of $2.12 billion, kept 2026 capex at $135-145 billion and announced a non-voting Class C stock to finance AI growth; the shares fell 6.98% in the next session.
+  source: Meta Platforms investor relations (primary release)
+  url: https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx
+  type: earnings
+  proxy_ret: -2.8585
+  benchmark_ret: -1.2084
+  return_window: next-session (2026-10-21 to 2026-10-22 completed common-session closes; release was after the October 21 close)
+- event_time_utc: '2026-10-27T20:00:00Z'
+  title: QQQ closed at $721.25, up 1.27% in the session while the S&P 500 rose 0.60%; the one-week return turned positive.
+  source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+  url: https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  type: macro
+  proxy_ret: 1.2707
+  benchmark_ret: 0.597
+  return_window: event-day (2026-10-26 to 2026-10-27 completed common-session closes)
+depends_on:
+- event_name: FOMC decision
+  due_date: '2026-10-28T18:00:00Z'
+  why_matters: 'The policy path sets the discount rate for long-duration AI cash flows; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+  if_bull: A hold with restrained guidance lowers financing pressure and supports growth valuations
+  if_bear: A hawkish hold or a December hike signal raises the cost of the build-out
+- event_name: PCE inflation, September
+  due_date: '2026-10-29T12:30:00Z'
+  why_matters: 'The Fed''s preferred inflation measure; schedule: https://www.bea.gov/news/schedule'
+  if_bull: Softer core PCE reduces the hike path and rate pressure
+  if_bear: Sticky core PCE keeps restrictive rates and financing stress alive
+- event_name: Nvidia third-quarter fiscal 2027 results
+  due_date: '2026-11-17T21:20:00Z'
+  why_matters: 'The largest AI demand checkpoint; confirmed on the issuer events page: https://investor.nvidia.com/events-and-presentations/events-and-presentations/default.aspx'
+  if_bull: Strong orders and guidance confirm that demand, not financing, still sets the pace
+  if_bear: Capex cuts or slower orders would confirm that funding constraints are reaching demand
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

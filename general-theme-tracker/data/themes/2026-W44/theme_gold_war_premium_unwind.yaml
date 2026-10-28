@@ -1,0 +1,304 @@
+schema_v: 1
+id: gold-war-premium-unwind
+week: 2026-W44
+title: 'Gold: The War Premium Drains Out'
+status: New
+status_note: 'New: gold is 27% below its January peak and GLD lost 5.4% in a month as real yields stayed high.'
+conviction: Med
+horizon: Tactical 2-8w
+created_at: '2026-10-27'
+updated_at: '2026-10-27'
+data_quality: production
+summary: 'Gold''s safe-haven premium is unwinding. GLD returned -5.37% over one month against -0.27% for the S&P 500, and -6.06% this year. Gold futures settled at $4,060, about 27% below January''s $5,595 peak; silver fell 15.8% and miners 10.4% over the month. The driver is opportunity cost: the Fed hiked in September, December hike odds are about 83%, and real yields remain high even after the 10-year yield slipped below 5%. A one-day bounce is the counterevidence.'
+body_text: 'GLD closed at $372.28 on October 27. It lost 5.37% over one month while the S&P 500 lost 0.27%, and it is down 6.06% this year. December gold futures settled at $4,060, 27% below January''s $5,595 peak. Silver fell 15.80% over the month and the miners ETF GDX fell 10.42%, so the move is across the complex rather than one contract.
+
+
+  The first leg was September 28: gold futures settled 3.52% lower as the 10-year yield traded above 5.2% and October hike odds rose to about 70%, less than two weeks after the Fed''s September 16 hike to 3.75-4.00%. The second leg was October 22, when GLD fell 2.63% and silver 4.63% while crude stayed near $100 and kept the inflation and hike path alive.
+
+
+  The competing explanation is that this is only a correction: the metal had fallen quickly, and it rose 1.21% on October 27 as oil softened before the Fed.
+
+
+  So what: the marginal buyer now earns a positive real yield in Treasuries. Watch the October 28 FOMC, October 29 PCE and December 9 decision; a dovish surprise or a Hormuz deal that lowers oil would help gold, while a December hike would not.'
+chain:
+- when: Jan 2026
+  label: Gold peaked at $5,595 an ounce
+  detail: The metal has since fallen about 27% and is down 6.06% this year.
+- when: Sep 16-28
+  label: A Fed hike and higher yields broke the trade
+  detail: The Fed raised rates on September 16; on September 28 gold futures fell 3.52% as the 10-year topped 5.2%.
+- when: Oct 22
+  label: Metals fell again while oil kept inflation alive
+  detail: GLD lost 2.63% and silver 4.63%, with Brent above $110 and December hike odds about 83%.
+- when: Oct 27
+  label: Gold sits near $4,060, far below its peak
+  detail: GLD rose 1.21% on softer oil; the metal is still down 6.06% this year.
+explainer: 'Snapshot uses October 27 US closes for GLD (20:00 UTC) and the Comex settlement for December gold futures (13:30 ET, 17:30 UTC); the two are not simultaneous. Price Return uses Yahoo quote.close, split adjusted and excluding distributions; GLD carries a 0.40% expense ratio, so it lags spot gold by that drag plus tracking error. 1W anchors October 20, 1M September 25, YTD December 31, 2025. Real yield means the nominal Treasury yield minus expected inflation; a higher real yield raises the opportunity cost of a metal that pays no coupon. Volume confirmation needs at least 1.25 times the prior 20 sessions excluding the latest day; GLD was 0.67x, so it fails. The January peak and the September 28 settlement are secondary reports of Comex and spot data, labelled as such; the daily closes in the table come from Yahoo. Front-month futures series: https://query1.finance.yahoo.com/v8/finance/chart/GC=F .'
+performance:
+  proxy_ticker: GLD
+  proxy_price: 372.28
+  currency: USD
+  return_type: price
+  ret_1w: -1.422
+  ret_1m: -5.371
+  ret_ytd: -6.0634
+  benchmark_ticker: ^GSPC
+  benchmark_name: S&P 500
+  benchmark_ret_1w: 0.1301
+  benchmark_ret_1m: -0.2687
+  benchmark_ret_ytd: 12.8128
+  excess_1w: -1.552
+  excess_1m: -5.1022
+  excess_ytd: -18.8762
+  as_of_utc: '2026-10-27T20:00:00Z'
+  source: Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  benchmark_rationale: The S&P 500 is the opportunity cost of a non-yielding asset for a US-dollar investor; the comparison is cross-asset, not a gold-specific benchmark.
+series:
+- date: '2026-08-03'
+  proxy: 100.0
+  benchmark: 100.0
+- date: '2026-08-04'
+  proxy: 100.6591
+  benchmark: 101.7896
+- date: '2026-08-05'
+  proxy: 104.8237
+  benchmark: 101.619
+- date: '2026-08-06'
+  proxy: 104.8317
+  benchmark: 101.4402
+- date: '2026-08-07'
+  proxy: 107.1992
+  benchmark: 102.0675
+- date: '2026-08-10'
+  proxy: 108.2941
+  benchmark: 102.0079
+- date: '2026-08-11'
+  proxy: 107.869
+  benchmark: 101.6802
+- date: '2026-08-12'
+  proxy: 108.9344
+  benchmark: 101.9472
+- date: '2026-08-13'
+  proxy: 107.331
+  benchmark: 102.6115
+- date: '2026-08-14'
+  proxy: 108.0089
+  benchmark: 102.4375
+- date: '2026-08-17'
+  proxy: 109.0877
+  benchmark: 101.902
+- date: '2026-08-18'
+  proxy: 107.2207
+  benchmark: 101.2007
+- date: '2026-08-19'
+  proxy: 111.3341
+  benchmark: 101.4141
+- date: '2026-08-20'
+  proxy: 111.7161
+  benchmark: 100.535
+- date: '2026-08-21'
+  proxy: 113.8952
+  benchmark: 100.9719
+- date: '2026-08-24'
+  proxy: 114.7911
+  benchmark: 100.6889
+- date: '2026-08-25'
+  proxy: 115.1624
+  benchmark: 101.0102
+- date: '2026-08-26'
+  proxy: 113.3464
+  benchmark: 100.9894
+- date: '2026-08-27'
+  proxy: 113.6908
+  benchmark: 101.7169
+- date: '2026-08-28'
+  proxy: 110.0024
+  benchmark: 101.4638
+- date: '2026-08-31'
+  proxy: 109.876
+  benchmark: 101.1268
+- date: '2026-09-01'
+  proxy: 106.7364
+  benchmark: 100.4075
+- date: '2026-09-02'
+  proxy: 108.3587
+  benchmark: 100.8697
+- date: '2026-09-03'
+  proxy: 110.3602
+  benchmark: 101.9368
+- date: '2026-09-04'
+  proxy: 109.4321
+  benchmark: 101.5538
+- date: '2026-09-08'
+  proxy: 107.5354
+  benchmark: 100.9607
+- date: '2026-09-09'
+  proxy: 108.512
+  benchmark: 100.4718
+- date: '2026-09-10'
+  proxy: 106.6315
+  benchmark: 99.8842
+- date: '2026-09-11'
+  proxy: 107.2799
+  benchmark: 100.7431
+- date: '2026-09-14'
+  proxy: 105.6845
+  benchmark: 100.2563
+- date: '2026-09-15'
+  proxy: 106.037
+  benchmark: 99.8057
+- date: '2026-09-16'
+  proxy: 105.3886
+  benchmark: 99.3594
+- date: '2026-09-17'
+  proxy: 107.1696
+  benchmark: 100.4902
+- date: '2026-09-18'
+  proxy: 107.9255
+  benchmark: 100.6579
+- date: '2026-09-21'
+  proxy: 107.175
+  benchmark: 102.1604
+- date: '2026-09-22'
+  proxy: 107.6296
+  benchmark: 102.1596
+- date: '2026-09-23'
+  proxy: 105.6953
+  benchmark: 101.3885
+- date: '2026-09-24'
+  proxy: 105.3752
+  benchmark: 101.3635
+- date: '2026-09-25'
+  proxy: 105.8379
+  benchmark: 101.8803
+- date: '2026-09-28'
+  proxy: 101.668
+  benchmark: 101.0945
+- date: '2026-09-29'
+  proxy: 103.0077
+  benchmark: 100.9255
+- date: '2026-09-30'
+  proxy: 102.4562
+  benchmark: 100.6715
+- date: '2026-10-01'
+  proxy: 102.9728
+  benchmark: 100.8677
+- date: '2026-10-02'
+  proxy: 102.2679
+  benchmark: 101.6081
+- date: '2026-10-05'
+  proxy: 102.1092
+  benchmark: 102.2821
+- date: '2026-10-06'
+  proxy: 102.8409
+  benchmark: 102.8739
+- date: '2026-10-07'
+  proxy: 101.1218
+  benchmark: 102.6481
+- date: '2026-10-08'
+  proxy: 101.859
+  benchmark: 102.1691
+- date: '2026-10-09'
+  proxy: 103.4624
+  benchmark: 102.7767
+- date: '2026-10-12'
+  proxy: 102.8086
+  benchmark: 102.7201
+- date: '2026-10-13'
+  proxy: 102.6795
+  benchmark: 102.6965
+- date: '2026-10-14'
+  proxy: 101.1514
+  benchmark: 101.5583
+- date: '2026-10-15'
+  proxy: 102.9593
+  benchmark: 101.8888
+- date: '2026-10-16'
+  proxy: 102.771
+  benchmark: 100.7755
+- date: '2026-10-19'
+  proxy: 102.1468
+  benchmark: 101.1872
+- date: '2026-10-20'
+  proxy: 101.598
+  benchmark: 101.4745
+- date: '2026-10-21'
+  proxy: 101.9478
+  benchmark: 102.0613
+- date: '2026-10-22'
+  proxy: 99.2709
+  benchmark: 100.828
+- date: '2026-10-23'
+  proxy: 98.628
+  benchmark: 100.305
+- date: '2026-10-26'
+  proxy: 98.9535
+  benchmark: 101.0035
+- date: '2026-10-27'
+  proxy: 100.1533
+  benchmark: 101.6065
+proxies:
+- ticker: GLD
+  name: SPDR Gold Shares
+  type: ETF
+  region: US
+  expense: 0.40% gross expense ratio (issuer page checked October 27)
+  liquidity_note: Latest complete session volume 5.3 million shares, 0.67x its 20-session average; the largest physically backed gold ETF.
+  why_represents: Holds allocated gold bullion, so the price tracks the metal rather than miners' operating leverage.
+  tracking_gap: 'Fee drag and custody costs make it lag spot over time; it is a US-dollar product, so currency moves affect non-US holders. Issuer: https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld'
+events:
+- event_time_utc: '2026-09-28T17:30:00Z'
+  title: December gold futures settled 3.52% lower at $4,135.40 as the 10-year yield traded above 5.2% and October hike odds rose to about 70%.
+  source: Yahoo Finance report of Comex settlement data (secondary)
+  url: https://finance.yahoo.com/markets/commodities/articles/gold-silver-crash-10-yield-050700476.html
+  type: macro
+  proxy_ret: -3.9399
+  benchmark_ret: -0.7712
+  return_window: event-day (2026-09-25 to 2026-09-28 completed common-session closes)
+- event_time_utc: '2026-10-22T20:00:00Z'
+  title: GLD closed at $381.26, down 2.63% while the S&P 500 fell 1.21%; silver fell 4.63% the same session.
+  source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+  url: https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  type: macro
+  proxy_ret: -2.6257
+  benchmark_ret: -1.2084
+  return_window: event-day (2026-10-21 to 2026-10-22 completed common-session closes)
+- event_time_utc: '2026-10-23T17:30:00Z'
+  title: Spot gold finished October 23 at about $3,995.80 an ounce, down roughly 4% for the week and at its lowest since mid-July.
+  source: Yahoo Finance commodity report
+  url: https://finance.yahoo.com/markets/commodities/articles/gold-prices-break-4-000-021700377.html
+  type: macro
+  proxy_ret: -0.6477
+  benchmark_ret: -0.5187
+  return_window: event-day (2026-10-22 to 2026-10-23 completed common-session closes)
+- event_time_utc: '2026-10-27T17:30:00Z'
+  title: Gold rose about 1% as lower oil prices eased inflation concerns before the Fed decision; GLD gained 1.21%.
+  source: CNBC commodity report
+  url: https://www.cnbc.com/2026/10/27/gold-eases-on-firmer-dollar-ahead-of-fed-decision.html
+  type: macro
+  proxy_ret: 1.2125
+  benchmark_ret: 0.597
+  return_window: event-day (2026-10-26 to 2026-10-27 completed common-session closes)
+depends_on:
+- event_name: FOMC decision
+  due_date: '2026-10-28T18:00:00Z'
+  why_matters: 'The policy path sets nominal and real yields, the main opportunity cost for gold; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+  if_bull: A hold with dovish guidance lowers real yields and supports a relief rally
+  if_bear: A hawkish hold or a December hike signal keeps real yields high and pressures gold
+- event_name: PCE inflation, September
+  due_date: '2026-10-29T12:30:00Z'
+  why_matters: 'The Fed''s preferred inflation measure; schedule: https://www.bea.gov/news/schedule'
+  if_bull: Softer core PCE lowers the hike path and helps gold
+  if_bear: Sticky core PCE keeps the hiking bias and the real-yield pressure
+- event_name: FOMC decision, December
+  due_date: '2026-12-09T19:00:00Z'
+  why_matters: 'Markets price about an 83% chance of a December hike (CME FedWatch via CNBC, October 27); calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+  if_bull: No hike or a dovish dot plot revives the metal
+  if_bear: A second hike confirms the higher-for-longer regime
+theme_vs_noise:
+  persistence: true
+  breadth: true
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 4

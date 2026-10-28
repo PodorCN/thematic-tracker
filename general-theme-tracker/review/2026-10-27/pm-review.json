@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "Reviewer-Argus-W44",
+  "operator": "Hermes-Operator-W44",
+  "reviewed_at": "2026-10-27T23:06:00-04:00",
+  "snapshot_date": "2026-10-27",
+  "candidate_sha256": "794802aa65730a3b198fcd9d99ccb144785a693cadcf8947e104bc72f065bd5d",
+  "verdict": "APPROVED",
+  "executive_summary": "Round-03 review of the final W44 bundle. The SHA-256 matches the candidate bytes (794802aa...), structural-flags.json is empty, and the frozen JSON is deep-equal to a rebuild from data/themes/2026-W44 at snapshot date 2026-10-27, so the reviewed bytes are the data on disk. I recomputed every number from raw/<TICKER>.csv with my own scripts and did not run verify.py or audit.py: 45 horizon values (15 proxy, 15 benchmark, 15 excess) reproduce to 0.0001pp, all 304 rebased series points reproduce (max error 5e-5, every series ending 2026-10-27), all 30 event returns parsed from each event's own return_window reproduce to 0.00005pp, the five volume ratios reproduce (0.85/0.35/0.67/0.99/0.42), and all seven market-strip values and changes reproduce, including ^TNX 4.993 = +0.7bp from 4.986. All seven round-02 minors are fixed in the new bytes: the October 16 oil driver now reads tanker attacks off Saudi Arabia and Russian refinery strikes (zero occurrences of 'facilit', 'installation' or 'attacks on Saudi'), the gold drawdown is 27% in the strip as well as in the theme, the AI summary separates Meta's one-month 17.5% from the 6.98% next-session drop, gold says crude stayed near $100 (WTI 99.47 on October 22), the rates chain and explainer reconcile the ^TNX 4.953%/19.3bp close with CNBC's 4.972%/17bp, the three flagged chain dates now appear in body/events, and the BLS URL carries an explicit scripted-access disclosure (I reproduced the 403; the prior archive carries the same 3.7% and URL). The 22 changed leaves versus 9f7c9f3c are all prose and chain text; no return, series or strip number moved. Four new minors are filed, all precision/traceability class: the oil theme no longer names the war it prices, three chain details carry figures absent from their own body/events, two oil crude descriptors still invite a strip cross-check, and the forward FOMC/BoC dates are not covered by the captures. All are non-blocking. Zero critical or major findings; all six checks pass.",
+  "checks": {
+    "excess_math": "pass",
+    "timing_source": "pass",
+    "freshness": "pass",
+    "readability": "pass",
+    "theme_noise": "pass",
+    "proxy_tradability": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "themes[oil-war-premium].body_text, themes[oil-war-premium].summary, themes[oil-war-premium].chain[0]",
+      "issue": "The war the theme is named for is no longer introduced anywhere. Removing the unsupported 'Feb 2026' chain step (correctly) also removed the formation cause: the body now opens on October 16, yet says inventories are 'below pre-conflict levels', and the title and summary sell a 'war premium'. No oil field names the conflict; only events[1] mentions Iran, as a possible new strike. One clause in the body would close the gap.",
+      "evidence": "candidate oil body_text: 'Brent settled at $109.86 on October 16 after tanker attacks off Saudi Arabia and Russian refinery strikes...' and '...roughly 500 million barrels below pre-conflict levels'; title 'Oil Above $100: The War Supply Premium'; summary 'Oil's war premium is still being paid'; chain[0].when 'Oct 16'. raw/news/energynewsbeat_oil_20261016.txt line 57: 'persistent supply risks from the ongoing U.S.-Iran conflict (now approaching eight months)'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "themes[ai-capex-supercycle].chain[2].detail, themes[ai-capex-supercycle].chain[3].detail, themes[gold-war-premium-unwind].chain[2].detail",
+      "issue": "Chain details carry numbers that appear nowhere in the same theme's body or events, which the chain rule ('distilled only from sourced body/events, no new numbers') does not allow. All three verify against the raw series, so this is traceability hygiene, not a factual error, but the home card asserts figures a reader cannot cross-check on the page.",
+      "evidence": "candidate ai chain[3]: 'QQQ rose 1.27% and AMD 5.45% in the latest session'; ai body has 'AMD gained 4.77%' (weekly) and no 5.45% (raw/AMD.csv 2026-10-26 531.28 -> 2026-10-27 560.26 = +5.4547%). ai chain[2] 'QQQ 2.86%' exists only as events[1].proxy_ret -2.8585 (raw QQQ 2026-10-21 -> 2026-10-22 = -2.8585%). gold chain[2] 'with Brent above $110' has no counterpart in the gold body or events.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "themes[oil-war-premium].body_text",
+      "issue": "Two crude descriptors still do not line up with the bundle's own WTI series. The body says peace talks 'pushed oil futures down more than 1%' while the strip's WTI fell 0.37% that session; the >1% is the cited article's generic 'oil futures' (Brent), which the bundle does not carry. In the same paragraph, 'Brent settled at $109.86 on October 16 ... then jumped 4% to $113.17 on October 22' spans a +3.01% move between the two printed levels, while the 4% is the October 22 one-day move per CNBC. Both statements are source-faithful but invite a failed cross-check.",
+      "evidence": "candidate oil body_text; candidate market_snapshot CL=F chg_1d = -0.3734 (raw/CL_F.csv 2026-10-26 101.76 -> 2026-10-27 101.38); 113.17/109.86-1 = +3.01%; raw/news/cnbc_bonds_20261022.txt: 'Brent crude futures ... jumped 4%, rising to $113.17 a barrel'; raw/news/cnbc_gold_oil_20261027.txt: 'Oil futures fell more than 1% on Tuesday'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "commentary.sources[0], themes[ca-bank-earnings-momentum].depends_on[2], themes[us-rates-repricing].depends_on[2]",
+      "issue": "The forward FOMC dates (October 27-28, December 8-9) and the December 9 BoC decision are not covered by the captured evidence. The Fed calendar capture is navigation plus a year-link list with no 2026 upcoming-meeting table, and the BoC key-rate capture has no December date. The dates match the published schedules and the primary URLs are correct, so this is an evidence-pack completeness gap (the only one not disclosed), not a wrong date.",
+      "evidence": "grep 'December' raw/news/fed_fomc_calendar.txt = 0 hits; grep 'October 27' = 0 hits; September 16 is evidenced in raw/news/fed_fomc_calendar.html only by /monetarypolicy/fomcminutes20260916.htm. raw/news/boc_key_rate.txt carries '2.25' and the September 2 rate row but no 'December 9' and no 2026-12-09. CNBC cnbc_bonds_20261023.txt supports 'the Federal Reserve meets next week' and 3.75-4.00%.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}

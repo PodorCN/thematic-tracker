@@ -1,0 +1,289 @@
+schema_v: 1
+id: us-rates-repricing
+week: 2026-W44
+title: 'Long Yields: The Inflation Trade Stalls'
+status: Fading
+status_note: 'Still Fading: the 10-year fell to 4.99% and TLT gained 2.9% in a month despite hot inflation.'
+conviction: Low
+horizon: Tactical 2-8w
+created_at: '2026-09-30'
+updated_at: '2026-10-27'
+data_quality: production
+summary: The higher-yield trade has lost its price confirmation. TLT returned +2.91% over one month against -0.27% for the S&P 500, and the 10-year yield is 4.99% after peaking at 5.31% on October 5. On October 22 the yield fell 17 basis points in one session, the largest daily drop since March 2023, as investors bought Treasuries instead of AI shares. Oil above $100 and 3.7% inflation still argue the other way. Fading, with the October 28 FOMC and December hike odds as the test.
+body_text: 'TLT closed at $81.63 on October 27, up 2.91% over one month while the S&P 500 fell 0.27%. The 10-year yield closed at 4.993%, down from 5.31% on October 5, and the two-year fell to about 4.65% on October 22. That is the opposite of the higher-yield thesis built after the September 16 hike.
+
+
+  The trigger was a haven bid, not softer inflation. On October 22 the 10-year yield fell more than 17 basis points, its biggest one-day decline since March 2023, as AI-related shares sold off and investors moved into government debt. CoreWeave''s credit stress and Meta''s negative free cash flow made Treasuries look like the safe asset again, even with Brent above $110.
+
+
+  The competing explanation is that the inflation problem has not gone away. Headline CPI was 3.7% in September and oil is above $100; markets still price about an 83% chance of a December hike, which would normally push long yields back up.
+
+
+  So what: price confirmation is absent, so the status stays Fading and conviction is Low. A close back above 5.31% would revive the thesis; a break below 4.9% with a December hike still priced would weaken it further.'
+chain:
+- when: Sep 16
+  label: The Fed began hiking again
+  detail: The target range moved to 3.75-4.00%, the first increase since 2023.
+- when: Oct 5
+  label: The 10-year yield peaked above 5.3 percent
+  detail: TLT closed at $77.11 and long yields were at their highest in more than two decades.
+- when: Oct 22
+  label: Haven buying drove the biggest yield drop since 2023
+  detail: The 10-year fell about 19 basis points to 4.953% on the ^TNX series as AI shares sold off.
+- when: Oct 27
+  label: The 10-year is back below 5 percent
+  detail: TLT closed at $81.63; the higher-yield thesis still lacks price confirmation.
+explainer: 'Snapshot uses October 27 US closes (20:00 UTC). Price Return uses Yahoo quote.close, split adjusted and excluding distributions; TLT has a 0.15% expense ratio and roughly 17 years of duration, so a 1% yield move changes its price by about 17%. 1W anchors October 20, 1M September 25, YTD December 31, 2025, with the proxy and benchmark on the same sessions. The 10-year figure is the Yahoo ^TNX yield index, not a bond return; a lower TLT price means a higher yield, and the table is not sign-inverted. Volume confirmation needs at least 1.25 times the prior 20 sessions excluding the latest day; TLT was 0.42x, so it fails. No decomposition into term premium versus policy expectations is claimed. Fed calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm . CNBC reported a 17bp drop to 4.972% on its index for October 22; the ^TNX series closed at 4.953%, a 19.3bp drop. September CPI (3.7%): https://www.bls.gov/news.release/archives/cpi_10142026.htm (the BLS page blocks
+  scripted access; the figure matches the October 14 release carried in the prior archive). December odds (83%): https://www.cnbc.com/2026/10/27/gold-eases-on-firmer-dollar-ahead-of-fed-decision.html .'
+performance:
+  proxy_ticker: TLT
+  proxy_price: 81.63
+  currency: USD
+  return_type: price
+  ret_1w: 1.872
+  ret_1m: 2.9123
+  ret_ytd: -6.3447
+  benchmark_ticker: ^GSPC
+  benchmark_name: S&P 500
+  benchmark_ret_1w: 0.1301
+  benchmark_ret_1m: -0.2687
+  benchmark_ret_ytd: 12.8128
+  excess_1w: 1.7419
+  excess_1m: 3.181
+  excess_ytd: -19.1575
+  as_of_utc: '2026-10-27T20:00:00Z'
+  source: Yahoo Finance daily quote.close (split adjusted, distributions excluded); https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits and benchmark https://query1.finance.yahoo.com/v8/finance/chart/^GSPC?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  benchmark_rationale: The S&P 500 is cross-asset opportunity-cost context only, not an interest-rate benchmark; the thesis is about long yields, and TLT returns are shown without sign inversion.
+series:
+- date: '2026-08-03'
+  proxy: 100.0
+  benchmark: 100.0
+- date: '2026-08-04'
+  proxy: 100.7665
+  benchmark: 101.7896
+- date: '2026-08-05'
+  proxy: 100.9855
+  benchmark: 101.619
+- date: '2026-08-06'
+  proxy: 100.4015
+  benchmark: 101.4402
+- date: '2026-08-07'
+  proxy: 100.6935
+  benchmark: 102.0675
+- date: '2026-08-10'
+  proxy: 99.8418
+  benchmark: 102.0079
+- date: '2026-08-11'
+  proxy: 100.0
+  benchmark: 101.6802
+- date: '2026-08-12'
+  proxy: 99.9027
+  benchmark: 101.9472
+- date: '2026-08-13'
+  proxy: 100.4867
+  benchmark: 102.6115
+- date: '2026-08-14'
+  proxy: 99.8175
+  benchmark: 102.4375
+- date: '2026-08-17'
+  proxy: 98.978
+  benchmark: 101.902
+- date: '2026-08-18'
+  proxy: 99.3552
+  benchmark: 101.2007
+- date: '2026-08-19'
+  proxy: 101.0098
+  benchmark: 101.4141
+- date: '2026-08-20'
+  proxy: 100.1825
+  benchmark: 100.535
+- date: '2026-08-21'
+  proxy: 99.8297
+  benchmark: 100.9719
+- date: '2026-08-24'
+  proxy: 100.4502
+  benchmark: 100.6889
+- date: '2026-08-25'
+  proxy: 101.5574
+  benchmark: 101.0102
+- date: '2026-08-26'
+  proxy: 101.3505
+  benchmark: 100.9894
+- date: '2026-08-27'
+  proxy: 101.1437
+  benchmark: 101.7169
+- date: '2026-08-28'
+  proxy: 100.8395
+  benchmark: 101.4638
+- date: '2026-08-31'
+  proxy: 100.4015
+  benchmark: 101.1268
+- date: '2026-09-01'
+  proxy: 99.6107
+  benchmark: 100.4075
+- date: '2026-09-02'
+  proxy: 99.708
+  benchmark: 100.8697
+- date: '2026-09-03'
+  proxy: 99.854
+  benchmark: 101.9368
+- date: '2026-09-04'
+  proxy: 100.0243
+  benchmark: 101.5538
+- date: '2026-09-08'
+  proxy: 100.0122
+  benchmark: 100.9607
+- date: '2026-09-09'
+  proxy: 99.4403
+  benchmark: 100.4718
+- date: '2026-09-10'
+  proxy: 98.2845
+  benchmark: 99.8842
+- date: '2026-09-11'
+  proxy: 98.394
+  benchmark: 100.7431
+- date: '2026-09-14'
+  proxy: 98.467
+  benchmark: 100.2563
+- date: '2026-09-15'
+  proxy: 98.1993
+  benchmark: 99.8057
+- date: '2026-09-16'
+  proxy: 98.4061
+  benchmark: 99.3594
+- date: '2026-09-17'
+  proxy: 99.5012
+  benchmark: 100.4902
+- date: '2026-09-18'
+  proxy: 98.8563
+  benchmark: 100.6579
+- date: '2026-09-21'
+  proxy: 99.5255
+  benchmark: 102.1604
+- date: '2026-09-22'
+  proxy: 99.4647
+  benchmark: 102.1596
+- date: '2026-09-23'
+  proxy: 97.8951
+  benchmark: 101.3885
+- date: '2026-09-24'
+  proxy: 96.6298
+  benchmark: 101.3635
+- date: '2026-09-25'
+  proxy: 96.5081
+  benchmark: 101.8803
+- date: '2026-09-28'
+  proxy: 95.6564
+  benchmark: 101.0945
+- date: '2026-09-29'
+  proxy: 95.1819
+  benchmark: 100.9255
+- date: '2026-09-30'
+  proxy: 94.6344
+  benchmark: 100.6715
+- date: '2026-10-01'
+  proxy: 94.5492
+  benchmark: 100.8677
+- date: '2026-10-02'
+  proxy: 94.2694
+  benchmark: 101.6081
+- date: '2026-10-05'
+  proxy: 93.8192
+  benchmark: 102.2821
+- date: '2026-10-06'
+  proxy: 94.026
+  benchmark: 102.8739
+- date: '2026-10-07'
+  proxy: 93.8679
+  benchmark: 102.6481
+- date: '2026-10-08'
+  proxy: 94.7439
+  benchmark: 102.1691
+- date: '2026-10-09'
+  proxy: 94.8777
+  benchmark: 102.7767
+- date: '2026-10-12'
+  proxy: 94.9629
+  benchmark: 102.7201
+- date: '2026-10-13'
+  proxy: 95.3522
+  benchmark: 102.6965
+- date: '2026-10-14'
+  proxy: 95.9849
+  benchmark: 101.5583
+- date: '2026-10-15'
+  proxy: 97.2989
+  benchmark: 101.8888
+- date: '2026-10-16'
+  proxy: 97.3963
+  benchmark: 100.7755
+- date: '2026-10-19'
+  proxy: 96.6784
+  benchmark: 101.1872
+- date: '2026-10-20'
+  proxy: 97.4936
+  benchmark: 101.4745
+- date: '2026-10-21'
+  proxy: 97.6274
+  benchmark: 102.0613
+- date: '2026-10-22'
+  proxy: 99.4525
+  benchmark: 100.828
+- date: '2026-10-23'
+  proxy: 98.9658
+  benchmark: 100.305
+- date: '2026-10-26'
+  proxy: 99.3795
+  benchmark: 101.0035
+- date: '2026-10-27'
+  proxy: 99.3186
+  benchmark: 101.6065
+proxies:
+- ticker: TLT
+  name: iShares 20+ Year Treasury Bond ETF
+  type: ETF
+  region: US
+  expense: 0.15% expense ratio (issuer page checked October 27)
+  liquidity_note: Latest complete session volume 19.5 million shares, 0.42x its 20-session average; one of the most liquid long-duration Treasury ETFs.
+  why_represents: Holds long-dated US Treasuries, the instrument whose price falls when long yields rise.
+  tracking_gap: 'Duration is roughly 17 years, so it is not a 10-year proxy; it excludes shorter maturities and is exposed to curve shape, not just the 10-year point. Issuer: https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf'
+events:
+- event_time_utc: '2026-10-22T20:00:00Z'
+  title: The 10-year yield fell more than 17 basis points to 4.972%, the biggest one-day drop since March 2023, as investors bought havens during the AI-led selloff.
+  source: CNBC bond-market report
+  url: https://www.cnbc.com/2026/10/22/treasurys-bonds-ai-yields.html
+  type: macro
+  proxy_ret: 1.8694
+  benchmark_ret: -1.2084
+  return_window: event-day (2026-10-21 to 2026-10-22 completed common-session closes)
+- event_time_utc: '2026-10-27T20:00:00Z'
+  title: TLT closed at $81.63, down 0.06% while the S&P 500 rose 0.60%, with the 10-year yield at 4.993% before the FOMC.
+  source: Yahoo Finance closing observation (proxy and benchmark histories captured)
+  url: https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1730073600&period2=1793232000&interval=1d&events=div%2Csplits
+  type: macro
+  proxy_ret: -0.0612
+  benchmark_ret: 0.597
+  return_window: event-day (2026-10-26 to 2026-10-27 completed common-session closes)
+depends_on:
+- event_name: FOMC decision
+  due_date: '2026-10-28T18:00:00Z'
+  why_matters: 'The statement and guidance set the near-term path for long yields; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+  if_bull: A hawkish hold with a December hike signal pushes long yields back up and revives the thesis
+  if_bear: A dovish hold keeps yields down and confirms the fade
+- event_name: PCE inflation, September
+  due_date: '2026-10-29T12:30:00Z'
+  why_matters: 'The Fed''s preferred inflation measure; schedule: https://www.bea.gov/news/schedule'
+  if_bull: Sticky core PCE raises the hike path and long yields
+  if_bear: Softer PCE supports the haven bid and lower yields
+- event_name: FOMC decision, December
+  due_date: '2026-12-09T19:00:00Z'
+  why_matters: 'About 83% of a hike is priced; calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+  if_bull: A hike or hawkish dots restore the higher-yield direction
+  if_bear: No hike and lower dots leave the thesis without a driver
+theme_vs_noise:
+  persistence: true
+  breadth: false
+  volume_confirm: false
+  falsifiable_catalyst: true
+  repricing_logic: true
+  score: 3
