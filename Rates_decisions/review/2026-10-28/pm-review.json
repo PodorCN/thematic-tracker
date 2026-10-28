@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-28T09:33:01-04:00",
+  "snapshot_date": "2026-10-28",
+  "candidate_sha256": "52a66d02dd475b59a7436eeb7f4d7897b6884f8850aecdf377353946d0bdf7b7",
+  "verdict": "APPROVED",
+  "executive_summary": "Frozen 09:13:57 ET ahead of a double decision day; both pricing blocks reproduce off the venues' own pages. Fed: BlueGamma SOFR-OIS reads Hold 100% / 0bp off 3.88 at its 09:29:23 ET stamp, byte-identical to the candidate's 08:29:22 ET block (100/0/0, implied 3.88 -> 3.88); the cross-venue tail is 7.2pp (CME FedWatch 92.8% hold at the 27 Oct close per Kiplinger; Polymarket 94.9% no-change at 09:24 ET) and is disclosed in the notes as the 0bp rounding artefact, not averaged in. BoC: CORRA-OIS reads Hike 96% / +24bp off 2.25 at its 09:18:48 ET stamp, identical to the candidate's 08:27:48 ET block (0.96/0.04, implied 2.49); Polymarket's softer book (0.853 at 09:08, ~0.79 mid by 09:24) is carried as a separate venue. Official policy checks out: FOMC raised 25bp to 3.75-4.00% on 16 Sep by 12-0 (federalreserve.gov statement), BoC held 2.25% on 2 Sep, calendars put the BoC at 09:45 ET today and the FOMC at 14:00 ET, next round 9 Dec / 8-9 Dec. Driver quotes verified verbatim at federalreserve.gov, newyorkfed.org, clevelandfed.org, bea.gov, StatCan and the BoC; BLS figures re-derived from the BLS API (CPI 3.74% y/y, core 2.57%, PPI-SA +1.34% m/m, payrolls +29k). Weights and age decay recompute to Fed +2 base / 0.0 effective (hold) and BoC +6 base / +4.25 effective (lean hike). All colours are minor: the Fed 100% is a venue rounding, the Fed as_of is a re-stamp, one fed-d4 link does not carry the quote it supports, the BoC betting legs have drifted ~6pp, the BoC oil prints in a reason are unlinked, and the snapshot expires 31 minutes before the first decision.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.probabilities.hold",
+      "issue": "Hold is published as 1.0 because the SOFR-OIS page rounds the implied move to 0bp; futures and binaries still price a 5-7% hike tail, so the block reads as certainty while the venue is only saying 'less than half a basis point'.",
+      "evidence": "BlueGamma Fed page read 2026-10-28 09:30 ET, time[datetime]=2026-10-28T13:29:23Z: 'Market-implied move: 0 bp / Hike 0% / Hold 100% / Cut 0%'; Kiplinger live blog 27 Oct close: 'CME FedWatch shows a 92.8% probability ... hold'; Polymarket gamma-api slug fed-decision-in-october-20260617190323537 at 09:24 ET: no-change 0.949, 25bp hike 0.050. Candidate.notes already states the 7.2pp gap is instrument structure.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.as_of",
+      "issue": "The recorded 08:29:22 ET is the pull clock rather than a venue stamp: the page's own time element now reads 09:29:23 ET with identical numbers, so the block was re-stamped 60 minutes after the recorded pull without a reprice. Same field was flagged minor on 2026-10-26 for the same ambiguity.",
+      "evidence": "candidate meetings.fed.pricing.as_of=2026-10-28T08:29:22-04:00 with hold 1.0 / implied 3.88; page time[datetime] read 09:30 ET = 2026-10-28T13:29:23Z rendering the same 'Hold 100% / 0 bp'; review/2026-10-26/pm-review.json finding meetings.fed.pricing.as_of (17:06:18 vs 21:30:03Z).",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[3].source_url",
+      "issue": "fed-d4 credits Warsh with saying the world has 'broadly conformed' to the September expectations, but the linked CNBC story does not contain that phrase - it carries only 'I don't prejudge meetings'. The quote is genuine, so the fact survives; the citation does not support the sentence.",
+      "evidence": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html read 2026-10-28 09:31 ET: no match for 'conform' in the article body; the sentence is carried by https://www.axios.com/2026/10/16/warsh-federal-reserve-interest-rates ('the world has broadly conformed to our expectations') and cnbc.com/2026/10/16/kevin-warsh-fed-october-rate-hike-interest-rates-markets.html.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.boc[0].probabilities",
+      "issue": "The BoC betting legs (0.853 hike / 0.147 hold) are the 09:08:35 book; by 09:24 ET the same event's bid/ask mid implied roughly 0.79/0.21, a ~6pp drift inside 16 minutes, so the block is a snapshot that has already moved.",
+      "evidence": "gamma-api.polymarket.com/events?slug=bank-of-canada-decision-in-october-20260715203359314 read 09:24 ET: 25bp increase last 0.859 (bid 0.749 / ask 0.839), No Change last 0.226 (bid 0.163 / ask 0.254); candidate note quotes raw legs 83.65% / 14.45% at 09:08:35 ET.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[3].reason",
+      "issue": "The Macklem driver's reason carries four later Brent settlement numbers (113.17 on 22 Oct, 114.31 on 23 Oct, 115.81 on 26 Oct, 113.88 on 27 Oct) while its only source_url is the 17 Oct Globe interview; the later prints have no link anywhere in the record.",
+      "evidence": "candidate drivers.boc.hawkish[3].source_url = theglobeandmail.com/.../bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/ (17 Oct, 'around US$110' vs the July US$75 assumption); the 22-27 Oct settlements appear only in reason prose tagged '(Reuters)' / '(CNBC)' with no URL.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "decision_usefulness",
+      "issue": "Frozen at 09:13:57 on decision day, 31 minutes before the BoC announcement and five hours before the FOMC; published as-is the page keeps today's meetings as 'next' after both decisions land, with no refresh until the Friday cycle.",
+      "evidence": "candidate.as_of=2026-10-28T09:13:57-04:00; meetings.boc.next_meeting.datetime_toronto=2026-10-28T09:45:00-04:00; meetings.fed.next_meeting.datetime_toronto=2026-10-28T14:00:00-04:00; notes: 'Frozen 09:13:57 ET on decision day, ahead of both announcements'.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
