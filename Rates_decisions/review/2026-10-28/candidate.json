@@ -1,0 +1,723 @@
+{
+  "as_of": "2026-10-28T09:13:57-04:00",
+  "snapshot_date": "2026-10-28",
+  "version": 1,
+  "timezone": "America/Toronto",
+  "meetings": {
+    "fed": {
+      "label": "Fed (FOMC)",
+      "next_meeting": {
+        "date_label": "Oct 28",
+        "datetime_toronto": "2026-10-28T14:00:00-04:00",
+        "datetime_utc": "2026-10-28T18:00:00Z"
+      },
+      "last_meeting": {
+        "date": "2026-09-16",
+        "decision": "Hike +25bp to 3.75-4.00% (12-0 vote)"
+      },
+      "pricing": {
+        "probabilities": {
+          "hike": 0,
+          "hold": 1.0,
+          "cut": 0
+        },
+        "probability_status": "available",
+        "implied_rate_before": 3.88,
+        "implied_rate_after": 3.88,
+        "source": "SOFR OIS-implied via BlueGamma (0bp)",
+        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast",
+        "as_of": "2026-10-28T08:29:22-04:00",
+        "observable_proxy": null
+      }
+    },
+    "boc": {
+      "label": "BOC",
+      "next_meeting": {
+        "date_label": "Oct 28 + MPR",
+        "datetime_toronto": "2026-10-28T09:45:00-04:00",
+        "datetime_utc": "2026-10-28T13:45:00Z"
+      },
+      "last_meeting": {
+        "date": "2026-09-02",
+        "decision": "Hold at 2.25% (7th consecutive hold)"
+      },
+      "pricing": {
+        "probabilities": {
+          "hike": 0.96,
+          "hold": 0.04,
+          "cut": 0
+        },
+        "probability_status": "available",
+        "implied_rate_before": 2.25,
+        "implied_rate_after": 2.49,
+        "source": "CORRA OIS-implied via BlueGamma (+24bp)",
+        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
+        "as_of": "2026-10-28T08:27:48-04:00",
+        "observable_proxy": null
+      }
+    }
+  },
+  "betting": {
+    "fed": [
+      {
+        "platform": "Polymarket",
+        "event_slug": "fed-decision-in-october-20260617190323537",
+        "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
+        "probabilities": {
+          "cut": 0,
+          "hold": 0.95,
+          "hike": 0.05
+        },
+        "status": "available",
+        "volume": "$88.3M",
+        "liquidity": "$11.2M",
+        "as_of": "2026-10-28T09:04:36-04:00",
+        "note": "Live odds: Hold 95%, Hike 5%, Cut 0% (raw legs at 09:04:36 ET: no-change 94.9%, 25bp hike 4.85%, 50bp+ 0.35%, cuts 0.05% each; normalised across the three legs)."
+      }
+    ],
+    "boc": [
+      {
+        "platform": "Polymarket",
+        "event_slug": "bank-of-canada-decision-in-october-20260715203359314",
+        "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
+        "probabilities": {
+          "cut": 0,
+          "hold": 0.147,
+          "hike": 0.853
+        },
+        "status": "available",
+        "volume": "$569.0k",
+        "liquidity": "$60.7k",
+        "as_of": "2026-10-28T09:08:35-04:00",
+        "note": "Live odds: Hike 85%, Hold 15%, Cut 0% (raw legs at 09:08:35 ET: 25bp hike 83.65%, no change 14.45%, 50bp+ 0.05%, cuts 0.05% each; normalised across the three legs)."
+      }
+    ]
+  },
+  "drivers": {
+    "fed": {
+      "hawkish": [
+        {
+          "id": "fed-h1",
+          "title": "Aug PCE 3.4%, core 3.0%: level still a point above target",
+          "summary": "BEA's August PCE price index held at 3.4% year over year with core at 3.0%, unchanged from July after the annual revision; the level stays well above the Fed's 2% goal.",
+          "published_at": "2026-09-30",
+          "observed_at": "2026-09-30",
+          "source": "BEA",
+          "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-august-2026",
+          "data": {
+            "actual": "3.4% YoY (core 3.0%)",
+            "forecast": "unverified (BEA release carries actuals only)",
+            "previous": "3.4% YoY Jul (core 3.0% after annual revision)",
+            "delta_label": "flat vs July, level elevated"
+          },
+          "reason": "PCE is the Fed's formal 2% target measure. August did not extend the run-up — headline held at 3.4% and core at 3.0% after the annual revision — but a full point above target keeps the restrictive bias in place. No fresh upside surprise is why this sits at weight 2 rather than higher; the consensus print is not in the cited release, so the surprise leg is scored at zero.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h2",
+          "title": "Sep SEP: 16 of 18 officials eye another 2026 hike",
+          "summary": "September dot plot shows near-unanimous support for one more hike this year.",
+          "published_at": "2026-09-16",
+          "observed_at": "2026-09-16",
+          "source": "Federal Reserve SEP",
+          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+          "data": {
+            "actual": "16/18 project >=1 more hike",
+            "forecast": "n/a",
+            "previous": "unverified",
+            "delta_label": "hawkish consensus"
+          },
+          "reason": "The dot plot does not choose between October and December, but it caps how dovish the committee can sound without contradicting its own projections. It sets a hawkish baseline for the October meeting.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 0,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-h4",
+          "title": "Oct 7 minutes: all backed Sept hike; most see another by year-end",
+          "summary": "Minutes show unanimous support, 'had not seen sufficient progress on lowering inflation', raised staff inflation path — no October/December pick.",
+          "published_at": "2026-10-07",
+          "observed_at": "2026-10-07",
+          "source": "Federal Reserve (FOMC Minutes)",
+          "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20260916.htm",
+          "data": {
+            "actual": "12-0 support; 'most' expect >=1 more hike by year-end; staff lifted 2026-28 inflation path",
+            "forecast": "n/a",
+            "previous": "Jul minutes: 'many' — tightening only if inflation did not decline",
+            "delta_label": "hawkish shift broadened"
+          },
+          "reason": "The minutes document how broad the tightening bias became in September: every participant backed the hike, most expect another by year-end, and the staff pushed the return to 2% out to 2029. They deliberately leave October vs December open — pricing kept the year-end move as the base case and October near 18% until the Sep CPI reopened it.",
+          "market_validation": "Oct-28 hike odds sat ~18-22% around the Oct 7 minutes; the 22.1% -> 37.1% move is the Oct 14 CPI repricing (fed-h6), not a minutes reaction (CME FedWatch)",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h5",
+          "title": "Waller Oct 8: economy 'roughly the same place'; near-term policy focused on inflation",
+          "summary": "Governor says the labour market stayed 'solid and stable' and inflation is 'too high' — near-term policy focused on the inflation side of the mandate.",
+          "published_at": "2026-10-08",
+          "observed_at": "2026-10-08",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20261008a.htm",
+          "data": {
+            "actual": "'Labor market solid and stable; inflation too high' — inflation-side focus for the near term",
+            "forecast": "n/a",
+            "previous": "Sept: supported hike as insurance against inflation",
+            "delta_label": "restrictive bias intact"
+          },
+          "reason": "A sitting governor reads the recent data — weak payroll print included — as leaving the economy where it was in September, and keeps the committee's focus on inflation rather than the cooling labour data. Reinforces the year-end hike skew while October stays priced as a hold.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h6",
+          "title": "Sep CPI hot: 3.7% headline, core re-accelerates to 2.6%",
+          "summary": "Both a tenth above consensus: headline 3.7% YoY (0.6% m/m) and core 2.6% YoY, with gasoline driving over half of the monthly rise.",
+          "published_at": "2026-10-14",
+          "observed_at": "2026-10-14",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+          "data": {
+            "actual": "3.7% YoY, core 2.6%; +0.6% m/m (core +0.3%)",
+            "forecast": "3.6% YoY (core 2.5%)",
+            "previous": "3.4% YoY Aug (core 2.4%)",
+            "delta_label": "hotter than expected; highest since May"
+          },
+          "reason": "The last CPI before the Oct 27-28 meeting landed hot: gasoline drove over half of the monthly rise and core re-accelerated to 2.6%, so the energy shock is leaking into the broader basket. It put an October hike back on the table (FedWatch odds spiked to ~54% intraday before settling near 37%) and turned Citi hawkish for December — keeping the October meeting a live debate rather than a done deal.",
+          "market_validation": "FedWatch Oct-28 hike odds 22.1% (Oct 13) -> ~54% spike post-print (CNBC) -> 37.1% by mid-afternoon; year-end >=1 hike >96%",
+          "direction": 1,
+          "weight": 4,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 1,
+            "total": 4
+          }
+        },
+        {
+          "id": "fed-h7",
+          "title": "Sep PPI +1.3% m/m, largest in 4.5 years as energy feeds through",
+          "summary": "Headline PPI jumped 1.3% m/m (f +0.5%) and 6.3% y/y - the largest 12-month gain since Dec 2022 - with gasoline +20.3%; the core also ran hot (+0.7% m/m, 5.0% y/y).",
+          "published_at": "2026-10-15",
+          "observed_at": "2026-10-15",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/archives/ppi_10152026.htm",
+          "data": {
+            "actual": "1.3% m/m; 6.3% y/y; core ex-F/E 0.7% m/m, 5.0% y/y",
+            "forecast": "0.5% m/m; 5.3% y/y; core 0.3% m/m, 4.4% y/y",
+            "previous": "0.5% m/m Aug (revised); 5.6% y/y Aug (Table A revision); core 4.6% y/y",
+            "delta_label": "largest monthly advance since Mar 2022"
+          },
+          "reason": "Second hot inflation print in two days: over 80% of the September goods rise is energy (gasoline +20.3%, diesel, jet fuel, heating oil), but the core accelerated too (+0.7% m/m, 5.0% y/y), so cost pressure is not purely crude. Traders kept reading it as an energy story - October hike odds eased to ~30% rather than rising - yet it keeps a restrictive tail under the Oct 28 meeting and supports the year-end-hike consensus.",
+          "market_validation": "Oct-28 hike odds ~30% after the print, little changed / edged down anyway (Yahoo Finance, Reuters); 14.9% by Oct 16 (CME FedWatch)",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-h8",
+          "title": "Hammack: a restrictive stance is still needed to finish the job",
+          "summary": "Cleveland Fed's Hammack: inflation risks stay skewed upside and with financial conditions only 'neutral', 'a restrictive policy stance will be needed' - cheaper to trim via small adjustments than drift off course.",
+          "published_at": "2026-10-12",
+          "observed_at": "2026-10-12",
+          "source": "Cleveland Fed",
+          "source_url": "https://www.clevelandfed.org/collections/speeches/2026/sp-20261012-trimming-the-sails-communicating-my-reaction-function",
+          "data": {
+            "actual": "'A restrictive policy stance will be needed... in a timely fashion'; financial conditions 'neutral rather than holding demand back'",
+            "forecast": "n/a",
+            "previous": "n/a",
+            "delta_label": "hawkish push for more restraint"
+          },
+          "reason": "A 2026 voter argues the economy 'can handle a tighter hand on the tiller to finish the job on inflation': solid growth, strong consumer, only-neutral financial conditions. She followed up Oct 15 (NY fireside) warning an inflationary mindset 'could force more aggressive policy action' - the counterweight to the Warsh/Bowman/Daly patience chorus and a live hawkish tail into Oct 28.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        }
+      ],
+      "dovish": [
+        {
+          "id": "fed-d1",
+          "title": "Williams: no urgency for an October hike",
+          "summary": "NY Fed chief said the September hike buys time; October hike odds fell from ~70% to ~50% in a day.",
+          "published_at": "2026-09-29",
+          "observed_at": "2026-09-29",
+          "source": "NY Fed",
+          "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil260929",
+          "data": {
+            "actual": "\"With the policy action we took at our September meeting, there is no need for urgency, and we have time to gather more information\"",
+            "forecast": "n/a",
+            "previous": "Sep 16 FOMC: hiked 25bp (12-0)",
+            "delta_label": "signalled patience on October"
+          },
+          "reason": "The FOMC vice chair publicly pushed back on an October move while still allowing one more hike late this year. Markets read this as October off the table unless data forces it, shifting the debate to December.",
+          "market_validation": "FedWatch Oct-28 hike odds ~70% -> ~50% the day he spoke (Sep 29, per Reuters/ST); 37.1% on 14 Oct after CPI; 15% on 26 Oct (SOFR OIS via BlueGamma, 17:06 ET print)",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d2",
+          "title": "Sep payrolls +29k, unemployment 4.2%",
+          "summary": "Weak jobs report pushed hold odds from ~36% to ~77% within a week.",
+          "published_at": "2026-10-02",
+          "observed_at": "2026-10-02",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/archives/empsit_10022026.htm",
+          "data": {
+            "actual": "+29k, u3 4.2%",
+            "forecast": "+84k (Dow Jones), u3 4.1%",
+            "previous": "+133k Aug (revised from +162k; Jul revised to -10k)",
+            "delta_label": "sharp slowdown"
+          },
+          "reason": "A 29k print after a revised 133k in August removes the labor-market case for back-to-back hikes. Equities rallied on the print, confirming the market read it as dovish for policy rather than as a recession signal.",
+          "market_validation": "FedWatch hold prob ~36% week prior -> 77.3% (Oct 2, Al Jazeera citing CME); ~82% Oct 12 (CME FedWatch)",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d3",
+          "title": "Jefferson Oct 1: policymakers 'may take more time' before moving again",
+          "summary": "Vice Chair says inflation is too high and he sees upside risks, but the Committee will form its own judgment and that 'may take more time' as the data trend becomes clearer.",
+          "published_at": "2026-10-01",
+          "observed_at": "2026-10-01",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261001a.htm",
+          "data": {
+            "actual": "\"My colleagues and I will need to come to our own judgment, which may take more time\"; trend to be read as more data arrive",
+            "forecast": "n/a",
+            "previous": "Sep 16 FOMC: supported the 25bp hike (12-0)",
+            "delta_label": "patient on timing, hawkish on level"
+          },
+          "reason": "Jefferson put inflation at 3.4% in August and 'above our 2 percent target for more than five years', and said he sees upside risks to inflation - but the operative line for 28 Oct is that the Committee will form its own judgment and that 'may take more time', with the trend to be judged as more data arrive. That is a patient-timing signal from the Vice Chair, and it is scored here on timing alone: his level view is already carried by the PCE and SEP drivers. October hike odds fell from ~70% to ~25% around his remarks (Reuters).",
+          "market_validation": "Oct-28 hike odds ~70% -> ~25% (Oct 1, Reuters); 18% by 12 Oct (CME FedWatch); 15% on 26 Oct (SOFR OIS via BlueGamma, 17:06 ET print)",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d4",
+          "title": "Warsh Oct 16: no signal on October; hike odds fall below 15%",
+          "summary": "Chair declines to 'prejudge' October or December and says the world has 'broadly conformed' to the FOMC's September expectations. Traders cut Oct-28 hike odds to ~15%.",
+          "published_at": "2026-10-16",
+          "observed_at": "2026-10-16",
+          "source": "CNBC",
+          "source_url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+          "data": {
+            "actual": "'I don't prejudge meetings...' - no October steer despite two hot inflation prints; pre-meeting blackout starts this weekend",
+            "forecast": "n/a",
+            "previous": "Aug 28 Jackson Hole: 'hard pressed' to describe financial conditions as restrictive",
+            "delta_label": "withheld the hike signal"
+          },
+          "reason": "The last Fed communication before the blackout into Oct 28: with CPI and PPI both hot, Warsh declined to join the tightening chorus, saying only that he doesn't prejudge meetings and that global conditions 'broadly conformed' to the September view. Traders read the silence as a green light for a hold and cut Oct-28 odds below 15%; December (Dec 8-9) stays the street's favored venue for the next hike. He also flagged AI-driven investment as a live inflation driver (Fed AI task force hearing Nov 16).",
+          "market_validation": "Oct-28 hike odds ~30% (Oct 15, Reuters) -> 'below 15%' after the remarks (traders via The Business Times); CME FedWatch 85.1% hold / 14.9% hike (Oct 16)",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 0,
+            "importance": 2,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d5",
+          "title": "Daly Oct 14: next hike likely needed, 'but not urgently'",
+          "summary": "SF Fed's Daly: 'more likely than not' rates need to go higher, but no need to do it at the Oct 27-28 meeting - 'why force urgency when you don't need to have urgency?'",
+          "published_at": "2026-10-14",
+          "observed_at": "2026-10-14",
+          "source": "Reuters",
+          "source_url": "https://www.reuters.com/business/finance/feds-daly-says-rate-hikes-likely-needed-not-urgently-2026-10-14/",
+          "data": {
+            "actual": "'No need to do so at the Oct 27-28 meeting'; 'risks are not realities... reacting on risk feels imprudent'",
+            "forecast": "n/a",
+            "previous": "unverified",
+            "delta_label": "watch data, skip October"
+          },
+          "reason": "Speaking after the hot CPI, Daly argued the reaction function says wait for the inflation through-line rather than respond to one print, with the labor market stable enough to afford patience. A senior dove explicitly keeping October off the table, in line with Williams/Jefferson and the street's pivot to December.",
+          "market_validation": "unverified",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-d6",
+          "title": "Bowman Oct 14: time to 'wait and see' before any more action",
+          "summary": "Vice Chair for Supervision: 'I don't feel any urgency for taking further action at this point' - give time to see how markets and the economy evolve after September's hike.",
+          "published_at": "2026-10-14",
+          "observed_at": "2026-10-14",
+          "source": "Reuters",
+          "source_url": "https://www.reuters.com/business/feds-bowman-says-theres-time-wait-see-before-any-more-action-2026-10-14",
+          "data": {
+            "actual": "'I don't feel any urgency for taking further action at this point... need to take some time and understand how things will evolve'",
+            "forecast": "n/a",
+            "previous": "unverified",
+            "delta_label": "no rush after September hike"
+          },
+          "reason": "Speaking at the IMF-World Bank meetings in Bangkok, Bowman adds another 'no rush' Board voice on the day CPI ran hot - one day after Collins said a hike is still needed 'before the end of the year'. Net: the Board wing keeps October uncommitted ahead of the blackout.",
+          "market_validation": "unverified",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 0,
+            "importance": 1,
+            "surprise": 1,
+            "total": 2
+          }
+        }
+      ]
+    },
+    "boc": {
+      "hawkish": [
+        {
+          "id": "boc-h1",
+          "title": "Sep CPI 3.1%: headline back above the 3% band on energy",
+          "summary": "Headline 3.1% YoY (forecast 3.2%, prev 3.0%), +0.1% m/m (+0.4% seasonally adjusted); gasoline +27.8% and energy +19.0% drove it, ex-gasoline 2.2%.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
+          "source": "Statistics Canada",
+          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261019/dq261019a-eng.htm",
+          "facet": "headline-energy",
+          "data": {
+            "actual": "3.1% YoY, +0.1% m/m (+0.4% SA); gasoline +27.8%, energy +19.0%; ex-gas 2.2%",
+            "forecast": "3.2% YoY, +0.2% m/m (Reuters poll)",
+            "previous": "3.0% YoY Aug, -0.1% m/m; gasoline +22.8%",
+            "delta_label": "above the 1-3% band, one tick below consensus"
+          },
+          "reason": "The last CPI before the Oct 28 decision puts headline back above the Bank's 1-3% band for the first time since June: gasoline +27.8% and fuel oil +57.8% did the work while groceries cooled to 1.7%. The Bank can look through energy only while it stays contained, and this print keeps the energy leg hot into the MPR even though the one-tick downside surprise and softer core argue against a pre-emptive move.",
+          "market_validation": "OIS-implied Oct-28 hike odds ~37% (14 Oct) -> 71% (19 Oct) on the CPI; 75% on 23 Oct with a +19bp implied move (BlueGamma); 91% and +23bp on 26 Oct (BlueGamma, 18:03 ET), against Polymarket 82% and WOWA's CORRA strip at 77% (25 Oct).",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 0,
+            "total": 3
+          }
+        },
+        {
+          "id": "boc-h3",
+          "title": "UBS/Manulife/Oxford/Scotia move calls to Oct hike; UBS sees Sep CPI 3.3%",
+          "summary": "After 7 holds, Street baseline flips: UBS calls Oct + Jan to 2.75%; Manulife/Oxford see Oct + Dec.",
+          "published_at": "2026-10-02",
+          "observed_at": "2026-10-02",
+          "source": "MPA (via UBS, Manulife, Oxford Economics, Scotia)",
+          "source_url": "https://www.mpamag.com/ca/mortgage-industry/industry-trends/rate-hike-calls-gather-pace-ahead-of-october-boc-decision/592150",
+          "data": {
+            "actual": "UBS Oct + Jan to 2.75%; Sep CPI fcast 3.3%",
+            "forecast": "3.0% Aug",
+            "previous": "hold thru 2026",
+            "delta_label": "call flip to Oct"
+          },
+          "reason": "UBS Watt cites Macklem's shift (upside risks rising, less willing to look through headline) plus Halifax warning about moving too slow. Manulife Lapointe (Oct+Dec on inflation dynamics), Oxford Davenport (Oct+Dec), Scotia (Oct) join; RBC still holds near-term but calls it a close call. Sep CPI Oct 19 is the swing print.",
+          "market_validation": "OIS-implied Oct hike odds ~60% (Sep, CBRE); Polymarket hike 30% (Oct 5) -> 21% (Oct 14) -> 33% (Oct 19)",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "boc-h4",
+          "title": "Deliberations: energy spillover could require a monetary response",
+          "summary": "Governing Council agreed inflation risks rose and that pass-through of high energy prices could require a monetary response to prevent broad-based inflation.",
+          "published_at": "2026-09-16",
+          "observed_at": "2026-09-16",
+          "source": "Bank of Canada (Summary of Governing Council deliberations)",
+          "source_url": "https://www.bankofcanada.ca/2026/09/summary-of-governing-council-deliberations-fixed-announcement-date-of-september-2-2026/",
+          "data": {
+            "actual": "'Could require a monetary policy response to prevent broad-based inflation from setting in' (if energy spills over)",
+            "forecast": "n/a",
+            "previous": "Jul: looking through direct energy effects",
+            "delta_label": "conditional tightening risk"
+          },
+          "reason": "The committee-level account behind the September hold: the main risks had become more acute, inflation was likely higher for longer, and if energy passes through to other prices a policy response could be needed. Conditional, not a pre-commitment — members also noted the economy is still in excess supply with a soft labour market — but it is the official basis for the hike calls now in the street.",
+          "market_validation": "OIS-implied Oct hike: ~33% Oct 1 -> ~28% Oct 12 -> ~37% Oct 14 -> ~71% Oct 19 (+18bp implied move, BlueGamma)",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "boc-h5",
+          "title": "Macklem Oct 17: BoC will revise its inflation forecast higher with Brent near US$110",
+          "summary": "Governor says the Bank will revise its quarterly inflation forecast higher at the Oct 28 MPR - oil runs well above the July US$75 assumption - and frames the decision as whether inflation returns to 2% 'on its own' or the Bank 'will have to raise interest rates'.",
+          "published_at": "2026-10-17",
+          "observed_at": "2026-10-17",
+          "source": "The Globe and Mail",
+          "source_url": "https://www.theglobeandmail.com/business/article-bank-of-canada-interest-rate-macklem-inflation-oil-prices-imf/",
+          "data": {
+            "actual": "BoC to revise its inflation forecast higher; Brent ~US$110 (Oct 17) vs July assumption US$75; 'if oil prices stay around $100, we expect inflation to gradually drift up from where it is today: 3 per cent'",
+            "forecast": "n/a",
+            "previous": "Jul MPR: Brent assumed ~US$75; inflation seen drifting back to ~2%",
+            "delta_label": "hawkish outlook shift, hike question reopened"
+          },
+          "reason": "The Governor's last substantive steer before the Oct 28 decision and MPR: with Hormuz still closed, Houthi strikes widening the conflict and strategic reserves being drawn down, he said the forecast revision will be material and that the Bank is asking whether inflation will come back to target on its own or whether rates must rise. It keeps a hike live at the next meeting and validates the Street's hawkish turn, while stopping short of pre-committing to a move. Since then Brent has gone further: it settled at US$113.17 on 22 Oct, the highest since early May, and traded US$114.31 on 23 Oct after Houthi attacks on Saudi facilities (Reuters), so the forecast revision he flagged is being written against an oil price well above the July US$75 assumption; Brent December still settled at US$115.81 on 26 Oct even after giving back 0.8% as Tehran talks opened (CNBC).",
+          "market_validation": "CORRA OIS Oct-28 hike odds 36% -> 71% and implied move +9bp -> +18bp (Oct 16 -> Oct 19, BlueGamma)",
+          "direction": 1,
+          "weight": 4,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 2,
+            "surprise": 1,
+            "total": 4
+          }
+        },
+        {
+          "id": "boc-h6",
+          "title": "Q3 BOS: inflation expectations up again after the tariff breakdown",
+          "summary": "The Bank's own survey shows sentiment improved (recession-planning share 17% -> 6%), but one-year-ahead inflation expectations rose again in September as new US tariffs, Canadian counter-tariffs and cost pass-through hit pricing plans.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
+          "source": "Bank of Canada (Business Outlook Survey)",
+          "source_url": "https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/",
+          "data": {
+            "actual": "One-year-ahead inflation expectations rose again in September; firms with larger cost increases plan to keep passing them on; recession-planning share 17% -> 6%",
+            "forecast": "n/a",
+            "previous": "Q2: sentiment deteriorating, inflation expectations easing",
+            "delta_label": "expectations re-accelerating"
+          },
+          "reason": "This is the Bank's cleanest read on whether the energy shock is becoming an expectations shock, and it says the risk is live: expectations fell through July-August but turned up again in September once the trade talks broke down and oil rebounded, and firms say they will keep passing costs through. It supports Macklem's framing of Oct 28 as a choice between waiting for inflation to return to 2% on its own and nudging it there with rates.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        }
+      ],
+      "dovish": [
+        {
+          "id": "boc-d1",
+          "title": "Sep jobs -68k: second straight decline, -110k over two months",
+          "summary": "Employment fell 68k (vs +9.2k expected), u-rate 6.5%; participation 64.8%, lowest since 1997 outside the pandemic.",
+          "published_at": "2026-10-09",
+          "observed_at": "2026-10-09",
+          "source": "Statistics Canada",
+          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm",
+          "data": {
+            "actual": "-68k, u-rate 6.5%, wages +2.3%",
+            "forecast": "+9.2k (Reuters poll); u-rate 6.5%",
+            "previous": "-42k Aug; wages +2.0%",
+            "delta_label": "-77k vs consensus; 2nd straight drop"
+          },
+          "reason": "A second consecutive monthly decline — -110k over August-September — reversed most of the April-July gain (+181k); employment is still up 95k year over year. Weakness was broad: youth -48k, Quebec/BC down, participation at its lowest since 1997 outside the pandemic. It is the Bank's last labour read before Oct 28: TD, BMO, CIBC and Desjardins all read it as taking an October hike off the table. Wages did tick up to +2.3%, and Desjardins warns energy passthrough could still force tightening soon.",
+          "market_validation": "OIS-implied Oct hike odds ~40% -> ~25% on the print (LSEG, Oct 9); partly retraced to 63% hold / 37% hike (+9bp implied, BlueGamma, Oct 14)",
+          "direction": -1,
+          "weight": 4,
+          "weight_breakdown": {
+            "deviation": 2,
+            "importance": 1,
+            "surprise": 1,
+            "total": 4
+          }
+        },
+        {
+          "id": "boc-d2",
+          "title": "Sep core holds at target: trim 1.8%, median 1.9%",
+          "summary": "Both of the Bank's preferred core measures eased in September and sit below 2%, so the above-band headline still looks like an energy story rather than a broadening one.",
+          "published_at": "2026-10-19",
+          "observed_at": "2026-10-19",
+          "source": "Bank of Canada (CPI-trim / CPI-median)",
+          "source_url": "https://www.bankofcanada.ca/rates/price-indexes/cpi/",
+          "facet": "core-at-target",
+          "data": {
+            "actual": "CPI-trim 1.8%, CPI-median 1.9% (Sep)",
+            "forecast": "n/a",
+            "previous": "trim 1.9%, median 2.0% (Aug)",
+            "delta_label": "both -0.1pp"
+          },
+          "reason": "Core at or below 2% is the main argument for holding: it says the 3.1% headline is gasoline and fuel oil, not demand. It is also why the Street is split - Oxford and RBC read it as room to wait, while UBS, Manulife and Scotiabank argue the Bank should move before energy expectations feed through.",
+          "market_validation": "unverified",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 0,
+            "importance": 2,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "boc-d3",
+          "title": "G7 to release 100M barrels oil + diesel to curb spike",
+          "summary": "G7 coordinated release over 4 months + substantial diesel within 20 days as diesel hits $2.75/L record.",
+          "published_at": "2026-10-02",
+          "observed_at": "2026-10-02",
+          "source": "Financial Post (via G7/IEA statement)",
+          "source_url": "https://financialpost.com/commodities/energy/oil-gas/canada-g7-release-oil-diesel-into-market",
+          "data": {
+            "actual": "100M barrels over 4 months",
+            "forecast": "n/a",
+            "previous": "Hormuz blockade squeeze",
+            "delta_label": "supply relief"
+          },
+          "reason": "Gasoline from the Hormuz blockade is what holds BOC headline at 3.0%. A coordinated crude + diesel release (IEA-coordinated, 100M barrels over 4 months, diesel tranche within 20 days) is the lever aimed at easing the energy leg the Bank wants to look through - but prices have not cooled: Brent settled $106.06 on Oct 14 and traded ~$104.4 on Oct 15 (Reuters/CNBC), and the IEA warns diesel-market tightness could persist into next year. Fuel costs remain the key swing into the Oct 19 CPI.",
+          "market_validation": "unverified",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 0,
+            "importance": 1,
+            "surprise": 1,
+            "total": 2
+          }
+        }
+      ]
+    }
+  },
+  "total_score": {
+    "fed": {
+      "base_total": 2,
+      "effective_total": 0.0,
+      "band": "hold"
+    },
+    "boc": {
+      "base_total": 6,
+      "effective_total": 4.25,
+      "band": "lean hike"
+    },
+    "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
+  },
+  "calendar": [
+    {
+      "date_toronto": "2026-10-28",
+      "datetime_toronto": "2026-10-28T09:45:00-04:00",
+      "datetime_utc": "2026-10-28T13:45:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "BOC rate decision + Monetary Policy Report",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "Hike to 2.50% 96% / hold 2.25% 4% (CORRA OIS via BlueGamma, 28 Oct 08:27 ET)",
+      "previous": "2.25% (held 7x)",
+      "source": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/"
+    },
+    {
+      "date_toronto": "2026-10-28",
+      "datetime_toronto": "2026-10-28T14:00:00-04:00",
+      "datetime_utc": "2026-10-28T18:00:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "FOMC rate decision",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "Hold 3.75-4.00% 100% (SOFR OIS via BlueGamma, 28 Oct 08:29 ET); 92.8% hold at the 27 Oct CME close (Kiplinger)",
+      "previous": "Hike +25bp (Sep 16)",
+      "source": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "date_toronto": "2026-10-29",
+      "datetime_toronto": "2026-10-29T08:30:00-04:00",
+      "datetime_utc": "2026-10-29T12:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "PCE Price Index (Sep) + Q3 GDP advance",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified",
+      "previous": "PCE 3.4% YoY, core 3.0% (Aug)",
+      "source": "BEA",
+      "source_url": "https://www.bea.gov/news/schedule"
+    },
+    {
+      "date_toronto": "2026-12-09",
+      "datetime_toronto": "2026-12-09T09:45:00-05:00",
+      "datetime_utc": "2026-12-09T14:45:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "BOC rate decision (next meeting after Oct 28)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified until the Oct 28 decision is out",
+      "previous": "2.25% set 2 Sep; October decision at 09:45 ET today",
+      "source": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
+    },
+    {
+      "date_toronto": "2026-12-09",
+      "datetime_toronto": "2026-12-09T14:00:00-05:00",
+      "datetime_utc": "2026-12-09T19:00:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "FOMC rate decision + SEP (next meeting after Oct 27-28)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified until today's 14:00 ET statement",
+      "previous": "3.75-4.00%; October decision at 14:00 ET today",
+      "source": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    }
+  ],
+  "notes": "Frozen 09:13:57 ET on decision day, ahead of both announcements: the Bank of Canada sets the overnight rate at 09:45 ET with the October Monetary Policy Report, the FOMC at 14:00 ET with Chair Warsh's press conference at 14:30. Every pricing block is stamped with the venue's own page time, never the run clock. Fed: the BlueGamma SOFR-OIS page, stamped 2026-10-28T12:29:22Z (08:29:22 ET), reads \"overnight index swap pricing implies a 100% probability the Federal Reserve holds at the 28 Oct 2026 FOMC meeting, with a market-implied move of 0 bp from the current federal funds rate of 3.88%\" - 100% hold / 0% hike / 0% cut, implied 3.88, versus 85% hold / 15% hike / +4bp when the 26 Oct snapshot froze. BoC: the CORRA-OIS page, stamped 2026-10-28T12:27:48Z (08:27:48 ET), implies a 96% probability the Bank of Canada hikes at the 28 Oct announcement with a +24bp move on the 2.25% overnight rate (implied 2.49): 96% hike / 4% hold / 0% cut, versus 91% on 26 Oct. Second venues stand beside these and are never averaged: CME FedWatch printed 92.8% hold at the 27 Oct close, 88.9% at Monday's close, 84.5% a week ago and 35.8% a month ago (Kiplinger's live blog quoting the CME tool; cmegroup.com itself returns 403 to this host, which is why no FedWatch URL is cited in the block); Polymarket has Fed no-change 94.9% / 25bp hike 4.85% / 50bp+ 0.35% / cuts 0.05% each on $88.3M volume and $11.2M liquidity at 09:04:36 ET, and BoC 25bp hike 83.65% / no change 14.45% at 09:08:35 ET on $569k volume and $61k liquidity. That leaves a 7.2pp Fed gap (BlueGamma 100% vs FedWatch 92.8%) and a 12.4pp BoC gap (96% vs Polymarket 83.65%). Both are instrument structure, not a data error: a 0bp implied move mechanically rounds the OIS transform to 100% hold while futures and binaries keep a 5-8% hike tail, and a +24bp move is 96% of a 25bp step while the BoC book carries $61k of liquidity against $11.2M on the Fed, so its 83.65% is the softer read. Both stand as published; neither is averaged into the other. No official guidance has landed since the blackouts began (Fed 17 Oct, BoC 20 Oct): the last words were Warsh on 16 Oct and Macklem on 17 Oct, so today's statements are the first new information. What moved since the 26 Oct snapshot is market, not policy: Brent December settled US$113.88 on 27 Oct, down 1.67% from Monday's US$115.81 six-month closing high as Middle East diplomacy resumed (Reuters), while US equities closed higher on earnings (Nasdaq +1.2% to 26,477, S&P 500 +0.6% to 7,722). Fed drivers sum to +2 base / 0.0 effective (hold) against a market pricing no move today and keeping the next hike for December; BoC drivers sum to +6 base / +4.25 effective (lean hike) against 96% OIS hike pricing. Next prints: PCE (Sep) with the Q3 GDP advance on 29 Oct, then both banks meet again on 9 Dec (BoC 09:45 ET, FOMC 14:00 ET with the SEP). Prior-review minors closed this cycle: the BoC betting leg now carries the book's normalised split with the raw legs quoted, the Fed pricing as_of is the page stamp of the pull that produced the numbers, centralbank.watch is dropped because it is a model output rather than an observable venue, and the PPI 'previous' month now reads the revised 5.6% y/y. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
+}
