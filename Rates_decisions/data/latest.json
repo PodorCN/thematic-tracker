@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28T09:13:57-04:00",
+  "as_of": "2026-10-28T15:12:55-04:00",
   "snapshot_date": "2026-10-28",
   "version": 1,
   "timezone": "America/Toronto",
@@ -7,52 +7,52 @@
     "fed": {
       "label": "Fed (FOMC)",
       "next_meeting": {
-        "date_label": "Oct 28",
-        "datetime_toronto": "2026-10-28T14:00:00-04:00",
-        "datetime_utc": "2026-10-28T18:00:00Z"
+        "date_label": "Dec 9 + SEP",
+        "datetime_toronto": "2026-12-09T14:00:00-05:00",
+        "datetime_utc": "2026-12-09T19:00:00Z"
       },
       "last_meeting": {
-        "date": "2026-09-16",
-        "decision": "Hike +25bp to 3.75-4.00% (12-0 vote)"
+        "date": "2026-10-28",
+        "decision": "Hold at 3.75-4.00% (10-2 vote; Cook and Hammack dissented for +25bp)"
       },
       "pricing": {
         "probabilities": {
-          "hike": 0,
-          "hold": 1.0,
-          "cut": 0
+          "hike": 0.816,
+          "hold": 0.174,
+          "cut": 0.01
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
-        "implied_rate_after": 3.88,
-        "source": "SOFR OIS-implied via BlueGamma (0bp)",
-        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast",
-        "as_of": "2026-10-28T08:29:22-04:00",
+        "implied_rate_after": 4.08,
+        "source": "Kalshi target-range December ladder, five legs normalised on the bid/ask midpoint",
+        "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open",
+        "as_of": "2026-10-28T15:11:32-04:00",
         "observable_proxy": null
       }
     },
     "boc": {
       "label": "BOC",
       "next_meeting": {
-        "date_label": "Oct 28 + MPR",
-        "datetime_toronto": "2026-10-28T09:45:00-04:00",
-        "datetime_utc": "2026-10-28T13:45:00Z"
+        "date_label": "Dec 9",
+        "datetime_toronto": "2026-12-09T09:45:00-05:00",
+        "datetime_utc": "2026-12-09T14:45:00Z"
       },
       "last_meeting": {
-        "date": "2026-09-02",
-        "decision": "Hold at 2.25% (7th consecutive hold)"
+        "date": "2026-10-28",
+        "decision": "Hike +25bp to 2.50% (first increase since July 2023); Bank Rate 2.75%, deposit rate 2.45%"
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.96,
-          "hold": 0.04,
-          "cut": 0
+          "hike": 0.384,
+          "hold": 0.606,
+          "cut": 0.01
         },
         "probability_status": "available",
-        "implied_rate_before": 2.25,
-        "implied_rate_after": 2.49,
-        "source": "CORRA OIS-implied via BlueGamma (+24bp)",
-        "source_url": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast",
-        "as_of": "2026-10-28T08:27:48-04:00",
+        "implied_rate_before": 2.5,
+        "implied_rate_after": 2.6,
+        "source": "Kalshi overnight-rate December ladder, five legs normalised on the bid/ask midpoint",
+        "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open",
+        "as_of": "2026-10-28T14:58:55-04:00",
         "observable_proxy": null
       }
     }
@@ -61,35 +61,35 @@
     "fed": [
       {
         "platform": "Polymarket",
-        "event_slug": "fed-decision-in-october-20260617190323537",
-        "event_url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537",
+        "event_slug": "fed-decision-in-december-20260729232808632",
+        "event_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
         "probabilities": {
-          "cut": 0,
-          "hold": 0.95,
-          "hike": 0.05
+          "cut": 0.01,
+          "hold": 0.185,
+          "hike": 0.805
         },
         "status": "available",
-        "volume": "$88.3M",
-        "liquidity": "$11.2M",
-        "as_of": "2026-10-28T09:04:36-04:00",
-        "note": "Live odds: Hold 95%, Hike 5%, Cut 0% (raw legs at 09:04:36 ET: no-change 94.9%, 25bp hike 4.85%, 50bp+ 0.35%, cuts 0.05% each; normalised across the three legs)."
+        "volume": "$5.86M",
+        "liquidity": "$810.4k",
+        "as_of": "2026-10-28T15:10:58-04:00",
+        "note": "December 2026 event, post-decision. Live legs at 15:10:58 ET: 25bp hike 0.78, 50bp+ 0.0245, no change 0.185, 25bp cut 0.0055, 50bp+ cut 0.004 (raw sum 0.999); normalised across the three outcomes -> hike 80.5%, hold 18.5%, cut 1.0%. Kalshi's independent ladder sits 1.1pp away at 81.6% hike."
       }
     ],
     "boc": [
       {
         "platform": "Polymarket",
-        "event_slug": "bank-of-canada-decision-in-october-20260715203359314",
-        "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-october-20260715203359314",
+        "event_slug": "bank-of-canada-decision-in-december-20260908230600011",
+        "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-december-20260908230600011",
         "probabilities": {
-          "cut": 0,
-          "hold": 0.147,
-          "hike": 0.853
+          "cut": 0.007,
+          "hold": 0.596,
+          "hike": 0.397
         },
         "status": "available",
-        "volume": "$569.0k",
-        "liquidity": "$60.7k",
-        "as_of": "2026-10-28T09:08:35-04:00",
-        "note": "Live odds: Hike 85%, Hold 15%, Cut 0% (raw legs at 09:08:35 ET: 25bp hike 83.65%, no change 14.45%, 50bp+ 0.05%, cuts 0.05% each; normalised across the three legs)."
+        "volume": "$66k",
+        "liquidity": "$16k",
+        "as_of": "2026-10-28T15:07:00-04:00",
+        "note": "December 2026 event, post-decision. Live legs at 15:07:00 ET: 25bp hike 0.395, 50bp+ 0.004, no change 0.60, 25bp cut 0.0045, 50bp+ cut 0.0025 (raw sum 1.006); normalised across the three outcomes -> hike 39.7%, hold 59.6%, cut 0.7%. Kalshi's independent ladder sits 1.3pp away at 38.4% hike."
       }
     ]
   },
@@ -649,34 +649,6 @@
   },
   "calendar": [
     {
-      "date_toronto": "2026-10-28",
-      "datetime_toronto": "2026-10-28T09:45:00-04:00",
-      "datetime_utc": "2026-10-28T13:45:00Z",
-      "date_only": false,
-      "currency": "CAD",
-      "event": "BOC rate decision + Monetary Policy Report",
-      "impact": "HIGH",
-      "importance": 3,
-      "forecast": "Hike to 2.50% 96% / hold 2.25% 4% (CORRA OIS via BlueGamma, 28 Oct 08:27 ET)",
-      "previous": "2.25% (held 7x)",
-      "source": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/"
-    },
-    {
-      "date_toronto": "2026-10-28",
-      "datetime_toronto": "2026-10-28T14:00:00-04:00",
-      "datetime_utc": "2026-10-28T18:00:00Z",
-      "date_only": false,
-      "currency": "USD",
-      "event": "FOMC rate decision",
-      "impact": "HIGH",
-      "importance": 3,
-      "forecast": "Hold 3.75-4.00% 100% (SOFR OIS via BlueGamma, 28 Oct 08:29 ET); 92.8% hold at the 27 Oct CME close (Kiplinger)",
-      "previous": "Hike +25bp (Sep 16)",
-      "source": "Federal Reserve",
-      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
-    },
-    {
       "date_toronto": "2026-10-29",
       "datetime_toronto": "2026-10-29T08:30:00-04:00",
       "datetime_utc": "2026-10-29T12:30:00Z",
@@ -696,11 +668,11 @@
       "datetime_utc": "2026-12-09T14:45:00Z",
       "date_only": false,
       "currency": "CAD",
-      "event": "BOC rate decision (next meeting after Oct 28)",
+      "event": "BOC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "unverified until the Oct 28 decision is out",
-      "previous": "2.25% set 2 Sep; October decision at 09:45 ET today",
+      "forecast": "Hold 2.50% 60.6% / +25bp to 2.75% 38.4% / cut 1.0% (Kalshi ladder, 28 Oct 15:12 ET)",
+      "previous": "2.50% (raised 28 Oct, first hike since July 2023)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
     },
@@ -710,14 +682,14 @@
       "datetime_utc": "2026-12-09T19:00:00Z",
       "date_only": false,
       "currency": "USD",
-      "event": "FOMC rate decision + SEP (next meeting after Oct 27-28)",
+      "event": "FOMC rate decision + SEP",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "unverified until today's 14:00 ET statement",
-      "previous": "3.75-4.00%; October decision at 14:00 ET today",
+      "forecast": "Hold 3.75-4.00% 17.4% / +25bp to 4.00-4.25% 81.6% / cut 1.0% (Kalshi ladder, 28 Oct 15:12 ET)",
+      "previous": "3.75-4.00% (held 28 Oct on a 10-2 vote)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     }
   ],
-  "notes": "Frozen 09:13:57 ET on decision day, ahead of both announcements: the Bank of Canada sets the overnight rate at 09:45 ET with the October Monetary Policy Report, the FOMC at 14:00 ET with Chair Warsh's press conference at 14:30. Every pricing block is stamped with the venue's own page time, never the run clock. Fed: the BlueGamma SOFR-OIS page, stamped 2026-10-28T12:29:22Z (08:29:22 ET), reads \"overnight index swap pricing implies a 100% probability the Federal Reserve holds at the 28 Oct 2026 FOMC meeting, with a market-implied move of 0 bp from the current federal funds rate of 3.88%\" - 100% hold / 0% hike / 0% cut, implied 3.88, versus 85% hold / 15% hike / +4bp when the 26 Oct snapshot froze. BoC: the CORRA-OIS page, stamped 2026-10-28T12:27:48Z (08:27:48 ET), implies a 96% probability the Bank of Canada hikes at the 28 Oct announcement with a +24bp move on the 2.25% overnight rate (implied 2.49): 96% hike / 4% hold / 0% cut, versus 91% on 26 Oct. Second venues stand beside these and are never averaged: CME FedWatch printed 92.8% hold at the 27 Oct close, 88.9% at Monday's close, 84.5% a week ago and 35.8% a month ago (Kiplinger's live blog quoting the CME tool; cmegroup.com itself returns 403 to this host, which is why no FedWatch URL is cited in the block); Polymarket has Fed no-change 94.9% / 25bp hike 4.85% / 50bp+ 0.35% / cuts 0.05% each on $88.3M volume and $11.2M liquidity at 09:04:36 ET, and BoC 25bp hike 83.65% / no change 14.45% at 09:08:35 ET on $569k volume and $61k liquidity. That leaves a 7.2pp Fed gap (BlueGamma 100% vs FedWatch 92.8%) and a 12.4pp BoC gap (96% vs Polymarket 83.65%). Both are instrument structure, not a data error: a 0bp implied move mechanically rounds the OIS transform to 100% hold while futures and binaries keep a 5-8% hike tail, and a +24bp move is 96% of a 25bp step while the BoC book carries $61k of liquidity against $11.2M on the Fed, so its 83.65% is the softer read. Both stand as published; neither is averaged into the other. No official guidance has landed since the blackouts began (Fed 17 Oct, BoC 20 Oct): the last words were Warsh on 16 Oct and Macklem on 17 Oct, so today's statements are the first new information. What moved since the 26 Oct snapshot is market, not policy: Brent December settled US$113.88 on 27 Oct, down 1.67% from Monday's US$115.81 six-month closing high as Middle East diplomacy resumed (Reuters), while US equities closed higher on earnings (Nasdaq +1.2% to 26,477, S&P 500 +0.6% to 7,722). Fed drivers sum to +2 base / 0.0 effective (hold) against a market pricing no move today and keeping the next hike for December; BoC drivers sum to +6 base / +4.25 effective (lean hike) against 96% OIS hike pricing. Next prints: PCE (Sep) with the Q3 GDP advance on 29 Oct, then both banks meet again on 9 Dec (BoC 09:45 ET, FOMC 14:00 ET with the SEP). Prior-review minors closed this cycle: the BoC betting leg now carries the book's normalised split with the raw legs quoted, the Fed pricing as_of is the page stamp of the pull that produced the numbers, centralbank.watch is dropped because it is a model output rather than an observable venue, and the PPI 'previous' month now reads the revised 5.6% y/y. Fields marked 'unverified' were not confirmed against a primary source; never invent probabilities."
+  "notes": "Post-decision refresh taken at 15:12:55 ET on 28 Oct 2026, after both announcements. The Bank of Canada raised its target for the overnight rate 25bp to 2.50% at 09:45 ET (Bank Rate 2.75%, deposit rate 2.45%) with the October Monetary Policy Report: CPI seen near 3.5% by year-end, averaging 3% in 2027 - a full point above July - and back to 2% only by mid-2028, with Governing Council saying \"there could be a need to increase the policy rate further, but given uncertainties, Governing Council agreed to proceed carefully.\" The FOMC held the target range at 3-3/4 to 4 percent at 14:00 ET on a 10-2 vote, Cook and Hammack dissenting in favour of a quarter-point increase; the statement calls activity \"expanding at a strong pace\", keeps \"inflation remains elevated\", and offers no forward guidance beyond \"the accumulation of more information will help the Committee determine the policy stance appropriate to ensure a timely return of inflation to the Committee's 2 percent goal\". Next meetings are 8-9 December for the FOMC (decision 14:00 ET on 9 December, with the SEP) and 9 December at 09:45 ET for the Bank of Canada, whose next MPR is 27 January 2027. \n\nPricing is the post-decision read for those December meetings. The morning snapshot's source could not be reused: BlueGamma's SOFR and CORRA OIS pages still printed \"Next meeting: 28 Oct 2026\" and a 2.25% current overnight rate when read at 15:02 ET (their own stamps 18:39:23Z and 18:13:33Z) - the meeting already decided - so neither page carried a December probability. Both blocks therefore use Kalshi's December decision ladders, pulled from the public API at 15:12:55 ET and normalised across the five mutually exclusive legs on the bid/ask midpoint. Fed: Hike 25bp 79/80, Hike >25bp 2/3, maintains rate 17/18, Cut 25bp 0/1, Cut >25bp 0/1 (raw sum 1.005) -> 81.6% hike / 17.4% hold / 1.0% cut. BoC: Hike 25bp 38/39, Hike >25bp 0/1, maintains rate 61/62, Cut 25bp 0/1, Cut >25bp 0/1 (raw sum 1.015) -> 38.4% hike / 60.6% hold / 1.0% cut. The as_of on each block is Kalshi's own last-trade stamp on the 25bp hike leg (19:11:32Z Fed, 18:58:55Z BoC); the hold legs last traded 19:11:39Z and 19:05:45Z. Volume is 365.6k contracts on the Fed hike leg and 16.4k on the BoC hike leg, with open interest 229.4k and 12.5k. \n\nThe Polymarket overlay is the independent second venue and is never averaged with the above. \"Fed Decision in December?\" carried 25bp hike 0.78, 50bp+ 0.0245, no change 0.185, cuts 0.0095 on 0.999 of raw legs (80.5% / 18.5% / 1.0% after normalising; $5.86M volume, $810k liquidity, legs stamped 15:10:58 ET) and \"Bank of Canada Decision in December?\" carried 25bp hike 0.395, 50bp+ 0.004, no change 0.60, cuts 0.007 (39.7% / 59.6% / 0.7%; $66k volume, $16k liquidity, stamped 15:07:00 ET). The two venues agree inside 1.1pp on the Fed hike leg and 1.3pp on the BoC hike leg, so no divergence needs explaining; bips.ca prints a wider Kalshi BoC split of 47% hike / 52% hold / 1% cut on a date-only stamp, but its legs do not reconcile with the exchange tape read here, so its figure is not used. \n\nImplied rates are arithmetic on those legs, not new observations: Fed 3.88% + 0.816 x 25bp = 4.08%; BoC 2.50% + 0.384 x 25bp = 2.60%. \n\nDrivers and scores are carried over unchanged from the 09:13 ET snapshot (Fed base 2 / effective 0.0 hold, BoC base 6 / effective 4.25 lean hike): they are dated observations that still bear on the December meetings, and re-scoring them hours after the decision without new evidence would be invented precision. This refresh changes only the decision record, the meeting pointers, pricing, the betting overlay, the calendar and this note. Operator stage - review pending; this is not a published snapshot."
 }

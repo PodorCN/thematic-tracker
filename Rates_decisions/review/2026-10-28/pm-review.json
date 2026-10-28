@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-28T15:53:10-04:00",
+  "snapshot_date": "2026-10-28",
+  "candidate_sha256": "a88d6f6c10be206552b57c3108a479cce58370c7a87be05ea7ca8d3fc0d5e49e",
+  "verdict": "APPROVED",
+  "executive_summary": "Post-decision refresh frozen at 15:12:55 ET, after both announcements, and for the first time this board points its pricing at the December meetings. The official record reproduces verbatim on the primaries: federalreserve.gov's 28 Oct statement maintains the target range at 3-3/4 to 4 percent on a 10-2 vote, with Lisa D. Cook and Beth M. Hammack preferring a quarter-point increase, and 'activity is expanding at a strong pace', 'inflation remains elevated' and the 'accumulation of more information' sentence all match the notes; bankofcanada.ca's release raises the overnight target 25bp to 2.5% with Bank Rate 2.75% and deposit rate 2.45%, carries the 'there could be a need to increase the policy rate further ... proceed carefully' quote, the 3.5% year-end CPI and the 3% in 2027 / 2% by mid-2028 path, and the 9 Dec / 27 Jan dates; 'first increase since July 2023' checks against the Bank's own Valet series V39079, last raised 13 Jul 2023. Pricing is genuinely post-decision rather than a pre-meeting re-stamp: the recorded as_of values are real Kalshi trade stamps on the 25bp hike legs - KXFEDDECISION-26DEC-H25 traded at 19:11:32.492Z at 0.80 and KXCBDECISIONCANADA-26DEC-H25 at 18:58:55.068Z at 0.39, matching the candidate to the second. Re-pulling both ladders at 15:47 ET normalises to 81.95% / 17.07% / 0.98% (Fed) and 38.73% / 60.29% / 0.98% (BoC) against the frozen 81.6 / 17.4 / 1.0 and 38.4 / 60.6 / 1.0: inside half a point, with the hike legs one cent firmer. The Polymarket overlay reproduces exactly on the BoC book (39.7 / 59.6 / 0.7, $66k volume) and sits 2.1pp firmer on the Fed hike leg after the 15:11 stamp, so the disclosed 1.1pp / 1.3pp venue gaps hold. The venue switch is justified on evidence: both BlueGamma OIS pages still printed 'Next meeting: 28 Oct 2026' with pre-decision rates when re-read at 15:49 ET (stamps 19:46:53Z and 19:12:33Z), so no December OIS probability existed to cite today. Driver arithmetic is exact - Fed base +2 / effective 0.0, BoC +6 / +4.25, every breakdown summing to its weight, every decay factor matching the as_of age - and spot-checks hold at StatCan (Sep CPI 3.1%, employment -68,000), Cleveland Fed (Hammack's restrictive-stance line), the Q3 BOS, the BEA schedule (PCE Sep and Q3 GDP advance both 29 Oct 08:30) and the FOMC calendar (8-9 Dec with SEP). All colours are minor: the driver ledger is carried over unchanged so the rendered section header now reads 'since 2026-10-28' over cards dated 16-19 Oct, the carried scores still describe the October decision (Fed hold 0.0 against 81.6% December hike; BoC +4.25 against 60.6% hold) with only the frontend's divergence badge to say so, fed-d4's CNBC link still lacks the quote it supports, boc-h3 is a resolved catalyst still paying +3, the two venues now share an instrument class, and the re-freeze deleted the morning review from disk.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "meetings.fed.last_meeting.date",
+      "issue": "Refreshing last_meeting to 2026-10-28 while carrying the 16 Sep - 19 Oct driver ledger makes the drivers section header claim a window its own evidence predates: the page renders 'Fed (FOMC) - since 2026-10-28' and 'BOC - since 2026-10-28' above cards stamped 'published 2026-10-16' and 'published 2026-10-19'. Pre-decision the same header read 'since 2026-09-16' and was literally true.",
+      "evidence": "app.js:275 renders `<h3 class=\"bank-name\">${label} - since ${last_meeting.date}</h3>`; candidate meetings.fed.last_meeting.date=2026-10-28 and meetings.boc.last_meeting.date=2026-10-28; newest fed driver published_at=2026-10-16 (fed-d4), newest boc drivers published_at=2026-10-19 (boc-h1, boc-h6); candidate.notes explains the carry-over but index.html and app.js render no notes block, so the explanation never reaches the page.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "total_score.fed.effective_total",
+      "issue": "The carried scores now answer the question the board asked this morning, not the one it asks tonight: Fed 0.0 'hold' against 81.6% December hike pricing, BoC +4.25 'lean hike' against 60.6% hold. The frontend does disclose it with a 'divergence vs pricing' badge on both banks, and the notes justify the carry-over, so the reader is not misled - but the ledger still credits October catalysts (boc-h3's 'move calls to Oct hike', fed-d4's 'no signal on October', fed-d1's October urgency) toward a December lean.",
+      "evidence": "candidate.total_score.fed={base 2, effective 0.0, band hold}, total_score.boc={base 6, effective 4.25, band lean hike}; meetings.fed.pricing.probabilities.hike=0.816, meetings.boc.pricing.probabilities.hold=0.606; app.js:246-254 emits `divergence vs pricing (${leader})` for both banks; drivers fed-d1/fed-d4 and boc-h3 all reference October.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.probabilities.hike",
+      "issue": "The Fed ladder re-priced upward after the recorded as_of: the frozen block says 0.816 hike on legs '79/80' and '2/3', while the same Kalshi tickers read 0.80/0.81 and 0.03/0.04 at 15:47 ET and normalise to 81.95% / 17.07% / 0.98%. A 0.35pp move inside 36 minutes is a reprice, not a misread - direction and legs agree, and it stays inside the 10pp reprice allowance.",
+      "evidence": "api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open read 2026-10-28 15:47 ET: 26DEC-H25 bid 0.80 / ask 0.81, 26DEC-H26 bid 0.03 / ask 0.04, 26DEC-H0 bid 0.17 / ask 0.18, cuts 0.00 / 0.01; raw mid sum 1.025 -> hike 0.8195 / hold 0.1707 / cut 0.0098 versus candidate 0.816 / 0.174 / 0.010 with raw sum 1.005.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[3].source_url",
+      "issue": "Third cycle carrying the same citation gap: fed-d4 credits Warsh with saying the world has 'broadly conformed' to the September expectations, and the linked CNBC story still does not contain the phrase. The quote is genuine, so the fact survives; the citation does not support the sentence, and the driver's 'hike odds fall below 15%' half is now history after the hold.",
+      "evidence": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html fetched 2026-10-28 15:52 ET (HTTP 200, 795,300 bytes): no occurrence of 'conform' in the article body; prior rounds review/2026-10-26 and review/2026-10-28 (09:33) filed the same field.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[1].weight",
+      "issue": "boc-h3 ('UBS/Manulife/Oxford/Scotia move calls to Oct hike') was satisfied at 09:45 ET today, so it now evidences the decision just taken rather than the December meeting, yet it still pays +3 base (+1.5 after the 0.5 decay) into a December-lean score that already sits opposite the market's 60.6% hold.",
+      "evidence": "candidate drivers.boc.hawkish[1] id=boc-h3, published_at=2026-10-02, weight=3, weight_breakdown total=3; bankofcanada.ca/2026/10/fad-press-release-2026-10-28/ read 15:47 ET confirms the 25bp hike the call anticipated.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "notes",
+      "issue": "With the OIS pages unusable, both the primary block and the 'independent second venue' are now event-contract ladders (Kalshi and Polymarket). They are separate order books, but the same instrument class, so the 1.1pp / 1.3pp agreement is weaker cross-validation than this morning's OIS-versus-binary comparison and should not be read as two independent methods agreeing.",
+      "evidence": "meetings.fed.pricing.source='Kalshi target-range December ladder, five legs normalised on the bid/ask midpoint'; betting.fed[0].platform='Polymarket'; notes call Polymarket 'the independent second venue'; BlueGamma SOFR/CORRA OIS pages re-read 15:49 ET still show dateTime=2026-10-28 (19:46:53Z Fed, 19:12:33Z BoC) with 3.88% / 2.25% current rates, i.e. no post-decision December OIS print exists.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "review/2026-10-28/pm-review.json",
+      "issue": "Process, not data: the re-freeze commit deleted the 09:33 review (pm-review.json and review.md) from the review directory instead of leaving it beside the new candidate, so the refresh landed with no prior review on disk and the gate's 'no pm-review.json' branch briefly read as 'nothing to review'. Keeping the superseded round as pm-review-<sha12>.json would preserve the audit trail.",
+      "evidence": "commit 2516384 'snapshot 2026-10-28 post-decision refresh (review pending)' deletes Rates_decisions/review/2026-10-28/pm-review.json (63 lines) and review.md (24 lines) while rewriting candidate.json and candidate.sha256 (52a66d02dd47 -> a88d6f6c10be).",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
