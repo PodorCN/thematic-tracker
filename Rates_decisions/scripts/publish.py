@@ -44,6 +44,10 @@ _NAN_INF = re.compile(r"\bNaN\b|Infinity")
 _HTTPS = re.compile(r"^https://")
 _DATE_ONLY = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
+# Drivers only carry across a policy decision if they are this significant;
+# anything lighter that predates meetings.<bank>.last_meeting.date is pruned.
+CARRY_OVER_MIN_WEIGHT = 6
+
 
 def _toronto_day(value: object) -> str | None:
     if isinstance(value, str) and _DATE_ONLY.match(value.strip()):
@@ -79,6 +83,21 @@ def _band_of(total: int) -> str:
     if total >= -7:
         return "lean cut"
     return "strong cut lean"
+
+
+def driver_day(driver: dict) -> str | None:
+    return _toronto_day(driver.get("published_at") or driver.get("observed_at"))
+
+
+def is_stale_driver(driver: dict, last_meeting_date: object) -> bool:
+    """True if the driver predates the last decision and is not significant enough to keep."""
+    if not isinstance(last_meeting_date, str) or not _DATE_ONLY.match(last_meeting_date):
+        return False
+    weight = driver.get("weight")
+    if isinstance(weight, int) and weight >= CARRY_OVER_MIN_WEIGHT:
+        return False
+    day = driver_day(driver)
+    return bool(day) and day < last_meeting_date
 
 
 def validate(doc: dict) -> list[str]:
@@ -133,6 +152,8 @@ def validate(doc: dict) -> list[str]:
                     sign = "+1" if want > 0 else "-1"
                     fail(f"{bank}/{driver.get('id')}: in \"{side}\" array but "
                          f"direction={driver.get('direction')} (must be {sign})")
+        last_meeting_date = (doc.get("meetings", {}).get(bank, {})
+                             .get("last_meeting", {}).get("date"))
         seen: set[str] = set()
         signed = w_sum = eff_signed = 0
         for driver in ordered:
@@ -156,6 +177,11 @@ def validate(doc: dict) -> list[str]:
                 plus = "+".join(str(wb.get(k)) for k in ("deviation", "importance", "surprise"))
                 fail(f"{bank}/{did}: breakdown ({plus}) must sum to weight {weight} "
                      f"(and total={weight})")
+            if is_stale_driver(driver, last_meeting_date):
+                fail(f"{bank}/{did}: published {driver_day(driver)}, before last decision "
+                     f"{last_meeting_date}, weight {weight} — prune it "
+                     f"(only weight ≥{CARRY_OVER_MIN_WEIGHT} carries across a decision; "
+                     "npm run prune)")
             if not _HTTPS.match(str(driver.get("source_url") or "")):
                 fail(f"{bank}/{did}: source_url must be https://")
             if weight >= 7 and driver.get("market_validation") in (None, "unverified"):

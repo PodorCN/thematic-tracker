@@ -15,7 +15,10 @@
 See `Rates_decisions/AGENT.md` §4: weight 1–10 integer, `weight_breakdown`
 parts sum to weight, hawkish `+1` / dovish `-1`, age decay
 `≤7d ×1.0 / 8–14d ×0.75 / 15–30d ×0.5 / >30d ×0.25`, same-URL split needs
-distinct `facet`, weight ≥5 needs numeric market validation.
+distinct `facet`, weight ≥5 needs numeric market validation. Driver window is
+the last decision to today: a driver published before
+`meetings.<bank>.last_meeting.date` stays only if its weight is >5 (machine
+error otherwise; `npm run prune` removes it).
 
 ## Rates source rule (binding)
 
