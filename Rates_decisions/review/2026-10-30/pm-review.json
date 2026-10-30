@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-10-30T09:37:42-04:00",
+  "snapshot_date": "2026-10-30",
+  "candidate_sha256": "ecea061f7e4455a0ce86bb8cc72d6e13dc92bd4663a2238f34fa83441e0e319a",
+  "verdict": "APPROVED",
+  "executive_summary": "Friday 30 Oct 2026, snapshot taken 09:15:32 ET, reviewed 09:20-09:40 ET, so freshness is under 25 minutes against the 90-minute limit. The frozen bundle is complete: candidate.json hashes to ecea061f7e44 and matches candidate.sha256, and the bytes equal data/current.json. structural-flags.json is an empty array, so there is nothing to disposition. Both pricing blocks reproduce exactly from the live Kalshi ladder. Re-pulled at 09:27 ET, the Fed December legs read H25 0.70/0.72, H26 0.02/0.03, H0 0.26/0.27, C25 and C26 0.00/0.01, whose midpoints normalise to 72.77 / 26.24 / 0.99 against the frozen 72.8 / 26.2 / 1.0; the BoC legs read 0.35/0.36, 0.00/0.01, 0.64/0.65, 0.00/0.01, 0.00/0.01, normalising to 35.47 / 63.55 / 0.99 against 35.5 / 63.5 / 1.0. Polymarket, read at 09:25-09:27 ET, moved less than a point from the recorded stamps (Fed hike 73.9 to 73.4, BoC hike 35.8 to 36.5), which is inside the reprice allowance. Official policy is verified against primary documents: the 28 Oct FOMC statement held 3-3/4 to 4 percent on a 10-2 vote with Cook and Hammack preferring +25bp, the BoC raised 25bp to 2.50% (Bank Rate 2.75%, deposit rate 2.45%) and kept 'there could be a need to increase the policy rate further', and both next decisions are 9 Dec 2026 (FOMC 8-9 Dec with SEP; the BoC announcement page prints 09:45 ET). Every Fed and BoC quote in the driver ledger is verbatim in the statement, the press-conference transcript, the press release or the opening statement, and every source_url sits on the domain it claims. The data numbers check out: BEA has September PCE at 3.6% headline and 3.1% core with real PCE 0.0% and real DPI -0.3%, Q3 GDP advance 3.4% with final sales to private domestic purchasers 4.9% and the quarterly price block at 2.1% / 2.5%, August PCE at 3.4% / 3.0%, and StatCan has August GDP at 0.0% with a -0.1% September advance and 0.3% for Q3. The BLS API confirms today's Employment Cost Index at +0.8% q/q with wages +0.7% and 12-month compensation 3.4%, which is why it was rightly left unscored. The numeric market-validation strings reproduce on Kalshi hourly candles: 0.79 at the 28 Oct 14:00 close, 0.80 and 0.81 in the 15:00 and 16:00 hours with 76.9k contracts; 0.78 to 0.80 in the 29 Oct 08:00-09:00 hour with 6.9k contracts, 0.75 by 10:00 and 0.74 by 18:00; the BoC leg 0.47/0.49 pre-release, 0.33 at the 10:00 close, 0.39-0.40 through the afternoon and 0.38-0.35 today. Weights obey the rubric: every breakdown sums to its weight, both means sit in band (Fed 2.33, BoC 2.75), every driver is published on or after the 28 Oct decisions so the window rule needs no prune, both same-URL splits carry distinct facets, no weight reaches 5, and the totals recompute to Fed +6 (lean hike) and BoC -1 (hold) against market pricing of 72.8% and 35.5% hike. Four minors go to the next cycle and none touches a frozen number: the Fed OIS cross-check has re-priced since its cited stamp, one SEP dot count is off by one, the BoC Q3 annualisation rounds 1.2% up to 1.3%, and the two pricing.source labels name a ladder type that was not the one normalised. No critical or major is open, so this approval binds ecea061f7e44 only.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].note",
+      "issue": "The Fed OIS cross-check is staler than the note implies. The note cites BlueGamma at 67% hike / 33% hold / 0% cut with a +17bp move and stamp 2026-10-30T12:13:51Z (08:13:51 ET) and calls that '5.8pp below the Kalshi ladder's 72.8%'. The same page now prints 72% hike / 28% hold / 0% cut at +18bp, stamped 2026-10-30T13:19:51Z (09:19:51 ET): it re-priced 5pp between the cited read and four minutes after the snapshot, so the disclosed gap has closed and the sentence is no longer true of the live page. The 67% read itself is credible - the 29 Oct review saw the same page at 67%/+17bp under an 02:37:56Z stamp - so this is staleness, not a misread, and no frozen number is affected.",
+      "evidence": "curl of https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast at 2026-10-30 09:35 ET returns 'Hike 72% Hold 28% Cut 0%', 'Market-implied move: +18 bp', 'Current federal funds rate 3.88%' and dateTime 2026-10-30T13:19:51; candidate betting.fed[0].note cites 67/33/0 and +17bp at 2026-10-30T12:13:51; review/2026-10-29/pm-review.json recorded 67%/+17bp at 2026-10-30T02:37:56.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[0].data.previous",
+      "issue": "'16 of 18 pencilled in another 2026 hike' overstates the September SEP by one. The 2026 federal funds central tendency is 4.1-4.4 with a full range of 3.9-4.4; a 3.9 dot is the unchanged 3.75-4.00 midpoint, and the central-tendency rule strips the three lowest dots, so exactly three participants projected no further hike and 15 of 18 projected at least one. The dovish read of fed-d7 does not depend on the exact count, so this is a citation blemish, not a scoring error.",
+      "evidence": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm (16 Sep 2026 SEP), memo row 'Federal funds rate': median 4.1, central tendency '4.1-4.4', range '3.9-4.4', 18 participants in the footnote; candidate drivers.fed.dovish[0].data.previous = 'Sep SEP: 16 of 18 pencilled in another 2026 hike'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.dovish[1].data.actual",
+      "issue": "Q3 is annualised at about 1.3% but StatCan's 0.3% quarter-on-quarter compounds to about 1.2%. The parenthetical (0.3% q/q) is correct and the comparison with the Bank's 2% projection still holds with room to spare; only the annualisation rounding is a tenth too high.",
+      "evidence": "https://www150.statcan.gc.ca/n1/daily-quotidien/261030/dq261030a-eng.htm: 'information on real GDP by industry suggests that the economy expanded 0.3% in the third quarter of 2026'; (1.003)^4-1 = 1.20%; candidate drivers.boc.dovish[1].data.actual = 'Q3 tracking ~1.3% annualised (0.3% q/q)' with delta_label '~0.7pp below the BoC projection'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.source",
+      "issue": "Both pricing blocks name an instrument they did not use. The Fed block says 'Kalshi target-range December ladder' and the BoC block 'Kalshi overnight-rate December ladder', but both source_urls point at decision-event series (KXFEDDECISION, KXCBDECISIONCANADA) whose legs are hike 25 / hike >25 / hold / cut 25 / cut >25, not target-range or overnight-rate strikes. The arithmetic is right for the decision ladder; only the label is wrong, and a reader who follows the URL will look for a contract that is not there.",
+      "evidence": "curl 'https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open' returns KXFEDDECISION-26DEC-{H26,H25,H0,C26,C25} subtitled 'Hike >25bps / Hike 25bps / Fed maintains rate / Cut >25bps / Cut 25bps'; series_ticker=KXCBDECISIONCANADA returns the same five-way decision ladder; candidate meetings.fed.pricing.source and meetings.boc.pricing.source.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
