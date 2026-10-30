@@ -2,11 +2,11 @@
   "schema_version": "1.0",
   "reviewer": "independent-pm",
   "operator": "rates-decisions-writer",
-  "reviewed_at": "2026-10-29T18:23:43-04:00",
+  "reviewed_at": "2026-10-29T23:08:39-04:00",
   "snapshot_date": "2026-10-29",
-  "candidate_sha256": "e1a179d37974bc90502faed99b6ee95c02bc863cf4283e6461bb415255329264",
+  "candidate_sha256": "31b639cab54686d440a8065b752707d442e7a25080dbb2796f14637b9d414e61",
   "verdict": "APPROVED",
-  "executive_summary": "This is the second round on 2026-10-29. It reviews the re-freeze after the REVISE of b6045fa6006e (commit 1d191f9). The new candidate bytes hash to e1a179d37974..., which matches candidate.sha256. The bytes equal the shared canonical form, and canonical(data/current.json) gives the same hash. npm run check passes with 0 structural flags, and the working tree has no frontend or script changes. The diff from 73e7246 touches only boc-h7, boc-h8, boc-d4, fed-h11, fed-h12, fed-d7, total_score.boc and notes. Pricing, calendar and the other drivers are byte-identical to the round-1 bytes, which I verified against primaries and the live Kalshi/Polymarket books. Both round-1 majors are fixed and verified against the new bytes (the validator counts major findings regardless of disposition, so they are recorded here and in review.md rather than as findings). (1) boc-h7.market_validation now covers the whole decision window and calls it 'Mixed'. I re-checked it against the Kalshi 26DEC-H25 trade tape: 09:45:29 @0.46, 09:48:45 @0.35, 09:57:11 @0.33, 10:31-10:59 @0.39-0.42, last 19:07:35Z @0.37. The Bloomberg ~60% figure is now labelled secondary and linked. theglobeandmail.com/business/article-bank-of-canada-raises-interest-rate-october-2026/ (HTTP 200) reads 'a roughly 60-per-cent chance of another hike at the bank's next meeting in December', according to Bloomberg data. (2) boc-h7.data.forecast now attributes the ~96% to CORRA OIS and gives Polymarket at 85.3%, matching git 2516384^. Surprise is set to 0, so the weight is 2+1+0=3 and BoC rescores to 3+2-3=+2 hold, against Kalshi 62.1% hold. The Fed stays at +6 lean hike against 75.6% hike. Round-1 minors: fed-h12 now carries the Q3 price block (2.1% / 2.5% SAAR), fed-h11 and fed-h12 share one combined 08:30 attribution (0.78 -> 0.74, net -4c, matching the hourly candles), and fed-d7 drops the 'main reason' claim. Those three are fixed. Three remain minor and non-blocking: fed-d7's quote is still not verbatim, boc-h8's title still uses opening-statement wording, and boc-h7's stamps are loose. All are noted for the next cycle. The board binds to this sha only.",
+  "executive_summary": "Round 3 on 2026-10-29 reviews the minor-findings correction of the approved e1a179d37974 candidate (commit 6f99403). The bytes hash to 31b639cab546..., which matches candidate.sha256. The bytes equal the shared canonical form, and canonical(data/current.json) gives the same hash. npm run check passes with 0 structural flags, and nothing outside data/ and review/ changed since 8c0f199. A parsed diff against the e1a179d37974 bytes (git 8c0f199) changes exactly 7 values: top-level as_of (18:12 -> 23:07 ET), betting.fed[0].note, drivers.fed.dovish[0].summary, drivers.boc.hawkish[0].data.forecast, drivers.boc.hawkish[0].market_validation, drivers.boc.hawkish[1].title and notes. Pricing, weights, scores (Fed +6 lean hike, BoC +2 hold) and calendar are untouched. All four round-2 minors are fixed. (1) fed-d7 now quotes 'going in the right way' and 'gone the right way too', which matches the FOMCpresconf20261028.pdf text verbatim. (2) boc-h8's title now reads ''somewhat stronger' than July', which matches the press release ('a somewhat stronger overall growth projection than the July Report'). (3) boc-h7's OIS stamp now reads 08:27:48 ET, matching git 2516384^ meetings.boc.pricing.as_of. Its validation now quotes the pre-release book: 0.47/0.49 in the 28 Oct 08:00/09:00 candles with no trades, 0.48/0.49 on 27 Oct, first trade 09:45:29 @0.46, giving -11c from the 0.48 mid to 0.37. (4) The Fed now has a non-binary cross-check. I re-read the BlueGamma SOFR OIS page at 23:07 ET (HTTP 200). It shows 'Hike 67% Hold 33% Cut 0%', a market-implied move of +17 bp from 3.88%, next meeting 09 Dec 2026, stamped dateTime 2026-10-30T02:37:56 (22:37:56 ET under the UTC convention used in earlier rounds). The gaps of 8.6pp to Kalshi and 7.7pp to Polymarket recompute exactly. Two minors are non-blocking. The OIS-versus-Kalshi gap compares a 22:37 OIS read with an 18:01 Kalshi stamp. The BlueGamma page is internally inconsistent: the headline says +17bp, but its forward-path table says 31 Dec 2026 '0 bps' with 'Last update: 28 Oct 2026'. This approval binds to 31b639cab546 only.",
   "checks": {
     "official_policy": "pass",
     "pricing": "pass",
@@ -18,31 +18,17 @@
   "findings": [
     {
       "severity": "minor",
-      "field": "drivers.fed.dovish[0].summary",
-      "issue": "Partly fixed. The 'main reason December is priced near 75%' claim is gone from the reason. The summary still quotes 'going the right way' for inflation compensation and expectations. Warsh said compensation is 'going in the right way' and expectations 'have gone the right way'. The exact phrase 'going the right way' appears only in a reporter's question.",
-      "evidence": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf (pdftotext): Warsh, 'inflation compensation is going in the right way ... They've gone the right way too'; Capurro (Bloomberg), 'you're saying inflation expectations are going the right way'.",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
-      "field": "drivers.boc.hawkish[1].title",
-      "issue": "Partly fixed. boc-h8's summary and reason now quote the linked press release ('somewhat stronger', 'stronger than expected in the July Report'). The title still says 'slack absorbed by 2028', which appears only in the opening statement. The press release instead says indicators 'continue to point to some excess supply'.",
-      "evidence": "https://www.bankofcanada.ca/2026/10/opening-statement-2026-10-28/: 'This absorbs the remaining slack in the economy'. https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/: 'A broad set of indicators continue to point to some excess supply in the economy.'",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
-      "field": "drivers.boc.hawkish[0].data.forecast",
-      "issue": "The stamps are loose. '(BlueGamma, 09:13 ET)' is the freeze time of the morning snapshot, not the BlueGamma reading. The OIS page was stamped 08:27:48 ET. Separately, '-9c net' is measured from the first post-release trade (0.46). The pre-release book was 0.48/0.49, so the net move is closer to -11c. Neither affects the weight or the band.",
-      "evidence": "git 2516384^:Rates_decisions/data/current.json has meetings.boc.pricing.as_of='2026-10-28T08:27:48-04:00' and top-level as_of='2026-10-28T09:13:57-04:00'. Kalshi KXCBDECISIONCANADA-26DEC-H25 hourly candles at 08:00 and 09:00 ET on 2026-10-28 show bid/ask 0.47/0.49 with no trades; on 27 Oct the book was 0.48/0.49.",
-      "disposition": "next_cycle"
-    },
-    {
-      "severity": "minor",
       "field": "betting.fed[0].note",
-      "issue": "Carried from 2026-10-28, partly mitigated. The BoC side now has a verified non-binary instrument (Bloomberg swaps ~60%) beside the two ladders. The Fed side still cross-checks Kalshi only against Polymarket, which is the same instrument class.",
-      "evidence": "Candidate meetings.fed.pricing.source='Kalshi target-range December ladder ...'. Candidate betting.fed[0].note says 'Independent venue to the Kalshi ladder; not averaged'. gamma-api Fed December 25bp hike 0.715 at 2026-10-29 18:17 ET.",
+      "issue": "The disclosed '8.6pp below the Kalshi ladder' compares two different times. The 22:37 ET OIS read is set against a Kalshi ladder stamped 18:01 ET. Kalshi has since drifted lower: re-pulled at 23:08 ET it normalises to 71.3% hike, so the gap at the same time is about 4pp. The new top-level as_of of 23:07 ET can also read as if pricing were current, although meetings.fed.pricing.as_of (18:01:30) and the notes correctly say the pricing blocks are unchanged. The 4.3pp drift is inside the reprice allowance and does not change the lean-hike band.",
+      "evidence": "Kalshi /trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open at 2026-10-29 23:08 ET, 26DEC mids: H25 0.695, H26 0.025, H0 0.28, C25 0.005, C26 0.005, which normalise to hike 0.7129 / hold 0.2772, against the candidate's meetings.fed.pricing.probabilities.hike=0.756. BoC at the same time: hike 0.361 / hold 0.629, against the frozen 0.369 / 0.621.",
       "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "notes",
+      "issue": "The BlueGamma Fed page cited as the SOFR OIS cross-check is internally inconsistent. Its headline (67% hike, +17 bp, stamped 2026-10-30T02:37:56) is fresh. Its forward-path table still shows 'Last update: 28 Oct 2026' and '31 Dec 2026 4.00% 0 bps'. Its time stamp also carries no timezone suffix. The candidate cites only the headline and labels it disclosed, not averaged, which is acceptable for a cross-check.",
+      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast read at 2026-10-29 23:07 ET contains '<time dateTime=\"2026-10-30T02:37:56\">', 'Hike 67% Hold 33% Cut 0%' and 'Market-implied move: +17 bp'. The same page's table reads '31 Dec 2026 4.00% 0 bps ... Last update: 28 Oct 2026'.",
+      "disposition": "accepted"
     }
   ],
   "flags_dispositioned": []

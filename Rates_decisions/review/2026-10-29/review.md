@@ -1,45 +1,53 @@
-# Rates Decisions — 2026-10-29 review, round 2 (independent PM)
+# Rates Decisions — 2026-10-29 review, round 3 (independent PM)
 
-This review covers candidate `e1a179d37974bc90…`, operator `rates-decisions-writer`. It is the re-freeze after the round-1 REVISE of `b6045fa6006e` (commit 1d191f9). **Verdict: APPROVED.** All six checks pass, and there are zero open critical or major findings.
+This review covers candidate `31b639cab546…` (commit 6f99403), operator `rates-decisions-writer`. It is a correction of the four round-2 minor findings on the approved `e1a179d37974`. **Verdict: APPROVED.** All six checks pass, there are zero critical or major findings, and the two remaining minors do not block.
 
 ## Integrity
 
-- The sha256 of the candidate bytes is `e1a179d37974bc90502faed99b6ee95c02bc863cf4283e6461bb415255329264`, which matches `candidate.sha256`.
+- The sha256 of the candidate bytes is `31b639cab54686d440a8065b752707d442e7a25080dbb2796f14637b9d414e61`, which matches `candidate.sha256`.
 - The candidate bytes match the shared canonical form, and `canonical(data/current.json)` gives the same hash.
 - `npm run check`: structure valid, 0 structural flags. `flags_dispositioned` is empty.
-- The working tree has no frontend or script changes.
-- The diff from 73e7246 touches only boc-h7, boc-h8, boc-d4, fed-h11, fed-h12, fed-d7, `total_score.boc` and `notes`. Pricing, calendar, betting and the other drivers are byte-identical to round 1. Round 1 verified them against federalreserve.gov, BEA, bankofcanada.ca, BLS, StatCan and the live Kalshi and Polymarket books.
+- Nothing outside `data/` and `review/` has changed since 8c0f199.
 
-## Round-1 majors: both fixed
+## Diff against `e1a179d37974` (git 8c0f199)
 
-These two fixes are recorded here and in `executive_summary` rather than as findings. The validator counts every major finding as open, even one marked `fixed`.
+The parsed diff changes exactly 7 values:
 
-1. **boc-h7 `market_validation`.** The field now covers the whole window: 0.46 at 09:45, then 0.33–0.35 within 12 minutes, then 0.39–0.40, then 0.37 on 29 Oct. It is labelled "Mixed".
-   - The Kalshi trade tape confirms it: 09:45:29 @0.46, 09:48:45 @0.35, 09:57:11 @0.33, 10:31–10:59 @0.39–0.42, last trade 19:07:35Z @0.37.
-   - The Bloomberg swaps figure is now labelled secondary and linked. The Globe and Mail article (HTTP 200) says "a roughly 60-per-cent chance of another hike at the bank's next meeting in December", according to Bloomberg data.
-2. **boc-h7 `data.forecast`.** The field now reads "CORRA OIS ~96% (BlueGamma), Polymarket 85.3% (09:08 ET)", which matches the morning candidate (git `2516384^`).
-   - Surprise is now 0, so the weight is 2+1+0 = 3.
-   - BoC rescores to 3+2−3 = **+2, hold**, against Kalshi 62.1% hold.
-   - Fed is unchanged at +6, lean hike, against 75.6% hike.
+- top-level `as_of`: 18:12 → 23:07 ET
+- `betting.fed[0].note`
+- `drivers.fed.dovish[0].summary`
+- `drivers.boc.hawkish[0].data.forecast`
+- `drivers.boc.hawkish[0].market_validation`
+- `drivers.boc.hawkish[1].title`
+- `notes`
 
-## Round-1 minors
+Pricing, weights, scores (Fed +6 lean hike, BoC +2 hold) and the calendar are untouched.
 
-| Round-1 minor | Status |
-|---|---|
-| fed-h12 price block | Fixed: now shows PCE 2.1% / core 2.5% SAAR against Q2's 5.0% / 3.3% |
-| fed-h11 / fed-h12 attribution | Fixed: one combined 08:30 window, 0.78 → 0.74, net −4c (matches the hourly candles) |
-| fed-d7 "main reason" claim | Fixed: removed |
-| fed-d7 quote | Still open: see item 1 below |
-| boc-h8 wording | Partly fixed: summary and reason now quote the press release; the title does not (item 2 below) |
-| Same instrument class | Mitigated for BoC by the verified swaps figure; still open for Fed (item 4 below) |
+## Round-2 minors: all fixed
 
-## Next cycle (minor, non-blocking)
-
-1. **fed-d7 quote.** The summary still has "going the right way". Warsh said "going in the right way" and "gone the right way"; the exact phrase appears only in a reporter's question.
-2. **boc-h8 title.** It still says "slack absorbed by 2028", which is opening-statement wording. The linked press release says "some excess supply".
+1. **fed-d7.** The summary now quotes "going in the right way" and "gone the right way too", which matches the press-conference PDF verbatim.
+2. **boc-h8.** The title now reads "'somewhat stronger' than July". The press release says "a somewhat stronger overall growth projection than the July Report", so it matches.
 3. **boc-h7 stamps.**
-   - "BlueGamma, 09:13 ET" is the morning freeze time; the OIS page was stamped 08:27:48 ET.
-   - "−9c net" is measured from the first post-release trade. The pre-release book was 0.48/0.49, so the move is about −11c.
-4. **Fed cross-check.** Fed pricing is still checked only Kalshi against Polymarket, which are the same instrument class.
+   - The OIS stamp now reads 08:27:48 ET, which matches the morning candidate's `meetings.boc.pricing.as_of`.
+   - The pre-release book is now quoted. The Kalshi candles show 0.47/0.49 at 08:00 and 09:00 ET on 28 Oct with no trades, and 0.48/0.49 on 27 Oct. The first trade was 09:45:29 @0.46.
+   - −11c from the 0.48 mid to 0.37 is correct.
+4. **Fed non-binary cross-check.** I re-read the BlueGamma SOFR OIS page at 23:07 ET (HTTP 200):
+   - "Hike 67% Hold 33% Cut 0%"
+   - "+17 bp" from 3.88%, next meeting 09 Dec 2026
+   - `dateTime="2026-10-30T02:37:56"`, i.e. 22:37:56 ET under the UTC convention used in earlier rounds.
 
-**Verdict: APPROVED.** This approval binds to `e1a179d37974` only.
+   The gaps of 8.6pp to Kalshi and 7.7pp to Polymarket recompute exactly.
+
+## Minor findings (non-blocking)
+
+- **`betting.fed[0].note` (next cycle).** The 8.6pp gap compares the 22:37 ET OIS read with Kalshi's 18:01 ET stamp.
+  - Kalshi re-pulled at 23:08 ET normalises to **71.3% hike / 27.7% hold** (BoC 36.1 / 62.9), so the gap at the same time is about 4pp.
+  - The new top-level `as_of` of 23:07 can read as if pricing were current. `pricing.as_of` and the notes are honest that it is not.
+  - The 4.3pp drift is inside the reprice allowance, and the band is unchanged.
+- **`notes` (accepted).** The BlueGamma page is internally inconsistent.
+  - Its fresh headline says 67% and +17bp.
+  - Its forward-path table still says "31 Dec 2026 4.00% 0 bps … Last update: 28 Oct 2026".
+  - Its time stamp has no timezone suffix.
+  - The candidate cites only the headline and labels it "disclosed, not averaged", which is acceptable for a cross-check.
+
+**Verdict: APPROVED.** This approval binds to `31b639cab546` only. It must be published before 00:00 ET, while `snapshot_date` 2026-10-29 still equals the Toronto date.
