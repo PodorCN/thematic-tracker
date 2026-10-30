@@ -36,6 +36,7 @@ Rates_decisions/
     publish.py              结构校验 + reviewer 门禁 + 归档（npm run check / npm run publish；调用 scripts/review/ 共享层）
     freeze.py               冻结包装器（npm run freeze；调用共享 freeze + 本产品 flags 插件）
     check_review.py         审阅预检包装器（npm run review:check）
+    prune_drivers.py        删除上次决议前且 weight ≤5 的旧因子并重算 total_score（npm run prune）
     fetch_betting.mjs       Polymarket 预测市场赔率抓取脚本（Node 工具，非门禁）
 ```
 
@@ -50,11 +51,12 @@ node scripts/fetch_betting.mjs
 # 2. 编辑数据：只修改 data/current.json，并把 snapshot_date 设为当日多伦多日期
 #    - 更新会议定价 probabilities / status
 #    - 维护 hawkish / dovish 驱动因子、权重与依据
+#    - 决议日翻篇：last_meeting.date 更新后跑 npm run prune，删掉上次决议前、weight ≤5 的旧因子并重算 total_score
 #    - 维护后续关键日历 releases
 
 # 3. 机器数据校验（结构错误直接拦；结构旗标 warn，需 reviewer 逐条 disposition）
 npm run check
-# 检查项：概率和 0.99~1.01、betting 概率和、权重 1-10 整数、breakdown 三项和==weight、
+# 检查项：旧因子保留规则（published_at 早于 last_meeting.date 且 weight ≤5 直接拦）、概率和 0.99~1.01、betting 概率和、权重 1-10 整数、breakdown 三项和==weight、
 # direction 与 hawkish(+1)/dovish(-1) 数组一致、base_total 与 effective_total 重算、
 # band 标签一致、source_url https、日历 datetimes、snapshot_date 口径
 
@@ -86,6 +88,7 @@ npm run dev
 - **严禁修改前端**：`index.html`、`styles.css`、`app.js` 在日常更新中绝对禁止修改。publish 会检查 git 工作区，前端/scripts 脏了就拒发。
 - **事实必须有源**：所有驱动因子必须附带真实有效的 `source_url`（https）。声称 StatCan/BLS/BEA/Fed/BoC 就必须链到对应主域（`statcan.gc.ca / bls.gov / bea.gov / federalreserve.gov / bankofcanada.ca`），否则机器打旗、reviewer 打回。二手转述必须写 `via X` 并降权，不得拿转述当独立 `market_validation`。
 - **breakdown 必须对上**：`weight_breakdown{deviation, importance, surprise}` 三项和 == `weight`（且 `total`==`weight`）；`direction` 必须与所在数组一致（hawkish=+1/dovish=-1）；`effective_total` 按 `as_of` 年龄衰减重算（≤7d×1 / 8–14d×0.75 / 15–30d×0.5 / >30d×0.25），差 >0.06 拒发。
+- **因子窗口 = 上次决议至今**：drivers 只保留 `published_at`（多伦多日期）≥ 该行 `meetings.<bank>.last_meeting.date` 的事件；上次决议之前的旧因子一律删除，唯一例外是 significance（`weight`）>5（即 ≥6，仍需满足 weight≥7 的 market validation 要求）。`npm run check` 硬拦，`npm run prune` 自动删除并重算 `total_score`。
 - **同一 release 拆两边必须有 facet**：同一 URL 同时出现在 hawkish 与 dovish，必须各自有不同 `facet` + 独立传导链，否则按 double-count 打回合并。
 - **概率与时间填空规则**：未知或无法验证的数据必须明确标注 `"unverified"` 或 `"unavailable"`（例如 `probabilities: null` 配 `probability_status: "unavailable"`），严禁虚构概率数值。
 - **冻结后不可变**：`review/<date>/candidate.json` 冻结后字节不可变；`data/current.json` 再改就 re-freeze（旧 review 自动作废）。

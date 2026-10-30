@@ -7,6 +7,7 @@
     "dev": "node dev-server.js",
     "fetch:odds": "node scripts/fetch_betting.mjs --write",
     "check": "python3 scripts/publish.py --check",
+    "prune": "python3 scripts/prune_drivers.py",
     "freeze": "python3 scripts/freeze.py",
     "review:check": "python3 scripts/check_review.py",
     "publish": "python3 scripts/publish.py"
