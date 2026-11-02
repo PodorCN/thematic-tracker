@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-02T09:33:00-05:00",
+  "snapshot_date": "2026-11-02",
+  "candidate_sha256": "257b9ee556e360d54533fb2653c16e330264f35fe60669ba08e657eb8ac4057d",
+  "verdict": "APPROVED",
+  "executive_summary": "Monday 2 Nov 2026, frozen at 09:11:40 ET and reviewed 09:25-09:33 ET, so the snapshot is 20 minutes old against the 90-minute freshness limit. The bundle is complete: candidate.json hashes to 257b9ee556e3, matches candidate.sha256, equals data/current.json byte-for-byte, structural-flags.json is an empty array, and publish.py --check reports a valid structure with no flags. The Fed December ladder reproduces exactly - Kalshi re-pulled at 09:26:27 ET still shows H25 0.69/0.70, H26 0.01/0.02, H0 0.28/0.29, C25 0.01/0.02, C26 0.00/0.01, whose midpoints normalise to 69.95 / 28.08 / 1.97 against the frozen 70.0 / 28.1 / 2.0. The BoC ladder ticked a quarter of a point after the snapshot: 39.1 / 59.9 / 1.0 frozen at 09:10:18 against 38.84 / 60.19 / 0.97 at 09:26:36, because the hike-25 ask fell from 0.41 to 0.40; that is inside the re-price allowance, so the page re-priced after the snapshot rather than the operator misreading it, and no band moves. Polymarket reads 71.6 / 27.3 / 1.0 (Fed, updated 09:21:14 ET) and 38.3 / 61.5 / 0.2 (BoC, 09:25:14), 0.7pp and 0.04pp from the frozen stamps. BlueGamma's cross-checks are quoted exactly as the pages print them today - 78% SOFR hike at +19bp stamped 08:49:29 ET and 51% CORRA hike at +13bp stamped 08:54:58 ET, both with forward tables still dated 30 Oct and both disclosed without averaging. Official policy is verified at source: the 28 Oct FOMC statement held 3-3/4 to 4 percent, 'released by a 10 - 2 vote', with Cook and Hammack preferring a quarter-point increase; the BoC raised 25bp to 2.5% with the Bank Rate at 2.75% and the deposit rate at 2.45%, kept 'There could be a need to increase the policy rate further, but given the uncertainties, we will proceed carefully', and prints the next announcement as 9 Dec at 09:45 ET; the FOMC calendar shows 8-9 Dec with an SEP. Every driver quote is verbatim in the primary document and every source_url sits on the domain it names (federalreserve.gov for the statement, the press-conference transcript and the September SEP; bea.gov for PCE and GDP; bankofcanada.ca for the release and the opening statement; statcan.gc.ca for GDP by industry). The data numbers reproduce: September PCE 3.6% headline and 3.1% core with real PCE 0.0% and real DPI -0.3%, Q3 GDP 3.4% with final sales to private domestic purchasers 4.9% and the quarterly price block at 2.1% / 2.5%, August GDP unchanged with a -0.1% September advance and 0.3% for Q3, and the September Canada LFS at -68k with unemployment 6.5%. The calendar matches the publishers' own schedules: BLS 6 Nov payrolls, 10 Nov CPI and 4 Dec payrolls; StatCan LFS 6 Nov and CPI 16 Nov; BoC 9 Dec 09:45; FOMC 8-9 Dec with SEP. The numeric market-validation strings reproduce on Kalshi hourly candles: 0.79 at the 28 Oct 14:00 close, 0.80 with 76.9k contracts in the decision hour and 0.81 in the 15:00 hour; 0.78 to 0.80 in the 29 Oct 08:00-09:00 hour at 6.9k, 0.75 by 10:00 and 0.74 by 18:00; the BoC leg 0.47/0.49 with no pre-release trades, 0.33 at the 10:00 close, 0.39-0.40 through the afternoon, and 0.35/0.36 on 30 Oct with the hold leg at 0.65. Weights obey the rubric: every breakdown sums, no weight reaches 5, the three same-URL splits carry distinct facets, every driver is dated on or after 28 Oct so the retention window needs no prune, and the totals recompute to Fed +6 lean hike and BoC -1 hold against 70.0% and 39.1% hike pricing. All four minors from 30 Oct are fixed: the OIS cross-check now carries a live stamp that still matches the page, fed-d7 says 15 of 18, boc-d5 annualises Q3 at 1.2%, and both pricing.source labels now describe the decision ladder actually used. Two new minors are re-price notes for the next cycle. No critical or major is open, so this approval binds 257b9ee556e3 only.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "meetings.boc.pricing.probabilities.hike",
+      "issue": "The BoC ladder ticked after the frozen as_of. The bundle records 39.1% hike at 09:10:18 ET; the same series re-pulled at 09:26:36 ET normalises to 38.84% because the hike-25 ask fell from 0.41 to 0.40. A 0.3pp move is far inside the 10pp re-price allowance and the direction did not flip, so the page re-priced after the snapshot rather than the operator misreading it; next cycle should re-pull on the fresh stamp.",
+      "evidence": "curl api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open at 2026-11-02 09:26:36 ET (Date header 14:26:36 GMT) returns 26DEC H25 0.39/0.40, H26 0.00/0.01, H0 0.61/0.63, C25 0.00/0.01, C26 0.00/0.01, midpoints summing 1.030 -> 38.84 / 60.19 / 0.97; candidate meetings.boc.pricing.as_of 2026-11-02T09:10:18-05:00 records 0.391 / 0.599 / 0.01.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].probabilities.hike",
+      "issue": "The Polymarket snapshot is fractionally stale against the live book: 72.3% hike at the 09:05:26 stamp against 71.62% when re-read at 09:26 ET, because the 'No change' leg moved from 0.265 to 0.275. The frozen figure still reproduces from its own raw legs (0.7205/0.996 = 72.34%) and the 0.7pp drift is inside the allowance, so this is a re-pull reminder, not an error.",
+      "evidence": "gamma-api.polymarket.com/events?slug=fed-decision-in-december-20260729232808632 read at 2026-11-02 09:26 ET with markets updatedAt 2026-11-02T14:21:14Z: 25bp increase 0.705, 50bp+ 0.0155, no change 0.275, 25bp cut 0.006, 50bp+ cut 0.0045, sum 1.006 -> 71.62 / 27.34 / 1.04 against candidate 0.723 / 0.266 / 0.011 billed at 09:05:26.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
