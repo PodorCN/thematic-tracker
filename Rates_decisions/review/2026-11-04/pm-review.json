@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-04T09:36:40-05:00",
+  "snapshot_date": "2026-11-04",
+  "candidate_sha256": "b55179024dc228c7d83b64902d66222f31fb6ff17fa53b47df84932e686bd5d5",
+  "verdict": "APPROVED",
+  "executive_summary": "Wednesday 4 Nov 2026. Bundle complete: candidate.json bytes hash to b55179024dc2 and match candidate.sha256, equal data/current.json byte-for-byte, structural-flags.json is [], publish.py --check reports a valid structure with no flags. Freshness passes: as_of 09:12:07 ET, reviewed 09:36, 24 minutes against the 90-minute limit. Both pricing blocks reproduce from the live Kalshi ladder: the frozen Fed legs (H25 0.78/0.79, H0 0.20/0.21, H26 0.01/0.02, C25 0.00/0.02, C26 0.00/0.01, raw sum 1.020) normalize exactly to 78.43 / 20.10 / 1.47, which is the declared 78.4 / 20.1 / 1.5; the BoC legs normalize to 40.78 / 58.25 / 0.97 against the declared 40.8 / 58.2 / 1.0. Re-pulled at 09:26 ET the Fed book has drifted one tick (H25 ask 0.79->0.80, hold ask 0.21->0.22) and now normalizes to 77.78 / 20.77 / 1.45, i.e. -0.65pp on hike; per the timestamp rule that is post-snapshot repricing, not a reading error, so it is a minor with a re-pull instruction and does not block. Official policy is correct against the primaries: the FOMC held 3-3/4 to 4 percent on 28 Oct by a 10-2 vote with Cook and Hammack preferring +1/4 point (federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm), and the BoC raised 25bp to 2.50% with Bank Rate 2.75% and deposit rate 2.45% (bankofcanada.ca/2026/10/fad-press-release-2026-10-28/). Next meetings verified on the primary calendars: FOMC 8-9 Dec with SEP (fomccalendars.htm), BoC 9 Dec 09:45 ET. All 13 drivers carry primary-domain source_urls that resolve (federalreserve.gov x2, bea.gov x2, ismworld.org, bls.gov, mediacenter.adp.com, bankofcanada.ca x2, statcan.gc.ca) and every headline number was re-read at source: PCE 3.6/3.1 with real PCE <0.1% and saving rate 3.8%, GDP 3.4% with final sales to private domestic purchasers 4.9% and core PCE prices 2.5%, ISM 55.5 with production 59.0 and prices 75.2 from 77.9, JOLTS 7.523M (+333k, August revised up 111k to 7.19M, 1.06 openings per unemployed from 1.02), ADP +86k with September revised 90k->86k and professional services -27k, StatCan August 0.0% with 9 of 20 sectors up, September advance -0.1% and Q3 +0.3% q/q. Weight audit clean: breakdowns sum to weight on all 13 drivers, directions match their arrays, means are 2.00 (Fed) and 2.75 (BoC), no weight >=5 so no top-bucket numeric-validation gap, base totals +10 and -1 recompute exactly and the bands match. Market cross-checks are honest and independent: Polymarket 79.1 / 20.1 / 0.8 at 09:27 ET versus the frozen 78.9 / 20.3 / 0.8, BlueGamma OIS 84% Fed and 55% BoC both re-read today with the same 'Last update: 03 Nov 2026' footer the candidate discloses, and the 5.6pp / 14.2pp gaps are disclosed rather than averaged. Calendar dates verified against BLS (6 Nov Employment Situation, 10 Nov CPI, 4 Dec Employment Situation) and StatCan (6 Nov LFS, 16 Nov CPI per the 11-001-X diffusion calendar). Prior rounds' findings are closed: the instrument-naming mismatch, the 1.3% vs 1.2% Q3 rounding and the stale OIS framing are all fixed, and this round adds only five minors (Fed ladder drift one tick, Polymarket drift 0.2pp, an ISM consensus attribution, an unreproducible SEP dot count, and a renderer/JSON decay divergence). No critical or major finding anywhere; APPROVED.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.probabilities.hike",
+      "issue": "The Kalshi December ladder repriced one tick after the frozen as_of, so the page no longer returns the snapshot's 78.4%. The declared 78.43 / 20.10 / 1.47 is correct for 09:05:56 ET; the re-pull is a post-snapshot move, not a reading error, and the shift is under 1pp.",
+      "evidence": "candidate as_of 2026-11-04T09:05:56-05:00 records H25 0.78/0.79, H0 0.20/0.21, H26 0.01/0.02, C25 0.00/0.02, C26 0.00/0.01 (raw sum 1.020) -> 78.43/20.10/1.47. Same endpoint https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open re-read 09:26 ET returns H25 0.78/0.80, H0 0.21/0.22, H26 0.01/0.02, C25 0.00/0.02, C26 0.00/0.01 (raw sum 1.035) -> 77.78/20.77/1.45, i.e. -0.65pp on hike, because the hike-25 ask moved 0.79->0.80 and the hold ask 0.21->0.22. Difference <= 10pp with the page as_of more than 5 minutes later.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].probabilities.hike",
+      "issue": "The Polymarket leg drifted 0.2pp after the 09:01:35 ET read; the frozen 78.9 / 20.3 / 0.8 reproduces from the stated raw legs and the live book is effectively unchanged, so this is noise to re-pull next cycle rather than a data error.",
+      "evidence": "candidate betting.fed[0].as_of 2026-11-04T09:01:35-05:00 reports 78.9/20.3/0.8 from raw sum 1.0105. gamma-api.polymarket.com/events?slug=fed-decision-in-december-20260729232808632 re-read 2026-11-04T14:27:58Z (09:27:58 ET) gives 25 bps increase 0.79/0.80, No change 0.20/0.21, 50+ bps increase 0.009/0.01, 25 bps decrease 0.004/0.005, 50+ bps decrease 0.003/0.004 (raw sum 1.0175) -> 79.1/20.1/0.8, i.e. +0.2pp on hike.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[2].data.forecast",
+      "issue": "The ISM consensus is attributed to a source that does not carry it. The ISM Manufacturing PMI report contains no consensus figure at all, so 'consensus quoted by ISM/CNBC' cannot be checked at the linked primary; the 54.6 value itself is corroborated third-party (TradingEconomics and Piedmont Crescent both print 54.6, First Trust printed 54.5).",
+      "evidence": "https://www.ismworld.org/globalassets/pub/research-and-surveys/rob/pmi/r4in202610pmi.pdf contains no 'consensus' or 'expected' string; the only '54.6' in the PDF is the Backlog of Orders index (55.5 54.5 +1.0 / Backlog 54.6 56.4 -1.8). Field drivers.fed.hawkish[2].data.forecast says '54.6 (consensus quoted by ISM/CNBC)'. Secondary corroboration of 54.6: tradingeconomics.com/united-states/business-confidence/news/597358 'exceeding market expectations of 54.6'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed.dovish[0].data.previous",
+      "issue": "The September SEP head count is not reproducible from the published projection table. The table's 2026 federal funds range is 3.9-4.4, so at most one participant sits at the unchanged 3.75-4.00 midpoint (3.9) and the count of dots implying another hike is 16-17 of 18, not 15; the qualitative point (the dots imply one more hike) is right, the head count is not.",
+      "evidence": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm prints federal funds rate 2026 median 4.1, central tendency 4.1-4.4, full range 3.9-4.4 (June projection 3.8). Field drives drivers.fed.dovish[0].data.previous = 'Sep SEP: 15 of 18 pencilled in another 2026 hike'; a single 3.9 dot is the only non-hike midpoint on the 25bp grid.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "total_score.fed.effective_total",
+      "issue": "The page gauge and the declared effective total disagree. publish.py recomputes decay on Toronto calendar days (28 Oct to 4 Nov = 7 days -> x1.0 -> 10), while Rates_decisions/app.js decayFactor uses fractional days, so the 28 Oct drivers are 7.59 days old and decay x0.75, rendering +9.25. The candidate's own renderer note claims the gauge prints +9.5, which matches neither arithmetic. Both land in strong hike lean, so no band or weight changes.",
+      "evidence": "Rates_decisions/scripts/publish.py _age_days uses dt.date subtraction ('Calendar-day difference in Toronto') at line 64 and accepts effective_total 10 (publish.py --check: 'structure valid'). Rates_decisions/app.js line 25 daysBetween = (new Date(b)-new Date(a))/86400000 and line 39 'if (age <= 7) return 1.0' -> 7.592 days -> 0.75 -> 9.25 = 10 - 0.25*(3+2) + 0.25*2. Candidate notes claim '+9.5'.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
