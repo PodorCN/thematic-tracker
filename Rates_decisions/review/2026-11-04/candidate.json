@@ -1,0 +1,559 @@
+{
+  "as_of": "2026-11-04T09:12:07-05:00",
+  "snapshot_date": "2026-11-04",
+  "version": 1,
+  "timezone": "America/Toronto",
+  "meetings": {
+    "fed": {
+      "label": "Fed (FOMC)",
+      "next_meeting": {
+        "date_label": "Dec 9 + SEP",
+        "datetime_toronto": "2026-12-09T14:00:00-05:00",
+        "datetime_utc": "2026-12-09T19:00:00Z"
+      },
+      "last_meeting": {
+        "date": "2026-10-28",
+        "decision": "Hold at 3.75-4.00% (10-2 vote; Cook and Hammack dissented for +25bp)"
+      },
+      "pricing": {
+        "probabilities": {
+          "hike": 0.784,
+          "hold": 0.201,
+          "cut": 0.015
+        },
+        "probability_status": "available",
+        "implied_rate_before": 3.88,
+        "implied_rate_after": 4.08,
+        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint",
+        "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open",
+        "as_of": "2026-11-04T09:05:56-05:00",
+        "observable_proxy": null
+      }
+    },
+    "boc": {
+      "label": "BOC",
+      "next_meeting": {
+        "date_label": "Dec 9",
+        "datetime_toronto": "2026-12-09T09:45:00-05:00",
+        "datetime_utc": "2026-12-09T14:45:00Z"
+      },
+      "last_meeting": {
+        "date": "2026-10-28",
+        "decision": "Hike +25bp to 2.50% (first increase since July 2023); Bank Rate 2.75%, deposit rate 2.45%"
+      },
+      "pricing": {
+        "probabilities": {
+          "hike": 0.408,
+          "hold": 0.582,
+          "cut": 0.01
+        },
+        "probability_status": "available",
+        "implied_rate_before": 2.5,
+        "implied_rate_after": 2.6,
+        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint",
+        "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open",
+        "as_of": "2026-11-04T09:05:56-05:00",
+        "observable_proxy": null
+      }
+    }
+  },
+  "betting": {
+    "fed": [
+      {
+        "platform": "Polymarket",
+        "event_slug": "fed-decision-in-december-20260729232808632",
+        "event_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+        "probabilities": {
+          "cut": 0.008,
+          "hold": 0.203,
+          "hike": 0.789
+        },
+        "status": "available",
+        "volume": "$12.4M",
+        "liquidity": "$1.4M",
+        "as_of": "2026-11-04T09:01:35-05:00",
+        "note": "December 2026 event. Live legs stamped 08:59:58 ET on 4 Nov (event stamp 09:01:35 ET): 25bp hike 0.785, 50bp+ 0.0125, no change 0.205, 25bp cut 0.0045, 50bp+ cut 0.0035 (raw sum 1.0105, normalised to 78.9 / 20.3 / 0.8). Independent venue to the Kalshi ladder; not averaged. SOFR OIS cross-check (different instrument class): BlueGamma prices the 9 Dec FOMC at 84% hike / 16% hold / 0% cut with a +21bp implied move from 3.88% (headline stamp 2026-11-04T13:58:50Z = 08:58:50 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast). That is 5.6pp above the Kalshi ladder's 78.4% and 5.1pp above Polymarket's 78.9%; disclosed, not averaged - the OIS figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the page's forward-path table still prints 'Last update: 03 Nov 2026' while only the headline stamp refreshes."
+      }
+    ],
+    "boc": [
+      {
+        "platform": "Polymarket",
+        "event_slug": "bank-of-canada-decision-in-december-20260908230600011",
+        "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-december-20260908230600011",
+        "probabilities": {
+          "cut": 0.002,
+          "hold": 0.593,
+          "hike": 0.405
+        },
+        "status": "available",
+        "volume": "$207k",
+        "liquidity": "$76k",
+        "as_of": "2026-11-04T09:04:09-05:00",
+        "note": "December 2026 event. Live legs at 09:03:58 ET on 4 Nov: 25bp hike 0.410, 50bp+ 0.0005, no change 0.600, 25bp cut 0.0015, 50bp+ cut 0.0005 (raw sum 1.0125, normalised to 40.5 / 59.3 / 0.2). Thin book ($207k volume); independent venue to the Kalshi ladder; not averaged. CORRA OIS cross-check: BlueGamma prices the 9 Dec announcement at 55% hike / 45% hold / 0% cut, +14bp from 2.50% (stamp 2026-11-04T13:46:59Z = 08:46:59 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast). That is 14.2pp above the Kalshi ladder's 40.8% and 14.5pp above Polymarket's 40.5%; disclosed, not averaged - BlueGamma's model-derived BoC probabilities ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post), and its page footer still prints 'Last update: 03 Nov 2026'."
+      }
+    ]
+  },
+  "drivers": {
+    "fed": {
+      "hawkish": [
+        {
+          "id": "fed-h9",
+          "title": "Oct 28 FOMC hold on a 10-2 vote: Cook and Hammack dissent for +25bp",
+          "summary": "The Committee held 3.75-4.00% but two voters wanted a quarter-point hike now; the statement keeps 'inflation remains elevated' and calls activity 'expanding at a strong pace'.",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+          "data": {
+            "actual": "Hold 3.75-4.00%, 10-2 (Cook, Hammack for +25bp)",
+            "forecast": "Hold (pre-meeting Kalshi/Polymarket ~94%)",
+            "previous": "Sep 16: +25bp to 3.75-4.00%",
+            "delta_label": "two hawkish dissents"
+          },
+          "reason": "Two dissents in favour of an immediate hike show the hawkish wing is not waiting for December; together with unchanged 'inflation remains elevated' language this keeps the bar for a December move low rather than signalling a pause.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.79 at the 14:00 ET hourly close -> 0.80-0.81 in the 15:00-16:00 ET hours on 28 Oct (76.9k contracts in the decision hour).",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-h10",
+          "title": "Warsh presser: 'inflation is too high', Q3 growth likely above 3%",
+          "summary": "Chair Warsh said growth has strengthened (H1 revised to 2.4%, Q3 likely >3% with double-digit business investment), the labour market is 'quite positive' and 'inflation is too high'.",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+          "facet": "growth-inflation-read",
+          "data": {
+            "actual": "\"real activity is clearly pointing in the right direction ... But inflation is too high.\"",
+            "forecast": "n/a",
+            "previous": "Sep 16 presser after the +25bp hike",
+            "delta_label": "strong-economy framing"
+          },
+          "reason": "The Chair framed the economy as strong on both growth and jobs with inflation running above target for close to six years; that removes the usual growth-risk argument for waiting and leaves inflation as the deciding variable.",
+          "market_validation": "Kalshi Dec 25bp-hike leg ticked from 0.79/0.80 into 0.81 in the 15:00-16:00 ET hours on 28 Oct, i.e. no dovish repricing during the press conference.",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h11",
+          "title": "Sep PCE 3.6%, core 3.1%: both re-accelerate, in line with consensus",
+          "summary": "Headline PCE +0.5% m/m and 3.6% YoY (Aug 3.4%); core +0.3% m/m and 3.1% YoY (Aug 3.0%). Both matched the LSEG/FXStreet consensus.",
+          "published_at": "2026-10-29",
+          "observed_at": "2026-10-29",
+          "source": "BEA",
+          "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-september-2026",
+          "facet": "prices",
+          "data": {
+            "actual": "3.6% YoY, +0.5% m/m (core 3.1% YoY, +0.3% m/m)",
+            "forecast": "3.6% YoY, +0.5% m/m (core 3.1%, +0.3%) — LSEG / FXStreet calendar",
+            "previous": "3.4% YoY Aug (core 3.0%)",
+            "delta_label": "+0.2pp headline, +0.1pp core; no surprise"
+          },
+          "reason": "The Fed's target measure moved further from 2%, headline and core both, which keeps December live; the print was fully expected, so it confirms rather than adds to the hike case.",
+          "market_validation": "Combined 08:30 ET PCE + GDP window: Kalshi Dec 25bp-hike leg 0.78 -> 0.80 in the 08:00-09:00 ET hour on 29 Oct (6.9k contracts), then 0.75 by 10:00 ET and 0.74 by 18:00 ET - net -4c on the data day, so the in-line prints did not add to hike pricing.",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 2,
+            "importance": 1,
+            "surprise": 0,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-h12",
+          "title": "Q3 GDP +3.4% annualized, beating 3.2% consensus",
+          "summary": "Advance estimate 3.4% SAAR (Q2 2.2%), led by investment and consumer spending; final sales to private domestic purchasers +4.9%. Quarterly price block cooled: PCE prices 2.1% SAAR (Q2 5.0%), core 2.5% (Q2 3.3%).",
+          "published_at": "2026-10-29",
+          "observed_at": "2026-10-29",
+          "source": "BEA",
+          "source_url": "https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026",
+          "data": {
+            "actual": "3.4% SAAR; final sales to private domestic purchasers 4.9%",
+            "forecast": "3.2% (LSEG via Fox Business; FXStreet calendar 3.2%)",
+            "previous": "2.2% Q2",
+            "delta_label": "+0.2pp vs consensus, +1.2pp vs Q2"
+          },
+          "reason": "Above-trend growth with strong private demand removes the slack argument for waiting. The softer Q3 price block (core PCE 2.5% SAAR) is already folded into the monthly September YoY prints scored in fed-h11, so it is not scored again here.",
+          "market_validation": "Released at the same 08:30 ET as PCE; see fed-h11 for the combined Kalshi move, which cannot be split between the two releases.",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 0,
+            "surprise": 1,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h13",
+          "title": "ISM manufacturing 55.5 in October, tenth straight month of expansion",
+          "summary": "Headline 55.5 against 54.6 expected (September 54.5); production 59.0, new orders 55.5, employment 52.4. Prices paid eased to 75.2 from 77.9 but stays far above the 50 line.",
+          "published_at": "2026-11-02",
+          "observed_at": "2026-11-02",
+          "source": "Institute for Supply Management",
+          "source_url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october",
+          "facet": "activity",
+          "data": {
+            "actual": "55.5 (Sep 54.5); prices paid 75.2 (Sep 77.9)",
+            "forecast": "54.6 (consensus quoted by ISM/CNBC)",
+            "previous": "54.5 (Sep)",
+            "delta_label": "+0.9pt vs consensus, +1.0pt m/m"
+          },
+          "reason": "Factory activity accelerated for a tenth month and production hit 59.0, its highest since November 2021, so the goods side is not supplying the slowdown a December pause would need. The prices index fell 2.7pt on the month, so the hawkish read is on activity rather than a fresh inflation impulse.",
+          "market_validation": "unverified (the 10:00 ET print window on 2 Nov sits before the Kalshi trade capture we hold, which starts 11:35 ET on 3 Nov)",
+          "direction": 1,
+          "weight": 1,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 0,
+            "surprise": 0,
+            "total": 1
+          }
+        },
+        {
+          "id": "fed-h14",
+          "title": "JOLTS: September openings 7.523M and 1.06 jobs per unemployed person",
+          "summary": "Openings rose 333k to 7.523M against a 7.10M consensus (BLS: 'little changed at 7.5 million'); the openings rate was 4.5% and openings per unemployed person rose to 1.06 from 1.02. Hires held at 5.4M.",
+          "published_at": "2026-11-03",
+          "observed_at": "2026-11-03",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/jolts.nr0.htm",
+          "facet": "labour-demand",
+          "data": {
+            "actual": "7.523M openings (+333k), openings rate 4.5%",
+            "forecast": "7.10M (Reuters consensus)",
+            "previous": "7.190M (Aug, revised up 111k)",
+            "delta_label": "+423k vs consensus; +0.04 on the openings-to-unemployed ratio"
+          },
+          "reason": "A 423k beat on openings plus a higher openings-to-unemployed ratio removes the slack argument the dovish side needs for a December hold, and hires at 5.4M show the demand is being filled rather than only posted. The one offset is that BLS itself calls the level little changed, so the weight stays modest.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.75 at 11:35 ET on 3 Nov (first captured print after the 10:00 ET release) -> 0.77 by 03:00 ET and 0.78-0.79 by 04:00 ET on 4 Nov, i.e. +3-4c across the JOLTS-to-ADP window.",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h15",
+          "title": "ADP: private payrolls +86k in October, above the 69k consensus",
+          "summary": "October ADP +86,000, with September revised down to +86,000 from +90,000. Hiring was broad by size but professional and business services lost 27,000 for a third straight month; base pay rose 3.2%.",
+          "published_at": "2026-11-04",
+          "observed_at": "2026-11-04",
+          "source": "ADP Research (Stanford Digital Economy Lab)",
+          "source_url": "https://mediacenter.adp.com/2026-11-04-ADP-National-Employment-Report-Private-Sector-Employment-Increased-by-86,000-Jobs-in-October",
+          "facet": "labour-demand",
+          "data": {
+            "actual": "+86k",
+            "forecast": "+69k (Reuters poll)",
+            "previous": "+86k (Sep, revised from +90k)",
+            "delta_label": "+17k vs consensus; second straight month at +86k"
+          },
+          "reason": "A second consecutive month at +86k with pay growth steady keeps the labour market from handing the Fed a reason to wait; the print lands two days before the BLS report that actually settles December, so it is scored as a modest confirmation rather than a decisive input.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.78-0.79 at 04:00 ET, 0.80 at 08:00 ET and 0.79-0.80 at 09:00 ET on 4 Nov (book 0.78/0.79 at 09:05 ET), so the 08:15 ET beat produced no reversal in the overnight bid.",
+          "direction": 1,
+          "weight": 1,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 0,
+            "surprise": 0,
+            "total": 1
+          }
+        }
+      ],
+      "dovish": [
+        {
+          "id": "fed-d7",
+          "title": "Warsh: no forward guidance, 'I don't believe in prejudging meetings'",
+          "summary": "Asked whether a December hike still has wide support, Warsh declined to guide, said the period ahead is 'information rich' and that inflation compensation is 'going in the right way' and expectations have 'gone the right way too'.",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+          "facet": "guidance",
+          "data": {
+            "actual": "\"I don't believe in forward guidance absent exigent circumstances ... I also don't believe in prejudging meetings.\"",
+            "forecast": "n/a",
+            "previous": "Sep SEP: 15 of 18 pencilled in another 2026 hike",
+            "delta_label": "no December commitment"
+          },
+          "reason": "Refusing to endorse the September dots and pointing to improving inflation compensation keeps a December hold possible. The market did not trade it as dovish on the day, so it is scored as a modest offset only.",
+          "market_validation": "unverified (Kalshi Dec hike leg did not fall during the presser; it rose 0.79 -> 0.81)",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-d8",
+          "title": "Sep real spending flat, real disposable income -0.3%",
+          "summary": "Nominal PCE +0.5% but real PCE less than +0.1% m/m (Aug +0.5%); real DPI -0.3% (Aug 0.0%); saving rate 3.8%.",
+          "published_at": "2026-10-29",
+          "observed_at": "2026-10-29",
+          "source": "BEA",
+          "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-september-2026",
+          "facet": "real-spending",
+          "data": {
+            "actual": "Real PCE <+0.1% m/m; real DPI -0.3%; nominal spending +0.5%",
+            "forecast": "Nominal spending +0.6% (FXStreet calendar)",
+            "previous": "Real PCE +0.5%, real DPI 0.0% (Aug)",
+            "delta_label": "inflation eating real income"
+          },
+          "reason": "Inflation is now cutting into real income and real consumption stalled at the end of Q3; a further squeeze argues for patience because demand may cool without another hike.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.80 -> 0.75 between the 09:00 and 10:00 ET hourly closes on 29 Oct and 0.74 by 18:00 ET; attribution to this facet is not verified.",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        }
+      ]
+    },
+    "boc": {
+      "hawkish": [
+        {
+          "id": "boc-h7",
+          "title": "Hike to 2.50%, MPR lifts inflation path: ~3.5% by year-end, 3% in 2027",
+          "summary": "First hike since July 2023; CPI seen ~3.5% by year-end, averaging 3% in 2027 (one point above July) and back to 2% only by mid-2028. 'There could be a need to increase the policy rate further.'",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/",
+          "facet": "inflation-path",
+          "data": {
+            "actual": "+25bp to 2.50%; 2027 CPI avg 3%",
+            "forecast": "+25bp: CORRA OIS ~96% (BlueGamma, page stamped 08:27:48 ET), Polymarket 85.3% (09:08 ET) pre-release",
+            "previous": "July MPR: 2027 CPI ~2%",
+            "delta_label": "+1pp on the 2027 inflation projection"
+          },
+          "reason": "The Bank now projects inflation above 3% through much of 2027 and kept an explicit tightening bias, so December stays a live meeting. The hike itself was priced (85-96%), so there is no surprise credit, and the prediction-market leg fell on the release - the projection is hawkish but the guidance around it was not.",
+          "market_validation": "Mixed: the December 25bp-hike leg on Kalshi was quoted 0.47/0.49 before the release (0.48/0.49 on 27 Oct, no pre-release trades on 28 Oct), first traded 0.46 at 09:45 ET and fell to 0.33-0.35 within 12 minutes, rebounded to 0.39-0.40 by mid-afternoon and sits at 0.37 on 29 Oct (about -11c net from the pre-release mid), so the market read the release as less hawkish for December than the projection alone implies. Post-decision swaps ~60% for a December hike (Bloomberg data via The Globe and Mail, 28 Oct, https://www.theglobeandmail.com/business/article-bank-of-canada-raises-interest-rate-october-2026/) - secondary, not independently verified.",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 2,
+            "importance": 1,
+            "surprise": 0,
+            "total": 3
+          }
+        },
+        {
+          "id": "boc-h8",
+          "title": "Growth outlook upgraded: Q2 3.3%, Q3 ~2%, 'somewhat stronger' than July",
+          "summary": "Growth picked up through mid-year and the projection is 'somewhat stronger' than July: 1% in 2026, 2% in 2027 and 2028; Q2 3.3%, Q3 indicators point to about 2%.",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/",
+          "facet": "growth",
+          "data": {
+            "actual": "Q2 3.3%, Q3 tracking ~2%; 2027-28 2%",
+            "forecast": "n/a",
+            "previous": "July MPR (weaker growth path)",
+            "delta_label": "stronger than July"
+          },
+          "reason": "Q3 growth came in 'stronger than expected in the July Report' and the rebound is expected to resume in 2027 on investment, exports and fiscal measures, which weakens the slack argument for holding.",
+          "market_validation": "unverified",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        }
+      ],
+      "dovish": [
+        {
+          "id": "boc-d4",
+          "title": "Macklem: 'we will proceed carefully', core near 2%, slack remains",
+          "summary": "Opening statement set out the hold case: core inflation close to 2%, CPI ex-gasoline 2.2%, excess supply, and new US tariffs expected to slow Q4 growth; decisions 'one meeting at a time'.",
+          "published_at": "2026-10-28",
+          "observed_at": "2026-10-28",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/2026/10/opening-statement-2026-10-28/",
+          "data": {
+            "actual": "\"There could be a need to raise the policy rate further, but given the uncertainties, we will proceed carefully.\"",
+            "forecast": "n/a",
+            "previous": "n/a (first hike of the cycle)",
+            "delta_label": "no commitment to December"
+          },
+          "reason": "Governing Council explicitly weighed a hold and kept core inflation and slack in the argument; with growth expected to slow in Q4 on tariffs, a second move needs energy pass-through to show up first.",
+          "market_validation": "Kalshi December 25bp-hike leg 0.46 -> 0.33-0.35 in the 12 minutes after the 09:45 ET release (which carries the same 'proceed carefully' sentence), 0.39-0.40 after the 10:30 ET press conference, 0.37 on 29 Oct; Polymarket 35.7% hike on 29 Oct. Thin book (~24k contracts).",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "boc-d5",
+          "title": "August GDP flat at 0.0% (0.2% expected); September advance -0.1%",
+          "summary": "Real GDP by industry was unchanged in August for a second straight month (9 of 20 sectors up; services -0.1%, goods +0.1%). StatCan's advance estimate points to -0.1% in September, leaving Q3 tracking about 1.2% annualised against the Bank's 2% projection.",
+          "published_at": "2026-10-30",
+          "observed_at": "2026-10-30",
+          "source": "Statistics Canada",
+          "source_url": "https://www150.statcan.gc.ca/n1/daily-quotidien/261030/dq261030a-eng.htm",
+          "facet": "growth-outturn",
+          "data": {
+            "actual": "0.0% m/m Aug; advance -0.1% Sep; Q3 tracking ~1.2% annualised (0.3% q/q)",
+            "forecast": "+0.2% m/m (Reuters poll of economists)",
+            "previous": "0.0% m/m (Jul)",
+            "delta_label": "-0.2pp vs consensus; Q3 tracking ~0.8pp below the BoC projection"
+          },
+          "reason": "The Bank hiked on 28 Oct on a growth upgrade (Q3 about 2%); two flat months followed by a negative September advance puts Q3 near 1.2% annualised, which restores the slack argument for holding in December rather than hiking again.",
+          "market_validation": "Kalshi BoC December 25bp-hike leg 0.38 previous close -> 0.35 last trade 07:40:06 ET and a 0.35/0.36 book at 09:15 ET, while the hold leg traded 0.65 at 09:00:43 ET; the books are thin, so attribution to this release is not verified.",
+          "direction": -1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        }
+      ]
+    }
+  },
+  "total_score": {
+    "fed": {
+      "base_total": 10,
+      "effective_total": 10,
+      "band": "strong hike lean"
+    },
+    "boc": {
+      "base_total": -1,
+      "effective_total": -1,
+      "band": "hold"
+    },
+    "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
+  },
+  "calendar": [
+    {
+      "date_toronto": "2026-11-06",
+      "datetime_toronto": "2026-11-06T08:30:00-05:00",
+      "datetime_utc": "2026-11-06T13:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "Employment Situation (Oct)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "65k payrolls, unemployment 4.2%, AHE +0.3% m/m (consensus, FxStreet calendar)",
+      "previous": "+29k payrolls, unemployment 4.2% (Sep)",
+      "source": "BLS",
+      "source_url": "https://www.bls.gov/schedule/2026/home.htm"
+    },
+    {
+      "date_toronto": "2026-11-06",
+      "datetime_toronto": "2026-11-06T08:30:00-05:00",
+      "datetime_utc": "2026-11-06T13:30:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "Labour Force Survey (Oct)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "+13.6k, unemployment 6.5% (consensus, FxStreet calendar)",
+      "previous": "-68k, unemployment 6.5% (Sep)",
+      "source": "Statistics Canada",
+      "source_url": "https://www150.statcan.gc.ca/n1/dai-quo/cal2-eng.htm"
+    },
+    {
+      "date_toronto": "2026-11-10",
+      "datetime_toronto": "2026-11-10T08:30:00-05:00",
+      "datetime_utc": "2026-11-10T13:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "CPI (Oct)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified",
+      "previous": "3.7% YoY, core 2.6% (Sep)",
+      "source": "BLS",
+      "source_url": "https://www.bls.gov/schedule/2026/home.htm"
+    },
+    {
+      "date_toronto": "2026-11-16",
+      "datetime_toronto": "2026-11-16T08:30:00-05:00",
+      "datetime_utc": "2026-11-16T13:30:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "CPI (Oct)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified",
+      "previous": "3.1% YoY, ex-gasoline 2.2% (Sep)",
+      "source": "Statistics Canada",
+      "source_url": "https://www150.statcan.gc.ca/n1/release-diffusion/2026-eng.pdf"
+    },
+    {
+      "date_toronto": "2026-12-04",
+      "datetime_toronto": "2026-12-04T08:30:00-05:00",
+      "datetime_utc": "2026-12-04T13:30:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "Employment Situation (Nov)",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "unverified",
+      "previous": "Oct report due 6 Nov",
+      "source": "BLS",
+      "source_url": "https://www.bls.gov/schedule/2026/home.htm"
+    },
+    {
+      "date_toronto": "2026-12-09",
+      "datetime_toronto": "2026-12-09T09:45:00-05:00",
+      "datetime_utc": "2026-12-09T14:45:00Z",
+      "date_only": false,
+      "currency": "CAD",
+      "event": "BOC rate decision",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "Hold 2.50% 58.2% / +25bp to 2.75% 40.8% / cut 1.0% (Kalshi ladder, 4 Nov 09:05 ET)",
+      "previous": "2.50% (raised 28 Oct, first hike since July 2023)",
+      "source": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
+    },
+    {
+      "date_toronto": "2026-12-09",
+      "datetime_toronto": "2026-12-09T14:00:00-05:00",
+      "datetime_utc": "2026-12-09T19:00:00Z",
+      "date_only": false,
+      "currency": "USD",
+      "event": "FOMC rate decision + SEP",
+      "impact": "HIGH",
+      "importance": 3,
+      "forecast": "Hold 3.75-4.00% 20.1% / +25bp to 4.00-4.25% 78.4% / cut 1.5% (Kalshi ladder, 4 Nov 09:05 ET)",
+      "previous": "3.75-4.00% (held 28 Oct on a 10-2 vote)",
+      "source": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    }
+  ],
+  "notes": "Snapshot assembled at 09:12 ET on Wednesday 4 November 2026, two days before the 6 Nov US/Canada labour-force double-header. Pricing re-pulled this morning: the Kalshi API response was stamped 2026-11-04T14:05:56Z (09:05:56 ET) and the Polymarket event stamp is 2026-11-04T14:04:09Z (09:04:09 ET); all five-leg ladders are normalised on bid/ask midpoints.\n\nFed: Kalshi arithmetic - H25 0.78/0.79, H26 0.01/0.02, hold 0.20/0.21, C25 0.00/0.02, C26 0.00/0.01 (raw sum 1.020) -> 78.4 / 20.1 / 1.5, up 8.4pp on Monday's 70.0%. Polymarket, read at 09:01:35 ET, is 78.9 / 20.3 / 0.8, 0.5pp above Kalshi and inside the 5pp tolerance. BlueGamma's SOFR OIS reads 84% hike at +21bp (headline stamp 2026-11-04T13:58:50Z = 08:58:50 ET), 5.6pp above Kalshi and 5.1pp above Polymarket: disclosed, not averaged - the OIS figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the page's forward-path table still prints 'Last update: 03 Nov 2026' while only the headline stamp refreshes.\n\nThree releases since Monday all surprised hawkish and are now scored: ISM manufacturing 55.5 vs 54.6 (2 Nov), JOLTS openings 7.523M vs 7.10M (3 Nov) and ADP +86k vs +69k (4 Nov 08:15 ET). They add +4 of raw driver weight (fed-h13 to fed-h15), taking the Fed sum from +6 to +10 - exactly the clamp ceiling, so no distortion - and the band from 'lean hike' to 'strong hike lean'. The Kalshi Dec 25bp-hike leg went 0.75 at 11:35 ET on 3 Nov -> 0.77 by 03:00 ET and 0.78-0.79 by 04:00 ET on 4 Nov -> 0.80 at 08:00 ET.\n\nBoC: Kalshi arithmetic - H25 0.41/0.42, H26 0.00/0.01, hold 0.59/0.61, C25 and C26 0.00/0.01 each (raw sum 1.030) -> 40.8 / 58.2 / 1.0, up 1.7pp on Monday's 39.1%. Polymarket is 40.5 / 59.3 / 0.2, 0.3pp below Kalshi. BlueGamma's CORRA OIS reads 55% hike at +14bp (stamp 2026-11-04T13:46:59Z = 08:46:59 ET), 14.2pp above Kalshi and 14.5pp above Polymarket; that series ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post) and its forward table still prints 'Last update: 03 Nov 2026', so it is disclosed and never averaged.\n\nThe BoC ledger is unchanged at four drivers and base -1 (hold band). Macklem's 3 Nov appearance before the House of Commons finance committee is an official communication, but the opening statement repeats the 28 Oct sentence already scored in boc-d4 ('There could be a need to raise the policy rate further, but given the uncertainties, we will proceed carefully'), so scoring it again would double-count the same guidance; its one new element, 'less scope for monetary accommodation', restates the judgement already in boc-h7 and boc-h8.\n\nOfficial policy unchanged: the FOMC held 3-3/4 to 4 percent on 28 Oct 'by a 10 - 2 vote', with Cook and Hammack preferring a quarter-point increase; the BoC raised 25bp to 2.50% with the Bank Rate at 2.75% and the deposit rate at 2.45%, and prints the next announcement as 9 Dec at 09:45 ET; the FOMC meets 8-9 Dec with an SEP. No Fed or BoC policy statement has been published since 28 Oct.\n\nNot scored: today's ISM services print (10:00 ET), Thursday's unit labour costs and Hammack speech, and Friday's BLS/StatCan reports - all land after this snapshot. Friday 6 Nov is the next real test: BLS consensus 65k payrolls with unemployment at 4.2%; StatCan consensus +13.6k with unemployment at 6.5%."
+}

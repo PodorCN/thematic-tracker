@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-11-02T09:11:40-05:00",
-  "snapshot_date": "2026-11-02",
+  "as_of": "2026-11-04T09:12:07-05:00",
+  "snapshot_date": "2026-11-04",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -17,16 +17,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.7,
-          "hold": 0.281,
-          "cut": 0.02
+          "hike": 0.784,
+          "hold": 0.201,
+          "cut": 0.015
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
-        "implied_rate_after": 4.06,
+        "implied_rate_after": 4.08,
         "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open",
-        "as_of": "2026-11-02T09:10:18-05:00",
+        "as_of": "2026-11-04T09:05:56-05:00",
         "observable_proxy": null
       }
     },
@@ -43,8 +43,8 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.391,
-          "hold": 0.599,
+          "hike": 0.408,
+          "hold": 0.582,
           "cut": 0.01
         },
         "probability_status": "available",
@@ -52,7 +52,7 @@
         "implied_rate_after": 2.6,
         "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open",
-        "as_of": "2026-11-02T09:10:18-05:00",
+        "as_of": "2026-11-04T09:05:56-05:00",
         "observable_proxy": null
       }
     }
@@ -64,15 +64,15 @@
         "event_slug": "fed-decision-in-december-20260729232808632",
         "event_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
         "probabilities": {
-          "cut": 0.011,
-          "hold": 0.266,
-          "hike": 0.723
+          "cut": 0.008,
+          "hold": 0.203,
+          "hike": 0.789
         },
         "status": "available",
-        "volume": "$10.3M",
-        "liquidity": "$1.5M",
-        "as_of": "2026-11-02T09:05:26-05:00",
-        "note": "December 2026 event. Live legs at 09:05:26 ET on 2 Nov: 25bp hike 0.705, 50bp+ 0.0155, no change 0.265, 25bp cut 0.006, 50bp+ cut 0.0045 (raw sum 0.996, normalised). Independent venue to the Kalshi ladder; not averaged. SOFR OIS cross-check (different instrument class): BlueGamma prices the 9 Dec FOMC at 78% hike / 22% hold / 0% cut with a +19bp implied move from 3.88% (page stamped 2026-11-02T13:49:29Z = 08:49:29 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast). That is 8.0pp above the Kalshi ladder's 70.0% and 5.7pp above Polymarket's 72.3%; disclosed, not averaged - the OIS figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the same page's forward-path table still prints 'Last update: 30 Oct 2026' while only the headline stamp refreshes."
+        "volume": "$12.4M",
+        "liquidity": "$1.4M",
+        "as_of": "2026-11-04T09:01:35-05:00",
+        "note": "December 2026 event. Live legs stamped 08:59:58 ET on 4 Nov (event stamp 09:01:35 ET): 25bp hike 0.785, 50bp+ 0.0125, no change 0.205, 25bp cut 0.0045, 50bp+ cut 0.0035 (raw sum 1.0105, normalised to 78.9 / 20.3 / 0.8). Independent venue to the Kalshi ladder; not averaged. SOFR OIS cross-check (different instrument class): BlueGamma prices the 9 Dec FOMC at 84% hike / 16% hold / 0% cut with a +21bp implied move from 3.88% (headline stamp 2026-11-04T13:58:50Z = 08:58:50 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast). That is 5.6pp above the Kalshi ladder's 78.4% and 5.1pp above Polymarket's 78.9%; disclosed, not averaged - the OIS figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the page's forward-path table still prints 'Last update: 03 Nov 2026' while only the headline stamp refreshes."
       }
     ],
     "boc": [
@@ -82,14 +82,14 @@
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-december-20260908230600011",
         "probabilities": {
           "cut": 0.002,
-          "hold": 0.615,
-          "hike": 0.383
+          "hold": 0.593,
+          "hike": 0.405
         },
         "status": "available",
-        "volume": "$195k",
-        "liquidity": "$60k",
-        "as_of": "2026-11-02T09:05:26-05:00",
-        "note": "December 2026 event. Live legs at 09:05:26 ET on 2 Nov: 25bp hike 0.385, 50bp+ 0.001, no change 0.620, 25bp cut 0.0015, 50bp+ cut 0.0005 (raw sum 1.008, normalised). Thin book ($195k volume); independent venue to the Kalshi ladder; not averaged. CORRA OIS cross-check: BlueGamma prices the 9 Dec announcement at 51% hike / 49% hold / 0% cut, +13bp from 2.50% (page stamped 2026-11-02T13:54:58Z = 08:54:58 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast). That is 11.9pp above the Kalshi ladder's 39.1% and 12.7pp above Polymarket's 38.3%; disclosed, not averaged - BlueGamma's model-derived BoC probabilities ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post), and its page footer still prints 'Last update: 30 Oct 2026'."
+        "volume": "$207k",
+        "liquidity": "$76k",
+        "as_of": "2026-11-04T09:04:09-05:00",
+        "note": "December 2026 event. Live legs at 09:03:58 ET on 4 Nov: 25bp hike 0.410, 50bp+ 0.0005, no change 0.600, 25bp cut 0.0015, 50bp+ cut 0.0005 (raw sum 1.0125, normalised to 40.5 / 59.3 / 0.2). Thin book ($207k volume); independent venue to the Kalshi ladder; not averaged. CORRA OIS cross-check: BlueGamma prices the 9 Dec announcement at 55% hike / 45% hold / 0% cut, +14bp from 2.50% (stamp 2026-11-04T13:46:59Z = 08:46:59 ET; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast). That is 14.2pp above the Kalshi ladder's 40.8% and 14.5pp above Polymarket's 40.5%; disclosed, not averaged - BlueGamma's model-derived BoC probabilities ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post), and its page footer still prints 'Last update: 03 Nov 2026'."
       }
     ]
   },
@@ -196,6 +196,84 @@
             "importance": 0,
             "surprise": 1,
             "total": 2
+          }
+        },
+        {
+          "id": "fed-h13",
+          "title": "ISM manufacturing 55.5 in October, tenth straight month of expansion",
+          "summary": "Headline 55.5 against 54.6 expected (September 54.5); production 59.0, new orders 55.5, employment 52.4. Prices paid eased to 75.2 from 77.9 but stays far above the 50 line.",
+          "published_at": "2026-11-02",
+          "observed_at": "2026-11-02",
+          "source": "Institute for Supply Management",
+          "source_url": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october",
+          "facet": "activity",
+          "data": {
+            "actual": "55.5 (Sep 54.5); prices paid 75.2 (Sep 77.9)",
+            "forecast": "54.6 (consensus quoted by ISM/CNBC)",
+            "previous": "54.5 (Sep)",
+            "delta_label": "+0.9pt vs consensus, +1.0pt m/m"
+          },
+          "reason": "Factory activity accelerated for a tenth month and production hit 59.0, its highest since November 2021, so the goods side is not supplying the slowdown a December pause would need. The prices index fell 2.7pt on the month, so the hawkish read is on activity rather than a fresh inflation impulse.",
+          "market_validation": "unverified (the 10:00 ET print window on 2 Nov sits before the Kalshi trade capture we hold, which starts 11:35 ET on 3 Nov)",
+          "direction": 1,
+          "weight": 1,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 0,
+            "surprise": 0,
+            "total": 1
+          }
+        },
+        {
+          "id": "fed-h14",
+          "title": "JOLTS: September openings 7.523M and 1.06 jobs per unemployed person",
+          "summary": "Openings rose 333k to 7.523M against a 7.10M consensus (BLS: 'little changed at 7.5 million'); the openings rate was 4.5% and openings per unemployed person rose to 1.06 from 1.02. Hires held at 5.4M.",
+          "published_at": "2026-11-03",
+          "observed_at": "2026-11-03",
+          "source": "BLS",
+          "source_url": "https://www.bls.gov/news.release/jolts.nr0.htm",
+          "facet": "labour-demand",
+          "data": {
+            "actual": "7.523M openings (+333k), openings rate 4.5%",
+            "forecast": "7.10M (Reuters consensus)",
+            "previous": "7.190M (Aug, revised up 111k)",
+            "delta_label": "+423k vs consensus; +0.04 on the openings-to-unemployed ratio"
+          },
+          "reason": "A 423k beat on openings plus a higher openings-to-unemployed ratio removes the slack argument the dovish side needs for a December hold, and hires at 5.4M show the demand is being filled rather than only posted. The one offset is that BLS itself calls the level little changed, so the weight stays modest.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.75 at 11:35 ET on 3 Nov (first captured print after the 10:00 ET release) -> 0.77 by 03:00 ET and 0.78-0.79 by 04:00 ET on 4 Nov, i.e. +3-4c across the JOLTS-to-ADP window.",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
+        },
+        {
+          "id": "fed-h15",
+          "title": "ADP: private payrolls +86k in October, above the 69k consensus",
+          "summary": "October ADP +86,000, with September revised down to +86,000 from +90,000. Hiring was broad by size but professional and business services lost 27,000 for a third straight month; base pay rose 3.2%.",
+          "published_at": "2026-11-04",
+          "observed_at": "2026-11-04",
+          "source": "ADP Research (Stanford Digital Economy Lab)",
+          "source_url": "https://mediacenter.adp.com/2026-11-04-ADP-National-Employment-Report-Private-Sector-Employment-Increased-by-86,000-Jobs-in-October",
+          "facet": "labour-demand",
+          "data": {
+            "actual": "+86k",
+            "forecast": "+69k (Reuters poll)",
+            "previous": "+86k (Sep, revised from +90k)",
+            "delta_label": "+17k vs consensus; second straight month at +86k"
+          },
+          "reason": "A second consecutive month at +86k with pay growth steady keeps the labour market from handing the Fed a reason to wait; the print lands two days before the BLS report that actually settles December, so it is scored as a modest confirmation rather than a decisive input.",
+          "market_validation": "Kalshi Dec 25bp-hike leg 0.78-0.79 at 04:00 ET, 0.80 at 08:00 ET and 0.79-0.80 at 09:00 ET on 4 Nov (book 0.78/0.79 at 09:05 ET), so the 08:15 ET beat produced no reversal in the overnight bid.",
+          "direction": 1,
+          "weight": 1,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 0,
+            "surprise": 0,
+            "total": 1
           }
         }
       ],
@@ -366,9 +444,9 @@
   },
   "total_score": {
     "fed": {
-      "base_total": 6,
-      "effective_total": 6,
-      "band": "lean hike"
+      "base_total": 10,
+      "effective_total": 10,
+      "band": "strong hike lean"
     },
     "boc": {
       "base_total": -1,
@@ -387,7 +465,7 @@
       "event": "Employment Situation (Oct)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "unverified",
+      "forecast": "65k payrolls, unemployment 4.2%, AHE +0.3% m/m (consensus, FxStreet calendar)",
       "previous": "+29k payrolls, unemployment 4.2% (Sep)",
       "source": "BLS",
       "source_url": "https://www.bls.gov/schedule/2026/home.htm"
@@ -401,7 +479,7 @@
       "event": "Labour Force Survey (Oct)",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "unverified",
+      "forecast": "+13.6k, unemployment 6.5% (consensus, FxStreet calendar)",
       "previous": "-68k, unemployment 6.5% (Sep)",
       "source": "Statistics Canada",
       "source_url": "https://www150.statcan.gc.ca/n1/dai-quo/cal2-eng.htm"
@@ -457,7 +535,7 @@
       "event": "BOC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 2.50% 59.9% / +25bp to 2.75% 39.1% / cut 1.0% (Kalshi ladder, 2 Nov 09:10 ET)",
+      "forecast": "Hold 2.50% 58.2% / +25bp to 2.75% 40.8% / cut 1.0% (Kalshi ladder, 4 Nov 09:05 ET)",
       "previous": "2.50% (raised 28 Oct, first hike since July 2023)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
@@ -471,11 +549,11 @@
       "event": "FOMC rate decision + SEP",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hold 3.75-4.00% 28.1% / +25bp to 4.00-4.25% 70.0% / cut 2.0% (Kalshi ladder, 2 Nov 09:10 ET)",
+      "forecast": "Hold 3.75-4.00% 20.1% / +25bp to 4.00-4.25% 78.4% / cut 1.5% (Kalshi ladder, 4 Nov 09:05 ET)",
       "previous": "3.75-4.00% (held 28 Oct on a 10-2 vote)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     }
   ],
-  "notes": "Snapshot assembled 09:11 ET on 2 Nov 2026, the first Toronto morning of the month and three sessions after the 28 Oct decisions. Pricing re-pulled this morning: the Kalshi API response was stamped 09:10:18 ET and the Polymarket event stamp is 09:05:26 ET; all five-leg ladders are normalised on bid/ask midpoints. No Fed or BoC official communication has been published since 28 Oct - the Fed speech feed's newest entry is 14 Oct, the monetary press-release feed's top item is the 28 Oct statement, and Macklem's Bank of Canada listing stops at the 28 Oct press conference - so the driver ledger is unchanged (Fed 6, BoC 4) and no weight moved. Today's ISM manufacturing release (10:00 ET) and Goolsbee's 11:15 ET Q&A both land after this snapshot and are not scored.\n\nFed: base stays +6 (lean hike). Kalshi arithmetic: H25 0.69/0.70, H26 0.01/0.02, hold 0.28/0.29, C25 0.01/0.02, C26 0.00/0.01 (raw sum 1.015) -> 70.0 / 28.1 / 2.0. That is 2.8pp below Friday's 72.8%. Polymarket, read at 09:05:26 ET, is 72.3 / 26.6 / 1.1, 2.3pp above Kalshi and inside the 5pp tolerance. BlueGamma's SOFR OIS reads 78% hike at +19bp (stamped 08:49:29 ET), 8.0pp above Kalshi and 5.7pp above Polymarket: disclosed, not averaged. That figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the page's forward-path table still prints 'Last update: 30 Oct 2026' while only the headline stamp refreshes.\n\nBoC: base stays -1 (hold band, mildly dovish). Kalshi arithmetic: H25 0.39/0.41, H26 0.00/0.01, hold 0.61/0.63, C25 and C26 0.00/0.01 each (raw sum 1.035) -> 39.1 / 59.9 / 1.0. That is 3.6pp above Friday's 35.5%, so the December hike leg has rebuilt part of what it lost on the GDP print. Polymarket is 38.3 / 61.5 / 0.2, 0.8pp below Kalshi. BlueGamma's CORRA OIS reads 51% hike at +13bp (stamped 08:54:58 ET), 11.9pp above Kalshi; that series ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post) and the same page footer still says 'Last update: 30 Oct 2026', so the gap is disclosed and not treated as a second estimate of the same quantity.\n\nThe moves since Friday are unattributed: no official communication and no US or Canadian release between the 30 Oct ECI and GDP prints and this snapshot, so the Fed leg's -2.8pp and the BoC leg's +3.6pp are recorded as market drift, not scored as a driver. Age decay: every driver's observed_at falls on 28-30 Oct, so all ten sit in the <=7d x1.0 bucket and effective_total equals base_total for both banks.\n\nThe 30 Oct review closed with zero major findings and four next-cycle minors, all fixed here: the Fed BlueGamma cross-check now cites the live 78/22/0 page with its 08:49:29 ET stamp instead of the stale 67% read; fed-d7's SEP count is 15 of 18 (the 2026 range of 3.9-4.4 against a 4.1-4.4 central tendency leaves three participants projecting no further hike); boc-d5 annualises Q3 at about 1.2% (0.3% q/q) and reads ~0.8pp below the Bank's 2% projection; and both pricing blocks now name the Kalshi decision ladder they actually used rather than a target-range ladder.\n\nCalendar unchanged: October payrolls and the Canadian Labour Force Survey both land Friday 6 Nov at 08:30 ET, US October CPI 10 Nov, Canadian October CPI 16 Nov, and both decisions on 9 Dec (BoC 09:45 ET, FOMC 14:00 ET with the SEP)."
+  "notes": "Snapshot assembled at 09:12 ET on Wednesday 4 November 2026, two days before the 6 Nov US/Canada labour-force double-header. Pricing re-pulled this morning: the Kalshi API response was stamped 2026-11-04T14:05:56Z (09:05:56 ET) and the Polymarket event stamp is 2026-11-04T14:04:09Z (09:04:09 ET); all five-leg ladders are normalised on bid/ask midpoints.\n\nFed: Kalshi arithmetic - H25 0.78/0.79, H26 0.01/0.02, hold 0.20/0.21, C25 0.00/0.02, C26 0.00/0.01 (raw sum 1.020) -> 78.4 / 20.1 / 1.5, up 8.4pp on Monday's 70.0%. Polymarket, read at 09:01:35 ET, is 78.9 / 20.3 / 0.8, 0.5pp above Kalshi and inside the 5pp tolerance. BlueGamma's SOFR OIS reads 84% hike at +21bp (headline stamp 2026-11-04T13:58:50Z = 08:58:50 ET), 5.6pp above Kalshi and 5.1pp above Polymarket: disclosed, not averaged - the OIS figure is model-derived from the forward curve and prices the average overnight rate over the contract period rather than the discrete decision, and the page's forward-path table still prints 'Last update: 03 Nov 2026' while only the headline stamp refreshes.\n\nThree releases since Monday all surprised hawkish and are now scored: ISM manufacturing 55.5 vs 54.6 (2 Nov), JOLTS openings 7.523M vs 7.10M (3 Nov) and ADP +86k vs +69k (4 Nov 08:15 ET). They add +4 of raw driver weight (fed-h13 to fed-h15), taking the Fed sum from +6 to +10 - exactly the clamp ceiling, so no distortion - and the band from 'lean hike' to 'strong hike lean'. The Kalshi Dec 25bp-hike leg went 0.75 at 11:35 ET on 3 Nov -> 0.77 by 03:00 ET and 0.78-0.79 by 04:00 ET on 4 Nov -> 0.80 at 08:00 ET.\n\nBoC: Kalshi arithmetic - H25 0.41/0.42, H26 0.00/0.01, hold 0.59/0.61, C25 and C26 0.00/0.01 each (raw sum 1.030) -> 40.8 / 58.2 / 1.0, up 1.7pp on Monday's 39.1%. Polymarket is 40.5 / 59.3 / 0.2, 0.3pp below Kalshi. BlueGamma's CORRA OIS reads 55% hike at +14bp (stamp 2026-11-04T13:46:59Z = 08:46:59 ET), 14.2pp above Kalshi and 14.5pp above Polymarket; that series ran hot for the October decision (93% on 27 Oct against swap prints of about 77-80% reported by the Financial Post) and its forward table still prints 'Last update: 03 Nov 2026', so it is disclosed and never averaged.\n\nThe BoC ledger is unchanged at four drivers and base -1 (hold band). Macklem's 3 Nov appearance before the House of Commons finance committee is an official communication, but the opening statement repeats the 28 Oct sentence already scored in boc-d4 ('There could be a need to raise the policy rate further, but given the uncertainties, we will proceed carefully'), so scoring it again would double-count the same guidance; its one new element, 'less scope for monetary accommodation', restates the judgement already in boc-h7 and boc-h8.\n\nOfficial policy unchanged: the FOMC held 3-3/4 to 4 percent on 28 Oct 'by a 10 - 2 vote', with Cook and Hammack preferring a quarter-point increase; the BoC raised 25bp to 2.50% with the Bank Rate at 2.75% and the deposit rate at 2.45%, and prints the next announcement as 9 Dec at 09:45 ET; the FOMC meets 8-9 Dec with an SEP. No Fed or BoC policy statement has been published since 28 Oct.\n\nNot scored: today's ISM services print (10:00 ET), Thursday's unit labour costs and Hammack speech, and Friday's BLS/StatCan reports - all land after this snapshot. Friday 6 Nov is the next real test: BLS consensus 65k payrolls with unemployment at 4.2%; StatCan consensus +13.6k with unemployment at 6.5%."
 }
