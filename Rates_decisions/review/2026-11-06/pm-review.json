@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-06T09:36:00-05:00",
+  "snapshot_date": "2026-11-06",
+  "candidate_sha256": "5b465a04ac023b7e37e0b6d8e3e3cb2723c493fd5c35f089851c375af8332fb9",
+  "verdict": "APPROVED",
+  "executive_summary": "Friday 6 Nov 2026. Frozen at 09:16:31 ET and reviewed 09:30-09:38 ET, so the snapshot is 22 minutes old against the 90-minute limit. candidate.json hashes to 5b465a04ac02, matches candidate.sha256 and the bytes on origin/main (8f4572c), and is content-identical to data/current.json (which differs only in CRLF endings); structural-flags.json is [] and publish.py --check reports a valid structure with no flags. Official policy is verified at the primaries: the 28 Oct FOMC statement held '3-3/4 to 4 percent', was released 'by a 10 - 2 vote' with Cook and Hammack preferring +1/4 point, and 'Inflation remains elevated' is verbatim in the statement; the BoC raised 25bp to 2.5% with the Bank Rate at 2.75% and the deposit rate at 2.45%, and the opening statement carries both 'This is the first interest rate increase since July 2023' and the quoted 'we will proceed carefully' sentence word for word. Next meetings check out on the primaries: FOMC 8-9 Dec with an SEP (fomccalendars.htm) and BoC 9 Dec with 09:45 printed on the announcement page. Pricing: my re-pull at 09:26:47 ET (Fed) and 09:26:53 ET (BoC) is 12 minutes later than the frozen 09:14:39 as_of and reads 76.1% Fed hike against the frozen 76.7% and 29.6% BoC against 30.0% - 0.6pp and 0.4pp, no direction flip, so this is post-snapshot repricing rather than a reading error; Polymarket reads 77.2% Fed (frozen 77.9) and 29.9% BoC (frozen 30.2), 1.1pp and 0.1pp from the two ladders, and BlueGamma's 86% SOFR / +21bp and 33% CORRA / +8bp are quoted exactly as the pages print them ('As of 06 Nov 2026', footers still 05 Nov 2026). Drivers: all 13 source_urls sit on the domain they name (federalreserve.gov x2, bea.gov x2, ismworld.org, bls.gov, bankofcanada.ca x3, statcan.gc.ca x2) and every quote is verbatim in the primary document; headline numbers were re-read at source - payrolls +165k with August and September revised +53k/+31k to +186k/+60k, unemployment 4.1%, AHE +0.4% m/m and +3.1% y/y, participation 61.9%, PCE 3.6/3.1 with real PCE under 0.1% and a 3.8% saving rate, GDP 3.4% with private final sales +4.9% and core PCE prices 2.5%, ISM 55.5 (production 59.0, prices 75.2 from 77.9), LFS -4,700 with unemployment 6.7% and wages 2.2%, August GDP 0.0% with a -0.1% September advance and Q3 tracking 0.3% q/q. Weights decompose and sum on every card (mean |weight| 2.38 Fed / 2.40 BoC), facets are distinct on each split-URL pair, no weight reaches 5 so no numeric repricing evidence is owed, the driver window is clean against both 28 Oct meetings, and the two 6 Nov calendar rows were retired as released while 10 Nov CPI, 16 Nov Canada CPI, 30 Nov Q3 GDP and 4 Dec payrolls/LFS all match the BLS and StatCan schedules. The JOLTS/ADP retirement in favour of the establishment survey is a defensible de-duplication of one labour facet and is disclosed in the notes; the Fed total stays clamped at +10 and the BoC base moves -1 to -2 on boc-d6. Zero critical or major findings. The four minors are the undocumented residual-leg normalisation (76.7 and 30.0 cannot be reproduced from the printed midpoints alone), the post-snapshot ladder drift, boc-h7's '~3.5% by year-end' which neither the press release nor the MPR text prints (it prints 2026 2.9% and 2027 3.1%), and the known app.js/publish.py decay split on boc-d5. None changes a band, a weight or the call.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.probabilities.hike",
+      "issue": "The declared hike probability cannot be reproduced from the legs the candidate itself prints. 76.7 is the residual (1 - hold - cut) after normalising hold and cut by the raw sum 1.030; the midpoint of the hike leg gives 76.21. The BoC block then uses the opposite convention (hold as the residual over a 1.000 denominator), and the note's 'five legs normalised on the bid/ask midpoint' describes neither block, so a reader cannot re-derive 76.7 or 30.0 from the printed legs without guessing which leg absorbs the overround.",
+      "evidence": "candidate meetings.fed.pricing (as_of 2026-11-06T09:14:39-05:00) prints H25 0.78/0.79, H26 0.00/0.01, hold 0.22/0.23, C25 0.00/0.02, C26 0.00/0.01, raw sum 1.030: 0.785/1.030=76.21, 0.225/1.030=21.84, 0.015/1.030=1.46, while 1-0.2184-0.0146=0.7670 is the declared 76.7. BoC block in the same file prints H25 0.29/0.31, hold 0.69/0.71, both tails 0.00/0.01, raw sum 1.015: five-leg midpoints give 29.56/68.97/1.48, but the declared 30.0/69.0/1.0 requires hold=1-0.30-0.01=0.69 over exactly 1.000.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.as_of",
+      "issue": "All four ladders had moved by the time I re-pulled them, 12-14 minutes after the frozen as_of. The moves are 0.6pp (Kalshi Fed), 0.4pp (Kalshi BoC), 0.7pp (Polymarket Fed) and 0.3pp (Polymarket BoC), all inside the 10pp allowance with no direction change, so the frozen readings are sound for their own timestamp and this is post-snapshot repricing rather than a misread; the next cycle should still re-pull on the fresh stamp so the published number matches the page a reader opens.",
+      "evidence": "candidate as_of 2026-11-06T09:14:39-05:00 (Kalshi) and 09:13:25-05:00 (Polymarket). Re-pull api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION at Date: Fri, 06 Nov 2026 14:26:47 GMT returns 26DEC H25 0.77/0.79, hold 0.22/0.23, tails 0.00/0.01/0.00/0.02 (sum 1.025) -> 76.10/21.95/1.46 against the frozen 76.7/21.8/1.5; KXCBDECISIONCANADA at 14:26:53 GMT returns H25 0.29/0.31, hold 0.69/0.71, tails 0.00/0.01 (sum 1.015) -> 29.56/68.97/1.48 against the frozen 30.0/69.0/1.0; gamma-api.polymarket.com fed-decision-in-december-20260729232808632 updatedAt 2026-11-06T14:27:25Z gives 0.77/0.78 hike, 0.21/0.22 hold, sum 1.0045 -> 77.16/21.40/0.90 against 77.9/21.2/0.9; bank-of-canada-decision-in-december-20260908230600011 at 14:29:26Z gives 0.28/0.30 hike, 0.67/0.69 hold -> 29.85/69.99/0.21 against 30.2/69.6/0.2.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[0].summary",
+      "issue": "boc-h7 titles the MPR as lifting the path to '~3.5% by year-end, 3% in 2027'. Neither figure is printed at the linked primary: the press release says inflation is 'projected to remain around 3% through much of 2027' and returns to 2% by mid-2028, and the MPR table gives annual averages of 2.9% for 2026 and 3.1% for 2027 (July 2.5% and 2.0%). The 3.5% year-end number appears nowhere in the MPR text or press release - the only 3.5s are chart-axis ticks - and 2027 is 3.1%, not 3%. The hawkish direction and the projection-revised-up point are unaffected; the numbers should be restated to what the Bank prints.",
+      "evidence": "https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/ prints 'Inflation in Canada has been higher than anticipated and is projected to remain around 3% through much of 2027. It then returns close to 2% by the middle of 2028.' MPR Table 2 (mpr-2026-10-28.pdf, CPI inflation 2.1 (2.1) / 2.9 (2.5) / 3.1 (2.0) / 2.2) gives 2026 2.9% and 2027 3.1% against July's 2.5% and 2.0%; a full-text search of the 99k-character MPR extract returns no '3.5' outside axis labels and no 'year-end' at all.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "total_score.boc.effective_total",
+      "issue": "The declared BoC effective total is -2.5 while the page renders -2.0, because publish.py counts Toronto calendar days (30 Oct to 6 Nov = 7 -> x1.0) and app.js counts fractional days (7.6 -> x0.75) for boc-d5. The notes disclose the split and both values sit in the hold band, so nothing downstream moves; the last round's identical Fed item is now resolved because the 28-29 Oct drivers land on 8-9 calendar days and 8.4-9.4 fractional days, both x0.75. Closing the remaining 0.5 needs an app.js change, which is a frontend PR and out of scope for a data round.",
+      "evidence": "candidate total_score.boc.effective_total -2.5; Rates_decisions/app.js daysBetween/new Date uses fractional days and decays 7.6 days to 0.75, rendering -2.0; Rates_decisions/scripts/publish.py _age_days uses dt.date subtraction, 7 days -> x1.0. Candidate notes: 'the declared BoC effective_total is -2.5 while the rendered gauge prints -2.0 ... it stays a known renderer/gate divergence for the 30 Oct entry only'.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
