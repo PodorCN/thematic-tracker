@@ -198,7 +198,7 @@ def _headless_chrome():
     return next((path for path in candidates if path and Path(path).is_file()), None)
 
 
-def _browser_dom(tmp_path, *, select_date=None, measure_gap=False):
+def _browser_dom(tmp_path, *, select_date=None, measure_gap=False, snapshot=None):
     browser = _headless_chrome()
     if not browser:
         pytest.skip("Chromium is not installed; browser DOM smoke must run on a host with Chrome/Edge")
@@ -219,8 +219,16 @@ def _browser_dom(tmp_path, *, select_date=None, measure_gap=False):
                  " }, 100);</script>")
         shell = shell.replace("</body>", probe + "</body>")
     (page / "index.html").write_text(shell, encoding="utf-8")
-    for relative in ("data/dates.json", "data/latest.json", f"data/archive/{select_date or '2026-08-24'}.json"):
-        shutil.copyfile(source / relative, page / relative)
+    if snapshot is None:
+        for relative in ("data/dates.json", "data/latest.json", f"data/archive/{select_date or '2026-08-24'}.json"):
+            shutil.copyfile(source / relative, page / relative)
+    else:
+        latest = "2026-11-08"
+        dates = [latest] + ([select_date] if select_date and select_date != latest else [])
+        (page / "data" / "dates.json").write_text(json.dumps({"latest": latest, "dates": dates}), encoding="utf-8")
+        (page / "data" / "latest.json").write_text(json.dumps(snapshot), encoding="utf-8")
+        if select_date:
+            (page / "data" / "archive" / f"{select_date}.json").write_text(json.dumps(snapshot), encoding="utf-8")
 
     class QuietHandler(SimpleHTTPRequestHandler):
         def log_message(self, *_args):
@@ -277,3 +285,48 @@ def test_browser_date_selector_renders_archived_json_without_html_navigation(tmp
     assert len(soup.select(".chart-card canvas")) == len(context["charts"])
     assert soup.select_one("#windowCaption").get_text(strip=True).startswith("2026-08-24")
     assert soup.select_one("#status").get_text(strip=True) == ""
+
+
+@pytest.mark.parametrize("standalone_first", [False, True])
+@pytest.mark.parametrize("select_date", [None, "2026-11-07"])
+def test_browser_merge_preserves_qoq_and_unqualified_events(tmp_path, standalone_first, select_date):
+    # The November 6/7 CI windows contained UK GDP MoM, YoY and QoQ at the
+    # same timestamp. Only MoM/YoY may merge; another matching base name
+    # must remain visible whether it appears before or after the pair.
+    events = [
+        _event("Gross Domestic Product (MoM)", "mom", "2026-11-12T07:00:00Z", actual="0.1", forecast="0.2", previous="0.3"),
+        _event("Gross Domestic Product (YoY)", "yoy", "2026-11-12T07:00:00Z", actual="1.1", forecast="1.2", previous="1.3"),
+        _event("Gross Domestic Product (QoQ)", "qoq", "2026-11-12T07:00:00Z", actual="2.1", forecast="2.2", previous="2.3"),
+        _event("Gross Domestic Product", "level", "2026-11-12T07:00:00Z", actual="3.1", forecast="3.2", previous="3.3"),
+    ]
+    for event in events:
+        event.update({"country": "UK", "currency": "GBP"})
+    if standalone_first:
+        events = events[2:] + events[:2]
+    snapshot = {"count": len(events), "events": events, "history": {}, "history_meta": {}}
+
+    context = build_context(snapshot, "2026-11-08")
+    expected_rows = sum(len(rows) for rows in context["grouped"].values())
+    assert expected_rows == 3
+    soup = _browser_dom(tmp_path, select_date=select_date, snapshot=snapshot)
+    rows = soup.select("#timeline tbody tr")
+    assert len(rows) == expected_rows
+    assert soup.select_one("#status").get_text(strip=True) == ""
+    assert soup.select_one("#windowCaption").get_text(strip=True).startswith(select_date or "2026-11-08")
+    if select_date:
+        assert soup.body.get("data-selection") == f"?date={select_date}"
+
+    merged = next(row for row in rows if row.select(".period-value"))
+    assert merged.select_one(".event-name").get_text(strip=True) == "Gross Domestic Product"
+    assert [value.get_text(" ", strip=True) for value in merged.select(".period-value")] == [
+        "MoM 0.1%", "YoY 1.1%", "MoM 0.2%", "YoY 1.2%", "MoM 0.3%", "YoY 1.3%",
+    ]
+    qoq = next(row for row in rows if row.select_one(".event-name").get_text(strip=True).endswith("(QoQ)"))
+    level = next(row for row in rows if row is not merged and row is not qoq)
+    assert not qoq.select(".period-value")
+    assert not level.select(".period-value")
+    assert level.select_one(".event-name").get_text(strip=True) == "Gross Domestic Product"
+    for value in ("2.1%", "2.2%", "2.3%"):
+        assert value in qoq.get_text(" ", strip=True)
+    for value in ("3.1%", "3.2%", "3.3%"):
+        assert value in level.get_text(" ", strip=True)

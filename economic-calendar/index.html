@@ -277,7 +277,7 @@ function decorateEvents(data) {
     const [base, period] = splitPeriod(e.event);
     const key = JSON.stringify([e.date,e.time,e.country,e.currency,base.toLowerCase()]);
     const pair = pairs.get(key);
-    if (pair?.MoM && pair?.YoY) {
+    if ((period === 'MoM' || period === 'YoY') && pair?.MoM && pair?.YoY) {
       if (seen.has(key)) continue;
       seen.add(key);
       const rows = [pair.MoM,pair.YoY].map((p,i) => ({period:i ? 'YoY' : 'MoM', actual:p.actual, forecast:p.forecast, previous:p.previous, unit:p.unit || ''}));
