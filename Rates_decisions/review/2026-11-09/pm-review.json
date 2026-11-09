@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-09T09:36:00-05:00",
+  "snapshot_date": "2026-11-09",
+  "candidate_sha256": "168d19e794034e76c943314265b25b1d9fed5b5a6daf1e636a59f4b3452ac4c8",
+  "verdict": "REVISE",
+  "executive_summary": "Monday 9 Nov 2026, frozen 09:13:09 ET and reviewed 09:36 ET (23 minutes, inside the 90-minute limit). Bundle complete: candidate.json hashes to 168d19e79403 and matches candidate.sha256 and origin/main ac08a48, is content-identical to data/current.json (CRLF only), structural-flags.json is [] and publish.py --check reports a valid structure. Official policy and pricing reproduce: the Fed held 3.75-4.00% on 28 Oct by 10-2 (Cook and Hammack for +25bp) with 'inflation remains elevated' and 'expanding at a strong pace' intact, the BoC hiked to 2.50% (Bank Rate 2.75%, deposit 2.45%) and prints 'we will proceed carefully'; both next meetings are 9 Dec. The Kalshi ladders re-derive exactly from the printed midpoints (Fed 76.8/22.2/1.0 from 0.015/0.765/0.225/0.005/0.005; BoC 26.9/72.1/1.0 from 0.005/0.265/0.725/0.005/0.005), Polymarket is within 0.5pp (76.3/22.3/1.4) and BlueGamma's OIS prints 85% Fed / 42% BoC 'As of 09 Nov 2026' exactly as disclosed. REVISE is forced by fed-h16's market validation, which puts the 5 Nov close at 0.79/0.80 and the move into payrolls at -1.0pp: the book was 0.64/0.65 at the 5 Nov close and 0.78/0.79 in the 6 Nov payroll hour, so the beat added about 14pp, not zero (Reuters prints 70% -> 78%), and the conclusion 'the beat did not add to hike pricing' is inverted. The 5 Nov session is missing from the candidate altogether: Hammack, a 2026 voter and October dissenter, spoke that day and said policy 'will need to move to a restrictive stance', while notes claim 'no Fed communication since the 15 October speech list'. Fed drivers, weights and totals are otherwise sound (base 10 / effective 9.5; mean |weight| 2.38) and the BoC decay arithmetic checks to -2.0.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "fail",
+    "market_validation": "fail",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "drivers.fed.hawkish[5].market_validation",
+      "issue": "fed-h16 states the 5 Nov close at 0.79/0.80 (mid 0.795) and a -1.0pp move into the 6 Nov payroll print, then concludes 'the beat did not add to hike pricing'. The 5 Nov close was 0.64/0.65 and the 6 Nov payroll-hour book was 0.78/0.79, so the move was about +14pp and the stated conclusion has the wrong sign; the level quoted belongs to 4 Nov, before the midterm/tech-selloff repricing the candidate never mentions.",
+      "evidence": "Kalshi KXFEDDECISION-26DEC-H25 hourly candles (api.elections.kalshi.com/trade-api/v2/series/KXFEDDECISION/markets/KXFEDDECISION-26DEC-H25/candlesticks): 2026-11-05 23:00 ET last 0.65, bid 0.64/ask 0.65; 2026-11-06 09:00 ET last 0.79, bid 0.78/ask 0.79. Polymarket '25 bps increase' price history (clob.polymarket.com/prices-history): 0.655 at 5 Nov 23:00 ET -> 0.785 at 6 Nov 09:00 ET. Reuters market reaction, 6 Nov: 'Bets that the Fed will raise rates next month rose to 78% following the data from 70% earlier' (https://www.mercedsunstar.com/news/business/article317958162.html).",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "major",
+      "field": "notes",
+      "issue": "The notes assert 'no Fed communication since the 15 October speech list' and frame the snapshot as decay without new information. Cleveland Fed President Beth Hammack - a 2026 voter and one of the two October dissents for +25bp - spoke on 5 Nov and said policy 'will need to move to a restrictive stance to bring inflation back to 2 percent'; the same 5 Nov session took the December hike contract from about 80% to 64-66% and neither the speaker nor that repricing appears anywhere in the candidate.",
+      "evidence": "https://www.clevelandfed.org/newsroom-and-events/press-releases/pr-20261105-cleveland-fed-president-hammack-speech (5 Nov 2026, panel remarks in Zurich; quote 'monetary policy will need to move to a restrictive stance to bring inflation back to 2 percent in a timely manner'). Kalshi KXFEDDECISION-26DEC-H25: 2026-11-05 09:00 ET bid 0.79/ask 0.80, 10:00 0.76/0.78, 15:00-23:00 0.64/0.65. Candidate notes string: 'no Fed communication since the 15 October speech list'.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.boc.pricing.probabilities.hike",
+      "issue": "Both BoC books repriced 13-16 minutes after the frozen as_of, Kalshi 26.9 -> 26.7 and Polymarket 26.0 -> 25.5, because the hold leg widened from 0.70/0.72 to 0.72/0.74. The frozen numbers reproduce from the printed legs and the gap is under 1pp, so this is post-snapshot drift, not an operator reading error; the next round should re-pull and restamp rather than reuse 09:13.",
+      "evidence": "Kalshi KXCBDECISIONCANADA-26DEC-H0 at 09:26 ET bid 0.72/ask 0.74 (mid 0.73) against the candidate's hold leg 0.7000/0.7200 at 09:13:08; Polymarket 'No Change' 09:26 ET bid 0.72/ask 0.74 versus 0.70/0.72 at 09:12:27; re-derived hike 26.73% and 25.5% against the frozen 26.9 and 26.0.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].note",
+      "issue": "The printed implied-move arithmetic does not evaluate: '0.768 x 25 + 0.010 x 50' is 19.7bp, not the 19.2bp stated, and the cut legs should subtract rather than add, which nets 18.95bp (0.768 x 25 - 0.010 x 25). The 3.88 -> 4.07 implied_rate pair uses the hike-only 19.2bp, so it is the prose formula that is wrong, not the pricing block.",
+      "evidence": "candidate betting.fed[0].note string 'against Kalshi's +19.2bp (0.768 x 25 + 0.010 x 50)'; 0.768*25 = 19.2 and 0.010*50 = 0.5, sum 19.7; meetings.fed.pricing.implied_rate_before 3.88 + 0.192 = 4.07.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
