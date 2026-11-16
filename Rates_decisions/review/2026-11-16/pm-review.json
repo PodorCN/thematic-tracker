@@ -1,40 +1,40 @@
 {
   "schema_version": "1.0",
-  "reviewer": "independent-pm",
-  "operator": "rates-decisions-writer",
-  "reviewed_at": "2026-11-16T09:37:59-05:00",
+  "reviewer": "codex-independent-pm-rates-20261116",
+  "operator": "cornoby-rates-recovery",
+  "reviewed_at": "2026-11-16T15:05:25+00:00",
   "snapshot_date": "2026-11-16",
-  "candidate_sha256": "a1adda79f22018b7780a8b7bfb10d977ef28a15a2eb17e63008885b49d77df83",
-  "verdict": "REVISE",
-  "executive_summary": "Monday 16 Nov 2026, frozen 09:20:07 ET and reviewed 09:38 ET (18 minutes, inside the 90-minute limit). Bundle complete: candidate.json hashes to a1adda79f220 and matches candidate.sha256 and the bytes on origin/main (d07562f), is content-identical to data/current.json (CRLF only), structural-flags.json is [] and publish.py --check reports a valid structure with no flags. Official policy verified at the primaries: the Fed held 3-3/4 to 4 percent on 28 Oct 'by a 10 - 2 vote', Cook and Hammack preferring +1/4 point, with 'Economic activity is expanding at a strong pace' and 'Inflation remains elevated.' intact; the BoC raised the overnight target 25bp to 2.5% (Bank Rate 2.75%, deposit 2.45%) and the BoC Valet series shows the previous increase was 13 Jul 2023, so 'first increase since July 2023' holds. Next meetings are the 8-9 Dec FOMC with SEP and the 9 Dec 09:45 ET BoC announcement, both confirmed at the primaries. Pricing reproduces: the Fed ladder re-pulled at 09:26:27 ET prints exactly the five legs the candidate froze at 09:17:39 (0.085/0.885/0.045/0.005/0.005, raw 1.025, normalised 94.63/4.39/0.98) and Polymarket's 09:25:09 ET book gives 95.0 hike against the declared 95.2; the BoC ladder restamped at 09:26:39 ET gives 46.3 against 46.5 (H25 mid 0.465 -> 0.46), a 0.2pp post-snapshot drift rather than a reading error. Every market_validation number was replayed against Kalshi hourly candles and Polymarket price history and reproduces to the contract: 76,917 contracts in the 28 Oct 15:00 hour, 68,547 in the 6 Nov 09:00 hour with the leg 0.64/0.65 -> 0.78/0.79, 28,077 in the 10 Nov 05:00 hour (0.80/0.81 -> 0.88/0.89), 345,470 in the 10 Nov 10:00 hour (H26 0.05/0.06 -> 0.10/0.11 -> 0.12/0.14), the 29 Oct 09:00 -> 10:00 slide 0.80 -> 0.75 and 0.74 by 18:00, and Polymarket 0.655 (5 Nov 23:00) -> 0.785 (6 Nov 09:00). The macro inputs check out against the BLS API (Oct payrolls +165k with Sep +60k and Aug +186k, so +84k of revisions, unemployment 4.1%, AHE +0.4% m/m and +3.1% y/y, participation 61.9%; Oct CPI +0.35% SA and core +0.30% SA; Oct PPI +6.52% y/y), StatCan (Oct CPI 3.1% y/y, +0.2% m/m, ex-energy 2.0% from 2.1%; Oct LFS -4,700, 6.7%, wages 2.2%; Aug GDP 0.0% with a -0.1% September advance), BEA (Sep real PCE +0.0%, real DPI -0.3%, saving 3.8%) and October MPR Table 2 (CPI 2.9% in 2026 and 3.1% in 2027 against 2.5% and 2.0% in July), and BlueGamma prints exactly what the notes describe (100% hike / +31bp from 3.88% for the Fed, 53% / +13bp from 2.50% for the BoC, both stamped 16 Nov 2026). Both 9 November majors are genuinely closed: fed-h16 now states 0.64/0.65 -> 0.78/0.79 with +14.0pp and the Reuters '78% ... from 70%' framing, and the communication list is no longer the 15 October one. One defect still blocks: the notes again claim exhaustive Fed communication coverage ('every Fed communication since 28 October is accounted for') but Vice Chair for Supervision Bowman's 10 November 'The U.S. Economy and Considerations for Monetary Policy' at the Council on Foreign Relations is missing both from the driver list and from that sentence - the string 'Bowman' appears nowhere in the candidate. Same class of defect as the 9 November major, so the verdict is REVISE on one major; the pricing, market_validation, freshness and decision_usefulness checks pass and the numbers themselves are clean.",
+  "candidate_sha256": "eb59304e311d79e696a8f061bbcf95b868c4616adbcb5f802d24657d03b20a4e",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent six-check PM data review, bound only to immutable revision3 and the original2026-11-16 09:20:07ET snapshot; not code approval, a fresh market update, or permission to publish. SHA/sidecar match; structural validation and flags empty. All four revision1 substantive issues and both revision2 BoC interpretation issues are closed against actual bytes and primary evidence. The V2-to-V3 delta is exactly two reasons plus provenance notes; all prices, timestamps, dates, weights and totals are unchanged. Current official decisions/next dates, Fed September decision and complete BoC policy-history changes support policy facts. Independently recomputed original venue fixtures and later full public responses; later BoC Kalshi1pp drift is subsequent pricing, not a correction. Public Kalshi candle/trade and Polymarket history GETs independently support the material historical reactions; low weights1-4 make no unverified high-weight numeric exception. Fed raw16/clamped10/effective15.0 and BoC raw-3/effective-2.5 reproduce, means2.67/2.17. Remaining historical exact-snapshot/seconds and citation-metadata limits are minor and recorded explicitly, not silently certified. A final optional CLOB aggregate request returned403 and was stopped; earlier successful dated/hash-bound responses remain evidence. Candidate is within90minutes at review and expires15:50:07UTC. No critical/major finding remains within this bounded data review; accepted minor provenance issues should be tightened in the next cycle.",
   "checks": {
     "official_policy": "pass",
     "pricing": "pass",
-    "drivers": "fail",
+    "drivers": "pass",
     "market_validation": "pass",
     "freshness": "pass",
     "decision_usefulness": "pass"
   },
   "findings": [
     {
-      "severity": "major",
-      "field": "drivers.fed.hawkish",
-      "issue": "Vice Chair for Supervision Michelle W. Bowman's 10 November monetary-policy speech is missing from the Fed driver list while the notes assert that every Fed communication since 28 October is accounted for; this is the same completeness defect that was a major on 9 November.",
-      "evidence": "Fed 2026 speeches index (https://www.federalreserve.gov/newsevents/speech/2026-speeches.htm) lists '11/10/2026 The U.S. Economy and Considerations for Monetary Policy - Vice Chair for Supervision Michelle W. Bowman, C. Peter McColough Series on International Economics, Council on Foreign Relations' (bowman20261110a.htm); the speech says 'Before our next meeting in December, we will receive the PCE inflation report for October and the employment report for November. Today, I am seeing signs that inflation pressures are persisting, while labor market conditions appear to be firming. This indicates that there is still work to do to bring inflation closer to 2 percent'. The candidate contains the string 'Bowman' zero times (grep -o Bowman candidate.json | wc -l = 0) and its notes read 'every Fed communication since 28 October is accounted for - 28 October statement and press conference (fed-h9, fed-d7), Hammack 5 November (fed-h19), Waller 10 November (fed-h17), Barr on AI and inequality 12 November (no policy content, not scored), Jefferson 13 November (fed-h20)'. The same 10 November session is already represented by fed-h17 (Waller, Bank of England Watchers Conference), so that day is only half covered.",
-      "disposition": "must_fix"
+      "severity": "minor",
+      "field": "drivers.boc.hawkish[0].market_validation; drivers.boc.dovish[0].market_validation",
+      "issue": "Historical BoC reaction timing is slightly loose and the exact October29 Polymarket35.7% snapshot remains incompletely documented.",
+      "evidence": "Public Kalshi trade GET on2026-11-16 HTTPDate14:59:59UTC for KXCBDECISIONCANADA-26DEC-H25 min_ts1793194800,max_ts1793196000 shows first.46 at2026-10-28T13:45:29.886139Z,.35 at13:48:45.708598Z,.33/.35 at13:57:11.942715Z. Thus 'within12minutes' is about12seconds loose. Successful public CLOB hourly/minute records independently establish nearby Oct29 probabilities and thin-book variation but do not identify the exact candidate35.7% aggregate snapshot; it is retained as a minor historical provenance limit, not certified exact. None of these details supports a weight>4 or changes today's decision leader. Exact endpoint/selected rows in review.md.",
+      "disposition": "accepted"
     },
     {
       "severity": "minor",
-      "field": "meetings.boc.pricing.probabilities.hike",
-      "issue": "The BoC Kalshi ladder moved 0.5pp between the frozen as_of and the review re-pull, so the declared 46.5 cannot be reproduced from a page stamped 9 minutes later, although the normalised difference is only 0.2pp.",
-      "evidence": "Candidate prints H25 0.465 and H0 0.530 at 09:17:39 ET (raw sum 1.010, normalised hike 46.5). Re-pull at 09:26:39 ET (HTTP Date Mon, 16 Nov 2026 14:26:39 GMT) prints H25 0.45/0.47 (mid 0.46), H0 0.52/0.54 (mid 0.53), C25/C26/H26 0.00/0.01 (mid 0.005), raw sum 1.005, normalised hike 46.3. The Fed ladder is exact at the same re-pull (H26 0.08/0.09, H25 0.88/0.89, H0 0.04/0.05, C25/C26 0.00/0.01, raw 1.025, normalised 94.63 against 94.6), and Polymarket's 09:25:09 ET book gives 95.0 against the declared 95.2, with the cut leg at 1.5 against 1.3. Both books were restamped after the snapshot, so this is re-pricing rather than a misread.",
+      "field": "betting.boc[0].note; notes",
+      "issue": "BoC Polymarket market update time is labeled event update time.",
+      "evidence": "Original public-polymarket-boc-20261116.json from https://gamma-api.polymarket.com/events?slug=bank-of-canada-decision-in-december-20260908230600011 fetched2026-11-16T14:20:18.954585+00:00: event.updatedAt14:17:09.213642Z, market.updatedAt14:16:56.838364Z; candidate calls09:16:56ET the event time. Prices and original book HTTPDate14:17:39UTC are unaffected.",
       "disposition": "next_cycle"
     },
     {
       "severity": "minor",
-      "field": "betting.fed[0].note",
-      "issue": "The two CME FedWatch readings are attributed to FXBus and Motley Fool without URLs, and the 06:16 UTC stamp is 01:16 ET, which reads oddly when described as 'this morning'.",
-      "evidence": "betting.fed[0].note: 'CME FedWatch, read second-hand because cmegroup.com refuses this host: 95% for 25bp and 5% for 50bp at 06:16 UTC today (FXBus, 16 Nov) and 100% in total as of 12 November against 67% on 5 November (Motley Fool, 16 Nov)'. Both are correctly labelled second-hand and are not used as independent market_validation (the two-venue rule is met by Kalshi plus Polymarket with BlueGamma as the OIS third leg), so the source rule is not breached; the numbers are simply not auditable without links, and cmegroup.com returns 403 to this host (confirmed).",
+      "field": "drivers.*.data.forecast; historical secondary comparisons in notes",
+      "issue": "Some old consensus and predecision examples name their provider without a dated deep link/capture in the candidate itself.",
+      "evidence": "Independent source review reproduced the material consensus direction: FXStreet https://www.fxstreet.com/news/forex-today-us-dollar-gathers-recovery-momentum-ahead-of-critical-employment-data-202611060756 (Nov6 07:56:19GMT) states US65k/4.2% and Canada13.6k/6.5%; Reuters original Nov6 result supports65k, October30 Reuters syndicated report supports GDP0.2%. Some older exact OIS/poll/book examples were not exhaustively reconstructed and should gain dated links or an explicit unverified label next cycle. This is a citation-completeness limit on historical context, not a fabricated primary-source or current-quote pass.",
       "disposition": "next_cycle"
     }
   ],
