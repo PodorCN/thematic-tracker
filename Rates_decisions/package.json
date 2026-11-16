@@ -5,7 +5,7 @@
   "description": "Next Fed & BOC rate decision dashboard (static, JSON-driven)",
   "scripts": {
     "dev": "node dev-server.js",
-    "fetch:odds": "node scripts/fetch_betting.mjs --write",
+    "fetch:odds": "node scripts/fetch_betting.mjs --candidate",
     "check": "python3 scripts/publish.py --check",
     "prune": "python3 scripts/prune_drivers.py",
     "freeze": "python3 scripts/freeze.py",
