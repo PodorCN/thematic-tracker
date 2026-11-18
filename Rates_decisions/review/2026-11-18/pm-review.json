@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-18T09:39:30-05:00",
+  "snapshot_date": "2026-11-18",
+  "candidate_sha256": "f504020268cdd9edbd307998cd8eed3d961e4d4103e9f1bf1f060b2231b2b966",
+  "verdict": "REVISE",
+  "executive_summary": "Independent six-check review of the 18 Nov 2026 09:16 ET freeze (candidate f5040202…, hash matches candidate.sha256, structural-flags.json empty, publish --check valid). Official policy and pricing reproduce against primaries and venues: the Fed held 3-3/4 to 4 percent on 28 Oct by 10-2 with Cook and Hammack preferring +1/4 (federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm), the BoC raised to 2.50% with Bank Rate 2.75% and deposit 2.45% (bankofcanada.ca/2026/10/fad-press-release-2026-10-28/), both next meetings are 9 Dec, and the Kalshi December ladders re-derive exactly from the printed midpoints (Fed 95.65/3.38/0.97 on a 1.035 raw sum, BoC 49.01/49.50/0.99 on 1.010). All fourteen Fed and five BoC drivers trace to primary pages or correctly-labelled via-Reuters copy; BLS (165k, 4.1%, AHE +0.4%/+3.1%, Aug +186k, Sep +60k), BLS CPI (+0.4%, core +0.3%, no 12-month), Census retail (+0.2%, control +0.6%, ex-autos +0.6%), StatCan LFS (-4,700, 6.7%, wages 2.2%), GDP (0.0%, advance -0.1%) and CPI (3.1%, ex-energy 2.0%) all check digit for digit. Three defects block: the two 9 Dec calendar forecast strings are carried over verbatim from the 16 Nov snapshot and now contradict the same page's pricing cards (the BoC row even reverses the leader, Hold 52.5/hike 46.5 against 49.5/49.5), and the notes date the BoC hike leg's 17 Nov close at 0.41/0.43 when the venue's own candles put that hour at 13:00 ET and the close at 0.44/0.46. Freshness passes (23 minutes). Four minors go to the next cycle: post-snapshot BoC repricing on both venues, the Fed implied_rate_after arithmetic (4.13 vs 4.12), BlueGamma's re-read (65/35, +16bp vs 67/33, +17bp) and the un-timed Senior Loan Officer Survey row.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "fail"
+  },
+  "findings": [
+    {
+      "severity": "major",
+      "field": "calendar.2026-12-09.fed.forecast",
+      "issue": "The FOMC 9 December calendar row still carries the 16 November Kalshi ladder (Hike 94.6%, 25bp 86.3% / 50bp 8.3%, Hold 4.4%) although the same snapshot prices Hike 95.6% / Hold 3.4% / Cut 1.0% at 09:05:38 ET on 18 November. app.js renderCalendar() prints this string in the Forecast column for impact=HIGH rows, so the page shows 94.6% next to a 95.6% card.",
+      "evidence": "candidate calendar[9].forecast = \"Hike 94.6% (25bp 86.3% / 50bp 8.3%) / Hold 3.75-4.00% 4.4% / cut 1.0% (Kalshi ladder, 16 Nov 09:17 ET)\"; meetings.fed.pricing.probabilities = 0.956/0.034/0.01 with as_of 2026-11-18T09:05:38-05:00; the identical string is in Rates_decisions/data/archive/2026-11-16.json calendar.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "major",
+      "field": "calendar.2026-12-09.boc.forecast",
+      "issue": "The BoC 9 December row reads as a hold lead (Hold 2.50% 52.5% / +25bp 46.5%) while meetings.boc.pricing in the same bytes is a level ladder at 49.5 hike / 49.5 hold; the two places on one page disagree on which outcome leads, and the string is two days old.",
+      "evidence": "candidate calendar[8].forecast = \"Hold 2.50% 52.5% / +25bp to 2.75% 46.5% / cut 1.0% (Kalshi ladder, 16 Nov 09:17 ET)\" vs meetings.boc.pricing.probabilities = {\"hike\":0.495,\"hold\":0.495,\"cut\":0.01} as_of 2026-11-18T09:05:38-05:00; carried verbatim from archive/2026-11-16.json.",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "major",
+      "field": "notes",
+      "issue": "The notes place the BoC hike leg at 0.41/0.43 on the 17 November close and derive a 7pp move into this morning. The venue's own hourly candles put the 17 Nov 23:00 ET candle at 0.44/0.46; 0.41/0.43 is the 13:00 ET candle on 17 November, so the stated close and the size of the overnight move are both wrong (5pp from the close, not 7pp).",
+      "evidence": "Kalshi candlesticks KXCBDECISIONCANADA-26DEC-H25 (api.elections.kalshi.com/trade-api/v2/series/KXCBDECISIONCANADA/markets/KXCBDECISIONCANADA-26DEC-H25/candlesticks, period 60): 17 Nov 13:00 0.41/0.43, 17:00 0.44/0.45, 23:00 0.44/0.46, 18 Nov 08:00 0.49/0.51; candidate notes: \"the hike leg was 0.41/0.43 at the 17 November close and 0.49/0.51 by 08:00 ET today\".",
+      "disposition": "must_fix"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.boc.pricing.probabilities.hike",
+      "issue": "Both BoC books repriced after the frozen as_of and the page now prints a hold lead: Kalshi H25 0.49/0.50 (mid 0.495) fell to 0.48/0.49 (mid 0.485) and Polymarket hike 51% became 49.5% with hold 52.5%. The frozen numbers reproduce from the venue candles at 09:00 ET, so this is post-snapshot repricing, not an operator misread.",
+      "evidence": "Kalshi 26DEC-H25 candles 18 Nov 09:00 = 0.49/0.50 (matches candidate 0.495) and 10:00 = 0.48/0.50; gamma-api.polymarket.com/events?slug=bank-of-canada-decision-in-december-20260908230600011 at 14:31Z prints 25 bps increase 0.495 / No change 0.525.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.implied_rate_after",
+      "issue": "4.13 does not follow from the block's own hike probability: 3.88 + 0.956 x 25bp = 4.12. The BoC block does apply the weighted form (2.50 + 0.495 x 25bp = 2.62), so the two blocks use different conventions.",
+      "evidence": "meetings.fed.pricing.implied_rate_before = 3.88, implied_rate_after = 4.13, probabilities.hike = 0.956; meetings.boc.pricing.implied_rate_before = 2.5, implied_rate_after = 2.62, probabilities.hike = 0.495.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.boc[0].note",
+      "issue": "BlueGamma is quoted at 67% hike / 33% hold with a +17bp move; a re-read of the same page at 09:33 ET prints 65% / 35% and +16bp under the identical date-only stamp. The block is disclosure-only and is not used as a pricing as_of, so nothing in the ledger moves, but the quoted string should match the page.",
+      "evidence": "https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast prints \"a 65% probability the Bank of Canada hikes at the 09 Dec 2026 rate announcement, with a market-implied move of +16 bp\", \"As of 18 Nov 2026\", \"Last update: 17 Nov 2026\"; candidate reads 67% / 33% / +17bp at 08:38 ET.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "calendar.2026-11-20.slos",
+      "issue": "The Senior Loan Officer Survey row is date_only with datetime_toronto null, although the Bank of Canada publishes the 10:30 ET slot; its previous field also holds a description rather than a value.",
+      "evidence": "https://www.bankofcanada.ca/press/upcoming-events/ lists \"November 20, 2026 Release: Senior Loan Officer Survey 10:30 (ET)\"; candidate calendar row has datetime_toronto null, date_only true, previous \"Q3 survey (release date only published)\".",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
