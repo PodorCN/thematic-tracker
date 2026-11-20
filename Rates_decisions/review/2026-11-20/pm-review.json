@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-20T09:46:00-05:00",
+  "snapshot_date": "2026-11-20",
+  "candidate_sha256": "94f79ebc9e943f749268284da57bae1634f7f3c219b6047abf7066dce27e5b1a",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent six-check review of the 20 Nov 2026 09:20 ET freeze (candidate 94f79ebc…): the bytes hash to candidate.sha256 and are byte-identical to data/current.json, structural-flags.json is [], and publish.py --check reports a valid structure with no flags. Official policy reproduces on the primaries: the Fed held 3-3/4 to 4 percent on 28 Oct by 10-2 with Cook and Hammack preferring +1/4, 'inflation remains elevated', 'expanding at a strong pace' (federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm); the BoC raised 25bp to 2.50% with Bank Rate 2.75% and deposit 2.45%, CPI 'about 3½% by the end of the year' and 3% average in 2027 (bankofcanada.ca/2026/10/fad-press-release-2026-10-28/); next meetings are 9 Dec for both (BoC 09:45 ET, FOMC second day 14:00 ET, the 2026 calendar reads December 8-9). Pricing is level and reproducible: the Kalshi December ladders re-derive from the printed midpoints (Fed 0.035/0.915/0.055/0.005/0.005, raw 1.015 -> 93.5/5.5/1.0; BoC 0.010/0.580/0.430/0.005/0.005, raw 1.030 -> 57.3/41.7/1.0) and Polymarket is 1.15pp away on the Fed hike bucket and 1.8pp on the BoC. Drivers: all fifteen Fed and six BoC entries trace to the claimed institutions (Fed statement, minutes, Waller/Jefferson/Bowman/Barr/Warsh/Hammack, Census MARTS, BEA PIO, StatCan GDP/LFS/CPI/retail, BoC press release and opening statement); the reaction numbers reproduce to the contract on the venue candles (68,547; 28,077; 748,703; 345,470; 19,331/3,721; 19,102/24,039; 323; 106,046), every weight_breakdown sums to its weight, mean |weight| is 2.33 Fed / 2.17 BoC, and the decay arithmetic gives 21.25 / -2.5. BLS returns 403 to this host, so payrolls 165k / unemployment 4.1% / participation 61.9% / AHE +0.4% and +3.1% / core CPI +0.3% were re-derived from FRED (PAYEMS, UNRATE, CIVPART, CES0500000003, CPILFESL) rather than taken on trust; the October control-group 0.6% and the September 0.5%-from-0.1% revision are corroborated outside the MARTS PDF. All three majors from the 18 Nov REVISE are closed against the new bytes and the venue: both 9 Dec calendar forecast strings now match the pricing cards (Hike 93.5 / Hold 5.5 / cut 1.0 and Hike 57.3 / Hold 41.7 / cut 1.0, both stamped 20 Nov 09:06), and the notes now put the BoC 17 Nov close at 0.44/0.46 (the 23:00 ET candle) with 0.41/0.43 correctly identified as that day's 13:00 candle, which the candlesticks confirm. Freshness passes at 26 minutes. Four minors go to the next cycle, all post-snapshot or presentational: BlueGamma's BoC page now prints 55/45 (was 58/42, +14bp unchanged), its Fed page now prints +25bp (was +26bp, 100% unchanged), Polymarket's Fed hike bucket has ticked 95.0 -> 96.15, and the notes' parenthetical that the Gravelle speech page serves 'the media advisory only' is wrong - the remarks are published in full, though they carry no December policy signal and the unattributed-repricing conclusion stands. No critical or major finding; the snapshot is fit to publish.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "betting.boc[0].note",
+      "issue": "BlueGamma's CORRA OIS page is quoted at 58% hike / 42% hold, and the notes' 'three venues inside 1.7pp today' rests on that reading (Kalshi 57.3 / Polymarket 59 / BlueGamma 58). Re-read at 09:36 ET the page prints 55% hike / 45% hold / 0% cut with the same +14bp and the same date-only stamps, so the three-way spread is 4.2pp rather than 1.7pp. The page carries no clock time ('As of 20 Nov 2026', 'Last update: 19 Nov 2026'), so this cannot be time-aligned: it is post-snapshot repricing, not an operator misread, and 4.2pp is still inside the 5pp tolerance.",
+      "evidence": "candidate betting.boc[0].note = 'BlueGamma prints 58% hike / 42% hold / 0% cut with a +14bp implied move from 2.50%'; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/the-bank-of-canada-interest-rate-forecast fetched 2026-11-20T14:36Z prints 'Market-implied move: +14 bp / Hike 55% Hold 45% Cut 0%' with 'As of 20 Nov 2026' and 'Last update: 19 Nov 2026'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].note",
+      "issue": "The Fed SOFR OIS disclosure quotes a +26bp implied move and builds an argument on it ('the page converts a +26bp move into a binary and +26bp is more than the 25bp step it divides by'; 'the Kalshi ladder is worth +24.2bp against BlueGamma's +26bp, a 1.8bp basis gap'). The page now prints +25bp with the same 100% / 0% / 0% and the same date-only stamps, so the basis gap is 0.8bp and the 'more than the 25bp step' explanation no longer describes the page. Nothing in the ledger moves: the hike bucket is 100% either way.",
+      "evidence": "candidate betting.fed[0].note = 'BlueGamma's SOFR OIS page prints 100% hike / 0% hold / 0% cut with a +26bp implied move from 3.88%'; https://www.bluegamma.io/central-banks/central-bank-interest-rate-forecasts/federal-reserve-interest-rate-forecast fetched 2026-11-20T14:36Z prints 'Hike 100% Hold 0% Cut 0%' and 'Market-implied move: +25 bp', 'As of 20 Nov 2026', 'Last update: 19 Nov 2026'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "betting.fed[0].probabilities",
+      "issue": "Polymarket has repriced since the frozen 09:03:29 ET stamp: hike 95.0% -> 96.15% (25bp 92.5 + >25bp 3.65), hold 4.0% -> 4.25%, cut 1.0% -> 0.5% at 09:27 ET. The move is +1.15pp on the hike bucket, no direction change, and the frozen numbers reproduce from the venue price history, so this is post-snapshot repricing rather than an operator misread.",
+      "evidence": "candidate betting.fed[0].probabilities = {hike 0.95, hold 0.04, cut 0.01} with as_of 2026-11-20T09:03:29-05:00; gamma-api.polymarket.com/events?slug=fed-decision-in-december-20260729232808632 at 14:27:30Z prints outcomePrices 25 bps increase 0.925, 50+ bps increase 0.0365, No change 0.0425, 25 bps decrease 0.0025.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "notes",
+      "issue": "The notes place 'Gravelle's Edmonton speech' inside the 14:00-16:00 ET window on 18 November and add 'the Bank's speech page still serves the media advisory only, with the text unpublished'. That parenthetical is false: the speech page carries the full remarks (Toni Gravelle, Edmonton Chamber of Commerce, 18 November 2026, 'Setting the scenario: Monetary policy communications in uncertain times'), and no time is printed on it while the text opens 'Good morning', so its position inside the 14:00-16:00 window is unsupported. The conclusion the sentence supports still holds - the remarks are about communications strategy and carry no December policy signal, so the 9.0pp BoC step remains an unattributed repricing with no scored driver.",
+      "evidence": "candidate notes = 'Gravelle's Edmonton speech (the Bank's speech page still serves the media advisory only, with the text unpublished)'; https://www.bankofcanada.ca/2026/11/setting-the-scenario-monetary-policy-communications-in-uncertain-times/ fetched 2026-11-20T14:39Z carries 'Remarks Toni Gravelle Edmonton Chamber of Commerce Edmonton, Alberta November 18, 2026' followed by the full text opening 'Good morning. It's great to be here in Edmonton', with no 'media advisory' string on the page.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
