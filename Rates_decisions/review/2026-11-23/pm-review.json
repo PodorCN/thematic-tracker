@@ -1,0 +1,49 @@
+{
+ "schema_version": "1.0",
+ "reviewer": "independent-pm",
+ "operator": "rates-decisions-writer",
+ "reviewed_at": "2026-11-23T09:36:00-05:00",
+ "snapshot_date": "2026-11-23",
+ "candidate_sha256": "7c3a163dd420889e5c8cd0f624436bc847890a35598387cfdd3b081c293b9a3d",
+ "verdict": "REVISE",
+ "executive_summary": "Independent six-check review of the 23 Nov 2026 09:11:15 ET freeze (candidate 7c3a163d): the bytes hash to candidate.sha256, canonical(data/current.json) equals the same digest, structural-flags.json is [], publish.py --check reports a valid structure, and the worktree is clean. Official policy reproduces on the primaries: the Fed held 3-3/4 to 4 percent on 28 Oct by 10-2 with Cook and Hammack preferring +1/4, 'inflation remains elevated', 'expanding at a strong pace' (federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm); the October minutes record that almost all participants saw further increases as likely appropriate and that a couple floated more than 25bp (fomcminutes20261028.htm, released 18 Nov); the BoC raised 25bp to 2.5% with Bank Rate 2.75% and deposit 2.45%, CPI 'about 3.5%' by year-end and 3% average in 2027, and kept 'there could be a need to increase the policy rate further' (bankofcanada.ca/2026/10/fad-press-release-2026-10-28/); the 10 Nov deliberations carry the pass-through and broad-based-risk language, and the Q3 SLOS valet series prints business -6.48 vs -1.04 and mortgage -26.27 vs +0.64 (price -52.55, non-price 0.00). Pricing reproduces exactly at the frozen minute on both Kalshi ladders (Fed 0.02/0.03, 0.92/0.93, 0.03/0.04, 0.00/0.01 at 14:11Z; BoC 0.00/0.01, 0.47/0.49, 0.50/0.55 at 14:11Z) and on Polymarket (0.460 at 14:05Z), and BlueGamma is quoted correctly (Fed 99%/+25bp, BoC 60%/+15bp, 'As of 23 Nov 2026', forward table 'Last update: 20 Nov 2026'). The blocking problem is post-snapshot repricing on the BoC book: between 09:15 and 09:24 ET the Kalshi hike bucket went 47.5 -> 58.0 and the hold bucket 51.5 -> 41.0 (1,000-contract trade at 14:17Z), while Polymarket's 25bp increase went 0.460 -> 0.580 by 14:18Z, so the venue leader has flipped from hold to hike; that is a >10pp move on the bucket the dashboard leads with, and the notes' 'BoC book has given back about 10 points since Friday' plus the 'hold' band now describe a market that no longer exists. Fed pricing moved only 95.5 -> ~95 and stays inside tolerance. Drivers, scoring and age decay check out (parts sum to weight, mean |weight| 2.3, no driver older than the last meeting, no weight >=5 needing numeric validation), and spot checks of the market-validation numbers reproduce (Waller 10 Nov 0.805 -> 0.885 between 09:00Z and 10:00Z; 6 Nov BoC 0.305 mid at 14:13Z). REVISE: re-freeze after 09:20 ET with the repriced BoC ladder, rewrite the BoC narrative and the 9 December calendar row to match, and fix the two small driver blemishes (August control-group revision stated as both 1.6/1.4 and 1.5/1.3; Williams link labelled via Reuters but pointing at investing.com).",
+ "checks": {
+  "official_policy": "pass",
+  "pricing": "fail",
+  "drivers": "pass",
+  "market_validation": "pass",
+  "freshness": "pass",
+  "decision_usefulness": "pass"
+ },
+ "findings": [
+  {
+   "severity": "major",
+   "field": "meetings.boc.pricing.probabilities.hike",
+   "issue": "Frozen at 47.5% hike / 51.5% hold (Kalshi, 09:11:04 ET) with a hold lead, but the venues had repriced to ~58% hike / ~41% hold by 09:24 ET and still print that at 09:34 ET. Every leg reproduces exactly at the stated minute, so this is post-snapshot repricing rather than an operator misread; the defect is that the frozen block no longer describes the market the dashboard leads with, and the leader has flipped hold -> hike (Kalshi 58.0 vs Polymarket 0.58, against BlueGamma's 60%).",
+   "evidence": "Kalshi candlesticks KXCBDECISIONCANADA-26DEC-H25: 14:11Z 0.47/0.49 (mid 0.480 = candidate leg 0.480), 14:17Z 0.48/0.55 on 1,000 contracts, 14:24Z 0.55/0.60; H0: 14:11Z 0.50/0.55 (mid 0.525 = candidate 0.525) -> 14:24Z 0.36/0.45. Order book 14:34:06Z: H25 0.56/0.62, H0 0.37/0.47, giving hike 58.0 / hold 41.0 normalised. Polymarket CLOB prices-history token 54681368317975901430466975278763152542319916351739413693465866333837051452063: 0.460 at 14:05Z, 0.515 at 14:16Z, 0.580 at 14:18Z, 0.585 at 14:23Z; gamma 14:27Z shows 25bp 0.58 / no change 0.40.",
+   "disposition": "must_fix"
+  },
+  {
+   "severity": "minor",
+   "field": "calendar.2026-12-09.boc.forecast",
+   "issue": "The 9 December BoC row repeats the frozen ladder (Hike 47.5% / Hold 51.5%) and will contradict the re-frozen pricing unless it is regenerated from the post-09:20 stamps in the same cycle.",
+   "evidence": "candidate calendar[6].forecast = 'Hike 47.5% (25bp 47.1% / >25bp 0.5%) / Hold 2.50% 51.5% / cut 1.0% (Kalshi ladder, 23 Nov 09:11 ET)'; order book 14:34:06Z implies hike 58.0 / hold 41.0.",
+   "disposition": "next_cycle"
+  },
+  {
+   "severity": "minor",
+   "field": "drivers.fed.hawkish[9].data.previous",
+   "issue": "fed-h24 contradicts itself on the August control-group revision: the summary says August was revised to 1.6% from 1.4%, while data.previous says Aug +1.5% (revised from +1.3%). One of the pair is wrong and the release has to settle it.",
+   "evidence": "candidate fed-h24 summary 'September control sales were revised up to 0.5% from 0.1% and August to 1.6% from 1.4%' vs data.previous 'Aug +1.5% (revised from +1.3%)'; census.gov/retail/marts/www/marts_current.pdf (17 Nov 2026) prints October total +0.2%, ex-autos +0.6% and September +0.8% unrevised, but not the control group, so both statements cannot stand.",
+   "disposition": "next_cycle"
+  },
+  {
+   "severity": "minor",
+   "field": "drivers.fed.hawkish[7].source_url",
+   "issue": "fed-h22 is labelled 'Axios BFD Summit (via Reuters)' but links investing.com's Reuters copy. The quote and the 17 Nov reaction reproduce there, so the claim stands, but the link domain does not match the named wire; either link the Reuters original or label it as a Reuters republication.",
+   "evidence": "candidate fed-h22 source_url=https://www.investing.com/news/economy-news/feds-williams-still-favors-tighter-monetary-policy-but-says-now-is-not-the-time-for-dramatic-action-5033893 ; fetched 2026-11-23T14:20Z: headline 'Fed's Williams still favors tighter monetary policy...', byline Reuters, quotes 'dramatic action' and 'We still have our work to do' present; no reuters.com link in the driver.",
+   "disposition": "next_cycle"
+  }
+ ],
+ "flags_dispositioned": []
+}
