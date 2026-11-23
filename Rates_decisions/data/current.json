@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-11-20T09:20:00-05:00",
-  "snapshot_date": "2026-11-20",
+  "as_of": "2026-11-23T09:11:15-05:00",
+  "snapshot_date": "2026-11-23",
   "version": 1,
   "timezone": "America/Toronto",
   "meetings": {
@@ -17,16 +17,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.935,
-          "hold": 0.055,
+          "hike": 0.955,
+          "hold": 0.035,
           "cut": 0.01
         },
         "probability_status": "available",
         "implied_rate_before": 3.88,
         "implied_rate_after": 4.12,
-        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint; every displayed leg is its own normalised midpoint (none is a residual), so all three re-derive from the printed legs. Legs at 09:06:31 ET: 0.035 / 0.915 / 0.055 / 0.005 / 0.005 (raw sum 1.015); normalised 25bp 0.901, >25bp 0.034, hold 0.054, cut 0.010. Hike 93.5 and hold 5.5 are the rounded buckets and sum with the 1.0 cut bucket to 1.00. implied_rate_after is size-weighted on the same convention as the BoC block: 3.88 + 90.1% x 25bp + 3.4% x 50bp = 4.12.",
+        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint; every displayed leg is its own normalised midpoint (none is a residual), so all three re-derive from the printed legs. Legs at 09:11:01 ET: 0.025 / 0.925 / 0.035 / 0.005 / 0.005 (raw sum 0.995); normalised 25bp 0.930, >25bp 0.025, hold 0.035, cut 0.010. Hike 95.5 and hold 3.5 are the rounded buckets and sum with the 1.0 cut bucket to 1.00. implied_rate_after is size-weighted on the same convention as the BoC block: 3.88 + 93.0% x 25bp + 2.5% x 50bp = 4.12.",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open",
-        "as_of": "2026-11-20T09:06:31-05:00",
+        "as_of": "2026-11-23T09:11:01-05:00",
         "observable_proxy": null
       }
     },
@@ -43,16 +43,16 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.573,
-          "hold": 0.417,
+          "hike": 0.475,
+          "hold": 0.515,
           "cut": 0.01
         },
         "probability_status": "available",
         "implied_rate_before": 2.5,
-        "implied_rate_after": 2.65,
-        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint; every displayed leg is its own normalised midpoint (none is a residual), so all three re-derive from the printed legs. Legs at 09:06:50 ET: 0.010 / 0.580 / 0.430 / 0.005 / 0.005 (raw sum 1.030); normalised 25bp 0.563, >25bp 0.010, hold 0.417, cut 0.010. Hike 57.3 and hold 41.7 are the rounded buckets and sum with the 1.0 cut bucket to 1.00. implied_rate_after is size-weighted: 2.50 + 56.3% x 25bp + 1.0% x 50bp = 2.65.",
+        "implied_rate_after": 2.62,
+        "source": "Kalshi December decision ladder (hike >25 / hike 25 / hold / cut 25 / cut >25), five legs normalised on the bid/ask midpoint; every displayed leg is its own normalised midpoint (none is a residual), so all three re-derive from the printed legs. Legs at 09:11:04 ET: 0.005 / 0.480 / 0.525 / 0.005 / 0.005 (raw sum 1.020); normalised 25bp 0.471, >25bp 0.005, hold 0.515, cut 0.010. Hike 47.5 and hold 51.5 are the rounded buckets and sum with the 1.0 cut bucket to 1.00. implied_rate_after is size-weighted: 2.50 + 47.1% x 25bp + 0.5% x 50bp = 2.62.",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open",
-        "as_of": "2026-11-20T09:06:50-05:00",
+        "as_of": "2026-11-23T09:11:04-05:00",
         "observable_proxy": null
       }
     }
@@ -69,10 +69,10 @@
           "hike": 0.95
         },
         "status": "available",
-        "volume": "$45.1M",
-        "liquidity": "$2.6M",
-        "as_of": "2026-11-20T09:03:29-05:00",
-        "note": "December 2026 event; outcome prices, not a book midpoint. Oldest venue price stamp 09:03:29 ET on 20 Nov; the event object's own updatedAt is 09:03:44 ET (a venue metadata stamp, not the decision time). Raw five-leg sum 1.011 before normalisation (hike 95 / hold 4 / cut 1). Volume $45.1M, liquidity $2.6M. Independent venue to the Kalshi ladder: 1.5pp apart on the hike bucket (Kalshi 93.5), inside the 5pp tolerance. CME FedWatch returns 403 to this host and rateprobability.com redirects to a 403, so neither is used. BlueGamma's SOFR OIS page prints 100% hike / 0% hold / 0% cut with a +26bp implied move from 3.88% ('As of 20 Nov 2026', forward table 'Last update: 19 Nov 2026', fetched 09:07 ET), 6.5pp above Kalshi and outside the tolerance: it is disclosed rather than averaged in, because the page converts a +26bp move into a binary and +26bp is more than the 25bp step it divides by, and it has sat at the cap all cycle (100% on 16 Nov, 85% on 9 Nov). Compared as moves the Kalshi ladder is worth +24.2bp against BlueGamma's +26bp, a 1.8bp basis gap - that is the part of the two readings that agrees."
+        "volume": "$51.1M",
+        "liquidity": "$1.9M",
+        "as_of": "2026-11-23T09:05:13.272636-05:00",
+        "note": "December 2026 event; outcome prices, not a book midpoint. Oldest venue price stamp 09:05:13 ET on 23 Nov; the event object's own updatedAt is 09:05:25 ET (a venue metadata stamp, not the decision time). Raw five-leg sum 0.994 before normalisation (hike 95 / hold 4 / cut 1). Volume $51.1M, liquidity $1.9M. Independent venue to the Kalshi ladder: 0.5pp apart on the hike bucket (Kalshi 95.5), inside the 5pp tolerance. CME FedWatch returns 403 to this host and rateprobability.com redirects to a 403, so neither is used. BlueGamma's SOFR OIS page prints 99% hike / 1% hold / 0% cut with a +25bp implied move from 3.88% ('As of 23 Nov 2026', forward table 'Last update: 20 Nov 2026', fetched 08:34 ET today), 3.5pp above Kalshi - inside tolerance and consistent with a ladder-implied move of +24.5bp against the page's +25bp."
       }
     ],
     "boc": [
@@ -81,15 +81,15 @@
         "event_slug": "bank-of-canada-decision-in-december-20260908230600011",
         "event_url": "https://polymarket.com/event/bank-of-canada-decision-in-december-20260908230600011",
         "probabilities": {
-          "cut": 0.0,
-          "hold": 0.41,
-          "hike": 0.59
+          "cut": 0,
+          "hold": 0.54,
+          "hike": 0.46
         },
         "status": "available",
-        "volume": "$277.2k",
-        "liquidity": "$86.2k",
-        "as_of": "2026-11-20T09:03:29-05:00",
-        "note": "December 2026 event; outcome prices, not a book midpoint. Oldest venue price stamp 09:03:29 ET on 20 Nov; the event object's own updatedAt is 09:03:44 ET (venue metadata, not the announcement time). Raw five-leg sum 1.0085 before normalisation (hike 59 / hold 41 / cut 0). Volume $277.2k - a thin book, but the deepest of the three BoC venues here. Independent venue to the Kalshi ladder: 1.7pp apart on the hike bucket (Kalshi 57.3). CORRA OIS cross-check: BlueGamma prints 58% hike / 42% hold / 0% cut with a +14bp implied move from 2.50% ('As of 20 Nov 2026', forward table 'Last update: 19 Nov 2026', fetched 09:07 ET), 0.7pp from Kalshi. The three venues have converged this week after a 17.5pp BlueGamma-Kalshi gap on 18 November, so the old caveat that BlueGamma runs hot on this leg no longer applies and is not carried. rateprobability.com redirects to a 403 from this host."
+        "volume": "$331.9k",
+        "liquidity": "$55.5k",
+        "as_of": "2026-11-23T09:05:13.272636-05:00",
+        "note": "December 2026 event; outcome prices, not a book midpoint. Oldest venue price stamp 09:05:13 ET on 23 Nov; updatedAt 09:05:25 ET (venue metadata). Raw five-leg sum 1.0065 before normalisation (hike 46 / hold 54 / cut 0). Volume $331.9k - a thin book. Independent venue to the Kalshi ladder: 1.5pp apart on the hike bucket (Kalshi 47.5). CORRA OIS cross-check: BlueGamma prints 60% hike / 40% hold / 0% cut with a +15bp implied move from 2.50% ('As of 23 Nov 2026', forward table 'Last update: 20 Nov 2026', fetched 08:34 ET), 12.5pp above Kalshi and outside the 5pp tolerance; the divergence is mechanical rather than informational - the page divides a +15bp move by the 25bp step, while the Kalshi ladder's 47.5% implies +12.0bp, so the basis gap is only 3.0bp and the probability gap is an artefact of binarising a small move. Disclosed, not averaged. rateprobability.com redirects to a 403 from this host."
       }
     ]
   },
@@ -406,6 +406,32 @@
             "surprise": 0,
             "total": 1
           }
+        },
+        {
+          "id": "fed-h27",
+          "title": "Cook: a steady rate widens the output gap; inflation above target for more than five and a half years",
+          "summary": "Governor Lisa Cook, who dissented in October for an immediate 25bp increase, used her Central Bank of Chile keynote to restate the case: financial conditions are too accommodative while inflation is 'stubbornly above target' with 'no clear signs of disinflation in train', and 'holding our policy rate steady will lead to a positive and widening output gap and increasing inflationary pressure'. She described the hold itself as a monetary policy action and put the overshoot at more than five and a half years.",
+          "published_at": "2026-11-20",
+          "observed_at": "2026-11-20",
+          "source": "Federal Reserve",
+          "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20261120a.htm",
+          "facet": "voter-rhetoric",
+          "data": {
+            "actual": "\"holding our policy rate steady will lead to a positive and widening output gap and increasing inflationary pressure\"",
+            "forecast": "n/a",
+            "previous": "28 Oct: dissented for +25bp while the Committee held",
+            "delta_label": "dissenting Governor restates the case; no size signal"
+          },
+          "reason": "A sitting Governor and October dissenter arguing that standing still is itself accommodative supports the December direction case. It adds no size information and binds no other voter, so it carries a minimal weight rather than a larger one.",
+          "market_validation": "unverified (delivered at a conference in Santiago with no December-specific repricing that can be isolated: the Kalshi Dec 25bp leg dipped 0.90/0.91 -> 0.88/0.89 in the 12:00 ET hour on 20 Nov and was back at 0.89/0.90 by 15:00 ET, on 49,177 then 41,686 contracts)",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
         }
       ],
       "dovish": [
@@ -542,6 +568,32 @@
             "surprise": 0,
             "total": 2
           }
+        },
+        {
+          "id": "boc-h9",
+          "title": "Summary of deliberations: cost pressures 'would eventually be reflected in core', broad-based risk 'had increased'",
+          "summary": "The 10 November account of the October deliberations records that Governing Council saw fuel and non-energy input costs building, judged pass-through 'had so far been limited' but would eventually reach core, and agreed that the risk high inflation could persist and become broad-based had increased. It kept the tightening option open: 'there could be a need to increase the policy rate further', decided one meeting at a time.",
+          "published_at": "2026-11-10",
+          "observed_at": "2026-11-10",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/2026/11/summary-of-governing-council-deliberations-fixed-announcement-date-of-october-28-2026/",
+          "facet": "deliberations",
+          "data": {
+            "actual": "\"the risk that high inflation could persist and become broad-based had increased\" / \"there could be a need to increase the policy rate further\"",
+            "forecast": "n/a",
+            "previous": "28 Oct press release: same tightening bias, no deliberation record",
+            "delta_label": "committee-level pass-through debate, bias retained"
+          },
+          "reason": "This is the only committee-level record between the October decision and December, and it frames the hike as a response to pass-through risk rather than to the current CPI print - the argument that would have to weaken for December to be a hold. It scores 2 rather than more because it restates the decision's own logic and adds no new data.",
+          "market_validation": "unverified (published at the Bank's 13:30 ET slot on 10 Nov; no release-window repricing is isolated for this snapshot)",
+          "direction": 1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
         }
       ],
       "dovish": [
@@ -647,6 +699,32 @@
             "surprise": 0,
             "total": 1
           }
+        },
+        {
+          "id": "boc-d8",
+          "title": "Q3 Senior Loan Officer Survey: business conditions -6.5, mortgage conditions -26.3, a broad tightening",
+          "summary": "The survey published 20 November puts the business-lending balance of opinion at -6.48 (Q2 -1.04), with non-price terms at -9.47 (Q2 +1.04); mortgage conditions swung to -26.27 from +0.64, entirely on price (-52.55, non-price 0.00), and non-mortgage household lending fell to -6.68 from +13.36. Negative readings mean more lenders reported tightening than easing; the index gives direction, not magnitude.",
+          "published_at": "2026-11-20",
+          "observed_at": "2026-11-20",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/valet/observations/group/slos/json",
+          "facet": "credit-conditions",
+          "data": {
+            "actual": "Business -6.48 (Q2 -1.04); mortgage -26.27 (Q2 +0.64); non-mortgage household -6.68 (Q2 +13.36)",
+            "forecast": "n/a (quarterly survey, no consensus)",
+            "previous": "Q2 2026: business -1.04, mortgage +0.64, non-mortgage household +13.36",
+            "delta_label": "business -5.4 points; mortgage -26.9 points"
+          },
+          "reason": "Credit conditions tightened across business and household lending in the quarter before the 28 October decision, and that headwind is inherited by December: the more the earlier tightening is doing the work, the higher the bar for a second consecutive increase. It scores 2, not more, because the reference quarter predates the decision and a diffusion index carries no magnitude.",
+          "market_validation": "Kalshi BoC Dec 25bp-Hike leg 0.56/0.58 (mid 0.57) at the 11:00 ET candle -> 0.54/0.56 (mid 0.55) at 12:00 ET and 0.50/0.52 (mid 0.51) by 14:00 ET on 20 Nov, -6.0pp across the 10:30 ET release on 458 contracts in the 12:00 hour; the book is thin, so attribution is partial.",
+          "direction": -1,
+          "weight": 2,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 0,
+            "total": 2
+          }
         }
       ]
     }
@@ -654,7 +732,7 @@
   "total_score": {
     "fed": {
       "base_total": 10,
-      "effective_total": 21.25,
+      "effective_total": 21.75,
       "band": "strong hike lean"
     },
     "boc": {
@@ -666,32 +744,18 @@
   },
   "calendar": [
     {
-      "date_toronto": "2026-11-20",
-      "datetime_toronto": "2026-11-20T10:30:00-05:00",
-      "datetime_utc": "2026-11-20T15:30:00Z",
-      "date_only": false,
-      "currency": "CAD",
-      "event": "Bank of Canada Senior Loan Officer Survey",
-      "impact": "MEDIUM",
-      "importance": 2,
-      "forecast": "n/a",
-      "previous": "unverified",
-      "source": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/2026/11/release-senior-loan-officer-survey-november-20-2026/"
-    },
-    {
       "date_toronto": "2026-11-24",
-      "datetime_toronto": null,
-      "datetime_utc": null,
-      "date_only": true,
+      "datetime_toronto": "2026-11-24T12:40:00-05:00",
+      "datetime_utc": "2026-11-24T17:40:00Z",
+      "date_only": false,
       "currency": "CAD",
       "event": "Speech: Tiff Macklem, Governor (Economic Club of Canada, Toronto)",
       "impact": "MEDIUM",
       "importance": 2,
       "forecast": "n/a",
-      "previous": "n/a (no time published on the Bank of Canada's upcoming-events page)",
+      "previous": "n/a (time printed as 12:40 ET approx. on the Bank of Canada's event page)",
       "source": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/press/upcoming-events/"
+      "source_url": "https://www.bankofcanada.ca/multimedia/speech-economic-club-of-canada-2026-11-24/"
     },
     {
       "date_toronto": "2026-11-25",
@@ -772,7 +836,7 @@
       "event": "BOC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike 57.3% (25bp 56.3% / >25bp 1.0%) / Hold 2.50% 41.7% / cut 1.0% (Kalshi ladder, 20 Nov 09:06 ET)",
+      "forecast": "Hike 47.5% (25bp 47.1% / >25bp 0.5%) / Hold 2.50% 51.5% / cut 1.0% (Kalshi ladder, 23 Nov 09:11 ET)",
       "previous": "2.50% (raised 28 Oct, first hike since July 2023)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
@@ -786,11 +850,11 @@
       "event": "FOMC rate decision + SEP",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike 93.5% (25bp 90.1% / >25bp 3.4%) / Hold 3.75-4.00% 5.5% / cut 1.0% (Kalshi ladder, 20 Nov 09:06 ET)",
+      "forecast": "Hike 95.5% (25bp 93.0% / >25bp 2.5%) / Hold 3.75-4.00% 3.5% / cut 1.0% (Kalshi ladder, 23 Nov 09:11 ET)",
       "previous": "3.75-4.00% (held 28 Oct on a 10-2 vote)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     }
   ],
-  "notes": "Snapshot assembled at 09:20 ET on Friday 20 November 2026, after the 18 November FOMC minutes and ahead of the BoC Senior Loan Officer Survey at 10:30 ET. Both December meetings now price a hike on every venue this host can read: Fed 93.5% Kalshi / 95% Polymarket / 100% (+26bp) BlueGamma SOFR OIS; BoC 57.3% Kalshi / 59% Polymarket / 58% (+14bp) BlueGamma CORRA OIS. The BoC book has converged - three venues inside 1.7pp today, against a 17.5pp BlueGamma-Kalshi gap on 18 November.\n\nFed: direction settled, size premium collapsing. The October minutes (18 November, 14:00 ET) have almost all participants judging further increases 'broadly consistent with the September SEP' appropriate, with a couple raising more than 25bp for the next meeting; Barr said the same afternoon that he expects further increases will be appropriate. The tape agrees on direction and disagrees on size: the Kalshi 25bp leg has sat at 0.91/0.92 since 19 November while the >25bp leg fell from 0.07/0.08 at the 18 November 16:00 ET candle to 0.03/0.04 by 08:00 ET today (106,046 contracts in the 09:00 ET hour) - Williams' 17 November 'not the time for dramatic action' being paid for, not the minutes being faded.\n\nBoC: the ladder repriced without a Canadian catalyst, and the correction matters. The hike leg closed 17 November at 0.44/0.46 (the 23:00 ET candle, mid 0.45) - not the 0.41/0.43 this snapshot carried last time, which is that day's 13:00 ET candle - then went 0.49/0.51 at 08:00 ET on 18 November, 0.49/0.50 at 14:00, 0.57/0.60 at 16:00, 0.58/0.59 through 19 November and 0.57/0.59 this morning. The 9.0pp step sits in the 14:00-16:00 ET window on 18 November, which held the FOMC minutes at 14:00 and Gravelle's Edmonton speech (the Bank's speech page still serves the media advisory only, with the text unpublished); no Canadian release printed in the window, so the move is recorded as an unattributed repricing rather than a scored driver, and the Fed books do not explain it - the Fed 25bp leg fell a cent over the same two hours.\n\nToday's Canadian data is two-sided and is not scored: retail sales rose 0.8% to $75.3 billion in September (gasoline stations +6.9%, core +0.1%, volumes +0.1%, Q3 +1.2%), while StatCan's advance estimate points to -1.5% in October (58.1% response rate, explicitly unofficial and subject to revision) - https://www150.statcan.gc.ca/n1/daily-quotidien/261120/dq261120a-eng.htm\n\nLedger versus market: the BoC ledger still reads hold (base -3, effective -2.5) against a 57% hike price, and the gap is disclosed rather than smoothed. Every Canadian release since 28 October - CPI 3.1% with ex-energy at 2.0%, the October LFS at -4.7k with unemployment 6.7%, August GDP at 0.0% and September's -0.1% advance, and this morning's -1.5% October retail advance - argues against a second consecutive increase; the market's hike lead rests on the Fed's tightening cycle and term-premium spillover, which is a different bet from a Canadian data call, and the two should be read side by side rather than reconciled into a false single view.\n\nPricing discipline: both Kalshi blocks carry the API's own HTTP Date (09:06:31 ET Fed, 09:06:50 ET BoC, 20 November), the Polymarket blocks carry the venue price stamps 09:03:29 ET, and BlueGamma is cited only as an OIS disclosure because its stamps are date-only ('As of 20 Nov 2026', forward table 'Last update: 19 Nov 2026'). CME FedWatch returns 403 from this host and rateprobability.com redirects to a 403, so neither is used as a venue.\n\nNext catalysts: BoC Senior Loan Officer Survey today 10:30 ET; Macklem at the Economic Club of Canada on 24 November; US Q3 GDP second estimate and October PCE on 25 November; Canada Q3 GDP on 30 November; US and Canadian November jobs on 4 December; both decisions on 9 December."
+  "notes": "Snapshot assembled at 09:11 ET on Monday 23 November 2026, the first session after the Bank of Canada's Q3 Senior Loan Officer Survey (20 November, 10:30 ET) and Governor Cook's Santiago keynote. Both December meetings still price a substantial hike probability on every venue this host can read, but the BoC book has given back about 10 points since Friday: Kalshi 47.5% (57.3% on 20 November), Polymarket 46%, BlueGamma CORRA OIS 60% (+15bp). Fed: Kalshi 95.5% (93.5% on 20 November), Polymarket 95%, BlueGamma SOFR OIS 99% (+25bp).\n\nFed: direction settled, size tail small. The December ladder is 93.0% for 25bp and 2.5% for more, the >25bp leg at 0.02/0.03 against 0.03/0.04 at Friday's snapshot and 0.07/0.08 at the 18 November 16:00 ET candle - the minutes' size tail has been paid back while the 25bp leg held 0.88-0.93. Cook's 20 November keynote is the only new Fed input: the October dissenter said 'holding our policy rate steady will lead to a positive and widening output gap and increasing inflationary pressure', which supports direction and carries no size signal. No US release printed between Friday and this snapshot; Q3 GDP (second estimate) and October PCE land on 25 November.\n\nBoC: a survey, not a speech, did the work. The Q3 SLOS printed a business-lending balance of opinion of -6.48 (Q2 -1.04) and mortgage conditions of -26.27 (Q2 +0.64), the latter entirely on price (-52.55, non-price 0.00); negative readings mean more lenders tightened than eased, and the index carries no magnitude. The Kalshi 25bp leg fell from 0.57 through Friday's session to 0.50 by 14:00 ET, printed 0.40-0.41 on the weekend book (87 to 1,074 contracts an hour - thin), and recovered into the high 0.40s this morning. The 10 November Summary of Deliberations cuts the other way and is scored at 2: cost pressures 'would eventually be reflected in core measures', the risk of broad-based inflation 'had increased', and 'there could be a need to increase the policy rate further' was left open.\n\nLedger versus market: Fed base 10 (capped) / effective 21.75, band strong hike lean; BoC base -3 / effective -2.5, band hold, against a 47.5% hike price. The BoC gap is disclosed, not smoothed: every Canadian release since 28 October - CPI 3.1% with ex-energy 2.0%, the October LFS at -4.7k with unemployment 6.7%, August GDP 0.0% and September's -0.1% advance, October retail's -1.5% advance, and now the SLOS - argues against a second consecutive increase, while the residual market premium rests on the Fed cycle and term-premium spillover rather than on Canadian data.\n\nPricing discipline: the Kalshi blocks carry the API's own HTTP Date (09:11:01 ET and 09:11:04 ET, 23 November), the Polymarket blocks carry the venue price stamp 09:05:13 ET, and BlueGamma is cited only as an OIS disclosure because its stamps are date-only ('As of 23 Nov 2026' with the forward table at 'Last update: 20 Nov 2026', fetched 08:34 ET). BlueGamma's BoC 60% is mechanical - the page divides a +15bp implied move by the 25bp step, while the Kalshi ladder's 47.5% implies +12.0bp, so the 12.5pp probability gap hides a 3.0bp basis gap; it is disclosed, never averaged. CME FedWatch and rateprobability.com both return 403 from this host.\n\nNext catalysts: Macklem speaks at the Economic Club of Canada tomorrow at 12:40 ET; US Q3 GDP (second estimate) and October PCE on 25 November; Canada Q3 GDP on 30 November; November jobs in both countries on 4 December; both decisions on 9 December. Macklem's 16 November announcement that he will step down in June 2027 is a leadership fact with no bearing on the December call."
 }
