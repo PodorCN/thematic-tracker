@@ -10,41 +10,61 @@
   <div class="page">
 
     <header class="masthead">
-      <div class="masthead-rule thin"></div>
-      <div class="masthead-topline S">
-        <span id="masthead-date">—</span>
-        <span>Toronto Edition</span>
-        <label class="picker">Snapshot:
-          <select id="date-picker"><option value="latest">latest</option></select>
-        </label>
+      <div class="masthead-topline">
+        <span class="kicker">Toronto Edition · <span id="masthead-date">—</span></span>
+        <div class="topline-controls">
+          <span id="warnings-slot"></span>
+          <label class="picker" for="date-picker">Snapshot
+            <select id="date-picker"><option value="latest">latest</option></select>
+          </label>
+        </div>
       </div>
-      <h1 class="masthead-title">The Rate Decision Journal</h1>
-      <div class="masthead-sub M">Next Fed &amp; BOC meetings — what the market prices, what the money bets, what the data says</div>
-      <div id="hdr-meta" class="M hdr-meta">loading…</div>
-      <div id="warnings" class="S warnings"></div>
+      <div class="masthead-rule thin"></div>
+      <div class="masthead-main">
+        <div>
+          <h1 class="masthead-title">The Rate Decision Journal</h1>
+          <p class="masthead-sub">Next Fed &amp; BOC meetings — market pricing, odds &amp; net data score in under 3 minutes</p>
+        </div>
+        <div id="hdr-meta" class="hdr-meta">loading…</div>
+      </div>
       <div class="masthead-rule thick"></div>
     </header>
 
     <main>
-      <section>
-        <h2 class="sec-title">I. Market Expectations <span class="sec-sub">pricing &amp; betting odds</span></h2>
+      <section aria-labelledby="sec-brief">
+        <div class="sec-head">
+          <h2 id="sec-brief" class="sec-title">I. 30-Second Brief <span class="sec-sub">pricing, betting &amp; net driver score</span></h2>
+        </div>
         <div id="expectations" class="grid-2"></div>
       </section>
 
-      <section>
-        <h2 class="sec-title">II. Drivers Since Last Meeting <span class="sec-sub">the net score</span></h2>
+      <section aria-labelledby="sec-drivers">
+        <div class="sec-head">
+          <h2 id="sec-drivers" class="sec-title">II. Key Drivers <span class="sec-sub">since last meeting · sorted by effective weight</span></h2>
+          <div class="sec-controls">
+            <div class="seg-group" role="tablist" aria-label="Filter central bank">
+              <button type="button" class="seg-btn active" data-bank="both" aria-selected="true">Both</button>
+              <button type="button" class="seg-btn" data-bank="fed" aria-selected="false">Fed</button>
+              <button type="button" class="seg-btn" data-bank="boc" aria-selected="false">BOC</button>
+            </div>
+            <button type="button" id="toggle-all-audit" class="ctrl-btn" aria-pressed="false">Expand all audit</button>
+          </div>
+        </div>
         <div id="drivers"></div>
       </section>
 
-      <section>
-        <h2 class="sec-title">III. The Calendar</h2>
+      <section aria-labelledby="sec-calendar">
+        <div class="sec-head">
+          <h2 id="sec-calendar" class="sec-title">III. Upcoming Catalysts <span class="sec-sub">pre-meeting high-impact schedule</span></h2>
+          <div id="calendar-controls" class="sec-controls"></div>
+        </div>
         <div id="calendar"></div>
       </section>
     </main>
 
-    <footer class="S footer" id="sources">
+    <footer class="footer">
       <div class="masthead-rule thin"></div>
-      <p>Sources: <a href="https://www.federalreserve.gov" target="_blank" rel="noopener">federalreserve.gov</a>, <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">CME FedWatch</a>, <a href="https://www.bls.gov" target="_blank" rel="noopener">BLS</a>, <a href="https://www.bea.gov" target="_blank" rel="noopener">BEA</a>, <a href="https://www.bankofcanada.ca" target="_blank" rel="noopener">bankofcanada.ca</a>, <a href="https://www.statcan.gc.ca" target="_blank" rel="noopener">StatCan</a>, <a href="https://www.investing.com" target="_blank" rel="noopener">investing.com</a>, <a href="https://polymarket.com" target="_blank" rel="noopener">polymarket.com</a>, <a href="https://wowa.ca/bank-of-canada-interest-rate-forecast" target="_blank" rel="noopener">wowa.ca</a>.</p>
+      <p>Research tracker only, not investment advice · Click <strong>Audit</strong> on any driver for full data comparisons, reasoning, and weight breakdown.</p>
     </footer>
 
   </div>

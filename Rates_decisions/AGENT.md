@@ -1,96 +1,217 @@
-# AGENT.md — Rates Decisions（美加央行下一次利率决议看板）专属指令
+# AGENT.md — Rates Decisions (Fed & BOC) Operator Manual
 
-> ⚠️ 本文件夹**不走**根目录 `AGENT.md` 的每日 theme SOP（没有 `theme.md`、proxy 或 VALIDITY 灯）。
-> 它是基于 JSON 数据驱动的利率决议 2 分钟快览看板。
-> 审阅机制用的是全仓共享 gate（`scripts/review/`：冻结字节、SHA 绑定、verdict 自洽），
-> 本文件只保留 Rates 特有的结构校验、打分规则与源规则。
+> **Target Maintainer**: Automated Data Operator (e.g., DeepSeek). Read every section carefully before editing.
+> **Gate Mode**: **Blocking** via repo-wide shared review layer ([`scripts/review/REVIEWER_AGENT.md`](../scripts/review/REVIEWER_AGENT.md) + [`review/REVIEWER_AGENT.md`](./review/REVIEWER_AGENT.md)).
+> This product does **NOT** follow `general-theme-tracker` (`theme.md` / proxies / VALIDITY lights). It is a single-JSON dashboard (`data/current.json`).
 
-## 1. 角色与定位
+---
 
-本看板回答的核心问题：**下一次 Fed 与 BOC 利率决议会议（Hike / Hold / Cut）大概率会怎么走？**
-通过聚合官方利率预期、市场定价（含 Polymarket 预测市场赔率）与加权驱动因子（Hawkish / Dovish），在 2 分钟内提供最清晰的决策依据。
+## 1. Product Mission & Reading Budget
 
-## 2. 文件结构与契约
+The dashboard answers one question fast: **What will the NEXT Fed (FOMC) and Bank of Canada (BOC) meetings do — hike, hold, or cut — and why?**
+
+The frontend enforces a strict **3-layer progressive reading budget**:
+1. **30-Second Brief (Section I, always visible)**: Next/last meeting context, Market implied vs Polymarket probability bars, implied rate path, and age-decayed Driver Net Score gauge (+ divergence flag).
+2. **2–3 Minute Key Drivers (Section II, always visible)**: Crisp `title` + `weight` + 1-sentence `summary` + minimal `source · published_at` line.
+3. **< 10 Minute Deep Dive (collapsed inside `[Audit ▸]` / `[Method ▸]` drawers)**: `data` tuple (`actual/forecast/previous/delta_label`), multi-sentence `reason`, `market_validation`, age-decay math, `weight_breakdown`, and any long venue pricing notes.
+
+Because `title` and `summary` are the **only narrative text visible by default**, verbose or repetitive summaries directly ruin the dashboard's readability. Follow §4 strictly.
+
+---
+
+## 2. File Boundaries (Hard Rules)
 
 ```text
 Rates_decisions/
-  index.html              前端渲染器（固定版式；日常数据更新绝不修改）
-  styles.css              样式表（只读）
-  app.js                  前端逻辑（只读）
   data/
-    current.json          唯一人工/Agent 编辑的数据源（snapshot_date 必须=当日多伦多）
-    latest.json           已发布的最新快照（publish 原子写入 reviewed bytes，勿手改）
-    dates.json            已归档日期清单（降序排列）
-    archive/<date>.json   每日不可变历史快照（字节 == 当日 reviewed candidate）
+    current.json            <-- ONLY data file you edit in routine updates
+    betting-candidate.json  <-- Written by `npm run fetch:odds` (--candidate); merge betting fields manually into current.json then remove/archive
+    latest.json             <-- Written ONLY by `npm run publish` (NEVER edit by hand)
+    dates.json              <-- Written ONLY by `npm run publish` (NEVER edit by hand)
+    archive/<date>.json     <-- Immutable snapshots written ONLY by `npm run publish`
+  index.html                <-- FROZEN SHA-256 (OFF-LIMITS)
+  app.js                    <-- FROZEN SHA-256 (OFF-LIMITS)
+  styles.css                <-- FROZEN SHA-256 (OFF-LIMITS)
+  dev-server.js             <-- OFF-LIMITS
+  scripts/                  <-- OFF-LIMITS during data updates (publish.py, freeze.py, prune_drivers.py, fetch_betting.mjs, check_review.py)
   review/
-    REVIEWER_AGENT.md       本产品审阅附录（六个 checks + 打分/源规则；通用信条见 scripts/review/REVIEWER_AGENT.md）
-    TEMPLATE.md             本产品命令速查（通用模板见 scripts/review/TEMPLATE.md）
-    <YYYY-MM-DD>/           当日冻结包（缺一不可，否则拒发）：
-      candidate.json          冻结候选（freeze 写入后不可变）
-      candidate.sha256        候选字节 SHA-256
-      structural-flags.json   机器旗标（reviewer 必须逐条 disposition）
-      pm-review.json          独立审阅结论（reviewer 亲手写，SHA 绑定，schema 见 scripts/review/pm-review.schema.json）
-      review.md               人类可读版（可选，需与 json verdict 一致）
-    *.md                    旧版自由文本审阅（已退役，仅留档，publish 不认）
-  scripts/
-    publish.py              结构校验 + reviewer 门禁 + 归档（npm run check / npm run publish；调用 scripts/review/ 共享层）
-    freeze.py               冻结包装器（npm run freeze；调用共享 freeze + 本产品 flags 插件）
-    check_review.py         审阅预检包装器（npm run review:check）
-    prune_drivers.py        删除上次决议前且 weight ≤5 的旧因子并重算 total_score（npm run prune）
-    fetch_betting.mjs       Polymarket 预测市场赔率抓取脚本（Node 工具，非门禁）
+    REVIEWER_AGENT.md       <-- Annex rules for the independent reviewer
+    TEMPLATE.md             <-- Command cheat-sheet
+    <YYYY-MM-DD>/
+      candidate.json        <-- Written by `npm run freeze`
+      candidate.sha256      <-- Written by `npm run freeze`
+      structural-flags.json <-- Written by `npm run freeze`
+      pm-review.json        <-- Written ONLY by an INDEPENDENT reviewer (NEVER by operator)
 ```
 
-## 3. 维护流程（SOP）
+### DO / DON'T Summary Table
 
-日常更新数据时，严格执行以下 6 步：
+| Rule | DO | DON'T |
+|---|---|---|
+| **Writable Files** | Edit **only** `Rates_decisions/data/current.json` (plus `freeze`/`publish`/`prune` outputs via npm scripts). | **NEVER** edit `index.html`, `app.js`, `styles.css`, `dev-server.js`, `scripts/*`, `data/latest.json`, `data/dates.json`, `data/archive/*`, or `scripts/econ/frontend_contract.json`. Dirty frontend/scripts causes `publish` and CI to fail closed. |
+| **Polymarket Fetcher** | Run `npm run fetch:odds` (`--candidate`), which writes `data/betting-candidate.json` without touching `current.json`; reconcile timestamps & merge only `betting`. | **NEVER** pass `--write` (removed) and **NEVER** blindly overwrite `current.json` with `betting-candidate.json`. Also clean up stale `data/betting-candidate.json` before staging commits so `verify_data_only_changes.py` passes. |
+| **Driver Window** | Run `npm run prune` whenever `meetings.<bank>.last_meeting.date` advances to drop old drivers with `weight <= 5`. | **NEVER** keep drivers with `published_at < last_meeting.date` and `weight <= 5` (`npm run check` blocks them; only `weight >= 6` carries across a meeting). |
+| **Role Separation** | Hand off frozen `review/<today>/` bundle to a separate reviewer identity/model. | **NEVER** write `pm-review.json` yourself, NEVER set `reviewer == operator`, and NEVER use `"self"`, `"me"`, `"ai"`, `"agent"`, `"operator"`, or `"reviewer"` as identity strings. |
+| **Post-Freeze Immutability** | If any edit to `current.json` is needed after freezing, run `npm run freeze --force` and obtain a fresh review for the new SHA. | **NEVER** modify `data/current.json` after `pm-review.json` is written without re-freezing; `publish` checks canonical SHA equality across `current.json`, `candidate.json`, and `pm-review.json`. |
+| **Language** | Write all fields in `data/current.json` in clean, idiomatic **English**. | **NEVER** write Chinese characters or HTML/Markdown formatting inside JSON strings. |
+| **Data Honesty** | Use `"unverified"` / `"unavailable"` (with `probabilities: null` + `observable_proxy`) if live data is missing. | **NEVER** fabricate probabilities, consensus forecasts, release times, or market repricing numbers. |
+| **Copy Conciseness** | Keep `title` <= 12 words, `summary` <= 22 words (1 sentence, policy takeaway only), and `pricing.source` <= 60 chars. | **NEVER** repeat headline numbers in `summary`, paste `reason` into `summary`, or dump 400-char calculation walls into `pricing.source` (put long methodology in `notes`). |
+| **Primary Sources** | Link primary official domains when naming Fed/NY Fed/BLS/BEA/BoC/StatCan/CME. | **NEVER** cite an official agency in `source` while linking a blog, aggregator, or news mirror without labeling `Outlet (via Agency)`. |
+
+---
+
+## 3. Exact Schema & Calculation Rules (`data/current.json`)
+
+Do not rename keys, drop required fields, or emit `NaN` / `Infinity`.
+
+### 3.1 Top-level Fields
+- `as_of`: ISO8601 timestamp with Toronto offset (e.g. `"2026-11-25T00:05:00-05:00"` EST or `"-04:00"` EDT).
+- `snapshot_date`: `"YYYY-MM-DD"` in `America/Toronto`. **Must equal today's Toronto date when running `npm run publish`.**
+- `version`: `1`
+- `timezone`: `"America/Toronto"`
+- `notes`: Concise methodology/cross-check summary.
+
+### 3.2 `meetings.{fed|boc}`
+- `label`: `"Fed (FOMC)"` / `"BOC"`
+- `next_meeting`: `{ "date_label": "Dec 9 + SEP", "datetime_toronto": "...", "datetime_utc": "...Z" }`
+- `last_meeting`: `{ "date": "YYYY-MM-DD", "decision": "..." }`
+- `pricing`:
+  - `probabilities`: `{ "hike": float, "hold": float, "cut": float }` — all values in `[0, 1]`, sum MUST be `0.99..1.01`.
+  - If single-meeting implied probabilities cannot be cleanly observed, set `probabilities: null`, `probability_status: "unavailable"`, and populate `observable_proxy: { "instrument": "...", "price": "...", "tenor": "..." }`. Otherwise `probability_status: "available"` and `observable_proxy: null`.
+  - `implied_rate_before` / `implied_rate_after`: numeric percentages (e.g. `3.88`, `4.12`).
+  - `source`: Short venue label (`<= 60` chars, e.g. `"Kalshi Dec ladder (bid/ask mid)"`, `"CORRA OIS via BlueGamma (+21bp)"`). Put multi-sentence leg normalization notes in `notes`, NOT here.
+  - `source_url`: must start with `https://`.
+  - `as_of`: `"YYYY-MM-DD"` or ISO8601 timestamp. **Warning**: if `> 4` calendar days older than `as_of`, triggers `stale_pricing` structural flag.
+
+### 3.3 `betting.{fed|boc}[]`
+- Array of prediction market objects (typically 1 Polymarket entry).
+- `platform`: `"Polymarket"`
+- `event_slug` & `event_url`: `https://polymarket.com/event/<slug>` (must match the upcoming meeting month in `next_meeting`, not an expired contract!).
+- `probabilities`: `{ "cut": float, "hold": float, "hike": float }`, sum `0.99..1.01` when `status === "available"`.
+- `status`: `"available"` (or `"stale"` / `"unavailable"`).
+- `volume`, `liquidity`, `as_of`, `note`.
+- `npm run fetch:odds` (`node scripts/fetch_betting.mjs --candidate`) reads `event_slug` + `next_meeting` directly from `data/current.json`, validates all 5 rate legs and timestamps (`<= 90` min old), and writes `data/betting-candidate.json` atomically without touching `current.json`.
+
+### 3.4 `drivers.{fed|boc}.{hawkish|dovish}[]`
+Target **3–6 active high-signal drivers per bank** (up to ~8 if distinct). **Window rule enforced by `publish.py`**: every driver MUST have `published_at >= meetings.<bank>.last_meeting.date`, UNLESS `weight >= 6` (`CARRY_OVER_MIN_WEIGHT = 6`). Lighter pre-meeting drivers fail `npm run check` (`npm run prune` strips them automatically).
+
+Each item MUST contain:
+- `id`: unique across BOTH `fed` and `boc` (e.g. `"fed-h1"`, `"boc-d1"`).
+- `title`: **<= 12 words**. Outcome + primary figure.
+- `summary`: **1 sentence, <= 22 words**. Policy implication ("so what") only.
+- `published_at`: `"YYYY-MM-DD"`.
+- `observed_at`: `"YYYY-MM-DD"` or ISO8601 (parsed by `datetime.fromisoformat()` in `publish.py` to compute age decay).
+- `source` & `source_url`: must start with `https://`. Primary domain enforcement (`scripts/review/flags_rates_decisions.py`):
+  - Claiming `"Statistics Canada"` → URL must contain `statcan.gc.ca`
+  - Claiming `"Bank of Canada"` → URL must contain `bankofcanada.ca`
+  - Claiming `"BLS"` / `"Bureau of Labor"` → URL must contain `bls.gov`
+  - Claiming `"BEA"` / `"Bureau of Economic"` → URL must contain `bea.gov`
+  - Claiming `"Federal Reserve"` / `"FOMC"` / `"NY Fed"` → URL must contain `federalreserve.gov` or `newyorkfed.org`
+  - Claiming `"CME"` / `"FedWatch"` → URL must contain `cmegroup.com`
+  - If using a secondary report, write `source: "Media (via Primary)"` (matching the actual URL domain!) and assign a lower `weight`.
+- `facet`: **Mandatory & distinct** whenever the exact same `source_url` appears on BOTH `hawkish` and `dovish` sides (e.g., `"headline-energy-band-breach"` vs `"core-at-target"`), with separate transmission chains in `reason`.
+- `data`: `{ "actual": "...", "forecast": "... or n/a or unverified", "previous": "...", "delta_label": "..." }` (rendered inside collapsed `[Audit ▸]`).
+- `reason`: **1–3 concise sentences (`<= 60 words`)** explaining the transmission mechanism & caveats (rendered inside collapsed `[Audit ▸]`).
+- `market_validation`: Exact numeric repricing quote with timestamps/venue/contracts, or `"unverified"`.
+  - **Hard block**: `weight >= 7` with `null` or `"unverified"` **FAILS `npm run check`**!
+  - **Structural flag**: `weight >= 5` with missing/`"unverified"` emits `high_weight_no_validation`.
+- `direction`: MUST be `1` inside `hawkish[]`, and `-1` inside `dovish[]`.
+- `weight`: Integer `1..10`. Note: per-bank `mean(|weight|)` MUST be `<= 5.0` or `npm run check` fails for score inflation.
+- `weight_breakdown`: `{ "deviation": num, "importance": num, "surprise": num, "total": int }`.
+  - `deviation + importance + surprise` MUST equal `weight`, and `total` MUST equal `weight`.
+
+### 3.5 `total_score.{fed|boc}` (Exact Python Formulas)
+`publish.py` recomputes these values and fails if mismatched:
+```python
+base_total = max(-10, min(10, sum(d["direction"] * d["weight"] for d in drivers)))
+
+# Age decay uses Toronto calendar-day difference: (toronto_day(as_of) - toronto_day(observed_at)).days
+decay = 1.0 if days <= 7 else 0.75 if days <= 14 else 0.5 if days <= 30 else 0.25
+effective_total = round(sum(d["direction"] * d["weight"] * decay for d in drivers), 2)
+# NOTE: effective_total is NOT clamped to [-10, 10] in publish.py, and tolerance is <= 0.06.
+```
+- `band` (validated against **`base_total`**):
+  - `base_total >= 7` → `"strong hike lean"`
+  - `3 < base_total < 7` → `"lean hike"`
+  - `-3 <= base_total <= 3` → `"hold"`
+  - `-7 <= base_total < -3` → `"lean cut"`
+  - `base_total < -7` → `"strong cut lean"`
+
+### 3.6 `calendar[]`
+- `date_toronto`: `"YYYY-MM-DD"` (required).
+- `date_only`: boolean.
+  - If `true`: `datetime_toronto` and `datetime_utc` MUST both be `null`.
+  - If `false`: both `datetime_toronto` and `datetime_utc` MUST be valid ISO8601 strings.
+- `currency`: `"USD"` or `"CAD"`.
+- `event`: concise event name (UI highlights meetings and splits pre-meeting `HIGH` from `MEDIUM`/post-meeting).
+- `impact`: `"HIGH"` or `"MEDIUM"`.
+- `importance`: integer `1..3`.
+- `forecast` / `previous`: string, or `"unverified"`.
+- `source` & `source_url`: `https://` URL to specific release/schedule page (do NOT reuse generic `/economic-calendar/` URLs across `>= 5` rows).
+
+---
+
+## 4. Writing Quality Rules (BAD vs GOOD)
+
+Because the UI shows only `title` + `summary` by default and folds `data` + `reason` into `[Audit ▸]`, follow this separation strictly:
+
+- **BAD (redundant bloat — DO NOT write this)**:
+  - `title`: `"October CPI +0.4% m/m, core +0.3% a third straight month, above consensus"`
+  - `summary`: `"Headline CPI +0.4% m/m after +0.6% in September and core +0.3% for the third consecutive month... Both headline and core came in 0.1pp above Dow Jones consensus (0.3% / 0.2%)..."` *(65 words, duplicates `title` & `data.actual`/`forecast`.)*
+- **GOOD (high-signal, 2-min scan)**:
+  - `title`: `"Oct CPI +0.4% m/m, core +0.3% (+0.1pp beat)"`
+  - `summary`: `"Third straight 0.3% monthly core gain reinforces Fed tightening pressure despite lower headline pace."` *(14 words, zero duplicate numbers, clear policy implication.)*
+  - `data`: `{ "actual": "+0.4% m/m, core +0.3% m/m", "forecast": "+0.3% / +0.2% (Dow Jones)", "previous": "+0.6% / +0.3% Sep", "delta_label": "+0.1pp beat" }`
+  - `reason`: `"Sequential core persistence keeps 2% return stalled; shelter (+0.3%) and energy (+0.7%) drove the gain."`
+
+---
+
+## 5. Step-by-Step Maintenance SOP
+
+Run all commands inside `Rates_decisions/` unless noted:
 
 ```bash
-# 1. （可选）抓取最新 Polymarket 预测市场赔率
-node scripts/fetch_betting.mjs
+# 1. If last_meeting.date changed, prune stale drivers (published_at < last_meeting.date & weight <= 5)
+npm run prune
 
-# 2. 编辑数据：只修改 data/current.json，并把 snapshot_date 设为当日多伦多日期
-#    - 更新会议定价 probabilities / status
-#    - 维护 hawkish / dovish 驱动因子、权重与依据
-#    - 决议日翻篇：last_meeting.date 更新后跑 npm run prune，删掉上次决议前、weight ≤5 的旧因子并重算 total_score
-#    - 维护后续关键日历 releases
+# 2. (Optional) Fetch validated Polymarket odds into data/betting-candidate.json
+#    Verify current.json event_slug matches the NEXT meeting first!
+npm run fetch:odds
+# Manually merge betting.{fed,boc} into data/current.json after checking timestamps, then delete data/betting-candidate.json.
 
-# 3. 机器数据校验（结构错误直接拦；结构旗标 warn，需 reviewer 逐条 disposition）
+# 3. Edit ONLY data/current.json
+#    - Set snapshot_date = today Toronto (YYYY-MM-DD) & as_of
+#    - Update meetings.{fed,boc}.pricing (keep source <= 60 chars) & betting
+#    - Add/update/prune drivers.{fed,boc} respecting §3.4 & §4
+#    - Recompute total_score.{fed,boc} using exact §3.5 Python rules
+#    - Update upcoming calendar[]
+
+# 4. Structural & math validation (blocks on errors, warns on structural flags)
 npm run check
-# 检查项：旧因子保留规则（published_at 早于 last_meeting.date 且 weight ≤5 直接拦）、概率和 0.99~1.01、betting 概率和、权重 1-10 整数、breakdown 三项和==weight、
-# direction 与 hawkish(+1)/dovish(-1) 数组一致、base_total 与 effective_total 重算、
-# band 标签一致、source_url https、日历 datetimes、snapshot_date 口径
 
-# 4. 冻结候选（冻结后 data/current.json 任何改动都会让审阅作废）
+# 5. Freeze candidate (writes review/<today>/{candidate.json, candidate.sha256, structural-flags.json})
 npm run freeze
-# -> review/<today>/candidate.json + candidate.sha256 + structural-flags.json
 
-# 5. 独立 PM 审阅（reviewer 必须与 operator 不同人/模型，禁 self；通用信条见 scripts/review/REVIEWER_AGENT.md）
-#    reviewer 按 structural-flags.json 逐条写 review/<today>/pm-review.json：
-#    candidate_sha256 绑定、六个 checks、findings（critical/major 拦）、flags_dispositioned 全覆盖
+# 6. Stop here as Operator -> Hand off to Independent Reviewer
+#    Reviewer reads review/<today>/candidate.json + structural-flags.json
+#    and writes review/<today>/pm-review.json per review/REVIEWER_AGENT.md:
+#    6 checks: official_policy, pricing, drivers, market_validation, freshness, decision_usefulness
+#    Every structural flag must be dispositioned. Verdict must be APPROVED.
+
+# 7. Validate review bundle
 npm run review:check
 
-# 6. 发布归档（publish 会重验：结构 + SHA 三方一致 + review 结论 + 旗标全覆盖 + 前端干净）
+# 8. Publish snapshot (writes data/archive/<today>.json, data/latest.json, data/dates.json)
 npm run publish
-# 机制：
-#   - canonical(data/current.json) sha == candidate.json sha == pm-review.json candidate_sha256
-#   - verdict 必须 APPROVED，且零 critical/major、六个 checks 全 pass
-#   - 当前数据的每条结构旗标都必须在 flags_dispositioned 里出现
-#   - 工作区里 index.html/app.js/styles.css/scripts 有改动则拒发（前端走独立 PR）
-#   - 发布字节 == reviewed candidate 字节 -> archive/<today>.json + latest.json + dates.json
 
-# 7. 本地真浏览器验收
-npm run dev
-# 打开 http://127.0.0.1:7100 确认页面渲染正常、无 NAN/错误徽标
+# 9. Verify data-only scope before git commit (run from repo root)
+cd ..
+python3 scripts/econ/verify_data_only_changes.py --product Rates_decisions --staged
 ```
 
-## 4. 核心规范与红线
-
-- **严禁修改前端**：`index.html`、`styles.css`、`app.js` 在日常更新中绝对禁止修改。publish 会检查 git 工作区，前端/scripts 脏了就拒发。
-- **事实必须有源**：所有驱动因子必须附带真实有效的 `source_url`（https）。声称 StatCan/BLS/BEA/Fed/BoC 就必须链到对应主域（`statcan.gc.ca / bls.gov / bea.gov / federalreserve.gov / bankofcanada.ca`），否则机器打旗、reviewer 打回。二手转述必须写 `via X` 并降权，不得拿转述当独立 `market_validation`。
-- **breakdown 必须对上**：`weight_breakdown{deviation, importance, surprise}` 三项和 == `weight`（且 `total`==`weight`）；`direction` 必须与所在数组一致（hawkish=+1/dovish=-1）；`effective_total` 按 `as_of` 年龄衰减重算（≤7d×1 / 8–14d×0.75 / 15–30d×0.5 / >30d×0.25），差 >0.06 拒发。
-- **因子窗口 = 上次决议至今**：drivers 只保留 `published_at`（多伦多日期）≥ 该行 `meetings.<bank>.last_meeting.date` 的事件；上次决议之前的旧因子一律删除，唯一例外是 significance（`weight`）>5（即 ≥6，仍需满足 weight≥7 的 market validation 要求）。`npm run check` 硬拦，`npm run prune` 自动删除并重算 `total_score`。
-- **同一 release 拆两边必须有 facet**：同一 URL 同时出现在 hawkish 与 dovish，必须各自有不同 `facet` + 独立传导链，否则按 double-count 打回合并。
-- **概率与时间填空规则**：未知或无法验证的数据必须明确标注 `"unverified"` 或 `"unavailable"`（例如 `probabilities: null` 配 `probability_status: "unavailable"`），严禁虚构概率数值。
-- **冻结后不可变**：`review/<date>/candidate.json` 冻结后字节不可变；`data/current.json` 再改就 re-freeze（旧 review 自动作废）。
-- **角色分离**：operator 与 reviewer 必须不同名（禁 `self/me`），reviewer 不改 candidate；approval 只绑定一个 sha。
-- **无 APPROVED 绝不发布**：publish 要求冻结包四件套齐全 + `pm-review.json` 的 `candidate_sha256` 三方一致 + 零 critical/major + 六个 checks 全 pass + 结构旗标全覆盖。旧版 `review/<date>.md` 字符串门禁已废除。
+### Failure Recovery
+- **`npm run check` fails on old driver**: Run `npm run prune` (or promote driver `weight >= 6` if genuinely cycle-defining and backed by validation).
+- **`npm run check` fails on math/schema**: Fix the reported field/math mismatch in `data/current.json` and re-run `npm run check`.
+- **`npm run review:check` or `pm-review.json` returns `REVISE`**: Fix `data/current.json`, run `npm run check`, then run `npm run freeze --force` (voids old review and generates new SHA-256) and request a new review on the new SHA.
+- **`npm run publish` says dirty frontend/scripts**: Run `git status`. Restore any accidental edits outside `Rates_decisions/data/` and `Rates_decisions/review/<today>/`.
+- **`stale_pricing` / `high_weight_no_validation` / `primary_source_mismatch` flags**: Fix the underlying URL, date, or weight in `current.json` before freezing so `structural-flags.json` stays clean.

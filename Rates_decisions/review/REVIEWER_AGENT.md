@@ -10,15 +10,14 @@
 `official_policy` `pricing` `drivers` `market_validation` `freshness`
 `decision_usefulness` — all must be `pass` for `APPROVED`.
 
-## Rates scoring rubric (binding)
+## Rates scoring & conciseness rubric (binding)
 
-See `Rates_decisions/AGENT.md` §4: weight 1–10 integer, `weight_breakdown`
+See `Rates_decisions/AGENT.md` §3.4–3.5: weight 1–10 integer, `weight_breakdown`
 parts sum to weight, hawkish `+1` / dovish `-1`, age decay
 `≤7d ×1.0 / 8–14d ×0.75 / 15–30d ×0.5 / >30d ×0.25`, same-URL split needs
-distinct `facet`, weight ≥5 needs numeric market validation. Driver window is
-the last decision to today: a driver published before
-`meetings.<bank>.last_meeting.date` stays only if its weight is >5 (machine
-error otherwise; `npm run prune` removes it).
+distinct `facet`, weight ≥5 needs numeric market validation. For
+`decision_usefulness`, also verify `Rates_decisions/AGENT.md` §4 (`title` ≤ 12 words,
+`summary` 1 sentence ≤ 22 words without repeating `title`/`data` numbers).
 
 ## Rates source rule (binding)
 
