@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "reviewer": "independent-pm",
+  "operator": "rates-decisions-writer",
+  "reviewed_at": "2026-11-25T09:34:15-05:00",
+  "snapshot_date": "2026-11-25",
+  "candidate_sha256": "c79e1bdbc86bfba8e43f3484f8caf2bcf4bf19cb2b0a9f68bbf31e7fc1099403",
+  "verdict": "APPROVED",
+  "executive_summary": "Independent six-check review of the 25 Nov 2026 09:14:04 ET freeze (candidate c79e1bdb): the bytes hash to candidate.sha256, canonical(data/current.json) equals the same digest, structural-flags.json is [], publish.py --check reports a valid structure with no flags, and the worktree is clean. Official policy reproduces on the primaries: the Fed held 3-3/4 to 4 percent on 28 Oct by a 10-2 vote with Cook and Hammack preferring +1/4 (federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm) and meets again 8-9 Dec with the SEP (fomccalendars.htm); the BoC raised 25bp to 2.50 percent with Bank Rate 2.75 and deposit 2.45, CPI 'about 3.5% by the end of the year' and 'average 3% in 2027' (bankofcanada.ca/2026/10/fad-press-release-2026-10-28/), next announcement 9 Dec 09:45 ET. Today's 08:30 ET actuals replay on the release pages: BEA Q3 second estimate real GDP +4.3% SAAR (advance +3.4), final sales to private domestic purchasers +5.8%, purchases price index 2.7%; PCE price index +0.3% m/m and +3.8% y/y with core +0.3%/3.3%; Census advance durable goods +0.2% (ex-transport +0.5%). Pricing reproduces at 09:27 ET, thirteen minutes after the frozen as_of: Fed Kalshi five-leg bid/ask mids 0.03/0.92/0.03/0.00/0.00 give 95.5% any-size hike (92.0 exact, 3.5 >25bp), 3.5 hold, 1.0 cut; BoC 0.00/0.005/0.25/0.74/0.00 sum 1.015 gives 73.9 hike / 25.1 hold / 1.0 cut; Polymarket prints 96.6% Fed hike (volume 58.4M) versus the frozen 96% and 75.3% BoC versus the frozen 76% (volume 381.5k), all inside one point. The five must_fix items from the 08:41 review are closed in the data lane: both BEA actuals are embedded, both ladders were re-cut, the Beige Book row exists (federalreserve.gov 25 Nov 14:00), the unsupported 85-96% range and the unsourced surprise points are gone. Zero critical or major findings; the four minors are editorial and one residual renderer label that the frozen frontend contract puts outside this lane. APPROVED.",
+  "checks": {
+    "official_policy": "pass",
+    "pricing": "pass",
+    "drivers": "pass",
+    "market_validation": "pass",
+    "freshness": "pass",
+    "decision_usefulness": "pass"
+  },
+  "findings": [
+    {
+      "severity": "minor",
+      "field": "drivers.fed.hawkish[14].data.actual",
+      "issue": "fed-h29 labels 2.7% as the 'GDP price index'; BEA publishes the price index for gross domestic purchases at 2.7% and no separate GDP price index at that value, so the audit label names the wrong index.",
+      "evidence": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026: 'The price index for gross domestic purchases increased 2.7 percent ... revised down 0.3 percentage point'; the table lists only 'Gross domestic purchases price index 3.0 2.7' plus PCE 2.1 and core PCE 2.5. candidate fed-h29 data.actual and reason both say 'GDP price index'.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers[*].title",
+      "issue": "Ten of 28 driver titles exceed the 12-word cap in AGENT.md section 4 (worst: fed-h27 at 19 words, boc-d7 at 17, fed-h9/boc-h7/boc-d8 at 14); summaries are all within the 22-word cap (max 16). Carried from the 20 and 23 Nov rounds, so not treated as a regression and not blocking.",
+      "evidence": "Word counts over Rates_decisions/review/2026-11-25/candidate.json drivers.fed/boc.*[].title vs Rates_decisions/AGENT.md section 4 ('title <= 12 words'); the same ten titles were already present in review/2026-11-23/candidate.json (10 over cap) and review/2026-11-20/candidate.json (7 over cap).",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "drivers.fed",
+      "issue": "The Fed stack now carries 19 drivers (28 across both banks) against the AGENT.md section 3.4 target of 3-6 per bank and the ~8 ceiling; the count has grown 21 -> 24 -> 28 over three rounds and dilutes the two-minute read even though every title is individually distinct.",
+      "evidence": "candidate.json: drivers.fed hawkish 16 + dovish 3, drivers.boc hawkish 4 + dovish 5; mean |weight| is 2.42 (Fed) and 2.11 (BoC), inside the 2-4 band, so this is size of the list, not score inflation. review/2026-11-20 had 21 drivers, review/2026-11-23 had 24.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "meetings.fed.pricing.source",
+      "issue": "The dashboard still labels the pooled any-size ladder 'Hike 25bp' (app.js probBars), so the Fed bar reads 95.5% beside a 25bp label while the exact +25bp leg is 92.0%. The data lane now names the basis in pricing.source ('any-size, bid/ask mid'), in both betting notes and in the 9 Dec calendar forecasts, but the renderer string itself cannot be fixed here: app.js is inside the frozen frontend contract.",
+      "evidence": "Rates_decisions/app.js:232 rows = [[\"hike\",\"Hike 25bp\"],...] rendered against meetings.*.pricing.probabilities (0.955 any-size). scripts/econ/frontend_contract.json locks Rates_decisions to index.html, app.js, styles.css and scripts/econ/verify_data_only_changes.py rejects changes to those files, so the fix is a separate frontend PR; candidate pricing.source and both betting notes disclose the pooled basis.",
+      "disposition": "next_cycle"
+    },
+    {
+      "severity": "minor",
+      "field": "notes",
+      "issue": "The notes' BlueGamma comparison was accurate at capture (84% hike at 09:10 ET) but the same page now prints 83% hike / 17% hold with the same +21bp and the same 'As of 25 Nov 2026' date-only stamp; the disclosed 8-10pp gap therefore sits at 8-9pp, not a fixed 8-10pp.",
+      "evidence": "scratch rates_1125_pricing/bg_boc.html (09:10 ET): 'Hike 84% Hold 16% Cut 0% ... +21 bp ... As of 25 Nov 2026'; live refetch 09:33 ET: 'Hike 83% Hold 17% Cut 0% ... +21 bp ... As of 25 Nov 2026'. Kalshi BoC any-size 73.9% and Polymarket 75.3% at the same time, so BlueGamma leads by 7.7-9.1pp.",
+      "disposition": "next_cycle"
+    }
+  ],
+  "flags_dispositioned": []
+}
