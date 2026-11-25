@@ -90,6 +90,16 @@ def structural_flags(doc: dict) -> list[dict]:
                         f"({' vs '.join(d.get('id', '?') for d in group)}) without distinct "
                         "facet fields — merge or add facet + separate transmission chains",
                     )
+        raw_signed = sum((d.get("direction") or 0) * (d.get("weight") or 0)
+                         for d in all_drivers if isinstance(d.get("weight"), int))
+        eff_total = doc.get("total_score", {}).get(bank, {}).get("effective_total")
+        if abs(raw_signed) > 10 or (isinstance(eff_total, (int, float)) and abs(eff_total) > 10):
+            push(
+                "score_overflow_overlap",
+                f"total_score.{bank}",
+                f"{bank} raw net {raw_signed:+d} / effective {eff_total} exceeds ±10 — "
+                "consolidate overlapping speeches or duplicate-theme drivers so unclamped score stays in [-10, +10]",
+            )
     try:
         as_of = dt.datetime.fromisoformat(str(doc.get("as_of", "")))
     except ValueError:

@@ -168,11 +168,11 @@ function validate(data) {
 function computeScore(data, bank) {
   const dr = data.drivers[bank];
   const all = [...dr.hawkish, ...dr.dovish];
-  const base = Math.max(-10, Math.min(10, all.reduce((a, d) => a + d.direction * d.weight, 0)));
-  const effRaw = all.reduce((a, d) => a + d.direction * d.weight * decayFactor(d.published_at, data.as_of), 0);
-  const eff = Math.round(effRaw * 100) / 100;
-  const clampedForGauge = Math.max(-10, Math.min(10, eff));
-  const band = bandFor(Math.round(clampedForGauge * 2) / 2);
+  const baseRaw = all.reduce((a, d) => a + d.direction * d.weight, 0);
+  const base = Math.max(-10, Math.min(10, baseRaw));
+  const effRaw = Math.round(all.reduce((a, d) => a + d.direction * d.weight * decayFactor(d.published_at, data.as_of), 0) * 100) / 100;
+  const eff = Math.max(-10, Math.min(10, effRaw));
+  const band = bandFor(Math.round(eff * 2) / 2);
 
   let divergence = "";
   const probs = data.meetings[bank].pricing?.probabilities;
@@ -187,10 +187,12 @@ function computeScore(data, bank) {
 
   return {
     base,
+    baseRaw,
     eff,
+    effRaw,
     band,
     divergence,
-    markerPct: ((clampedForGauge + 10) / 20) * 100,
+    markerPct: ((eff + 10) / 20) * 100,
     hawkCount: dr.hawkish.length,
     doveCount: dr.dovish.length,
   };
@@ -569,13 +571,20 @@ async function boot() {
   let dates = { latest: null, dates: [] };
   try { dates = await loadJSON("data/dates.json"); } catch {}
 
-  let draftSnap = null;
+  let draftSnap = null, latestSnap = null;
   if (isLocal || wantParam === "current") {
     try { draftSnap = await loadJSON("data/current.json"); } catch {}
+    try { latestSnap = await loadJSON("data/latest.json"); } catch {}
   }
 
+  const draftTs = Date.parse(draftSnap?.as_of || "");
+  const latestTs = Date.parse(latestSnap?.as_of || "");
   const hasNewerDraft = Boolean(
-    draftSnap && (!dates.latest || String(draftSnap.snapshot_date || "") > String(dates.latest))
+    draftSnap && (
+      !dates.latest ||
+      String(draftSnap.snapshot_date || "") > String(dates.latest) ||
+      (Number.isFinite(draftTs) && Number.isFinite(latestTs) && draftTs > latestTs)
+    )
   );
   const opts = [];
   if (draftSnap && (hasNewerDraft || wantParam === "current")) {
@@ -593,7 +602,9 @@ async function boot() {
       const url = val === "current"
         ? "data/current.json"
         : val === "latest" ? "data/latest.json" : `data/archive/${encodeURIComponent(val)}.json`;
-      const data = val === "current" && draftSnap ? draftSnap : await loadJSON(url);
+      const data = val === "current" && draftSnap
+        ? draftSnap
+        : val === "latest" && latestSnap ? latestSnap : await loadJSON(url);
       renderSnapshot(data);
       if (val === "latest" || val === "current") fetchLiveOdds(data);
     } catch (e) {
