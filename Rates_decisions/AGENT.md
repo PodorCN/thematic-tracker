@@ -52,7 +52,7 @@ Rates_decisions/
 | **Polymarket Fetcher** | Run `npm run fetch:odds` (`--candidate`), which writes `data/betting-candidate.json` without touching `current.json`; reconcile timestamps & merge only `betting`. | **NEVER** pass `--write` (removed) and **NEVER** blindly overwrite `current.json` with `betting-candidate.json`. Also clean up stale `data/betting-candidate.json` before staging commits so `verify_data_only_changes.py` passes. |
 | **Driver Window** | Run `npm run prune` whenever `meetings.<bank>.last_meeting.date` advances to drop old drivers with `weight <= 5`. | **NEVER** keep drivers with `published_at < last_meeting.date` and `weight <= 5` (`npm run check` blocks them; only `weight >= 6` carries across a meeting). |
 | **Speech Eligibility** | Include speeches **ONLY** from key principals: Fed Chair, Vice Chair, NY Fed President (or an official FOMC dissenter), and BoC Governor / Senior Deputy Governor. | **NEVER** include routine speeches by regional Fed presidents, junior Governors, or Deputy Governors unless casting a formal dissent — ignore minor/repetitive speakers. |
-| **Driver Consolidation & Cap** | Merge overlapping speeches/themes per bank into `4–8` distinct drivers so raw unclamped net score stays in `[-10, +10]`; supersede any older speech card when the same principal issues a newer policy speech. | **NEVER** create separate cards for repeated speeches by the same official (or keep an older decayed stance card after they update guidance) or duplicate macro themes causing `sum(direction * weight)` or `effective_total` to exceed `±10` (`score_overflow_overlap` flag). |
+| **Driver Consolidation & Cap** | Follow the selection and count guidance in §3.4, merge overlapping signals, and keep the raw and effective net scores in `[-10, +10]`. | **NEVER** create separate cards for repeated speeches by the same official (or keep an older decayed stance card after they update guidance) or duplicate macro themes causing `sum(direction * weight)` or `effective_total` to exceed `±10` (`score_overflow_overlap` flag). |
 | **Role Separation** | Hand off frozen `review/<today>/` bundle to a separate reviewer identity/model. | **NEVER** write `pm-review.json` yourself, NEVER set `reviewer == operator`, and NEVER use `"self"`, `"me"`, `"ai"`, `"agent"`, `"operator"`, or `"reviewer"` as identity strings. |
 | **Post-Freeze Immutability** | If any edit to `current.json` is needed after freezing, run `npm run freeze --force` and obtain a fresh review for the new SHA. | **NEVER** modify `data/current.json` after `pm-review.json` is written without re-freezing; `publish` checks canonical SHA equality across `current.json`, `candidate.json`, and `pm-review.json`. |
 | **Language** | Write all fields in `data/current.json` in clean, idiomatic **English**. | **NEVER** write Chinese characters or HTML/Markdown formatting inside JSON strings. |
@@ -95,9 +95,15 @@ Do not rename keys, drop required fields, or emit `NaN` / `Infinity`.
 - `npm run fetch:odds` (`node scripts/fetch_betting.mjs --candidate`) reads `event_slug` + `next_meeting` directly from `data/current.json`, validates all 5 rate legs and timestamps (`<= 90` min old), and writes `data/betting-candidate.json` atomically without touching `current.json`.
 
 ### 3.4 `drivers.{fed|boc}.{hawkish|dovish}[]`
-Target **4–8 total distinct drivers per bank** (roughly 2–5 per side). **Eligibility, Consolidation & Cap Rules**:
+
+**Selection and deduplication**
+
+- Aim for **4–6 Fed drivers**, counted across both directions. Use fewer when evidence is sparse. Give a seventh or eighth Fed card a specific justification for review that explains the distinct decision it informs. Apply the same selection test to the BoC's **4–8** target.
+- Give a signal its own card when it materially changes the next meeting's hike, hold, or cut outlook, the likely move size, the threshold for action, or which upcoming release could change the call. State the incremental implication in `summary` and support it in `reason`. Fed coverage will often include inflation, labour, demand, and the Committee's policy stance.
 - **Key Principals Only (Speeches)**: Only speeches by top leadership qualify — **Fed**: Chair, Vice Chair, NY Fed President (FOMC Vice Chair), or an FOMC voting dissenter; **BOC**: Governor or Senior Deputy Governor. All other regional presidents, junior governors, and routine conference panels are excluded.
-- **Never duplicate the same theme/speaker across separate cards.** Merge aligned leadership remarks into 1 synthesis card (listing quotes/URLs in `data`/`reason`). When the same principal delivers a newer speech or guidance update, **supersede/update** their older speech card rather than leaving decayed contradictory guidance alongside it. Merge a policy statement and its minutes from the same meeting into 1 card once minutes publish.
+- Give Warsh or another eligible policymaker a separate card when their remarks add a meeting-specific preference, move size, decision threshold, or material shift in how the committee weighs risks. Explain what changed from the prior stance and update any prior card for that principal. Market repricing can corroborate the change. Use the normal evidence and weight rules below when repricing is flat or unverified.
+- Use one card and one weight per policy signal. Combine CPI and PCE when they tell the same inflation story. Merge a policy statement and its minutes once both are available. Use the existing Audit fields for corroborating remarks, dated sources, and caveats. A refusal to prejudge a meeting provides context about uncertainty. Assign directional weight only when the remarks support a directional policy implication. When an observation has two independently material policy effects, follow the `facet` rule below.
+- Before each freeze, review carried-over and new cards together. Merge overlapping evidence across both sides, remove superseded cards, and recompute the scores from the surviving set. Preserve the actual observation date for evidence you carry forward.
 - Keep **raw unclamped `sum(direction * weight)`** AND **`effective_total`** strictly within **`[-10, +10]`** (if it exceeds `±10`, you have overlapping drivers — merge them; triggers `score_overflow_overlap` flag).
 - **Window rule enforced by `publish.py`**: every driver MUST have `published_at >= meetings.<bank>.last_meeting.date`, UNLESS `weight >= 6` (`CARRY_OVER_MIN_WEIGHT = 6`). Lighter pre-meeting drivers fail `npm run check` (`npm run prune` strips them automatically).
 
@@ -188,7 +194,7 @@ npm run fetch:odds
 # 3. Edit ONLY data/current.json
 #    - Set snapshot_date = today Toronto (YYYY-MM-DD) & as_of
 #    - Update meetings.{fed,boc}.pricing (keep source <= 60 chars) & betting
-#    - Add/update/prune drivers.{fed,boc} respecting §3.4 & §4
+#    - Apply the selection and deduplication rules in §3.4 to all drivers, then edit for §4
 #    - Recompute total_score.{fed,boc} using exact §3.5 Python rules
 #    - Update upcoming calendar[]
 
@@ -202,6 +208,7 @@ npm run freeze
 #    Reviewer reads review/<today>/candidate.json + structural-flags.json
 #    and writes review/<today>/pm-review.json per review/REVIEWER_AGENT.md:
 #    6 checks: official_policy, pricing, drivers, market_validation, freshness, decision_usefulness
+#    Under drivers, verify next-meeting relevance, distinct signals, and any Fed cards beyond six (§3.4).
 #    Every structural flag must be dispositioned. Verdict must be APPROVED.
 
 # 7. Validate review bundle
