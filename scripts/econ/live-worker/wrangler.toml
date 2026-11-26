@@ -1,0 +1,17 @@
+name = "economic-calendar-live"
+main = "index.mjs"
+compatibility_date = "2026-11-25"
+workers_dev = true
+preview_urls = false
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[triggers]
+crons = ["* * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "economic-calendar-live"
+database_id = "7e237e6e-afe3-4e28-973e-e8ba86549f72"

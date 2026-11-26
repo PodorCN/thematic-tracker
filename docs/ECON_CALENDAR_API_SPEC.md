@@ -2,7 +2,7 @@
 
 > 每日归档、`latest/archive/dates` 路径及两个公共页面的统一发布流程，以 `PUBLIC_PAGES_BACKEND_SPEC.md` 为准。
 
-> 面向当前实现：前端为稳定的 `economic-calendar/index.html`（HTML + Chart.js）；每日发布仅更新 `data/latest.json`、`data/archive/<date>.json`、`data/dates.json`。`scripts/econ/template_calendar.html.j2` 是旧模板，不再由每日流水线调用；下面提到的 `/api/calendar` 属于可选动态服务草案，并非本站实际路由。
+> 面向当前实现：前端为稳定的 `economic-calendar/index.html`（HTML + Chart.js）；每日发布仅更新 `data/latest.json`、`data/archive/<date>.json`、`data/dates.json`。默认视图另读取 Cloudflare Worker 的美加盘中公布值。`scripts/econ/template_calendar.html.j2` 是旧模板，不再由每日流水线调用；下面提到的 `/api/calendar` 属于可选动态服务草案，并非本站实际路由。
 
 ---
 
@@ -18,7 +18,7 @@
 
 * 前端 **不** 直连 FxStreet / Investing.com，只读取后端发布的快照
 * 实际调度为 `.github/workflows/macro-pages-daily.yml` 每天 13:10 UTC；非交易日亦按日历更新。
-* 本站从相同域名的 `economic-calendar/data/` 读取静态 JSON，无需额外 CORS 服务。
+* 本站从相同域名的 `economic-calendar/data/` 读取静态 JSON。默认视图用下述盘中接口更新美加公布值。
 
 ### GitHub Pages 生产文件
 
@@ -50,9 +50,11 @@ GET /thematic-tracker/economic-calendar/data/archive/{YYYY-MM-DD}.json
 GET /thematic-tracker/economic-calendar/?date={YYYY-MM-DD}
 ```
 
+`GET https://economic-calendar-live.zixiao-cab.workers.dev/live.json` 返回 `{ "events": [...] }`。每条盘中记录含 `id`、`datetime_utc`、`checked_at`、`actual`、`forecast`、`previous` 和 `unit`。默认视图按事件 ID 和 UTC 公布时间匹配，并使用晚于快照采集时间的记录。带 `?date=` 的历史视图只读取归档数据。
+
 ### 2.2 `GET /api/calendar`（可选动态服务草案）
 
-**草案，未实现，本站没有此路由。** 前端实际渲染只依赖 2.1 的静态 JSON（见文首说明）。
+**草案，未实现，本站没有此路由。** 生产数据入口见 2.1。
 
 **Query 参数（全部可选，有默认值）：**
 
