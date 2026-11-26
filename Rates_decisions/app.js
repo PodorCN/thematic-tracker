@@ -173,21 +173,35 @@ function computeScore(data, bank) {
   const effRaw = Math.round(all.reduce((a, d) => a + d.direction * d.weight * decayFactor(d.published_at, data.as_of), 0) * 100) / 100;
   const eff = Math.max(-10, Math.min(10, effRaw));
   const band = bandFor(Math.round(eff * 2) / 2);
+  const baseBand = bandFor(base);
 
-  let divergence = "";
+  // Tiered divergence: flag sign contradictions loudly, soft under-scoring mildly, skip <60% coin-flips.
+  let divergence = null;
   const probs = data.meetings[bank].pricing?.probabilities;
   if (probs) {
-    const leader = Object.entries(probs).sort((a, b) => b[1] - a[1])[0][0];
-    const aligned =
-      (leader === "hike" && eff > 3) ||
-      (leader === "cut" && eff < -3) ||
-      (leader === "hold" && Math.abs(eff) <= 3);
-    if (!aligned) divergence = leader;
+    const [leader, leadProb] = Object.entries(probs).sort((a, b) => b[1] - a[1])[0];
+    const leadPct = Math.round(leadProb * 100);
+    if (leader === "hike" && leadProb >= 0.6) {
+      if (eff <= 0) {
+        divergence = { level: "warn", label: `⚠ opposes ${leadPct}% hike` };
+      } else if (leadProb >= 0.7 && eff <= 2.0) {
+        divergence = { level: "mild", label: `mild vs ${leadPct}% hike` };
+      }
+    } else if (leader === "cut" && leadProb >= 0.6) {
+      if (eff >= 0) {
+        divergence = { level: "warn", label: `⚠ opposes ${leadPct}% cut` };
+      } else if (leadProb >= 0.7 && eff >= -2.0) {
+        divergence = { level: "mild", label: `mild vs ${leadPct}% cut` };
+      }
+    } else if (leader === "hold" && leadProb >= 0.6 && Math.abs(eff) > 4.0) {
+      divergence = { level: "warn", label: `⚠ diverges vs ${leadPct}% hold` };
+    }
   }
 
   return {
     base,
     baseRaw,
+    baseBand,
     eff,
     effRaw,
     band,
@@ -313,9 +327,9 @@ function renderExpectations(data) {
             <span class="score-kicker">Driver Score</span>
             <span class="score-num ${numCls}">${fmtScore(sc.eff)}</span>
             <span class="score-band">${esc(sc.band)}</span>
-            ${sc.divergence ? `<span class="badge warn">⚠ diverges vs ${esc(sc.divergence)}</span>` : ""}
+            ${sc.divergence ? `<span class="badge ${sc.divergence.level}">${esc(sc.divergence.label)}</span>` : ""}
           </div>
-          <span class="score-sub">base ${fmtScore(sc.base)} · ${sc.doveCount}D / ${sc.hawkCount}H</span>
+          <span class="score-sub">base ${fmtScore(sc.base)}${sc.baseBand !== sc.band ? ` (${esc(sc.baseBand)})` : ""} · ${sc.doveCount}D / ${sc.hawkCount}H</span>
         </div>
         <div class="gauge">
           <div class="gauge-center"></div>

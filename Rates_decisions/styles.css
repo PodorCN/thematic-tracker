@@ -286,6 +286,7 @@ section { margin-top: 22px; }
 }
 .badge.ok { color: var(--green); background: var(--green-bg); }
 .badge.warn { color: var(--amber); background: var(--amber-bg); }
+.badge.mild { color: var(--ink-soft); background: var(--paper-2); border-color: var(--rule-soft); }
 .badge.na { color: var(--muted); background: var(--paper-2); }
 
 /* Probability bars */
