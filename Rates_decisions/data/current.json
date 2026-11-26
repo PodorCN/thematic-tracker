@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-25T17:06:55-05:00",
+  "as_of": "2026-11-25T20:32:38-05:00",
   "snapshot_date": "2026-11-25",
   "version": 1,
   "timezone": "America/Toronto",
@@ -17,8 +17,8 @@
       },
       "pricing": {
         "probabilities": {
-          "hike": 0.94,
-          "hold": 0.05,
+          "hike": 0.95,
+          "hold": 0.04,
           "cut": 0.01
         },
         "probability_status": "available",
@@ -26,7 +26,7 @@
         "implied_rate_after": 4.12,
         "source": "Kalshi December decision ladder (bid/ask mid)",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXFEDDECISION&status=open",
-        "as_of": "2026-11-25T17:06:55-05:00",
+        "as_of": "2026-11-25T20:32:38-05:00",
         "observable_proxy": null
       }
     },
@@ -52,7 +52,7 @@
         "implied_rate_after": 2.69,
         "source": "Kalshi December decision ladder (bid/ask mid)",
         "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXCBDECISIONCANADA&status=open",
-        "as_of": "2026-11-25T17:06:55-05:00",
+        "as_of": "2026-11-25T20:32:38-05:00",
         "observable_proxy": null
       }
     }
@@ -64,15 +64,15 @@
         "event_slug": "fed-decision-in-december-20260729232808632",
         "event_url": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
         "probabilities": {
-          "cut": 0,
+          "cut": 0.01,
           "hold": 0.04,
-          "hike": 0.96
+          "hike": 0.95
         },
         "status": "available",
-        "as_of": "2026-11-25T22:01:29.93054Z",
-        "volume": "$61.5M",
-        "liquidity": "$3.3M",
-        "note": "Outcome-price basis; oldest venue price timestamp 2026-11-25T22:01:29.93054Z; event updatedAt 2026-11-25T22:01:48.337613Z; not an order-book midpoint. Event settlement date checked in UTC/Toronto; settlement time is not the policy announcement time. Raw five-leg sum 1.002000 before normalization. Hold 4%, Hike 96%, Cut 0%."
+        "as_of": "2026-11-26T01:29:29.72311Z",
+        "volume": "$61.7M",
+        "liquidity": "$3.7M",
+        "note": "Outcome-price basis; oldest venue price timestamp 2026-11-26T01:29:29.72311Z; event updatedAt 2026-11-26T01:29:44.614719Z; not an order-book midpoint. Event settlement date checked in UTC/Toronto; settlement time is not the policy announcement time. Raw five-leg sum 1.004500 before normalization. Hold 4%, Hike 95%, Cut 1%."
       }
     ],
     "boc": [
@@ -86,10 +86,10 @@
           "hike": 0.77
         },
         "status": "available",
-        "as_of": "2026-11-25T22:01:29.93054Z",
-        "volume": "$387.0k",
-        "liquidity": "$101.9k",
-        "note": "Outcome-price basis; oldest venue price timestamp 2026-11-25T22:01:29.93054Z; event updatedAt 2026-11-25T22:01:48.337613Z; not an order-book midpoint. Event settlement date checked in UTC/Toronto; settlement time is not the policy announcement time. Raw five-leg sum 0.988500 before normalization. Hold 23%, Hike 77%, Cut 0%."
+        "as_of": "2026-11-26T01:21:29.031333Z",
+        "volume": "$387.5k",
+        "liquidity": "$112.8k",
+        "note": "Outcome-price basis; oldest venue price timestamp 2026-11-26T01:21:29.031333Z; event updatedAt 2026-11-26T01:29:44.614719Z; not an order-book midpoint. Event settlement date checked in UTC/Toronto; settlement time is not the policy announcement time. Raw five-leg sum 1.003500 before normalization. Hold 23%, Hike 77%, Cut 0%."
       }
     ]
   },
@@ -286,6 +286,32 @@
       "hawkish": [
         {
           "id": "boc-h1",
+          "title": "Gov. Macklem: act early on oil pass-through; 2% targets total CPI",
+          "summary": "Governor warned of second-round oil inflation into 2027 and prioritized total CPI over core relief.",
+          "published_at": "2026-11-24",
+          "observed_at": "2026-11-24",
+          "source": "Bank of Canada",
+          "source_url": "https://www.bankofcanada.ca/2026/11/canadas-monetary-policy-framework-a-trusted-anchor-in-uncertain-waters/",
+          "facet": "leadership-guidance",
+          "data": {
+            "actual": "'acting early is preferable'; 2% target applies to total CPI; 'second-round effect of the oil shock'",
+            "forecast": "n/a",
+            "previous": "Oct 28: 'proceed carefully' on US tariff headwinds",
+            "delta_label": "+27.5pp Kalshi repricing in 1h"
+          },
+          "reason": "Supersedes Macklem's Oct 28 cautious statement while noting ongoing US tariff uncertainty: he argued acting early beats waiting for clarity, stressed core metrics are inputs rather than targets, and warned absorbed energy/transport costs are spilling over into persistent inflation.",
+          "market_validation": "Kalshi Dec 25bp-Hike jumped 0.53/0.54 (12:00 ET) to 0.80/0.82 (13:00 ET, +27.5pp on 5,570 contracts) after Macklem's 12:40 ET speech, holding 0.77/0.78 on Nov 25.",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 1,
+            "importance": 1,
+            "surprise": 1,
+            "total": 3
+          }
+        },
+        {
+          "id": "boc-h2",
           "title": "Oct 28 hike to 2.50%; MPR lifts CPI to 3.5% & growth path",
           "summary": "Hike lifted inflation path to ~3.5% year-end and 3% in 2027, keeping tightening bias open.",
           "published_at": "2026-10-28",
@@ -311,7 +337,7 @@
           }
         },
         {
-          "id": "boc-h2",
+          "id": "boc-h3",
           "title": "Nov 10 BoC deliberations: pass-through risk rose, hikes open",
           "summary": "Council warned rising fuel and input costs risk spreading broadly into core inflation.",
           "published_at": "2026-11-10",
@@ -337,7 +363,7 @@
           }
         },
         {
-          "id": "boc-h3",
+          "id": "boc-h4",
           "title": "Oct headline CPI stuck at 3.1% above 1–3% band",
           "summary": "Gasoline (+30.9% y/y) and grocery gains keep headline inflation above the BoC's 3% cap.",
           "published_at": "2026-11-16",
@@ -431,41 +457,15 @@
             "previous": "Ex-energy 2.1%, CPI-trim 1.9%, CPI-median 2.0%",
             "delta_label": "ex-energy & trim -0.1pp"
           },
-          "reason": "Core measures remain anchored at or below the 2% target on softer shelter (1.4%) and cell-plan prices, contradicting broad pass-through urgency.",
+          "reason": "Sub-index core gauges remain anchored at or below 2% on softer shelter (1.4%) and cell-plan prices; scored 1 since headline dominates same release and BoC targets total CPI.",
           "market_validation": "Kalshi Dec 25bp-Hike eased 0.485->0.465 (-2.0pp) across Nov 16 release.",
           "direction": -1,
-          "weight": 2,
+          "weight": 1,
           "weight_breakdown": {
             "deviation": 1,
-            "importance": 1,
+            "importance": 0,
             "surprise": 0,
-            "total": 2
-          }
-        },
-        {
-          "id": "boc-d4",
-          "title": "Gov. Macklem: 'proceed carefully' as US tariffs hit Q4",
-          "summary": "Governor laid out one-meeting-at-a-time approach given core near 2% and tariff Q4 headwinds.",
-          "published_at": "2026-10-28",
-          "observed_at": "2026-10-28",
-          "source": "Bank of Canada",
-          "source_url": "https://www.bankofcanada.ca/2026/10/opening-statement-2026-10-28/",
-          "facet": "guidance",
-          "data": {
-            "actual": "'There could be a need to raise the policy rate further, but given the uncertainties, we will proceed carefully.'",
-            "forecast": "n/a",
-            "previous": "First hike of cycle",
-            "delta_label": "no commitment to December"
-          },
-          "reason": "Macklem explicitly left December conditional on energy spillover and noted new US tariffs will slow Q4 growth while excess supply persists.",
-          "market_validation": "Kalshi BoC Dec 25bp fell 0.46->0.34 in 12 minutes after Oct 28 release.",
-          "direction": -1,
-          "weight": 2,
-          "weight_breakdown": {
-            "deviation": 1,
-            "importance": 1,
-            "surprise": 0,
-            "total": 2
+            "total": 1
           }
         }
       ]
@@ -478,9 +478,9 @@
       "band": "strong hike lean"
     },
     "boc": {
-      "base_total": -1,
-      "effective_total": -1.5,
-      "band": "hold"
+      "base_total": 5,
+      "effective_total": 3.25,
+      "band": "lean hike"
     },
     "calculation": "total = clamp(sum(direction*weight), -10, 10). Age decay on effective weight: <=7d x1.0, 8-14d x0.75, 15-30d x0.5, >30d x0.25. Bands: +7..+10 strong hike lean, >+3..+6.9 lean hike, -3..+3 hold, <-3..-6.9 lean cut, -7..-10 strong cut lean."
   },
@@ -536,7 +536,7 @@
       "event": "BOC rate decision",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike 75% (25bp 73.3% / >25bp 1.5%) / Hold 24% / Cut 1% (Kalshi 25 Nov 17:06 ET)",
+      "forecast": "Hike 75% (25bp 74.5% / >25bp 1.0%) / Hold 24% / Cut 1% (Kalshi 25 Nov 20:32 ET)",
       "previous": "2.50% (raised 28 Oct, first hike since July 2023)",
       "source": "Bank of Canada",
       "source_url": "https://www.bankofcanada.ca/2026/12/interest-rate-announcement-december-9-2026/"
@@ -550,7 +550,7 @@
       "event": "FOMC rate decision + SEP",
       "impact": "HIGH",
       "importance": 3,
-      "forecast": "Hike 94% (25bp 91.1% / >25bp 2.5%) / Hold 5% / Cut 1% (Kalshi 25 Nov 17:06 ET)",
+      "forecast": "Hike 95% (25bp 92.0% / >25bp 2.5%) / Hold 4% / Cut 1% (Kalshi 25 Nov 20:32 ET)",
       "previous": "3.75-4.00% (held 28 Oct on a 10-2 vote)",
       "source": "Federal Reserve",
       "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
@@ -598,5 +598,5 @@
       "source_url": "https://www.bankofcanada.ca/press/upcoming-events/"
     }
   ],
-  "notes": "Snapshot 2026-11-25 17:06 ET (post Oct PCE & Q3 GDP 2nd est.). Drivers consolidated to eliminate speech/theme overlap and keep raw & effective scores inside [-10, +10] (speeches restricted to key principals: Chair, Vice Chair, NY Fed Pres., BoC Governor). Fed Dec 9 pricing: Kalshi 5-leg midpoint at 22:06:55Z (0.025/0.925/0.055/0.005/0.005, sum 1.015) normalizes to 93.6% hike (91.1% +25bp, 2.5% >25bp), 5.4% hold, 1.0% cut (rounded 94/5/1; implied 4.12%); Polymarket 96% hike / 4% hold ($61.5M). BoC Dec 9 pricing: Kalshi 5-leg midpoint at 22:06:55Z (0.015/0.755/0.250/0.005/0.005, sum 1.030) normalizes to 74.8% hike (73.3% +25bp, 1.5% >25bp), 24.3% hold, 1.0% cut (rounded 75/24/1; implied 2.69%); Polymarket 77% hike / 23% hold ($387.0k); BlueGamma CORRA OIS 85% hike / +21bp (Nov 25)."
+  "notes": "Snapshot 2026-11-25 20:32 ET (post Oct PCE, Q3 GDP 2nd est., and Gov. Macklem's Nov 24 Economic Club of Canada speech). Added Macklem's Nov 24 speech (+3, superseding Oct 28 cautious statement) and restored Oct Core CPI weight to 1 (BoC base +5 / effective +3.25 lean hike). Fed Dec 9 pricing: Kalshi 5-leg midpoint at 2026-11-26T01:32:38Z (0.025/0.925/0.045/0.005/0.005, sum 1.005) normalizes to 94.5% hike (92.0% +25bp, 2.5% >25bp), 4.5% hold, 1.0% cut (rounded 95/4/1; implied 4.12%); Polymarket 95% hike / 4% hold / 1% cut ($61.7M). BoC Dec 9 pricing: Kalshi 5-leg midpoint at 2026-11-26T01:32:38Z (0.010/0.775/0.245/0.005/0.005, sum 1.040) normalizes to 75.5% hike (74.5% +25bp, 1.0% >25bp), 23.6% hold, 1.0% cut (rounded 75/24/1; implied 2.69%); Polymarket 77% hike / 23% hold ($387.5k); BlueGamma CORRA OIS 85% hike / +21bp (Nov 25)."
 }
