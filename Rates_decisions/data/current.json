@@ -98,99 +98,47 @@
       "hawkish": [
         {
           "id": "fed-h1",
-          "title": "Oct Core PCE 3.3% y/y & Q3 GDP revised up to 4.3%",
-          "summary": "Sticky 3.3% core PCE (vs 3.2% est.) and 4.3% Q3 GDP reinforce December tightening.",
+          "title": "October core PCE rises 0.3% m/m and 3.3% y/y",
+          "summary": "Persistent core inflation gives policymakers little reason to pause on disinflation grounds.",
           "published_at": "2026-11-25",
           "observed_at": "2026-11-25",
           "source": "BEA",
           "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026",
-          "facet": "inflation-growth",
           "data": {
-            "actual": "PCE +0.3% m/m (3.8% y/y), Core PCE +0.3% (3.3% y/y); Q3 GDP 4.3% ann.",
-            "forecast": "Core PCE 3.2% y/y; Q3 GDP adv 3.4%",
-            "previous": "Sep PCE 3.6% / core 3.1%; Q2 GDP 2.2%",
-            "delta_label": "+0.1pp core PCE surprise; +0.9pp GDP upward rev"
+            "actual": "Core PCE +0.3% m/m and +3.3% y/y, headline +0.3% m/m and +3.8% y/y",
+            "forecast": "n/a (no consensus in release)",
+            "previous": "September core +0.3% m/m; headline +0.5% m/m",
+            "delta_label": "core pace unchanged at +0.3% m/m"
           },
-          "reason": "Core PCE accelerated to 3.3% y/y alongside +0.7% personal income and an upward 4.3% Q3 GDP revision (final private sales +5.8%), leaving no disinflation buffer ahead of December 9.",
-          "market_validation": "Kalshi Dec 25bp leg held 0.92/0.93 across the 13:30Z PCE & Q3 GDP releases (2,105 contracts in 13:35Z minute) and >25bp held 0.03/0.04 before easing to 0.02/0.03 by 22:06Z; Polymarket reached 96% hike on Nov 25.",
+          "reason": "The monthly core PCE pace held steady. BLS reported a third straight 0.3% monthly core CPI gain on November 10 (https://www.bls.gov/news.release/archives/cpi_11102026.htm). Together the releases point to persistent underlying inflation ahead of December.",
+          "market_validation": "Across the November 10 CPI release, the Kalshi December >25bp leg rose 5pp from a 0.055 mid at 08:00 ET to 0.105 at 09:00 ET (345,470 contracts in the latter candle). On November 25 the 25bp leg held at 0.92/0.93 and the >25bp leg at 0.03/0.04 from 13:25Z through 14:10Z around PCE.",
           "direction": 1,
           "weight": 3,
           "weight_breakdown": {
             "deviation": 1,
-            "importance": 1,
-            "surprise": 1,
+            "importance": 2,
+            "surprise": 0,
             "total": 3
-          }
+          },
+          "facet": "underlying-inflation"
         },
         {
           "id": "fed-h2",
-          "title": "Oct FOMC 10-2 hold was 'close call'; minutes flag hikes",
-          "summary": "Two voters dissented for +25bp; minutes show 'almost all' back more hikes if inflation stalls.",
+          "title": "October FOMC minutes show broad support for further hikes",
+          "summary": "The committee tilt raises the bar for another hold while leaving the timing and size of the next move open.",
           "published_at": "2026-11-18",
           "observed_at": "2026-11-18",
           "source": "Federal Reserve",
           "source_url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20261028.htm",
           "facet": "deliberations",
           "data": {
-            "actual": "10-2 hold (Cook, Hammack dissented +25bp); 'almost all' see further hikes appropriate",
-            "forecast": "Hold (pre-meeting ~94%)",
-            "previous": "Sep 16: +25bp to 3.75-4.00%",
-            "delta_label": "two dissents + hawkish minutes"
-          },
-          "reason": "Consolidates the Oct 28 statement and Nov 18 minutes: holding barely prevailed as a 'close call', most saw broad-based inflation risks, and a couple floated >25bp.",
-          "market_validation": "Kalshi Dec +25bp rose 0.79->0.81 on Oct 28 (76.9k contracts); >25bp leg rose 0.065->0.075 on Nov 18 minutes.",
-          "direction": 1,
-          "weight": 3,
-          "weight_breakdown": {
-            "deviation": 1,
-            "importance": 1,
-            "surprise": 1,
-            "total": 3
-          }
-        },
-        {
-          "id": "fed-h3",
-          "title": "Williams & Jefferson: inflation too high, further hikes needed",
-          "summary": "FOMC Vice Chair and Fed Vice Chair point to ~3.5% inflation and AI-led demand requiring action.",
-          "published_at": "2026-11-23",
-          "observed_at": "2026-11-23",
-          "source": "NY Fed",
-          "source_url": "https://www.newyorkfed.org/newsevents/speeches/2026/wil261123",
-          "facet": "leadership-guidance",
-          "data": {
-            "actual": "Williams (Nov 23): PCE ~3.5%, 'still work to do'; Jefferson (Nov 13): inflation 'more important signal'",
+            "actual": "\"almost all participants judged ... further action to raise the target range ... would likely be appropriate\"",
             "forecast": "n/a",
-            "previous": "Oct 28: both backed pause for more data",
-            "delta_label": "top-two leadership alignment"
+            "previous": "28 Oct statement: hold, with two dissents for +25bp",
+            "delta_label": "Broad support for further tightening if warranted, with some openness to a larger move"
           },
-          "reason": "Consolidates key-principal remarks only (NY Fed Pres. Williams Nov 17/23, Vice Chair Jefferson Nov 13/19): both see strong growth and above-target inflation needing tighter policy while Williams pushed back against 'dramatic' 50bp moves.",
-          "market_validation": "Kalshi >25bp leg trimmed 0.055->0.045 on Williams Nov 17 'no dramatic action' remarks while 25bp stayed 0.90-0.93.",
-          "direction": 1,
-          "weight": 2,
-          "weight_breakdown": {
-            "deviation": 1,
-            "importance": 1,
-            "surprise": 0,
-            "total": 2
-          }
-        },
-        {
-          "id": "fed-h4",
-          "title": "Oct CPI +0.4% m/m, core +0.3% a third straight month",
-          "summary": "Three consecutive 0.3% monthly core gains beat consensus and keep underlying inflation stalled.",
-          "published_at": "2026-11-10",
-          "observed_at": "2026-11-10",
-          "source": "BLS",
-          "source_url": "https://www.bls.gov/news.release/archives/cpi_11102026.htm",
-          "facet": "prices",
-          "data": {
-            "actual": "+0.4% m/m, core +0.3% m/m (shelter +0.3%, energy +0.7%)",
-            "forecast": "+0.3% m/m, core +0.2% (Dow Jones consensus)",
-            "previous": "+0.6% m/m Sep, core +0.3%",
-            "delta_label": "+0.1pp beat on headline and core"
-          },
-          "reason": "Three straight 0.3% monthly core CPI prints confirmed sticky price momentum ahead of November PCE and December FOMC.",
-          "market_validation": "Kalshi >25bp leg jumped 0.055->0.105 at 08:30 ET release on 345,470 contracts.",
+          "reason": "At the October press conference, Warsh left December open (https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf). Waller would consider 50bp if monthly core CPI held at 0.3% (https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm). Williams said conditions did not call for dramatic action (https://www.investing.com/news/economy-news/feds-williams-still-favors-tighter-monetary-policy-but-says-now-is-not-the-time-for-dramatic-action-5033893).",
+          "market_validation": "The Kalshi December >25bp leg rose 1pp from a 0.065 mid at the 14:00 ET November 18 release to 0.075 at 16:00 ET (19,331 and 3,721 contracts in those candles). The 25bp leg eased from 0.92/0.93 to 0.90/0.91.",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -202,21 +150,46 @@
         },
         {
           "id": "fed-h5",
-          "title": "Oct payrolls +165k (4.1% u-rate) & retail control +0.6%",
-          "summary": "Rebounding hiring and +0.6% control retail sales remove labour-slack cover for holding.",
+          "title": "October payrolls rise 165,000 as unemployment falls to 4.1%",
+          "summary": "The hiring surprise and upward revisions weaken the case for holding in December on labour-market grounds.",
           "published_at": "2026-11-06",
           "observed_at": "2026-11-06",
           "source": "BLS",
           "source_url": "https://www.bls.gov/news.release/empsit.nr0.htm",
           "facet": "labour-demand",
           "data": {
-            "actual": "+165k payrolls, u3 4.1%, AHE +0.4% m/m; Oct control retail +0.6% (Nov 17 Census)",
-            "forecast": "+65k payrolls, u3 4.2%; retail control +0.4%",
-            "previous": "+60k Sep (+84k Aug/Sep rev); Sep control +0.5%",
-            "delta_label": "+100k jobs beat; +0.2pp control retail beat"
+            "actual": "+165k payrolls; unemployment 4.1%; AHE +0.4% m/m, +3.1% y/y",
+            "forecast": "+65k; unemployment 4.2%; AHE +0.3% (consensus, FxStreet, 6 Nov 07:56 GMT: https://www.fxstreet.com/news/forex-today-us-dollar-gathers-recovery-momentum-ahead-of-critical-employment-data-202611060756)",
+            "previous": "+60k Sep (revised from +29k), +186k Aug (revised from +133k); unemployment 4.2%",
+            "delta_label": "+100k vs consensus; +84k of upward revisions; unemployment -0.1pp"
           },
-          "reason": "Consolidates real-activity beats: +165k payrolls with +84k prior revisions and strong Oct retail control (+0.6%) show demand absorbing 3.75-4.00% rates.",
-          "market_validation": "Kalshi Dec 25bp leg jumped 0.645->0.785 (+14.0pp) on 68,547 contracts at Nov 6 payrolls release.",
+          "reason": "Hiring outpaced expectations and unemployment fell, suggesting less labour-market slack. The November payroll report is scheduled for December 4 and can change that assessment before the meeting.",
+          "market_validation": "Kalshi Dec 25bp-Hike leg 0.64/0.65 (mid 0.645) at the 5 Nov close (23:00 ET) -> 0.78/0.79 (mid 0.785) in the 09:00 ET candle on 6 Nov, +14.0pp across the 08:30 ET release on 68,547 contracts; Polymarket's 25bp leg went 0.655 (5 Nov 23:00 ET) -> 0.785 (6 Nov 09:00 ET), and Reuters reported bets rising 'to 78% following the data from 70% earlier'. The print reversed the 5 November sell-off rather than setting a new high: the leg had closed 4 November at 0.79/0.80.",
+          "direction": 1,
+          "weight": 3,
+          "weight_breakdown": {
+            "deviation": 2,
+            "importance": 1,
+            "surprise": 0,
+            "total": 3
+          }
+        },
+        {
+          "id": "fed-h6",
+          "title": "Q3 GDP revised to 4.3% as October real spending slips",
+          "summary": "Firm private demand supports tightening, while softer monthly consumption tempers the case for a more aggressive move.",
+          "published_at": "2026-11-25",
+          "observed_at": "2026-11-25",
+          "source": "BEA",
+          "source_url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
+          "data": {
+            "actual": "Real GDP +4.3% SAAR (advance +3.4%), final sales to private domestic purchasers +5.8% (from +4.9%)",
+            "forecast": "n/a (second estimate; revision, not a consensus release)",
+            "previous": "Q2 +2.2%; advance Q3 +3.4%",
+            "delta_label": "+0.9pp upward revision"
+          },
+          "reason": "Higher private final sales point to firm domestic demand in Q3. Real consumption edged down in October (https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026), tempering the signal from the earlier period.",
+          "market_validation": "No net repricing on Kalshi: the Dec 25bp leg held 0.92/0.93 across the 13:30Z release (2,105 contracts in the 13:35Z minute) and the >25bp leg stayed 0.03/0.04, so the print confirmed rather than changed the hike price.",
           "direction": 1,
           "weight": 2,
           "weight_breakdown": {
@@ -224,63 +197,11 @@
             "importance": 1,
             "surprise": 0,
             "total": 2
-          }
+          },
+          "facet": "domestic-demand"
         }
       ],
-      "dovish": [
-        {
-          "id": "fed-d1",
-          "title": "Chair Warsh stays non-committal on Dec; cites AI productivity",
-          "summary": "Chair declined December forward guidance and focused on AI productivity rather than rate size.",
-          "published_at": "2026-11-16",
-          "observed_at": "2026-11-16",
-          "source": "Federal Reserve",
-          "source_url": "https://www.federalreserve.gov/newsevents/speech/warsh20261116a.htm",
-          "facet": "guidance",
-          "data": {
-            "actual": "Oct 28: 'don't believe in prejudging meetings'; Nov 16: AI productivity remarks, no Dec guidance",
-            "forecast": "n/a",
-            "previous": "Sep SEP median 4.1%",
-            "delta_label": "silence at the top"
-          },
-          "reason": "Consolidates Chair Warsh's Oct 28 presser and Nov 16 SF Fed speech: refusing to pre-commit and emphasizing AI productivity supply gains marginally tempers size expectations.",
-          "market_validation": "Kalshi >25bp leg eased 0.085->0.075 in the 12:00 ET Nov 16 hour (113,079 contracts) while 25bp stayed 0.88/0.89.",
-          "direction": -1,
-          "weight": 2,
-          "weight_breakdown": {
-            "deviation": 1,
-            "importance": 1,
-            "surprise": 0,
-            "total": 2
-          }
-        },
-        {
-          "id": "fed-d2",
-          "title": "Real consumer spending flat across Sep–Oct (-$5.8B in Oct)",
-          "summary": "Real PCE edged down in October (-$5.8B) after stalling in September, limiting 50bp tail risk.",
-          "published_at": "2026-11-25",
-          "observed_at": "2026-11-25",
-          "source": "BEA",
-          "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026",
-          "facet": "real-spending",
-          "data": {
-            "actual": "Oct real PCE -$5.8B (<-0.1% m/m); Sep real PCE <+0.1%",
-            "forecast": "n/a",
-            "previous": "Aug real PCE +0.5%",
-            "delta_label": "two-month real volume stall"
-          },
-          "reason": "High prices continue eroding real consumption volume even as nominal income rises, supporting a measured 25bp step over aggressive tightening.",
-          "market_validation": "Kalshi >25bp leg eased to 0.02/0.03 (mid 0.025) on Nov 25.",
-          "direction": -1,
-          "weight": 1,
-          "weight_breakdown": {
-            "deviation": 0,
-            "importance": 1,
-            "surprise": 0,
-            "total": 1
-          }
-        }
-      ]
+      "dovish": []
     },
     "boc": {
       "hawkish": [
@@ -473,8 +394,8 @@
   },
   "total_score": {
     "fed": {
-      "base_total": 9,
-      "effective_total": 7.5,
+      "base_total": 10,
+      "effective_total": 8.5,
       "band": "strong hike lean"
     },
     "boc": {
