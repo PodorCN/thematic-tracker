@@ -132,6 +132,7 @@
       <select id="snapshotDate" aria-label="View calendar snapshot by date" disabled></select>
     </div>
     <div id="status" role="status" aria-live="polite">Loading calendar data…</div>
+    <div id="liveStatus" class="caption" hidden></div>
   </div>
 </section>
 <section id="trends" class="section tinted" hidden>
@@ -172,7 +173,10 @@ const periodLabels = {MoM:'Monthly change', YoY:'Annual change', QoQ:'Quarterly 
 const allowedCurrencies = new Set(['USD','CAD','EUR','GBP','CHF','EMU','DE','FR','IT','ES','UK']);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const localParts = new Intl.DateTimeFormat('en-US', {timeZone:'America/Toronto', year:'numeric', month:'2-digit', day:'2-digit', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:true});
+const liveUrl = 'https://economic-calendar-live.zixiao-cab.workers.dev/live.json';
+const liveFields = ['actual', 'forecast', 'previous', 'unit'];
 let manifest, generation = 0, currentDate = null, activeImpact = 'ALL', charts = [];
+let liveView = null;
 
 function element(tag, className='', text) {
   const node = document.createElement(tag);
@@ -186,6 +190,8 @@ function setStatus(message, error=false) {
   $('status').style.color = error ? 'var(--high)' : 'var(--color-neutral-500)';
 }
 function clearView() {
+  liveView = null;
+  $('liveStatus').hidden = true;
   charts.forEach(chart => chart.destroy());
   charts = [];
   $('trendsContent').replaceChildren();
@@ -196,8 +202,8 @@ function clearView() {
   $('currencyFilter').replaceChildren(new Option('All currencies', 'ALL'));
   $('dateFilter').replaceChildren(new Option('All dates', 'ALL'));
 }
-async function getJSON(url) {
-  const response = await fetch(url, {cache:'no-store'});
+async function getJSON(url, options = {}) {
+  const response = await fetch(url, {cache:'no-store', ...options});
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
   try { return await response.json(); }
   catch (error) { throw new Error(`${url}: invalid JSON (${error.message})`); }
@@ -438,6 +444,52 @@ function applyFilters() {
     group.style.display = [...group.querySelectorAll('tbody tr')].some(tr => tr.style.display !== 'none') ? '' : 'none';
   });
 }
+async function refreshIntraday() {
+  const view = liveView;
+  if (!view || view.pending || document.hidden) return;
+  view.pending = true;
+  const status = $('liveStatus');
+  try {
+    const data = await getJSON(liveUrl, {signal:AbortSignal.timeout(8_000)});
+    if (view !== liveView) return;
+    if (!Array.isArray(data.events)) throw new Error('Invalid intraday calendar data');
+    let changed = false;
+    for (const update of data.events) {
+      if (!update || !Number.isFinite(update.actual)) continue;
+      const event = view.events.get(update.id);
+      const checkedAt = Date.parse(update.checked_at);
+      if (!event || !Number.isFinite(checkedAt) || checkedAt <= (view.checked.get(event.id) ?? view.snapshotTime) ||
+          Date.parse(update.datetime_utc) !== utcDate(event.datetime_utc).getTime()) continue;
+      view.checked.set(event.id, checkedAt);
+      for (const field of liveFields) {
+        const value = update[field];
+        const valid = field === 'unit' ? typeof value === 'string' : Number.isFinite(value);
+        if (valid && event[field] !== value) {
+          event[field] = value;
+          changed = true;
+        }
+      }
+    }
+    if (changed) {
+      const currency = $('currencyFilter').value;
+      const day = $('dateFilter').value;
+      const {merged} = decorateEvents(view.data);
+      $('timelineContent').replaceChildren();
+      renderTimeline(merged, view.date);
+      $('currencyFilter').value = currency;
+      $('dateFilter').value = day;
+      applyFilters();
+    }
+    const newest = Math.max(...view.checked.values());
+    status.textContent = Number.isFinite(newest)
+      ? `US & Canada · Last intraday data check ${toronto(new Date(newest).toISOString()).time} Toronto`
+      : 'US & Canada · Intraday updates enabled';
+  } catch {
+    if (view === liveView) status.textContent = 'US & Canada · Intraday feed unavailable';
+  } finally {
+    view.pending = false;
+  }
+}
 async function selectSnapshot(date) {
   const request = ++generation;
   clearView(); setStatus(`Loading snapshot ${date}…`);
@@ -451,6 +503,15 @@ async function selectSnapshot(date) {
     $('windowCaption').textContent = `${date} to ${dates.at(-1) || data.end || date}`;
     document.title = `Global Economic Calendar — ${date} to ${dates.at(-1) || data.end || date} | PodorM`;
     currentDate = date; setStatus('');
+    if (date === manifest.latest && !new URLSearchParams(location.search).has('date')) {
+      const eligible = data.events.filter(event => event.source === 'fxstreet' && event.impact === 'HIGH' &&
+        (event.country === 'US' || event.country === 'CA'));
+      liveView = {data, date, events:new Map(eligible.map(event => [event.id,event])), checked:new Map(),
+        snapshotTime:Date.parse(data.fetched_at) || 0, pending:false};
+      $('liveStatus').textContent = 'Checking intraday data…';
+      $('liveStatus').hidden = false;
+      refreshIntraday();
+    }
   } catch(error) {
     if (request !== generation) return;
     clearView(); currentDate = null;
@@ -488,6 +549,8 @@ window.addEventListener('popstate', () => {
 $('search').addEventListener('input',applyFilters);
 $('currencyFilter').addEventListener('change',applyFilters);
 $('dateFilter').addEventListener('change',applyFilters);
+setInterval(refreshIntraday, 30_000);
+document.addEventListener('visibilitychange', refreshIntraday);
 document.querySelectorAll('[data-impact]').forEach(button => button.addEventListener('click', () => {
   document.querySelectorAll('[data-impact]').forEach(other => other.classList.remove('active'));
   button.classList.add('active'); activeImpact = button.dataset.impact; applyFilters();

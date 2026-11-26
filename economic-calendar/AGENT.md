@@ -16,7 +16,19 @@ economic-calendar/
   archive/<date>.html     旧版历史页面，只读遗留文件；不再新增或更新
 ```
 
-`index.html` 加载 `data/dates.json`，默认读取 `data/latest.json`；日期选择器切换到 `data/archive/<date>.json`，地址变为 `?date=<date>`，浏览器返回/前进也恢复选择。所有内容（日期、指标、图表、时间线、过滤选项）均来自所选 JSON，不在 HTML 中嵌入旧快照；解析或 HTTP 出错时清空旧内容并显示错误，不静默回退最新快照。前端不直连 FxStreet/Investing.com。历史旧 HTML 保留，但新的日期只提供 JSON；不能再链接到不存在的新版 `archive/<date>.html`。
+`index.html` 加载 `data/dates.json`，默认读取 `data/latest.json`；日期选择器切换到 `data/archive/<date>.json`，地址变为 `?date=<date>`，浏览器返回/前进也恢复选择。日期、指标、图表、时间线和过滤选项以所选 JSON 为基础。默认视图额外读取盘中公布值，带 `?date=` 的历史视图只显示所选快照。快照解析或 HTTP 出错时清空旧内容并显示错误。前端不直连 FxStreet/Investing.com。历史旧 HTML 保留，但新的日期只提供 JSON；不能再链接到不存在的新版 `archive/<date>.html`。
+
+## 美加盘中更新
+
+`scripts/econ/live-worker/` 的 Cloudflare Worker 每分钟执行一次，使用公开日更快照识别美国和加拿大的高影响 FxStreet 事件，并在计划公布后的 30 分钟内查询对应事件的公布值。D1 保存最近三天的结果，`/live.json` 将它们提供给日历。默认视图可见时每 30 秒查询，按事件 ID 和公布时间匹配，只使用比所选快照更新的结果。盘中接口失败时，页面显示状态并保留已显示的数值。
+
+从仓库根目录执行以下命令可更新配置和部署。数据库绑定在 `scripts/econ/live-worker/wrangler.toml` 指定，建表操作可重复执行。部署后检查 `https://economic-calendar-live.zixiao-cab.workers.dev/live.json`，并在下一次重要发布时对照 FxStreet 的公布值与页面更新时间。
+
+```bash
+cd scripts/econ/live-worker
+npx wrangler d1 execute economic-calendar-live --remote --file schema.sql
+npx wrangler deploy
+```
 
 ## 每日流程
 
